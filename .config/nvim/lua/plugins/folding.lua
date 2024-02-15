@@ -14,8 +14,8 @@ return {
   },
   opts = {
     close_fold_kinds = { "imports" },
-    -- provider_selector = function(_bufnr, _filetype, _buftype)
-    --   return { "treesitter", "indent" }
-    -- end,
+    provider_selector = function(_bufnr, _filetype, _buftype)
+      return { "treesitter", "indent" }
+    end,
   },
 }
