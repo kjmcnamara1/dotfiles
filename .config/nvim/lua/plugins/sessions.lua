@@ -1,22 +1,23 @@
 return {
   {
-    'rmagatti/auto-session',
-    lazy = false,
-    cmd = { 'SessionSave', 'SessionRestore', 'SessionRestoreFromFile', 'SessionDelete', 'Autosession' },
+    "rmagatti/auto-session",
+    event = "VimEnter",
+    cmd = { "SessionSave", "SessionRestore", "SessionRestoreFromFile", "SessionDelete", "Autosession" },
     keys = {
       {
-        '<leader>ss',
+        "<leader>ss",
         function()
-          require('auto-session.session-lens').search_session()
+          require("auto-session.session-lens").search_session()
         end,
-        desc = 'Search session'
+        desc = "Sessions"
       }
     },
     opts = {
+      -- auto_restore_enabled = false,
       session_lens = {
         load_on_setup = true,
-        them_conf = { bofder = true },
-      }
+      },
+      pre_save_cmds = { "Neotree close", "TroubleClose" },
     }
   }
 }
