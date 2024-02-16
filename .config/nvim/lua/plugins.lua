@@ -1,3 +1,10 @@
+-- TODO: Plugin Configs
+-- none-ls.nvim
+-- formatters
+-- linters
+-- debuggers
+-- remove mini.basics and manually set options and keymaps
+
 return {
   -- ====================================== COLORSCHEMES ======================================
   -- ============================================ UI ============================================
@@ -64,12 +71,12 @@ return {
   --   end,
   -- },
   -- TODO: Need to clean up new terminal command keymaps
-  
+
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    event = "BufEnter",
-    cond = (vim.env.NAME or vim.env.COMPUTERNAME) ~= 'ANGEL',
+    event = "VeryLazy",
+    cond = (vim.env.NAME or vim.env.COMPUTERNAME) ~= "ANGEL",
     opts = {
       indent = {
         char = "",
@@ -237,8 +244,8 @@ return {
   -- ============================================ EDITOR ============================================
   {
     -- Adds labels for marks to sign column and several keymaps
-    'kshenoy/vim-signature',
-    event={'BufReadPost','BufNewFile'},
+    "kshenoy/vim-signature",
+    event = { "BufReadPost", "BufNewFile" },
   },
   {
     "echasnovski/mini.indentscope",
