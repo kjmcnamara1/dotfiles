@@ -29,6 +29,18 @@ return {
       "nvim-tree/nvim-web-devicons",
       "echasnovski/mini.bufremove", -- Better algorithm for display after closing a buffer
     },
+    keys = {
+      { "<leader>bp", "<cmd>BufferLineTogglePin<CR>",                            desc = "Toggle pin" },
+      { "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<CR>",                 desc = "Delete non-pinned buffers" },
+      { "<leader>bo", "<cmd>BufferLineCloseOthers<CR>",                          desc = "Delete other buffers" },
+      -- { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete buffers to the right" },
+      -- { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete buffers to the left" },
+      { "<a-h>",      "<cmd>BufferLineCyclePrev<cr>",                            desc = "Prev buffer",              mode = { "n", "i", "v" } },
+      { "<a-l>",      "<cmd>BufferLineCycleNext<cr>",                            desc = "Next buffer",              mode = { "n", "i", "v" } },
+      { "[b",         "<cmd>BufferLineCyclePrev<cr>",                            desc = "Prev buffer" },
+      { "]b",         "<cmd>BufferLineCycleNext<cr>",                            desc = "Next buffer" },
+      { "<c-x>",      function() require("mini.bufremove").delete(0, false) end, desc = "Quit Buffer",              mode = { "n", "i", "v" } },
+    },
     opts = {
       options = {
         diagnostics = "nvim_lsp",
@@ -55,41 +67,33 @@ return {
         end,
       },
     },
-    keys = {
-      { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>",                            desc = "Toggle pin" },
-      { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>",                 desc = "Delete non-pinned buffers" },
-      { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>",                          desc = "Delete other buffers" },
-      -- { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete buffers to the right" },
-      -- { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete buffers to the left" },
-      { "<a-h>",      "<cmd>BufferLineCyclePrev<cr>",                            desc = "Prev buffer",              mode = { "n", "i", "v" } },
-      { "<a-l>",      "<cmd>BufferLineCycleNext<cr>",                            desc = "Next buffer",              mode = { "n", "i", "v" } },
-      { "[b",         "<cmd>BufferLineCyclePrev<cr>",                            desc = "Prev buffer" },
-      { "]b",         "<cmd>BufferLineCycleNext<cr>",                            desc = "Next buffer" },
-      { "<leader>x",  function() require("mini.bufremove").delete(0, false) end, desc = "Delete Buffer" },
-    },
-    config = function(_, opts)
-      require("bufferline").setup(opts)
-      -- Fix bufferline when restoring a session
-      vim.api.nvim_create_autocmd("BufAdd", {
-        callback = function()
-          vim.schedule(function()
-            pcall(nvim_bufferline)
-          end)
-        end,
-      })
-    end,
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     dependencies = {
+      -- "mrbjarksen/neo-tree-diagnostics.nvim",
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
+    cmd = "Neotree",
+    keys = {
+      { "<leader>e",  "<cmd>Neotree toggle reveal<cr>",                   desc = "NeoTree Explorer",     silent = true },
+      { "<leader>ge", "<cmd>Neotree toggle reveal source=git_status<cr>", desc = "NeoTree Git Explorer", silent = true },
+      -- { "<leader>oe", "<cmd>Neotree toggle reveal source=document_symbols<cr>", desc = "NeoTree Symbols Outline", silent = true },
+      { "<leader>be", "<cmd>Neotree toggle reveal source=buffers<cr>",    desc = "NeoTree Buffers",      silent = true },
+      -- { "<leader>de", "<cmd>Neotree toggle reveal bottom source=diagnostics<cr>", desc = "NeoTree Diagnostics",  silent = true },
+    },
     opts = {
-      sources = { "filesystem", "buffers", "git_status", "document_symbols" },
+      sources = {
+        "filesystem",
+        "buffers",
+        "git_status",
+        "document_symbols",
+        -- "diagnostics",
+      },
       open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
       window = {
         mappings = {
@@ -122,12 +126,9 @@ return {
           position = "right",
         },
       },
-    },
-    keys = {
-      { "<leader>e",  ":Neotree toggle reveal<cr>",                   desc = "NeoTree Explorer",     silent = true },
-      { "<leader>ge", ":Neotree toggle reveal source=git_status<cr>", desc = "NeoTree Git Explorer", silent = true },
-      -- { "<leader>oe", ":Neotree toggle reveal source=document_symbols<cr>", desc = "NeoTree Symbols Outline", silent = true },
-      { "<leader>be", ":Neotree toggle reveal source=buffers<cr>",    desc = "NeoTree Buffers",      silent = true },
+      -- diagnostics = {
+      --   auto_preview = true,
+      -- },
     },
   },
   {
@@ -173,7 +174,7 @@ return {
 
       -- Create autocmd to remove foldcolumn from symbols outline
       vim.api.nvim_create_autocmd("FileType", {
-        group = vim.api.nvim_create_augroup("symbols_nofold", {}),
+        group = vim.api.nvim_create_augroup("symbols_nofold", { clear = true }),
         pattern = "Outline",
         callback = function()
           vim.opt.foldcolumn = "0"
