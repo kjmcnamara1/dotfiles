@@ -1,14 +1,14 @@
 return {
   {
-    "hrsh7th/nvim-cmp",
+    "hrsh7th/nvim-cmp", -- autocompletion plugin
     event = "InsertEnter",
     dependencies = {
-      "hrsh7th/cmp-buffer",           -- source for text in buffer
-      "hrsh7th/cmp-path",             -- source for file system paths
-      "hrsh7th/cmp-cmdline",          -- source for commandline
-      "hrsh7th/cmp-nvim-lsp",         -- source for neovim builtin LSP client
+      "hrsh7th/cmp-buffer",           -- completion source for text in buffer
+      "hrsh7th/cmp-path",             -- completion source for file system paths
+      "hrsh7th/cmp-cmdline",          -- completion source for commandline
+      "hrsh7th/cmp-nvim-lsp",         -- completion source for neovim builtin LSP client
+      "saadparwaiz1/cmp_luasnip",     -- completion source for autocompletion
       "L3MON4D3/LuaSnip",             -- snippet engine
-      "saadparwaiz1/cmp_luasnip",     -- for autocompletion
       "rafamadriz/friendly-snippets", -- useful snippets
       "onsails/lspkind.nvim",         -- vs-code like pictograms
       "windwp/nvim-autopairs",        -- auto-close brackets and functions
@@ -77,7 +77,10 @@ return {
             { "i", "s" }
           ),
           -- ["<C-x>"] = cmp.mapping.abort(),                   -- close completion window
-          ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          ["<CR>"] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          }),
         }),
         -- sources for autocompletion
         sources = cmp.config.sources({
