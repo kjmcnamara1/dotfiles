@@ -95,7 +95,7 @@ vim.opt.updatetime = 200
 vim.opt.undolevels = 10000
 
 -- Items to remember for saving/loading sessions
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- ===================== set by MINI.BASICS =============================
 -- --------------------- options.basic ---------------------------

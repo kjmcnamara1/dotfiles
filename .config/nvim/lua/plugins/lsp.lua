@@ -1,13 +1,32 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    event = "BufReadPost",
-    cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     dependencies = {
       "folke/neodev.nvim",                 -- nvim config and plugin authoring
       "williamboman/mason-lspconfig.nvim", -- automatically install LSPs
       "hrsh7th/cmp-nvim-lsp",              -- LSP completions
       "nvimtools/none-ls.nvim",            -- new community fork of null-ls (wrap DAP, linters, and formatters as LSPs)
+    },
+    event = "BufReadPost",
+    cmd = { "LspInfo", "LspInstall", "LspUninstall" },
+    keys = {
+      { "K",          vim.lsp.buf.hover,                         desc = "LSP Hover",                   buffer = 0 },
+      { "<leader>k",  vim.lsp.buf.signature_help,                desc = "LSP Signature Documentation", buffer = 0 },
+      { "gD",         vim.lsp.buf.declaration,                   desc = "LSP Declaration",             buffer = 0 },
+      { "gi",         "<cmd>Telescope lsp_implementations<cr>",  desc = "LSP Implementations",         buffer = 0 },
+      -- { "gd",         "<cmd>Telescope lsp_definitions<cr>",      desc = "LSP Definition",              buffer = 0 },
+      -- { "gr",         "<cmd>Telescope lsp_references<cr>",       desc = "LSP References",              buffer = 0 },
+      -- { "gt",         "<cmd>Telescope lsp_type_definitions<cr>", desc = "LSP Type Definitions",        buffer = 0 },
+      { "<leader>os", "<cmd>Telescope lsp_document_symbols<cr>", desc = "LSP Document Symbols",        buffer = 0 },
+      { "<leader>ca", vim.lsp.buf.code_action,                   desc = "LSP Code Action",             buffer = 0, mode = { "n", "v" } },
+      { "<leader>cf", vim.lsp.buf.format,                        desc = "LSP Format",                  buffer = 0, mode = { "n", "v" } },
+      { "<leader>rs", "<cmd>LspRestart<cr>",                     desc = "LSP Restart Server",          buffer = 0 },
+      { "<leader>df", vim.diagnostic.open_float,                 desc = "LSP Open Diagnostics",        buffer = 0 },
+      { "]d",         vim.diagnostic.goto_next,                  desc = "LSP Next Diagnostic",         buffer = 0 },
+      { "[d",         vim.diagnostic.goto_prev,                  desc = "LSP Previous Diagnostic",     buffer = 0 },
+      -- { "<leader>q",  vim.diagnostic.setloclist,                 desc = "LSP Diagnostic SetLocList",   buffer = 0 },
+      -- { "<leader>Q",  vim.diagnostic.setqflist,                  desc = "LSP Diagnostic SetQFList",    buffer = 0 },
+      -- { '<leader>cr', vim.lsp.buf.rename, desc = 'LSP [r]e[n]ame' },
     },
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -89,19 +108,6 @@ return {
       -- Configure border for LspInfo ui
       require("lspconfig.ui.windows").default_options.border = "rounded"
     end,
-    keys = {
-      { "K",          vim.lsp.buf.hover,                         desc = "LSP Hover",                   buffer = 0 },
-      { "<leader>k",  vim.lsp.buf.signature_help,                desc = "LSP Signature Documentation", buffer = 0 },
-      { "gd",         "<cmd>Telescope lsp_definitions<cr>",      desc = "LSP Definition",              buffer = 0 },
-      { "gD",         vim.lsp.buf.declaration,                   desc = "LSP Declaration",             buffer = 0 },
-      { "gr",         "<cmd>Telescope lsp_references<cr>",       desc = "LSP References",              buffer = 0 },
-      { "gi",         "<cmd>Telescope lsp_implementations<cr>",  desc = "LSP Implementations",         buffer = 0 },
-      { "gt",         "<cmd>Telescope lsp_type_definitions<cr>", desc = "LSP Type Definitions",        buffer = 0 },
-      { "<leader>ca", vim.lsp.buf.code_action,                   desc = "LSP Code Action",             buffer = 0, mode = { "n", "v" } },
-      { "<leader>cf", vim.lsp.buf.format,                        desc = "LSP Format",                  buffer = 0, mode = { "n", "v" } },
-      { "<leader>rs", "<cmd>LspRestart<cr>",                     desc = "LSP Restart Server",          buffer = 0 },
-      -- { '<leader>cr', vim.lsp.buf.rename, desc = 'LSP [r]e[n]ame' },
-    },
   },
   {
     "smjonas/inc-rename.nvim",
