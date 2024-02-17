@@ -776,7 +776,10 @@ use commands.nu *
 
 
 # Carapace Completer
-source ~/.cache/carapace/init.nu
+source carapace.nu
+
+# Zoxide
+source zoxide.nu
 
 # Poetry Completions
 use poetry-completions.nu *

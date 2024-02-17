@@ -41,5 +41,8 @@ export-env {
 # oh-my-posh init nu --config ~/.config/nushell/atomic.omp.json --print | save ~/.config/nushell/.oh-my-posh.nu --force
 
 # Carapace Completer
-mkdir ~/.cache/carapace
-carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
+# mkdir ~/.cache/carapace
+carapace _carapace nushell | save --force ($nu.default-config-dir | path join 'scripts/carapace.nu')
+
+# Zoxide -- need to change 'def-env' to 'def --env' and expand '$rest' with '...$rest' in 
+zoxide init --cmd cd nushell | str replace --all 'def-env' 'def --env' | str replace --all --regex '(zoxide query.*)(\$rest)' '$1...$2' | save -f ($nu.default-config-dir | path join 'scripts/zoxide.nu') 
