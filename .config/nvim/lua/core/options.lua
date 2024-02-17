@@ -64,7 +64,7 @@ vim.opt.sidescrolloff = 5
 -- Folding options for ufo plugin
 vim.opt.foldcolumn = "auto:9"
 -- vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
+-- vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 -- vim.opt.foldmethod = "expr"
 -- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
