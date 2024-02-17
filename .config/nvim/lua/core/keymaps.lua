@@ -24,7 +24,7 @@ map("x", "<leader>p", '"_dP', { desc = "Paste without overwriting register" })
 map("n", "U", "<c-r>", { desc = "Redo" })
 
 -- Buffers
-map("n", "<leader>n", "<cmd>enew<cr>", { desc = "New file" })
+map("n", "<leader>bn", "<cmd>enew<cr>", { desc = "New file" })
 map("n", "<leader>'", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
 -- map("n", "<leader>`", "<cmd>exe 'tabn '.g:lasttab<cr>", { desc = "Switch to other tab" }) -- need to create an autocmd to record last tab number
 
@@ -38,10 +38,10 @@ map("", "H", "^", { desc = "Beginning of Line" })
 map("", "L", "$", { desc = "End of Line" })
 
 -- Move cursor
-map({"i",'t','c'}, "<c-h>", "<left>", { desc = "Cursor left" ,noremap=false})
-map({"i",'t','c'}, "<c-l>", "<right>", { desc = "Cursor right" ,noremap=false})
-map({"i",'t'}, "<c-j>", "<down>", { desc = "Cursor down" ,noremap=false})
-map({"i",'t'}, "<c-k>", "<up>", { desc = "Cursor up" ,noremap=false})
+map({ "i", "t", "c" }, "<c-h>", "<left>", { desc = "Cursor left", noremap = false })
+map({ "i", "t", "c" }, "<c-l>", "<right>", { desc = "Cursor right", noremap = false })
+map({ "i", "t" }, "<c-j>", "<down>", { desc = "Cursor down", noremap = false })
+map({ "i", "t" }, "<c-k>", "<up>", { desc = "Cursor up", noremap = false })
 
 -- Move to window using the <ctrl> hjkl keys
 map({ "n", "t" }, "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go to left window" })
@@ -110,7 +110,7 @@ map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 -- Search inside visually highlighted text. Use `silent = false` for it to make effect immediately.
 -- map('x', 'g/', '<esc>/\\%V', { silent = false, desc = 'Search inside visual selection' })
 
--- Search visually selected text 
+-- Search visually selected text
 -- if vim.fn.has('nvim-0.10') == 0 then
 -- 	map('x', '*', [[y/\V<C-R>=escape(@", '/\')<CR><CR>]], { desc = 'Search forward' })
 -- 	map('x', '#', [[y?\V<C-R>=escape(@", '?\')<CR><CR>]], { desc = 'Search backward' })
@@ -147,7 +147,7 @@ map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 -- map('n', '<C-Right>', '"<Cmd>vertical resize +" . v:count1 . "<CR>"', { expr = true, replace_keycodes = false, desc = 'Increase window width' })
 
 -- --------------------- mappings.move_with_alt ---------------------------
--- Move only sideways in command mode. 
+-- Move only sideways in command mode.
 -- map('c', '<M-h>', '<Left>',  { silent = false, desc = 'Left' })
 -- map('c', '<M-l>', '<Right>', { silent = false, desc = 'Right' })
 
@@ -162,4 +162,3 @@ map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 -- map('t', '<M-j>', '<Down>',  { desc = 'Down' })
 -- map('t', '<M-k>', '<Up>',    { desc = 'Up' })
 -- map('t', '<M-l>', '<Right>', { desc = 'Right' })
-
