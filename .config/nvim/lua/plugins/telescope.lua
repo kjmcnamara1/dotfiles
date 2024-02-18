@@ -1,5 +1,4 @@
 return {
-
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.5",
@@ -126,8 +125,14 @@ return {
       }
     },
     config = function(_, opts)
+      local function has(plugin)
+        return require("lazy.core.config").spec.plugins[plugin] ~= nil
+      end
+
       require("telescope").setup(opts)
-      require("telescope").load_extension("fzf")
+      if has("fzf") then
+        require("telescope").load_extension("fzf")
+      end
     end,
   },
 }
