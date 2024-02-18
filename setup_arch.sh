@@ -8,16 +8,18 @@ DRY_RUN=false
 while getopts 'd' opt; do
     case $opt in
         d) DRY_RUN=true ;;
-        *) echo 'Error in command line parsing' >&2
+        *)
+            echo 'Error in command line parsing' >&2
             exit 1
+            ;;
     esac
 done
 
 # Print 'DRY RUN' if -d flag is present
-$DRY_RUN  && echo 'DRY RUN'
+$DRY_RUN && echo 'DRY RUN'
 
 # List of files in dotfiles dir to not create symlinks for
-IGNORE_ITEMS=(
+IGNORE=(
     .git
     .vscode
     LICENSE
@@ -27,15 +29,15 @@ IGNORE_ITEMS=(
 )
 
 # Get path of current file
-DOTFILE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+DOTFILE_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 cd "$DOTFILE_DIR" || exit 1
 
 # Function to create symlinks between files and directories in 'dotfiles' repo and HOME directory
-create_link () {
+create_link() {
     local target="$PWD/$1"
     local link="$HOME/$1"
 
-    if $DRY_RUN ; then
+    if $DRY_RUN; then
         echo "link = $link"
         echo "target = $target"
         echo
@@ -47,10 +49,22 @@ create_link () {
     fi
 }
 
-# Loop thru all items cwd
+# First argument is target_dir, second argument is link_dir
+link_files() {
+  target_dir=$1
+  link_dir=$2
+    for item in *; do
+        # Skip item if present in ignore array
+        [[ "${IGNORE[@]}" =~ $item ]] && continue
+
+        abs_path="$PWD/$item"
+    done
+}
+
+# Loop thru all items in cwd
 for item in *; do
     # Skip item if present in ignore array
-    [[ ${IGNORE_ITEMS[@]} =~ $item ]] && continue
+    [[ "${IGNORE[@]}" =~ $item ]] && continue
 
     # Check if item is a directory and already exists in the HOME dir
     if [[ -d $item ]] && [[ -d "$HOME/$item" ]]; then
