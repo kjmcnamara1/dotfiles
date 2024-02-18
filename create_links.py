@@ -19,20 +19,21 @@ def create_links(target_dir: Path, link_dir: Path):
         if target.name in IGNORE:
             continue
 
-        # print(target)
-
         rel_path = target.relative_to(target_dir)
         link = link_dir / rel_path
 
-        # print(target, link)
+        if link.is_symlink():  # and link.is_dir():
+            link.unlink()
+            print("Removed symlink", link)
+
         if target.is_dir():
+            if not link.is_dir():
+                link.mkdir()
+                print("Created directory", link)
             create_links(target, link)
         else:
-            # try:
-            print(link, "->", target)
-            # link.symlink_to(target)
-            # except FileExistsError:
-            #     print("File exists", link)
+            link.symlink_to(target)
+            print("Created symlink", link, "->", target)
 
 
 if __name__ == "__main__":
