@@ -33,6 +33,9 @@ vim.opt.listchars = "trail:∙,extends:󰇘,precedes:󰇘,conceal:,nbsp:␣"
 -- Place a column line
 -- vim.opt.colorcolumn = '80'
 
+-- Allow signcolumn to accomodate gitsigns and lsp diagnostics
+vim.opt.signcolumn = "auto:2"
+
 -- Vim Autoformatting Options
 -- vim.g.autoformat = true
 -- vim.opt.formatoptions = "jcroqlnt" -- tcqj
@@ -61,11 +64,6 @@ vim.opt.sidescrolloff = 5
 
 -- vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 
--- Folding options for ufo plugin
-vim.opt.foldcolumn = "auto:9"
--- vim.opt.foldlevel = 99
--- vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
 -- vim.opt.foldmethod = "expr"
 -- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.fillchars = {
