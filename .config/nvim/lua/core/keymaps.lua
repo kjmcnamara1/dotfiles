@@ -5,6 +5,8 @@ local function map(mode, lhs, rhs, opts)
   return vim.keymap.set(mode, lhs, rhs, new_opts)
 end
 
+map("n", "<leader>gd", "<c-w>s<c-w>T<cmd>Gitsigns diffthis<cr>")
+
 -- Quick exit from Insert mode
 map("i", "jk", "<esc>", { desc = "Exit insert mode" })
 
