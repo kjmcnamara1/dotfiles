@@ -85,7 +85,8 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.bo.bufhidden = "unload"
     vim.cmd.wincmd("L")
-    vim.cmd.wincmd("=")
+    -- vim.cmd.wincmd("=")
+    vim.api.nvim_win_set_width(0, 80)
   end,
 })
 
