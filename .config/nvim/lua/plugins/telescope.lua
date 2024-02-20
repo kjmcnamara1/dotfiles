@@ -2,7 +2,10 @@ return {
   {
     "nvim-telescope/telescope-symbols.nvim",
     dependencies = "nvim-telescope/telescope.nvim",
-    keys = { { "<leader>sy", "<cmd>Telescope symbols<cr>", desc = "Symbols" } }
+    keys = {
+      { "<leader>sy", "<cmd>Telescope symbols<cr>", desc = "Symbols" },
+      { "<a-i>",      "<cmd>Telescope symbols<cr>", desc = "Symbols", mode = "i" },
+    },
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -26,8 +29,9 @@ return {
       { "<leader>r",       "<cmd>Telescope oldfiles theme=dropdown<cr>",   desc = "Find Recent" },
       -- { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find Git-files" },
       -- git
-      { "<leader>gc",      "<cmd>Telescope git_commits<cr>",               desc = "Git Commits" },
-      { "<leader>gs",      "<cmd>Telescope git_status<cr>",                desc = "Git Status" },
+      { "<leader>sgs",     "<cmd>Telescope git_status<cr>",                desc = "Git Status" },
+      { "<leader>sgc",     "<cmd>Telescope git_commits<cr>",               desc = "Git Commits" },
+      { "<leader>sgb",     "<cmd>Telescope git_branches<cr>",              desc = "Git Branches" },
       -- search
       { '<leader>"',       "<cmd>Telescope registers<cr>",                 desc = "Registers" },
       { "<leader>sa",      "<cmd>Telescope autocommands<cr>",              desc = "Auto Commands" },
