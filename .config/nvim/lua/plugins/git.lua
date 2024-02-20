@@ -70,20 +70,16 @@ return {
       { "<leader>hr", "<cmd>Gitsigns reset_hunk<cr>",                                       desc = "Reset Git Hunk",                 buffer = 0 },
       { "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<cr>",                                  desc = "Undo Stage Git Hunk",            buffer = 0 },
       -- Movements
-      { "]h",          "<cmd>Gitsigns next_hunk<cr>",                                        desc = "Next Git Hunk",           buffer = 0 },
-      { "[h",          "<cmd>Gitsigns prev_hunk<cr>",                                        desc = "Previous Git Hunk",       buffer = 0 },
-      -- Text Object
-      { "ih",          "<cmd>Gitsigns select_hunk<cr>",                                      desc = "Previous Git Hunk",       buffer = 0, mode = { "o", "x" } },
-      { "ah",          "<cmd>Gitsigns select_hunk<cr>",                                      desc = "Previous Git Hunk",       buffer = 0, mode = { "o", "x" } },
+      { "]h",         "<cmd>Gitsigns next_hunk<cr>",                                        desc = "Next Git Hunk",                  buffer = 0 },
+      { "[h",         "<cmd>Gitsigns prev_hunk<cr>",                                        desc = "Previous Git Hunk",              buffer = 0 },
+      -- Text Object (need :<c-u> instead of <cmd> to select entire hunk)
+      { "ih",         ":<c-u>Gitsigns select_hunk<cr>",                                     desc = "Inside Git Hunk",                buffer = 0, mode = { "o", "x" } },
+      { "ah",         ":<c-u>Gitsigns select_hunk<cr>",                                     desc = "Around Git Hunk",                buffer = 0, mode = { "o", "x" } },
     },
     opts = {
       preview_config = {
         border = "rounded",
       },
     },
-    -- config = function(_, opts)
-    --   require("gitsigns").setup(opts)
-    --   vim.keymap.set("n", "q", function() return vim.wo.diff and "<cmd>wincmd h | q<cr>" or "q" end, {})
-    -- end
   },
 }
