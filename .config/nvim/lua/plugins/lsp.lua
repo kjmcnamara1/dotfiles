@@ -20,7 +20,7 @@ return {
       { "<leader>os", "<cmd>Telescope lsp_document_symbols<cr>", desc = "LSP Document Symbols",        buffer = 0 },
       { "<leader>ca", vim.lsp.buf.code_action,                   desc = "LSP Code Action",             buffer = 0, mode = { "n", "v" } },
       { "<leader>cf", vim.lsp.buf.format,                        desc = "LSP Format",                  buffer = 0, mode = { "n", "v" } },
-      { "<leader>rs", "<cmd>LspRestart<cr>",                     desc = "LSP Restart Server",          buffer = 0 },
+      -- { "<leader>rs", "<cmd>LspRestart<cr>",                     desc = "LSP Restart Server",          buffer = 0 }, -- conflicts with Telescope find_recent
       { "<leader>df", vim.diagnostic.open_float,                 desc = "LSP Open Diagnostics",        buffer = 0 },
       { "]d",         vim.diagnostic.goto_next,                  desc = "LSP Next Diagnostic",         buffer = 0 },
       { "[d",         vim.diagnostic.goto_prev,                  desc = "LSP Previous Diagnostic",     buffer = 0 },
