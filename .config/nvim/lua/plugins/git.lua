@@ -14,9 +14,14 @@ return {
   {
     "NeogitOrg/neogit",
     dependencies = {
-      "nvim-lua/plenary.nvim",         -- required
-      "sindrets/diffview.nvim",        -- optional - Diff integration
-      "nvim-telescope/telescope.nvim", -- optional
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      {
+        "sindrets/diffview.nvim",
+        keys = {
+          { "<leader>gG", "<cmd>DiffviewOpen<cr>", desc = "Open Git Diffs" },
+        },
+      },
     },
     cmd = "Neogit",
     keys = {
