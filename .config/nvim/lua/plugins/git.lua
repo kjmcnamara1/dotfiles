@@ -2,9 +2,9 @@ return {
   {
     "tpope/vim-fugitive",
     cmd = { "G", "Git" },
-    keys = {
-      { "<leader>gc", "<cmd>G commit<cr>" }
-    }
+    -- keys = {
+    --   { "<leader>gc", "<cmd>G commit<cr>" }
+    -- }
   },
   {
     "tpope/vim-rhubarb",
@@ -31,11 +31,8 @@ return {
           end
         end,
         desc = "Toggle NeoGit Status",
-        remap = true,
       },
-      -- { "<leader>gc", function() require("neogit.popups.commit.actions").commit() end, desc = "Neogit Commit" },
-      -- { "<leader>gc", ":Neogit commit<cr>c", desc = "Neogit Commit" },
-      -- { "<leader>gc", "<leader>ggcc", desc = "Neogit Commit" },
+      { "<leader>gc", function() require("neogit").action("commit", "commit", {})() end, desc = "Neogit Commit" },
     },
     opts = {
       kind             = "split",
