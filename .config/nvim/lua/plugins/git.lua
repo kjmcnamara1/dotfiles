@@ -20,7 +20,22 @@ return {
     },
     cmd = "Neogit",
     keys = {
-      { "<leader>gg", "<cmd>Neogit<cr>", desc = "Open NeoGit" }
+      {
+        "<leader>gg",
+        function()
+          local ng = require("neogit")
+          if ng.status.status_buffer then
+            ng.close()
+          else
+            ng.open()
+          end
+        end,
+        desc = "Toggle NeoGit Status",
+        remap = true,
+      },
+      -- { "<leader>gc", function() require("neogit.popups.commit.actions").commit() end, desc = "Neogit Commit" },
+      -- { "<leader>gc", ":Neogit commit<cr>c", desc = "Neogit Commit" },
+      -- { "<leader>gc", "<leader>ggcc", desc = "Neogit Commit" },
     },
     opts = {
       kind             = "split",
