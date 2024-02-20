@@ -77,6 +77,19 @@ return {
     },
   },
   {
+    "stevearc/oil.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = {
+      { "-", "<cmd>Oil<cr>", desc = "Oil File Browser" },
+    },
+    opts = {
+      experimental_watch_for_changes = true,
+      view_options = {
+        show_hidden = true,
+      },
+    },
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     dependencies = {
