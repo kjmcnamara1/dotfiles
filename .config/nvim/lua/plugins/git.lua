@@ -40,7 +40,7 @@ return {
       { "<leader>gc", function() require("neogit").action("commit", "commit", {})() end, desc = "Neogit Commit" },
     },
     opts = {
-      kind             = "split",
+      kind             = "replace",
       disable_hint     = true,
       graph_style      = "unicode",
       telescope_sorter = function()

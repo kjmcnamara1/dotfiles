@@ -109,12 +109,23 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Neogit status window settings
+-- vim.api.nvim_create_autocmd("FileType", {
+--   group = augroup("neogit_status"),
+--   pattern = "NeogitStatus",
+--   callback = function()
+--     local height = math.min(10, .4 * vim.o.lines)
+--     vim.api.nvim_win_set_height(0, height)
+--     vim.wo.foldenable = false
+--   end
+-- })
+
+-- Neogit commit window settings
 vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("neogit_status"),
-  pattern = "NeogitStatus",
+  group = augroup("neogit_commit"),
+  pattern = "NeogitCommitMessage",
   callback = function()
-    local height = math.min(10, .4 * vim.o.lines)
-    vim.api.nvim_win_set_height(0, height)
-    vim.wo.foldenable = false
+    -- local height = math.min(10, .4 * vim.o.lines)
+    vim.api.nvim_win_set_width(0, 66)
+    -- vim.wo.foldenable = false
   end
 })
