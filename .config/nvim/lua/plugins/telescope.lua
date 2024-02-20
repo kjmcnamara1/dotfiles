@@ -1,11 +1,15 @@
 return {
   {
+    "nvim-telescope/telescope-symbols.nvim",
+    dependencies = "nvim-telescope/telescope.nvim",
+    keys = { { "<leader>sy", "<cmd>Telescope symbols<cr>", desc = "Symbols" } }
+  },
+  {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.5",
     version = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope-symbols.nvim",
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
@@ -113,6 +117,9 @@ return {
         },
         diagnostics = {
           theme = "ivy",
+        },
+        symbols = {
+          theme = "cursor",
         },
       },
       extensions = {
