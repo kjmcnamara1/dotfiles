@@ -46,28 +46,11 @@ return {
       end,
       signs            = {
         -- { CLOSED, OPENED }
-        section = { "󰧚", "󰧗" },
-        item = { "󰬪", "󰬧" },
-        hunk = { "󰅂", "󰅀" },
+        section = { "", "" },
+        item = { "", "" },
+        hunk = { "", "" },
       },
-      -- integrations     = {
-      --   telescope = true,
-      --   diffview = true,
-      -- },
     },
-    -- config = function(_, opts)
-    --   require("neogit").setup(opts)
-    --   -- Open Neogit window to left and set width=40cols
-    --   vim.api.nvim_create_autocmd("FileType", {
-    --     group = vim.api.nvim_create_augroup("neogit_status", { clear = true }),
-    --     pattern = "NeogitStatus",
-    --     callback = function()
-    --       vim.bo.bufhidden = "unload"
-    --       vim.cmd.wincmd("H")
-    --       vim.api.nvim_win_set_width(0, 35)
-    --     end
-    --   })
-    -- end
   },
   {
     "lewis6991/gitsigns.nvim",
