@@ -2,6 +2,16 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("custom_" .. name, { clear = true })
 end
 
+-- Highlight on Yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = augroup("highlight_yank"),
+  pattern = "*",
+  desc = "Highlight selection on yank",
+  callback = function()
+    vim.highlight.on_yank({ timeout = 200, visual = true })
+  end
+})
+
 -- Go to last loc when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPost", {
   group = augroup("last_loc"),
@@ -98,34 +108,22 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end
 })
 
--- Git commit window settings
+-- Create autocmd to remove foldcolumn from symbols outline
 vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("gitcommit"),
-  pattern = "gitcommit",
+  group = augroup("symbols_nofold"),
+  pattern = "Outline",
   callback = function()
-    vim.cmd.wincmd("L")
-    vim.cmd("startinsert")
+    vim.wo.foldcolumn = "0"
   end
 })
 
--- Neogit status window settings
--- vim.api.nvim_create_autocmd("FileType", {
---   group = augroup("neogit_status"),
---   pattern = "NeogitStatus",
---   callback = function()
---     local height = math.min(10, .4 * vim.o.lines)
---     vim.api.nvim_win_set_height(0, height)
---     vim.wo.foldenable = false
---   end
--- })
-
--- Neogit commit window settings
+-- Git commit window settings
 vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("neogit_commit"),
-  pattern = "NeogitCommitMessage",
+  group = augroup("gitcommit"),
+  pattern = "gitcommit,NeogitCommitMessage",
   callback = function()
-    -- local height = math.min(10, .4 * vim.o.lines)
+    vim.cmd.wincmd("L")
     vim.api.nvim_win_set_width(0, 66)
-    -- vim.wo.foldenable = false
+    vim.cmd.startinsert()
   end
 })

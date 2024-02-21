@@ -1,6 +1,7 @@
 return {
   {
     "echasnovski/mini.basics",
+    enabled = false,
     event = "VeryLazy",
     opts = {
       options = {

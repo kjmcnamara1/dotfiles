@@ -8,11 +8,17 @@ end
 -- Quick exit from Insert mode
 map("i", "jk", "<esc>", { desc = "Exit insert mode" })
 
+-- Save file
+map({ "i", "x", "n", "s" }, "<c-s>", "<cmd>w<cr>", { desc = "Save file" })
+
 -- Quit NeoVim
 map("n", "<c-q>", "<cmd>qa<cr>", { desc = "Quit NeoVim" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+
+-- Capital U for Redo
+map("n", "U", "<c-r>", { desc = "Redo" })
 
 -- Paste in insert mode
 map("i", "<c-v>", "<c-r>+", { desc = "Paste from system clipboard" })
@@ -20,12 +26,40 @@ map("i", "<c-v>", "<c-r>+", { desc = "Paste from system clipboard" })
 -- Paste without losing the contents of the register
 map("x", "<leader>p", '"_dP', { desc = "Paste without overwriting register" })
 
--- Capital U for Redo
-map("n", "U", "<c-r>", { desc = "Redo" })
+-- Copy/paste with system clipboard
+map({ "n", "x" }, "gy", '"+y', { desc = "Copy to system clipboard" })
+map("n", "gp", '"+p', { desc = "Paste from system clipboard" })
 
--- Buffers
+-- Paste in Visual with `P` to not copy selected text (`:h v_P`)
+map("x", "gp", '"+P', { desc = "Paste from system clipboard" })
+
+-- Reselect latest changed, put, or yanked text
+map("n", "gV", '"`[" . strpart(getregtype(), 0, 1) . "`]"',
+  { expr = true, replace_keycodes = false, desc = "Visually select changed text" })
+
+-- Search inside visually highlighted text. Use `silent = false` for it to take effect immediately.
+map("x", "g/", "<esc>/\\%V", { silent = false, desc = "Search inside visual selection" })
+
+-- Search visually selected text
+if vim.fn.has("nvim-0.10") == 0 then
+  map("x", "*", [[y/\V<C-R>=escape(@", '/\')<CR><CR>]], { desc = "Search forward" })
+  map("x", "#", [[y?\V<C-R>=escape(@", '?\')<CR><CR>]], { desc = "Search backward" })
+end
+
+-- Move by visible lines.
+map({ "n", "x" }, "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
+map({ "n", "x" }, "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true })
+
+-- Add empty lines before and after cursor line supporting dot-repeat
+map("n", "<a-O>", "O<esc>j", { desc = "Put empty line above" })
+map("n", "<a-o>", "o<esc>k", { desc = "Put empty line below" })
+
+-- Buffers & Tabs
 map("n", "<leader>bn", "<cmd>enew<cr>", { desc = "New file" })
 map("n", "<leader>'", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
+
+map("n", "<a-s-h>", "<cmd>tabp<cr>", { desc = "Switch to previous tab" })
+map("n", "<a-s-l>", "<cmd>tabn<cr>", { desc = "Switch to next tab" })
 -- map("n", "<leader>`", "<cmd>exe 'tabn '.g:lasttab<cr>", { desc = "Switch to other tab" }) -- need to create an autocmd to record last tab number
 
 -- Better indenting
@@ -37,17 +71,21 @@ map("v", "=", "=gv")
 map("", "H", "^", { desc = "Beginning of Line" })
 map("", "L", "$", { desc = "End of Line" })
 
--- Move cursor
-map({ "i", "t", "c" }, "<c-h>", "<left>", { desc = "Cursor left", noremap = false })
-map({ "i", "t", "c" }, "<c-l>", "<right>", { desc = "Cursor right", noremap = false })
-map({ "i", "t" }, "<c-j>", "<down>", { desc = "Cursor down", noremap = false })
-map({ "i", "t" }, "<c-k>", "<up>", { desc = "Cursor up", noremap = false })
-
--- Move to window using the <ctrl> hjkl keys
+-- Window navigation
 map({ "n", "t" }, "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go to left window" })
 map({ "n", "t" }, "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to lower window" })
 map({ "n", "t" }, "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to upper window" })
 map({ "n", "t" }, "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to right window" })
+
+-- Window resize (respecting `v:count`)
+map("n", "<C-Left>", '"<Cmd>vertical resize -" . v:count1 . "<CR>"',
+  { expr = true, replace_keycodes = false, desc = "Decrease window width" })
+map("n", "<C-Down>", '"<Cmd>resize -"          . v:count1 . "<CR>"',
+  { expr = true, replace_keycodes = false, desc = "Decrease window height" })
+map("n", "<C-Up>", '"<Cmd>resize +"          . v:count1 . "<CR>"',
+  { expr = true, replace_keycodes = false, desc = "Increase window height" })
+map("n", "<C-Right>", '"<Cmd>vertical resize +" . v:count1 . "<CR>"',
+  { expr = true, replace_keycodes = false, desc = "Increase window width" })
 
 -- Move Lines
 map("n", "<a-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
@@ -56,6 +94,12 @@ map("i", "<a-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
 map("i", "<a-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 map("v", "<a-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<a-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+
+-- Move cursor
+map({ "i", "t", "c" }, "<c-h>", "<left>", { desc = "Cursor left", remap = true })
+map({ "i", "t", "c" }, "<c-l>", "<right>", { desc = "Cursor right", remap = true })
+map({ "i", "t" }, "<c-j>", "<down>", { desc = "Cursor down", remap = true })
+map({ "i", "t" }, "<c-k>", "<up>", { desc = "Cursor up", remap = true })
 
 -- Keep buffer centered during vertical movements
 map("n", "<c-d>", "<c-d>zz", { remap = true, desc = "Scroll half page down" })
@@ -78,14 +122,26 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 -- Resize split windows to be equal size
 -- map("n", "<leader>=", "<cmd>wincmd =<cr>", { desc = "Equal window size" })
 
--- Save file - included with mini.basics
--- map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
-
--- highlights under cursor
+-- Highlights under cursor
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 
 -- Unmap 's' for mini.surround
 -- map("n", "s", "<nop>")
+
+-- Toggle Options
+map("n", "<localleader>b", '<Cmd>lua vim.o.bg = vim.o.bg == "dark" and "light" or "dark"; print(vim.o.bg)<CR>',
+  { desc = "Toggle 'background'" })
+map("n", "<localleader>c", "<Cmd>setlocal cursorline! cursorline?<CR>", { desc = "Toggle 'cursorline'" })
+map("n", "<localleader>C", "<Cmd>setlocal cursorcolumn! cursorcolumn?<CR>", { desc = "Toggle 'cursorcolumn'" })
+map("n", "<localleader>d", "<Cmd>lua print(MiniBasics.toggle_diagnostic())<CR>", { desc = "Toggle diagnostic" })
+map("n", "<localleader>h", '<Cmd>let v:hlsearch = 1 - v:hlsearch | echo (v:hlsearch ? "  " : "no") . "hlsearch"<CR>',
+  { desc = "Toggle search highlight" })
+map("n", "<localleader>i", "<Cmd>setlocal ignorecase! ignorecase?<CR>", { desc = "Toggle 'ignorecase'" })
+map("n", "<localleader>l", "<Cmd>setlocal list! list?<CR>", { desc = "Toggle 'list'" })
+map("n", "<localleader>n", "<Cmd>setlocal number! number?<CR>", { desc = "Toggle 'number'" })
+map("n", "<localleader>r", "<Cmd>setlocal relativenumber! relativenumber?<CR>", { desc = "Toggle 'relativenumber'" })
+map("n", "<localleader>s", "<Cmd>setlocal spell! spell?<CR>", { desc = "Toggle 'spell'" })
+map("n", "<localleader>w", "<Cmd>setlocal wrap! wrap?<CR>", { desc = "Toggle 'wrap'" })
 
 -- ===================== set by MINI.BASICS =============================
 -- --------------------- mappings.basic ---------------------------
@@ -107,7 +163,7 @@ map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 -- Reselect latest changed, put, or yanked text
 -- map('n', 'gV', '"`[" . strpart(getregtype(), 0, 1) . "`]"', { expr = true, replace_keycodes = false, desc = 'Visually select changed text' })
 
--- Search inside visually highlighted text. Use `silent = false` for it to make effect immediately.
+-- Search inside visually highlighted text. Use `silent = false` for it to take effect immediately.
 -- map('x', 'g/', '<esc>/\\%V', { silent = false, desc = 'Search inside visual selection' })
 
 -- Search visually selected text
