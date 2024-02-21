@@ -78,7 +78,13 @@ return {
         },
         mappings = {
           i = {
-            ["<c-h>"] = "select_horizontal"
+            ["<c-h>"] = false,
+            ["<c-j>"] = false,
+            ["<c-k>"] = false,
+            ["<c-l>"] = false,
+          },
+          n = {
+            ["<c-c>"] = "close",
           },
         },
       },
