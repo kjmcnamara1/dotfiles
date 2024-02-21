@@ -1,6 +1,7 @@
 return {
   {
     "tpope/vim-fugitive",
+    enabled = false,
     cmd = { "G", "Git" },
     -- keys = {
     --   { "<leader>gc", "<cmd>G commit<cr>" }
@@ -8,6 +9,7 @@ return {
   },
   {
     "tpope/vim-rhubarb",
+    enabled = false,
     dependencies = "tpope/vim-fugitive",
     cmd = "GBrowse"
   },
@@ -20,7 +22,7 @@ return {
         -- need to add keymap for closing Diffview
         "sindrets/diffview.nvim",
         keys = {
-          { "<leader>gG", "<cmd>DiffviewOpen<cr>", desc = "Open Git Diffs" },
+          { "<leader>gD", "<cmd>DiffviewOpen<cr>", desc = "Open Git Diffs" },
         },
       },
     },
@@ -59,25 +61,37 @@ return {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     keys = {
-      { "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>",                                     desc = "Git Preview Hunk",               buffer = 0 },
-      { "<leader>gi", "<cmd>Gitsigns preview_hunk_inline<cr>",                              desc = "Git Preview Hunk Inline",        buffer = 0 },
-      { "<leader>gb", "<cmd>Gitsigns toggle_current_line_blame<cr>",                        desc = "Toggle Git Blame",               buffer = 0 },
-      { "<leader>gw", "<cmd>Gitsigns toggle_word_diff<cr>",                                 desc = "Toggle Git Word Diff",           buffer = 0 },
-      { "<leader>gS", "<cmd>Gitsigns stage_buffer<cr>",                                     desc = "Git Stage Buffer",               buffer = 0 },
-      { "<leader>gR", "<cmd>Gitsigns reset_buffer<cr>",                                     desc = "Git Reset Buffer",               buffer = 0 },
-      { "<leader>gd", "<cmd>Gitsigns diffthis<cr>",                                         desc = "Git Diff Current File to Index", buffer = 0 },
-      { "<leader>gD", "<cmd>Gitsigns diffthis ~<cr>",                                       desc = "Git Diff Current File to HEAD",  buffer = 0 },
-      { "q",          function() return vim.wo.diff and "<cmd>wincmd h | q<cr>" or "q" end, desc = "Close Git Diff",                 buffer = 0, expr = true, },
+      { "<leader>gb",  "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle Git Blame",               buffer = 0 },
+      { "<leader>gw",  "<cmd>Gitsigns toggle_word_diff<cr>",          desc = "Toggle Git Word Diff",           buffer = 0 },
+      { "<leader>gS",  "<cmd>Gitsigns stage_buffer<cr>",              desc = "Git Stage Buffer",               buffer = 0 },
+      { "<leader>gR",  "<cmd>Gitsigns reset_buffer<cr>",              desc = "Git Reset Buffer",               buffer = 0 },
+      { "<leader>gdi", "<cmd>Gitsigns diffthis<cr>",                  desc = "Git Diff Current File to Index", buffer = 0 },
+      { "<leader>gdh", "<cmd>Gitsigns diffthis ~<cr>",                desc = "Git Diff Current File to HEAD",  buffer = 0 },
+      -- {
+      --   "q",
+      --   function()
+      --     if vim.wo.diff then
+      --       return vim.cmd.tabclose() or vim.cmd("wincmd h | q")
+      --     else
+      --       return "q"
+      --     end
+      --   end,
+      --   desc = "Close Git Diff",
+      --   buffer = 0,
+      --   expr = true,
+      -- },
       -- Git Hunks
-      { "<leader>hs", "<cmd>Gitsigns stage_hunk<cr>",                                       desc = "Stage Git Hunk",                 buffer = 0 },
-      { "<leader>hr", "<cmd>Gitsigns reset_hunk<cr>",                                       desc = "Reset Git Hunk",                 buffer = 0 },
-      { "<leader>hu", "<cmd>Gitsigns undo_stage_hunk<cr>",                                  desc = "Undo Stage Git Hunk",            buffer = 0 },
+      { "<leader>hi",  "<cmd>Gitsigns preview_hunk_inline<cr>",       desc = "Preview Git Hunk Inline",        buffer = 0 },
+      { "<leader>hp",  "<cmd>Gitsigns preview_hunk<cr>",              desc = "Preview Git Hunk",               buffer = 0 },
+      { "<leader>hs",  "<cmd>Gitsigns stage_hunk<cr>",                desc = "Stage Git Hunk",                 buffer = 0 },
+      { "<leader>hr",  "<cmd>Gitsigns reset_hunk<cr>",                desc = "Reset Git Hunk",                 buffer = 0 },
+      { "<leader>hu",  "<cmd>Gitsigns undo_stage_hunk<cr>",           desc = "Undo Stage Git Hunk",            buffer = 0 },
       -- Movements
-      { "]h",         "<cmd>Gitsigns next_hunk<cr>",                                        desc = "Next Git Hunk",                  buffer = 0 },
-      { "[h",         "<cmd>Gitsigns prev_hunk<cr>",                                        desc = "Previous Git Hunk",              buffer = 0 },
+      { "]h",          "<cmd>Gitsigns next_hunk<cr>",                 desc = "Next Git Hunk",                  buffer = 0 },
+      { "[h",          "<cmd>Gitsigns prev_hunk<cr>",                 desc = "Previous Git Hunk",              buffer = 0 },
       -- Text Object (need :<c-u> instead of <cmd> to select entire hunk)
-      { "ih",         ":<c-u>Gitsigns select_hunk<cr>",                                     desc = "Inside Git Hunk",                buffer = 0, mode = { "o", "x" } },
-      { "ah",         ":<c-u>Gitsigns select_hunk<cr>",                                     desc = "Around Git Hunk",                buffer = 0, mode = { "o", "x" } },
+      { "ih",          ":<c-u>Gitsigns select_hunk<cr>",              desc = "Inside Git Hunk",                buffer = 0, mode = { "o", "x" } },
+      { "ah",          ":<c-u>Gitsigns select_hunk<cr>",              desc = "Around Git Hunk",                buffer = 0, mode = { "o", "x" } },
     },
     opts = {
       preview_config = {
