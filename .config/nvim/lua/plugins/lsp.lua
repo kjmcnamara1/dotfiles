@@ -4,6 +4,7 @@ return {
     dependencies = {
       "folke/neodev.nvim",                 -- nvim config and plugin authoring
       "williamboman/mason-lspconfig.nvim", -- automatically install LSPs
+      "jay-babu/mason-null-ls.nvim",
       "hrsh7th/cmp-nvim-lsp",              -- LSP completions
       "nvimtools/none-ls.nvim",            -- new community fork of null-ls (wrap DAP, linters, and formatters as LSPs)
     },
@@ -145,7 +146,7 @@ return {
   {
     "jay-babu/mason-null-ls.nvim",
     dependencies = "williamboman/mason.nvim",
-    -- lazy=true,
+    lazy = true,
     opts = {
       automatic_installation = true,
       ensure_installed = {
