@@ -9,7 +9,7 @@ end
 map("i", "jk", "<esc>", { desc = "Exit insert mode" })
 
 -- Quit NeoVim
-map("n", "<c-q><c-q>", "<cmd>qa<cr>", { desc = "Quit NeoVim" })
+map("n", "<c-q>", "<cmd>qa<cr>", { desc = "Quit NeoVim" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })

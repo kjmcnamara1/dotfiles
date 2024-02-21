@@ -17,6 +17,7 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
       {
+        -- need to add keymap for closing Diffview
         "sindrets/diffview.nvim",
         keys = {
           { "<leader>gG", "<cmd>DiffviewOpen<cr>", desc = "Open Git Diffs" },
