@@ -41,10 +41,12 @@ return {
       { "<leader>bp", "<cmd>BufferLineTogglePin<CR>",                            desc = "Toggle pin" },
       { "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<CR>",                 desc = "Delete non-pinned buffers" },
       { "<leader>bo", "<cmd>BufferLineCloseOthers<CR>",                          desc = "Delete other buffers" },
-      -- { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete buffers to the right" },
-      -- { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete buffers to the left" },
-      { "<a-h>",      "<cmd>BufferLineCyclePrev<cr>",                            desc = "Prev buffer",              mode = { "n", "i", "v" } },
-      { "<a-l>",      "<cmd>BufferLineCycleNext<cr>",                            desc = "Next buffer",              mode = { "n", "i", "v" } },
+      { "<leader>br", "<Cmd>BufferLineMoveRight<CR>",                            desc = "Move buffer right" },
+      { "<leader>bl", "<Cmd>BufferLineMoveLeft<CR>",                             desc = "Move buffer left" },
+      { "<leader>bb", "<Cmd>BufferLinePick<CR>",                                 desc = "Pick buffer" },
+      { "<leader>bx", "<Cmd>BufferLinePickClose<CR>",                            desc = "Pick buffer to close" },
+      { "<a-h>",      "<cmd>BufferLineCyclePrev<cr>",                            desc = "Prev buffer",              mode = { "n", "i", "v", "c" } },
+      { "<a-l>",      "<cmd>BufferLineCycleNext<cr>",                            desc = "Next buffer",              mode = { "n", "i", "v", "c" } },
       { "[b",         "<cmd>BufferLineCyclePrev<cr>",                            desc = "Prev buffer" },
       { "]b",         "<cmd>BufferLineCycleNext<cr>",                            desc = "Next buffer" },
       { "<c-x>",      function() require("mini.bufremove").delete(0, false) end, desc = "Quit Buffer",              mode = { "n", "i", "v" } },
@@ -52,7 +54,7 @@ return {
     opts = {
       options = {
         diagnostics = "nvim_lsp",
-        always_show_bufferline = false,
+        always_show_bufferline = true,
         -- separator_style = 'slope',
         hover = {
           enabled = true,
@@ -78,7 +80,8 @@ return {
   },
   {
     "stevearc/oil.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = "nvim-tree/nvim-web-devicons",
+    cmd = "Oil",
     keys = {
       { "-", "<cmd>Oil<cr>", desc = "Oil File Browser" },
     },
@@ -91,13 +94,13 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
+    enabled = false,
     branch = "v3.x",
     dependencies = {
       -- "mrbjarksen/neo-tree-diagnostics.nvim",
       "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
-      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
     cmd = "Neotree",
     keys = {
@@ -190,18 +193,6 @@ return {
         Fragment = { icon = " ", hl = "@constant" },
       },
     },
-    config = function(_, opts)
-      require("symbols-outline").setup(opts)
-
-      -- Create autocmd to remove foldcolumn from symbols outline
-      vim.api.nvim_create_autocmd("FileType", {
-        group = vim.api.nvim_create_augroup("symbols_nofold", { clear = true }),
-        pattern = "Outline",
-        callback = function()
-          vim.opt.foldcolumn = "0"
-        end
-      })
-    end
   },
   {
     "folke/noice.nvim",
@@ -228,7 +219,7 @@ return {
         },
       },
       presets = {
-        -- bottom_search = true,
+        bottom_search = true,
         command_palette = true,
         -- long_message_to_split = true,
         inc_rename = true,
@@ -236,59 +227,27 @@ return {
       },
     },
     keys = {
-      { "<S-Enter>",  function() require("noice").redirect(vim.fn.getcmdline()) end, desc = "Redirect Cmdline",   mode = "c", },
-      { "<leader>nl", function() require("noice").cmd("last") end,                   desc = "Noice Last Message", },
-      { "<leader>nh", function() require("noice").cmd("history") end,                desc = "Noice History", },
-      { "<leader>na", function() require("noice").cmd("all") end,                    desc = "Noice All", },
-      { "<leader>nd", function() require("noice").cmd("dismiss") end,                desc = "Dismiss All", },
-      -- {
-      --   "<c-f>",
-      --   function()
-      --     if not require("noice.lsp").scroll(4) then
-      --       return "<c-f>"
-      --     end
-      --   end,
-      --   silent = true,
-      --   expr = true,
-      --   desc = "Scroll forward",
-      --   mode = { "i", "n", "s" },
-      -- },
-      -- {
-      --   "<c-b>",
-      --   function()
-      --     if not require("noice.lsp").scroll(-4) then
-      --       return "<c-b>"
-      --     end
-      --   end,
-      --   silent = true,
-      --   expr = true,
-      --   desc = "Scroll backward",
-      --   mode = { "i", "n", "s" },
-      -- },
+      { "<leader>ud", "<cmd>NoiceDismiss<cr>", desc = "Dismiss All", },
+      { "<leader>ul", "<cmd>NoiceLast<cr>",    desc = "Noice Last Message", },
+      { "<leader>uh", "<cmd>NoiceHistory<cr>", desc = "Noice History", },
     },
     dependencies = {
-      "rcarriga/nvim-notify",
-      -- keys = {
-      --   {
-      --     "<leader>un",
-      --     function()
-      --       require("notify").dismiss({ silent = true, pending = true })
-      --     end,
-      --     desc = "Dismiss all Notifications",
-      --   },
-      -- },
-      opts = {
-        timeout = 3000,
-        max_height = function()
-          return math.floor(vim.o.lines * 0.75)
-        end,
-        max_width = function()
-          return math.floor(vim.o.columns * 0.75)
-        end,
-        on_open = function(win)
-          vim.api.nvim_win_set_config(win, { zindex = 100 })
-        end,
-      },
+      "MunifTanjim/nui.nvim",
+      {
+        "rcarriga/nvim-notify",
+        opts = {
+          timeout = 3000,
+          max_height = function()
+            return math.floor(vim.o.lines * 0.25)
+          end,
+          max_width = function()
+            return math.floor(vim.o.columns * 0.33)
+          end,
+          on_open = function(win)
+            vim.api.nvim_win_set_config(win, { zindex = 100 })
+          end,
+        },
+      }
     },
   },
 }
