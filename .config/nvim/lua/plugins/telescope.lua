@@ -26,7 +26,7 @@ return {
       { "<leader>,",       "<cmd>Telescope buffers<cr>",                   desc = "Buffers" },
       { "<leader>/",       "<cmd>Telescope live_grep<cr>",                 desc = "Live Grep" },
       { "<leader>:",       "<cmd>Telescope command_history<cr>",           desc = "Command History" },
-      { "<leader>r",       "<cmd>Telescope oldfiles theme=dropdown<cr>",   desc = "Find Recent" },
+      { "<leader>sr",      "<cmd>Telescope oldfiles<cr>",                  desc = "Recent Files" },
       -- { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find Git-files" },
       -- git
       { "<leader>sgs",     "<cmd>Telescope git_status<cr>",                desc = "Git Status" },
@@ -48,7 +48,8 @@ return {
       { "<leader>sm",      "<cmd>Telescope marks<cr>",                     desc = "Jump to Mark" },
       { "<leader>so",      "<cmd>Telescope vim_options<cr>",               desc = "Options" },
       { "<leader>sR",      "<cmd>Telescope resume<cr>",                    desc = "Resume" },
-      { "<leader>uC",      "<cmd>Telescope colorscheme<cr>",               desc = "Colorscheme with preview", },
+      { "<leader>uC",      "<cmd>Telescope colorscheme<cr>",               desc = "Colorscheme with preview" },
+      { "<leader>ft",      "<cmd>Telescope filetypes<cr>",                 desc = "Change FileType" },
     },
     opts = {
       defaults = {
@@ -86,9 +87,15 @@ return {
           -- include hidden files but not .git dir
           find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
         },
+        oldfiles = {
+          theme = "dropdown",
+        },
         grep_string = {
           -- include hidden files but not .git dir
           find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+        },
+        command_history = {
+          theme = "dropdown",
         },
         buffers = {
           theme = "dropdown",
@@ -120,11 +127,20 @@ return {
             prompt_position = "bottom",
           }
         },
+        filetypes = {
+          layout_config = {
+            anchor = "SE",
+            width = 30,
+            height = 10,
+            prompt_position = "bottom",
+          },
+        },
         diagnostics = {
           theme = "ivy",
         },
         symbols = {
           theme = "cursor",
+          layout_config = { width = 50 },
         },
       },
       extensions = {
