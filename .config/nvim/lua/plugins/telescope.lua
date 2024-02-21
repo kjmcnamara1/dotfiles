@@ -37,6 +37,7 @@ return {
       { "<leader>sa",      "<cmd>Telescope autocommands<cr>",              desc = "Auto Commands" },
       { "<leader>sb",      "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
       { "<leader>sc",      "<cmd>Telescope commands<cr>",                  desc = "Commands" },
+      { "<leader>sn",      "<cmd>Telescope notify<cr>",                    desc = "Notifications" },
       { "<leader>sd",      "<cmd>Telescope diagnostics bufnr=0<cr>",       desc = "Document diagnostics" },
       { "<leader>sD",      "<cmd>Telescope diagnostics<cr>",               desc = "Workspace diagnostics" },
       { "<leader>*",       "<cmd>Telescope grep_string<cr>",               desc = "Grep Word under cursor" },
