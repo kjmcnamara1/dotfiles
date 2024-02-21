@@ -54,9 +54,9 @@ return {
     opts = {
       defaults = {
         prompt_prefix = "   ",
-        selection_caret = "  ",
-        entry_prefix = "   ",
-        multi_icon = "   ",
+        selection_caret = "   ",
+        entry_prefix = "    ",
+        multi_icon = "   ",
         dynamic_preview_title = true,
         hidden = true,
         sorting_strategy = "ascending",
