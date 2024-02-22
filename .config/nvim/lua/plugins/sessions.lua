@@ -2,7 +2,7 @@ return {
   {
     "rmagatti/auto-session",
     -- enabled = false,
-    dependencies = { "tiagovla/scope.nvim", config = true, },
+    -- dependencies = { "tiagovla/scope.nvim", config = true, },
     event = "VimEnter",
     cmd = { "SessionSave", "SessionRestore", "SessionRestoreFromFile", "SessionDelete", "Autosession" },
     keys = {
@@ -19,19 +19,12 @@ return {
       session_lens = {
         load_on_setup = true,
       },
-      pre_save_cmds = { "Neotree close", "TroubleClose", --[[ "ScopeSaveState" ]] },
+      pre_save_cmds = {
+        "TroubleClose",
+        -- "Neotree close",
+        -- "ScopeSaveState"
+      },
       -- post_restore_cmds = { "ScopeLoadState" },
     }
-  },
-  {
-    "jedrzejboczar/possession.nvim",
-    enabled=false,
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {
-      autosave = {
-        current = true,
-      },
-    },
-
   },
 }
