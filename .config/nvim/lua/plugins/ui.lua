@@ -227,6 +227,7 @@ return {
       },
     },
     keys = {
+      { "<c-d>",      "<cmd>NoiceDismiss<cr>", desc = "Dismiss All",        mode = { "i", "c", "t" } },
       { "<leader>ud", "<cmd>NoiceDismiss<cr>", desc = "Dismiss All", },
       { "<leader>ul", "<cmd>NoiceLast<cr>",    desc = "Noice Last Message", },
       { "<leader>uh", "<cmd>NoiceHistory<cr>", desc = "Noice History", },
