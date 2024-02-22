@@ -117,10 +117,11 @@ return {
     keys = {
       {
         "<leader>cr",
-        function()
-          return ":IncRename " .. vim.fn.expand("<cword>")
-        end,
-        expr = true,
+        ":IncRename ",
+        -- function()
+        --   return ":IncRename " .. vim.fn.expand("<cword>")
+        -- end,
+        -- expr = true,
         desc = "LSP Rename",
         buffer = 0,
       },
