@@ -122,14 +122,13 @@ vim.api.nvim_create_autocmd("FileType", {
   group = augroup("gitcommit"),
   pattern = "gitcommit,NeogitCommitMessage",
   callback = function()
-    -- TODO: Need to find a way to change window position in diff mode
-    if vim.wo.diff or vim.bo.filetype == "DiffviewFiles" then
-      vim.cmd.wincmd("J")
-      -- vim.api.nvim_win_set_height(0, 66)
-    else
-      vim.cmd.wincmd("L")
-      vim.api.nvim_win_set_width(0, 66)
-    end
+    -- if vim.g.in_diffview then
+    --   vim.cmd.wincmd("J")
+    --   vim.api.nvim_win_set_height(0, math.min(20, math.floor(.5 * vim.o.lines)))
+    -- else
+    vim.cmd.wincmd("L")
+    vim.api.nvim_win_set_width(0, math.min(66, math.floor(.5 * vim.o.columns)))
+    -- end
     vim.cmd.startinsert()
   end
 })
