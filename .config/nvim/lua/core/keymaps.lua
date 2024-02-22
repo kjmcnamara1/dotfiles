@@ -9,7 +9,7 @@ end
 map("i", "jk", "<esc>", { desc = "Exit insert mode" })
 
 -- Save file
-map({ "i", "x", "n", "s" }, "<c-s>", "<cmd>w<cr>", { desc = "Save file" })
+map({ "i", "x", "n", "s" }, "<c-s>", "<cmd>w!<cr>", { desc = "Save file" })
 
 -- Quit NeoVim
 map("n", "<c-q>", "<cmd>qa<cr>", { desc = "Quit NeoVim" })
@@ -58,6 +58,7 @@ map("n", "<a-o>", "o<esc>k", { desc = "Put empty line below" })
 map("n", "<leader>bn", "<cmd>enew<cr>", { desc = "New file" })
 map("n", "<leader>'", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
 
+map("n", "<c-c>", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<a-s-h>", "<cmd>tabp<cr>", { desc = "Switch to previous tab" })
 map("n", "<a-s-l>", "<cmd>tabn<cr>", { desc = "Switch to next tab" })
 -- map("n", "<leader>`", "<cmd>exe 'tabn '.g:lasttab<cr>", { desc = "Switch to other tab" }) -- need to create an autocmd to record last tab number
