@@ -155,6 +155,7 @@ return {
           m = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
           c = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }),
           C = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }),
+          l = ai.gen_spec.treesitter({ a = "@loop.outer", i = "@loop.inner" }),
           t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
           e = function()
             local from = { line = 1, col = 1 }
