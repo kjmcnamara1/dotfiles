@@ -119,7 +119,7 @@ vim.opt.backup         = false         -- Don't store backup while overwriting t
 vim.opt.writebackup    = false         -- Don't store backup while overwriting the file
 
 -- Items to remember for saving/loading sessions
-vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
+vim.opt.sessionoptions = "buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- ===================== set by MINI.BASICS =============================
 -- --------------------- options.basic ---------------------------
