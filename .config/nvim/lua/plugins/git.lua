@@ -58,7 +58,22 @@ return {
         function()
           require("neogit").action("commit", "commit", {})()
         end,
-        desc = "Git Commit"
+        desc = "Git Commit",
+      },
+      {
+        -- BUG: Need to fix
+        "<leader>gp",
+        function()
+          require("neogit").action("pull", "from_upstream")()
+        end,
+        desc = "Git Pull",
+      },
+      {
+        "<leader>gP",
+        function()
+          require("neogit").action("push", "to_pushremote")()
+        end,
+        desc = "Git Push",
       },
     },
     opts = {
