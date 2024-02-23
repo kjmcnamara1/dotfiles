@@ -33,7 +33,7 @@ vim.opt.ruler          = false -- Don't show cursor position in command line
 vim.opt.showmode       = false -- Don't show mode in command line
 vim.opt.wrap           = false -- Display long lines as just one line
 
-vim.opt.signcolumn     = "yes:2" -- Always show signcolumn 2 wide to accomodate gitsigns and lsp diagnostics
+vim.opt.signcolumn     = "yes" -- Always show signcolumn 2 wide to accomodate gitsigns and lsp diagnostics
 
 vim.opt.list           = true -- Show invisible characters
 vim.opt.listchars      = "trail:∙,extends:󰇘,precedes:󰇘,conceal:,nbsp:␣" -- Invisible characters
