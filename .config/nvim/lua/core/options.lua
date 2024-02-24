@@ -112,6 +112,7 @@ vim.opt.sidescrolloff  = 5
 vim.opt.clipboard      = "unnamedplus" -- Sync with system clipboard
 vim.opt.autowrite      = true          -- Auto write file when leaving ubffer
 vim.opt.updatetime     = 200           -- Save swap file and trigger CursorHold
+vim.opt.swapfile       = false         -- Disable swap file
 
 vim.opt.undofile       = true          -- Enable persistent undo (see also `:h undodir`)
 vim.opt.undolevels     = 10000         -- Set undo history size
