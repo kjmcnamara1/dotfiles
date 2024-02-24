@@ -79,7 +79,20 @@ return {
     },
   },
   {
+    "echasnovski/mini.files",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    keys = {
+      { "-", function() require("mini.files").open() end, desc = "Oil File Browser" },
+    },
+    opts = {
+      windows = {
+        preview = true,
+      },
+    },
+  },
+  {
     "stevearc/oil.nvim",
+    enabled = false,
     dependencies = "nvim-tree/nvim-web-devicons",
     cmd = "Oil",
     keys = {
