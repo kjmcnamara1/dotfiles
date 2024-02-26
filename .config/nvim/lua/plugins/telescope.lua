@@ -28,6 +28,12 @@ return {
       { "<leader>:",       "<cmd>Telescope command_history<cr>",           desc = "Command History" },
       { "<leader>sr",      "<cmd>Telescope oldfiles<cr>",                  desc = "Recent Files" },
       -- { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find Git-files" },
+      -- LSP
+      { "gi",              "<cmd>Telescope lsp_implementations<cr>",       desc = "LSP Implementations",     buffer = 0 },
+      -- { "gd",         "<cmd>Telescope lsp_definitions<cr>",      desc = "LSP Definition",              buffer = 0 },
+      -- { "gr",         "<cmd>Telescope lsp_references<cr>",       desc = "LSP References",              buffer = 0 },
+      -- { "gt",         "<cmd>Telescope lsp_type_definitions<cr>", desc = "LSP Type Definitions",        buffer = 0 },
+      { "<leader>o",       "<cmd>Telescope lsp_document_symbols<cr>",      desc = "LSP Document Symbols",    buffer = 0 },
       -- git
       { "<leader>sgs",     "<cmd>Telescope git_status<cr>",                desc = "Git Status" },
       { "<leader>sgc",     "<cmd>Telescope git_commits<cr>",               desc = "Git Commits" },
