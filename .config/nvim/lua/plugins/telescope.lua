@@ -23,8 +23,7 @@ return {
     keys = {
       -- common
       { "<leader><space>", "<cmd>Telescope find_files<cr>",                desc = "Find Files" },
-      { "<leader>,",       "<cmd>Telescope buffers<cr>",                   desc = "Buffers" },
-      { "<leader>/",       "<cmd>Telescope live_grep<cr>",                 desc = "Live Grep" },
+      { "<leader>/",       "<cmd>Telescope live_grep<cr>",                 desc = "Search in CWD" },
       { "<leader>:",       "<cmd>Telescope command_history<cr>",           desc = "Command History" },
       { "<leader>sr",      "<cmd>Telescope oldfiles<cr>",                  desc = "Recent Files" },
       -- { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find Git-files" },
@@ -41,12 +40,13 @@ return {
       -- search
       { '<leader>"',       "<cmd>Telescope registers<cr>",                 desc = "Registers" },
       { "<leader>sa",      "<cmd>Telescope autocommands<cr>",              desc = "Auto Commands" },
-      { "<leader>sb",      "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
+      { "<leader>sb",      "<cmd>Telescope buffers<cr>",                   desc = "Buffers" },
+      { "<leader>sB",      "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Search in Buffer" },
       { "<leader>sc",      "<cmd>Telescope commands<cr>",                  desc = "Commands" },
       { "<leader>sn",      "<cmd>Telescope notify<cr>",                    desc = "Notifications" },
       { "<leader>sd",      "<cmd>Telescope diagnostics bufnr=0<cr>",       desc = "Document diagnostics" },
       { "<leader>sD",      "<cmd>Telescope diagnostics<cr>",               desc = "Workspace diagnostics" },
-      { "<leader>*",       "<cmd>Telescope grep_string<cr>",               desc = "Grep Word under cursor" },
+      { "<leader>*",       "<cmd>Telescope grep_string<cr>",               desc = "Search Word under cursor" },
       { "<leader>?",       "<cmd>Telescope help_tags<cr>",                 desc = "Help Pages" },
       { "<leader>sH",      "<cmd>Telescope highlights<cr>",                desc = "Search Highlight Groups" },
       { "<leader>sk",      "<cmd>Telescope keymaps<cr>",                   desc = "Key Maps" },
