@@ -1,6 +1,8 @@
 # Add Poetry to PATH
 export PATH="$HOME/.local/bin:$PATH"
 
+ENABLE_TRANSIENT_PROMPT='true'
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -69,6 +71,9 @@ alias py='python3'
 
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"
+
+# Starship Prompt
+eval "$(starship init zsh)"
 
 # Vim keybindings
 bindkey -v
