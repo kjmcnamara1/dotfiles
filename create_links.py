@@ -14,8 +14,9 @@ IGNORE = [
 ]
 
 RELOCATIONS = {
-    r".config\nushell": Path(os.environ.get("APPDATA")) / "nushell",
-    r".config\nvim": Path(os.environ.get("LOCALAPPDATA")) / "nvim",
+    r".config\nushell": Path(os.environ.get("APPDATA", "~/AppData/Roaming"))
+    / "nushell",
+    r".config\nvim": Path(os.environ.get("LOCALAPPDATA", "~/AppData/Local")) / "nvim",
 }
 
 DOTFILE_DIR = Path(__file__).resolve().parent
