@@ -1,8 +1,6 @@
 # Add Poetry to PATH
 export PATH="$HOME/.local/bin:$PATH"
 
-ENABLE_TRANSIENT_PROMPT='true'
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -56,6 +54,9 @@ ENABLE_TRANSIENT_PROMPT='true'
 # ZVM_READKEY_ENGINE=$ZVM_READKEY_ENGINE_DEFAULT
 # # Do the initialization when the script is sourced (i.e. Initialize instantly)
 # ZVM_INIT_MODE=sourcing
+
+# Transient Prompt
+export ENABLE_TRANSIENT_PROMPT='true'
 
 # Preferred editor
 export EDITOR=nvim
