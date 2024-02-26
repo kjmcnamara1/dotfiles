@@ -170,6 +170,7 @@ return {
   },
   {
     "simrat39/symbols-outline.nvim",
+    enabled = false,
     cmd = { "SymbolsOutline", "SymbolsOutlineOpen", "SymbolsOutlineClose" },
     keys = { { "<leader>oe", "<cmd>SymbolsOutline<cr>", desc = "Toggle Symbols Outline" } },
     opts = {
