@@ -12,10 +12,11 @@ return {
     cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     keys = {
       { "K",          vim.lsp.buf.hover,          desc = "LSP Hover",                   buffer = 0 },
-      { "<leader>k",  vim.lsp.buf.signature_help, desc = "LSP Signature Documentation", buffer = 0 },
+      { "<a-s-k>",    vim.lsp.buf.signature_help, desc = "LSP Signature Documentation", buffer = 0, mode = { "n", "i", "v" } },
       { "gD",         vim.lsp.buf.declaration,    desc = "LSP Declaration",             buffer = 0 },
       { "<leader>ca", vim.lsp.buf.code_action,    desc = "LSP Code Action",             buffer = 0, mode = { "n", "v" } },
       { "<leader>cf", vim.lsp.buf.format,         desc = "LSP Format",                  buffer = 0, mode = { "n", "v" } },
+      { "<leader>ci", "<cmd>LspInfo<cr>",         desc = "LSP Info",                    buffer = 0 },
       -- { "<leader>rs", "<cmd>LspRestart<cr>",                     desc = "LSP Restart Server",          buffer = 0 }, -- conflicts with Telescope find_recent
       { "<leader>df", vim.diagnostic.open_float,  desc = "LSP Open Diagnostics",        buffer = 0 },
       { "]d",         vim.diagnostic.goto_next,   desc = "LSP Next Diagnostic",         buffer = 0 },
