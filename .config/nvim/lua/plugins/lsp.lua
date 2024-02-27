@@ -106,23 +106,6 @@ return {
     end,
   },
   {
-    "smjonas/inc-rename.nvim",
-    config = true,
-    cmd = "IncRename",
-    keys = {
-      {
-        "<leader>cr",
-        ":IncRename ",
-        -- function()
-        --   return ":IncRename " .. vim.fn.expand("<cword>")
-        -- end,
-        -- expr = true,
-        desc = "LSP Rename",
-        buffer = 0,
-      },
-    },
-  },
-  {
     -- automatically install LSPs
     "williamboman/mason-lspconfig.nvim",
     dependencies = "williamboman/mason.nvim",
