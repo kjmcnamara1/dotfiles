@@ -91,16 +91,6 @@ return {
       --   require("lspconfig")[ls].setup({ capabilities = capabilities })
       -- end
 
-      --   null_ls.setup({
-      --     sources = {
-      --       null_ls.builtins.formatting.stylua,
-      --       null_ls.builtins.formatting.black,
-      --       null_ls.builtins.formatting.isort,
-      --       --null_ls.builtins.diagnostics.eslint_d,
-      --       null_ls.builtins.formatting.prettier,
-      --     },
-      --   })
-
       -- Configure border for LspInfo ui
       require("lspconfig.ui.windows").default_options.border = "rounded"
     end,
@@ -119,30 +109,5 @@ return {
         "ruff_lsp",
       },
     },
-  },
-
-  -- -- automatically install debuggers, linters, and formatters
-  {
-    "jay-babu/mason-null-ls.nvim",
-    dependencies = "williamboman/mason.nvim",
-    lazy = true,
-    opts = {
-      automatic_installation = true,
-      ensure_installed = {
-        "stylua",
-        "prettier",
-        -- "blue",
-        "debugpy",
-      },
-    },
-  },
-
-  -- ui to install LSPs, DAPs, linters, and formatters
-  {
-    "williamboman/mason.nvim",
-    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
-    build = ":MasonUpdate",
-    opts = { ui = { border = "rounded" } },
   },
 }
