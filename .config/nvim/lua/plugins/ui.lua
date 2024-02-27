@@ -7,7 +7,8 @@ return {
   {
     -- Change background highlight to match color of string, e.g. '#abf4c2'
     "brenoprata10/nvim-highlight-colors",
-    event = { "BufReadPre", "BufNewFile" },
+    event = "BufReadPost",
+    -- event = { "BufReadPre", "BufNewFile" },
     config = true,
   },
   {

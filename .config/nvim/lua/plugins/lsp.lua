@@ -2,14 +2,13 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "folke/neodev.nvim",                 -- nvim config and plugin authoring
-      "williamboman/mason-lspconfig.nvim", -- automatically install LSPs
-      "jay-babu/mason-null-ls.nvim",
-      "hrsh7th/cmp-nvim-lsp",              -- LSP completions
-      "nvimtools/none-ls.nvim",            -- new community fork of null-ls (wrap DAP, linters, and formatters as LSPs)
+      "folke/neodev.nvim",                   -- nvim config and plugin authoring
+      "williamboman/mason-lspconfig.nvim",   -- automatically install LSPs
+      "hrsh7th/cmp-nvim-lsp",                -- LSP completions
+      "antosha417/nvim-lsp-file-operations", -- LSP rename for filenames
     },
-    event = "BufReadPost",
-    cmd = { "LspInfo", "LspInstall", "LspUninstall" },
+    event = { "BufReadPre", "BufNewFile" },  -- with BufReadPost, lsp won't automatically attach to buffer
+    cmd = { "LspInfo", "LspStart", "LspStop", "LspRestart" },
     keys = {
       { "K",          vim.lsp.buf.hover,          desc = "LSP Hover",                   buffer = 0 },
       { "<a-s-k>",    vim.lsp.buf.signature_help, desc = "LSP Signature Documentation", buffer = 0, mode = { "n", "i", "v" } },
@@ -100,7 +99,8 @@ return {
     -- automatically install LSPs
     "williamboman/mason-lspconfig.nvim",
     dependencies = "williamboman/mason.nvim",
-    lazy = true,
+    cmd = { "LspInstall", "LspUninstall" },
+    -- lazy = true,
     opts = {
       automatic_installation = true,
       ensure_installed = {

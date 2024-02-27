@@ -8,7 +8,7 @@ return {
       "windwp/nvim-ts-autotag",
     },
     build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile", "VeryLazy" },
+    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo", "TSUpdateSync", "TSUpdate", },
     keys = {
       { ";", function() return require("nvim-treesitter.textobjects.repeatable_move").repeat_last_move_next() end,     mode = { "n", "x", "o" }, desc = "Repeat next move" },
