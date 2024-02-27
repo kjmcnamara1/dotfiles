@@ -102,13 +102,21 @@ return {
     cmd = { "LspInstall", "LspUninstall" },
     -- lazy = true,
     opts = {
-      automatic_installation = true,
       ensure_installed = {
         "lua_ls",
         "bashls",
-        "pyright",
+        -- "pyright",
+        -- 'pylsp',
         "ruff_lsp",
+        -- 'jsonls',
+        "biome",
+        -- 'eslint',
+        "marksman", -- markdown lsp
+        "taplo",    -- TOML lsp
+        -- 'yamlls' -- YAML lsp
       },
+      -- handlers={},
+      -- automatic_installation = true,
     },
   },
 }
