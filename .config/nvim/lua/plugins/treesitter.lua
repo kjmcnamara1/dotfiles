@@ -3,7 +3,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
-      -- "nushell/tree-sitter-nu" ,
+      "nushell/tree-sitter-nu",
       "nvim-treesitter/nvim-treesitter-textobjects",
       "windwp/nvim-ts-autotag",
     },
