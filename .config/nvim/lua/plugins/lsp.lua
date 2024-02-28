@@ -105,9 +105,9 @@ return {
       ensure_installed = {
         "lua_ls",
         "bashls",
-        -- "pyright",
+        "pyright",  -- needed for rename
+        "ruff_lsp", -- formatting, linting, and organize imports
         -- 'pylsp',
-        "ruff_lsp",
         -- 'jsonls',
         "biome",
         -- 'eslint',
