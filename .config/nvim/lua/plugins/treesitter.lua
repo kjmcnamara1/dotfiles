@@ -134,7 +134,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       max_lines = 3,
     },

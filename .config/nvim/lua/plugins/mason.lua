@@ -1,7 +1,7 @@
 return {
   -- ui to install LSPs, DAPs, linters, and formatters
   "williamboman/mason.nvim",
-  cmd = { "Mason", "MasonUpdate", "MasonInstall", 'MasonUninstall','MasonUninstallAll','MasonLog' },
+  cmd = { "Mason", "MasonUpdate", "MasonInstall", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
   keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
   build = ":MasonUpdate",
   opts = {

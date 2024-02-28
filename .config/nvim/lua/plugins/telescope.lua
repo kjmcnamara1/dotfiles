@@ -161,13 +161,15 @@ return {
           override_generic_sorter = true,
           override_file_sorter = true,
           case_mode = "smart_case",
-        }
+        },
       }
     },
     config = function(_, opts)
-      require("telescope").setup(opts)
+      local telescope = require("telescope")
+
+      telescope.setup(opts)
       if vim.fn.executable("make") == 1 then
-        require("telescope").load_extension("fzf")
+        telescope.load_extension("fzf")
       end
     end,
   },

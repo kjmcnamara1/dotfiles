@@ -2,13 +2,12 @@ return {
   {
     -- Adds labels for marks to sign column and several keymaps
     "kshenoy/vim-signature",
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPre", "BufNewFile" },
   },
   {
     -- Change background highlight to match color of string, e.g. '#abf4c2'
     "brenoprata10/nvim-highlight-colors",
     event = "BufReadPost",
-    -- event = { "BufReadPre", "BufNewFile" },
     config = true,
   },
   {
