@@ -23,15 +23,13 @@ map("n", "U", "<c-r>", { desc = "Redo" })
 -- Paste in insert mode
 map("i", "<c-v>", "<c-r>+", { desc = "Paste from system clipboard" })
 
--- Paste without losing the contents of the register
-map("x", "<leader>p", '"_dP', { desc = "Paste without overwriting register" })
-
--- Copy/paste with system clipboard
-map({ "n", "x" }, "gy", '"+y', { desc = "Copy to system clipboard" })
-map("n", "gp", '"+p', { desc = "Paste from system clipboard" })
-
--- Paste in Visual with `P` to not copy selected text (`:h v_P`)
-map("x", "gp", '"+P', { desc = "Paste from system clipboard" })
+-- Copy/paste -- solved with clipboard=unnamedplus
+-- use 'p' in visual mode to replace register with selected text
+-- use 'P' in visual mode to keep register the same (reuse yanked text)
+-- map("x", "<leader>p", '"_dP', { desc = "Paste without overwriting register" })
+-- map({ "n", "x" }, "gy", '"+y', { desc = "Copy to system clipboard" })
+-- map("n", "gp", '"+p', { desc = "Paste from system clipboard" })
+-- map("x", "gp", '"+P', { desc = "Paste from system clipboard" })
 
 -- Reselect latest changed, put, or yanked text
 map("n", "gV", '"`[" . strpart(getregtype(), 0, 1) . "`]"',
