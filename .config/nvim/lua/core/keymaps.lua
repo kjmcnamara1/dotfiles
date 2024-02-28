@@ -44,6 +44,13 @@ if vim.fn.has("nvim-0.10") == 0 then
   map("x", "#", [[y?\V<C-R>=escape(@", '?\')<CR><CR>]], { desc = "Search backward" })
 end
 
+-- Quck find/replace for the word under the cursor
+map("n", "S", function()
+  local cmd = ":%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>"
+  local keys = vim.api.nvim_replace_termcodes(cmd, true, false, true)
+  vim.api.nvim_feedkeys(keys, "n", false)
+end, { desc = "Find/Replace word under cursor" })
+
 -- Move by visible lines.
 map({ "n", "x" }, "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
 map({ "n", "x" }, "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true })
