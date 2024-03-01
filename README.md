@@ -302,11 +302,12 @@ cd
 rm -rf ~/yay
 
 # Install packages
-yay -S wget curl man-db carapace-bin fish fzf neovim-nightly-bin nodejs npm nushell openssh ripgrep starship tmux unzip zoxide zstd
+yay -S wget curl man-db carapace-bin fish fzf neovim-nightly-bin nodejs npm nushell openssh ripgrep starship tmux unzip zoxide zstd python312
 
-# Reinstall python to version 3.12 (VPN connection will block downloading python312 gpg keys --must disconnect)
-yay -Rcns python
-yay -S python312
+# Change python3 symlinks to point to python3.12 instead of 3.11
+sudo ln -sf python3.12 /usr/bin/python3
+sudo ln -sf python3.12-config /usr/bin/python3-config
+sudo ln -sf pydoc3.12 /usr/bin/pydoc3
 
 # Create SSH key for github
 ssh-keygen -t ed25519 -C "$(whoami)@$(uname -n)-$(date -I)" -f ~/.ssh/github_com_ed25519
