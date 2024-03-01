@@ -6,7 +6,7 @@
 
 [dual-key-remap](https://github.com/ililim/dual-key-remap)
 
-```pwsh
+```powershell
 # Download
 # extract to C:\Program Files\dual-key-remap
 # create shortcut @ C:\Users\%USERNAME%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\dual-key-remap.lnk
@@ -91,7 +91,7 @@ Create 4 Desktops named:
 
 ### [Scoop](https://scoop.sh/)
 
-```pwsh
+```powershell
 # Install scoop
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
@@ -112,7 +112,7 @@ scoop install brave vscode wezterm megasync freecad inkscape gimp obsidian teamv
 
 Need to run as Admin
 
-```pwsh
+```powershell
 # nonportable bucket
 scoop install protonvpn-np
 ```
@@ -122,7 +122,7 @@ scoop install protonvpn-np
 #### [Brave Browser](https://brave.com/download/)
 
 <!--
-```pwsh
+```powershell
 # download from https://laptop-updates.brave.com/download/BRV011?bitness=64
 # run install file
 ``` -->
@@ -141,12 +141,12 @@ Set as default browser
 Create symlink for userdata to scoop userdata
 
 <!--
-```pwsh
+```powershell
 # Needs elevation for some reason even though in Developer Mode
 New-Item -Path 'C:\Users\kjmcn\AppData\Local\BraveSoftware\Brave-Browser\User Data' -ItemType SymbolicLink -Value 'C:\Users\kjmcn\scoop\persist\brave\User Data'
 ``` -->
 
-```pwsh
+```powershell
 cmd
 mklink /d "C:\Users\kjmcn\AppData\Local\BraveSoftware\Brave-Browser\User Data" "C:\Users\kjmcn\scoop\persist\brave\User Data"
 exit
@@ -200,6 +200,10 @@ Log in with google account
 
 #### [Proton VPN](https://protonvpn.com/download-windows)
 
+Log in  
+Change Settings > General > Start Minimized = to Systray
+![](img/vpn_settings.png)
+
 #### [Proton Drive](https://proton.me/drive/download)
 
 Don't backup any folders  
@@ -220,14 +224,14 @@ Set PowerShell Core as default
 
 #### Git
 
-```pwsh
+```powershell
 git config --global user.name 'Kevin J. McNamara'
 git config --global user.email kjmcnamara1@gmail.com
 ```
 
 #### Dotfiles
 
-```pwsh
+```powershell
 cd ~
 mkdir Code
 cd Code
@@ -238,11 +242,83 @@ git clone https://github.com/kjmcnamara1/dotfiles.git
 
 Enable WSL
 
-```pwsh
+```powershell
 wsl --install --no-distribution
+# Reboot
+Restart-Computer
 ```
 
-Reboot
+Install Arch WSL
+
+```powershell
+scoop install archwsl
+arch                                                  # start archwsl
+```
+
+```sh
+passwd                                                # Set root password
+echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/wheel		# This creates the sudoers file
+useradd -m -G wheel -s /bin/bash kevin			          # Create a new user
+passwd kevin						                              # Set the password for the new user
+exit								                                  # Return to powershell
+```
+
+```powershell
+arch config --default-user kevin                      # Change default user
+arch
+```
+
+```sh
+# Set up arch keyring and base packages
+sudo pacman-key --init
+sudo pacman-key --populate
+sudo pacman -Syu                                      # Update all system packages
+sudo pacman -S archlinux-keyring
+sudo pacman -S --needed base-devel git
+
+# Link dirs to Windows
+ln -sd /mnt/c/Users/kjmcn WIN
+ln -sd /mnt/c/Users/kjmcn/Documents Documents
+ln -sd /mnt/c/Users/kjmcn/Downloads Downloads
+ln -sd /mnt/c/Users/kjmcn/Music Music
+ln -sd /mnt/c/Users/kjmcn/Videos Videos
+ln -sd /mnt/c/Users/kjmcn/Code Code
+ln -sd /mnt/c/Users/kjmcn/MEGA MEGA
+ln -sd "/mnt/c/Users/kjmcn/Proton Drive/kevin.j.mcnamara/My files" Proton
+ln -sd "/mnt/c/Users/kjmcn/OneDrive -Five Star Products, Inc" OneDrive
+ln -sd "/mnt/c/Users/kjmcn/Five Star Products, Inc" SharePoint
+
+# Link Windows dirs to WSL
+cd WIN
+ln -sd "$HOME/.ssh" .ssh
+cd
+
+# Install yay AUR helper
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+yay --version
+cd
+rm -rf ~/yay
+
+# Install packages
+yay -S wget curl man-db carapace-bin fish fzf neovim-nightly-bin nodejs npm nushell openssh ripgrep starship tmux unzip zoxide zstd
+
+# Reinstall python to version 3.12 (VPN connection will block downloading python312 gpg keys --must disconnect)
+yay -Rcns python
+yay -S python312
+
+# Create SSH key for github
+ssh-keygen -t ed25519 -C "$(whoami)@$(uname -n)-$(date -I)" -f ~/.ssh/github_com_ed25519
+# Run ssh-agent in the background
+eval "$(ssh-agent -s)"
+# Add private key to the ssh agent
+ssh-add ~/.ssh/github_com_ed25519
+# Connect to github to add github.com to known_hosts
+ssh -T git@github.com
+```
+
+Create a [new ssh key](https://github.com/settings/ssh/new) on github.
 
 <!-- CascadiaCode-NF   -->
 <!-- FiraCode   -->
@@ -251,9 +327,6 @@ Reboot
 <!-- IosevkaTerm-NF   -->
 <!-- JetBrains-Mono   -->
 <!-- lazygit   -->
-<!-- neovim-nightly   -->
-<!-- nodejs   -->
-<!-- ripgrep   -->
 <!-- Victor-Mono   -->
 <!-- zig -->
 
