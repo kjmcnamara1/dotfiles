@@ -107,7 +107,7 @@ scoop bucket add nonportable
 # nerd-fonts bucket
 scoop install JetBrainsMono-NF VictorMono-NF FiraCode-NF FiraCode-Script NerdFontsSymbolsOnly
 # extras bucket
-scoop install brave vscode wezterm megasync freecad inkscape gimp obsidian teamviewer
+scoop install brave vscode wezterm megasync freecad inkscape gimp obsidian teamviewer starship vcredist2022
 ```
 
 Need to run as Admin
