@@ -2,47 +2,34 @@
 
 # add_newline = true
 scan_timeout = 10
+# command_timeout = 750
 
-palette = 'nord'
-
-# format = ""
-# right_format = ""
+# palette = "nord"
 
 continuation_prompt = "[∙∙∙](bright-black)     "
 
 format = """\
-[╭─](fg:light1)$os[](fg:light1 bg:dark1)\
-([ ](fg:dark1 bg:dark4)$username$hostname[](fg:dark4 bg:dark1))\
-[ ](fg:dark1 bg:theme4)$directory[](fg:theme4 bg:accent3)\
-$git_branch$git_status[](fg:accent3 bg:dark1) \
-$fill \
-$python\
-[](fg:accent5)$cmd_duration\
-[](bg:accent5 fg:light1)$time\
-\
+╭─ $status $os $shell $username$hostname $directory $git_branch $git_status $fill
+╰─ $character\
 """
-# [╰─](light1)$character\
 
-# right_format = """\
-# """
+right_format = """$python $cmd_duration $time"""
 
 [palettes.nord]
-dark1 = '#2E3440'
-dark2 = '#3B4252'
-dark3 = '#434C5E'
-dark4 = '#4C566A'
-light1 = '#D8DEE9'
-light2 = '#E5E9F0'
-light3 = '#ECEFF4'
-theme1 = '#8FBCBB'
-theme2 = '#88C0D0'
-theme3 = '#81A1C1'
-theme4 = '#5E81AC'
-accent1 = '#BF616A'
-accent2 = '#D08770'
-accent3 = '#EBCB8B'
-accent4 = '#A3BE8C'
-accent5 = '#B48EAD'
+black = "#2E3440"
+bright-black = "#4C566A"
+red = "#BF616A"
+green = "#A3BE8C"
+yellow = "#EBCB8B"
+blue = "#5E81AC"
+purple = "#B48EAD"
+cyan = "#88C0D0"
+white = "#e5e9f0"
+bright-white = "#ECEFF4"
+light = "#D8DEE9"
+teal = "#8FBCBB"
+frost = "#81A1C1"
+orange = "#D08770"
 
 # nord
 # [colors]
@@ -60,9 +47,17 @@ accent5 = '#B48EAD'
 [fill]
 symbol = "∙"
 
+[status]
+# disabled = false
+style = 'bg:blue'
+symbol = '🔴 '
+success_symbol = '🟢 SUCCESS'
+format = '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
+map_symbol = true
+
 [os]
 disabled = false
-style = "bg:light1 fg:theme4"
+# style = "bg:light1 fg:theme4"
 
 [os.symbols]
 Windows = "󰍲 "
@@ -85,25 +80,39 @@ Debian = "󰣚 "
 Redhat = "󱄛 "
 RedHatEnterprise = "󱄛 "
 
+[shell]
+disabled = false
+format = "$indicator"
+# format = "[$indicator]($style) "
+# style = "white bold"
+bash_indicator = "[ ](fg:orange)"
+fish_indicator = "[󰈺 ](fg:blue)"
+zsh_indicator = "[𝓏 ](fg:purple)"
+powershell_indicator = "[󰨊 ](fg:frost)"
+pwsh_indicator = "[ ](fg:blue)"
+cmd_indicator = "[ ](fg:yellow)"
+nu_indicator = "[> ](fg:green)"
+unknown_indicator = "[ ](fg:red)"
+
 [username]
-show_always = false
+show_always = true
 format = '[$user]($style)'
-style_user = 'bg:dark4 fg:accent4'
-style_root = 'bg:dark4 bold red'
+# style_user = 'bg:dark4 fg:accent4'
+# style_root = 'bg:dark4 bold red'
 
 [hostname]
-ssh_only = true
-style = "bg:dark4 fg:accent3 bold"
+ssh_only = false
+# style = "bg:dark4 fg:accent3 bold"
 format = "[@($ssh_symbol )$hostname ]($style)"
 
 [directory]
-format = "[$path ]($style)[$read_only]($read_only_style)"
-style = "bg:theme4 fg:light3"
+# format = "[$path ]($style)[$read_only]($read_only_style)"
+# style = "bg:theme4 fg:light3"
 home_symbol = " "
 truncation_length = 3
 truncation_symbol = "…/"
 read_only = " "
-read_only_style = "bg:theme4 fg:accent1"
+# read_only_style = "bg:theme4 fg:accent1"
 
 [directory.substitutions]
 "Documents" = "󰈙 "
@@ -114,12 +123,13 @@ read_only_style = "bg:theme4 fg:accent1"
 
 [git_branch]
 symbol = " 󰘬 "
-style = "bg:accent3 fg:dark2 bold"
+# style = "bg:accent3 fg:dark2 bold"
 format = "[ $symbol$branch(:$remote_branch) ]($style)"
 
 [git_status]
 format = "([$all_status$ahead_behind ]($style))"
-style = "bg:accent3 fg:accent1 bold"
+# style = "bg:accent3 fg:accent1 bold"
+windows_starship = "/mnt/c/Users/kjmcn/scoop/shims/starship.exe"
 conflicted = "=$count"
 untracked = "?$count"
 stashed = "\\$$count"
@@ -130,24 +140,24 @@ deleted = "✘$count"
 
 [python]
 symbol = ""
-style = "bg:theme4 fg:accent3"
+# style = "bg:theme4 fg:accent3"
 format = '([](fg:theme4)[$symbol $virtualenv]($style)[](fg:theme4)) '
 
 [cmd_duration]
 format = "[ $duration  ]($style)"
-style = "bg:accent5 fg:dark2 bold"
+# style = "bg:accent5 fg:dark2 bold"
 
 [time]
 disabled = false
 # time_format = "%R"
-style = "bg:light1 fg:dark1"
+# style = "bg:light1 fg:dark1"
 format = '[ $time  ]($style)'
 
 [character]
 # disabled = true
-success_symbol = '[ ❯](bold fg:green)'
-error_symbol = '[ ❯](bold fg:red)'
-vimcmd_symbol = '[ ❮](bold fg:color_green)'
-vimcmd_replace_one_symbol = '[](bold fg:color_purple)'
-vimcmd_replace_symbol = '[](bold fg:color_purple)'
-vimcmd_visual_symbol = '[](bold fg:color_yellow)'
+success_symbol = '[❯](bold fg:green)'
+error_symbol = '[❯](bold fg:red)'
+vimcmd_symbol = '[❮](bold fg:green)'
+vimcmd_replace_one_symbol = '[](bold fg:purple)'
+vimcmd_replace_symbol = '[](bold fg:purple)'
+vimcmd_visual_symbol = '[](bold fg:yellow)'
