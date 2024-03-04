@@ -14,7 +14,7 @@ bind --mode insert \cc 'commandline -r ""'
 
 # set fish_vi_force_cursor
 
-set EDITOR nvim
+set -Ux EDITOR nvim
 
 # Aliaes
 alias vim=nvim
