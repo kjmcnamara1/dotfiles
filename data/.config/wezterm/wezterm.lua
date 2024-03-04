@@ -12,7 +12,7 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 config.default_prog = { "wsl" }
-config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+-- config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.window_padding = {
   left = "1cell",
   right = "1cell",
