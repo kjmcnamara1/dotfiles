@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
-import logging
-import re
-import sys
 import argparse
+import logging
+import sys
 from pathlib import Path
+from typing import Any
+
+import tomllib
 
 log = logging.getLogger(__name__)
 
 DOTFILES = Path(__file__).resolve().parent
-DATA = DOTFILES / "data"
-IGNORE = (DOTFILES / "ignore").read_text().splitlines()
-LINKS = (DOTFILES / "links").read_text().splitlines()
+# DATA = DOTFILES / "data"
+# IGNORE = (DOTFILES / "ignore").read_text().splitlines()
+# LINKS = (DOTFILES / "links").read_text().splitlines()
 
 
 def delete(path: Path, dry_run: bool):
@@ -138,11 +140,18 @@ def consolidate(source: Path, destination: Path, dry_run: bool, force=False):
     delete(source, dry_run)
 
 
-def sync(target_dir: Path, link_dir: Path, dry_run: bool = False, force=False):
+def sync(
+    target_dir: Path,
+    link_dir: Path,
+    dry_run: bool,
+    force: bool,
+    ignore: list[str],
+    to_link: list[str],
+):
     """Sync two existing directories with symlinks"""
     for target in target_dir.iterdir():
         # Immediately ignore any target matching 'ignore' file
-        if any([target.match(glob) for glob in IGNORE]):
+        if any([target.match(glob) for glob in ignore]):
             print("Ignoring", target)
             continue  # next target
 
@@ -151,7 +160,7 @@ def sync(target_dir: Path, link_dir: Path, dry_run: bool = False, force=False):
         log.debug("link = %s, target = %s", link, target)
 
         # If target matches 'links' file, Consolidate link to target, then create symlink
-        if any([target.match(glob) for glob in LINKS]):
+        if any([target.match(glob) for glob in to_link]):
             # both link and target are normal dirs
             # if not link.is_symlink() and link.is_dir() and target.is_dir():
 
@@ -173,12 +182,63 @@ def sync(target_dir: Path, link_dir: Path, dry_run: bool = False, force=False):
 
         # Target is a directory
         log.info("Entering subdirectory %s", target)
-        sync(target, link, dry_run, force)
+        sync(
+            target_dir=target,
+            link_dir=link,
+            dry_run=dry_run,
+            force=force,
+            ignore=ignore,
+            to_link=to_link,
+        )
 
 
 def parse_args() -> argparse.Namespace:
+    default_options = {
+        # "option_file": Path("sync_options.toml"),
+        "dry_run": False,
+        "force": False,
+        "log": "WARNING",
+        "link_dir": Path.home(),
+        "target_dir": DOTFILES / "data",
+        "ignore": [],
+        "link": ["*"],
+    }
+
+    def options(option_file: str) -> dict[str, Any]:
+        # print(option_file)
+        try:
+            option_path = Path(option_file)
+            opts = tomllib.loads(option_path.read_text()) | {"file": option_path}
+        except OSError:
+            opts = {"file": None}
+
+        opts["link_dir"] = Path(  # type: ignore
+            opts.get("link_dir", default_options["link_dir"])  # type: ignore
+        ).resolve()
+        opts["target_dir"] = Path(  # type: ignore
+            opts.get("target_dir", default_options["target_dir"])  # type: ignore
+        ).resolve()
+
+        # print(opts)
+        # opts = default_options | opts
+        # opts = argparse.Namespace(**opts)
+
+        # print(opts)
+
+        return default_options | opts
+
     parser = argparse.ArgumentParser(
         description="Sync dotfiles directory to another directory (i.e. $HOME)"
+    )
+    parser.add_argument(
+        "-o",
+        "--options",
+        # dest="option_file",
+        type=options,
+        default="sync_options.toml",
+        # type=Path,
+        # default=default_options["option_file"],
+        help="TOML file containing command line options [log, link_dir, target_dir, ignore, link]",
     )
     parser.add_argument(
         "-d",
@@ -195,10 +255,53 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--log",
         choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
-        default="WARNING",
+        # default=default_options["log"],
         help="Set logging level",
     )
-    return parser.parse_args()
+    parser.add_argument(
+        "--link-dir",
+        type=Path,
+        # default=default_options["link_dir"],
+        help="Directory to place links in.",
+    )
+    parser.add_argument(
+        "--target-dir",
+        type=Path,
+        # default=default_options["link_dir"],
+        help="Directory containing target files.",
+    )
+    parser.add_argument(
+        "-i",
+        "--ignore",
+        nargs="+",
+        # default=default_options["ignore"],
+        help="List of globs to ignore.",
+    )
+    parser.add_argument(
+        "-l",
+        "--link",
+        nargs="+",
+        # default=default_options["link"],
+        help="List of globs to link.",
+    )
+
+    args = parser.parse_args()
+    # print(f"initial args = {args}")
+
+    # args.options = argparse.Namespace(**tomllib.loads(args.option_file.read_text()))
+    # args.options = argparse.Namespace(**tomllib.load(args.option_file))
+
+    # print(args.options.resolve())
+
+    args.log = args.log or args.options["log"]
+    args.link_dir = args.link_dir or args.options["link_dir"]
+    args.target_dir = args.target_dir or args.options["target_dir"]
+    args.ignore = args.ignore or args.options["ignore"]
+    args.link = args.link or args.options["link"]
+
+    # print(f"final args = {args}")
+
+    return args
 
 
 def main():
@@ -206,18 +309,33 @@ def main():
 
     logging.basicConfig(level=args.log)
 
-    log.debug(f"{args = }\n")
+    log.debug("ARGS:")
+    log.debug("option_file = %s", args.options["file"])
+    log.debug("dry_run = %s", args.dry_run)
+    log.debug("force = %s", args.force)
+    log.debug("log = %s", args.log)
+    log.debug("link_dir = %s", args.link_dir)
+    log.debug("target_dir = %s", args.target_dir)
+    log.debug("ignore = %s", args.ignore)
+    log.debug("link = %s\n", args.link)
+
+    # sys.exit()
 
     if args.dry_run:
         print("*** DRY RUN ***")
 
-    print("Creating symlinks in", Path.home(), "->", DATA)
-    print("IGNORE = ", IGNORE)
-    print("LINKS = ", LINKS)
+    print("Creating symlinks in", args.link_dir, "->", args.target_dir)
     print()
 
     # sys.exit()
-    sync(DATA, Path.home(), args.dry_run, args.force)
+    sync(
+        target_dir=args.target_dir,
+        link_dir=args.link_dir,
+        dry_run=args.dry_run,
+        force=args.force,
+        ignore=args.ignore,
+        to_link=args.link,
+    )
 
 
 if __name__ == "__main__":
