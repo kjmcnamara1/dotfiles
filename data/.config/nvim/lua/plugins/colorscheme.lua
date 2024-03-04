@@ -15,7 +15,7 @@ return {
         float_background = true,
       },
       inverse = {
-        match_paren = true,
+        -- match_paren = true,
       },
       -- TODO: Need to add override for Neo-tree focused file 'NeoTreeCursorLine'
     },
