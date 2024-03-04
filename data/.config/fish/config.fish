@@ -24,7 +24,11 @@ alias py=python3
 zoxide init --cmd cd fish | source
 
 # Starship Prompt
+function starship_transient_prompt_func
+    starship module character
+end
 starship init fish | source
+enable_transience
 
 # VI Mode
 fish_vi_key_bindings
