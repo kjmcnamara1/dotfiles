@@ -107,7 +107,7 @@ scoop bucket add nonportable
 # nerd-fonts bucket
 scoop install JetBrainsMono-NF VictorMono-NF FiraCode-NF FiraCode-Script NerdFontsSymbolsOnly
 # extras bucket
-scoop install brave vscode wezterm megasync freecad inkscape gimp obsidian teamviewer starship vcredist2022
+scoop install vscode wezterm megasync freecad inkscape gimp obsidian teamviewer starship vcredist2022
 ```
 
 Need to run as Admin
@@ -127,6 +127,7 @@ scoop install protonvpn-np
 # run install file
 ``` -->
 
+Download and install as regular application  
 Set Brave as default browser  
 Skip import  
 Help make Brave better = Check all  
@@ -138,7 +139,7 @@ Settings > Appearance > Cycle through the most recently used tabs with Ctrl-Tab 
 Sign into Proton Pass  
 Set as default browser
 
-Create symlink for userdata to scoop userdata
+<!-- Create symlink for userdata to scoop userdata -->
 
 <!--
 ```powershell
@@ -146,11 +147,11 @@ Create symlink for userdata to scoop userdata
 New-Item -Path 'C:\Users\kjmcn\AppData\Local\BraveSoftware\Brave-Browser\User Data' -ItemType SymbolicLink -Value 'C:\Users\kjmcn\scoop\persist\brave\User Data'
 ``` -->
 
-```powershell
-cmd
-mklink /d "C:\Users\kjmcn\AppData\Local\BraveSoftware\Brave-Browser\User Data" "C:\Users\kjmcn\scoop\persist\brave\User Data"
-exit
-```
+<!-- ```powershell -->
+<!-- cmd -->
+<!-- mklink /d "C:\Users\kjmcn\AppData\Local\BraveSoftware\Brave-Browser\User Data" "C:\Users\kjmcn\scoop\persist\brave\User Data" -->
+<!-- exit -->
+<!-- ``` -->
 
 #### [VS Code](https://code.visualstudio.com)
 
