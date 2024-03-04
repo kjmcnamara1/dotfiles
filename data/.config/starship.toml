@@ -9,11 +9,11 @@ scan_timeout = 10
 continuation_prompt = "[∙∙∙](bright-black)     "
 
 format = """\
-╭─ $status $os $shell $username$hostname $directory $git_branch $git_status $fill
-╰─ $character\
+$shell $username$hostname $directory ($git_branch) ($git_status) $fill ($python) ($cmd_duration) $time 
+$character\
 """
 
-right_format = """$python $cmd_duration $time"""
+right_format = """$status $os"""
 
 [palettes.nord]
 black = "#2E3440"
@@ -149,7 +149,7 @@ format = "[ $duration  ]($style)"
 
 [time]
 disabled = false
-# time_format = "%R"
+time_format = "%R"
 # style = "bg:light1 fg:dark1"
 format = '[ $time  ]($style)'
 
