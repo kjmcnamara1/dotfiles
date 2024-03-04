@@ -2,6 +2,7 @@
 import logging
 import re
 import sys
+import argparse
 from pathlib import Path
 
 log = logging.getLogger(__name__)
@@ -16,7 +17,7 @@ def delete(path: Path, dry_run: bool):
     log.info("Deleting %s", path)
     if dry_run:
         return
-    if path.is_dir():
+    if path.is_dir() and not path.is_symlink():
         path.rmdir()
     else:
         path.unlink()
@@ -175,23 +176,49 @@ def sync(target_dir: Path, link_dir: Path, dry_run: bool = False, force=False):
         sync(target, link, dry_run, force)
 
 
-if __name__ == "__main__":
-    args = sys.argv[1:]
-    log_level = re.search(r"\s+--log=(.*)\s+", " ".join(args))
-    log_level = log_level.group(1) if log_level else "WARNING"
-    logging.basicConfig(level=log_level)
-    dry_run = "-d" in args
-    # dry_run = True
-    force = "-f" in args
-    # force = True
-    # log.critical("log_level = %s, dry_run = %s, force = %s", log_level, dry_run, force)
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Sync dotfiles directory to another directory (i.e. $HOME)"
+    )
+    parser.add_argument(
+        "-d",
+        "--dry-run",
+        action="store_true",
+        help="Do not actually link, move, or delete files/folders.",
+    )
+    parser.add_argument(
+        "-f",
+        "--force",
+        action="store_true",
+        help="Do not prompt user. Automatically accept default option.",
+    )
+    parser.add_argument(
+        "--log",
+        choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
+        default="WARNING",
+        help="Set logging level",
+    )
+    return parser.parse_args()
 
-    if dry_run:
+
+def main():
+    args = parse_args()
+
+    logging.basicConfig(level=args.log)
+
+    log.debug(f"{args = }\n")
+
+    if args.dry_run:
         print("*** DRY RUN ***")
+
     print("Creating symlinks in", Path.home(), "->", DATA)
     print("IGNORE = ", IGNORE)
     print("LINKS = ", LINKS)
     print()
 
     # sys.exit()
-    sync(DATA, Path.home(), dry_run, force)
+    sync(DATA, Path.home(), args.dry_run, args.force)
+
+
+if __name__ == "__main__":
+    main()
