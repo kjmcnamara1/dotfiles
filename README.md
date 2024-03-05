@@ -213,8 +213,10 @@ Use default sync location (C:\Users\kjmcn\Proton Drive\kevin.j.mcnamara)
 #### MegaSync
 
 Do not backup  
-Do not sync inside OneDrive/Documents
-Sync to C:\Users\kjmcn\MEGA
+Do not sync inside OneDrive/Documents  
+Sync to C:\Users\kjmcn\MEGA  
+Remove .\* from 'excluded file and folder names' in Settings > Folders
+![](img/megasync_settings.png)
 
 #### [Dell Active Pen Service](https://www.dell.com/support/home/en-us/product-support/product/dell-actv-pen-5000-series/drivers)
 
