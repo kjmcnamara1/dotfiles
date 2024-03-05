@@ -1,10 +1,8 @@
-
-  -- Better than mini.comment
-  -- mini.comment does not have block comments (gb, gbc)
-  -- mini.comment does not have gcA, gco, gcO
-  -- missing 'gc' textobject from mini.comment for ops like 'dgc'
-  return {
-
+-- Better than mini.comment
+-- mini.comment does not have block comments (gb, gbc)
+-- mini.comment does not have gcA, gco, gcO
+-- missing 'gc' textobject from mini.comment for ops like 'dgc'
+return {
   {
     "numToStr/Comment.nvim",
     dependencies = {
@@ -21,8 +19,17 @@
     },
     keys = {
       { "<c-_>", function() require("Comment.api").toggle.linewise.current() end, mode = "i", desc = "Toggle comment" },
-      { "gc", mode = { "n", "x" } },
-      { "gb", mode = { "n", "x" } },
+      { "gc",    mode = { "n", "x" } },
+      { "gb",    mode = { "n", "x" } },
     },
   },
-  }
+  {
+    "folke/todo-comments.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
+}
