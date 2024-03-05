@@ -288,6 +288,11 @@ sudo ln -sf pydoc3.12 /usr/bin/pydoc3
 
 # Create SSH key for github
 ssh-keygen -t ed25519 -C "$(whoami)@$(uname -n)-$(date -I)" -f ~/.ssh/github_com_ed25519
+```
+
+Create a [new ssh key](https://github.com/settings/ssh/new) on github.
+
+```sh
 # Run ssh-agent in the background
 eval "$(ssh-agent -s)"
 # Add private key to the ssh agent
@@ -299,7 +304,7 @@ ssh -T git@github.com
 cd ~
 mkdir Code
 cd Code
-git clone https://github.com/kjmcnamara1/dotfiles.git
+git clone git@github.com:kjmcnamara1/dotfiles.git
 cd dotfiles
 
 # Sync Linux dotfiles
@@ -346,8 +351,6 @@ ssh-add ~/.ssh/github_com_ed25519
 ssh -T git@github.com
 wsl
 ```
-
-Create a [new ssh key](https://github.com/settings/ssh/new) on github.
 
 <!-- CascadiaCode-NF   -->
 <!-- FiraCode   -->
