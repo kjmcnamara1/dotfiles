@@ -334,8 +334,9 @@ chsh -s /usr/bin/fish
 
 # Link Windows dirs to WSL
 cd ~/WIN
-cmd.exe /c mklink /d .ssh \\wsl.localhost\Arch\home\kevin\.ssh
-cmd.exe /c mklink /d Code \\wsl.localhost\Arch\home\kevin\Code
+cmd.exe /c "mklink /d WSL \\\\wsl.localhost\\Arch\\home\\kevin"
+cmd.exe /c "mklink /d .ssh \\\\wsl.localhost\\Arch\\home\\kevin\\.ssh"
+cmd.exe /c "mklink /d Code \\\\wsl.localhost\\Arch\\home\\kevin\\Code"
 ```
 
 <!-- ```cmd -->
