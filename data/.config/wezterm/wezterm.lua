@@ -63,7 +63,7 @@ config.font = wezterm.font_with_fallback({
   --   },
   -- },
   -- {
-  --   family = "Fira Code",
+  --   family = "FiraCode Nerd Font",
   --   harfbuzz_features = {
   --     "zero", -- dotted 0
   --     "onum", -- offset number heights
@@ -93,7 +93,7 @@ config.font = wezterm.font_with_fallback({
   --   },
   -- },
   -- "IosevkaTerm Nerd Font",
-  "JetBrains Mono",
+  "JetBrainsMono Nerd Font",
   "Symbols Nerd Font",
 })
 
