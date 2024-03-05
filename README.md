@@ -287,7 +287,8 @@ sudo ln -sf python3.12-config /usr/bin/python3-config
 sudo ln -sf pydoc3.12 /usr/bin/pydoc3
 
 # Create SSH key for github
-ssh-keygen -t ed25519 -C "$(whoami)@$(uname -n)-$(date -I)" -f ~/.ssh/github_com_ed25519
+# ssh-keygen -t ed25519 -C "$(whoami)@$(uname -n)-$(date -I)" -f ~/.ssh/github_com_ed25519
+ssh-keygen
 ```
 
 Create a [new ssh key](https://github.com/settings/ssh/new) on github.
@@ -296,7 +297,8 @@ Create a [new ssh key](https://github.com/settings/ssh/new) on github.
 # Run ssh-agent in the background
 eval "$(ssh-agent -s)"
 # Add private key to the ssh agent
-ssh-add ~/.ssh/github_com_ed25519
+# ssh-add ~/.ssh/github_com_ed25519
+ssh-add ~/.ssh/id_ed25519
 # Connect to github to add github.com to known_hosts
 ssh -T git@github.com
 
@@ -346,7 +348,8 @@ cmd.exe /c mklink /d Code \\wsl.localhost\Arch\home\kevin\Code
 # Run ssh-agent in the background
 eval "$(ssh-agent -s)"
 # Add private key to the ssh agent
-ssh-add ~/.ssh/github_com_ed25519
+# ssh-add ~/.ssh/github_com_ed25519
+ssh-add ~/.ssh/id_ed25519
 # Connect to github to add github.com to known_hosts
 ssh -T git@github.com
 wsl
