@@ -14,8 +14,6 @@ bind --mode insert \cc 'commandline -r ""'
 
 # set fish_vi_force_cursor
 
-set -Ux EDITOR nvim
-
 # Aliaes
 alias vim=nvim
 alias py=python3
@@ -25,7 +23,10 @@ zoxide init --cmd cd fish | source
 
 # Starship Prompt
 function starship_transient_prompt_func
-    starship module character
+    set -fx STARSHIP_CMD_STATUS $status
+    set -fx STARSHIP_CONFIG ~/.config/starship_transient.toml
+    starship prompt --terminal-width="$COLUMNS" --status=$STARSHIP_CMD_STATUS
+    # starship module character
 end
 starship init fish | source
 enable_transience
