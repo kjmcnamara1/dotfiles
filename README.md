@@ -232,15 +232,6 @@ git config --global user.name 'Kevin J. McNamara'
 git config --global user.email kjmcnamara1@gmail.com
 ```
 
-#### Dotfiles
-
-```powershell
-cd ~
-mkdir Code
-cd Code
-git clone https://github.com/kjmcnamara1/dotfiles.git
-```
-
 ### Windows Subsystem for Linux (WSL)
 
 Enable WSL
@@ -279,23 +270,6 @@ sudo pacman -Syu                                      # Update all system packag
 sudo pacman -S archlinux-keyring
 sudo pacman -S --needed base-devel git
 
-# Link dirs to Windows
-ln -sd /mnt/c/Users/kjmcn WIN
-ln -sd /mnt/c/Users/kjmcn/Documents Documents
-ln -sd /mnt/c/Users/kjmcn/Downloads Downloads
-ln -sd /mnt/c/Users/kjmcn/Music Music
-ln -sd /mnt/c/Users/kjmcn/Videos Videos
-ln -sd /mnt/c/Users/kjmcn/Code Code
-ln -sd /mnt/c/Users/kjmcn/MEGA MEGA
-ln -sd "/mnt/c/Users/kjmcn/Proton Drive/kevin.j.mcnamara/My files" Proton
-ln -sd "/mnt/c/Users/kjmcn/OneDrive -Five Star Products, Inc" OneDrive
-ln -sd "/mnt/c/Users/kjmcn/Five Star Products, Inc" SharePoint
-
-# Link Windows dirs to WSL
-cd WIN
-ln -sd "$HOME/.ssh" .ssh
-cd
-
 # Install yay AUR helper
 git clone https://aur.archlinux.org/yay.git
 cd yay
@@ -320,6 +294,57 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/github_com_ed25519
 # Connect to github to add github.com to known_hosts
 ssh -T git@github.com
+
+# Clone dotfiles
+cd ~
+mkdir Code
+cd Code
+git clone https://github.com/kjmcnamara1/dotfiles.git
+cd dotfiles
+
+# Sync Linux dotfiles
+./sync.py
+
+# Sync Windows dotfiles
+python.exe ./sync.py -l .config/wezterm .ipython .gitconfig
+
+# Link dirs to Windows
+cd
+ln -sd /mnt/c/Users/kjmcn WIN
+ln -sd /mnt/c/Users/kjmcn/Documents
+ln -sd /mnt/c/Users/kjmcn/Downloads
+ln -sd /mnt/c/Users/kjmcn/Music
+ln -sd /mnt/c/Users/kjmcn/Videos
+ln -sd /mnt/c/Users/kjmcn/MEGA
+ln -sd "/mnt/c/Users/kjmcn/Proton Drive/kevin.j.mcnamara/My files" Proton
+ln -sd "/mnt/c/Users/kjmcn/OneDrive - Five Star Products, Inc" OneDrive
+ln -sd "/mnt/c/Users/kjmcn/Five Star Products, Inc" SharePoint
+
+# Change default shell to fish
+chsh -s /usr/bin/fish
+
+# Link Windows dirs to WSL
+cd ~/WIN
+cmd.exe /c mklink /d .ssh \\wsl.localhost\Arch\home\kevin\.ssh
+cmd.exe /c mklink /d Code \\wsl.localhost\Arch\home\kevin\Code
+```
+
+<!-- ```cmd -->
+<!-- cd %USERPROFILE% -->
+<!-- mklink /d .ssh \\wsl.localhost\Arch\home\kevin\.ssh -->
+<!-- mklink /d Code \\wsl.localhost\Arch\home\kevin\Code -->
+<!-- bash.exe -->
+<!-- ``` -->
+
+```bash
+# Try to use bashe.exe -c 'cmd' to not have to change shells
+# Run ssh-agent in the background
+eval "$(ssh-agent -s)"
+# Add private key to the ssh agent
+ssh-add ~/.ssh/github_com_ed25519
+# Connect to github to add github.com to known_hosts
+ssh -T git@github.com
+wsl
 ```
 
 Create a [new ssh key](https://github.com/settings/ssh/new) on github.
