@@ -337,6 +337,11 @@ cd ~/WIN
 cmd.exe /c "mklink /d WSL \\\\wsl.localhost\\Arch\\home\\kevin"
 cmd.exe /c "mklink /d .ssh \\\\wsl.localhost\\Arch\\home\\kevin\\.ssh"
 cmd.exe /c "mklink /d Code \\\\wsl.localhost\\Arch\\home\\kevin\\Code"
+
+# Link root to home
+# sudo cd /root
+sudo ln -s /home/kevin/.config/starship.toml /root/.config/starship.toml
+sudo ln -sd /home/kevin/.config/fish /root/.config
 ```
 
 <!-- ```cmd -->
