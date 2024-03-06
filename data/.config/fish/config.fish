@@ -14,6 +14,9 @@ bind --mode insert \cc 'commandline -r ""'
 
 # set fish_vi_force_cursor
 
+# Pyenv
+pyenv init - | source
+
 # Aliaes
 alias vim=nvim
 alias py=python3
