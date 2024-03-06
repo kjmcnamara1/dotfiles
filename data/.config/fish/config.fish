@@ -15,7 +15,7 @@ bind --mode insert \cc 'commandline -r ""'
 # set fish_vi_force_cursor
 
 # Pyenv
-pyenv init - | source
+# pyenv init - | source
 
 # Aliaes
 alias vim=nvim
@@ -31,6 +31,7 @@ function starship_transient_prompt_func
     starship prompt --terminal-width="$COLUMNS" --status=$STARSHIP_CMD_STATUS
     # starship module character
 end
+# source ../starship/starship.fish
 starship init fish | source
 enable_transience
 

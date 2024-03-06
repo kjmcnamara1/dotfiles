@@ -10,7 +10,7 @@ function fish_prompt
     # Account for changes in variable name between v2.7 and v3.0
     set STARSHIP_DURATION "$CMD_DURATION$cmd_duration"
     set STARSHIP_JOBS (count (jobs -p))
-    if test "$TRANSIENT" = "1"
+    if test "$TRANSIENT" = 1
         # Clear from cursor to end of screen as `commandline -f repaint` does not do this
         # See https://github.com/fish-shell/fish-shell/issues/8418
         printf \e\[0J
@@ -36,7 +36,7 @@ function fish_right_prompt
     # Account for changes in variable name between v2.7 and v3.0
     set STARSHIP_DURATION "$CMD_DURATION$cmd_duration"
     set STARSHIP_JOBS (count (jobs -p))
-    if test "$TRANSIENT" = "1"
+    if test "$TRANSIENT" = 1
         if type -q starship_transient_rprompt_func
             starship_transient_rprompt_func
         else
@@ -53,21 +53,16 @@ set -g VIRTUAL_ENV_DISABLE_PROMPT 1
 # Remove default mode prompt
 builtin functions -e fish_mode_prompt
 
-set -gx STARSHIP_SHELL "fish"
+set -gx STARSHIP_SHELL fish
 
 # Transience related functions
-function reset-transient --on-event fish_postexec
+function reset-transient --on-event fish_prompt
     set -g TRANSIENT 0
 end
 
 function transient_execute
-    if commandline --is-valid
-        set -g TRANSIENT 1
-        commandline -f repaint
-    else
-        set -g TRANSIENT 0
-    end
-    commandline -f execute
+    set -g TRANSIENT 1
+    commandline -f repaint execute
 end
 
 # --user is the default, but listed anyway to make it explicit.
