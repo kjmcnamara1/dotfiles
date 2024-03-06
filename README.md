@@ -107,7 +107,7 @@ scoop bucket add nonportable
 # nerd-fonts bucket
 scoop install JetBrainsMono-NF VictorMono-NF FiraCode-NF FiraCode-Script NerdFontsSymbolsOnly
 # extras bucket
-scoop install vscode wezterm megasync freecad inkscape gimp obsidian teamviewer starship vcredist2022
+scoop install vscode wezterm megasync freecad inkscape gimp obsidian starship vcredist2022
 ```
 
 Need to run as Admin
@@ -221,6 +221,9 @@ Remove .\* from 'excluded file and folder names' in Settings > Folders
 #### [Dell Active Pen Service](https://www.dell.com/support/home/en-us/product-support/product/dell-actv-pen-5000-series/drivers)
 
 #### [TeamViewer](https://www.teamviewer.com/en-us/)
+
+Download and install (not through scoop)
+[](https://download.teamviewer.com/download/TeamViewer_Setup_x64.exe)
 
 #### Windows Terminal
 
