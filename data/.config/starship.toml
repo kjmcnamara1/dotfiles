@@ -1,13 +1,16 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+# add_newline = false
 # format = "$directory$fill$line_break$character"
 
 format = """\
-[╭](bright-black)$shell$all$fill$cmd_duration$time
+[╭─](bright-black)$shell\
+([](bright-black)[$username$hostname ](bg:bright-black)[](bright-black))\
+$all$fill$python$time
 [╰](bright-black)$character\
 """
 
-right_format = "$memory_usage$battery$os"
+right_format = "$cmd_duration$memory_usage$sudo$battery$os"
 
 palette = "nord"
 
@@ -34,6 +37,150 @@ style = "bright-black"
 [line_break]
 disabled = true
 
+[shell]
+disabled = false
+format = "[]($style)$indicator[]($style)"
+style = "light bold"
+bash_indicator = "[ ]($style bg:orange inverted)"
+fish_indicator = "[󰈺 ]($style bg:blue inverted)"
+zsh_indicator = "[󰵁 ]($style bg:purple inverted)"
+powershell_indicator = "[󰨊 ]($style bg:cyan inverted)"
+pwsh_indicator = "[ ]($style bg:blue inverted)"
+cmd_indicator = "[ ]($style bg:yellow inverted)"
+nu_indicator = "[> ]($style bg:green inverted)"
+unknown_indicator = "[ ]($style bg:red inverted)"
+
+[username]
+# show_always = true
+format = '[ $user]($style bg:bright-black)'
+
+[hostname]
+# ssh_only = false
+format = "[@($ssh_symbol)$hostname]($style bg:bright-black)"
+ssh_symbol = '🌏 '
+# detect_env_vars = ['SSH_TTY', 'SSH_CONNECTION', 'SSH_CLIENT']
+
+[localip]
+disabled = false
+# ssh_only = false
+
+[memory_usage]
+disabled = false
+threshold = 50
+symbol = "󰄨 "
+format = "$symbol[$ram( | $swap)]($style) "
+
+[directory]
+truncation_length = 5
+# truncate_to_repo = false
+style = "bg:bright-black fg:cyan inverted"
+repo_root_style = "bg:black bold"
+read_only = " "
+read_only_style = "bg:red"
+format = """\
+[](cyan)\
+[ $path]($style)\
+[( $read_only)]($style $read_only_style)\
+[](cyan)\
+"""
+repo_root_format = """\
+[](cyan)\
+[ $before_root_path]($before_repo_root_style)\
+[ $repo_root]($style $repo_root_style)\
+[$path ]($style)\
+[($read_only )]($style $read_only_style)\
+[](cyan bg:purple)\
+"""
+# use_logical_path = false
+# fish_style_pwd_dir_length = 1
+
+[git_branch]
+symbol = "󰘬 "
+# []($style inverted)\
+format = """\
+[ $symbol$branch(:$remote_branch)]($style)\
+"""
+# []($style inverted)\
+style = "black bg:purple"
+# style = "black bg:green"
+
+[git_status]
+# format = """\
+# [$conflicted$stashed$deleted$renamed$modified$staged$untracked$ahead_behind]($style)\
+# """
+format = "[$all_status$ahead_behind]($style)[ ](purple)"
+
+# style = "light bold"
+style = "yellow bold bg:purple"
+windows_starship = "/mnt/c/Users/kjmcn/scoop/shims/starship.exe"
+conflicted = "[ =$count](bright-cyan bold bg:purple)"
+stashed = "[ \\$$count](bright-black bold bg:purple)"
+deleted = "[ ✘$count](red bold bg:purple)"
+renamed = "[ »$count](cyan bold bg:purple)"
+modified = "[ !$count](yellow bold bg:purple)"
+staged = "[ +$count](green bold bg:purple)"
+untracked = "[ ?$count](light bold bg:purple)"
+diverged = " ⇕$ahead_count/$behind_count"
+ahead = "[ ⇡$count](blue bold bg:purple)"
+behind = "[ ⇣$count](frost bold bg:purple)"
+# up_to_date = "[](green)"
+
+[package]
+format = "[$symbol$version]($style)"
+
+[python]
+symbol = " "
+# format = "via [${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
+style = "bold blue"
+format = '[$symbol$version ](green)([]($style)[$virtualenv]($style inverted bg:yellow)[ ]($style))'
+
+[time]
+disabled = false
+style = "bold yellow"
+time_format = "%R  "                                      #%v  "
+format = '[]($style)[$time]($style inverted)[ ]($style)'
+
+[status]
+# disabled = false
+
+[character]
+# disabled = true
+success_symbol = '[ ❯](green)'
+error_symbol = '[ ❯](red)'
+vimcmd_symbol = '[ ❮](cyan)'
+vimcmd_replace_one_symbol = '[ ✘](purple)'
+vimcmd_replace_symbol = '[ ✘](orange)'
+vimcmd_visual_symbol = '[ ](yellow)'
+
+[cmd_duration]
+style = "orange"
+format = "[$duration  ]($style)"
+show_notifications = true
+
+[sudo]
+disabled = false
+format = "[$symbol]($style)"
+
+[battery]
+disabled = false
+format = "[$symbol]($style)"
+
+[[battery.display]]
+threshold = 20
+style = 'orange'
+
+[[battery.display]]
+threshold = 50
+style = 'yellow'
+
+[[battery.display]]
+threshold = 80
+style = 'blue'
+
+[[battery.display]]
+threshold = 100
+style = 'green'
+
 [os]
 disabled = false
 
@@ -57,123 +204,3 @@ CentOS = " "
 Debian = "󰣚 "
 Redhat = "󱄛 "
 RedHatEnterprise = "󱄛 "
-
-[shell]
-disabled = false
-format = "[](light)$indicator[](light)"
-bash_indicator = "[ ](orange bg:light)"
-fish_indicator = "[󰈺 ](blue bg:light)"
-zsh_indicator = "[󰵁 ](purple bg:light)"
-powershell_indicator = "[󰨊 ](cyan bg:light)"
-pwsh_indicator = "[ ](blue bg:light)"
-cmd_indicator = "[ ](yellow bg:light)"
-nu_indicator = "[> ](green bg:light)"
-unknown_indicator = "[ ](red bg:light)"
-
-[username]
-# show_always = true
-format = '[$user]($style)'
-
-[hostname]
-# ssh_only = false
-format = "[@($ssh_symbol)$hostname ]($style)"
-ssh_symbol = '🌏 '
-# detect_env_vars = ['SSH_TTY', 'SSH_CONNECTION', 'SSH_CLIENT']
-
-[localip]
-disabled = false
-# ssh_only = false
-
-[memory_usage]
-disabled = false
-threshold = 50
-symbol = "󰄨 "
-format = "$symbol[$ram( | $swap)]($style) "
-
-[directory]
-truncation_length = 5
-# truncate_to_repo = false
-# truncation_symbol = ".../"
-repo_root_format = """\
-[ ]($style black)\
-[$before_root_path]($before_repo_root_style)\
-[ $repo_root]($repo_root_style)\
-[$path ]($style)\
-[$read_only]($read_only_style)\
-[]($style black)\
-"""
-style = "bright-black bg:cyan"
-before_repo_root_style = "$style"
-repo_root_style = "black bold bg:cyan"
-# use_logical_path = false
-# fish_style_pwd_dir_length = 1
-
-[git_branch]
-symbol = "󰘬 "
-format = "[ $symbol$branch(:$remote_branch)]($style)[](green)"
-style = "black bg:green"
-
-[git_status]
-format = "([$conflicted$stashed$deleted$renamed$modified$staged$untracked$ahead_behind]($style)[](red))"
-style = "light bold bg:red"
-windows_starship = "/mnt/c/Users/kjmcn/scoop/shims/starship.exe"
-conflicted = " =$count"
-stashed = " \\$$count"
-deleted = " ✘$count"
-renamed = " »$count"
-modified = " !$count"
-staged = " +$count"
-untracked = " ?$count"
-diverged = " ⇕$ahead_count/$behind_count"
-ahead = " ⇡$count"
-behind = " ⇣$count"
-# up_to_date = "[](green)"
-
-[python]
-symbol = " "
-# pyenv_version_name = true
-# format = '([](fg:theme4)[$symbol $virtualenv]($style)[](fg:theme4)) '
-
-[cmd_duration]
-format = "[ $duration  ]($style)"
-show_notifications = true
-
-[time]
-disabled = false
-time_format = "%R"
-format = '[ $time  ]($style)'
-
-[status]
-# disabled = false
-
-[sudo]
-disabled = false
-
-[battery]
-disabled = false
-format = "[$symbol ]($style)"
-
-[[battery.display]]
-threshold = 20
-style = 'orange'
-
-[[battery.display]]
-threshold = 50
-style = 'yellow'
-
-[[battery.display]]
-threshold = 80
-style = 'blue'
-
-[[battery.display]]
-threshold = 100
-style = 'green'
-
-[character]
-# disabled = true
-success_symbol = '[ ❯](green)'
-error_symbol = '[ ❯](red)'
-vimcmd_symbol = '[ ❮](cyan)'
-vimcmd_replace_one_symbol = '[ ✘](purple)'
-vimcmd_replace_symbol = '[ ✘](orange)'
-vimcmd_visual_symbol = '[ ](yellow)'

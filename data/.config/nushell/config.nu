@@ -3,7 +3,13 @@
 # version = "0.88.1"
 
 # Custom Prompt
-use prompt.nu indicator-prompt
+# use prompt.nu indicator-prompt
+
+# Starship config for nushell
+use ~/.config/starship/starship.nu
+# use ~/.cache/starship/init.nu
+# source ~/.config/nushell/.oh-my-posh.nu
+
 
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
@@ -769,11 +775,6 @@ alias py = if $nu.os-info.name != 'windows' {python3 } else {py}
 
 # Custom commands
 use commands.nu *
-
-# Starship config for nushell
-# use ~/.cache/starship/init.nu
-# source ~/.config/nushell/.oh-my-posh.nu
-
 
 # Carapace Completer
 source ~/.cache/carapace/init.nu
