@@ -97,7 +97,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 
 # main bucket
-scoop install git pwsh python poetry win32yank
+scoop install git pwsh python poetry pyenv win32yank
 
 scoop bucket add extras
 scoop bucket add versions
@@ -284,12 +284,16 @@ cd
 rm -rf ~/yay
 
 # Install packages
-yay -S wget curl man-db carapace-bin fish fzf neovim-nightly-bin nodejs npm nushell openssh ripgrep starship tmux unzip zoxide zstd python312
+yay -S wget curl man-db carapace-bin fish fzf neovim-nightly-bin nodejs npm nushell openssh ripgrep starship tmux unzip zoxide zstd python-poetry pyenv
 
 # Change python3 symlinks to point to python3.12 instead of 3.11
-sudo ln -sf python3.12 /usr/bin/python3
-sudo ln -sf python3.12-config /usr/bin/python3-config
-sudo ln -sf pydoc3.12 /usr/bin/pydoc3
+# sudo ln -sf python3.12 /usr/bin/python3
+# sudo ln -sf python3.12-config /usr/bin/python3-config
+# sudo ln -sf pydoc3.12 /usr/bin/pydoc3
+
+# Python
+pyenv install 3.12
+pyenv global 3.12
 
 # Create SSH key for github
 # ssh-keygen -t ed25519 -C "$(whoami)@$(uname -n)-$(date -I)" -f ~/.ssh/github_com_ed25519
@@ -343,8 +347,9 @@ cmd.exe /c "mklink /d Code \\\\wsl.localhost\\Arch\\home\\kevin\\Code"
 
 # Link root to home
 # sudo cd /root
-sudo ln -s /home/kevin/.config/starship.toml /root/.config/starship.toml
-sudo ln -sd /home/kevin/.config/fish /root/.config
+sudo ln -sf /home/kevin/.config/starship.toml /root/.config
+sudo ln -sdf /home/kevin/.config/fish /root/.config
+sudo ln -sdf /home/kevin/.config/starship /root/.config
 ```
 
 <!-- ```cmd -->
