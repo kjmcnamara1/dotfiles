@@ -36,7 +36,7 @@ vim.opt.wrap           = false -- Display long lines as just one line
 vim.opt.signcolumn     = "yes" -- Always show signcolumn 2 wide to accomodate gitsigns and lsp diagnostics
 
 vim.opt.list           = true -- Show invisible characters
-vim.opt.listchars      = "trail:∙,extends:󰇘,precedes:󰇘,conceal:,nbsp:␣" -- Invisible characters
+vim.opt.listchars      = "tab:> ,trail:∙,extends:󰇘,precedes:󰇘,conceal:,nbsp:␣" -- Invisible characters
 
 vim.opt.fillchars      = {
   foldopen = "󰅀", --'foldcolumn' char for opened fold
