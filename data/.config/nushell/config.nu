@@ -2,15 +2,6 @@
 #
 # version = "0.88.1"
 
-# Custom Prompt
-# use prompt.nu indicator-prompt
-
-# Starship config for nushell
-use ~/.config/starship/starship.nu
-# use ~/.cache/starship/init.nu
-# source ~/.config/nushell/.oh-my-posh.nu
-
-
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
 # And here is the theme collection
@@ -211,7 +202,7 @@ $env.config = {
         {
             name: completion_menu
             only_buffer_difference: false
-            marker: ( indicator-prompt completion )
+            marker: " " 
             type: {
                 layout: columnar
                 page_size: 10
@@ -228,7 +219,7 @@ $env.config = {
         {
             name: history_menu
             only_buffer_difference: false
-            marker: ( indicator-prompt history )
+            marker: " "
             type: {
                 layout: list
                 page_size: 10
@@ -242,7 +233,7 @@ $env.config = {
         {
             name: help_menu
             only_buffer_difference: false
-            marker: ( indicator-prompt help )
+            marker: " 󰋖" 
             type: {
                 layout: description
                 columns: 4
@@ -772,6 +763,12 @@ $env.config = {
 
 alias core-ls = ls
 alias py = if $nu.os-info.name != 'windows' {python3 } else {py}
+
+# Prompt
+use ~/.config/starship/starship.nu
+# use ~/.cache/starship/init.nu
+# source ~/.config/nushell/.oh-my-posh.nu
+# use prompt.nu indicator-prompt # Custom Prompt
 
 # Custom commands
 use commands.nu *
