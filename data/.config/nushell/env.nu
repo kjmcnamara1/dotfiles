@@ -46,4 +46,4 @@ carapace _carapace nushell | save --force ~/.cache/carapace/init.nu # ($nu.defau
 
 # Zoxide -- need to change 'def-env' to 'def --env' and expand '$rest' with '...$rest' in 
 mkdir ~/.cache/zoxide
-zoxide init --cmd cd nushell | str replace --all 'def-env' 'def --env' | str replace --all --regex '(zoxide query.*)(\$rest)' '$1...$2' | save -f ~/.cache/zoxide/init.nu # ($nu.default-config-dir | path join 'scripts/zoxide.nu') 
+zoxide init --cmd cd nushell | save -f ~/.cache/zoxide/init.nu
