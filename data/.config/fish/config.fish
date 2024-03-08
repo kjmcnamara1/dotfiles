@@ -35,5 +35,11 @@ if status is-interactive # connected to keyboard
     # Aliaes
     alias vim=nvim
     alias py=python3
+    alias ls='ls -hv --color=auto --group-directories-first' # classify files in colour
+    alias l=ls # shorthand
+    alias la='ls -A' # all but . and ..
+    alias ll='ls -al' # long list including hidden
+    alias df='df -h' # human readable disk free
+    alias du='du -h' # human readable disk usage
 
 end
