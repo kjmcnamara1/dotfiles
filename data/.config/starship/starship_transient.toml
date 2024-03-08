@@ -1,6 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = '$status $fill $python$directory$line_break  $character'
+format = '$status$fill$python$directory $line_break  $character'
 
 palette = "nord"
 
@@ -39,6 +39,7 @@ unknown_indicator = "[ ](fg:red)"
 [directory]
 truncation_length = 0
 truncate_to_repo = false
+format = "[ $path]($style)"
 
 # [status]
 # disabled = false
@@ -48,10 +49,10 @@ truncate_to_repo = false
 symbol = " "
 style = "yellow bold"
 # format = "via [${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
-format = '([$symbol$virtualenv ]($style))'
+format = '( [$symbol$virtualenv]($style))'
 
 [status]
-disabled = false
+# disabled = false
 symbol = '● '
 # success_symbol = '● '
 # format = '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '

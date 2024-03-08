@@ -1,16 +1,17 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 # add_newline = false
-# format = "$directory$fill$line_break$character"
 
 format = """\
 [╭─](bright-black)$shell\
 ([](bright-black)[$username$hostname ](bg:bright-black)[](bright-black))\
-$all$fill$python$time
+$all $fill $python$time 
 [╰](bright-black)$character\
 """
 
 right_format = "$cmd_duration$memory_usage$sudo$battery$os"
+
+continuation_prompt = "    "
 
 palette = "nord"
 
@@ -47,7 +48,7 @@ zsh_indicator = "[󰵁 ]($style bg:purple inverted)"
 powershell_indicator = "[󰨊 ]($style bg:cyan inverted)"
 pwsh_indicator = "[ ]($style bg:blue inverted)"
 cmd_indicator = "[ ]($style bg:yellow inverted)"
-nu_indicator = "[> ]($style bg:green inverted)"
+nu_indicator = "[> ]($style bg:#39884d inverted)"
 unknown_indicator = "[ ]($style bg:red inverted)"
 
 [username]
@@ -137,11 +138,8 @@ format = '[$symbol$version ](green)([]($style)[$virtualenv]($style inverted b
 [time]
 disabled = false
 style = "bold yellow"
-time_format = "%R  "                                      #%v  "
-format = '[]($style)[$time]($style inverted)[ ]($style)'
-
-[status]
-# disabled = false
+time_format = "%R  "                                     #%v  "
+format = '[]($style)[$time]($style inverted)[]($style)'
 
 [character]
 # disabled = true
