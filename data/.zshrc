@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # Add Poetry to PATH
 export PATH="$HOME/.local/bin:$PATH"
 
