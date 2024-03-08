@@ -19,6 +19,7 @@ return {
       local null_ls = require("null-ls")
       local diag = null_ls.builtins.diagnostics
       local fmt = null_ls.builtins.formatting
+      local hover = null_ls.builtins.hover
 
       -- TODO: need to add nvim-nu
       null_ls.setup({
@@ -33,7 +34,9 @@ return {
           fmt.fish_indent,
           fmt.shfmt.with({
             extra_filetypes = { "zsh" },
-          })
+            extra_args = { "-i", "2", "-bn", "-ci", "-sr", "-kp" },
+          }),
+          hover.printenv,
         }
       })
     end
