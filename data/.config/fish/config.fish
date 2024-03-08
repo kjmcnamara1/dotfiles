@@ -28,13 +28,6 @@ if status is-interactive # connected to keyboard
     zoxide init --cmd cd fish | source
 
     # Starship Prompt
-    function starship_transient_prompt_func
-        set -fx STARSHIP_CMD_STATUS $status
-        # set -fx STARSHIP_CONFIG ~/.config/starship/starship_transient.toml
-        set -fx STARSHIP_CONFIG $HOME/.config/starship/starship_transient.toml
-        starship prompt --terminal-width="$COLUMNS" --status=$STARSHIP_CMD_STATUS
-        # starship module character
-    end
     source $HOME/.config/starship/starship.fish
     # starship init fish | source
     enable_transience

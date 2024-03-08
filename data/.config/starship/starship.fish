@@ -47,6 +47,12 @@ function fish_right_prompt
     end
 end
 
+function starship_transient_prompt_func
+    set -fx STARSHIP_CMD_STATUS $status
+    set -fx STARSHIP_CONFIG $HOME/.config/starship/starship_transient.toml
+    starship prompt --terminal-width="$COLUMNS" --status=$STARSHIP_CMD_STATUS
+end
+
 # Disable virtualenv prompt, it breaks starship
 set -g VIRTUAL_ENV_DISABLE_PROMPT 1
 
