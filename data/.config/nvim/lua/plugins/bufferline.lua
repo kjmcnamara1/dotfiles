@@ -5,16 +5,16 @@ return {
   event = "VeryLazy",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
-    "echasnovski/mini.bufremove",   -- Better algorithm for display after closing a buffer
+    "echasnovski/mini.bufremove", -- Better algorithm for display after closing a buffer
   },
   keys = {
+    { "<leader>bb", "<cmd>BufferLinePick<cr>",                                 desc = "Pick buffer" },
+    { "<leader>x",  "<cmd>BufferLinePickClose<cr>",                            desc = "Pick buffer to close" },
     { "<leader>bp", "<cmd>BufferLineTogglePin<cr>",                            desc = "Toggle pin" },
     { "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<cr>",                 desc = "Delete non-pinned buffers" },
     { "<leader>bo", "<cmd>BufferLineCloseOthers<cr>",                          desc = "Delete other buffers" },
     { "<leader>bl", "<cmd>BufferLineMoveNext<cr>",                             desc = "Move buffer right" },
     { "<leader>bh", "<cmd>BufferLineMovePrev<cr>",                             desc = "Move buffer left" },
-    { "<leader>,",  "<cmd>BufferLinePick<cr>",                                 desc = "Pick buffer" },
-    { "<leader>x",  "<cmd>BufferLinePickClose<cr>",                            desc = "Pick buffer to close" },
     { "<a-h>",      "<cmd>BufferLineCyclePrev<cr>",                            desc = "Prev buffer",              mode = { "n", "i", "v", "c", "t" } },
     { "<a-l>",      "<cmd>BufferLineCycleNext<cr>",                            desc = "Next buffer",              mode = { "n", "i", "v", "c", "t" } },
     { "[b",         "<cmd>BufferLineCyclePrev<cr>",                            desc = "Prev buffer" },
