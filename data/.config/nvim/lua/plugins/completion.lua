@@ -13,7 +13,7 @@ return {
       "onsails/lspkind.nvim",         -- vs-code like pictograms
       "windwp/nvim-autopairs",        -- auto-close brackets and functions
     },
-    config = function(_, opts)
+    config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
 
@@ -50,34 +50,34 @@ return {
                 cmp.complete()
               end
             end),
-          ["<tab>"] = cmp.mapping(
-            function(fallback)
-              if cmp.visible() then
-                cmp.select_next_item()
-              elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-              elseif has_words_before() then
-                cmp.complete()
-              else
-                fallback()
-              end
-            end,
-            { "i", "s" }
-          ),
-          ["<s-tab>"] = cmp.mapping(
-            function(fallback)
-              if cmp.visible() then
-                cmp.select_prev_item()
-              elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-              else
-                fallback()
-              end
-            end,
-            { "i", "s" }
-          ),
+          -- ["<tab>"] = cmp.mapping(
+          --   function(fallback)
+          --     if cmp.visible() then
+          --       cmp.select_next_item()
+          --     elseif luasnip.expand_or_jumpable() then
+          --       luasnip.expand_or_jump()
+          --     elseif has_words_before() then
+          --       cmp.complete()
+          --     else
+          --       fallback()
+          --     end
+          --   end,
+          --   { "i", "s" }
+          -- ),
+          -- ["<s-tab>"] = cmp.mapping(
+          --   function(fallback)
+          --     if cmp.visible() then
+          --       cmp.select_prev_item()
+          --     elseif luasnip.jumpable(-1) then
+          --       luasnip.jump(-1)
+          --     else
+          --       fallback()
+          --     end
+          --   end,
+          --   { "i", "s" }
+          -- ),
           -- ["<C-x>"] = cmp.mapping.abort(),                   -- close completion window
-          ["<CR>"] = cmp.mapping.confirm({
+          ["<c-i>"] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
           }),
