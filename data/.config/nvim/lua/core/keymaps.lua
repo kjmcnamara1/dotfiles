@@ -56,8 +56,8 @@ map({ "n", "x" }, "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
 map({ "n", "x" }, "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true })
 
 -- Add empty lines before and after cursor line supporting dot-repeat
-map("n", "<a-O>", "O<esc>j", { desc = "Put empty line above" })
-map("n", "<a-o>", "o<esc>k", { desc = "Put empty line below" })
+map("n", "<a-O>", "O<esc>", { desc = "Put empty line above" })
+map("n", "<a-o>", "o<esc>", { desc = "Put empty line below" })
 
 -- Buffers & Tabs
 map("n", "<leader>bn", "<cmd>enew<cr>", { desc = "New file" })
@@ -93,6 +93,18 @@ map("n", "<C-Up>", '"<Cmd>resize +"          . v:count1 . "<CR>"',
 map("n", "<C-Right>", '"<Cmd>vertical resize +" . v:count1 . "<CR>"',
   { expr = true, replace_keycodes = false, desc = "Increase window width" })
 
+-- Window split
+map("n", "<c-w>\\", "<cmd>wincmd v<cr>", { desc = "Split window right" })
+-- map("n", "<c-bslash>", "<cmd>wincmd v<cr>", { desc = "Split window right" })
+map("n", "<c-w>-", "<cmd>wincmd s<cr>", { desc = "Split window below" })
+-- map("n", "<c-m>", "<cmd>wincmd s<cr>", { desc = "Split window below" }) -- same as <c-minus>
+
+-- Move cursor
+map({ "i", "t", "c" }, "<c-h>", "<left>", { desc = "Cursor left", remap = true })
+map({ "i", "t", "c" }, "<c-l>", "<right>", { desc = "Cursor right", remap = true })
+map({ "i", "t" }, "<c-j>", "<down>", { desc = "Cursor down", remap = true })
+map({ "i", "t" }, "<c-k>", "<up>", { desc = "Cursor up", remap = true })
+
 -- Move Lines
 map("n", "<a-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
 map("n", "<a-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
@@ -100,12 +112,6 @@ map("i", "<a-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
 map("i", "<a-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 map("v", "<a-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<a-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
-
--- Move cursor
-map({ "i", "t", "c" }, "<c-h>", "<left>", { desc = "Cursor left", remap = true })
-map({ "i", "t", "c" }, "<c-l>", "<right>", { desc = "Cursor right", remap = true })
-map({ "i", "t" }, "<c-j>", "<down>", { desc = "Cursor down", remap = true })
-map({ "i", "t" }, "<c-k>", "<up>", { desc = "Cursor up", remap = true })
 
 -- Keep buffer centered during vertical movements
 map("n", "<c-d>", "<c-d>zz", { remap = true, desc = "Scroll half page down" })
@@ -219,6 +225,46 @@ map("n", "<localleader>w", "<Cmd>setlocal wrap! wrap?<CR>", { desc = "Toggle 'wr
 -- map('i', '<M-j>', '<Down>',  { noremap = false, desc = 'Down' })
 -- map('i', '<M-k>', '<Up>',    { noremap = false, desc = 'Up' })
 -- map('i', '<M-l>', '<Right>', { noremap = false, desc = 'Right' })
+
+-- map('t', '<M-h>', '<Left>',  { desc = 'Left' })
+-- map('t', '<M-j>', '<Down>',  { desc = 'Down' })
+-- map('t', '<M-k>', '<Up>',    { desc = 'Up' })
+-- map('t', '<M-l>', '<Right>', { desc = 'Right' })
+
+-- map('t', '<M-h>', '<Left>',  { desc = 'Left' })
+-- map('t', '<M-j>', '<Down>',  { desc = 'Down' })
+-- map('t', '<M-k>', '<Up>',    { desc = 'Up' })
+-- map('t', '<M-l>', '<Right>', { desc = 'Right' })
+
+-- map('t', '<M-h>', '<Left>',  { desc = 'Left' })
+-- map('t', '<M-j>', '<Down>',  { desc = 'Down' })
+-- map('t', '<M-k>', '<Up>',    { desc = 'Up' })
+-- map('t', '<M-l>', '<Right>', { desc = 'Right' })
+-- map('t', '<M-l>', '<Right>', { desc = 'Right' })
+
+-- map('t', '<M-h>', '<Left>',  { desc = 'Left' })
+-- map('t', '<M-j>', '<Down>',  { desc = 'Down' })
+-- map('t', '<M-k>', '<Up>',    { desc = 'Up' })
+-- map('t', '<M-l>', '<Right>', { desc = 'Right' })
+-- map('t', '<M-l>', '<Right>', { desc = 'Right' })
+
+-- map('t', '<M-h>', '<Left>',  { desc = 'Left' })
+-- map('t', '<M-j>', '<Down>',  { desc = 'Down' })
+-- map('t', '<M-k>', '<Up>',    { desc = 'Up' })
+-- map('t', '<M-l>', '<Right>', { desc = 'Right' })
+-- map('t', '<M-l>', '<Right>', { desc = 'Right' })
+
+-- map('t', '<M-h>', '<Left>',  { desc = 'Left' })
+-- map('t', '<M-j>', '<Down>',  { desc = 'Down' })
+-- map('t', '<M-k>', '<Up>',    { desc = 'Up' })
+-- map('t', '<M-l>', '<Right>', { desc = 'Right' })
+-- map('t', '<M-l>', '<Right>', { desc = 'Right' })
+
+-- map('t', '<M-h>', '<Left>',  { desc = 'Left' })
+-- map('t', '<M-j>', '<Down>',  { desc = 'Down' })
+-- map('t', '<M-k>', '<Up>',    { desc = 'Up' })
+-- map('t', '<M-l>', '<Right>', { desc = 'Right' })
+-- map('t', '<M-l>', '<Right>', { desc = 'Right' })
 
 -- map('t', '<M-h>', '<Left>',  { desc = 'Left' })
 -- map('t', '<M-j>', '<Down>',  { desc = 'Down' })
