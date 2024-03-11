@@ -1,11 +1,23 @@
 return {
-
   {
     "akinsho/toggleterm.nvim",
     cmd = "ToggleTerm",
+    keys = {
+      {
+        "<c-t>",
+        -- "<cmd>ToggleTerm<cr>",
+        mode = { "i", "n", "t" },
+        desc = "Toggle Terminal",
+      },
+      { "<leader>tf", "<cmd>ToggleTerm direction=float<cr>",      desc = "Toggle Float Terminal" },
+      { "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", desc = "Toggle Horizontal Terminal", },
+      { "<leader>tv", "<cmd>ToggleTerm direction=vertical<cr>",   desc = "Toggle Vertical Terminal", },
+      { "<leader>tt", "<cmd>ToggleTerm direction=tab<cr>",        desc = "Toggle Tab Terminal" },
+      { "<c-x>",      [[<c-\><c-n>]],                             desc = "Normal Mode",                mode = "t", buffer = 0 },
+    },
     opts = {
       shade_terminals = false,
-      open_mapping = [[<c-\>]],
+      open_mapping = [[<c-t>]],
       direction = "float",
       winbar = {
         enabled = true,
@@ -15,28 +27,27 @@ return {
         width = math.floor(vim.o.columns * .8),
         height = math.floor(vim.o.lines * .6),
       },
-      size = function(term)
-        if term.direction == "horizontal" then
-          return 15
-        elseif term.direction == "vertical" then
-          return math.floor(vim.o.columns * 0.4)
-        else
-          return 20
-        end
-      end,
+      -- size = function(term)
+      --   if term.direction == "horizontal" then
+      --     return math.max(math.floor(vim.o.lines * .3), 10)
+      --   elseif term.direction == "vertical" then
+      --     return math.max(math.floor(vim.o.columns * 0.4), 40)
+      --   else
+      --     return 20
+      --   end
+      -- end,
     },
-    keys = {
-      {
-        "<c-bslash>",
-        -- "<cmd>ToggleTerm<cr>",
-        mode = { "i", "n", "t" },
-        desc = "Toggle Terminal",
+  },
+  {
+    "willothy/flatten.nvim",
+    -- enabled = false,
+    -- config = true,
+    lazy = false,
+    priority = 1001,
+    opts = {
+      window = {
+        open = "alternate",
       },
-      { "<c-t>f", "<cmd>ToggleTerm direction=float<cr>",      mode = { "i", "n", "t" }, desc = "Toggle Float Terminal" },
-      { "<c-t>h", "<cmd>ToggleTerm direction=horizontal<cr>", mode = { "i", "n", "t" }, desc = "Toggle Horizontal Terminal", },
-      { "<c-t>v", "<cmd>ToggleTerm direction=vertical<cr>",   mode = { "i", "n", "t" }, desc = "Toggle Vertical Terminal", },
-      { "<c-t>t", "<cmd>ToggleTerm direction=tab<cr>",        mode = { "i", "n", "t" }, desc = "Toggle Tab Terminal" },
-      { "<c-x>",  [[<c-\><c-n>]],                             mode = "t",               buffer = 0 },
     },
   },
 }
