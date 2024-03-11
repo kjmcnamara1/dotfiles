@@ -1,7 +1,7 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
 -- local mux = wezterm.mux
--- local act = wezterm.action
+local act = wezterm.action
 
 -- wezterm.on("gui-startup", function(cmd)
 --   local tab, pane, window = mux.spawn_window(cmd or {})
@@ -143,8 +143,16 @@ config.scrollback_lines = 5000
 -- config.enable_scroll_bar = true
 
 config.adjust_window_size_when_changing_font_size = false
+config.default_cursor_style = "SteadyBlock"
 
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+-- config.disable_default_key_bindings = true
+
+-- config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+config.keys = {
+  { key = "Enter", mods = "ALT",        action = act.ToggleFullScreen },
+  { key = "C",     mods = "SHIFT|CTRL", action = act.CopyTo "Clipboard" },
+  { key = "R",     mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
+}
 
 -- and finally, return the configuration to wezterm
 return config
