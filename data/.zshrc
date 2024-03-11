@@ -65,7 +65,7 @@ export EDITOR=nvim
 # Aliases
 alias ls='ls -hv --color=auto --group-directories-first' # classify files in colour
 alias l='ls -l'                                          # non hidden list
-alias ll='ls -al'                                        # long list including hidden
+alias ll='ls -Al'                                        # long list including hidden
 alias la='ls -A'                                         # all but . and ..
 alias df='df -h'                                         # human readable disk free
 alias du='du -h'                                         # human readable disk usage

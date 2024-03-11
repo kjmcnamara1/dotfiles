@@ -104,7 +104,7 @@ alias fgrep='fgrep --color=auto'                         # show differences in c
 alias ls='ls -hv --color=auto --group-directories-first' # classify files in colour
 alias l='ls'                                             # non hidden list
 alias la='ls -A'                                         # all but . and ..
-alias ll='ls -al'                                        # long list including hidden
+alias ll='ls -Al'                                        # long list including hidden
 
 # Function definitions.
 # if [ -f ~/.bash_functions ]; then

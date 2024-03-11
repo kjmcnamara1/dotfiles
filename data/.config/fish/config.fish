@@ -38,7 +38,7 @@ if status is-interactive # connected to keyboard
     alias ls='ls -hv --color=auto --group-directories-first' # classify files in colour
     alias l=ls # shorthand
     alias la='ls -A' # all but . and ..
-    alias ll='ls -al' # long list including hidden
+    alias ll='ls -Al' # long list including hidden
     alias df='df -h' # human readable disk free
     alias du='du -h' # human readable disk usage
 
