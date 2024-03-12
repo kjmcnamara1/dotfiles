@@ -16,6 +16,11 @@ if status is-interactive # connected to keyboard
     set fish_cursor_external line
     set fish_cursor_visual block
 
+    bind -M insert \eh backward-char
+    bind -M insert \el forward-char
+    bind -M insert \ej down-or-search
+    bind -M insert \ek up-or-search
+
     # set fish_vi_force_cursor
 
     # <c-c> clears the commandline when in insert mode
