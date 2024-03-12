@@ -23,6 +23,9 @@ map("n", "U", "<c-r>", { desc = "Redo" })
 -- Paste in insert mode
 map("i", "<c-v>", "<c-r>+", { desc = "Paste from system clipboard" })
 
+-- Delete right in insert mode
+map("i", "<c-l>", "<del>", { desc = "Delete right" })
+
 -- Copy/paste -- solved with clipboard=unnamedplus
 -- use 'p' in visual mode to replace register with selected text
 -- use 'P' in visual mode to keep register the same (reuse yanked text)
@@ -100,18 +103,18 @@ map("n", "<c-w>-", "<cmd>wincmd s<cr>", { desc = "Split window below" })
 -- map("n", "<c-m>", "<cmd>wincmd s<cr>", { desc = "Split window below" }) -- same as <c-minus>
 
 -- Move cursor
-map({ "i", "t", "c" }, "<c-h>", "<left>", { desc = "Cursor left", remap = true })
-map({ "i", "t", "c" }, "<c-l>", "<right>", { desc = "Cursor right", remap = true })
-map({ "i", "t" }, "<c-j>", "<down>", { desc = "Cursor down", remap = true })
-map({ "i", "t" }, "<c-k>", "<up>", { desc = "Cursor up", remap = true })
+map({ "i", "t", "c" }, "<a-h>", "<left>", { desc = "Cursor left", remap = true })
+map({ "i", "t", "c" }, "<a-l>", "<right>", { desc = "Cursor right", remap = true })
+map({ "i", "t", "c" }, "<a-j>", "<down>", { desc = "Cursor down", remap = true })
+map({ "i", "t", "c" }, "<a-k>", "<up>", { desc = "Cursor up", remap = true })
 
 -- Move Lines
-map("n", "<a-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
-map("n", "<a-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
-map("i", "<a-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-map("i", "<a-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
-map("v", "<a-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
-map("v", "<a-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+map("n", "<a-s-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+map("n", "<a-s-k>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+map("i", "<a-s-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+map("i", "<a-s-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+map("v", "<a-s-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+map("v", "<a-s-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- Keep buffer centered during vertical movements
 map("n", "<c-d>", "<c-d>zz", { remap = true, desc = "Scroll half page down" })
@@ -129,7 +132,7 @@ map("n", "#", "#zz", { remap = true, desc = "Previous word under cursor" })
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- Press gx to open the link under the cursor
--- map("n", "gx", ":sil !open <cWORD><cr>")
+map("n", "gx", ":sil !open <cWORD><cr>")
 
 -- Resize split windows to be equal size
 -- map("n", "<leader>=", "<cmd>wincmd =<cr>", { desc = "Equal window size" })
@@ -225,46 +228,6 @@ map("n", "<localleader>w", "<Cmd>setlocal wrap! wrap?<CR>", { desc = "Toggle 'wr
 -- map('i', '<M-j>', '<Down>',  { noremap = false, desc = 'Down' })
 -- map('i', '<M-k>', '<Up>',    { noremap = false, desc = 'Up' })
 -- map('i', '<M-l>', '<Right>', { noremap = false, desc = 'Right' })
-
--- map('t', '<M-h>', '<Left>',  { desc = 'Left' })
--- map('t', '<M-j>', '<Down>',  { desc = 'Down' })
--- map('t', '<M-k>', '<Up>',    { desc = 'Up' })
--- map('t', '<M-l>', '<Right>', { desc = 'Right' })
-
--- map('t', '<M-h>', '<Left>',  { desc = 'Left' })
--- map('t', '<M-j>', '<Down>',  { desc = 'Down' })
--- map('t', '<M-k>', '<Up>',    { desc = 'Up' })
--- map('t', '<M-l>', '<Right>', { desc = 'Right' })
-
--- map('t', '<M-h>', '<Left>',  { desc = 'Left' })
--- map('t', '<M-j>', '<Down>',  { desc = 'Down' })
--- map('t', '<M-k>', '<Up>',    { desc = 'Up' })
--- map('t', '<M-l>', '<Right>', { desc = 'Right' })
--- map('t', '<M-l>', '<Right>', { desc = 'Right' })
-
--- map('t', '<M-h>', '<Left>',  { desc = 'Left' })
--- map('t', '<M-j>', '<Down>',  { desc = 'Down' })
--- map('t', '<M-k>', '<Up>',    { desc = 'Up' })
--- map('t', '<M-l>', '<Right>', { desc = 'Right' })
--- map('t', '<M-l>', '<Right>', { desc = 'Right' })
-
--- map('t', '<M-h>', '<Left>',  { desc = 'Left' })
--- map('t', '<M-j>', '<Down>',  { desc = 'Down' })
--- map('t', '<M-k>', '<Up>',    { desc = 'Up' })
--- map('t', '<M-l>', '<Right>', { desc = 'Right' })
--- map('t', '<M-l>', '<Right>', { desc = 'Right' })
-
--- map('t', '<M-h>', '<Left>',  { desc = 'Left' })
--- map('t', '<M-j>', '<Down>',  { desc = 'Down' })
--- map('t', '<M-k>', '<Up>',    { desc = 'Up' })
--- map('t', '<M-l>', '<Right>', { desc = 'Right' })
--- map('t', '<M-l>', '<Right>', { desc = 'Right' })
-
--- map('t', '<M-h>', '<Left>',  { desc = 'Left' })
--- map('t', '<M-j>', '<Down>',  { desc = 'Down' })
--- map('t', '<M-k>', '<Up>',    { desc = 'Up' })
--- map('t', '<M-l>', '<Right>', { desc = 'Right' })
--- map('t', '<M-l>', '<Right>', { desc = 'Right' })
 
 -- map('t', '<M-h>', '<Left>',  { desc = 'Left' })
 -- map('t', '<M-j>', '<Down>',  { desc = 'Down' })

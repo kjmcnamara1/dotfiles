@@ -11,7 +11,7 @@ return {
     cmd = { "LspInfo", "LspStart", "LspStop", "LspRestart" },
     keys = {
       { "K",          vim.lsp.buf.hover,          desc = "LSP Hover",                   buffer = 0 },
-      { "<a-s-k>",    vim.lsp.buf.signature_help, desc = "LSP Signature Documentation", buffer = 0, mode = { "n", "i", "v" } },
+      { "<c-k>",      vim.lsp.buf.signature_help, desc = "LSP Signature Documentation", buffer = 0, mode = "i" },
       { "gD",         vim.lsp.buf.declaration,    desc = "LSP Declaration",             buffer = 0 },
       { "<leader>ca", vim.lsp.buf.code_action,    desc = "LSP Code Action",             buffer = 0, mode = { "n", "v" } },
       { "<leader>cf", vim.lsp.buf.format,         desc = "LSP Format",                  buffer = 0, mode = { "n", "v" } },
