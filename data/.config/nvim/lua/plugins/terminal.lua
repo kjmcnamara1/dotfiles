@@ -41,9 +41,7 @@ return {
   {
     "willothy/flatten.nvim",
     -- enabled = false,
-    -- config = true,
-    lazy = false,
-    priority = 1001,
+    ft = "toggleterm",
     opts = {
       window = {
         open = "alternate",
