@@ -218,7 +218,9 @@ Sync to C:\Users\kjmcn\MEGA
 Remove .\* from 'excluded file and folder names' in Settings > Folders
 ![](img/megasync_settings.png)
 
-#### [Dell Active Pen Service](https://www.dell.com/support/home/en-us/product-support/product/dell-actv-pen-5000-series/drivers)
+#### [Dell Active Pen Service](https://www.dell.com/support/home/en-us/product-support/product/dell-ap-pn5122w/drivers)
+
+Dell Active Pen PN5122W
 
 #### [TeamViewer](https://www.teamviewer.com/en-us/)
 
