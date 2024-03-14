@@ -13,7 +13,7 @@ return {
     { "[z", function() require("ufo").goPreviousClosedFold() end,       desc = "Previous fold" },
   },
   opts = {
-    close_fold_kinds = { "imports" },
+    close_fold_kinds_for_ft = { "imports" },
     provider_selector = function(_bufnr, _filetype, _buftype)
       return { "treesitter", "indent" }
     end,
