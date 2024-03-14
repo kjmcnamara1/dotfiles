@@ -38,13 +38,15 @@ if status is-interactive # connected to keyboard
     enable_transience
 
     # Aliaes
-    alias vim=nvim
-    alias py=python3
-    alias ls='ls -hv --color=auto --group-directories-first' # classify files in colour
-    alias l=ls # shorthand
+    alias vim=nvim # Neovim
+    alias py=python3 # Python
+    alias l='eza --icons -F -H --group-directories-first --git' # horizontal grid
+    alias ls='l -1' # single column list
     alias la='ls -A' # all but . and ..
-    alias ll='ls -Al' # long list including hidden
+    alias ll='la -l' # long list including hidden
     alias df='df -h' # human readable disk free
     alias du='du -h' # human readable disk usage
+    # alias ls='ls -hv --color=auto --group-directories-first' # classify files in colour
+    # alias l='/usr/bin/ls -hv --color=auto --group-directories-first' # shorthand plain ls
 
 end

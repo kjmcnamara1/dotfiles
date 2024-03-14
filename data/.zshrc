@@ -63,13 +63,13 @@ export ENABLE_TRANSIENT_PROMPT='true'
 export EDITOR=nvim
 
 # Aliases
-alias ls='ls -hv --color=auto --group-directories-first' # classify files in colour
-alias l='ls -l'                                          # non hidden list
-alias ll='ls -Al'                                        # long list including hidden
-alias la='ls -A'                                         # all but . and ..
-alias df='df -h'                                         # human readable disk free
-alias du='du -h'                                         # human readable disk usage
-alias py='python3'
+alias l='eza --icons -F -H --group-directories-first --git' # horizontal grid
+alias ls='l -1'                                             # single column list
+alias la='ls -A'                                            # all but . and ..
+alias ll='la -l'                                            # long list including hidden
+alias df='df -h'                                            # human readable disk free
+alias du='du -h'                                            # human readable disk usage
+alias py='python3'                                          # Python
 
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"

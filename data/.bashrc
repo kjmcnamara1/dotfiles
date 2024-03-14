@@ -93,18 +93,18 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # Alias definitions.
 alias vim=nvim
-alias py="python3" # Python
-alias df='df -h'   # Default to human readable figures
-alias du='du -h'
-alias less='less -r'                                     # raw control characters
-alias whence='type -a'                                   # where, of a sort
-alias grep='grep --color'                                # show differences in colour
-alias egrep='egrep --color=auto'                         # show differences in colour
-alias fgrep='fgrep --color=auto'                         # show differences in colour
-alias ls='ls -hv --color=auto --group-directories-first' # classify files in colour
-alias l='ls'                                             # non hidden list
-alias la='ls -A'                                         # all but . and ..
-alias ll='ls -Al'                                        # long list including hidden
+alias py="python3"                                          # Python
+alias df='df -h'                                            # Default to human readable figures
+alias du='du -h'                                            # Default to human readable figures
+alias less='less -r'                                        # raw control characters
+alias whence='type -a'                                      # where, of a sort
+alias grep='grep --color'                                   # show differences in colour
+alias egrep='egrep --color=auto'                            # show differences in colour
+alias fgrep='fgrep --color=auto'                            # show differences in colour
+alias l='eza --icons -F -H --group-directories-first --git' # horizontal grid
+alias ls='l -1'                                             # single column list
+alias la='ls -A'                                            # all but . and ..
+alias ll='la -l'                                            # long list including hidden
 
 # Function definitions.
 # if [ -f ~/.bash_functions ]; then
