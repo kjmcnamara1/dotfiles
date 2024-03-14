@@ -97,7 +97,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
 
 # main bucket
-scoop install git pwsh python poetry pyenv win32yank
+scoop install git pwsh python poetry pyenv win32yank clink eza
 
 scoop bucket add extras
 scoop bucket add versions
@@ -232,6 +232,13 @@ Download and install (not through scoop)
 Hide Windows PowerShell
 Set PowerShell Core as default
 
+Turn on clink autorun and transient prompt
+
+```powershell
+clink autorun install
+clink set prompt.transient same_dir
+```
+
 #### Git
 
 ```powershell
@@ -286,7 +293,7 @@ cd
 rm -rf ~/yay
 
 # Install packages
-yay -S wget curl man-db carapace-bin fish fzf neovim-nightly-bin nodejs npm nushell openssh ripgrep starship tmux unzip zoxide zstd python-poetry pyenv
+yay -S wget curl man-db carapace-bin fish eza fzf neovim-nightly-bin nodejs npm nushell openssh ripgrep starship tmux unzip zoxide zstd python-poetry pyenv
 
 # Change python3 symlinks to point to python3.12 instead of 3.11
 # sudo ln -sf python3.12 /usr/bin/python3
@@ -324,7 +331,7 @@ cd dotfiles
 ./sync.py
 
 # Sync Windows dotfiles
-python.exe ./sync.py -l .config/wezterm .ipython .gitconfig
+python.exe ./sync.py -i [] -l wezterm starship starship.toml starship.lua .ipython .gitconfig Microsoft.PowerShell_profile.ps1
 
 # Link dirs to Windows
 cd
