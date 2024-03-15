@@ -81,19 +81,19 @@ map("", "H", "^", { desc = "Beginning of Line" })
 map("", "L", "$", { desc = "End of Line" })
 
 -- Window navigation
-map({ "n", "t" }, "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go to left window" })
-map({ "n", "t" }, "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to lower window" })
-map({ "n", "t" }, "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to upper window" })
-map({ "n", "t" }, "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to right window" })
+map({ "n", "t" }, "<c-h>", "<cmd>wincmd h<cr>", { desc = "Go to left window" })
+map({ "n", "t" }, "<c-j>", "<cmd>wincmd j<cr>", { desc = "Go to lower window" })
+map({ "n", "t" }, "<c-k>", "<cmd>wincmd k<cr>", { desc = "Go to upper window" })
+map({ "n", "t" }, "<c-l>", "<cmd>wincmd l<cr>", { desc = "Go to right window" })
 
 -- Window resize (respecting `v:count`)
-map("n", "<C-Left>", '"<Cmd>vertical resize -" . v:count1 . "<CR>"',
+map("n", "<c-Left>", '"<Cmd>vertical resize -" . v:count1 . "<CR>"',
   { expr = true, replace_keycodes = false, desc = "Decrease window width" })
-map("n", "<C-Down>", '"<Cmd>resize -"          . v:count1 . "<CR>"',
+map("n", "<c-Down>", '"<Cmd>resize -"          . v:count1 . "<CR>"',
   { expr = true, replace_keycodes = false, desc = "Decrease window height" })
-map("n", "<C-Up>", '"<Cmd>resize +"          . v:count1 . "<CR>"',
+map("n", "<c-Up>", '"<Cmd>resize +"          . v:count1 . "<CR>"',
   { expr = true, replace_keycodes = false, desc = "Increase window height" })
-map("n", "<C-Right>", '"<Cmd>vertical resize +" . v:count1 . "<CR>"',
+map("n", "<c-Right>", '"<Cmd>vertical resize +" . v:count1 . "<CR>"',
   { expr = true, replace_keycodes = false, desc = "Increase window width" })
 
 -- Window split
