@@ -1,11 +1,13 @@
 return {
   -- Tab line
   "akinsho/bufferline.nvim",
+  enabled = false,
   version = "*",
   event = "VeryLazy",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
     "echasnovski/mini.bufremove", -- Better algorithm for display after closing a buffer
+    -- { "backdround/tabscope.nvim", config = true },
   },
   keys = {
     { "<leader>bb", "<cmd>BufferLinePick<cr>",                                 desc = "Pick buffer" },
@@ -20,6 +22,7 @@ return {
     { "[b",         "<cmd>BufferLineCyclePrev<cr>",                            desc = "Prev buffer" },
     { "]b",         "<cmd>BufferLineCycleNext<cr>",                            desc = "Next buffer" },
     { "<c-x>",      function() require("mini.bufremove").delete(0, false) end, desc = "Quit Buffer",              mode = { "n", "i", "v" } },
+    -- { "<c-x>",      function() require("tabscope").remove_tab_buffer() end, desc = "Quit Buffer",              mode = { "n", "i", "v" } },
   },
   opts = {
     options = {
@@ -41,9 +44,11 @@ return {
       },
       close_command = function(n)
         require("mini.bufremove").delete(n, false)
+        -- require("tabscope").remove_tab_buffer(n)
       end,
       right_mouse_command = function(n)
         require("mini.bufremove").delete(n, false)
+        -- require("tabscope").remove_tab_buffer(n)
       end,
     },
   },
