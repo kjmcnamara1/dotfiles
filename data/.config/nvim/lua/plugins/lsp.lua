@@ -40,14 +40,28 @@ return {
 
       -- Customize diagnostics
       vim.diagnostic.config({
-        virtual_text = { source = "always" }
+        signs = {
+          text = { "", "", "", "" },
+          numhl = {
+            "DiagnosticSignError",
+            "DiagnosticSignWarn",
+            "DiagnosticSignInfo",
+            "DiagnosticSignHint",
+          }
+        },
+        virtual_text = {
+          source = "always",
+          spacing = 4,
+          prefix = function(diagnostic)
+            local signs = { " ", " ", " ", "󰠠 " }
+            return signs[diagnostic.severity] or "■"
+          end,
+        },
+        float = {
+          border = "rounded",
+        },
+        severity_sort = true,
       })
-      -- Change the Diagnostic symbols in the sign column (gutter)
-      local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-      end
 
       require("mason-lspconfig").setup_handlers({
         function(ls)
@@ -84,12 +98,6 @@ return {
           })
         end,
       })
-
-      --   local language_servers = require("lspconfig").util.available_servers()
-
-      --   for _, ls in ipairs(language_servers) do
-      --   require("lspconfig")[ls].setup({ capabilities = capabilities })
-      -- end
 
       -- Configure border for LspInfo ui
       require("lspconfig.ui.windows").default_options.border = "rounded"
