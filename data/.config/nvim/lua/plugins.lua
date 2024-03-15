@@ -1,12 +1,7 @@
 -- TODO: Plugin Configs
--- none-ls.nvim
--- formatters
--- linters
--- debuggers
--- remove mini.basics and manually set options and keymaps
--- multi cursor
+-- debuggers (nvim-dap,nvim-dap-ui,nvim-dap-python,debugpy)
+-- multi cursor (vim-visual-multi, multicursors.nvim)
 -- vs-code integration
--- add commands for git browser to open diff windows/preview
 
 return {
   -- ====================================== COLORSCHEMES ======================================
