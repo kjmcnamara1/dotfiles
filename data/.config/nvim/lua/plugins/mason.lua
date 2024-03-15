@@ -7,6 +7,7 @@ return {
   opts = {
     ui = {
       border = "rounded",
+      height = .8,
       icons = {
         package_installed = "✔️",
         package_pending = "",
