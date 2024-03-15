@@ -116,13 +116,13 @@ format = "[$all_status$ahead_behind]($style)[ ](magenta)"
 # style = "light bold"
 style = "yellow bold bg:magenta"
 windows_starship = "/mnt/c/Users/kjmcn/scoop/shims/starship.exe"
-conflicted = "[ =$count](bright-cyan bold bg:magenta)"
-stashed = "[ \\$$count](bright-black bold bg:magenta)"
-deleted = "[ ✘$count](red bold bg:magenta)"
-renamed = "[ »$count](cyan bold bg:magenta)"
-modified = "[ !$count](yellow bold bg:magenta)"
-staged = "[ +$count](green bold bg:magenta)"
-untracked = "[ ?$count](light bold bg:magenta)"
+conflicted = "[ ‼$count](bright-cyan bold bg:magenta)"           # =
+stashed = "[  $count](bright-black bold bg:magenta)"            # \\$
+deleted = "[ 󰆴$count](red bold bg:magenta)"                      # ✘
+renamed = "[  $count](cyan bold bg:magenta)"                    # »
+modified = "[  $count](yellow bold bg:magenta)"                 # !
+staged = "[  $count](green bold bg:magenta)"                    # +
+untracked = "[  $count](light bold bg:magenta)"                 # ?
 diverged = " ⇕$ahead_count/$behind_count"
 ahead = "[ ⇡$count](blue bold bg:magenta)"
 behind = "[ ⇣$count](frost bold bg:magenta)"
