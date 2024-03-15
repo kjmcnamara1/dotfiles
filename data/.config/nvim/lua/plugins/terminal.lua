@@ -19,9 +19,9 @@ return {
       shade_terminals = false,
       open_mapping = [[<c-t>]],
       direction = "float",
-      winbar = {
-        enabled = true,
-      },
+      -- winbar = {
+      --   enabled = true,
+      -- },
       float_opts = {
         border = "curved",
         width = math.floor(vim.o.columns * .8),
