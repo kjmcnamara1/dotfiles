@@ -15,6 +15,7 @@ return {
   {
     -- Underline all other occurrences of word under cursor
     "echasnovski/mini.cursorword",
+    cond = not vim.g.vscode,
     event = "VeryLazy",
     config = true,
   },
@@ -38,6 +39,7 @@ return {
   {
     -- Highlight current indent level
     "echasnovski/mini.indentscope",
+    cond = not vim.g.vscode,
     event = "VeryLazy",
     opts = {
       symbol = "▏",
@@ -67,7 +69,7 @@ return {
     main = "ibl",
     event = "VeryLazy",
     -- cond = (vim.env.NAME or vim.env.COMPUTERNAME) ~= "ANGEL",
-    cond = vim.env.COMPUTERNAME == "ANGEL",
+    cond = vim.env.COMPUTERNAME == "ANGEL" and not vim.g.vscode,
     opts = {
       indent = {
         char = "",

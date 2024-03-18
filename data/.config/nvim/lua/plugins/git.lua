@@ -2,6 +2,7 @@ return {
   {
     "tpope/vim-fugitive",
     enabled = false,
+    cond = not vim.g.vscode,
     cmd = { "G", "Git" },
     -- keys = {
     --   { "<leader>gc", "<cmd>G commit<cr>" }
@@ -10,11 +11,13 @@ return {
   {
     "tpope/vim-rhubarb",
     enabled = false,
+    cond = not vim.g.vscode,
     dependencies = "tpope/vim-fugitive",
     cmd = "GBrowse"
   },
   {
     "NeogitOrg/neogit",
+    cond = not vim.g.vscode,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
@@ -93,6 +96,7 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
+    cond = not vim.g.vscode,
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     keys = {
       { "<leader>gb", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle Git Blame",        buffer = 0 },

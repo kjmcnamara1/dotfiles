@@ -1,6 +1,7 @@
 return {
   {
     "akinsho/toggleterm.nvim",
+    cond = not vim.g.vscode,
     cmd = "ToggleTerm",
     keys = {
       {
@@ -41,6 +42,7 @@ return {
   {
     "willothy/flatten.nvim",
     -- enabled = false,
+    cond = not vim.g.vscode,
     ft = "toggleterm",
     opts = {
       window = {

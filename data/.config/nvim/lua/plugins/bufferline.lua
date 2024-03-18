@@ -1,7 +1,8 @@
 return {
   -- Tab line
   "akinsho/bufferline.nvim",
-  enabled = false,
+  -- enabled = false,
+  cond = not vim.g.vscode,
   version = "*",
   event = "VeryLazy",
   dependencies = {
@@ -29,6 +30,8 @@ return {
       diagnostics = "nvim_lsp",
       always_show_bufferline = true,
       -- separator_style = 'slope',
+      indicator = { style = "underline" },
+      separator_style = { "", "" },
       hover = {
         enabled = true,
         delay = 200,

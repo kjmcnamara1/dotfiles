@@ -25,16 +25,16 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Lazy options
-local opts = {
+local opts = not vim.g.vscode and {
   --defaults = { lazy = true },
   install = { colorscheme = { "onenord" } },
   ui = {
-    border='rounded',
-    title='Lazy Plugin Manager',
+    border = "rounded",
+    title = "Lazy Plugin Manager",
   },
-  checker = {enabled = true},
+  checker = { enabled = true },
   change_detection = { notify = false },
-}
+} or {}
 
 -- Load Lazy.nvim
 require("lazy").setup("plugins", opts)

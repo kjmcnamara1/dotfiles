@@ -1,6 +1,7 @@
 return {
   -- Status line
   "nvim-lualine/lualine.nvim",
+  cond = not vim.g.vscode,
   dependencies = {
     "nvim-tree/nvim-web-devicons",
     "folke/noice.nvim",
@@ -42,14 +43,16 @@ return {
       lualine_y = { "progress" },
       lualine_z = { "location" }
     },
-    tabline = {
-      lualine_a = { "buffers" },
-      -- lualine_b = { "branch" },
-      -- lualine_c = { "filename" },
-      -- lualine_x = {},
-      -- lualine_y = {},
-      lualine_z = { "tabs" }
-    },
+    -- tabline = {
+    --   lualine_a = {
+    --     {
+    --       "buffers",
+    --       max_length = vim.o.columns,
+    --       separator = { left = "", right = "" },
+    --     },
+    --   },
+    --   lualine_z = { "tabs" }
+    -- },
     -- winbar = {
     --   lualine_a = { "buffers" },
     --   lualine_b = {},

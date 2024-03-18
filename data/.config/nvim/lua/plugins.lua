@@ -1,6 +1,5 @@
 -- TODO: Plugin Configs
 -- debuggers (nvim-dap,nvim-dap-ui,nvim-dap-python,debugpy)
--- multi cursor (vim-visual-multi, multicursors.nvim)
 -- vs-code integration
 
 return {

@@ -1,15 +1,16 @@
 -- ======================== KEYS ========================
 
 -- Map leader key to <space> and localleader to '\'
-vim.g.mapleader      = " "
-vim.g.maplocalleader = "\\"
+vim.g.mapleader        = " "
+vim.g.maplocalleader   = "\\"
 
 -- Keymap timeout length in ms
 -- opt.timeoutlen = 300
 
 -- ======================== EDITOR ========================
 
-vim.opt.mouse        = "a"           -- Enable mouse for all available modes
+vim.opt.mouse          = "a"         -- Enable mouse for all available modes
+vim.opt.mousemoveevent = true        -- Enable mouse hover events
 vim.cmd("filetype plugin indent on") -- Enable all filetype plugins
 
 -- Enable relative line numbers with current line as absolute number

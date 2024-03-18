@@ -1,6 +1,7 @@
 return {
   {
     "folke/noice.nvim",
+    cond = not vim.g.vscode,
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
@@ -45,6 +46,7 @@ return {
   },
   {
     "rcarriga/nvim-notify",
+    cond = not vim.g.vscode,
     opts = {
       timeout = 1000,
       max_height = function()
@@ -125,6 +127,7 @@ return {
   -- noice will be used for IncRename
   {
     "stevearc/dressing.nvim",
+    cond = not vim.g.vscode,
     opts = {
       input = {
         insert_only = false,
@@ -134,6 +137,7 @@ return {
   -- prefer to use noice for IncRename
   {
     "smjonas/inc-rename.nvim",
+    cond = not vim.g.vscode,
     cmd = "IncRename",
     keys = {
       {

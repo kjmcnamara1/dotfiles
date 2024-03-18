@@ -1,6 +1,7 @@
 return {
   {
     "nvim-telescope/telescope-symbols.nvim",
+    cond = not vim.g.vscode,
     dependencies = "nvim-telescope/telescope.nvim",
     keys = {
       { "<leader>sy", "<cmd>Telescope symbols<cr>", desc = "Symbols" },
@@ -9,6 +10,7 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    cond = not vim.g.vscode,
     tag = "0.1.5",
     version = false,
     dependencies = {

@@ -2,6 +2,7 @@ return {
   {
     "mfussenegger/nvim-lint",
     enabled = false,
+    cond = not vim.g.vscode,
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       local lint = require("lint")

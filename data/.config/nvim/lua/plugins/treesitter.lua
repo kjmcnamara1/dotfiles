@@ -1,7 +1,7 @@
 return {
-
   {
     "nvim-treesitter/nvim-treesitter",
+    cond = not vim.g.vscode,
     dependencies = {
       "nushell/tree-sitter-nu",
       "nvim-treesitter/nvim-treesitter-textobjects",
@@ -134,6 +134,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
+    -- cond = not vim.g.vscode,
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       max_lines = 3,

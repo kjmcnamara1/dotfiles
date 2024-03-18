@@ -6,6 +6,7 @@ return {
   -- so order = BufReadPost -> MASON -> MASON-NULL-LS -> NONE-LS
   {
     "nvimtools/none-ls.nvim",
+    cond = not vim.g.vscode,
     dependencies = {
       "jay-babu/mason-null-ls.nvim",
       { "LhKipp/nvim-nu", build = ":TSInstall nu", config = true, },
@@ -43,6 +44,7 @@ return {
   },
   {
     "jay-babu/mason-null-ls.nvim",
+    cond = not vim.g.vscode,
     dependencies = {
       "williamboman/mason.nvim",
     },

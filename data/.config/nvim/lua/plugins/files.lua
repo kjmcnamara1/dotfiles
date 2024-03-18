@@ -1,6 +1,7 @@
 return {
   {
     "echasnovski/mini.files",
+    cond = not vim.g.vscode,
     dependencies = "nvim-tree/nvim-web-devicons",
     keys = {
       {
@@ -23,6 +24,7 @@ return {
   {
     "stevearc/oil.nvim",
     enabled = false,
+    cond = not vim.g.vscode,
     dependencies = "nvim-tree/nvim-web-devicons",
     cmd = "Oil",
     keys = {
@@ -38,6 +40,7 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     enabled = false,
+    cond = not vim.g.vscode,
     branch = "v3.x",
     dependencies = {
       -- "mrbjarksen/neo-tree-diagnostics.nvim",
@@ -101,6 +104,7 @@ return {
   {
     "simrat39/symbols-outline.nvim",
     enabled = false,
+    cond = not vim.g.vscode,
     cmd = { "SymbolsOutline", "SymbolsOutlineOpen", "SymbolsOutlineClose" },
     keys = { { "<leader>oe", "<cmd>SymbolsOutline<cr>", desc = "Toggle Symbols Outline" } },
     opts = {

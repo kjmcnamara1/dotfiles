@@ -1,6 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    cond = not vim.g.vscode,
     dependencies = {
       "folke/neodev.nvim",                   -- nvim config and plugin authoring
       "williamboman/mason-lspconfig.nvim",   -- automatically install LSPs
@@ -106,6 +107,7 @@ return {
   {
     -- automatically install LSPs
     "williamboman/mason-lspconfig.nvim",
+    cond = not vim.g.vscode,
     dependencies = "williamboman/mason.nvim",
     cmd = { "LspInstall", "LspUninstall" },
     -- lazy = true,
@@ -127,4 +129,15 @@ return {
       -- automatic_installation = true,
     },
   },
+  {
+    "folke/neodev.nvim",
+    opts = {
+      library = {
+        plugins = {
+          "nvim-dap-ui",
+        },
+        types = true,
+      }
+    },
+  }
 }

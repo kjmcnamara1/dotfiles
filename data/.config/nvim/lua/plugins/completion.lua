@@ -1,6 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp", -- autocompletion plugin
+    cond = not vim.g.vscode,
     event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-buffer",           -- completion source for text in buffer
@@ -103,6 +104,7 @@ return {
   },
   {
     "windwp/nvim-autopairs",
+    cond = not vim.g.vscode,
     lazy = true,
     opts = {
       check_ts = true,

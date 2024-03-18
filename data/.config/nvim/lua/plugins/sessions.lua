@@ -2,6 +2,7 @@ return {
   {
     "rmagatti/auto-session",
     -- enabled = false,
+    cond = not vim.g.vscode,
     dependencies = { "tiagovla/scope.nvim", config = true, },
     event = "VimEnter",
     cmd = { "SessionSave", "SessionRestore", "SessionRestoreFromFile", "SessionDelete", "Autosession" },
