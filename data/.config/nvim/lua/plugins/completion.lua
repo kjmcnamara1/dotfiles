@@ -4,6 +4,7 @@ return {
     cond = not vim.g.vscode,
     event = "InsertEnter",
     dependencies = {
+      "Exafunction/codeium.nvim",     -- copilot alternative
       "hrsh7th/cmp-buffer",           -- completion source for text in buffer
       "hrsh7th/cmp-path",             -- completion source for file system paths
       "hrsh7th/cmp-cmdline",          -- completion source for commandline
@@ -85,10 +86,11 @@ return {
         }),
         -- sources for autocompletion
         sources = cmp.config.sources({
-          { name = "nvim_lsp" }, -- lsp
-          { name = "luasnip" },  -- snippets
-          { name = "buffer" },   -- text within current buffer
-          { name = "path" },     -- file system paths
+          { name = "codeium", group_index = 1, priority = 100, }, -- ai autocompletion
+          { name = "nvim_lsp" },                                  -- lsp
+          { name = "luasnip" },                                   -- snippets
+          { name = "buffer" },                                    -- text within current buffer
+          { name = "path" },                                      -- file system paths
         }),
         -- configure lspkind for vs-code like pictograms in completion menu
         formatting = {
@@ -114,5 +116,12 @@ return {
         java = false,
       },
     },
-  }
+  },
+  {
+    "Exafunction/codeium.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", },
+    cmd = "Codeium",
+    build = ":Codeium Auth",
+    opts = {},
+  },
 }

@@ -77,12 +77,38 @@ return {
     },
   },
   config = function(_, opts)
-    local noice_opts = {
-      require("noice").api.statusline.mode.get,
-      cond = require("noice").api.statusline.mode.has,
+    -- Add 'macro recording' status
+    local noice = require("noice")
+    local noice_status = {
+      noice.api.statusline.mode.get,
+      cond = noice.api.statusline.mode.has,
       color = { fg = "orange" },
     }
-    table.insert(opts.sections.lualine_x, 1, noice_opts)
+    table.insert(opts.sections.lualine_x, 1, noice_status)
+
+    -- Add clickable python venv selector
+    local active_venv = function()
+      local venv_name = require("venv-selector").get_active_venv()
+      if venv_name ~= nil then
+        return string.gsub(venv_name, ".*/pypoetry/virtualenvs/", "(poetry) ")
+      else
+        return "venv"
+      end
+    end
+    local venv = {
+      function()
+        return "  " .. active_venv()
+      end,
+      cond = function()
+        return vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";") ~= ""
+      end,
+      on_click = function()
+        vim.cmd.VenvSelect()
+      end,
+    }
+    table.insert(opts.sections.lualine_x, 2, venv)
+
+    -- Setup with custom sections
     require("lualine").setup(opts)
   end
 }

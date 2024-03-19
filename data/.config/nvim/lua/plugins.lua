@@ -1,5 +1,6 @@
 -- TODO: Plugin Configs
 -- debuggers (nvim-dap,nvim-dap-ui,nvim-dap-python,debugpy)
+-- Codeium
 -- vs-code integration
 
 return {
