@@ -2,18 +2,17 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("custom_" .. name, { clear = true })
 end
 
--- Highlight on Yank
 vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight selection on yank",
   group = augroup("highlight_yank"),
   pattern = "*",
-  desc = "Highlight selection on yank",
   callback = function()
     vim.highlight.on_yank({ timeout = 200, visual = true })
   end
 })
 
--- Go to last loc when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPost", {
+  desc = "Go to last location when opening a buffer",
   group = augroup("last_loc"),
   callback = function(event)
     local exclude = { "gitcommit" }
@@ -30,8 +29,8 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
--- Resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
+  desc = "Resize splits if window got resized",
   group = augroup("resize_splits"),
   callback = function()
     local current_tab = vim.fn.tabpagenr()
@@ -40,8 +39,8 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
   end,
 })
 
--- Close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
+  desc = "Close some filetypes with `q`",
   group = augroup("close_with_q"),
   pattern = {
     "PlenaryTestPopup",
@@ -65,11 +64,10 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd("FileType", {
+  desc = "Enable spell checking and text wrapping for text filetypes",
   group = augroup("wrap_spell"),
   pattern = { "gitcommit", "markdown", "txt" },
-  desc = "Enable spell checking and text wrapping for certain filetypes",
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
@@ -88,8 +86,8 @@ vim.api.nvim_create_autocmd("FileType", {
 --   end,
 -- })
 
--- Open help in vertical split window instead of horizontal
 vim.api.nvim_create_autocmd("FileType", {
+  desc = "Open help in vertical split",
   group = augroup("vertical_help"),
   pattern = "help",
   callback = function()
@@ -100,25 +98,16 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Format file on save
 vim.api.nvim_create_autocmd("BufWritePre", {
+  desc = "Format file on save",
   group = augroup("lsp_format"),
   callback = function()
     vim.lsp.buf.format()
   end
 })
 
--- Create autocmd to remove foldcolumn from symbols outline
 vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("symbols_nofold"),
-  pattern = "Outline",
-  callback = function()
-    vim.wo.foldcolumn = "0"
-  end
-})
-
--- Git commit window settings
-vim.api.nvim_create_autocmd("FileType", {
+  desc = "Set position, size, and mode of git commit window",
   group = augroup("gitcommit"),
   pattern = "gitcommit,NeogitCommitMessage",
   callback = function()
@@ -131,16 +120,4 @@ vim.api.nvim_create_autocmd("FileType", {
     -- end
     vim.cmd.startinsert()
   end
-})
-
-vim.api.nvim_create_autocmd("VimEnter", {
-  desc = "Auto select virtualenv Nvim open",
-  pattern = "*",
-  callback = function()
-    local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")
-    if venv ~= "" then
-      require("venv-selector").retrieve_from_cache()
-    end
-  end,
-  once = true,
 })

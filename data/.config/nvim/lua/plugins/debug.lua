@@ -114,6 +114,7 @@ return {
 
       vim.api.nvim_create_autocmd("VimEnter", {
         desc = "Auto select virtualenv Nvim open",
+        group = vim.api.nvim_create_augroup("venv_select", { clear = true }),
         pattern = "*",
         callback = function()
           local venv = vim.fn.findfile("pyproject.toml", vim.fn.getcwd() .. ";")

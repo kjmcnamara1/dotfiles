@@ -141,5 +141,17 @@ return {
         Fragment = { icon = " ", hl = "@constant" },
       },
     },
+    config = function(_, opts)
+      require("symbols-outline").setup(opts)
+
+      vim.api.nvim_create_autocmd("FileType", {
+        desc = "Remove foldcolumn from symbols outline",
+        group = vim.api.nvim_create_augroup("symbols_nofold", { clear = true }),
+        pattern = "Outline",
+        callback = function()
+          vim.wo.foldcolumn = "0"
+        end
+      })
+    end,
   }
 }

@@ -14,8 +14,9 @@ return {
     { "gt",         "<cmd>TroubleToggle lsp_type_definitions<cr>",  desc = "LSP Type Definitions" },
   },
   opts = {
+    padding = false,
     multiline = false,
     win_config = { border = "rounded" },
-    use_diagnostic_signs = true,
+    signs = { error = " ", warning = " ", information = " ", hint = "󰠠 ", other = " " }
   },
 }

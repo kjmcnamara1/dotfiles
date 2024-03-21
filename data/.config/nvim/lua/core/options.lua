@@ -20,8 +20,8 @@ vim.opt.relativenumber = true
 vim.opt.expandtab      = true -- Insert spaces instead of tab
 vim.opt.tabstop        = 2    -- Set tab to 2 spaces
 vim.opt.softtabstop    = 2
-vim.opt.shiftwidth     = 2    -- Number of spaces to use for each step of auto-indent
-vim.opt.shiftround     = true -- Roun indent to multiple of 'shiftwidth'
+vim.opt.shiftwidth     = 0    -- Number of spaces to use for each step of auto-indent (0 matches `tabstop`)
+vim.opt.shiftround     = true -- Round indent to multiple of 'shiftwidth'
 
 -- Appearance
 vim.opt.breakindent    = true -- Indent wrapped lines to match line start
@@ -92,7 +92,7 @@ vim.opt.formatoptions = "qjl1"                      -- Don't autoformat comments
 -- ======================== WINDOW ========================
 
 -- Always keep n lines above/below cursor unless at start/end of file
-vim.opt.scrolloff      = 5
+vim.opt.scrolloff      = 5 -- keep cursor in center of screen == 999
 vim.opt.sidescrolloff  = 5
 
 -- Minimum window width

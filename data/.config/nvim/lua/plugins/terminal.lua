@@ -7,14 +7,14 @@ return {
       {
         "<c-t>",
         -- "<cmd>ToggleTerm<cr>",
-        mode = { "i", "n", "t" },
+        mode = { "n", "t" },
         desc = "Toggle Terminal",
       },
       { "<leader>tf", "<cmd>ToggleTerm direction=float<cr>",      desc = "Toggle Float Terminal" },
       { "<leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", desc = "Toggle Horizontal Terminal", },
       { "<leader>tv", "<cmd>ToggleTerm direction=vertical<cr>",   desc = "Toggle Vertical Terminal", },
       { "<leader>tt", "<cmd>ToggleTerm direction=tab<cr>",        desc = "Toggle Tab Terminal" },
-      { "<c-x>",      [[<c-\><c-n>]],                             desc = "Normal Mode",                mode = "t", buffer = 0 },
+      { "<c-n>",      [[<c-\><c-n>]],                             desc = "Normal Mode",                mode = "t", buffer = 0 },
     },
     opts = {
       shade_terminals = false,
