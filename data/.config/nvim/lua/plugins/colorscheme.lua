@@ -12,13 +12,29 @@ return {
         keywords = "bold",
       },
       disable = {
-        background = true,
+        -- background = true,
         float_background = true,
       },
-      inverse = {
-        -- match_paren = true,
-      },
-      -- TODO: Need to add override for Neo-tree focused file 'NeoTreeCursorLine'
+    },
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    cond = not vim.g.vscode,
+    name = "kanagawa",
+    event = "VeryLazy",
+    opts = {
+      transparent = true,
+      colors = { theme = { all = { ui = { bg_gutter = "none" } } } },
+      overrides = function()
+        return {
+          NormalFloat            = { bg = "none" },
+          FloatBorder            = { bg = "none" },
+          FloatTitle             = { bg = "none" },
+          TelescopePromptBorder  = { bg = "none" },
+          TelescopeResultsBorder = { bg = "none" },
+          TelescopePreviewBorder = { bg = "none" },
+        }
+      end,
     },
   },
   {
