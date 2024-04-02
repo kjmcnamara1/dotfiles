@@ -39,7 +39,9 @@ if status is-interactive # connected to keyboard
 
     # Aliaes
     alias vim=nvim # Neovim
+    alias vi=nvim # Neovim
     alias py=python3 # Python
+    alias hx=helix # Helix text editor
     alias l='eza --icons -F -H --group-directories-first --git' # horizontal grid
     alias ls='l -1' # single column list
     alias la='ls -A' # all but . and ..
