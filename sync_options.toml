@@ -1,4 +1,4 @@
 # log = 'DEBUG'
 # target_dir = "data"
-ignore = ["wezterm", "pacman.conf"]
+ignore = ["pacman.conf"]
 link = [".config/*", ".ipython", ".gitconfig", ".zshrc", ".bashrc"]
