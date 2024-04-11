@@ -122,42 +122,42 @@ config.font = wezterm.font_with_fallback({
   "Symbols Nerd Font",
 })
 
-config.font_rules = {
-  {
-    italic = true,
-    intensity = "Bold",
-    font = wezterm.font({
-      family = "VictorMono Nerd Font",
-      weight = "Bold",
-      style = "Italic",
-    }),
-  },
-  {
-    italic = true,
-    intensity = "Half",
-    font = wezterm.font({
-      family = "VictorMono Nerd Font",
-      weight = "Thin",
-      style = "Italic",
-    }),
-  },
-  {
-    italic = true,
-    intensity = "Normal",
-    font = wezterm.font({
-      family = "VictorMono Nerd Font",
-      weight = "Regular",
-      style = "Italic",
-    }),
-  },
-  -- {
-  --   intensity = "Bold",
-  --   font = wezterm.font({
-  --     family = "VictorMono Nerd Font",
-  --     weight = "Bold",
-  --   }),
-  -- },
-}
+-- config.font_rules = {
+--   {
+--     italic = true,
+--     intensity = "Bold",
+--     font = wezterm.font({
+--       family = "VictorMono Nerd Font",
+--       weight = "Bold",
+--       style = "Italic",
+--     }),
+--   },
+--   {
+--     italic = true,
+--     intensity = "Half",
+--     font = wezterm.font({
+--       family = "VictorMono Nerd Font",
+--       weight = "Thin",
+--       style = "Italic",
+--     }),
+--   },
+--   {
+--     italic = true,
+--     intensity = "Normal",
+--     font = wezterm.font({
+--       family = "VictorMono Nerd Font",
+--       weight = "Regular",
+--       style = "Italic",
+--     }),
+--   },
+--   -- {
+--   --   intensity = "Bold",
+--   --   font = wezterm.font({
+--   --     family = "VictorMono Nerd Font",
+--   --     weight = "Bold",
+--   --   }),
+--   -- },
+-- }
 
 config.font_size = 14
 config.line_height = 1.2
