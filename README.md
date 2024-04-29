@@ -43,9 +43,9 @@
         - Swipe left = Switch apps
         - Swipe right = Switch apps
       - Four-finger gestures
-        - Tap = Custom shortcut > Left Windows + Tab
-        - Swipe up = Maximize a window
-        - Swipe down = Minimize a window
+        - Tap = Notification center
+        - Swipe up = Multitasking view
+        - Swipe down = Show desktop
         - Swipe left = Switch desktops
         - Swipe right = Switch desktops
 - Network & internet
@@ -58,6 +58,8 @@
   - Taskbar
     - Search = Hide
     - Task view = Off
+    - Chat = Off
+    - Pen menu = On
 - Windows Update
   - Get the latest updates as soon as they're available = On
   - Check for updates
@@ -135,7 +137,7 @@ brave://sync > enter Work sync code > Sync everything
 hamburger > More tools > Add new profile = Personal  
 brave://sync > enter Personal sync code > Sync everything  
 Change Profile name and icon for both  
-Settings > Appearance > Cycle through the most recently used tabs with Ctrl-Tab = On  
+Settings > Content > Content > Cycle through the most recently used tabs with Ctrl-Tab = On  
 Sign into Proton Pass  
 Set as default browser
 
