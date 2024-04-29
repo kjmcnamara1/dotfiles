@@ -317,7 +317,7 @@ cd
 rm -rf ~/yay
 
 # Install packages
-yay -S wget curl man-db carapace-bin fish eza fzf neovim-nightly-bin nodejs npm nushell openssh ripgrep starship tmux unzip zoxide zstd python-poetry pyenv
+yay -S wget curl man-db carapace-bin fish eza fzf neovim-nightly-bin nodejs npm nushell openssh ripgrep fd starship tmux unzip zoxide zstd python-poetry pyenv
 
 # Change python3 symlinks to point to python3.12 instead of 3.11
 # sudo ln -sf python3.12 /usr/bin/python3
