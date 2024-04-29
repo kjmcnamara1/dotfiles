@@ -411,3 +411,46 @@ zoxide
 zstd
 
 ## Arch
+
+```sh
+sudo pacman -S git base-devel man-db wget curl
+
+fish
+eza
+fzf
+neovim-nightly-bin
+openssh
+ripgrep
+pyenv
+starship
+brave-bin
+unzip
+zoxide
+zstd
+ttf-jetbrains-mono-nerd
+
+nodejs
+npm
+nushell
+carapace-bin
+poetry
+nerd font
+visual-studio-code-bin
+wezterm
+megasync-bin
+dolphin-megasync-bin
+freecad
+inkscape
+gimp
+obsidian
+proton vpn
+proton drive
+onedrive-abraunegg
+logiops
+logkeys-git
+displaylink
+teamviewer
+yay
+tmux
+partitionmanager
+```
