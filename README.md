@@ -331,6 +331,9 @@ pyenv global 3.12
 # Create SSH key for github
 # ssh-keygen -t ed25519 -C "$(whoami)@$(uname -n)-$(date -I)" -f ~/.ssh/github_com_ed25519
 ssh-keygen
+
+# Print public key to screen and copy
+cat ~/.ssh/id_ed25519.pub
 ```
 
 Create a [new ssh key](https://github.com/settings/ssh/new) on github.
