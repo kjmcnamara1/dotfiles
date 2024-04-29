@@ -121,6 +121,22 @@ scoop install protonvpn-np
 
 ### Configure Programs
 
+#### SonicWalll NetExtender
+
+Disable Settings > Privacy & security > Windows Security > Device security > Core isolation > Memory integrity = Off
+
+Install OneDrive\IT\Reimage Setup Files\NetExtender.MSI
+
+Default Server: vpn.fivestarproducts.com  
+Default Domain: hqfsp  
+Allow connections to other profiles
+
+#### I Drive
+
+Connect to FSP Network or VPN
+
+Run OneDrive\IT\Map I Drive.bat
+
 #### [Brave Browser](https://brave.com/download/)
 
 <!--
@@ -226,8 +242,14 @@ Dell Active Pen PN5122W
 
 #### [TeamViewer](https://www.teamviewer.com/en-us/)
 
-Download and install (not through scoop)
+Download and install (not through scoop) for unattended access.  
 [](https://download.teamviewer.com/download/TeamViewer_Setup_x64.exe)
+
+Log in with TeamViewer credentials.
+
+Settings > General > Dark Mode = On  
+Settings > General > Start TeamViewer with Windows = On  
+Devices > All managed devices > Add device > Set up remote access on this device
 
 #### Windows Terminal
 
