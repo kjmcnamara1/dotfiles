@@ -351,7 +351,7 @@ ssh -T git@github.com
 cd ~
 mkdir Code
 cd Code
-git clone git@github.com:kjmcnamara1/dotfiles.git
+git clone --recurse-submodules git@github.com:kjmcnamara1/dotfiles.git
 cd dotfiles
 
 # Sync Linux dotfiles
