@@ -289,10 +289,10 @@ arch                                                  # start archwsl
 
 ```sh
 passwd                                                # Set root password
-echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/wheel		# This creates the sudoers file
-useradd -m -G wheel -s /bin/bash kevin			          # Create a new user
-passwd kevin						                              # Set the password for the new user
-exit								                                  # Return to powershell
+echo "%wheel ALL=(ALL) ALL" > /etc/sudoers.d/wheel    # This creates the sudoers file
+useradd -m -G wheel -s /bin/bash kevin                # Create a new user
+passwd kevin                                          # Set the password for the new user
+exit                                                  # Return to powershell
 ```
 
 ```powershell
@@ -417,67 +417,96 @@ wsl
 <!-- Victor-Mono   -->
 <!-- zig -->
 
-carapace-bin  
-curl  
-fish  
-fzf  
-git  
-lazygit  
-man-db  
-neovim-nightly-bin  
-nodejs  
-npm  
-nushell  
-python-pipx  
-ripgrep  
-starship  
-tmux  
-unzip  
-wget  
-zoxide  
-zstd
-
 ## Arch
 
+### Install
+
+Boot from live USB
+
 ```sh
-sudo pacman -S git base-devel man-db wget curl
-
-fish
-eza
-fzf
-neovim-nightly-bin
-openssh
-ripgrep
-pyenv
-starship
-brave-bin
-unzip
-zoxide
-zstd
-ttf-jetbrains-mono-nerd
-
-nodejs
-npm
-nushell
-carapace-bin
-poetry
-nerd font
-visual-studio-code-bin
-wezterm
-megasync-bin
-dolphin-megasync-bin
-freecad
-inkscape
-gimp
-obsidian
-proton vpn
-proton drive
-onedrive-abraunegg
-logiops
-logkeys-git
-displaylink
-teamviewer
-yay
-tmux
-partitionmanager
+iwctl
 ```
+
+```sh
+# Yay
+git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si && yay --version
+cd
+```
+
+```sh
+# Base packages
+sudo pacman -S git base-devel man-db openssh nodejs npm xclip unzip zstd
+# Terminal tools
+sudo pacman -S fish nushell wget curl eza tmux fzf fd ripgrep zoxide starship ttf-jetbrains-mono-nerd
+# Python tools
+sudo pacman -S python-poetry pyenv
+# Graphical apps
+sudo pacman -S wezterm freecad inkscape gimp obsidian
+# Candy apps
+sudo pacman -S partitionmanager kbd fuse2 xcape kvantum kdeconnect
+
+# AUR apps
+yay -S brave-bin neovim-nightly-bin visual-studio-code-bin megasync-bin dolphin-megasync-bin carapace-bin
+# AUR extras
+yay -S teamviewer youtube onedrive-abraunegg logiops displaylink logkeys-git
+
+# Change default shell to fish
+chsh -s "$(which fish)"
+fish
+```
+
+proton vpn  
+proton drive
+
+#### Python
+
+```sh
+# Python
+pyenv install 3.12
+pyenv global 3.12
+```
+
+#### SSH
+
+```sh
+# Create SSH key for github
+ssh-keygen
+
+# Print public key to screen and copy
+cat ~/.ssh/id_ed25519.pub
+
+```
+
+Create a [new ssh key](https://github.com/settings/ssh/new) on github.
+
+```sh
+# Run ssh-agent in the background
+eval "$(ssh-agent -s)"
+# Add private key to the ssh agent
+# ssh-add ~/.ssh/github_com_ed25519
+ssh-add ~/.ssh/id_ed25519
+# Connect to github to add github.com to known_hosts
+ssh -T git@github.com
+```
+
+#### Dotfiles
+
+```sh
+mkdir ~/Code && cd ~/Code && git clone --recurse-submodules git@github.com:kjmcnamara1/dotfiles
+```
+
+### System settings
+
+Keyboard > Advanced > Caps Lock behavior > Make Caps Lock an additional Ctrl  
+Window Management > Desktop Effects > Blur  
+Window Management > Desktop Effects > Background Contrast  
+Colors & Themes > Application Style > kvantum-dark
+
+Get better Icons
+
+### Kvantum Manager
+
+Download [Utterly Nord Kvantum theme](https://store.kde.org/p/1905813)
+
+Install Utterly-Nord theme folder > Install this theme  
+Change / Delete Theme > Select "Utterly-Nord" from dropdown > Use this theme
