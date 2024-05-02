@@ -128,6 +128,10 @@ format = """\
 style = "black bg:magenta"
 # style = "black bg:green"
 
+[git_commit]
+format = '[\($hash$tag\)]($style)'
+style = "bright-black bg:magenta"
+
 [git_status]
 # format = """\
 # [$conflicted$stashed$deleted$renamed$modified$staged$untracked$ahead_behind]($style)\
