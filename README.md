@@ -407,6 +407,19 @@ ssh -T git@github.com
 wsl
 ```
 
+#### Tmux
+
+```fish
+# Install Tmux Plugin Manager
+git clone https://github.com/tmux-plugins/tpm ~/.cache/tmux/plugins/tpm
+
+# Start tmux
+tmux
+```
+
+Install plugins
+prefix (ctrl-a) + I (s-i)
+
 <!-- CascadiaCode-NF   -->
 <!-- FiraCode   -->
 <!-- IBMPlexMono-NF   -->
