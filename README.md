@@ -348,11 +348,7 @@ ssh-add ~/.ssh/id_ed25519
 ssh -T git@github.com
 
 # Clone dotfiles
-cd ~
-mkdir Code
-cd Code
-git clone --recurse-submodules git@github.com:kjmcnamara1/dotfiles.git
-cd dotfiles
+mkdir ~/Code && cd ~/Code && git clone --recurse-submodules git@github.com:kjmcnamara1/dotfiles && cd dotfiles
 
 # Sync Linux dotfiles
 ./sync.py
@@ -506,6 +502,7 @@ ssh -T git@github.com
 
 ```sh
 mkdir ~/Code && cd ~/Code && git clone --recurse-submodules git@github.com:kjmcnamara1/dotfiles
+./sync.py
 ```
 
 ### System settings
