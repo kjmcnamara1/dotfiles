@@ -115,7 +115,7 @@ repo_root_format = """\
 [($read_only )]($style $read_only_style)\
 [](cyan bg:magenta)\
 """
-# use_logical_path = false
+use_logical_path = false
 # fish_style_pwd_dir_length = 1
 
 [git_branch]
