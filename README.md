@@ -688,8 +688,7 @@ mkdir ~/Code && cd ~/Code && git clone --recurse-submodules git@github.com:kjmcn
 ### System settings
 
 Keyboard > Advanced > Caps Lock behavior > Make Caps Lock an additional Ctrl  
-Mouse > Touchpad > General > Press left and right buttons for middle click
-Mouse > Touchpad > Scrolling > Invert scroll direction (Natural scrolling)
+Mouse > Touchpad > Scrolling > Invert scroll direction (Natural scrolling)  
 Window Management > Desktop Effects > Blur  
 Window Management > Desktop Effects > Background Contrast  
 Colors & Themes > Application Style > kvantum-dark

@@ -74,7 +74,7 @@ efibootmgr --create --disk /dev/nvme0n1 --part 1 --label "Arch Linux" --loader /
 systemctl enable NetworkManager.service
 
 # Desktop Environment
-pacman -S --noconfirm plasma egl-wayland # ark konsole dolphin
+pacman -S --noconfirm plasma egl-wayland kde-applications kvantum dosfstools # ark konsole dolphin
 # Additional Packages
 pacman -S --noconfirm openssh nodejs npm xclip unzip zstd
 # Terminal tools
@@ -84,7 +84,7 @@ pacman -S --noconfirm python-poetry pyenv
 # Graphical apps
 pacman -S --noconfirm wezterm freecad inkscape gimp obsidian
 # Candy apps
-pacman -S --noconfirm xcape kvantum partitionmanager dosfstools kdeconnect # kbd fuse2
+pacman -S --noconfirm xcape # kbd fuse2
 
 systemctl enable sddm.service
 
