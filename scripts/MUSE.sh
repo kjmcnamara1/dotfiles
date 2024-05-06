@@ -74,17 +74,17 @@ efibootmgr --create --disk /dev/nvme0n1 --part 1 --label "Arch Linux" --loader /
 systemctl enable NetworkManager
 
 # Desktop Environment
-pacman -S plasma egl-wayland # ark konsole dolphin
+pacman -S --noconfirm plasma egl-wayland # ark konsole dolphin
 # Additional Packages
-pacman -S openssh nodejs npm xclip unzip zstd
+pacman -S --noconfirm openssh nodejs npm xclip unzip zstd
 # Terminal tools
-pacman -S eza tmux fzf fd ripgrep zoxide starship ttf-jetbrains-mono-nerd
+pacman -S --noconfirm eza tmux fzf fd ripgrep zoxide starship ttf-jetbrains-mono-nerd
 # Python tools
-pacman -S python-poetry pyenv
+pacman -S --noconfirm python-poetry pyenv
 # Graphical apps
-pacman -S wezterm freecad inkscape gimp obsidian
+pacman -S --noconfirm wezterm freecad inkscape gimp obsidian
 # Candy apps
-pacman -S xcape kvantum partitionmanager dosfstools kdeconnect # kbd fuse2
+pacman -S --noconfirm xcape kvantum partitionmanager dosfstools kdeconnect # kbd fuse2
 
 # Switch users
 su kevin
@@ -92,9 +92,9 @@ su kevin
 # Yay
 git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si && yay --version
 # AUR apps
-yay -S brave-bin neovim-nightly-bin visual-studio-code-bin megasync-bin dolphin-megasync-bin carapace-bin
+yay -S --noconfirm brave-bin neovim-nightly-bin visual-studio-code-bin megasync-bin dolphin-megasync-bin carapace-bin
 # Proton VPN
-yay -S protonvpn network-manager-applet
+yay -S --noconfirm protonvpn network-manager-applet
 # AUR extras
 # yay -S teamviewer youtube onedrive-abraunegg logiops displaylink logkeys-git
 
