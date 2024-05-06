@@ -463,6 +463,13 @@ Exit back to commandline
 exit
 ```
 
+#### Automated Script
+
+```sh
+curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE.sh > /tmp/tmp.sh
+bash /tmp/tmp.sh
+```
+
 #### Partition Disk
 
 List partitions
