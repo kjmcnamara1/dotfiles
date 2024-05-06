@@ -71,7 +71,7 @@ chmod 0440 /etc/sudoers.d/00_kevin
 efibootmgr --create --disk /dev/nvme0n1 --part 1 --label "Arch Linux" --loader /vmlinuz-linux --unicode 'initrd=\amd-ucode.img initrd=\initramfs-linux.img root=/dev/nvme0n1p2 rootfstype=ext4 rw quiet splash'
 
 # Network Manager
-systemctl enable NetworkManager
+systemctl enable NetworkManager.service
 
 # Desktop Environment
 pacman -S --noconfirm plasma egl-wayland # ark konsole dolphin
@@ -85,6 +85,8 @@ pacman -S --noconfirm python-poetry pyenv
 pacman -S --noconfirm wezterm freecad inkscape gimp obsidian
 # Candy apps
 pacman -S --noconfirm xcape kvantum partitionmanager dosfstools kdeconnect # kbd fuse2
+
+systemctl enable sddm.service
 
 # Switch users
 su kevin
