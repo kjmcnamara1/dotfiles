@@ -432,8 +432,181 @@ prefix (ctrl-a) + I (s-i)
 
 Boot from live USB
 
+#### [Connect to Wifi](https://wiki.archlinux.org/title/Iwd#iwctl)
+
 ```sh
 iwctl
+```
+
+Scan/List networks
+
+```sh
+station wlan0 get-networks
+```
+
+Connect to network
+
+```sh
+station wlan0 connect SSID
+```
+
+Enter passphrase when prompted  
+Confirm connection
+
+```sh
+station wlan0 show
+```
+
+Exit back to commandline
+
+```sh
+exit
+```
+
+#### Partition Disk
+
+List partitions
+
+```sh
+fdisk -l
+```
+
+Start fdisk for intended block device
+
+```sh
+fdisk /dev/nvme0n1
+
+# Create new GPT partition table
+g
+
+# Create new EFI System partition
+n
+1       # Partition number (default)
+2048    # First sector (default)
++100M   # Last sector (size = 100M) 512M?
+y       # Remove vfat signature
+# Change partition type to EFI System
+t       # Selected partition 1
+1       # EFI System
+
+# Create new Linux filesystem partition
+n
+2       # Partition number (default)
+206848  # First sector (default)
++20G   # Last sector (size = 200G)
+
+# Create new home partition
+n
+3       # Partition number (default)
+419637248 # First sector (default)
+1000214527  # Last sector (default)
+# Change partition type to Linux home
+t
+3       # Partition number 3
+42      # Linux home
+
+# Print partition table
+p
+# Write partition table and exit fdisk
+w
+```
+
+#### Format Partitions
+
+```sh
+mkfs.fat -F 32 /dev/nvme0n1p1     # EFI system partition as FAT32
+mkfs.ext4 -L "OS" /dev/nvme0n1p2          # Linux filesystem partition as ext4
+mkfs.ext4 -L "DATA" /dev/nvme0n1p3          # Linux home partition as ext4
+```
+
+#### Mount Filesystem
+
+```sh
+mount /dev/nvme0n1p2 /mnt
+mount --mkdir /dev/nvme0n1p1 /mnt/boot
+mount --mkdir /dev/nvme0n1p3 /mnt/home
+```
+
+#### Install Essential Packages
+
+```sh
+pacstrap -K /mnt base base-devel linux linux-firmware man-db man-pages texinfo networkmanager amd-ucode fish vim git wget curl efibootmgr
+```
+
+#### System Configuration
+
+```sh
+# Fstab
+genfstab -U /mnt >> /mnt/etc/fstab
+# Chroot
+arch-chroot /mnt
+# Time zone
+ln -sf "/usr/share/zoneinfo/$(curl https://ipapi.co/timezone)" /etc/localtime
+hwclock --systohc
+# [x]: Set up NTP
+systemctl enable systemd-timesyncd
+```
+
+Uncomment `en_US.UTF-8 UTF-8` line in `/etc/locale.gen'
+
+```sh
+# locale
+locale-gen
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+# hostname
+echo "MUSE" > /etc/hostname
+# TODO: Possible initramfs
+# Root Password
+passwd
+# Add User
+useradd -m -G wheel -s /usr/bin/fish kevin
+passwd kevin
+echo "kevin ALL=(ALL) ALL" > /etc/sudoers.d/00_kevin
+chmod 0440 /etc/sudoers.d/00_kevin
+# Boot Loader
+efibootmgr --create --disk /dev/nvme0n1 --part 1 --label "Arch Linux" --loader /vmlinuz-linux --unicode 'initrd=\amd-ucode.img initrd=\initramfs-linux.img root=/dev/nvme0n1p2 rootfstype=ext4 rw quiet splash'
+
+# Network Manager
+systemctl enable NetworkManager
+# systemctl start NetworkManager
+# nmtui connect
+
+# Desktop Environment
+pacman -S plasma egl-wayland # ark konsole dolphin
+# Additional Packages
+pacman -S openssh nodejs npm xclip unzip zstd
+# Terminal tools
+pacman -S eza tmux fzf fd ripgrep zoxide starship ttf-jetbrains-mono-nerd
+# Python tools
+pacman -S python-poetry pyenv
+# Graphical apps
+pacman -S wezterm freecad inkscape gimp obsidian
+# Candy apps
+pacman -S xcape kvantum partitionmanager dosfstools kdeconnect # kbd fuse2
+
+# Switch users
+su kevin
+
+# Yay
+git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si && yay --version
+# AUR apps
+yay -S brave-bin neovim-nightly-bin visual-studio-code-bin megasync-bin dolphin-megasync-bin carapace-bin
+# Proton VPN
+yay -S protonvpn network-manager-applet
+# AUR extras
+# yay -S teamviewer youtube onedrive-abraunegg logiops displaylink logkeys-git
+
+# Python
+pyenv install 3.12
+pyenv global 3.12
+```
+
+### Boot
+
+Activate NTP
+
+```sh
+timedatectl set-ntp true
 ```
 
 ```sh
@@ -508,11 +681,28 @@ mkdir ~/Code && cd ~/Code && git clone --recurse-submodules git@github.com:kjmcn
 ### System settings
 
 Keyboard > Advanced > Caps Lock behavior > Make Caps Lock an additional Ctrl  
+Mouse > Touchpad > General > Press left and right buttons for middle click
+Mouse > Touchpad > Scrolling > Invert scroll direction (Natural scrolling)
 Window Management > Desktop Effects > Blur  
 Window Management > Desktop Effects > Background Contrast  
 Colors & Themes > Application Style > kvantum-dark
 
-Get better Icons
+Desktop Folder Settings > Get New Plugins... > Active Blur
+
+Qogir Icons
+
+### Konsole Profile
+
+New Profile
+
+- General
+  - Name = Nord
+  - [x] Default Profile
+  - Command: `/usr/bin/fish`
+- Appearance
+  - Color scheme & font
+    - Get New... > Utterly-Nord
+    - Font = JetBrainsMono Nerd Font 14pt
 
 ### Kvantum Manager
 
