@@ -100,6 +100,9 @@ yay -S --noconfirm protonvpn network-manager-applet
 # AUR extras
 # yay -S teamviewer youtube onedrive-abraunegg logiops displaylink logkeys-git
 
+# Install Tmux Plugin Manager
+git clone https://github.com/tmux-plugins/tpm ~/.cache/tmux/plugins/tpm
+
 # Dotfiles
 # mkdir ~/Code && cd ~/Code && git clone --recurse-submodules git@github.com:kjmcnamara1/dotfiles && cd dotfiles
 # ./sync.py
