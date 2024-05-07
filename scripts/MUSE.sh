@@ -101,5 +101,5 @@ yay -S --noconfirm protonvpn network-manager-applet
 # yay -S teamviewer youtube onedrive-abraunegg logiops displaylink logkeys-git
 
 # Dotfiles
-# mkdir ~/Code && cd ~/Code && git clone --recurse-submodules git@github.com:kjmcnamara1/dotfiles
+# mkdir ~/Code && cd ~/Code && git clone --recurse-submodules git@github.com:kjmcnamara1/dotfiles && cd dotfiles
 # ./sync.py

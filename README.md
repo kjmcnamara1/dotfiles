@@ -681,7 +681,7 @@ ssh -T git@github.com
 #### Dotfiles
 
 ```sh
-mkdir ~/Code && cd ~/Code && git clone --recurse-submodules git@github.com:kjmcnamara1/dotfiles
+mkdir ~/Code && cd ~/Code && git clone --recurse-submodules git@github.com:kjmcnamara1/dotfiles && cd dotfiles
 ./sync.py
 ```
 
