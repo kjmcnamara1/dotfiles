@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Partition Disk
-fdisk /dev/nvme0n1 <<EOF
+fdisk /dev/nvme0n1 << EOF
 g
 n
 1
@@ -38,7 +38,7 @@ mount --mkdir /dev/nvme0n1p3 /mnt/home
 pacstrap -K /mnt base base-devel linux linux-firmware man-db man-pages texinfo networkmanager amd-ucode fish vim git wget curl efibootmgr
 
 # System Configuration
-genfstab -U /mnt >>/mnt/etc/fstab
+genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 
 # Time
@@ -49,11 +49,11 @@ systemctl enable systemd-timesyncd.service
 # Locale
 sed -i '/en_US.UTF-8 UTF-8/s/^#//' /etc/locale.gen # Uncomment line
 locale-gen
-echo "LANG=en_US.UTF-8" >/etc/locale.conf
-echo "KEYMAP=us" >/etc/vconsole.conf
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+echo "KEYMAP=us" > /etc/vconsole.conf
 
 # Hostname
-echo "MUSE" >/etc/hostname
+echo "MUSE" > /etc/hostname
 
 # Initramfs
 mkinitcpio -P
@@ -64,7 +64,7 @@ passwd
 # Add User
 useradd -m -G wheel -s /usr/bin/fish kevin
 passwd kevin
-echo "kevin ALL=(ALL) ALL" >/etc/sudoers.d/00_kevin
+echo "kevin ALL=(ALL) ALL" > /etc/sudoers.d/00_kevin
 chmod 0440 /etc/sudoers.d/00_kevin
 
 # Boot Loader
@@ -94,7 +94,7 @@ su kevin
 # Yay
 git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si && yay --version
 # AUR apps
-yay -S --noconfirm brave-bin neovim-nightly-bin visual-studio-code-bin megasync-bin dolphin-megasync-bin carapace-bin
+yay -S --noconfirm brave-bin neovim-nightly-bin visual-studio-code-bin megasync-bin dolphin-megasync-bin carapace-bin kwin-bismuth
 # Proton VPN
 yay -S --noconfirm protonvpn network-manager-applet
 # AUR extras
