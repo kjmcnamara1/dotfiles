@@ -1,0 +1,55 @@
+# KEY:
+# * = original nord palette
+# + = nvim onenord color
+# ++ = wezterm nord color
+# ~ = derivative color
+[colors]
+foreground = "#C8D0E0" # + Identifier Cursor @variable foreground
+background = "#282828" # ++
+
+light_black = "#434C5E" # *
+black = "#3B4252"       # *
+dark_black = "#2E3440"  # * background
+
+light_white = "#ECEFF4" # *
+white = "#E5E9F0"       # *
+dark_white = "#D8DEE9"  # *
+
+light_gray = "#6C7A96" # + Comment LineNr
+gray = "#646A76"       # +
+dark_gray = "#4C566A"  # *
+
+light_red = "#DE878F" # +
+red = "#BF616A"       # * @constant.macro @variable.parameter @variable.builtin
+dark_red = "#4D2B2E"  # +
+
+light_green = "#BED1AE" # ~
+green = "#A3BE8C"       # * String
+dark_green = "#6D8F51"  # +
+
+light_yellow = "#F2DEB6" # ~
+yellow = "#EBCB8B"       # * Type @constructor @module @tag @type
+dark_yellow = "#D99D26"  # ~
+
+light_blue = "#81A1C1" # * Function enumMember @function.macro @function.method @keyword.import @property @tag.attribute
+blue = "#5E81AC"       # * Delimiter @punctuation @tag.delimiter
+dark_blue = "#405D7E"  # +
+# dark_blue = "#39495D" # +
+# dark_blue = "#2b3e54" # ~
+
+light_purple = "#CCB2C7" # ~
+purple = "#B48EAD"       # *
+dark_purple = "#996690"  # ~
+# dark_purple = "#B988B0" # + StorageClass Structure Operator Exception Conditional Keyword Repeat @keyword.return @label
+
+light_cyan = "#8FBCBB" # *
+cyan = "#88C0D0"       # * Constant @function.builtin @string.special.symbol
+dark_cyan = "#489EB7"  # ~
+
+# light_orange = "#D08F70" # + Boolean Number @constant.builtin @string.regexp @string.escape @type.builtin
+light_orange = "#DCA694" # ~
+orange = "#D08770"       # *
+dark_orange = "#C05E3F"  # ~
+
+pink = "#E85B7A"      # +
+dark_pink = "#E44675" # +
