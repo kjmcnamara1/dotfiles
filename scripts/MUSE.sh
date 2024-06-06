@@ -111,6 +111,19 @@ yay -S --noconfirm protonvpn network-manager-applet
 # Install Tmux Plugin Manager
 git clone https://github.com/tmux-plugins/tpm ~/.cache/tmux/plugins/tpm
 
+# Python
+pyenv install 3.12
+pyenv global 3.12
+
+# SSH
+ssh-keygen
+echo "SSH public key:"
+cat ~/.ssh/id_ed25519.pub
+read -p "Copy public SSH key and create new key at https://github.com/settings/ssh/new. Press enter when done."
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+ssh -T git@github.com
+
 # Dotfiles
-# mkdir ~/Code && cd ~/Code && git clone --recurse-submodules git@github.com:kjmcnamara1/dotfiles && cd dotfiles
-# ./sync.py
+mkdir ~/Code && cd ~/Code && git clone --recurse-submodules git@github.com:kjmcnamara1/dotfiles && cd dotfiles
+./sync.py
