@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+# Read configuration values from user
+echo
+read -s -P "Root Password: " rootpwd
+echo
+read -s -P "Admin Username: " username
+echo
+read -s -P "Admin User Password: " userpwd
+echo
+
 # Partition Disk
 fdisk /dev/nvme0n1 << EOF
 g
@@ -39,7 +48,7 @@ pacstrap -K /mnt base base-devel linux linux-firmware man-db man-pages texinfo n
 
 # System Configuration
 genfstab -U /mnt >> /mnt/etc/fstab
-arch-chroot /mnt
+# arch-chroot /mnt
 
 # Time
 arch-chroot /mnt ln -sf "/usr/share/zoneinfo/$(curl https://ipapi.co/timezone)" /etc/localtime
@@ -59,13 +68,10 @@ arch-chroot /mnt echo "MUSE" > /etc/hostname
 arch-chroot /mnt mkinitcpio -P
 
 # Root Password
-read -s -p "Root Password: " rootpwd
 echo "root:$rootpwd" | arch-chroot /mnt chpasswd
 
 # Add User
-read -s -p "Admin Username: " username
-read -s -p "Admin User Password: " userpwd
-uarch-chroot /mnt seradd -m -G wheel -s /usr/bin/fish $username
+arch-chroot /mnt useradd -m -G wheel -s /usr/bin/fish $username
 echo "$username:$userpwd" | arch-chroot /mnt chpasswd
 arch-chroot /mnt echo "$username ALL=(ALL) ALL" > "/etc/sudoers.d/00_$username"
 arch-chroot /mnt chmod 0440 "/etc/sudoers.d/00_$username"
@@ -119,7 +125,9 @@ arch-chroot -u $username /mnt pyenv global 3.12
 arch-chroot -u $username /mnt ssh-keygen
 echo "SSH public key:"
 arch-chroot -u $username /mnt cat ~/.ssh/id_ed25519.pub
-read -p "Copy public SSH key and create new key at https://github.com/settings/ssh/new. Press enter when done."
+echo
+read -P "Copy public SSH key and create new key at https://github.com/settings/ssh/new. Press enter when done."
+echo
 arch-chroot -u $username /mnt eval "$(ssh-agent -s)"
 arch-chroot -u $username /mnt ssh-add ~/.ssh/id_ed25519
 arch-chroot -u $username /mnt ssh -T git@github.com
