@@ -470,7 +470,7 @@ curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE
 bash /tmp/tmp.sh
 ```
 
-#### Partition Disk
+##### Partition Disk
 
 List partitions
 
@@ -489,8 +489,8 @@ g
 # Create new EFI System partition
 n
 1       # Partition number (default)
-2048    # First sector (default)
-+100M   # Last sector (size = 100M) 512M?
+        # First sector (default)
++512M   # Last sector (size = 512M)
 y       # Remove vfat signature
 # Change partition type to EFI System
 t       # Selected partition 1
@@ -499,14 +499,14 @@ t       # Selected partition 1
 # Create new Linux filesystem partition
 n
 2       # Partition number (default)
-206848  # First sector (default)
-+20G   # Last sector (size = 200G)
+        # First sector (default)
++100G   # Last sector (size = 100G)
 
 # Create new home partition
 n
 3       # Partition number (default)
-419637248 # First sector (default)
-1000214527  # Last sector (default)
+        # First sector (default)
+        # Last sector (default)
 # Change partition type to Linux home
 t
 3       # Partition number 3
@@ -518,7 +518,7 @@ p
 w
 ```
 
-#### Format Partitions
+##### Format Partitions
 
 ```sh
 mkfs.fat -F 32 /dev/nvme0n1p1     # EFI system partition as FAT32
@@ -526,7 +526,7 @@ mkfs.ext4 -L "OS" /dev/nvme0n1p2          # Linux filesystem partition as ext4
 mkfs.ext4 -L "DATA" /dev/nvme0n1p3          # Linux home partition as ext4
 ```
 
-#### Mount Filesystem
+##### Mount Filesystem
 
 ```sh
 mount /dev/nvme0n1p2 /mnt
@@ -534,13 +534,13 @@ mount --mkdir /dev/nvme0n1p1 /mnt/boot
 mount --mkdir /dev/nvme0n1p3 /mnt/home
 ```
 
-#### Install Essential Packages
+##### Install Essential Packages
 
 ```sh
 pacstrap -K /mnt base base-devel linux linux-firmware man-db man-pages texinfo networkmanager amd-ucode fish vim git wget curl efibootmgr
 ```
 
-#### System Configuration
+##### System Configuration
 
 ```sh
 # Fstab
