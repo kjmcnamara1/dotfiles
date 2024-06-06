@@ -1,0 +1,6 @@
+[MainWindow]
+MenuBar=Disabled
+ToolBarsMovable=Disabled
+
+[systemsettings_sidebar_mode]
+HighlightNonDefaultSettings=true

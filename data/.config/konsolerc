@@ -1,0 +1,12 @@
+[Desktop Entry]
+DefaultProfile=Nord.profile
+
+[General]
+ConfigVersion=1
+
+[MainWindow]
+MenuBar=Enabled
+ToolBarsMovable=Disabled
+
+[UiSettings]
+ColorScheme=
