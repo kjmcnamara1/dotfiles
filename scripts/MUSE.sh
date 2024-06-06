@@ -59,13 +59,16 @@ echo "MUSE" > /etc/hostname
 mkinitcpio -P
 
 # Root Password
-passwd
+read -s -p "Root Password: " rootpwd
+echo "root:$rootpwd" | chpasswd
 
 # Add User
-useradd -m -G wheel -s /usr/bin/fish kevin
-passwd kevin
-echo "kevin ALL=(ALL) ALL" > /etc/sudoers.d/00_kevin
-chmod 0440 /etc/sudoers.d/00_kevin
+read -s -p "Admin Username: " username
+read -s -p "Admin User Password: " userpwd
+useradd -m -G wheel -s /usr/bin/fish $username
+echo "$username:$userpwd" | chpasswd
+echo "$username ALL=(ALL) ALL" > "/etc/sudoers.d/00_$username"
+chmod 0440 "/etc/sudoers.d/00_$username"
 
 # Boot Loader
 efibootmgr --create --disk /dev/nvme0n1 --part 1 --label "Arch Linux" --loader /vmlinuz-linux --unicode 'initrd=\amd-ucode.img initrd=\initramfs-linux.img root=/dev/nvme0n1p2 rootfstype=ext4 rw quiet splash'
@@ -89,7 +92,7 @@ pacman -S --noconfirm xcape # kbd fuse2
 systemctl enable sddm.service
 
 # Switch users
-su kevin
+su $username
 
 # Yay
 git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si && yay --version
