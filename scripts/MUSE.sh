@@ -76,8 +76,13 @@ efibootmgr --create --disk /dev/nvme0n1 --part 1 --label "Arch Linux" --loader /
 # Network Manager
 systemctl enable NetworkManager.service
 
+# Full KDE and apps
+# pacman -S --noconfirm plasma-meta kde-applications-meta
+
 # Desktop Environment
-pacman -S --noconfirm plasma egl-wayland kde-applications kvantum dosfstools # ark konsole dolphin
+pacman -S --noconfirm plasma-desktop egl-wayland
+# Plasma Apps
+pacman -S --noconfirm kvantum dosfstools ark konsole dolphin partitionmanager kdeconnect
 # Additional Packages
 pacman -S --noconfirm openssh nodejs npm xclip unzip zstd
 # Terminal tools
