@@ -2,12 +2,11 @@
 
 # Read configuration values from user
 echo
-read -s -P "Root Password: " rootpwd
+read -s -p "Root Password: " rootpwd
 echo
-read -P "Admin Username: " username
+read -p "Admin Username: " username
 echo
-read -s -P "Admin User Password: " userpwd
-echo
+read -s -p "Admin User Password: " userpwd
 
 # Partition Disk
 fdisk /dev/nvme0n1 << EOF
@@ -48,21 +47,30 @@ pacstrap -K /mnt base base-devel linux linux-firmware man-db man-pages texinfo n
 
 # System Configuration
 genfstab -U /mnt >> /mnt/etc/fstab
+cat /mnt/etc/fstab
+read -p "Check fstab contents!"
 # arch-chroot /mnt
 
 # Time
 arch-chroot /mnt ln -sf "/usr/share/zoneinfo/$(curl https://ipapi.co/timezone)" /etc/localtime
 arch-chroot /mnt hwclock --systohc
 arch-chroot /mnt systemctl enable systemd-timesyncd.service
+arch-chroot /mnt systemctl status systemd-timesyncd.service
+read -p "Check systemd-timesyncd status!"
 
 # Locale
-arch-chroot /mnt sed -i '/en_US.UTF-8 UTF-8/s/^#//' /etc/locale.gen # Uncomment line
+sed -i '/en_US.UTF-8 UTF-8/s/^#//' /mnt/etc/locale.gen # Uncomment line
 arch-chroot /mnt locale-gen
-arch-chroot /mnt echo "LANG=en_US.UTF-8" > /etc/locale.conf
-arch-chroot /mnt echo "KEYMAP=us" > /etc/vconsole.conf
+echo "LANG=en_US.UTF-8" > /mnt/etc/locale.conf
+cat /mnt/etc/locale.conf
+echo "KEYMAP=us" > /mnt/etc/vconsole.conf
+cat /mnt/etc/vconsole.conf
+read -p "Check locale contents!"
 
 # Hostname
-arch-chroot /mnt echo "MUSE" > /etc/hostname
+echo "MUSE" > /mnt/etc/hostname
+cat /mnt/etc/hostname
+read -p "Check hostname!"
 
 # Initramfs
 arch-chroot /mnt mkinitcpio -P
@@ -73,14 +81,19 @@ echo "root:$rootpwd" | arch-chroot /mnt chpasswd
 # Add User
 arch-chroot /mnt useradd -m -G wheel -s /usr/bin/fish $username
 echo "$username:$userpwd" | arch-chroot /mnt chpasswd
-arch-chroot /mnt echo "$username ALL=(ALL) ALL" > "/etc/sudoers.d/00_$username"
-arch-chroot /mnt chmod 0440 "/etc/sudoers.d/00_$username"
+echo "$username ALL=(ALL) ALL" > "/mnt/etc/sudoers.d/00_$username"
+chmod 0440 "/mnt/etc/sudoers.d/00_$username"
+cat "/mnt/etc/sudoers.d/00_$username"
+tail /mnt/etc/sudoers
+read -p "Check sudoers contents!"
 
 # Boot Loader
 arch-chroot /mnt efibootmgr --create --disk /dev/nvme0n1 --part 1 --label "Arch Linux" --loader /vmlinuz-linux --unicode 'initrd=\amd-ucode.img initrd=\initramfs-linux.img root=/dev/nvme0n1p2 rootfstype=ext4 rw quiet splash'
 
 # Network Manager
 arch-chroot /mnt systemctl enable NetworkManager.service
+arch-chroot /mnt systemctl status NetworkManager.service
+read -p "Check NetworkManager status!"
 
 # Full KDE and apps
 # pacman -S --noconfirm plasma-meta kde-applications-meta
@@ -101,12 +114,15 @@ arch-chroot /mnt pacman -S --noconfirm wezterm freecad inkscape gimp obsidian
 arch-chroot /mnt pacman -S --noconfirm xcape # kbd fuse2
 
 arch-chroot /mnt systemctl enable sddm.service
+arch-chroot /mnt systemctl status sddm.service
+read -p "Check sddm status!"
 
 # Switch users
 # su $username
 
 # Yay
 arch-chroot -u $username /mnt git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si && yay --version
+read -p "Check yay status!"
 # AUR apps
 arch-chroot -u $username /mnt yay -S --noconfirm brave-bin neovim-nightly-bin visual-studio-code-bin megasync-bin dolphin-megasync-bin carapace-bin kwin-bismuth
 # Proton VPN
@@ -116,18 +132,26 @@ arch-chroot -u $username /mnt yay -S --noconfirm protonvpn network-manager-apple
 
 # Install Tmux Plugin Manager
 arch-chroot -u $username /mnt git clone https://github.com/tmux-plugins/tpm ~/.cache/tmux/plugins/tpm
+ls "/mnt/home/$username/.cache/tmux/plugins/tpm"
+read -p "Check Tmux Plugin Manager!"
+
+# NOTE: Must install pyenv versions after configuring dotfiles
 
 # Python
-arch-chroot -u $username /mnt pyenv install 3.12
-arch-chroot -u $username /mnt pyenv global 3.12
+# arch-chroot -u $username /mnt pyenv install 3.12
+# arch-chroot -u $username /mnt pyenv global 3.12
+# arch-chroot -u $username /mnt pyenv versions
+# read -p "Check Pyenv!"
 
 # SSH
 arch-chroot -u $username /mnt ssh-keygen
 echo "SSH public key:"
 cat "/mnt/home/$username/.ssh/id_ed25519.pub"
 echo
-read -P "Copy public SSH key and create new key at https://github.com/settings/ssh/new. Press enter when done."
-echo
+read -p "Copy public SSH key and create new key at https://github.com/settings/ssh/new. Press enter when done."
+
+reboot
+
 arch-chroot -u $username /mnt eval "$(ssh-agent -s)"
 arch-chroot -u $username /mnt ssh-add ~/.ssh/id_ed25519
 arch-chroot -u $username /mnt ssh -T git@github.com
