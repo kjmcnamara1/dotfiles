@@ -4,7 +4,7 @@
 echo
 read -s -P "Root Password: " rootpwd
 echo
-read -s -P "Admin Username: " username
+read -P "Admin Username: " username
 echo
 read -s -P "Admin User Password: " userpwd
 echo
@@ -124,7 +124,7 @@ arch-chroot -u $username /mnt pyenv global 3.12
 # SSH
 arch-chroot -u $username /mnt ssh-keygen
 echo "SSH public key:"
-arch-chroot -u $username /mnt cat ~/.ssh/id_ed25519.pub
+cat "/mnt/home/$username/.ssh/id_ed25519.pub"
 echo
 read -P "Copy public SSH key and create new key at https://github.com/settings/ssh/new. Press enter when done."
 echo
@@ -133,5 +133,4 @@ arch-chroot -u $username /mnt ssh-add ~/.ssh/id_ed25519
 arch-chroot -u $username /mnt ssh -T git@github.com
 
 # Dotfiles
-arch-chroot -u $username /mnt mkdir ~/Code && cd ~/Code && git clone --recurse-submodules git@github.com:kjmcnamara1/dotfiles && cd dotfiles
-arch-chroot -u $username /mnt ./sync.py
+arch-chroot -u $username /mnt mkdir ~/Code && cd ~/Code && git clone --recurse-submodules git@github.com:kjmcnamara1/dotfiles && cd dotfiles && chmod +x sync.py && ./sync.py
