@@ -463,227 +463,24 @@ Exit back to commandline
 exit
 ```
 
-#### Automated Script
+#### Automated Install Script
 
 ```sh
 curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE.sh > /tmp/tmp.sh
 bash /tmp/tmp.sh
 ```
 
-##### Partition Disk
-
-List partitions
-
-```sh
-fdisk -l
-```
-
-Start fdisk for intended block device
-
-```sh
-fdisk /dev/nvme0n1
-
-# Create new GPT partition table
-g
-
-# Create new EFI System partition
-n
-1       # Partition number (default)
-        # First sector (default)
-+512M   # Last sector (size = 512M)
-y       # Remove vfat signature
-# Change partition type to EFI System
-t       # Selected partition 1
-1       # EFI System
-
-# Create new Linux filesystem partition
-n
-2       # Partition number (default)
-        # First sector (default)
-+100G   # Last sector (size = 100G)
-
-# Create new home partition
-n
-3       # Partition number (default)
-        # First sector (default)
-        # Last sector (default)
-# Change partition type to Linux home
-t
-3       # Partition number 3
-42      # Linux home
-
-# Print partition table
-p
-# Write partition table and exit fdisk
-w
-```
-
-##### Format Partitions
-
-```sh
-mkfs.fat -F 32 /dev/nvme0n1p1     # EFI system partition as FAT32
-mkfs.ext4 -L "OS" /dev/nvme0n1p2          # Linux filesystem partition as ext4
-mkfs.ext4 -L "DATA" /dev/nvme0n1p3          # Linux home partition as ext4
-```
-
-##### Mount Filesystem
-
-```sh
-mount /dev/nvme0n1p2 /mnt
-mount --mkdir /dev/nvme0n1p1 /mnt/boot
-mount --mkdir /dev/nvme0n1p3 /mnt/home
-```
-
-##### Install Essential Packages
-
-```sh
-pacstrap -K /mnt base base-devel linux linux-firmware man-db man-pages texinfo networkmanager amd-ucode fish vim git wget curl efibootmgr
-```
-
-##### System Configuration
-
-```sh
-# Fstab
-genfstab -U /mnt >> /mnt/etc/fstab
-# Chroot
-arch-chroot /mnt
-# Time zone
-ln -sf "/usr/share/zoneinfo/$(curl https://ipapi.co/timezone)" /etc/localtime
-hwclock --systohc
-# [x]: Set up NTP
-systemctl enable systemd-timesyncd
-```
-
-Uncomment `en_US.UTF-8 UTF-8` line in `/etc/locale.gen'
-
-```sh
-# locale
-locale-gen
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
-# hostname
-echo "MUSE" > /etc/hostname
-# TODO: Possible initramfs
-# Root Password
-passwd
-# Add User
-useradd -m -G wheel -s /usr/bin/fish kevin
-passwd kevin
-echo "kevin ALL=(ALL) ALL" > /etc/sudoers.d/00_kevin
-chmod 0440 /etc/sudoers.d/00_kevin
-# Boot Loader
-efibootmgr --create --disk /dev/nvme0n1 --part 1 --label "Arch Linux" --loader /vmlinuz-linux --unicode 'initrd=\amd-ucode.img initrd=\initramfs-linux.img root=/dev/nvme0n1p2 rootfstype=ext4 rw quiet splash'
-
-# Network Manager
-systemctl enable NetworkManager
-# systemctl start NetworkManager
-# nmtui connect
-
-# Desktop Environment
-pacman -S plasma egl-wayland # ark konsole dolphin
-# Additional Packages
-pacman -S openssh nodejs npm xclip unzip zstd
-# Terminal tools
-pacman -S eza tmux fzf fd ripgrep zoxide starship ttf-jetbrains-mono-nerd
-# Python tools
-pacman -S python-poetry pyenv
-# Graphical apps
-pacman -S wezterm freecad inkscape gimp obsidian
-# Candy apps
-pacman -S xcape kvantum partitionmanager dosfstools kdeconnect # kbd fuse2
-
-# Switch users
-su kevin
-
-# Yay
-git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si && yay --version
-# AUR apps
-yay -S brave-bin neovim-nightly-bin visual-studio-code-bin megasync-bin dolphin-megasync-bin carapace-bin
-# Proton VPN
-yay -S protonvpn network-manager-applet
-# AUR extras
-# yay -S teamviewer youtube onedrive-abraunegg logiops displaylink logkeys-git
-
-# Python
-pyenv install 3.12
-pyenv global 3.12
-```
-
 ### Boot
 
-Activate NTP
+#### Automated Configuration Script
 
 ```sh
-timedatectl set-ntp true
-```
-
-```sh
-# Yay
-git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si && yay --version
-cd
-```
-
-```sh
-# Base packages
-sudo pacman -S git base-devel man-db openssh nodejs npm xclip unzip zstd
-# Terminal tools
-sudo pacman -S fish nushell wget curl eza tmux fzf fd ripgrep zoxide starship ttf-jetbrains-mono-nerd
-# Python tools
-sudo pacman -S python-poetry pyenv
-# Graphical apps
-sudo pacman -S wezterm freecad inkscape gimp obsidian
-# Candy apps
-sudo pacman -S partitionmanager kbd fuse2 xcape kvantum kdeconnect
-
-# AUR apps
-yay -S brave-bin neovim-nightly-bin visual-studio-code-bin megasync-bin dolphin-megasync-bin carapace-bin
-# AUR extras
-yay -S teamviewer youtube onedrive-abraunegg logiops displaylink logkeys-git
-
-# Change default shell to fish
-chsh -s "$(which fish)"
-fish
-```
-
-proton vpn  
-proton drive
-
-#### Python
-
-```sh
-# Python
-pyenv install 3.12
-pyenv global 3.12
-```
-
-#### SSH
-
-```sh
-# Create SSH key for github
-ssh-keygen
-
-# Print public key to screen and copy
-cat ~/.ssh/id_ed25519.pub
-
+curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE/config.sh
 ```
 
 Create a [new ssh key](https://github.com/settings/ssh/new) on github.
 
-```sh
-# Run ssh-agent in the background
-eval "$(ssh-agent -s)"
-# Add private key to the ssh agent
-# ssh-add ~/.ssh/github_com_ed25519
-ssh-add ~/.ssh/id_ed25519
-# Connect to github to add github.com to known_hosts
-ssh -T git@github.com
-```
-
-#### Dotfiles
-
-```sh
-mkdir ~/Code && cd ~/Code && git clone --recurse-submodules git@github.com:kjmcnamara1/dotfiles && cd dotfiles
-./sync.py
-```
+Continue script by pressing <kbd>Enter</kbd>.
 
 ### System settings
 
