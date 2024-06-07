@@ -20,9 +20,6 @@ magiclampEnabled=true
 squashEnabled=false
 trackmouseEnabled=true
 
-[TabBox]
-LayoutName=thumbnail_grid
-
 [Tiling]
 padding=4
 
