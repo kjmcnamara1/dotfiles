@@ -1,5 +1,100 @@
 # dotfiles
 
+## Arch
+
+### Install
+
+Boot from live USB
+
+#### [Connect to Wifi](https://wiki.archlinux.org/title/Iwd#iwctl)
+
+```sh
+iwctl
+```
+
+Scan/List networks
+
+```sh
+station wlan0 get-networks
+```
+
+Connect to network
+
+```sh
+station wlan0 connect SSID
+```
+
+Enter passphrase when prompted  
+Confirm connection
+
+```sh
+station wlan0 show
+```
+
+Exit back to commandline
+
+```sh
+exit
+```
+
+#### Automated Install Script
+
+```sh
+curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE.sh > /tmp/tmp.sh
+bash /tmp/tmp.sh
+```
+
+### Boot
+
+#### Automated Configuration Script
+
+```sh
+curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE/config.sh
+```
+
+Create a [new ssh key](https://github.com/settings/ssh/new) on github.
+
+Continue script by pressing <kbd>Enter</kbd>.
+
+#### Tmux
+
+Start `tmux`
+
+Install plugins
+prefix (ctrl-a) + I (s-i)
+
+### System settings
+
+Keyboard > Advanced > Caps Lock behavior > Make Caps Lock an additional Ctrl  
+Mouse > Touchpad > Scrolling > Invert scroll direction (Natural scrolling)  
+Window Management > Desktop Effects > Blur  
+Window Management > Desktop Effects > Background Contrast  
+Colors & Themes > Application Style > kvantum-dark
+
+Desktop Folder Settings > Get New Plugins... > Active Blur
+
+Qogir Icons
+
+### Konsole Profile
+
+New Profile
+
+- General
+  - Name = Nord
+  - [x] Default Profile
+  - Command: `/usr/bin/fish`
+- Appearance
+  - Color scheme & font
+    - Get New... > Utterly-Nord
+    - Font = JetBrainsMono Nerd Font 14pt
+
+### Kvantum Manager
+
+Download [Utterly Nord Kvantum theme](https://store.kde.org/p/1905813)
+
+Install Utterly-Nord theme folder > Install this theme  
+Change / Delete Theme > Select "Utterly-Nord" from dropdown > Use this theme
+
 ## Windows
 
 ### Keyboard
@@ -425,91 +520,3 @@ prefix (ctrl-a) + I (s-i)
 <!-- lazygit   -->
 <!-- Victor-Mono   -->
 <!-- zig -->
-
-## Arch
-
-### Install
-
-Boot from live USB
-
-#### [Connect to Wifi](https://wiki.archlinux.org/title/Iwd#iwctl)
-
-```sh
-iwctl
-```
-
-Scan/List networks
-
-```sh
-station wlan0 get-networks
-```
-
-Connect to network
-
-```sh
-station wlan0 connect SSID
-```
-
-Enter passphrase when prompted  
-Confirm connection
-
-```sh
-station wlan0 show
-```
-
-Exit back to commandline
-
-```sh
-exit
-```
-
-#### Automated Install Script
-
-```sh
-curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE.sh > /tmp/tmp.sh
-bash /tmp/tmp.sh
-```
-
-### Boot
-
-#### Automated Configuration Script
-
-```sh
-curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE/config.sh
-```
-
-Create a [new ssh key](https://github.com/settings/ssh/new) on github.
-
-Continue script by pressing <kbd>Enter</kbd>.
-
-### System settings
-
-Keyboard > Advanced > Caps Lock behavior > Make Caps Lock an additional Ctrl  
-Mouse > Touchpad > Scrolling > Invert scroll direction (Natural scrolling)  
-Window Management > Desktop Effects > Blur  
-Window Management > Desktop Effects > Background Contrast  
-Colors & Themes > Application Style > kvantum-dark
-
-Desktop Folder Settings > Get New Plugins... > Active Blur
-
-Qogir Icons
-
-### Konsole Profile
-
-New Profile
-
-- General
-  - Name = Nord
-  - [x] Default Profile
-  - Command: `/usr/bin/fish`
-- Appearance
-  - Color scheme & font
-    - Get New... > Utterly-Nord
-    - Font = JetBrainsMono Nerd Font 14pt
-
-### Kvantum Manager
-
-Download [Utterly Nord Kvantum theme](https://store.kde.org/p/1905813)
-
-Install Utterly-Nord theme folder > Install this theme  
-Change / Delete Theme > Select "Utterly-Nord" from dropdown > Use this theme
