@@ -18,8 +18,8 @@ ssh -T git@github.com
 git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si && yay --version
 # AUR apps
 yay -S --noconfirm brave-bin neovim-nightly-bin visual-studio-code-bin megasync-bin dolphin-megasync-bin carapace-bin kwin-bismuth
-# Proton VPN
-yay -S --noconfirm protonvpn network-manager-applet
+# Proton apps
+yay -S --noconfirm proton-vpn-gtk-app network-manager-applet protonmail-desktop proton-pass-bin
 # AUR extras
 # yay -S teamviewer youtube onedrive-abraunegg logiops displaylink logkeys-git
 
