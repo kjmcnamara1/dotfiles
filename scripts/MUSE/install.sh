@@ -94,11 +94,19 @@ arch-chroot /mnt pacman -S --noconfirm eza tmux fzf fd ripgrep zoxide starship t
 arch-chroot /mnt pacman -S --noconfirm python-poetry pyenv
 # Graphical apps
 arch-chroot /mnt pacman -S --noconfirm wezterm freecad inkscape gimp obsidian
-# Candy apps
-arch-chroot /mnt pacman -S --noconfirm xcape # kbd fuse2
 
 # Enable display manager
 arch-chroot /mnt systemctl enable sddm.service
+
+# Remap CAPSLOCK
+arch-chroot /mnt pacman -S --noconfirm interception-caps2esc
+cat << EOF > /etc/interception/udevmon.d/caps2esc.yaml
+- JOB: intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE
+  DEVICE:
+      EVENTS:
+            EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+EOF
+arch-chroot /mnt systemctl enable udevmon.service
 
 # Reboot into OS
 reboot
