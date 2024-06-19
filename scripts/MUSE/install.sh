@@ -2,10 +2,10 @@
 
 # Read configuration values from user
 echo
-read -s -p "Root Password: " rootpwd
+read -srp "Root Password: " rootpwd
 echo
-read -p "Admin Username: " username
-read -s -p "Admin User Password: " userpwd
+read -rp "Admin Username: " username
+read -srp "Admin User Password: " userpwd
 
 # Partition Disk
 fdisk /dev/nvme0n1 << EOF
@@ -68,7 +68,7 @@ arch-chroot /mnt mkinitcpio -P
 echo "root:$rootpwd" | arch-chroot /mnt chpasswd
 
 # Add User
-arch-chroot /mnt useradd -m -G wheel -s /usr/bin/fish $username
+arch-chroot /mnt useradd -m -G wheel -s /usr/bin/fish "$username"
 echo "$username:$userpwd" | arch-chroot /mnt chpasswd
 echo "$username ALL=(ALL) ALL" > "/mnt/etc/sudoers.d/00_$username"
 chmod 0440 "/mnt/etc/sudoers.d/00_$username"
