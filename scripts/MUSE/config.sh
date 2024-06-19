@@ -4,9 +4,9 @@
 timedatectl set-ntp true
 
 # SSH
-arch-chroot -u $username /mnt ssh-keygen
+ssh-keygen
 echo "SSH public key:"
-cat "/mnt/home/$username/.ssh/id_ed25519.pub"
+cat ~/.ssh/id_ed25519.pub
 echo
 read -p "Copy public SSH key and create new key at https://github.com/settings/ssh/new. Press enter when done."
 
