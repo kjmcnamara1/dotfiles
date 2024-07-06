@@ -32,6 +32,9 @@ if status is-interactive # connected to keyboard
     # Zoxide
     zoxide init --cmd cd fish | source
 
+    # Set up fzf key bindings
+    fzf --fish | source
+
     # Starship Prompt
     source $HOME/.config/starship/starship.fish
     # starship init fish | source

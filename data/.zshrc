@@ -73,6 +73,9 @@ alias py='python3'                                          # Python
 
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"
+#
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 # Starship Prompt
 eval "$(starship init zsh)"
