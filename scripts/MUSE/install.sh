@@ -89,7 +89,7 @@ arch-chroot /mnt pacman -S --noconfirm kvantum dosfstools ark konsole dolphin pa
 # Additional Packages
 arch-chroot /mnt pacman -S --noconfirm openssh nodejs npm xclip unzip zstd
 # Terminal tools
-arch-chroot /mnt pacman -S --noconfirm eza tmux fzf fd ripgrep zoxide starship ttf-jetbrains-mono-nerd
+arch-chroot /mnt pacman -S --noconfirm eza bat tmux fzf fd ripgrep zoxide starship ttf-jetbrains-mono-nerd
 # Python tools
 arch-chroot /mnt pacman -S --noconfirm python-poetry pyenv
 # Graphical apps
