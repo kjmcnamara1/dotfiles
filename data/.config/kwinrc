@@ -23,6 +23,9 @@ trackmouseEnabled=true
 [Tiling]
 padding=4
 
+[Tiling][44c9cc4a-1da1-51a2-974e-ca434b32b280]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][6560589a-ca13-516f-8af1-e940d3682855]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
