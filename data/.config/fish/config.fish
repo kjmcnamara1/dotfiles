@@ -53,5 +53,6 @@ if status is-interactive # connected to keyboard
     alias du='du -h' # human readable disk usage
     # alias ls='ls -hv --color=auto --group-directories-first' # classify files in colour
     # alias l='/usr/bin/ls -hv --color=auto --group-directories-first' # shorthand plain ls
+    alias dc='docker compose'
 
 end
