@@ -34,7 +34,7 @@ end)
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
-config.default_prog = { "wsl", "--cd", "~" }
+-- config.default_prog = { "wsl", "--cd", "~" }
 config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 config.window_padding = {
   left = 0,
@@ -169,6 +169,8 @@ config.scrollback_lines = 5000
 
 config.adjust_window_size_when_changing_font_size = false
 config.default_cursor_style = "SteadyBlock"
+
+config.enable_kitty_keyboard = true
 
 -- config.disable_default_key_bindings = true
 
