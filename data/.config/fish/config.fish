@@ -45,6 +45,7 @@ if status is-interactive # connected to keyboard
     alias vi=nvim # Neovim
     alias py=python3 # Python
     alias hx=helix # Helix text editor
+    alias ff=fastfetch # Fastfetch terminal sysinfo viewer
     alias l='eza --icons -F -H --group-directories-first --git' # horizontal grid
     alias ls='l -1' # single column list
     alias la='ls -A' # all but . and ..
@@ -54,6 +55,5 @@ if status is-interactive # connected to keyboard
     # alias ls='ls -hv --color=auto --group-directories-first' # classify files in colour
     # alias l='/usr/bin/ls -hv --color=auto --group-directories-first' # shorthand plain ls
     alias dc='docker compose'
-    alias ff=fastfetch
 
 end
