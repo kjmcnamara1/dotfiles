@@ -2,81 +2,50 @@
 local wezterm = require("wezterm")
 -- local mux = wezterm.mux
 local act = wezterm.action
+local config = wezterm.config_builder()
+local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 
+-- Session
+-- config.default_prog = { "wsl", "--cd", "~" }
 -- wezterm.on("gui-startup", function(cmd)
 --   local tab, pane, window = mux.spawn_window(cmd or {})
 --   window:gui_window():maximize()
 -- end)
 
-wezterm.on("user-var-changed", function(window, pane, name, value)
-  local overrides = window:get_config_overrides() or {}
-  if name == "ZEN_MODE" then
-    local incremental = value:find("+")
-    local number_value = tonumber(value)
-    if incremental ~= nil then
-      while (number_value > 0) do
-        window:perform_action(wezterm.action.IncreaseFontSize, pane)
-        number_value = number_value - 1
-      end
-      overrides.enable_tab_bar = false
-    elseif number_value < 0 then
-      window:perform_action(wezterm.action.ResetFontSize, pane)
-      overrides.font_size = nil
-      overrides.enable_tab_bar = true
-    else
-      overrides.font_size = number_value
-      overrides.enable_tab_bar = false
-    end
-  end
-  window:set_config_overrides(overrides)
-end)
+-- Theme
+config.color_scheme = "nord" -- alt: kanagawa
+config.default_cursor_style = "SteadyBlock"
 
--- This will hold the configuration.
-local config = wezterm.config_builder()
-
--- config.default_prog = { "wsl", "--cd", "~" }
-config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
-config.window_padding = {
-  left = 0,
-  right = 0,
-  top = 0,
-  bottom = 0
-}
+-- Window Settings
+config.window_decorations = "RESIZE"
 config.window_close_confirmation = "NeverPrompt"
+config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
+config.inactive_pane_hsb = { saturation = 0.9, brightness = 0.8 }
+
+config.initial_rows = 20
+config.initial_cols = 120
+config.scrollback_lines = 5000
+config.enable_scroll_bar = true
 
 -- config.window_background_opacity = 0.75
 -- config.win32_system_backdrop = "Acrylic"
 
-config.initial_rows = 20
-config.initial_cols = 120
-
-config.inactive_pane_hsb = {
-  saturation = 0.9,
-  brightness = 0.8,
-}
-
--- config.use_fancy_tab_bar = false
--- config.tab_bar_at_bottom = true
+-- Tab Bar
+config.use_fancy_tab_bar = false
+config.tab_bar_at_bottom = true
 config.tab_max_width = 40
 config.switch_to_last_active_tab_when_closing_tab = true
 config.hide_tab_bar_if_only_one_tab = true
 
-config.window_frame = {
-  -- The font used in the tab bar.
-  -- Roboto Bold is the default; this font is bundled
-  -- with wezterm.
-  -- Whatever font is selected here, it will have the
-  -- main font setting appended to it to pick up any
-  -- fallback fonts you may have used there.
-  font = wezterm.font({ family = "JetBrains Mono", weight = "Bold" }),
-  -- The size of the font in the tab bar.
-  -- Default to 10.0 on Windows but 12.0 on other systems
-  font_size = 12,
-}
+-- config.window_frame = {
+--   font = wezterm.font({ family = "JetBrains Mono", weight = "Bold" }), -- The font used in the tab bar.
+--   font_size = 12,                                                      -- The size of the font in the tab bar.
+-- }
 
-config.color_scheme = "nord"
--- config.color_scheme = "kanagawa"
-
+-- Font Settings
+config.font_size = 14
+config.line_height = 1.2
+config.adjust_window_size_when_changing_font_size = false
 config.font = wezterm.font_with_fallback({
   -- {
   --   family = "VictorMono Nerd Font",
@@ -159,27 +128,55 @@ config.font = wezterm.font_with_fallback({
 --   -- },
 -- }
 
-config.font_size = 14
-config.line_height = 1.2
 
-config.use_dead_keys = false
-config.scrollback_lines = 5000
+-- Neovim Zen Mode
+wezterm.on("user-var-changed", function(window, pane, name, value)
+  local overrides = window:get_config_overrides() or {}
+  if name == "ZEN_MODE" then
+    local incremental = value:find("+")
+    local number_value = tonumber(value)
+    if incremental ~= nil then
+      while (number_value > 0) do
+        window:perform_action(wezterm.action.IncreaseFontSize, pane)
+        number_value = number_value - 1
+      end
+      overrides.enable_tab_bar = false
+    elseif number_value < 0 then
+      window:perform_action(wezterm.action.ResetFontSize, pane)
+      overrides.font_size = nil
+      overrides.enable_tab_bar = true
+    else
+      overrides.font_size = number_value
+      overrides.enable_tab_bar = false
+    end
+  end
+  window:set_config_overrides(overrides)
+end)
 
--- config.enable_scroll_bar = true
-
-config.adjust_window_size_when_changing_font_size = false
-config.default_cursor_style = "SteadyBlock"
-
-config.enable_kitty_keyboard = true
-
+-- Keybindings
+config.enable_kitty_keyboard = true -- Enable kitty keyboard protocol
+config.use_dead_keys = false        -- disable international accent keys for diacritics
 -- config.disable_default_key_bindings = true
-
--- config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = {
-  { key = "Enter", mods = "ALT",        action = act.ToggleFullScreen },
-  { key = "C",     mods = "SHIFT|CTRL", action = act.CopyTo "Clipboard" },
-  { key = "R",     mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
+  -- { key = "Enter", mods = "ALT",        action = act.ToggleFullScreen },
+  -- { key = "C",     mods = "SHIFT|CTRL", action = act.CopyTo "Clipboard" },
+  { key = "F11", mods = "SHIFT|CTRL", action = act.ToggleFullScreen },
+  { key = "F5",  mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
+  { key = "v",   mods = "LEADER",     action = act.SplitHorizontal },
+  { key = "s",   mods = "LEADER",     action = act.SplitVertical },
 }
+
+-- Navigation with Nvim
+smart_splits.apply_to_config(config, {
+  -- directional keys to use in order of: left, down, up, right
+  direction_keys = { "h", "j", "k", "l" },
+  -- modifier keys to combine with direction_keys
+  modifiers = {
+    move = "CTRL",   -- modifier to use for pane movement, e.g. CTRL+h to move left
+    resize = "META", -- modifier to use for pane resize, e.g. META+h to resize to the left
+  },
+})
 
 -- and finally, return the configuration to wezterm
 return config
