@@ -95,6 +95,15 @@ Download [Utterly Nord Kvantum theme](https://store.kde.org/p/1905813)
 Install Utterly-Nord theme folder > Install this theme  
 Change / Delete Theme > Select "Utterly-Nord" from dropdown > Use this theme
 
+### QEMU
+
+```sh
+yay -S qemu virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat iptables libguestfs
+sudo usermod -aG libvirt $(whoami)
+systemctl enable libvirtd
+systemctl start libvirtd
+```
+
 ## Windows
 
 ### Keyboard
