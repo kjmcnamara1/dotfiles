@@ -101,10 +101,11 @@ arch-chroot /mnt systemctl enable sddm.service
 # Remap CAPSLOCK
 arch-chroot /mnt pacman -S --noconfirm interception-caps2esc
 cat << EOF > /etc/interception/udevmon.d/caps2esc.yaml
-- JOB: intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE
+- JOB: intercept -g $DEVNODE | caps2esc -m 1 | uinput -d $DEVNODE
   DEVICE:
-      EVENTS:
-            EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+    NAME: AT Translated Set 2 keyboard
+    # EVENTS:
+    #   EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
 EOF
 arch-chroot /mnt systemctl enable udevmon.service
 
