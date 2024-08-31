@@ -1,3 +1,5 @@
+sudo systemctl mask tpm2.target
+
 brave-bin
 fish
 yazi
