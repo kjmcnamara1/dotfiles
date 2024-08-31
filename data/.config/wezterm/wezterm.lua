@@ -8,7 +8,7 @@ local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smar
 -- Session
 -- config.default_prog = { "wsl", "--cd", "~" }
 -- wezterm.on("gui-startup", function(cmd)
---   local tab, pane, window = mux.spawn_window(cmd or {})
+--   local tab, pane, window = mux.spawn_window(cmd or { position = { x = 100, y = 300, origin = "ActiveScreen" } })
 --   window:gui_window():maximize()
 -- end)
 
@@ -22,7 +22,7 @@ config.window_close_confirmation = "NeverPrompt"
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
 config.inactive_pane_hsb = { saturation = 0.9, brightness = 0.8 }
 
-config.initial_rows = 20
+config.initial_rows = 30
 config.initial_cols = 120
 config.scrollback_lines = 5000
 config.enable_scroll_bar = true
