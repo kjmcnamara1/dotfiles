@@ -23,6 +23,12 @@ trackmouseEnabled=true
 [Tiling]
 padding=4
 
+[Tiling][0293d0bc-44d0-5480-9eb2-9e38e1c96b8f]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][2a7e830c-55d1-5b1d-a261-275df73699af]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][44c9cc4a-1da1-51a2-974e-ca434b32b280]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
@@ -42,4 +48,4 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 Placement=Smart
 
 [Xwayland]
-Scale=1.25
+Scale=1.5
