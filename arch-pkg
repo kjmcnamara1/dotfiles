@@ -10,6 +10,7 @@ zoxide
 neovim
 eza
 bat
+fastfetch
 starship
 man-db
 github-cli
