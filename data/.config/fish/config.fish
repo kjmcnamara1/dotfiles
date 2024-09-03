@@ -56,4 +56,15 @@ if status is-interactive # connected to keyboard
     # alias l='/usr/bin/ls -hv --color=auto --group-directories-first' # shorthand plain ls
     alias dc='docker compose'
 
+    # Yazi Wrapper
+    function yy
+        set tmp (mktemp -t "yazi-cwd.XXXXXX")
+        yazi $argv --cwd-file="$tmp"
+        if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+            cd -- "$cwd"
+        end
+        rm -f -- "$tmp"
+    end
+
+
 end
