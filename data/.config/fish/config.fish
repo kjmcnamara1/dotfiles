@@ -40,7 +40,7 @@ if status is-interactive # connected to keyboard
     # starship init fish | source
     enable_transience
 
-    # Aliaes
+    # Aliases
     alias vim=nvim # Neovim
     alias vi=nvim # Neovim
     alias py=python3 # Python
