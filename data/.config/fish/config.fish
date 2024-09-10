@@ -41,8 +41,6 @@ if status is-interactive # connected to keyboard
     enable_transience
 
     # Aliases
-    alias vim=nvim # Neovim
-    alias vi=nvim # Neovim
     alias py=python3 # Python
     alias hx=helix # Helix text editor
     alias ff=fastfetch # Fastfetch terminal sysinfo viewer
