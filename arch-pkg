@@ -37,6 +37,7 @@ dolphin
 partitionmanager
 kdeconnect
 sddm
+plasma-framework5
 
 # Python
 pyenv
