@@ -31,14 +31,14 @@ mic_mute=Microphone Mute\tMeta+Volume Mute,Microphone Mute\tMeta+Volume Mute,Mut
 mute=Volume Mute,Volume Mute,Mute
 
 [ksmserver]
-Halt Without Confirmation=none,,Shut Down Without Confirmation
+Halt Without Confirmation=none,none,Shut Down Without Confirmation
 Lock Session=Meta+Tab\tScreensaver,Meta+L\tScreensaver,Lock Session
 Log Out=Ctrl+Alt+Del\tMeta+Del,Ctrl+Alt+Del,Show Logout Prompt
-Log Out Without Confirmation=Meta+Backspace,,Log Out Without Confirmation
-LogOut=none,,Log Out
-Reboot=Meta+R,,Reboot
-Reboot Without Confirmation=none,,Reboot Without Confirmation
-Shut Down=none,,Shut Down
+Log Out Without Confirmation=Meta+Backspace,none,Log Out Without Confirmation
+LogOut=none,none,Log Out
+Reboot=Meta+R,none,Reboot
+Reboot Without Confirmation=none,none,Reboot Without Confirmation
+Shut Down=none,none,Shut Down
 _k_friendly_name=Session Management
 
 [kwin]
@@ -204,11 +204,11 @@ view_zoom_out=Meta+-,Meta+-,Zoom Out
 
 [mediacontrol]
 _k_friendly_name=Media Controller
-mediavolumedown=none,,Media volume down
-mediavolumeup=none,,Media volume up
+mediavolumedown=none,none,Media volume down
+mediavolumeup=none,none,Media volume up
 nextmedia=Media Next,Media Next,Media playback next
 pausemedia=Media Pause,Media Pause,Pause media playback
-playmedia=none,,Play media playback
+playmedia=none,none,Play media playback
 playpausemedia=Media Play,Media Play,Play/Pause media playback
 previousmedia=Media Previous,Media Previous,Media playback previous
 stopmedia=Media Stop,Media Stop,Stop media playback
@@ -226,7 +226,7 @@ PowerOff=Power Off,Power Off,Power Off
 Sleep=Sleep,Sleep,Suspend
 Toggle Keyboard Backlight=Keyboard Light On/Off,Keyboard Light On/Off,Toggle Keyboard Backlight
 Turn Off Screen=none,none,Turn Off Screen
-_k_friendly_name=KDE Power Management System
+_k_friendly_name=Power Management
 powerProfile=Battery,Battery\tMeta+B,Switch Power Profile
 
 [plasmashell]
@@ -244,6 +244,7 @@ activate task manager entry 8=Meta+8,Meta+8,Activate Task Manager Entry 8
 activate task manager entry 9=Meta+9,Meta+9,Activate Task Manager Entry 9
 activate widget 116=none,none,Activate Application Launcher Widget
 activate widget 172=none,none,Activate Simple Application Launcher Widget
+activate widget 224=none,none,Activate Disk Usage Widget
 activate widget 26=none,none,Activate Simple Application Launcher Widget
 activate widget 29=none,none,Activate Simple Application Launcher Widget
 activate widget 3=Alt+F1,none,Activate Application Launcher Widget
@@ -271,7 +272,7 @@ toggle do not disturb=none,,Toggle do not disturb
 _launch=Meta+B
 
 [services][org.kde.kcalc.desktop]
-_launch=Meta+C\tLaunch (1)
+_launch=Launch (1)
 
 [services][org.kde.krunner.desktop]
 _launch=Search\tAlt+Space
