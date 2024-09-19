@@ -44,10 +44,13 @@ if status is-interactive # connected to keyboard
     alias py=python3 # Python
     alias hx=helix # Helix text editor
     alias ff=fastfetch # Fastfetch terminal sysinfo viewer
-    alias l='eza --icons -F -H --group-directories-first --git' # horizontal grid
+    alias l='eza -F --icons --links --group-directories-first --git --git-repos --smart-group --hyperlink' # horizontal grid
     alias ls='l -1' # single column list
     alias la='ls -A' # all but . and ..
     alias ll='la -l' # long list including hidden
+    alias llr='ll --time-style=relative' # long list with relative time
+    alias ltt='ll --tree --total-size' # long list and recurse into directories as tree
+    alias lt='ltt --level=2' # default tree list level 2
     alias df='df -h' # human readable disk free
     alias du='du -h' # human readable disk usage
     # alias ls='ls -hv --color=auto --group-directories-first' # classify files in colour
