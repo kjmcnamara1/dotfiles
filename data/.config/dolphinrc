@@ -7,6 +7,10 @@ PreviewSize=32
 [DetailsMode]
 PreviewSize=16
 
+[ExtractDialog]
+2 screens: Height=480
+2 screens: Width=878
+
 [General]
 ConfirmClosingMultipleTabs=false
 Version=202
