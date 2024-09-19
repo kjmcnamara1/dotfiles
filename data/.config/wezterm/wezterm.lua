@@ -168,6 +168,20 @@ config.keys = {
   { key = "s",   mods = "LEADER",     action = act.SplitVertical },
 }
 
+-- Change mouse scroll amount
+config.mouse_bindings = {
+  {
+    event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+    mods = "NONE",
+    action = act.ScrollByLine(-3),
+  },
+  {
+    event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+    mods = "NONE",
+    action = act.ScrollByLine(3),
+  },
+}
+
 -- Navigation with Nvim
 smart_splits.apply_to_config(config, {
   -- directional keys to use in order of: left, down, up, right
