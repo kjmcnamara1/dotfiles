@@ -98,6 +98,9 @@ disabled = true
 format = "[$symbol$version]($style)"
 style = "bold yellow"
 
+[lua]
+disabled = true
+
 [python]
 symbol = " "
 style = "blue"
