@@ -11,8 +11,8 @@ $XONSH_CTRL_BKSP_DELETION = True
 $XONSH_HISTORY_MATCH_ANYWHERE = True
 
 # Pyenv
-$PYENV_ROOT = '~/.config/pyenv'
-$PATH.prepend('$PYENV_ROOT/bin')
+$PYENV_ROOT = $HOME + '/.config/pyenv'
+$PATH.prepend($PYENV_ROOT + '/bin')
 source-bash $(pyenv init -)
 
 # Zoxide
