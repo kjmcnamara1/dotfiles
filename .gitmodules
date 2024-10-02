@@ -1,6 +1,6 @@
 [submodule "data/.config/nvim"]
-	path = data/.config/nvim
-	url = git@github.com:kjmcnamara1/nvim.git
+path = modules/neovim/.config/nvim
+url = git@github.com:kjmcnamara1/nvim.git
 [submodule "data/.config/nushell"]
-	path = data/.config/nushell
-	url = git@github.com:kjmcnamara1/nushell.git
+path = modules/nushell/.config/nushell
+url = git@github.com:kjmcnamara1/nushell.git

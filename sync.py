@@ -1,18 +1,135 @@
 #!/usr/bin/env python3
 import argparse
 import logging
-import sys
+import os
+import tomllib
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-import tomllib
-
 log = logging.getLogger(__name__)
 
-DOTFILES = Path(__file__).resolve().parent
-# DATA = DOTFILES / "data"
+IS_WINDOWS = os.name == "nt"
+DOTFILES_DIR = Path(__file__).resolve().parent
+MODULES_DIR = DOTFILES_DIR / "modules"
+PROFILES_FILE = DOTFILES_DIR / "profiles.toml"
 # IGNORE = (DOTFILES / "ignore").read_text().splitlines()
 # LINKS = (DOTFILES / "links").read_text().splitlines()
+
+# TODO: Add ability to ignore files in module .sync.toml
+
+
+@dataclass
+class SyncOptions:
+    dry_run: bool = True
+    force: bool = False
+    log: str = "WARNING"
+    destination: Path = Path.home()
+    target_dir: Path = DOTFILES_DIR / "data"
+    ignore: list[str] = field(default_factory=list)
+    link: list[str] = field(default_factory=lambda: ["*"])
+
+
+def read_profiles() -> dict[str, Any]:
+    return tomllib.loads(PROFILES_FILE.read_text()) if PROFILES_FILE.exists() else {}
+
+
+def get_modules(profile_name: str, profiles: dict[str, Any]) -> set[str]:
+    # [x]: Create set of modules from toml array and subtract modules starting with '!'
+    if profile_name == "default":
+        return set(
+            module_path.name
+            for module_path in MODULES_DIR.iterdir()
+            if module_path.is_dir()
+        )
+
+    profile = profiles.get(profile_name)
+    if profile is None:
+        raise KeyError(f"Profile '{profile_name}' not found in {PROFILES_FILE}")
+
+    raw_modules = set(profile.get("modules", []))
+    add_modules = {module for module in raw_modules if not module.startswith("!")}
+
+    # included_profiles = set(profile.get("include", []))
+    for included_profile in set(profile.get("include", [])):
+        add_modules.update(get_modules(included_profile, profiles))
+
+    remove_modules = {module[1:] for module in raw_modules if module.startswith("!")}
+
+    return add_modules - remove_modules
+
+
+@dataclass(frozen=True)
+class SyncModule:
+    name: str
+
+    @property
+    def path(self) -> Path:
+        return MODULES_DIR / self.name
+
+    @property
+    def destination(self) -> Path | None:
+        _destination = (
+            self._get_windows_destination()
+            if IS_WINDOWS
+            else self._get_unix_destination() or self._get_destination()
+        )
+        return Path(_destination) if _destination else None
+
+    def _get_unix_destination(self) -> str | None:
+        return self._read_module_options().get("unix_destination")
+
+    def _get_windows_destination(self) -> str | None:
+        return self._read_module_options().get("windows_destination")
+
+    def _get_destination(self) -> str | None:
+        return self._read_module_options().get("destination")
+
+    def _read_module_options(self) -> dict[str, Any]:
+        module_sync_file = self.path / ".sync.toml"
+        return (
+            tomllib.loads(module_sync_file.read_text())
+            if module_sync_file.exists()
+            else {}
+        )
+
+    def sync_to(self, destination: Path, dry_run: bool, force: bool):
+        abs_targets = [file for file in self.path.rglob("*") if file.is_file()]
+
+        for target in abs_targets:
+            rel_target = target.relative_to(self.path)
+            link = destination / rel_target
+            if not link.exists():
+                symlink(link, target, dry_run)
+                return
+
+            # link does exist
+            if link.samefile(target):
+                log.info("%s is the same file as %s ... skipping", link, target)
+                continue
+
+            result = prompt(
+                f"File already exists at {link}. Which file would you like to keep?\n"
+                f"[1] {target}\n"
+                f"[2] {link}{f' ( -> {link.resolve()})' if link.is_symlink() else ''}\n"
+                f"[S] Don't link this file\n",
+                opts=["1", "2", "s"],
+                default=-1,
+                force=force,
+                hide_opts=True,
+            )
+            # print(f"{result =}")
+
+            match result:
+                case "1":
+                    delete(link, dry_run)
+                    symlink(link, target, dry_run)
+                case "2":
+                    delete(target, dry_run)
+                    move(link, target, dry_run)
+                    symlink(link, target, dry_run)
+                case _:
+                    continue
 
 
 def delete(path: Path, dry_run: bool):
@@ -47,7 +164,13 @@ def symlink(link: Path, target: Path, dry_run: bool):
     link.symlink_to(target, target.is_dir())
 
 
-def prompt(msg: str, opts: list[str], default: int = 0, force: bool = False):
+def prompt(
+    msg: str,
+    opts: list[str],
+    default: int = 0,
+    force: bool = False,
+    hide_opts: bool = False,
+):
     """
     Prompt the user to select an option from a list of options
 
@@ -64,12 +187,14 @@ def prompt(msg: str, opts: list[str], default: int = 0, force: bool = False):
     if force:
         return opts[default]
     opts[default] = opts[default].upper()
-    text = f"{msg} [{'/'.join(opts)}] "
+    text = msg if hide_opts else f"{msg} [{'/'.join(opts)}] "
     opts = [o.casefold() for o in opts]
 
     result = input(text).casefold().strip()
+    if result == "":
+        result = opts[default]
     if result not in opts:
-        return opts[default]
+        result = input("Please enter a valid option: \n" + text).casefold().strip()
     return result
 
 
@@ -193,52 +318,21 @@ def sync(
 
 
 def parse_args() -> argparse.Namespace:
-    default_options = {
-        # "option_file": Path("sync_options.toml"),
-        "dry_run": False,
-        "force": False,
-        "log": "WARNING",
-        "link_dir": Path.home(),
-        "target_dir": DOTFILES / "data",
-        "ignore": [],
-        "link": ["*"],
-    }
-
-    def options(option_file: str) -> dict[str, Any]:
-        # print(option_file)
-        try:
-            option_path = Path(option_file)
-            opts = tomllib.loads(option_path.read_text()) | {"file": option_path}
-        except OSError:
-            opts = {"file": None}
-
-        opts["link_dir"] = Path(  # type: ignore
-            opts.get("link_dir", default_options["link_dir"])  # type: ignore
-        ).resolve()
-        opts["target_dir"] = Path(  # type: ignore
-            opts.get("target_dir", default_options["target_dir"])  # type: ignore
-        ).resolve()
-
-        # print(opts)
-        # opts = default_options | opts
-        # opts = argparse.Namespace(**opts)
-
-        # print(opts)
-
-        return default_options | opts
-
     parser = argparse.ArgumentParser(
         description="Sync dotfiles directory to another directory (i.e. $HOME)"
     )
+
     parser.add_argument(
-        "-o",
-        "--options",
-        # dest="option_file",
-        type=options,
-        default="sync_options.toml",
-        # type=Path,
-        # default=default_options["option_file"],
-        help="TOML file containing command line options [log, link_dir, target_dir, ignore, link]",
+        "-p",
+        "--profile",
+        default="default",
+        help="Profile to sync. If not specified, default profile will sync all modules.",
+    )
+    parser.add_argument(
+        "--destination",
+        type=Path,
+        default=Path.home(),
+        help="Directory to place links in. Defaults to home path.",
     )
     parser.add_argument(
         "-d",
@@ -255,87 +349,56 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--log",
         choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
-        # default=default_options["log"],
+        default="WARNING",
         help="Set logging level",
     )
-    parser.add_argument(
-        "--link-dir",
-        type=Path,
-        # default=default_options["link_dir"],
-        help="Directory to place links in.",
-    )
-    parser.add_argument(
-        "--target-dir",
-        type=Path,
-        # default=default_options["link_dir"],
-        help="Directory containing target files.",
-    )
-    parser.add_argument(
-        "-i",
-        "--ignore",
-        nargs="+",
-        # default=default_options["ignore"],
-        help="List of globs to ignore.",
-    )
-    parser.add_argument(
-        "-l",
-        "--link",
-        nargs="+",
-        # default=default_options["link"],
-        help="List of globs to link.",
-    )
 
-    args = parser.parse_args()
-    # print(f"initial args = {args}")
-
-    # args.options = argparse.Namespace(**tomllib.loads(args.option_file.read_text()))
-    # args.options = argparse.Namespace(**tomllib.load(args.option_file))
-
-    # print(args.options.resolve())
-
-    args.log = args.log or args.options["log"]
-    args.link_dir = args.link_dir or args.options["link_dir"]
-    args.target_dir = args.target_dir or args.options["target_dir"]
-    args.ignore = args.ignore or args.options["ignore"]
-    args.link = args.link or args.options["link"]
-
-    # print(f"final args = {args}")
-
-    return args
+    return parser.parse_args()
 
 
 def main():
-    args = parse_args()
+    options = parse_args()
 
-    logging.basicConfig(level=args.log)
+    logging.basicConfig(level=options.log)
 
     log.debug("ARGS:")
-    log.debug("option_file = %s", args.options["file"])
-    log.debug("dry_run = %s", args.dry_run)
-    log.debug("force = %s", args.force)
-    log.debug("log = %s", args.log)
-    log.debug("link_dir = %s", args.link_dir)
-    log.debug("target_dir = %s", args.target_dir)
-    log.debug("ignore = %s", args.ignore)
-    log.debug("link = %s\n", args.link)
+    for key, value in vars(options).items():
+        log.debug("%s = %s", key, value)
 
     # sys.exit()
 
-    if args.dry_run:
-        print("*** DRY RUN ***")
+    if options.dry_run:
+        print("\n*** DRY RUN ***\n")
 
-    print("Creating symlinks in", args.link_dir, "->", args.target_dir)
-    print()
+    # print("Creating symlinks in", args.link_dir, "->", args.target_dir)
+    # print()
+
+    # loop through all modules in profile
+    # create folders in destination that don't exist
+    # check if file exists and ask whether to keep or overwrite with symlink
+    # symlink files that don't exist
+
+    profiles = read_profiles()
+    # print(json.dumps(profiles["linux"], indent=2))
+    modules = get_modules(options.profile, profiles)
+    for mod in modules:
+        module = SyncModule(mod)
+        destination = (
+            module.destination
+            or profiles[options.profile].get("destination")
+            or options.destination
+        )
+        module.sync_to(destination, dry_run=options.dry_run, force=options.force)
 
     # sys.exit()
-    sync(
-        target_dir=args.target_dir,
-        link_dir=args.link_dir,
-        dry_run=args.dry_run,
-        force=args.force,
-        ignore=args.ignore,
-        to_link=args.link,
-    )
+    # sync(
+    #     target_dir=args.target_dir,
+    #     link_dir=args.link_dir,
+    #     dry_run=args.dry_run,
+    #     force=args.force,
+    #     ignore=args.ignore,
+    #     to_link=args.link,
+    # )
 
 
 if __name__ == "__main__":

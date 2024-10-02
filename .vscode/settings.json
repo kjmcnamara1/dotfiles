@@ -1,4 +1,5 @@
 {
   "Lua.diagnostics.globals": ["vim"],
-  "taipyStudio.gUI.elementsFilePaths": []
+  "taipyStudio.gUI.elementsFilePaths": [],
+  "taipyStudio.config.mainPythonFile": "sync.py"
 }

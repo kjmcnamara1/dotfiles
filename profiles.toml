@@ -1,0 +1,42 @@
+[basic]
+modules = ['fastfetch']
+
+[linux]
+modules = [
+    'bash',
+    'bat',
+    'fastfetch',
+    'fish',
+    'git',
+    'helix',
+    'ipython',
+    'kde',
+    'kitty',
+    'neovim',
+    'poetry',
+    'profile_pic',
+    'starship',
+    'wallpaper',
+    'wezterm',
+    'xonsh',
+    'yazi',
+    'zsh',
+]
+
+[angel]
+include = ['linux']
+
+[muse]
+include = ['linux']
+modules = ['caps2esc']
+
+[windows]
+modules = [
+    'fastfetch',
+    'git',
+    'neovim',
+    'starship',
+    'wallpaper',
+    'xonsh',
+    'yazi',
+]
