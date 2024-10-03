@@ -97,6 +97,7 @@ class SyncModule:
         abs_targets = [file for file in self.path.rglob("*") if file.is_file()]
 
         for target in abs_targets:
+            log.debug("target = %s", target)
             rel_target = target.relative_to(self.path)
             link = destination / rel_target
             if not link.exists():
