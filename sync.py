@@ -101,7 +101,7 @@ class SyncModule:
             link = destination / rel_target
             if not link.exists():
                 symlink(link, target, dry_run)
-                return
+                continue
 
             # link does exist
             if link.samefile(target):
