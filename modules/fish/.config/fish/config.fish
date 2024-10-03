@@ -26,9 +26,6 @@ if status is-interactive # connected to keyboard
     # <c-c> clears the commandline when in insert mode
     bind --mode insert \cc 'commandline -r ""'
 
-    # Pyenv
-    pyenv init - | source
-
     # Zoxide
     zoxide init --cmd cd fish | source
 

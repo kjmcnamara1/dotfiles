@@ -129,7 +129,7 @@ return {
       parents = 1,
       -- enable_debug_output = true,
       name = { "venv", ".venv", },
-      pyenv_path = "~/.config/pyenv/versions",
+      -- pyenv_path = "~/.config/pyenv/versions",
       -- poetry_path = "~/.cache/pypoetry/virtualenvs",
     },
     config = function(_, opts)

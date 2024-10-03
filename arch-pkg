@@ -40,8 +40,7 @@ sddm
 plasma-framework5
 
 # Python
-pyenv
-python-poetry
+uv
 
 # Graphical
 wezterm

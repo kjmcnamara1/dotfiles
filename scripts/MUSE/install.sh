@@ -91,7 +91,7 @@ arch-chroot /mnt pacman -S --noconfirm openssh nodejs npm xclip unzip zstd
 # Terminal tools
 arch-chroot /mnt pacman -S --noconfirm eza bat tmux fzf fd ripgrep zoxide starship ttf-jetbrains-mono-nerd
 # Python tools
-arch-chroot /mnt pacman -S --noconfirm python-poetry pyenv
+arch-chroot /mnt pacman -S --noconfirm python-poetry uv
 # Graphical apps
 arch-chroot /mnt pacman -S --noconfirm wezterm freecad inkscape gimp obsidian
 

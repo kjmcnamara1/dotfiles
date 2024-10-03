@@ -10,11 +10,6 @@ $XONSH_AUTOPAIR = True
 $XONSH_CTRL_BKSP_DELETION = True
 $XONSH_HISTORY_MATCH_ANYWHERE = True
 
-# Pyenv
-$PYENV_ROOT = $HOME + '/.config/pyenv'
-$PATH.prepend($PYENV_ROOT + '/bin')
-source-bash $(pyenv init -)
-
 # Zoxide
 execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
 

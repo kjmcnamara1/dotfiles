@@ -28,7 +28,3 @@ git clone https://github.com/tmux-plugins/tpm ~/.cache/tmux/plugins/tpm
 
 # Dotfiles
 mkdir ~/Code && cd ~/Code && git clone --recurse-submodules git@github.com:kjmcnamara1/dotfiles && cd dotfiles && chmod +x sync.py && ./sync.py
-
-# Python
-pyenv install 3.12
-pyenv global 3.12
