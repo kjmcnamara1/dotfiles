@@ -3,7 +3,7 @@ import argparse
 import logging
 import os
 import tomllib
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -17,17 +17,6 @@ PROFILES_FILE = DOTFILES_DIR / "profiles.toml"
 # LINKS = (DOTFILES / "links").read_text().splitlines()
 
 # TODO: Add ability to ignore files in module .sync.toml
-
-
-@dataclass
-class SyncOptions:
-    dry_run: bool = True
-    force: bool = False
-    log: str = "WARNING"
-    destination: Path = Path.home()
-    target_dir: Path = DOTFILES_DIR / "data"
-    ignore: list[str] = field(default_factory=list)
-    link: list[str] = field(default_factory=lambda: ["*"])
 
 
 def read_profiles() -> dict[str, Any]:
@@ -201,125 +190,6 @@ def prompt(
     return result
 
 
-def consolidate(source: Path, destination: Path, dry_run: bool, force=False):
-    # if dst is regular file or symlink(file or dir):
-    #     if src is regular file:
-    #         ask to overwrite
-    #         if overwrite:
-    #             delete dst then move src
-    #         else:
-    #             delete src
-    #     if src is symlink(file or dir):
-    #         delete src
-    #     if src is regular dir:
-    #         shouldn't happen
-    # if dst is regular dir:
-    #     if src is regular file:
-    #         ask to overwrite
-    #         if overwrite:
-    #             delete dst then move src
-    #     if src is symlink(file or dir):
-    #         delete src
-    #     if src is regular dir:
-    #         consolidate each item in src to dst
-    #         delete src
-    # if dst is symlink(file or dir):
-    #     if src is regular file:
-    #         ask to overwrite
-    #         if overwrite:
-    #             delete dst then move src
-    #     if src is symlink:
-    #         delete src
-    #     if src is regular dir:
-    #         shouldn't happen
-
-    log.debug('source = "%s", destination = "%s"', source, destination)
-
-    if not source.exists(follow_symlinks=False):
-        log.debug(f"{source} doesn't exist")
-        return
-
-    # If src is a regular file, ask to overwrite dst if dst exists
-    # Then move src to dst
-    if source.is_file() and not source.is_symlink():
-        if destination.exists(follow_symlinks=False):
-            overwrite = (
-                prompt(f"{destination} exists. Overwrite?", ["y", "n"], 1, force) == "y"
-            )
-            if not overwrite:
-                delete(source, dry_run)
-                return
-            delete(destination, dry_run)
-        move(source, destination, dry_run)
-        return
-
-    # If both are regular directories, recursively consolidate each item in src to dst
-    if (
-        source.is_dir()
-        and destination.is_dir()
-        and not source.is_symlink()
-        and not destination.is_symlink()
-    ):
-        for item in source.iterdir():
-            dst_item = destination / item.name
-            consolidate(item, dst_item, dry_run, force)
-
-    # finished looping through items (empty dir)
-    delete(source, dry_run)
-
-
-def sync(
-    target_dir: Path,
-    link_dir: Path,
-    dry_run: bool,
-    force: bool,
-    ignore: list[str],
-    to_link: list[str],
-):
-    """Sync two existing directories with symlinks"""
-    for target in target_dir.iterdir():
-        # Immediately ignore any target matching 'ignore' file
-        if any([target.match(glob) for glob in ignore]):
-            print("Ignoring", target)
-            continue  # next target
-
-        link = link_dir / target.relative_to(target_dir)
-
-        log.debug("link = %s, target = %s", link, target)
-
-        # If target matches 'links' file, Consolidate link to target, then create symlink
-        if any([target.match(glob) for glob in to_link]):
-            # both link and target are normal dirs
-            # if not link.is_symlink() and link.is_dir() and target.is_dir():
-
-            # link and target could be anything -> handle in consolidate fn
-            consolidate(link, target, dry_run, force)
-            # after consolidate fn, link should not exist
-            if not dry_run:
-                assert not link.exists(
-                    follow_symlinks=False
-                ), f"{link} exists after consolidate"
-
-            symlink(link, target, dry_run)
-            continue  # next target
-
-        # Target is not in ignore or link lists
-        if target.is_file():
-            log.info("Skipping %s", target)
-            continue  # next target
-
-        # Target is a directory
-        log.info("Entering subdirectory %s", target)
-        sync(
-            target_dir=target,
-            link_dir=link,
-            dry_run=dry_run,
-            force=force,
-            ignore=ignore,
-            to_link=to_link,
-        )
-
-
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Sync dotfiles directory to another directory (i.e. $HOME)"
@@ -373,16 +243,8 @@ def main():
     if options.dry_run:
         print("\n*** DRY RUN ***\n")
 
-    # print("Creating symlinks in", args.link_dir, "->", args.target_dir)
-    # print()
-
-    # loop through all modules in profile
-    # create folders in destination that don't exist
-    # check if file exists and ask whether to keep or overwrite with symlink
-    # symlink files that don't exist
-
+    # TODO: use dataclass for Profile so 'default' profile works
     profiles = read_profiles()
-    # print(json.dumps(profiles["linux"], indent=2))
     modules = get_modules(options.profile, profiles)
     for mod in modules:
         module = SyncModule(mod)
@@ -392,16 +254,6 @@ def main():
             or options.destination
         )
         module.sync_to(destination, dry_run=options.dry_run, force=options.force)
-
-    # sys.exit()
-    # sync(
-    #     target_dir=args.target_dir,
-    #     link_dir=args.link_dir,
-    #     dry_run=args.dry_run,
-    #     force=args.force,
-    #     ignore=args.ignore,
-    #     to_link=args.link,
-    # )
 
 
 if __name__ == "__main__":
