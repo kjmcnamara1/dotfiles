@@ -90,9 +90,12 @@ class SyncModule:
                 continue
 
             log.debug("target = %s", target)
+
             rel_target = target.relative_to(self.path)
             link = destination / rel_target
-            if not link.exists():
+            if is_dead_link(link):
+                delete(link, dry_run)
+            if not link.exists(follow_symlinks=False):
                 symlink(link, target, dry_run)
                 continue
 
@@ -123,6 +126,10 @@ class SyncModule:
                     symlink(link, target, dry_run)
                 case _:
                     continue
+
+
+def is_dead_link(path: Path) -> bool:
+    return path.is_symlink() and not path.exists(follow_symlinks=True)
 
 
 def delete(path: Path, dry_run: bool):
