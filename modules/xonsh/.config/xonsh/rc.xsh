@@ -1,5 +1,5 @@
 # Xontribs
-xontrib load coreutils vox
+xontrib load coreutils vox prompt_starship
 
 # Environment Variables
 $CASE_SENSITIVE_COMPLETIONS = ''
@@ -12,9 +12,6 @@ $XONSH_HISTORY_MATCH_ANYWHERE = True
 
 # Zoxide
 execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
-
-# Starship Prompt
-execx($(starship init xonsh))
 
 # Aliases
 aliases['py'] = 'python3' # Python
