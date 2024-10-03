@@ -1,1 +1,1 @@
-unix_target = '/etc/interception/udevmon.d'
+unix_destination = '/etc/interception/udevmon.d'
