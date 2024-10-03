@@ -161,6 +161,8 @@ def symlink(link: Path, target: Path, dry_run: bool):
     print(link, " -> ", target)
     if dry_run:
         return
+    if not link.parent.exists():
+        link.parent.mkdir(parents=True)
     link.symlink_to(target, target.is_dir())
 
 
