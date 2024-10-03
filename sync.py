@@ -161,7 +161,11 @@ def symlink(link: Path, target: Path, dry_run: bool):
     print(link, " -> ", target)
     if dry_run:
         return
+    if link.parent.is_symlink():
+        log.info("Removing symlink at %s", link.parent)
+        link.parent.unlink()
     if not link.parent.exists():
+        log.info("Creating directory at %s", link.parent)
         link.parent.mkdir(parents=True)
     link.symlink_to(target, target.is_dir())
 
@@ -263,6 +267,8 @@ def main():
             or profiles[options.profile].get("destination")
             or options.destination
         )
+        log.debug("module: %s", mod)
+        log.debug("destination: %s", destination)
         module.sync_to(destination, dry_run=options.dry_run, force=options.force)
 
 
