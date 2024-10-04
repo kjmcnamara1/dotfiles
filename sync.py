@@ -51,6 +51,7 @@ def get_modules(profile_name: str, profiles: dict[str, Any]) -> set[str]:
 @dataclass(frozen=True)
 class SyncModule:
     name: str
+    # TODO: Add SyncProfile via composition
 
     @property
     def path(self) -> Path:
