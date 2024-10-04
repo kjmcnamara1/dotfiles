@@ -63,7 +63,11 @@ class SyncModule:
             if IS_WINDOWS
             else self._get_unix_destination() or self._get_destination()
         )
-        return os.path.expandvars(Path(_destination).expanduser()) if _destination else None
+        return (
+            os.path.expandvars(Path(_destination).expanduser())
+            if _destination
+            else None
+        )
 
     def _get_unix_destination(self) -> str | None:
         return self._read_module_options().get("unix_destination")
@@ -209,6 +213,7 @@ def parse_args() -> argparse.Namespace:
         description="Sync dotfiles directory to another directory (i.e. $HOME)"
     )
 
+    # TODO: Add argument for providing modules directly
     parser.add_argument(
         "-p",
         "--profile",
