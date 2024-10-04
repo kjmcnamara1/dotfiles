@@ -64,7 +64,7 @@ class SyncModule:
             else self._get_unix_destination() or self._get_destination()
         )
         return (
-            os.path.expandvars(Path(_destination).expanduser())
+            Path(os.path.expandvars(os.path.expanduser(_destination)))
             if _destination
             else None
         )
