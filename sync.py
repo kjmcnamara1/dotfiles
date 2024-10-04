@@ -133,6 +133,7 @@ class SyncModule:
                     continue
 
 
+# TODO: Potentially remove all dead links present in destination directories??
 def is_dead_link(path: Path) -> bool:
     return path.is_symlink() and not path.exists(follow_symlinks=True)
 

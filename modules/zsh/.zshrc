@@ -71,6 +71,9 @@ alias df='df -h'                                            # human readable dis
 alias du='du -h'                                            # human readable disk usage
 alias py='python3'                                          # Python
 
+# Yazi
+export YAZI_CONFIG_HOME='~/.config/yazi'
+
 # Zoxide
 eval "$(zoxide init --cmd cd zsh)"
 #

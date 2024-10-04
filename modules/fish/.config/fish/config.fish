@@ -55,7 +55,7 @@ if status is-interactive # connected to keyboard
     alias dc='docker compose'
 
     # Yazi Wrapper
-    function yy
+    function y
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
         yazi $argv --cwd-file="$tmp"
         if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]

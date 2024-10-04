@@ -9,6 +9,7 @@ $VI_MODE = True
 $XONSH_AUTOPAIR = True
 $XONSH_CTRL_BKSP_DELETION = True
 $XONSH_HISTORY_MATCH_ANYWHERE = True
+$YAZI_CONFIG_HOME='~/.config/yazi'
 
 # Zoxide
 execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
@@ -29,9 +30,6 @@ aliases['du'] = 'du -h' # human readable disk usage
 # aliases['ls'] = 'ls -hv --color=auto --group-directories-first' # classify files in colour
 # aliases['l'] = '/usr/bin/ls -hv --color=auto --group-directories-first' # shorthand plain ls
 aliases['dc'] = 'docker compose' # Docker compose
-
-# TODO: Create xonsh function for yazi wrapper
-# https://yazi-rs.github.io/docs/quick-start/#shell-wrapper
 
 @aliases.register
 def _y(args):
