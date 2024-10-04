@@ -1,5 +1,5 @@
-[submodule "modules/neovim/.config/nvim"]
-path = modules/neovim/.config/nvim
+[submodule "modules\neovim\nvim"]
+path = modules\neovim\nvim
 url = git@github.com:kjmcnamara1/nvim.git
 [submodule "modules/nushell/.config/nushell"]
 path = modules/nushell/.config/nushell
