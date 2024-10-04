@@ -1,5 +1,5 @@
 [basic]
-modules = ['fastfetch']
+modules = ['neovim']
 
 [linux]
 modules = [
@@ -32,6 +32,7 @@ modules = ['caps2esc']
 
 [windows]
 modules = [
+    'bash',
     'fastfetch',
     'git',
     'neovim',
