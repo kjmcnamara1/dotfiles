@@ -104,6 +104,23 @@ systemctl enable libvirtd
 systemctl start libvirtd
 ```
 
+### OneDrive
+
+```sh
+yay -S onedrive-abraunegg
+
+onedrive
+```
+
+1. Paste URL into browser
+2. Log in to MS OneDrive
+3. Copy URL of addressbar of the blank page that results and paste into terminal
+
+```sh
+systemctl --user enable onedrive
+systemctl --user start onedrive
+```
+
 ## Windows
 
 ### Keyboard
