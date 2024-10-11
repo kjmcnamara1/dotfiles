@@ -9,7 +9,11 @@ $VI_MODE = True
 $XONSH_AUTOPAIR = True
 $XONSH_CTRL_BKSP_DELETION = True
 $XONSH_HISTORY_MATCH_ANYWHERE = True
-$YAZI_CONFIG_HOME='~/.config/yazi'
+$YAZI_CONFIG_HOME = '~/.config/yazi'
+$EDITOR = 'nvim'
+
+# Path
+$PATH.prepend('~/.local/bin') # User binaries
 
 # Zoxide
 execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
