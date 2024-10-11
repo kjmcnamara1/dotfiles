@@ -16,7 +16,11 @@ PROFILES_FILE = DOTFILES_DIR / "profiles.toml"
 # IGNORE = (DOTFILES / "ignore").read_text().splitlines()
 # LINKS = (DOTFILES / "links").read_text().splitlines()
 
+# NOTE: See https://github.com/anishathalye/dotbot for inspiration
+
 # TODO: Add ability to ignore files in module .sync.toml
+# TODO: Make subcommands 'install' and 'config' for installing packages and syncing config files
+# TODO: Restore ability to sync entire config directories
 
 
 def read_profiles() -> dict[str, Any]:
