@@ -10,6 +10,7 @@ PreviewSize=16
 [ExtractDialog]
 2 screens: Height=480
 2 screens: Width=878
+DirHistory[$e]=/run/media/kjm/NAS/media/library/roms/switch/
 
 [General]
 ConfirmClosingMultipleTabs=false
