@@ -1,8 +1,8 @@
-[submodule "modules\neovim\nvim"]
+[submodule "nvim"]
     path = modules\neovim\nvim
     url = git@github.com:kjmcnamara1/nvim.git
     ignore = dirty
-[submodule "modules/nushell/.config/nushell"]
+[submodule "nushell"]
     path = modules/nushell/.config/nushell
     url = git@github.com:kjmcnamara1/nushell.git
     ignore = dirty
@@ -10,11 +10,15 @@
     path = meta/dotbot
     url = https://github.com/anishathalye/dotbot
     ignore = dirty
-[submodule "plugins/dotbot-sudo"]
-    path = meta/plugins/dotbot-sudo
-    url = https://github.com/DrDynamic/dotbot-sudo.git
+[submodule "dotbot-sudo"]
+	path = meta/plugins/sudo
+    url = https://github.com/DrDynamic/dotbot-sudo
     ignore = dirty
-[submodule "meta/plugins/dotbot-yay"]
-	path = meta/plugins/dotbot-yay
+[submodule "dotbot-yay"]
+	path = meta/plugins/yay
 	url = https://github.com/oxson/dotbot-yay
+    ignore = dirty
+[submodule "dotbot-scoop"]
+	path = meta/plugins/scoop
+	url = https://github.com/JamJar00/dotbot-scoop
     ignore = dirty
