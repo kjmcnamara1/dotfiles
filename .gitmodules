@@ -4,3 +4,6 @@ url = git@github.com:kjmcnamara1/nvim.git
 [submodule "modules/nushell/.config/nushell"]
 path = modules/nushell/.config/nushell
 url = git@github.com:kjmcnamara1/nushell.git
+[submodule "dotbot"]
+	path = dotbot
+	url = https://github.com/anishathalye/dotbot
