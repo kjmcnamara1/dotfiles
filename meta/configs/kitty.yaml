@@ -1,0 +1,5 @@
+- yay:
+    - kitty
+- link:
+    ~/.config/kitty:
+      force: true

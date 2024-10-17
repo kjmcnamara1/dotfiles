@@ -3,3 +3,4 @@
     ~/.config/:
       glob: true
       path: kde/*
+      force: true

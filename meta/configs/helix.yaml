@@ -3,3 +3,4 @@
 
 - link:
     ~/.config/helix:
+      force: true
