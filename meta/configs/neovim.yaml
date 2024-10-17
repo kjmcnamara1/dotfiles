@@ -1,0 +1,7 @@
+- link:
+    ~/.config/nvim:
+      if: uname
+      force: true
+    ~/AppData/Local/nvim:
+      if: cmd.exe --version
+      force: true
