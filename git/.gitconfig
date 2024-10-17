@@ -1,0 +1,15 @@
+[core]
+  editor = nvim
+[user]
+  name = Kevin J. McNamara
+  email = kjmcnamara1@gmail.com
+[pull]
+  rebase = false
+[push]
+  autoSetupRemote = true
+[commit]
+  verbose = true
+[submodule]
+  recurse = true
+[init]
+  defaultBranch = main

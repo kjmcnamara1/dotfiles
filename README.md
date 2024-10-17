@@ -191,7 +191,7 @@ systemctl --user start onedrive
   - Open File Explorer To = This PC
 
 Pin Home Directory (C:\Users\kjmcn) to Quick Access
-![](img/home_quick_access.png)
+![](docs/img/home_quick_access.png)
 
 #### Taskbar
 
@@ -210,7 +210,7 @@ Create 4 Desktops named:
 1. Extra
 1. Personal
 
-![](img/desktops.png)
+![](docs/img/desktops.png)
 
 ### [Scoop](https://scoop.sh/)
 
@@ -308,7 +308,7 @@ Log in with Work account > Only this App
 
 ##### [Outlook (PWA)](https://outlook.office.com/mail/)
 
-![](img/outlook_pwa.png)
+![](docs/img/outlook_pwa.png)
 
 Install Outlook PWA  
 Pin to taskbar
@@ -342,7 +342,7 @@ Log in with google account
 
 Log in  
 Change Settings > General > Start Minimized = to Systray
-![](img/vpn_settings.png)
+![](docs/img/vpn_settings.png)
 
 #### [Proton Drive](https://proton.me/drive/download)
 
@@ -355,7 +355,7 @@ Do not backup
 Do not sync inside OneDrive/Documents  
 Sync to C:\Users\kjmcn\MEGA  
 Remove .\* from 'excluded file and folder names' in Settings > Folders
-![](img/megasync_settings.png)
+![](docs/img/megasync_settings.png)
 
 #### [Dell Active Pen Service](https://www.dell.com/support/home/en-us/product-support/product/dell-ap-pn5122w/drivers)
 

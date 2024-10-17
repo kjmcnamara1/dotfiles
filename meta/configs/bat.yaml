@@ -1,0 +1,4 @@
+- yay:
+    - bat
+- link:
+    ~/.config/bat:

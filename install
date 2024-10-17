@@ -1,22 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-DEFAULT_CONFIG_PREFIX="default"
-CONFIG_SUFFIX=".conf.yaml"
-DOTBOT_DIR="meta/dotbot"
-PLUGIN_DIR="meta/plugins"
-
-DOTBOT_BIN="bin/dotbot"
-BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-cd "${BASEDIR}"
-git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
-git submodule update --init --recursive "${BASEDIR}"
-
-for conf in ${DEFAULT_CONFIG_PREFIX} "${@}"; do
-    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" \
-        -d "${BASEDIR}" \
-        -c "${conf}${CONFIG_SUFFIX}" \
-        --plugin-dir "${PLUGIN_DIR}/*"
-done
+python3 "$BASE_DIR/install.py" "${@}"

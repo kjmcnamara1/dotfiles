@@ -1,0 +1,67 @@
+[palette]
+black = '#2E3440'
+gray = '#4C566A'
+light = '#D8DEE9'
+white = '#ECEFF4'
+teal = '#8FBCBB'
+lake = '#88C0D0'
+frost = '#81A1C1'
+blue = '#5E81AC'
+red = '#BF616A'
+orange = '#D08770'
+yellow = '#EBCB8B'
+green = '#A3BE8C'
+purple = '#B48EAD'
+
+[symbols]
+read_only = ""
+truncate = "…"
+python = ""
+duration = ""
+time = ""
+
+[symbols.os]
+windows = ""
+ubuntu = "󰕈"
+suse = ""
+raspbian = "󰐿"
+mint = "󰣭"
+macos = "󰀵"
+manjaro = ""
+linux = "󰌽"
+gentoo = "󰣨"
+fedora = "󰣛"
+alpine = ""
+amazon = ""
+android = ""
+arch = "󰣇"
+artix = "󰣇"
+centos = ""
+debian = "󰣚"
+redhat = "󱄛"
+redhatenterprise = "󱄛"
+
+[symbols.git]
+branch = "󰘬"
+ahead = '⇡'
+behind = '⇣'
+conflicted = "="
+untracked = "?"
+stashed = '$'
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+ignored = ''
+
+[symbols.path]
+git = ""
+default = ''
+'~' = ""
+documents = "󰈙"
+downloads = ""
+music = "󰝚"
+pictures = ""
+code = "󰲋"
+onedrive = ''
+# mega = 'M'
