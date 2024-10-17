@@ -22,10 +22,6 @@
 	path = meta/plugins/scoop
 	url = https://github.com/JamJar00/dotbot-scoop
     ignore = dirty
-[submodule "dotbot-conditional"]
-	path = meta/plugins/conditional
-	url = https://gitlab.com/gnfzdz/dotbot-conditional.git
-    ignore = dirty
 [submodule "dotbot-if"]
 	path = meta/plugins/if
 	url = https://github.com/wonderbeyond/dotbot-if.git
