@@ -1,10 +1,7 @@
-- shell:
-    - [yay -S --noconfirm fish, Installing fish]
-    - [scoop install fish, Installing fish]
-      # description:
-      # quiet: true
-      # stdin: true
-      # stdout: true
-      # stderr: true
+# - shell:
+#     - [yay -S --noconfirm fish, Installing fish]
+#     - [scoop install fish, Installing fish]
+- yay:
+    - fastfetch
 - link:
     ~/.config/fish:
