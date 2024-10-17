@@ -1,0 +1,4 @@
+- yay:
+    - fastfetch
+- link:
+    ~/.config/fastfetch: modules/fastfetch

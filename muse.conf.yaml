@@ -1,8 +1,0 @@
-- defaults:
-    link:
-      create: true
-      relink: true
-
-- link:
-    ~/.config/bat: modules/bat
-    ~/.config/fastfetch: modules/fastfetch
