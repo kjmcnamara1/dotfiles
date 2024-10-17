@@ -26,3 +26,7 @@
 	path = meta/plugins/conditional
 	url = https://gitlab.com/gnfzdz/dotbot-conditional.git
     ignore = dirty
+[submodule "dotbot-if"]
+	path = meta/plugins/if
+	url = https://github.com/wonderbeyond/dotbot-if.git
+    ignore = dirty
