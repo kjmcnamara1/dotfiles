@@ -1,0 +1,10 @@
+- shell:
+    - [yay -S --noconfirm fish, Installing fish]
+    - [scoop install fish, Installing fish]
+      # description:
+      # quiet: true
+      # stdin: true
+      # stdout: true
+      # stderr: true
+- link:
+    ~/.config/fish:

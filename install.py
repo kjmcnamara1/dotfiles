@@ -99,12 +99,13 @@ def main():
         with tempfile.NamedTemporaryFile(
             mode="w+", encoding="utf-8", newline="\n"
         ) as config_file:
-            config_file.write(base_config)
+            # config_file.write(base_config)
             config_file.write(config)
             config_file.seek(0)
 
             cmd = [
                 f"{META_DIR}/{DOTBOT_DIR}/{DOTBOT_BIN}",
+                # "-vv",
                 "-d",
                 BASE_DIR,
                 "-c",
