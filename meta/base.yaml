@@ -2,4 +2,5 @@
     link:
       create: true
       relink: true
+      force: true
 # - clean: "~"
