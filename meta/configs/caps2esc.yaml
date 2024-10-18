@@ -1,2 +1,5 @@
-- link:
-    /etc/interception/udevmon.d/caps2esc.yaml: caps2esc/caps2esc.yaml
+- sudo:
+    - link:
+        /etc/interception/udevmon.d/caps2esc.yaml:
+          path: caps2esc/caps2esc.yaml
+          force: true
