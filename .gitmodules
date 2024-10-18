@@ -22,3 +22,7 @@
 	path = meta/plugins/scoop
 	url = https://github.com/JamJar00/dotbot-scoop
     ignore = dirty
+[submodule "dotbot-include"]
+	path = meta/plugins/include
+	url = https://gitlab.com/gnfzdz/dotbot-include.git
+    ignore = dirty
