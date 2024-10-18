@@ -4,7 +4,7 @@
 
 ### Install
 
-Boot from live USB
+Make sure to UEFI Boot from live USB
 
 #### [Connect to Wifi](https://wiki.archlinux.org/title/Iwd#iwctl)
 

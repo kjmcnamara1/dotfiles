@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+config_file=""
+
+# Read credentials from user
+default_username=kjm
+echo
+read -srp "Root Password: " rootpwd
+echo
+read -rp "Admin Username [kjm]: " username
+username=${username:-$default_username}
+read -srp "Admin User Password: " userpwd
+
+# Save credentials to temp file
+cred_file="$(mktemp)"
+cat >"$cred_file" <<EOF
+{
+    "!root-password": "$rootpwd",
+    "!users": [
+        {
+            "!password": "$userpwd",
+            "sudo": true,
+            "username": "$username"
+        }
+    ]
+}
+EOF
+
+# echo
+# echo "$cred_file"
+# cat "$cred_file"
+
+archinstall --config "$config_file" --creds "$cred_file"
+
+reboot
