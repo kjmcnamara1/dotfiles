@@ -1,9 +1,9 @@
 [submodule "nvim"]
-    path = modules\neovim\nvim
+    path = nvim
     url = git@github.com:kjmcnamara1/nvim.git
     ignore = dirty
 [submodule "nushell"]
-    path = modules/nushell/.config/nushell
+    path = nushell
     url = git@github.com:kjmcnamara1/nushell.git
     ignore = dirty
 [submodule "dotbot"]
