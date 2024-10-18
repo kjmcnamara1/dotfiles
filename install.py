@@ -105,7 +105,7 @@ def main():
 
             cmd = [
                 f"{META_DIR}/{DOTBOT_DIR}/{DOTBOT_BIN}",
-                # "-vv",
+                "-vv",
                 "-d",
                 BASE_DIR,
                 "-c",

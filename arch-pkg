@@ -65,7 +65,7 @@ proton-vpn-gtk-app
 * /028/ /nushell
 * /029/ /nvim
 /032/ /profile_pic
-/141/ /pypoetry
+* /141/ /pypoetry
 /034/ /starship
 /036/ /tmux
 /037/ /wallpaper

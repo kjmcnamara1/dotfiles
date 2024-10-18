@@ -1,0 +1,60 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- sudo:
+    - link:
+        /etc/pacman.conf:
+          force: true
+
+- shell:
+    - command: yay --version || rm -rf /tmp/yay && git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si --noconfirm
+      description: "Install yay"
+
+- yay:
+    - man-db
+    - git
+    - wget
+    - curl
+    - fd
+    - fzf
+    - ripgrep
+    - zoxide
+    - neovim
+    - eza
+    - yazi
+    - fastfetch
+    - starship
+    - github-cli
+    - networkmanager
+    - nodejs
+    - npm
+    - openssh
+    - xclip
+    - unzip
+    - zstd
+    - ttf-jetbrains-mono-nerd
+    - ttf-nerd-fonts-symbols
+    - packagekit
+    - wezterm
+    - brave-bin
+
+- link:
+    ~/.gitconfig:
+    ~/.bashrc:
+    # ~/.zshrc:
+    # ~/.config/fish:
+    # ~/.config/nushell:
+    ~/.config/xonsh:
+    ~/.config/starship.toml:
+    ~/.config/bat:
+    ~/.config/yazi:
+    ~/.config/nvim:
+    # ~/.config/helix:
+    ~/.config/fastfetch:
+    # ~/.config/kitty:
+    ~/.config/wezterm:
+    # ~/.config/tmux:
+    # ~/.config/pypoetry:
+    ~/Pictures/wallpapers:
