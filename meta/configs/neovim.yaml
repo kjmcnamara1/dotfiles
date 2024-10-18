@@ -1,3 +1,9 @@
+- yay:
+    - neovim
+- scoop:
+    apps:
+      - neovim
+
 - link:
     ~/.config/nvim:
       if: uname
