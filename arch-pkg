@@ -1,5 +1,6 @@
 sudo systemctl mask tpm2.target
 
+bat
 brave-bin
 fish
 yazi
@@ -9,7 +10,6 @@ ripgrep
 zoxide
 neovim
 eza
-bat
 fastfetch
 starship
 man-db
@@ -49,3 +49,28 @@ inkscape
 gimp
 obsidian
 proton-vpn-gtk-app
+
+
+# Modules
+* /015/ /bash
+* /016/ /bat
+* /017/ /caps2esc
+* /019/ /fastfetch
+* /020/ /fish
+* /021/ /git
+* /022/ /helix
+* /023/ /ipython
+* /024/ /kde
+* /025/ /kitty
+* /028/ /nushell
+* /029/ /nvim
+/032/ /profile_pic
+/141/ /pypoetry
+/034/ /starship
+/036/ /tmux
+/037/ /wallpaper
+/038/ /wezterm
+/039/ /xonsh
+/040/ /yazi
+/041/ /zsh
+
