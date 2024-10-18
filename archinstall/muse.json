@@ -155,7 +155,7 @@
   "no_pkg_lookups": false,
   "ntp": true,
   "offline": false,
-  "packages": ["man-db", "vim", "git", "wget", "curl"],
+  "packages": ["man-db", "vim", "git", "wget", "curl", "python"],
   "parallel downloads": 0,
   "profile_config": {
     "gfx_driver": null,
