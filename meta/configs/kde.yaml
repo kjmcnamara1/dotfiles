@@ -1,4 +1,12 @@
-- clean: "~/.config/"
+- yay:
+    - kvantum
+    - dosfstools
+    - ark
+    - dolphin
+    - partitionmanager
+    - kdeconnect
+    - sddm
+    - plasma-framework5
 - link:
     ~/.config/:
       glob: true
