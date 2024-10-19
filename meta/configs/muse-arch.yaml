@@ -7,6 +7,9 @@
     - link:
         /etc/pacman.conf:
           force: true
+        /etc/interception/udevmon.d/caps2esc.yaml:
+          path: caps2esc/caps2esc.yaml
+          force: true
 
 - shell:
     - command: yay --version || rm -rf /tmp/yay && git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si --noconfirm
@@ -14,22 +17,31 @@
 
 - yay:
     - man-db
+    - amd-ucode
+    - vim
     - git
+    - github-cli
     - wget
     - curl
+    # - zsh
+    # - fish
+    # - nushell
+    - xonsh
+    - uv # Python package manager
+    # - poetry
+    - eza
+    - bat
+    - yazi
+    - fastfetch
+    - starship
     - fd
     - fzf
     - ripgrep
     - zoxide
     - neovim
-    - eza
-    - yazi
-    - fastfetch
-    - starship
-    - github-cli
-    - networkmanager
     - nodejs
     - npm
+    - networkmanager
     - openssh
     - xclip
     - unzip
@@ -37,8 +49,16 @@
     - ttf-jetbrains-mono-nerd
     - ttf-nerd-fonts-symbols
     - packagekit
+    # - tmux
     - wezterm
+    # - kitty
+    # - konsole
     - brave-bin
+    # - freecad
+    # - inkscape
+    # - gimp
+    - obsidian
+    - proton-vpn-gtk-app
 
 - link:
     ~/.gitconfig:
@@ -47,14 +67,14 @@
     # ~/.config/fish:
     # ~/.config/nushell:
     ~/.config/xonsh:
-    ~/.config/starship.toml:
     ~/.config/bat:
     ~/.config/yazi:
+    ~/.config/fastfetch:
+    ~/.config/starship.toml:
     ~/.config/nvim:
     # ~/.config/helix:
-    ~/.config/fastfetch:
-    # ~/.config/kitty:
     ~/.config/wezterm:
+    # ~/.config/kitty:
     # ~/.config/tmux:
     # ~/.config/pypoetry:
     ~/Pictures/wallpapers:

@@ -40,13 +40,32 @@ exit
 #### Automated Install Script
 
 ```sh
-curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE.sh > /tmp/tmp.sh
-bash /tmp/tmp.sh
+bash -c "$(curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/dotbot/install-arch)"
+# curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE.sh > /tmp/tmp.sh
+# bash /tmp/tmp.sh
 ```
+
+Script will prompt for root password and Admin username(default=kjm)/password.
+
+You will need to select options for disk layout. Any other preconfigured options can be changed before beginning install.
+
+Arch linux will be installed.
+
+Select "No" when asked to chroot into the new installation.
+
+Machine will automatically reboot.
 
 ### Boot
 
 #### Automated Configuration Script
+
+Log in with the Admin user credentials you supplied during the install script.
+
+Clone dotfiles git repo. Then run
+
+```sh
+git clone -b dotbot https://github.com/kjmcnamara1/dotfiles ~/dotfiles
+```
 
 ```sh
 curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE/config.sh
