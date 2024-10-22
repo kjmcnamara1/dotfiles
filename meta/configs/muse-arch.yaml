@@ -59,6 +59,12 @@
     # - gimp
     - obsidian
     - proton-vpn-gtk-app
+    - interception-caps2esc
+
+- sudo:
+    - shell:
+        - systemctl enable udevmon
+        - systemctl start udevmon
 
 - link:
     ~/.gitconfig:
@@ -78,3 +84,7 @@
     # ~/.config/tmux:
     # ~/.config/pypoetry:
     ~/Pictures/wallpapers:
+
+- shell:
+    - gh auth login
+    - git remote set-url origin git@github.com:kjmcnamara1/dotfiles
