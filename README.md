@@ -65,7 +65,21 @@ Clone dotfiles git repo. Then run
 
 ```sh
 git clone -b dotbot https://github.com/kjmcnamara1/dotfiles ~/dotfiles
+
+cd ~/dotfiles
+./install muse-arch
 ```
+
+
+
+
+
+
+
+
+
+
+
 
 ```sh
 curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE/config.sh
