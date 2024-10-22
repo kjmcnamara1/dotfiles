@@ -1,0 +1,5 @@
+- yay:
+    - starship
+
+- link:
+    ~/.config/starship.toml:
