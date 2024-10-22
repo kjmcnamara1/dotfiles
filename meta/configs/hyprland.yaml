@@ -1,2 +1,5 @@
 - yay:
     - hyprland
+    - dunst
+    - rofi-wayland
+    - waybar
