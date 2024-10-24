@@ -1,2 +1,12 @@
+- yay:
+    - python-pipx
+
+- shell:
+    - pipx install xonsh[full]
+    - pipx ensurepath
+    - which xonsh | sudo tee -a /etc/shells
+    - chsh -s $(which xonsh)
+    - xpip install xontrib-vox xontrib-prompt-starship xontrib-abbrevs xontrib-back2dir xontrib-fish-completer
+    - xpip install xontrib-hist-navigator
 - link:
     ~/.config/xonsh:
