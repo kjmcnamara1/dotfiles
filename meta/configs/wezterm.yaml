@@ -1,5 +1,5 @@
 - yay:
-    - wezterm
+    - wezterm-git # wezterm doesn't start in Hyprland
 
 - link:
     ~/.config/wezterm:
