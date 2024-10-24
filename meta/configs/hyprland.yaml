@@ -1,5 +1,14 @@
 - yay:
     - hyprland
-    - dunst
+    - xdg-desktop-portal-hyprland
+    - hyprpolkitagent-git
+    - pipewire
+    - wireplumber
+    - hyprpaper
+    - dunst # mako, swaync
     - rofi-wayland
     - waybar
+
+- link:
+    ~/.config/hypr:
+      force: true
