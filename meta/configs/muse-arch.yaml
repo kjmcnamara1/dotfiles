@@ -26,7 +26,8 @@
     # - zsh
     # - fish
     # - nushell
-    - xonsh # NOTE: look into installing with `mamba`. `uv` doesn't work. `pipx` works ok if add xonsh install path to /etc/shells. `yay` has to `--break-system-packages`
+    # - xonsh # NOTE: look into installing with `mamba`. `uv` doesn't work. `pipx` works ok if add xonsh install path to /etc/shells. `yay` has to `--break-system-packages`
+    # https://github.com/anki-code/xonsh-install
     - uv # Python package manager
     # - poetry
     - eza
