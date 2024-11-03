@@ -8,8 +8,10 @@
     - dunst # mako, swaync
     - rofi-wayland
     - waybar
+    - python-pywal
 
 - link:
     ~/.config/hypr:
       force: true
     ~/.config/waybar:
+    ~/.config/rofi:
