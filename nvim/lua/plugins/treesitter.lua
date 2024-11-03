@@ -37,6 +37,7 @@ return {
         "markdown_inline",
         "python",
         "query",
+        "rasi",
         "regex",
         "toml",
         "tsx",
