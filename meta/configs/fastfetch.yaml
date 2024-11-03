@@ -5,4 +5,4 @@
       - fastfetch
 
 - link:
-    ~/.config/fastfetch: modules/fastfetch
+    ~/.config/fastfetch:
