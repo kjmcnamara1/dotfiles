@@ -8,6 +8,7 @@
     - dunst # mako, swaync
     - rofi-wayland
     - waybar
+    - wlogout
     - python-pywal
 
 - link:
