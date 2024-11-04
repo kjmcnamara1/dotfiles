@@ -17,17 +17,22 @@ contrastEnabled=true
 diminactiveEnabled=true
 dimscreenEnabled=true
 magiclampEnabled=true
+poloniumEnabled=true
 squashEnabled=false
 trackmouseEnabled=true
+
+[Script-polonium]
+Borders=2
+InsertionPoint=2
 
 [Tiling]
 padding=4
 
 [Tiling][0293d0bc-44d0-5480-9eb2-9e38e1c96b8f]
-tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+tiles={"layoutDirection":"horizontal","tiles":[]}
 
 [Tiling][2a7e830c-55d1-5b1d-a261-275df73699af]
-tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"layoutDirection":"vertical","tiles":[{"height":0.5},{"height":0.5}],"width":0.5},{"width":0.25}]}
+tiles={"layoutDirection":"horizontal","tiles":[]}
 
 [Tiling][44c9cc4a-1da1-51a2-974e-ca434b32b280]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
