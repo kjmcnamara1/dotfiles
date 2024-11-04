@@ -13,14 +13,6 @@ floating=1
 [PlasmaViews][Panel 171][Defaults]
 thickness=32
 
-[PlasmaViews][Panel 199]
-floating=1
-panelLengthMode=1
-panelVisibility=2
-
-[PlasmaViews][Panel 199][Defaults]
-thickness=64
-
 [PlasmaViews][Panel 2]
 floating=1
 
