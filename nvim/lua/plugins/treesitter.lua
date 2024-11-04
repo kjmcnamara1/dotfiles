@@ -26,6 +26,7 @@ return {
         "c",
         "diff",
         "html",
+        "hyprlang",
         "javascript",
         "jsdoc",
         "json",
