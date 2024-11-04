@@ -1,5 +1,5 @@
 # Xontribs
-xontrib load coreutils vox prompt_starship abbrevs back2dir fish_completer
+xontrib load coreutils vox prompt_starship abbrevs back2dir
 xontrib load hist_navigator # keymaps are broken (a-left, a-right, a-up)
 # NOTE: check out https://github.com/xxh/xxh
 
@@ -17,8 +17,16 @@ $EDITOR = 'nvim'
 # Path
 $PATH.prepend('~/.local/bin') # User binaries
 
+# Carapace Completion
+$CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+$COMPLETIONS_CONFIRM=True
+exec($(carapace _carapace))
+
 # Zoxide
 execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
+
+# Abbreviations
+abbrevs['mkdir'] = 'mkdir -p'
 
 # Aliases
 aliases['py'] = 'python3' # Python
@@ -36,9 +44,6 @@ aliases['du'] = 'du -h' # human readable disk usage
 # aliases['ls'] = 'ls -hv --color=auto --group-directories-first' # classify files in colour
 # aliases['l'] = '/usr/bin/ls -hv --color=auto --group-directories-first' # shorthand plain ls
 aliases['dc'] = 'docker compose' # Docker compose
-
-# Abbreviations
-abbrevs['mkdir'] = 'mkdir -p'
 
 @aliases.register
 def _y(args):
