@@ -294,14 +294,14 @@ _launch=Meta+B
 [services][org.kde.kcalc.desktop]
 _launch=Launch (1)
 
+[services][org.kde.konsole.desktop]
+NewWindow=Meta+Return
+
 [services][org.kde.krunner.desktop]
 _launch=Search\tAlt+Space
 
 [services][org.kde.spectacle.desktop]
 RecordWindow=none
-
-[services][org.wezfurlong.wezterm.desktop]
-_launch=Meta+Return
 
 [services][systemsettings.desktop]
 _launch=Tools\tMeta+,
