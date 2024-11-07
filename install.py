@@ -27,7 +27,7 @@ class ansi(enum.StrEnum):
     END = "\033[0m"
 
 
-def bold(text):
+def bold(text: str) -> str:
     return ansi.BOLD + text + ansi.END
 
 
@@ -56,7 +56,7 @@ def update_submodules(base_dir):
     )
 
 
-def parse_arguments():
+def parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Use dotbot to install dotfiles")
 
     parser.add_argument(
@@ -67,6 +67,16 @@ def parse_arguments():
     parser.add_argument("configs", nargs="*", help="Configurations to install")
 
     return parser.parse_args()
+
+
+def get_all_configs(meta_dir, args) -> set[str]:
+    configs = set(args.configs)
+    if args.profile:
+        configs |= set(
+            Path(meta_dir, PROFILE_DIR, args.profile).read_text().splitlines()
+        )
+
+    return configs
 
 
 def main():
@@ -120,16 +130,6 @@ def main():
             subprocess.run(cmd)
 
         os.chdir(BASE_DIR)
-
-
-def get_all_configs(meta_dir, args):
-    configs = set(args.configs)
-    if args.profile:
-        configs |= set(
-            Path(meta_dir, PROFILE_DIR, args.profile).read_text().splitlines()
-        )
-
-    return configs
 
 
 if __name__ == "__main__":
