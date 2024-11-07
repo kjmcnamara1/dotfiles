@@ -17,7 +17,7 @@ contrastEnabled=true
 diminactiveEnabled=true
 dimscreenEnabled=true
 magiclampEnabled=true
-poloniumEnabled=true
+poloniumEnabled=false
 squashEnabled=false
 trackmouseEnabled=true
 
