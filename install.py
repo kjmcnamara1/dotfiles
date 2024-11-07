@@ -19,7 +19,7 @@ DOTBOT_DIR = "dotbot"
 DOTBOT_BIN = "bin/dotbot"
 
 BASE_DIR: Path = Path(__file__).resolve().parent
-META_DIR: Path = BASE_DIR / "meta"
+META_DIR: Path = BASE_DIR / ".meta"
 
 
 class ansi(enum.StrEnum):

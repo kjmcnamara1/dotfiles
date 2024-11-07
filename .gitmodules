@@ -7,22 +7,22 @@
     url = git@github.com:kjmcnamara1/nushell.git
     ignore = dirty
 [submodule "dotbot"]
-    path = meta/dotbot
+	path = .meta/dotbot
     url = https://github.com/anishathalye/dotbot
     ignore = dirty
 [submodule "dotbot-sudo"]
-	path = meta/plugins/sudo
+	path = .meta/plugins/sudo
     url = https://github.com/DrDynamic/dotbot-sudo
     ignore = dirty
 [submodule "dotbot-yay"]
-	path = meta/plugins/yay
+	path = .meta/plugins/yay
 	url = https://github.com/oxson/dotbot-yay
     ignore = dirty
 [submodule "dotbot-scoop"]
-	path = meta/plugins/scoop
+	path = .meta/plugins/scoop
 	url = https://github.com/JamJar00/dotbot-scoop
     ignore = dirty
 [submodule "dotbot-includes"]
-	path = meta/plugins/includes
+	path = .meta/plugins/includes
 	url = https://github.com/vanduc2514/dotbot-includes.git
     ignore = dirty
