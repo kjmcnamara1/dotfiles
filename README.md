@@ -40,7 +40,7 @@ exit
 #### Automated Install Script
 
 ```sh
-bash -c "$(curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/dotbot/install-arch)"
+bash -c "$(curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/dotbot/arch/install)"
 # curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE.sh > /tmp/tmp.sh
 # bash /tmp/tmp.sh
 ```
@@ -67,19 +67,8 @@ Clone dotfiles git repo. Then run
 git clone -b dotbot https://github.com/kjmcnamara1/dotfiles ~/dotfiles
 
 cd ~/dotfiles
-./install muse-arch
+./dotbot muse-arch
 ```
-
-
-
-
-
-
-
-
-
-
-
 
 ```sh
 curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE/config.sh
