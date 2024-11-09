@@ -17,6 +17,9 @@ $EDITOR = 'nvim'
 # Path
 $PATH.prepend('~/.local/bin') # User binaries
 
+# Allow python to import modules from cwd
+sys.path.append('')
+
 # Carapace Completion
 $CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 $COMPLETIONS_CONFIRM=True
