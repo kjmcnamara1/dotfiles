@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e
+
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+META_DIR="${BASE_DIR}/.meta"
+
+bold="\033[1m"
+reset="\033[0m"
+
+cd "${BASE_DIR}"
+
+for config in "${@}"; do
+    echo
+    echo -e "***Configuring $bold$config$reset"
+    python3 "${META_DIR}/$config.py"
+done
