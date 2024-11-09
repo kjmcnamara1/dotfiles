@@ -1,3 +1,9 @@
+import sys
+import logging
+
+# Fix error when setting up logging.basicConfig
+logging.getLogger("asyncio").setLevel(logging.WARNING)
+
 # Xontribs
 xontrib load coreutils vox prompt_starship abbrevs back2dir
 xontrib load hist_navigator # keymaps are broken (a-left, a-right, a-up)
