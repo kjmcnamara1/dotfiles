@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-config_file="https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/dotbot/archinstall/muse.json"
+config_file="https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/dotbot/arch/$1.json"
 
 # Read credentials from user
 default_username=kjm
