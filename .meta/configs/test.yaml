@@ -1,0 +1,3 @@
+- included:
+    - .meta/configs/bash.yaml
+    - .meta/configs/yay.yaml

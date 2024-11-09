@@ -3,17 +3,21 @@
       create: true
       relink: true
 
-- sudo:
-    - link:
-        /etc/pacman.conf:
-          force: true
-        /etc/interception/udevmon.d/caps2esc.yaml:
-          path: caps2esc/caps2esc.yaml
-          force: true
-
-- shell:
-    - command: yay --version || rm -rf /tmp/yay && git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si --noconfirm
-      description: "Install yay"
+- included:
+    - .meta/configs/yay.yaml
+    - .meta/configs/caps2esc.yaml
+    - .meta/configs/bash.yaml
+    - .meta/configs/bat.yaml
+    - .meta/configs/fastfetch.yaml
+    - .meta/configs/git.yaml
+    - .meta/configs/hyprland.yaml
+    - .meta/configs/ipython.yaml
+    - .meta/configs/neovim.yaml
+    - .meta/configs/onedrive.yaml
+    - .meta/configs/starship.yaml
+    - .meta/configs/wallpaper.yaml
+    - .meta/configs/wezterm.yaml
+    - .meta/configs/xonsh.yaml
 
 - yay:
     - man-db
@@ -31,7 +35,6 @@
     - uv # Python package manager
     # - poetry
     - eza
-    - bat
     - yazi
     - fastfetch
     - starship
@@ -60,12 +63,6 @@
     # - gimp
     - obsidian
     - proton-vpn-gtk-app
-    - interception-caps2esc
-
-- sudo:
-    - shell:
-        - systemctl enable udevmon
-        - systemctl start udevmon
 
 - link:
     ~/.gitconfig:
@@ -84,7 +81,6 @@
     # ~/.config/kitty:
     # ~/.config/tmux:
     # ~/.config/pypoetry:
-    ~/Pictures/wallpapers:
 
 - shell:
     - gh auth login
