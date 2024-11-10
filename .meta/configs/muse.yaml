@@ -6,6 +6,7 @@
 - included:
     - .meta/configs/yay.yaml
     - .meta/configs/caps2esc.yaml
+    - .meta/configs/git.yaml
 
 - yay:
     - uv # Python package manager
@@ -32,12 +33,11 @@
     - .meta/configs/bat.yaml
     - .meta/configs/fastfetch.yaml
     - .meta/configs/fonts.yaml
-    - .meta/configs/git.yaml
     - .meta/configs/hyprland.yaml
     - .meta/configs/ipython.yaml
     - .meta/configs/neovim.yaml
-    - .meta/configs/onedrive.yaml
     - .meta/configs/starship.yaml
-    - .meta/configs/wallpaper.yaml
     - .meta/configs/wezterm.yaml
     - .meta/configs/xonsh.yaml
+    - .meta/configs/wallpaper.yaml
+    - .meta/configs/onedrive.yaml
