@@ -8,11 +8,14 @@
     - pipx install xonsh[full]
     - pipx ensurepath
     - which xonsh | sudo tee -a /etc/shells
-    - chsh -s $(which xonsh)
-    - xpip install xontrib-vox
-    - xpip install xontrib-prompt-starship
-    - xpip install xontrib-abbrevs
-    - xpip install xontrib-back2dir
-    - xpip install xontrib-hist-navigator
+
+    # These all failed
+    # - chsh -s $(which xonsh)
+    # - xpip install xontrib-vox
+    # - xpip install xontrib-prompt-starship
+    # - xpip install xontrib-abbrevs
+    # - xpip install xontrib-back2dir
+    # - xpip install xontrib-hist-navigator
+
 - link:
     ~/.config/xonsh:
