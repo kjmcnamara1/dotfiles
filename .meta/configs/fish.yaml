@@ -2,6 +2,6 @@
 #     - [yay -S --noconfirm fish, Installing fish]
 #     - [scoop install fish, Installing fish]
 - yay:
-    - fastfetch
+    - fish
 - link:
     ~/.config/fish:

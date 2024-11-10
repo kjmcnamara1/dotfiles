@@ -1,5 +1,7 @@
 - yay:
     - neovim
+    - nodejs
+    - npm
 - scoop:
     apps:
       - neovim

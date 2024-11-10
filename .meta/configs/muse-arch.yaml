@@ -6,9 +6,32 @@
 - included:
     - .meta/configs/yay.yaml
     - .meta/configs/caps2esc.yaml
+
+- yay:
+    - uv # Python package manager
+    - eza
+    - fd
+    - fzf
+    - ripgrep
+    - zoxide
+    # - networkmanager
+    # - nm-applet
+    # - xclip
+    - unzip
+    - zstd
+    # - packagekit
+    - brave-bin
+    # - freecad
+    # - inkscape
+    # - gimp
+    # - obsidian
+    # - proton-vpn-gtk-app
+
+- included:
     - .meta/configs/bash.yaml
     - .meta/configs/bat.yaml
     - .meta/configs/fastfetch.yaml
+    - .meta/configs/fonts.yaml
     - .meta/configs/git.yaml
     - .meta/configs/hyprland.yaml
     - .meta/configs/ipython.yaml
@@ -18,70 +41,3 @@
     - .meta/configs/wallpaper.yaml
     - .meta/configs/wezterm.yaml
     - .meta/configs/xonsh.yaml
-
-- yay:
-    - man-db
-    - amd-ucode
-    - vim
-    - git
-    - github-cli
-    - wget
-    - curl
-    # - zsh
-    # - fish
-    # - nushell
-    # - xonsh # NOTE: look into installing with `mamba`. `uv` doesn't work. `pipx` works ok if add xonsh install path to /etc/shells. `yay` has to `--break-system-packages`
-    # https://github.com/anki-code/xonsh-install
-    - uv # Python package manager
-    # - poetry
-    - eza
-    - yazi
-    - fastfetch
-    - starship
-    - fd
-    - fzf
-    - ripgrep
-    - zoxide
-    - neovim
-    - nodejs
-    - npm
-    - networkmanager
-    - openssh
-    - xclip
-    - unzip
-    - zstd
-    - ttf-jetbrains-mono-nerd
-    - ttf-nerd-fonts-symbols
-    - packagekit
-    # - tmux
-    - wezterm
-    # - kitty
-    # - konsole
-    - brave-bin
-    # - freecad
-    # - inkscape
-    # - gimp
-    - obsidian
-    - proton-vpn-gtk-app
-
-- link:
-    ~/.gitconfig:
-    ~/.bashrc:
-    # ~/.zshrc:
-    # ~/.config/fish:
-    # ~/.config/nushell:
-    ~/.config/xonsh:
-    ~/.config/bat:
-    ~/.config/yazi:
-    ~/.config/fastfetch:
-    ~/.config/starship.toml:
-    ~/.config/nvim:
-    # ~/.config/helix:
-    ~/.config/wezterm:
-    # ~/.config/kitty:
-    # ~/.config/tmux:
-    # ~/.config/pypoetry:
-
-- shell:
-    - gh auth login
-    - git remote set-url origin git@github.com:kjmcnamara1/dotfiles

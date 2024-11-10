@@ -1,2 +1,9 @@
 - link:
     ~/.gitconfig:
+
+- yay:
+    - github-cli
+
+- shell:
+    - gh auth login
+    - git remote set-url origin git@github.com:kjmcnamara1/dotfiles

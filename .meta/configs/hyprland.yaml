@@ -2,8 +2,10 @@
     - hyprland
     - xdg-desktop-portal-hyprland
     - hyprpolkitagent-git
-    - qt5-wayland
-    - qt6-wayland
+    - sddm
+    # - qt5-wayland
+    # - qt6-wayland
+    # - nwg-look
     - wl-clipboard
     - clipboard
     - pipewire

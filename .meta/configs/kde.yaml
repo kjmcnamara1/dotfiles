@@ -1,5 +1,7 @@
 - yay:
+    - plasma-meta
     - kvantum
+    - konsole
     - dosfstools
     - ark
     - dolphin

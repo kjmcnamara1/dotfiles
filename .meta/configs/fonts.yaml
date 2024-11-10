@@ -1,0 +1,9 @@
+- yay:
+    - ttf-jetbrains-mono-nerd
+    - ttf-nerd-fonts-symbols
+
+- scoop:
+    buckets:
+      - nerd-fonts
+    apps:
+      - JetBrainsMono-NF
