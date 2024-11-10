@@ -5,7 +5,10 @@ import logging
 logging.getLogger("asyncio").setLevel(logging.WARNING)
 
 # Xontribs
-xontrib load coreutils vox prompt_starship abbrevs back2dir
+xontrib load coreutils vox 
+xontrib load prompt_starship 
+xontrib load abbrevs 
+xontrib load back2dir
 xontrib load hist_navigator # keymaps are broken (a-left, a-right, a-up)
 # NOTE: check out https://github.com/xxh/xxh
 
