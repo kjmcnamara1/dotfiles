@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
+# Check number of arguments
+if [ "$#" -ne 1 ]; then
+    echo "Must pass config name as an argument"
+    exit 1
+fi
+
 config_file="https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/dotbot/arch/$1.json"
+
+echo "Using config file: $config_file"
 
 # Read credentials from user
 default_username=kjm
@@ -32,4 +40,4 @@ EOF
 
 archinstall --config "$config_file" --creds "$cred_file"
 
-reboot
+# reboot
