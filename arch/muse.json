@@ -155,7 +155,16 @@
   "no_pkg_lookups": false,
   "ntp": true,
   "offline": false,
-  "packages": ["man-db", "vim", "git", "wget", "curl", "python"],
+  "packages": [
+    "man-db",
+    "amd-ucode",
+    "vim",
+    "git",
+    "wget",
+    "curl",
+    "python",
+    "openssh"
+  ],
   "parallel downloads": 0,
   "profile_config": {
     "gfx_driver": null,
