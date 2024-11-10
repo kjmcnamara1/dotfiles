@@ -7,10 +7,13 @@
     - dolphin
     - partitionmanager
     - kdeconnect
-    - sddm
     - plasma-framework5
+
 - link:
     ~/.config/:
       glob: true
       path: kde/*
       force: true
+
+- included:
+    - .meta/configs/sddm.yaml

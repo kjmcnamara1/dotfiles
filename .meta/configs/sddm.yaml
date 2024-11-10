@@ -1,0 +1,6 @@
+- yay:
+    - sddm
+# - sudo:
+#     - link:
+#         /etc/sddm.conf.d:
+#           force: true

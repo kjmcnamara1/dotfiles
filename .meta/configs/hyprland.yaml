@@ -2,7 +2,6 @@
     - hyprland
     - xdg-desktop-portal-hyprland
     - hyprpolkitagent-git
-    - sddm
     # - qt5-wayland
     # - qt6-wayland
     # - nwg-look
@@ -23,3 +22,6 @@
       force: true
     ~/.config/waybar:
     ~/.config/rofi:
+
+- included:
+    - .meta/configs/sddm.yaml
