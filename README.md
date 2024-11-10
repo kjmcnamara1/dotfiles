@@ -45,7 +45,11 @@ bash -c "$(curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/h
 # bash /tmp/tmp.sh
 ```
 
-Script will prompt for root password and Admin username(default=kjm)/password.
+Script will prompt for:
+
+1. archinstall config name (default=muse)
+2. root password
+3. Admin username (default=kjm) and password
 
 You will need to select options for disk layout. Any other preconfigured options can be changed before beginning install.
 
@@ -59,15 +63,23 @@ Machine will automatically reboot.
 
 #### Automated Configuration Script
 
-Log in with the Admin user credentials you supplied during the install script.
+Log in via tty with the Admin user credentials you supplied during the install script.
 
-Clone dotfiles git repo. Then run
+Connect to the internet with networkmanager tui:
+
+```sh
+nmtui
+```
+
+**Activate a connection** > Select Wi-Fi network > Enter _password_ > **OK** > **Back** > **Quit**
+
+Clone dotfiles git repo and run:
 
 ```sh
 git clone -b dotbot https://github.com/kjmcnamara1/dotfiles ~/dotfiles
 
 cd ~/dotfiles
-./dotbot muse-arch
+./dotbot muse
 ```
 
 ```sh
