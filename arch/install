@@ -1,22 +1,23 @@
 #!/usr/bin/env bash
 
-# Check number of arguments
-if [ "$#" -ne 1 ]; then
-    echo "Must pass config name as an argument"
-    exit 1
-fi
+# Set default values
+DEFAULT_CONFIG_NAME=muse
+DEFAULT_USERNAME=kjm
 
-config_file="https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/dotbot/arch/$1.json"
+# Get archinstall config name from user
+read -rp "Name of config to use [$DEFAULT_CONFIG_NAME]: " config_name
+config_name=${config_name:-$DEFAULT_CONFIG_NAME}
 
+# Select config file
+config_file="https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/dotbot/arch/$config_name.json"
 echo "Using config file: $config_file"
 
 # Read credentials from user
-default_username=kjm
 echo
 read -srp "Root Password: " rootpwd
 echo
-read -rp "Admin Username [kjm]: " username
-username=${username:-$default_username}
+read -rp "Admin Username [$DEFAULT_USERNAME]: " username
+username=${username:-$DEFAULT_USERNAME}
 read -srp "Admin User Password: " userpwd
 
 # Save credentials to temp file
