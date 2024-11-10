@@ -17,6 +17,8 @@
     - wlogout
     - python-pywal
 
+# TODO: Need to add bluetooth
+
 - link:
     ~/.config/hypr:
       force: true
