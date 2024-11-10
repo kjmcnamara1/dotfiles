@@ -39,6 +39,4 @@ EOF
 # echo "$cred_file"
 # cat "$cred_file"
 
-archinstall --config "$config_file" --creds "$cred_file"
-
-# reboot
+archinstall --config "$config_file" --creds "$cred_file" && reboot
