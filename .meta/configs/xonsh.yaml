@@ -3,6 +3,7 @@
 
 - yay:
     - python-pipx
+    - carapace-bin
 
 - shell:
     - pipx install xonsh[full]
