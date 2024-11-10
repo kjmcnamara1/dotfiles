@@ -80,9 +80,10 @@ git clone -b dotbot https://github.com/kjmcnamara1/dotfiles ~/dotfiles
 
 cd ~/dotfiles
 ./dotbot muse
+systemctl start sddm
 ```
 
-Reboot and login via login manager (e.g. sddm).
+Login via login manager (e.g. sddm).
 
 #### Change dotfiles repo to use SSH
 
@@ -90,6 +91,16 @@ Reboot and login via login manager (e.g. sddm).
 gh auth login
 git remote set-url origin git@github.com:kjmcnamara1/dotfiles,
 ```
+
+#### Authenticate OneDrive
+
+```sh
+onedrive
+```
+
+1. Log in using browser via URL
+2. Paste URL from browser after login back into terminal
+3. <kbd>Enter</kbd>
 
 END
 
