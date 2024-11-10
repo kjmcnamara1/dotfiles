@@ -82,9 +82,16 @@ cd ~/dotfiles
 ./dotbot muse
 ```
 
+Reboot and login via login manager (e.g. sddm).
+
+#### Change dotfiles repo to use SSH
+
 ```sh
-curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE/config.sh
+gh auth login
+git remote set-url origin git@github.com:kjmcnamara1/dotfiles,
 ```
+
+END
 
 Create a [new ssh key](https://github.com/settings/ssh/new) on github.
 
