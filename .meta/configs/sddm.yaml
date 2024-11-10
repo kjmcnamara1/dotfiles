@@ -4,3 +4,7 @@
 #     - link:
 #         /etc/sddm.conf.d:
 #           force: true
+
+- sudo:
+    - shell:
+        - systemctl enable sddm.service
