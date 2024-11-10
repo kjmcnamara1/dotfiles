@@ -43,16 +43,17 @@ class Included(dotbot.Plugin):
 
                 self._log.debug(f"include: begin {config_file}")
                 ret = subprocess.run(cmd, stdin=subprocess.PIPE)
-                self._log.debug(f"include: end {config_file}")
 
                 if ret.returncode != 0:
-                    self._log.error(f"include: error: {ret}")
+                    self._log.warning(
+                        f"include: {config_file} did not complete all tasks successfully"
+                    )
                     success = False
             except Exception as e:  # FIXME: Don't know what to catch here...
                 self._log.error(f"include: error: {e}")
                 success &= False
             finally:
-                ...
+                self._log.debug(f"include: end {config_file}")
                 self._delete_config_file()
 
         return success
