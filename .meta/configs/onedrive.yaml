@@ -2,10 +2,5 @@
     - onedrive-abraunegg
 
 - shell:
-    - command: onedrive
-      description: "Authenticate onedrive"
-      stdin: true
-      stdout: true
-      stderr: true
     - systemctl --user enable onedrive
     - systemctl --user start onedrive
