@@ -9,6 +9,7 @@
       description: Authenticate with GitHub
       stdin: true
       stdout: true
+      stderr: true
     - [
         git remote set-url origin git@github.com:kjmcnamara1/dotfiles,
         Change dotfiles repo to use ssh,
