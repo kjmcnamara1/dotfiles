@@ -1,8 +1,8 @@
 [core]
   editor = nvim
 [user]
-  name = Kevin J. McNamara
-  email = kjmcnamara1@gmail.com
+	name = Kevin
+	email = kevin.j.mcnamara+tech@proton.me
 [pull]
   rebase = false
 [push]
@@ -13,3 +13,8 @@
   recurse = true
 [init]
   defaultBranch = main
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
