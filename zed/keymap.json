@@ -51,7 +51,7 @@
       "alt-ctrl-shift-b": "branches::OpenRecent",
       "ctrl-~": "workspace::NewTerminal",
       "ctrl-s": "workspace::Save",
-      "ctrl-k s": "workspace::SaveWithoutFormat",
+      "ctrl-alt-s": "workspace::SaveWithoutFormat",
       "ctrl-shift-s": "workspace::SaveAs",
       "ctrl-n": "workspace::NewFile",
       "ctrl-shift-n": "workspace::NewWindow",
@@ -84,7 +84,7 @@
       "ctrl-shift-e": "project_panel::ToggleFocus",
       "ctrl-shift-b": "outline_panel::ToggleFocus",
       "ctrl-?": "assistant::ToggleFocus",
-      "ctrl-alt-s": "workspace::SaveAll",
+      "ctrl-alt-shift-s": "workspace::SaveAll",
       // "ctrl-k m": "language_selector::Toggle",
       "escape": "workspace::Unfollow",
       "ctrl-shift-x": "zed::Extensions",
@@ -1259,6 +1259,7 @@
       "d": "vim::CurrentLine",
       "s": ["vim::PushOperator", "DeleteSurrounds"],
       "o": "editor::ToggleHunkDiff", // "d o"
+      "shift-o": "editor::ExpandAllHunkDiffs", // "d o"
       "p": "editor::RevertSelectedHunks" // "d p"
     }
   },
