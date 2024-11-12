@@ -26,7 +26,7 @@
   // "buffer_font_features": { "calt": true },
   "pane_split_direction_horizontal": "down",
   "pane_split_direction_vertical": "right",
-  "vertical_scroll_margin": 10,
+  "vertical_scroll_margin": 99,
   "theme": {
     "mode": "system",
     "light": "One Light",
