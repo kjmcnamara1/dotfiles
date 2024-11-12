@@ -85,7 +85,7 @@
       "ctrl-shift-b": "outline_panel::ToggleFocus",
       "ctrl-?": "assistant::ToggleFocus",
       "ctrl-alt-s": "workspace::SaveAll",
-      "ctrl-k m": "language_selector::Toggle",
+      // "ctrl-k m": "language_selector::Toggle",
       "escape": "workspace::Unfollow",
       "ctrl-shift-x": "zed::Extensions",
       "alt-t": "task::Rerun",
@@ -798,7 +798,9 @@
       "ctrl-up": "menu::SelectPrev",
       "ctrl-down": "menu::SelectNext",
       "ctrl-shift-tab": "menu::SelectPrev",
-      "ctrl-backspace": "tab_switcher::CloseSelectedItem"
+      "ctrl-backspace": "tab_switcher::CloseSelectedItem",
+      "j": "menu::SelectNext",
+      "k": "menu::SelectPrev"
     }
   },
 
@@ -1007,10 +1009,12 @@
       "ctrl-w g shift-d": "editor::GoToTypeDefinitionSplit",
       "ctrl-w space": "editor::OpenExcerptsSplit",
       "ctrl-w g space": "editor::OpenExcerptsSplit",
+      "space l": "language_selector::Toggle",
       "space t": "theme_selector::Toggle",
       "space '": "pane::AlternateFile",
       "space .": "file_finder::Toggle",
-      "space b p": "pane::TogglePinTab"
+      "space b p": "pane::TogglePinTab",
+      "space ,": "tab_switcher::Toggle"
       // "ctrl-6": "pane::AlternateFile",
     }
   },
@@ -1023,6 +1027,7 @@
       "space '": "pane::AlternateFile",
       "space .": "file_finder::Toggle",
       "space b p": "pane::TogglePinTab",
+      "space ,": "tab_switcher::Toggle",
       "g /": "pane::DeploySearch"
     }
   },
