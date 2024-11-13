@@ -1,3 +1,11 @@
+- yay:
+    - python-ipython
+    - python-ipykernel
+    # - jupyterlab
+
+- shell:
+    - py -m ipykernel install --user
+
 - link:
     ~/.config/.ipython:
       force: true
