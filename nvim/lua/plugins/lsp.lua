@@ -11,10 +11,10 @@ return {
     event = { "BufReadPre", "BufNewFile" },  -- with BufReadPost, lsp won't automatically attach to buffer
     cmd = { "LspInfo", "LspStart", "LspStop", "LspRestart" },
     keys = {
-      { "K",          vim.lsp.buf.hover,          desc = "LSP Hover",                   buffer = 0 },
-      { "<c-k>",      vim.lsp.buf.signature_help, desc = "LSP Signature Documentation", buffer = 0, mode = "i" },
+      { "gh",         vim.lsp.buf.hover,          desc = "LSP Hover",                   buffer = 0 },
+      { "<c-h>",      vim.lsp.buf.signature_help, desc = "LSP Signature Documentation", buffer = 0, mode = "i" },
       { "gD",         vim.lsp.buf.declaration,    desc = "LSP Declaration",             buffer = 0 },
-      { "<leader>ca", vim.lsp.buf.code_action,    desc = "LSP Code Action",             buffer = 0, mode = { "n", "v" } },
+      { "g.",         vim.lsp.buf.code_action,    desc = "LSP Code Action",             buffer = 0, mode = { "n", "v" } },
       { "<leader>cf", vim.lsp.buf.format,         desc = "LSP Format",                  buffer = 0, mode = { "n", "v" } },
       { "<leader>ci", "<cmd>LspInfo<cr>",         desc = "LSP Info",                    buffer = 0 },
       -- { "<leader>rs", "<cmd>LspRestart<cr>",                     desc = "LSP Restart Server",          buffer = 0 }, -- conflicts with Telescope find_recent
@@ -115,8 +115,8 @@ return {
       ensure_installed = {
         "lua_ls",
         "bashls",
-        "pyright",  -- needed for rename
-        "ruff_lsp", -- formatting, linting, and organize imports
+        "pyright", -- needed for rename
+        "ruff",    -- formatting, linting, and organize imports
         -- 'pylsp',
         -- 'jsonls',
         "biome",

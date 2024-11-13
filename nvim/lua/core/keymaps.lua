@@ -14,7 +14,7 @@ map("", "(", "<c-u>", { desc = "Scroll up half page", remap = true })
 
 -- Move to beginning/end of file
 map("", "gg", "gg0", { desc = "Goto beginning of file", remap = true })
-map("", "ge", "G$", { desc = "Goto end of file", remap = true })
+map("", "G", "G$", { desc = "Goto end of file", remap = true })
 
 -- Save file
 map({ "i", "x", "n", "s" }, "<c-s>", "<cmd>w!<cr>", { desc = "Save file" })

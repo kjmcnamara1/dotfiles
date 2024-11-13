@@ -20,19 +20,19 @@ git -C "${BASE_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${BASE_DIR}"
 
 for config in "${@}"; do
-    echo
-    echo -e "***Configuring $bold$config$reset"
-    config_file="${CONFIG_DIR}/$config$CONFIG_SUFFIX"
-    # echo "$config_file"
-    # cmd=(
-    "${DOTBOT_BIN}" \
-        -vv \
-        -d "${BASE_DIR}" \
-        -c "${config_file}" \
-        --plugin-dir "${PLUGIN_DIR}/*"
-    # )
-    # echo "${cmd[@]}"
-    # "${cmd[@]}"
+  echo
+  echo -e "***Configuring $bold$config$reset"
+  config_file="${CONFIG_DIR}/$config$CONFIG_SUFFIX"
+  # echo "$config_file"
+  # cmd=(
+  "${DOTBOT_BIN}" \
+    -vv \
+    -d "${BASE_DIR}" \
+    -c "${config_file}" \
+    --plugin-dir "${PLUGIN_DIR}/*"
+  # )
+  # echo "${cmd[@]}"
+  # "${cmd[@]}"
 done
 
 cd "${BASE_DIR}"
