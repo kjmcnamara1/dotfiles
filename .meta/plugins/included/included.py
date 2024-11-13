@@ -74,6 +74,11 @@ class Included(dotbot.Plugin):
 
     @property
     def _config_file(self) -> Path:
+        """Returns the configuration file path.
+
+        Returns:
+            Path: The configuration file path for the parent directory.
+        """
         return Path(__file__).parent / f"{self._directive}.conf.json"
 
     def _delete_config_file(self):
