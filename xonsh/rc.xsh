@@ -5,9 +5,9 @@ import logging
 logging.getLogger("asyncio").setLevel(logging.WARNING)
 
 # Xontribs
-xontrib load coreutils vox 
-xontrib load prompt_starship 
-xontrib load abbrevs 
+xontrib load coreutils vox
+xontrib load prompt_starship
+xontrib load abbrevs
 xontrib load back2dir
 xontrib load hist_navigator # keymaps are broken (a-left, a-right, a-up)
 # NOTE: check out https://github.com/xxh/xxh
@@ -49,8 +49,11 @@ aliases['ls'] = 'l -1' # single column list
 aliases['la'] = 'ls -A' # all but . and ..
 aliases['ll'] = 'la -l' # long list including hidden
 aliases['llr'] = 'll --time-style=relative' # long list with relative time
-aliases['ltt'] = 'll --tree --total-size' # long list and recurse into directories as tree
-aliases['lt'] = 'ltt --level=2' # default tree list level 2
+aliases['lt'] = 'll --tree --total-size' # long list and recurse into directories as tree
+aliases['ltt'] = 'lt --level=2' # default tree list level 2
+aliases['lttt'] = 'lt --level=3' # default tree list level 3
+aliases['ltttt'] = 'lt --level=4' # default tree list level 4
+aliases['lttttt'] = 'lt --level=5' # default tree list level 5
 aliases['df'] = 'df -h' # human readable disk free
 aliases['du'] = 'du -h' # human readable disk usage
 # aliases['ls'] = 'ls -hv --color=auto --group-directories-first' # classify files in colour
