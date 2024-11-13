@@ -1,7 +1,16 @@
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "pyjson5",
+# ]
+# ///
+
 import re
 import sys
 
 import pyjson5 as json
+
+
 
 def extract_colors(data):
     colors = set()
