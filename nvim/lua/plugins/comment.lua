@@ -18,7 +18,8 @@ return {
       end,
     },
     keys = {
-      { "<c-_>", function() require("Comment.api").toggle.linewise.current() end, mode = "i", desc = "Toggle comment" },
+      -- c-_ is ctrl-/
+      { "<c-_>", function() require("Comment.api").toggle.linewise.current() end, mode = { "i", "n", "x" }, desc = "Toggle line comment" },
       { "gc",    mode = { "n", "x" } },
       { "gb",    mode = { "n", "x" } },
     },
