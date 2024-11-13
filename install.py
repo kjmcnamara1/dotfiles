@@ -22,13 +22,13 @@ BASE_DIR: Path = Path(__file__).resolve().parent
 META_DIR: Path = BASE_DIR / ".meta"
 
 
-class ansi(enum.StrEnum):
+class Ansi(enum.StrEnum):
     BOLD = "\033[1m"
     END = "\033[0m"
 
 
 def bold(text: str) -> str:
-    return ansi.BOLD + text + ansi.END
+    return Ansi.BOLD + text + Ansi.END
 
 
 def update_submodules(base_dir):
