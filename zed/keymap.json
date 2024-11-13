@@ -42,6 +42,7 @@
   {
     "context": "Workspace",
     "bindings": {
+      "ctrl-shift-r": "workspace::Reload",
       // Change the default action on `menu::Confirm` by setting the parameter
       "alt-ctrl-o": "projects::OpenRecent",
       "alt-ctrl-shift-o": [
@@ -150,7 +151,7 @@
   },
 
   {
-    "context": "ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || Dock",
+    "context": "ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || Dock || ThemePreview",
     "bindings": {
       // window related commands (ctrl-w X)
       "ctrl-w": null,
@@ -846,6 +847,7 @@
   {
     "context": "VimControl && !menu",
     "bindings": {
+      "ctrl-shift-enter": "repl::Run",
       "i": ["vim::PushOperator", { "Object": { "around": false } }],
       "a": ["vim::PushOperator", { "Object": { "around": true } }],
       "h": "vim::Left",
@@ -1009,6 +1011,8 @@
       "ctrl-w g shift-d": "editor::GoToTypeDefinitionSplit",
       "ctrl-w space": "editor::OpenExcerptsSplit",
       "ctrl-w g space": "editor::OpenExcerptsSplit",
+      "space u i": "debug::OpenSyntaxTreeView",
+      "space u I": "debug::OpenKeyContextView",
       "space l": "language_selector::Toggle",
       "space t": "theme_selector::Toggle",
       "space '": "pane::AlternateFile",
@@ -1020,9 +1024,11 @@
   },
 
   {
-    "context": "EmptyPane || SharedScreen || MarkdownPreview || KeyContextView",
+    "context": "EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || ThemePreview",
     "bindings": {
       ":": "command_palette::Toggle",
+      "space u i": "debug::OpenSyntaxTreeView",
+      "space u I": "debug::OpenKeyContextView",
       "space t": "theme_selector::Toggle",
       "space '": "pane::AlternateFile",
       "space .": "file_finder::Toggle",
@@ -1035,9 +1041,9 @@
   {
     "context": "vim_mode == normal",
     "bindings": {
+      "ctrl-backspace": "pane::CloseAllItems",
       "escape": "editor::Cancel",
       "ctrl-[": "editor::Cancel",
-      "shift-u": "vim::Redo",
       ":": "command_palette::Toggle",
       ".": "vim::Repeat",
       "c": ["vim::PushOperator", "Change"],
@@ -1062,7 +1068,7 @@
       "p": "vim::Paste",
       "shift-p": ["vim::Paste", { "before": true }],
       "u": "vim::Undo",
-      "ctrl-r": "vim::Redo",
+      "shift-u": "vim::Redo",
       "r": ["vim::PushOperator", "Replace"],
       "s": "vim::Substitute",
       "shift-s": "vim::SubstituteLine",

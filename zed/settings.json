@@ -7,6 +7,11 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "base_keymap": "None",
+
+  // ░█▀█░▀█▀
+  // ░█▀█░░█░
+  // ░▀░▀░▀▀▀
   "assistant": {
     "default_model": {
       "provider": "zed.dev",
@@ -17,28 +22,65 @@
   "features": {
     "inline_completion_provider": "supermaven"
   },
-  "base_keymap": "None",
+
+  // ░█░█░▀█▀░█▄█
+  // ░▀▄▀░░█░░█░█
+  // ░░▀░░▀▀▀░▀░▀
   "vim_mode": true,
-  "relative_line_numbers": true,
-  "ui_font_size": 16,
-  "buffer_font_family": "JetBrainsMono Nerd Font",
-  "buffer_font_size": 16,
-  // "buffer_font_features": { "calt": true },
-  "pane_split_direction_horizontal": "down",
-  "pane_split_direction_vertical": "right",
-  "vertical_scroll_margin": 99,
-  "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "One Dark"
-  },
-  "experimental.theme_overrides": {
-    "syntax": { "comment": { "font_style": "italic" } }
-  },
   "vim": {
     "use_multiline_find": true,
     "use_smartcase_find": true,
     "toggle_relative_line_numbers": true
+  },
+
+  "relative_line_numbers": true,
+  "pane_split_direction_horizontal": "down",
+  "pane_split_direction_vertical": "right",
+  "vertical_scroll_margin": 99,
+
+  // ░█░░░█▀█░█▀█░█▀▀░█░█░█▀█░█▀▀░█▀▀░█▀▀
+  // ░█░░░█▀█░█░█░█░█░█░█░█▀█░█░█░█▀▀░▀▀█
+  // ░▀▀▀░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀
+  "languages": {
+    "Python": {
+      "language_servers": ["pyright", "ruff"],
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        },
+        {
+          "code_actions": {
+            // "source.fixAll.ruff": true, // Fix all auto-fixable lint violations
+            "source.organizeImports.ruff": true // Organize imports
+          }
+        }
+      ]
+    }
+  },
+  "jupyter": {
+    "kernel_selections": {
+      "python": "python3"
+    }
+  },
+
+  // ░▀█▀░█░█░█▀▀░█▄█░█▀▀
+  // ░░█░░█▀█░█▀▀░█░█░█▀▀
+  // ░░▀░░▀░▀░▀▀▀░▀░▀░▀▀▀
+  "border_size": 0.5,
+  "ui_font_size": 16,
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "buffer_font_size": 16,
+  // "buffer_font_features": { "calt": true },
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Nord Pro Dark"
+  },
+  "experimental.theme_overrides": {
+    "syntax": { "comment": { "font_style": "italic" } }
   }
   // "inlay_hints": { "enabled": true }
 }
