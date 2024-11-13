@@ -1,5 +1,6 @@
 - link:
     ~/.gitconfig:
+      force: true
 
 - yay:
     - github-cli
