@@ -1,0 +1,14 @@
+- yay:
+    - nushell
+
+# - scoop:
+#     apps:
+#       - nushell
+
+- link:
+    ~/.config/nushell:
+      if: uname
+      force: true
+    # ~/AppData/Local/nushell:
+    #   if: cmd.exe --version
+    #   force: true

@@ -1,0 +1,6 @@
+- yay:
+    - starship
+
+- link:
+    ~/.config/starship.toml:
+      force: true

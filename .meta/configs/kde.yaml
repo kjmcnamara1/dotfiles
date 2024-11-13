@@ -1,0 +1,19 @@
+- yay:
+    - plasma-meta
+    - kvantum
+    - konsole
+    - dosfstools
+    - ark
+    - dolphin
+    - partitionmanager
+    - kdeconnect
+    - plasma-framework5
+
+- link:
+    ~/.config/:
+      glob: true
+      path: kde/*
+      force: true
+
+- included:
+    - .meta/configs/sddm.yaml

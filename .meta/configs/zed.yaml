@@ -1,0 +1,6 @@
+- yay:
+    - zed-preview
+    - shellcheck
+
+- link:
+    ~/.config/zed:

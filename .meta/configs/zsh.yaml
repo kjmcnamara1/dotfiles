@@ -1,0 +1,6 @@
+- yay:
+    - zsh
+
+- link:
+    ~/.zshrc:
+      force: true

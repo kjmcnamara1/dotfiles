@@ -1,0 +1,22 @@
+# NOTE: look into installing with `mamba`. `uv` doesn't work. `pipx` works ok if add xonsh install path to /etc/shells. `yay` has to `--break-system-packages`
+# https://github.com/anki-code/xonsh-install
+
+- yay:
+    - python-pipx
+    - carapace-bin
+
+- shell:
+    - pipx install xonsh[full]
+    - pipx ensurepath
+    - which xonsh | sudo tee -a /etc/shells
+
+    # These all failed
+    # - chsh -s $(which xonsh)
+    # - xpip install xontrib-vox
+    # - xpip install xontrib-prompt-starship
+    # - xpip install xontrib-abbrevs
+    # - xpip install xontrib-back2dir
+    # - xpip install xontrib-hist-navigator
+
+- link:
+    ~/.config/xonsh:

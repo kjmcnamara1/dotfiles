@@ -1,4 +1,0 @@
-# log = 'DEBUG'
-# target_dir = "data"
-ignore = ["pacman.conf"]
-link = [".config/*", ".ipython", ".gitconfig", ".zshrc", ".bashrc"]

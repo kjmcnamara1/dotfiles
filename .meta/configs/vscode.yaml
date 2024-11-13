@@ -1,0 +1,35 @@
+# VS Code
+- yay:
+    - visual-studio-code-bin
+- scoop:
+    buckets:
+      - extra
+    apps:
+      - vscode
+# Code - OSS
+# - yay:
+#     - code
+#     - code-marketplace
+#     - code-features
+
+# - link:
+#     ~/.config/Code - OSS:
+#     ~/.vscode-oss:
+
+# VSCodium
+# - yay:
+#     - vscodium
+#     - vscodium-marketplace
+#     - vscodium-features
+#     - vscodium-bin
+#     - vscodium-bin-marketplace
+#     - vscodium-bin-features
+# - scoop:
+#     buckets:
+#       - extra
+#     apps:
+#       - vscodium
+
+# - link:
+#     ~/.config/VSCodium:
+#     ~/.vscode-oss:

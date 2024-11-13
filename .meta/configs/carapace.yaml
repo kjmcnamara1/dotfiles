@@ -1,0 +1,7 @@
+- yay:
+    - carapace-bin
+# - scoop:
+#     buckets:
+#       - extras
+#     apps:
+#       - carapace-bin

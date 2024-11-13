@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+set -e
+
+CONFIG_SUFFIX=".yaml"
+
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+META_DIR="${BASE_DIR}/.meta"
+CONFIG_DIR="${META_DIR}/configs"
+DOTBOT_DIR="${META_DIR}/dotbot"
+PLUGIN_DIR="${META_DIR}/plugins"
+DOTBOT_BIN="${DOTBOT_DIR}/bin/dotbot"
+
+bold="\033[1m"
+reset="\033[0m"
+
+# Update submodules
+cd "${BASE_DIR}"
+git -C "${BASE_DIR}" submodule sync --quiet --recursive
+git submodule update --init --recursive "${BASE_DIR}"
+
+for config in "${@}"; do
+    echo
+    echo -e "***Configuring $bold$config$reset"
+    config_file="${CONFIG_DIR}/$config$CONFIG_SUFFIX"
+    # echo "$config_file"
+    # cmd=(
+    "${DOTBOT_BIN}" \
+        -vv \
+        -d "${BASE_DIR}" \
+        -c "${config_file}" \
+        --plugin-dir "${PLUGIN_DIR}/*"
+    # )
+    # echo "${cmd[@]}"
+    # "${cmd[@]}"
+done
+
+cd "${BASE_DIR}"

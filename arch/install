@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+# Set default values
+DEFAULT_CONFIG_NAME=muse
+DEFAULT_USERNAME=kjm
+
+# Get archinstall config name from user
+read -rp "Name of config to use [$DEFAULT_CONFIG_NAME]: " config_name
+config_name=${config_name:-$DEFAULT_CONFIG_NAME}
+
+# Select config file
+config_file="https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/dotbot/arch/$config_name.json"
+echo "Using config file: $config_file"
+
+# Read credentials from user
+echo
+read -srp "Root Password: " rootpwd
+echo
+read -rp "Admin Username [$DEFAULT_USERNAME]: " username
+username=${username:-$DEFAULT_USERNAME}
+read -srp "Admin User Password: " userpwd
+
+# Save credentials to temp file
+cred_file="$(mktemp)"
+cat >"$cred_file" <<EOF
+{
+    "!root-password": "$rootpwd",
+    "!users": [
+        {
+            "!password": "$userpwd",
+            "sudo": true,
+            "username": "$username"
+        }
+    ]
+}
+EOF
+
+# echo
+# echo "$cred_file"
+# cat "$cred_file"
+
+archinstall --config "$config_file" --creds "$cred_file" && reboot

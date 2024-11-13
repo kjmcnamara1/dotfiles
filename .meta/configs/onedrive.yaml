@@ -1,0 +1,6 @@
+- yay:
+    - onedrive-abraunegg
+
+- shell:
+    - systemctl --user enable onedrive
+    - systemctl --user start onedrive

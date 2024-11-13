@@ -3,53 +3,54 @@
 # + = nvim onenord color
 # ++ = wezterm nord color
 # ~ = derivative color
+
 [colors]
-foreground = "#C8D0E0" # + Identifier Cursor @variable foreground
+foreground = "#c8d0e0" # + Identifier Cursor @variable foreground
 background = "#282828" # ++
 
-light_black = "#434C5E" # *
-black = "#3B4252"       # *
-dark_black = "#2E3440"  # * background
+light_black = "#434c5e" # *
+black = "#3b4252"       # *
+dark_black = "#2e3440"  # * background
 
-light_white = "#ECEFF4" # *
-white = "#E5E9F0"       # *
-dark_white = "#D8DEE9"  # *
+light_white = "#eceff4" # *
+white = "#e5e9f0"       # *
+dark_white = "#d8dee9"  # *
 
-light_gray = "#6C7A96" # + Comment LineNr
-gray = "#646A76"       # +
-dark_gray = "#4C566A"  # *
+light_gray = "#6c7a96" # + Comment LineNr
+gray = "#646a76"       # +
+dark_gray = "#4c566a"  # *
 
-light_red = "#DE878F" # +
-red = "#BF616A"       # * @constant.macro @variable.parameter @variable.builtin
-dark_red = "#4D2B2E"  # +
+light_red = "#de878f" # +
+red = "#bf616a"       # * @constant.macro @variable.parameter @variable.builtin
+dark_red = "#4d2b2e"  # +
 
-light_green = "#BED1AE" # ~
-green = "#A3BE8C"       # * String
-dark_green = "#6D8F51"  # +
+light_green = "#bed1ae" # ~
+green = "#a3be8c"       # * String
+dark_green = "#6d8f51"  # +
 
-light_yellow = "#F2DEB6" # ~
-yellow = "#EBCB8B"       # * Type @constructor @module @tag @type
-dark_yellow = "#D99D26"  # ~
+light_yellow = "#f2deb6" # ~
+yellow = "#ebcb8b"       # * Type @constructor @module @tag @type
+dark_yellow = "#d99d26"  # ~
 
-light_blue = "#81A1C1" # * Function enumMember @function.macro @function.method @keyword.import @property @tag.attribute
-blue = "#5E81AC"       # * Delimiter @punctuation @tag.delimiter
-dark_blue = "#405D7E"  # +
-# dark_blue = "#39495D" # +
+light_blue = "#81a1c1" # * Function enumMember @function.macro @function.method @keyword.import @property @tag.attribute
+blue = "#5e81ac"       # * Delimiter @punctuation @tag.delimiter
+dark_blue = "#405d7e"  # +
+# dark_blue = "#39495d" # +
 # dark_blue = "#2b3e54" # ~
 
-light_purple = "#CCB2C7" # ~
-purple = "#B48EAD"       # *
+light_purple = "#ccb2c7" # ~
+purple = "#b48ead"       # *
 dark_purple = "#996690"  # ~
-# dark_purple = "#B988B0" # + StorageClass Structure Operator Exception Conditional Keyword Repeat @keyword.return @label
+# dark_purple = "#b988b0" # + StorageClass Structure Operator Exception Conditional Keyword Repeat @keyword.return @label
 
-light_cyan = "#8FBCBB" # *
-cyan = "#88C0D0"       # * Constant @function.builtin @string.special.symbol
-dark_cyan = "#489EB7"  # ~
+light_cyan = "#8fbcbb" # *
+cyan = "#88c0d0"       # * Constant @function.builtin @string.special.symbol
+dark_cyan = "#489eb7"  # ~
 
-# light_orange = "#D08F70" # + Boolean Number @constant.builtin @string.regexp @string.escape @type.builtin
-light_orange = "#DCA694" # ~
-orange = "#D08770"       # *
-dark_orange = "#C05E3F"  # ~
+# light_orange = "#d08f70" # + Boolean Number @constant.builtin @string.regexp @string.escape @type.builtin
+light_orange = "#dca694" # ~
+orange = "#d08770"       # *
+dark_orange = "#c05e3f"  # ~
 
-pink = "#E85B7A"      # +
-dark_pink = "#E44675" # +
+pink = "#e85b7a"      # +
+dark_pink = "#e44675" # +

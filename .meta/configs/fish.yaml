@@ -1,0 +1,7 @@
+# - shell:
+#     - [yay -S --noconfirm fish, Installing fish]
+#     - [scoop install fish, Installing fish]
+- yay:
+    - fish
+- link:
+    ~/.config/fish:

@@ -1,0 +1,6 @@
+- yay:
+    - helix
+
+- link:
+    ~/.config/helix:
+      force: true

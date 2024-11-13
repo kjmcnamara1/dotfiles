@@ -4,7 +4,7 @@
 
 ### Install
 
-Boot from live USB
+Make sure to UEFI Boot from live USB
 
 #### [Connect to Wifi](https://wiki.archlinux.org/title/Iwd#iwctl)
 
@@ -40,17 +40,69 @@ exit
 #### Automated Install Script
 
 ```sh
-curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE.sh > /tmp/tmp.sh
-bash /tmp/tmp.sh
+bash -c "$(curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/dotbot/arch/install)"
+# curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE.sh > /tmp/tmp.sh
+# bash /tmp/tmp.sh
 ```
+
+Script will prompt for:
+
+1. archinstall config name (default=muse)
+2. root password
+3. Admin username (default=kjm) and password
+
+You will need to select options for disk layout. Any other preconfigured options can be changed before beginning install.
+
+Arch linux will be installed.
+
+Select "No" when asked to chroot into the new installation.
+
+Machine will automatically reboot.
 
 ### Boot
 
 #### Automated Configuration Script
 
+Log in via tty with the Admin user credentials you supplied during the install script.
+
+Connect to the internet with networkmanager tui:
+
 ```sh
-curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE/config.sh
+nmtui
 ```
+
+**Activate a connection** > Select Wi-Fi network > Enter _password_ > **OK** > **Back** > **Quit**
+
+Clone dotfiles git repo and run:
+
+```sh
+git clone -b dotbot https://github.com/kjmcnamara1/dotfiles ~/dotfiles
+
+cd ~/dotfiles
+./dotbot muse
+systemctl start sddm
+```
+
+Login via login manager (e.g. sddm).
+
+#### Change dotfiles repo to use SSH
+
+```sh
+gh auth login
+git remote set-url origin git@github.com:kjmcnamara1/dotfiles,
+```
+
+#### Authenticate OneDrive
+
+```sh
+onedrive
+```
+
+1. Log in using browser via URL
+2. Paste URL from browser after login back into terminal
+3. <kbd>Enter</kbd>
+
+END
 
 Create a [new ssh key](https://github.com/settings/ssh/new) on github.
 
@@ -191,7 +243,7 @@ systemctl --user start onedrive
   - Open File Explorer To = This PC
 
 Pin Home Directory (C:\Users\kjmcn) to Quick Access
-![](img/home_quick_access.png)
+![](docs/img/home_quick_access.png)
 
 #### Taskbar
 
@@ -210,7 +262,7 @@ Create 4 Desktops named:
 1. Extra
 1. Personal
 
-![](img/desktops.png)
+![](docs/img/desktops.png)
 
 ### [Scoop](https://scoop.sh/)
 
@@ -308,7 +360,7 @@ Log in with Work account > Only this App
 
 ##### [Outlook (PWA)](https://outlook.office.com/mail/)
 
-![](img/outlook_pwa.png)
+![](docs/img/outlook_pwa.png)
 
 Install Outlook PWA  
 Pin to taskbar
@@ -342,7 +394,7 @@ Log in with google account
 
 Log in  
 Change Settings > General > Start Minimized = to Systray
-![](img/vpn_settings.png)
+![](docs/img/vpn_settings.png)
 
 #### [Proton Drive](https://proton.me/drive/download)
 
@@ -355,7 +407,7 @@ Do not backup
 Do not sync inside OneDrive/Documents  
 Sync to C:\Users\kjmcn\MEGA  
 Remove .\* from 'excluded file and folder names' in Settings > Folders
-![](img/megasync_settings.png)
+![](docs/img/megasync_settings.png)
 
 #### [Dell Active Pen Service](https://www.dell.com/support/home/en-us/product-support/product/dell-ap-pn5122w/drivers)
 
