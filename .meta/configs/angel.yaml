@@ -38,5 +38,6 @@
     # - .meta/configs/wezterm.yaml
     - .meta/configs/xonsh.yaml
     - .meta/configs/wallpaper.yaml
+    # - .meta/configs/kde.yaml
     # - .meta/configs/hyprland.yaml
     # - .meta/configs/onedrive.yaml
