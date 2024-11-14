@@ -20,7 +20,7 @@ map("", "G", "G$", { desc = "Goto end of file", remap = true })
 map({ "i", "x", "n", "s" }, "<c-s>", "<cmd>w!<cr>", { desc = "Save file" })
 
 -- Quit NeoVim
--- map("n", "<c-q>", "<cmd>qa<cr>", { desc = "Quit NeoVim" })
+map("n", "<c-q>", "<cmd>qa<cr>", { desc = "Quit NeoVim" })
 
 -- Clear search with <esc>
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })

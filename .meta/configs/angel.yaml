@@ -8,6 +8,10 @@
     - ~/.config
     - ~/Pictures
 
+- link:
+    ~/Pictures/profile-crop.jpg:
+      force: true
+
 - included:
     - .meta/configs/git.yaml
 
