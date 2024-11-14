@@ -9,16 +9,22 @@
     - .meta/configs/git.yaml
 
 - yay:
-    - uv # Python package manager
-    - eza
-    - fd
-    - fzf
-    - ripgrep
-    - zoxide
-    - figlet
+    - uv # fast Python package manager (replace poetry/pyenv)
+    - pv # view data pipeline progress
+    - tldr # concice `man`
+    - eza # better `ls`
+    - fd # better `find` (search file names)
+    - fzf # command line fuzzy finder
+    - ripgrep # faster `grep` (regex search file contents)
+    - zoxide # `cd` replacement (easily navigate to previous directories)
+    - figlet # write big font in terminal
     - figlet-fonts-extra
-    # - networkmanager
+    - networkmanager
     # - nm-applet
+    - nm-connection-editor
+    - overskride # gtk4 bluetooth connections manager
+    - blueman # simple gtk bluetooth manager
+    - blueberry # gtk bluetooth manager
     # - xclip
     - unzip
     - zstd
