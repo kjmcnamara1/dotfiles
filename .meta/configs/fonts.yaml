@@ -1,6 +1,7 @@
 - yay:
     - ttf-jetbrains-mono-nerd
     - ttf-nerd-fonts-symbols
+    - ttf-firacode-nerd
 
 - scoop:
     buckets:

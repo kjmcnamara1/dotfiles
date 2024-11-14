@@ -26,7 +26,6 @@ for config in "${@}"; do
   # echo "$config_file"
   # cmd=(
   "${DOTBOT_BIN}" \
-    -vv \
     -d "${BASE_DIR}" \
     -c "${config_file}" \
     --plugin-dir "${PLUGIN_DIR}/*"

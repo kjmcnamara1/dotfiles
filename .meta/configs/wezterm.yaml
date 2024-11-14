@@ -3,3 +3,4 @@
 
 - link:
     ~/.config/wezterm:
+      force: true

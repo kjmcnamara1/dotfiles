@@ -6,3 +6,4 @@
 
 - link:
     ~/.config/bat:
+      force: true
