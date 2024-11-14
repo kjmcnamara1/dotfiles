@@ -8,6 +8,7 @@
     - partitionmanager
     - kdeconnect
     - plasma-framework5
+    - isoimagewriter
 
 - link:
     ~/.config/:
