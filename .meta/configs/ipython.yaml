@@ -5,7 +5,7 @@
 
 - shell:
     # BUG: fails
-    - py -m ipykernel install --user
+    - python -m ipykernel install --user
 
 - link:
     ~/.config/.ipython:

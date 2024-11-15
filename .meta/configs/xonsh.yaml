@@ -8,6 +8,7 @@
 - shell:
     - pipx install xonsh[full]
     # - pipx ensurepath
+    - export PATH="$HOME/.local/bin:$PATH"
     - grep -i xonsh /etc/shells || (which xonsh | sudo tee -a /etc/shells)
 
     # These all failed
