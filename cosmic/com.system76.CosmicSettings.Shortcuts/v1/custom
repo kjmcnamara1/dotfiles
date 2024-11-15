@@ -1,0 +1,31 @@
+{
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "t",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "e",
+    ): System(HomeFolder),
+    (
+        modifiers: [
+            Super,
+        ],
+    ): System(Launcher),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Return",
+    ): System(Terminal),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "f",
+    ): Disable,
+}
