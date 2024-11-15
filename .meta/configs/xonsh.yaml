@@ -12,11 +12,11 @@
 
     # These all failed
     # - chsh -s $(which xonsh)
-    - xpip install xontrib-vox
-    - xpip install xontrib-prompt-starship
-    - xpip install xontrib-abbrevs
-    - xpip install xontrib-back2dir
-    - xpip install xontrib-hist-navigator
+    - xonsh -c "xpip install xontrib-vox"
+    - xonsh -c "xpip install xontrib-prompt-starship"
+    - xonsh -c "xpip install xontrib-abbrevs"
+    - xonsh -c "xpip install xontrib-back2dir"
+    - xonsh -c "xpip install xontrib-hist-navigator"
 
 - link:
     ~/.config/xonsh:

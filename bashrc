@@ -126,10 +126,8 @@ fi
 # source <(poetry completions bash)
 
 # Environment variables
-# export PATH="$HOME/.local/bin:$PATH" # Poetry
-
-# Yazi
-export YAZI_CONFIG_HOME="~/.config/yazi"
+PATH="$HOME/.local/bin:$PATH"     # User programs (pipx, poetry)
+YAZI_CONFIG_HOME="~/.config/yazi" # Yazi
 
 # Zoxide
 eval "$(zoxide init --cmd cd bash)"

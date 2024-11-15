@@ -22,8 +22,6 @@ $XONSH_CTRL_BKSP_DELETION = True
 $XONSH_HISTORY_MATCH_ANYWHERE = True
 $YAZI_CONFIG_HOME = '~/.config/yazi'
 $EDITOR = 'nvim'
-
-# Path
 $PATH.prepend('~/.local/bin') # User binaries
 
 # Allow python to import modules from cwd
