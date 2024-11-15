@@ -5,7 +5,7 @@
 
 - shell:
     # BUG: fails
-    - systemctl enable NetworkManager
+    # - systemctl enable NetworkManager
 
 - included:
     - .meta/configs/yay.yaml
