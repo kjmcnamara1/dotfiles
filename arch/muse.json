@@ -163,7 +163,8 @@
     "wget",
     "curl",
     "python",
-    "openssh"
+    "openssh",
+    "networkmanager"
   ],
   "parallel downloads": 0,
   "profile_config": {
