@@ -1,8 +1,8 @@
 # dotfiles
 
-## Arch
+## Arch Linux
 
-### Install
+### Installation
 
 Make sure to UEFI Boot from live USB
 
@@ -10,37 +10,21 @@ Make sure to UEFI Boot from live USB
 
 ```sh
 iwctl
+station wlan0 get-networks # Scan/List networks
+station wlan0 connect SSID # Connect to network
 ```
 
-Scan/List networks
+Enter passphrase when prompted.
 
 ```sh
-station wlan0 get-networks
-```
-
-Connect to network
-
-```sh
-station wlan0 connect SSID
-```
-
-Enter passphrase when prompted  
-Confirm connection
-
-```sh
-station wlan0 show
-```
-
-Exit back to commandline
-
-```sh
-exit
+station wlan0 show # Confirm connection
+exit # Exit back to commandline
 ```
 
 #### Automated Install Script
 
 ```sh
-bash -c "$(curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/dotbot/arch/install)"
+bash -c "$(curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/main/arch/install)"
 # curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE.sh > /tmp/tmp.sh
 # bash /tmp/tmp.sh
 ```
@@ -59,9 +43,7 @@ Select "No" when asked to chroot into the new installation.
 
 Machine will automatically reboot.
 
-### Boot
-
-#### Automated Configuration Script
+### Configuration
 
 Log in via tty with the Admin user credentials you supplied during the install script.
 
@@ -71,19 +53,18 @@ Connect to the internet with networkmanager tui:
 nmtui
 ```
 
-**Activate a connection** > Select Wi-Fi network > Enter _password_ > **OK** > **Back** > **Quit**
+**Activate a connection** > Select Wi-Fi network > Enter *password* > **OK** > **Back** > **Quit**
 
 Clone dotfiles git repo and run:
 
 ```sh
-git clone -b dotbot https://github.com/kjmcnamara1/dotfiles ~/dotfiles
-
-cd ~/dotfiles
-./dotbot muse
-systemctl start sddm
+git clone https://github.com/kjmcnamara1/dotfiles ~/dotfiles && cd ~/dotfiles
+./dotbot muse cosmic
+# systemctl start sddm
 ```
 
 Login via login manager (e.g. sddm).
+
 
 #### Change dotfiles repo to use SSH
 
@@ -92,60 +73,23 @@ gh auth login
 git remote set-url origin git@github.com:kjmcnamara1/dotfiles,
 ```
 
-#### Authenticate OneDrive
+### OneDrive
 
 ```sh
 onedrive
 ```
+1. Paste URL into browser
+2. Log in to MS OneDrive
+3. Copy URL of addressbar of the blank page that results and paste into terminal
 
-1. Log in using browser via URL
-2. Paste URL from browser after login back into terminal
-3. <kbd>Enter</kbd>
 
-END
-
-Create a [new ssh key](https://github.com/settings/ssh/new) on github.
-
-Continue script by pressing <kbd>Enter</kbd>.
-
-#### Tmux
+### Tmux
 
 Start `tmux`
 
 Install plugins
-prefix (ctrl-a) + I (s-i)
+prefix (ctrl-a) + I (shift-i)
 
-### System settings
-
-Keyboard > Advanced > Caps Lock behavior > Make Caps Lock an additional Ctrl  
-Mouse > Touchpad > Scrolling > Invert scroll direction (Natural scrolling)  
-Window Management > Desktop Effects > Blur  
-Window Management > Desktop Effects > Background Contrast  
-Colors & Themes > Application Style > kvantum-dark
-
-Desktop Folder Settings > Get New Plugins... > Active Blur
-
-Qogir Icons
-
-### Konsole Profile
-
-New Profile
-
-- General
-  - Name = Nord
-  - [x] Default Profile
-  - Command: `/usr/bin/fish`
-- Appearance
-  - Color scheme & font
-    - Get New... > Utterly-Nord
-    - Font = JetBrainsMono Nerd Font 14pt
-
-### Kvantum Manager
-
-Download [Utterly Nord Kvantum theme](https://store.kde.org/p/1905813)
-
-Install Utterly-Nord theme folder > Install this theme  
-Change / Delete Theme > Select "Utterly-Nord" from dropdown > Use this theme
 
 ### QEMU
 
@@ -154,23 +98,6 @@ yay -S qemu virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat ip
 sudo usermod -aG libvirt $(whoami)
 systemctl enable libvirtd
 systemctl start libvirtd
-```
-
-### OneDrive
-
-```sh
-yay -S onedrive-abraunegg
-
-onedrive
-```
-
-1. Paste URL into browser
-2. Log in to MS OneDrive
-3. Copy URL of addressbar of the blank page that results and paste into terminal
-
-```sh
-systemctl --user enable onedrive
-systemctl --user start onedrive
 ```
 
 ## Windows
@@ -300,8 +227,8 @@ Disable Settings > Privacy & security > Windows Security > Device security > Cor
 
 Install OneDrive\IT\Reimage Setup Files\NetExtender.MSI
 
-Default Server: vpn.fivestarproducts.com  
-Default Domain: hqfsp  
+Default Server: vpn.fivestarproducts.com
+Default Domain: hqfsp
 Allow connections to other profiles
 
 #### I Drive
@@ -318,16 +245,16 @@ Run OneDrive\IT\Map I Drive.bat
 # run install file
 ``` -->
 
-Download and install as regular application  
-Set Brave as default browser  
-Skip import  
-Help make Brave better = Check all  
-brave://sync > enter Work sync code > Sync everything  
-hamburger > More tools > Add new profile = Personal  
-brave://sync > enter Personal sync code > Sync everything  
-Change Profile name and icon for both  
-Settings > Content > Content > Cycle through the most recently used tabs with Ctrl-Tab = On  
-Sign into Proton Pass  
+Download and install as regular application
+Set Brave as default browser
+Skip import
+Help make Brave better = Check all
+brave://sync > enter Work sync code > Sync everything
+hamburger > More tools > Add new profile = Personal
+brave://sync > enter Personal sync code > Sync everything
+Change Profile name and icon for both
+Settings > Content > Content > Cycle through the most recently used tabs with Ctrl-Tab = On
+Sign into Proton Pass
 Set as default browser
 
 <!-- Create symlink for userdata to scoop userdata -->
@@ -362,7 +289,7 @@ Log in with Work account > Only this App
 
 ![](docs/img/outlook_pwa.png)
 
-Install Outlook PWA  
+Install Outlook PWA
 Pin to taskbar
 
 ##### Microsoft Teams (work or school)
@@ -371,8 +298,8 @@ Log in with Work account > Only this App
 
 ##### [OneDrive - Work](https://fivestarproducts-my.sharepoint.com/personal/mcnamarak_fivestarproducts_com//_layouts/15/onedrive.aspx?login_hint=McNamaraK%40fivestarproducts%2Ecom&view=1)
 
-Settings > Add account  
-Log in with work account  
+Settings > Add account
+Log in with work account
 Sign into this app only
 
 ##### [SharePoint](https://fivestarproducts.sharepoint.com/_layouts/15/sharepoint.aspx)
@@ -392,20 +319,20 @@ Log in with google account
 
 #### [Proton VPN](https://protonvpn.com/download-windows)
 
-Log in  
+Log in
 Change Settings > General > Start Minimized = to Systray
 ![](docs/img/vpn_settings.png)
 
 #### [Proton Drive](https://proton.me/drive/download)
 
-Don't backup any folders  
+Don't backup any folders
 Use default sync location (C:\Users\kjmcn\Proton Drive\kevin.j.mcnamara)
 
 #### MegaSync
 
-Do not backup  
-Do not sync inside OneDrive/Documents  
-Sync to C:\Users\kjmcn\MEGA  
+Do not backup
+Do not sync inside OneDrive/Documents
+Sync to C:\Users\kjmcn\MEGA
 Remove .\* from 'excluded file and folder names' in Settings > Folders
 ![](docs/img/megasync_settings.png)
 
@@ -415,13 +342,13 @@ Dell Active Pen PN5122W
 
 #### [TeamViewer](https://www.teamviewer.com/en-us/)
 
-Download and install (not through scoop) for unattended access.  
+Download and install (not through scoop) for unattended access.
 [](https://download.teamviewer.com/download/TeamViewer_Setup_x64.exe)
 
 Log in with TeamViewer credentials.
 
-Settings > General > Dark Mode = On  
-Settings > General > Start TeamViewer with Windows = On  
+Settings > General > Dark Mode = On
+Settings > General > Start TeamViewer with Windows = On
 Devices > All managed devices > Add device > Set up remote access on this device
 
 #### Windows Terminal

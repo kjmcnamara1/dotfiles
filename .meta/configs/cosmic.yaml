@@ -8,3 +8,8 @@
 
 - link:
     ~/.config/cosmic:
+
+- sudo:
+    - shell:
+        - systemctl enable cosmic-greeter
+        - systemctl start cosmic-greeter

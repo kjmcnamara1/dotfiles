@@ -9,7 +9,7 @@ read -rp "Name of config to use [$DEFAULT_CONFIG_NAME]: " config_name
 config_name=${config_name:-$DEFAULT_CONFIG_NAME}
 
 # Select config file
-config_file="https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/dotbot/arch/$config_name.json"
+config_file="https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/main/arch/$config_name.json"
 echo "Using config file: $config_file"
 
 # Read credentials from user

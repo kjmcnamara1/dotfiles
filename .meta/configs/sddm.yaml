@@ -7,4 +7,5 @@
 
 - sudo:
     - shell:
-        - systemctl enable sddm.service
+        - systemctl enable sddm
+        - systemctl start sddm

@@ -31,6 +31,7 @@
     - zstd
     # - packagekit
     - brave-bin
+    - zen-browser
     # - freecad
     # - inkscape
     # - gimp
