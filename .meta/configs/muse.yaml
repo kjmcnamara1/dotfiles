@@ -4,6 +4,7 @@
       relink: true
 
 - shell:
+    # BUG: fails
     - systemctl enable NetworkManager
 
 - included:

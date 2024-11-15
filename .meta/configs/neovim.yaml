@@ -2,9 +2,10 @@
     - neovim
     - nodejs
     - npm
-- scoop:
-    apps:
-      - neovim
+
+# - scoop:
+#     apps:
+#       - neovim
 
 - link:
     ~/.config/nvim:

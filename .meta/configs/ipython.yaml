@@ -4,6 +4,7 @@
     # - jupyterlab
 
 - shell:
+    # BUG: fails
     - py -m ipykernel install --user
 
 - link:

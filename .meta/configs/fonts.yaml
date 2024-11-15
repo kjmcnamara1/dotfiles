@@ -2,9 +2,8 @@
     - ttf-jetbrains-mono-nerd
     - ttf-nerd-fonts-symbols
     - ttf-firacode-nerd
-
-- scoop:
-    buckets:
-      - nerd-fonts
-    apps:
-      - JetBrainsMono-NF
+# - scoop:
+#     buckets:
+#       - nerd-fonts
+#     apps:
+#       - JetBrainsMono-NF
