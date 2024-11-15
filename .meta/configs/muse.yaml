@@ -12,6 +12,7 @@
     - uv # fast Python package manager (replace poetry/pyenv)
     - pv # view data pipeline progress
     - tldr # concice `man`
+    - jq # json query
     - eza # better `ls`
     - fd # better `find` (search file names)
     - fzf # command line fuzzy finder

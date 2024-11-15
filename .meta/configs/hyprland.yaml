@@ -10,7 +10,8 @@
     - clipboard
     - pipewire
     - wireplumber
-    - hyprpaper
+    - hyprpaper # backend wallpaper setter
+    - waypaper # gui frontent for hyprpaper
     - hyprpicker
     - dunst # mako, swaync
     - rofi-wayland
@@ -26,6 +27,8 @@
     ~/.config/waybar:
       force: true
     ~/.config/rofi:
+      force: true
+    ~/.config/dunst:
       force: true
 
 - included:
