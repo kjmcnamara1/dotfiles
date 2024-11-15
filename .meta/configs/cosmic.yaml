@@ -1,0 +1,10 @@
+- yay:
+    - cosmic-session
+    - cosmic-files
+    - cosmic-store
+    - cosmic-terminal
+    - cosmic-text-editor
+    - cosmic-wallpapers
+
+- link:
+    ~/.config/cosmic:
