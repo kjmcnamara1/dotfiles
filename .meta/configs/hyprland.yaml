@@ -1,4 +1,7 @@
 # BUG: Need to fix flickering issue
+- shell:
+    - yay -R wezterm # wezterm doesn't start in Hyprland
+
 - yay:
     - hyprland
     - xdg-desktop-portal-hyprland
@@ -18,6 +21,7 @@
     - waybar
     - wlogout
     - python-pywal
+    - wezterm-git # wezterm doesn't start in Hyprland
 
 # TODO: Need to add bluetooth
 

@@ -24,6 +24,7 @@ exit # Exit back to commandline
 #### Automated Install Script
 
 ```sh
+mount -m /dev/sda2 /usb # if you want to save config file
 bash -c "$(curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/main/arch/install)"
 # curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE.sh > /tmp/tmp.sh
 # bash /tmp/tmp.sh
