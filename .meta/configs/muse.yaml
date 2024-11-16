@@ -3,9 +3,8 @@
       create: true
       relink: true
 
-- shell:
-    # BUG: fails
-    # - systemctl enable NetworkManager
+# - shell:
+#     - systemctl enable NetworkManager # BUG: fails
 
 - included:
     - .meta/configs/yay.yaml
@@ -55,3 +54,8 @@
     - .meta/configs/wallpaper.yaml
     # - .meta/configs/hyprland.yaml
     # - .meta/configs/onedrive.yaml
+
+- sudo:
+    - shell:
+        - systemctl enable NetworkManager
+        - systemctl start NetworkManager
