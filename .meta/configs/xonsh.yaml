@@ -7,19 +7,17 @@
 
 - shell:
     - pipx install xonsh[full]
-    # - pipx ensurepath
-    - export PATH="$HOME/.local/bin:$PATH"
-    - command: echo $PATH
+    - command: >-
+        PATH="$HOME/.local/bin:$PATH";
+        grep -i xonsh /etc/shells || (which xonsh | sudo tee -a /etc/shells);
+        xonsh -c "xpip install xontrib-vox";
+        xonsh -c "xpip install xontrib-prompt-starship";
+        xonsh -c "xpip install xontrib-abbrevs";
+        xonsh -c "xpip install xontrib-back2dir";
+        xonsh -c "xpip install xontrib-hist-navigator";
       stdout: true
-    - grep -i xonsh /etc/shells || (which xonsh | sudo tee -a /etc/shells)
 
-    # These all failed
     # - chsh -s $(which xonsh)
-    - xonsh -c "xpip install xontrib-vox"
-    - xonsh -c "xpip install xontrib-prompt-starship"
-    - xonsh -c "xpip install xontrib-abbrevs"
-    - xonsh -c "xpip install xontrib-back2dir"
-    - xonsh -c "xpip install xontrib-hist-navigator"
 
 - link:
     ~/.config/xonsh:
