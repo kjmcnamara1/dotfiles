@@ -60,3 +60,5 @@
     - shell:
         - systemctl enable NetworkManager
         - systemctl start NetworkManager
+        - systemctl enable bluetooth
+        - systemctl start bluetooth
