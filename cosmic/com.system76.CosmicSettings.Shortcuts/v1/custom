@@ -3,14 +3,8 @@
         modifiers: [
             Super,
         ],
-        key: "t",
-    ): Disable,
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "e",
-    ): System(HomeFolder),
+        key: "f",
+    ): Maximize,
     (
         modifiers: [
             Super,
@@ -20,12 +14,44 @@
         modifiers: [
             Super,
         ],
-        key: "Return",
-    ): System(Terminal),
+        key: "w",
+    ): Disable,
     (
         modifiers: [
             Super,
         ],
-        key: "f",
-    ): Disable,
+        key: "p",
+    ): ToggleSticky,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Return",
+        description: Some("Wezterm"),
+    ): Spawn("wezterm"),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Tab",
+    ): System(WorkspaceOverview),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "c",
+    ): Close,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "comma",
+        description: Some("Cosmic Settings"),
+    ): Spawn("cosmic-settings"),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "e",
+    ): System(HomeFolder),
 }
