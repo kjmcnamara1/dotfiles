@@ -15,9 +15,9 @@
         xonsh -c "xpip install xontrib-abbrevs";
         xonsh -c "xpip install xontrib-back2dir";
         xonsh -c "xpip install xontrib-hist-navigator";
+        xonsh -c "xpip install xontrib-fish-completer";
+        xonsh -c "chsh -s $(which xonsh)";
       stdout: true
-
-    # - chsh -s $(which xonsh)
 
 - link:
     ~/.config/xonsh:

@@ -9,6 +9,7 @@ xontrib load coreutils vox
 xontrib load prompt_starship
 xontrib load abbrevs
 xontrib load back2dir
+xontrib load fish_completer
 xontrib load hist_navigator # keymaps are broken (a-left, a-right, a-up)
 # NOTE: check out https://github.com/xxh/xxh
 
@@ -28,9 +29,9 @@ $PATH.prepend('~/.local/bin') # User binaries
 sys.path.append('')
 
 # Carapace Completion
-$CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
-$COMPLETIONS_CONFIRM=True
-exec($(carapace _carapace))
+# $CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+# $COMPLETIONS_CONFIRM=True
+# exec($(carapace _carapace))
 
 # Zoxide
 execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
