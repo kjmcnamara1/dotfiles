@@ -35,6 +35,7 @@
     # - packagekit
     - brave-bin
     - zen-browser
+    - firefox-pwa-bin # progressive web app for zen browser
     # - freecad
     # - inkscape
     # - gimp
