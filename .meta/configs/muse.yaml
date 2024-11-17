@@ -40,7 +40,9 @@
     # - inkscape
     # - gimp
     # - obsidian
-    # - proton-vpn-gtk-app
+    - proton-vpn-gtk-app
+    - proton-pass-bin
+    - proton-mail-bin
 
 - included:
     - .meta/configs/bash.yaml
