@@ -24,7 +24,7 @@ exit # Exit back to commandline
 #### Automated Install Script
 
 ```sh
-mount -m /dev/sda2 /usb # if you want to save config file
+mount -m -t nfs snow.local:/mnt/md1 /nas # to save config file to nas
 bash -c "$(curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/main/arch/install)"
 # curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE.sh > /tmp/tmp.sh
 # bash /tmp/tmp.sh
@@ -40,8 +40,17 @@ You will need to select options for disk layout. Any other preconfigured options
 
 Arch linux will be installed.
 
-Select "No" when asked to chroot into the new installation.
+Select "Yes" when asked to chroot into the new installation.
 
+Switch user and clone dotfiles repo:
+
+```sh
+su kjm
+git clone https://github.com/kjmcnamara1/dotfiles ~/dotfiles && cd ~/dotfiles
+./dotbot muse cosmic
+exit # exit kjm shell
+exit # exit arch-chroot shell
+```
 Machine will automatically reboot.
 
 ### Configuration
@@ -61,7 +70,6 @@ Clone dotfiles git repo and run:
 ```sh
 git clone https://github.com/kjmcnamara1/dotfiles ~/dotfiles && cd ~/dotfiles
 ./dotbot muse cosmic
-# systemctl start sddm
 ```
 
 Login via login manager (e.g. sddm).
