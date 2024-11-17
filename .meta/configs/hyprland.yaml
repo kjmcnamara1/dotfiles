@@ -11,6 +11,7 @@
     # - nwg-look
     - wl-clipboard
     - clipboard
+    - udiskie # automount usb drives
     - pipewire
     - wireplumber
     - hyprpaper # backend wallpaper setter

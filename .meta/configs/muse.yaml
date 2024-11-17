@@ -46,6 +46,7 @@
     - .meta/configs/bash.yaml
     - .meta/configs/bat.yaml
     - .meta/configs/fastfetch.yaml
+    - .meta/configs/yazi.yaml
     - .meta/configs/fonts.yaml
     - .meta/configs/ipython.yaml
     - .meta/configs/neovim.yaml
