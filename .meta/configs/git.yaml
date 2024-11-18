@@ -4,6 +4,7 @@
 
 - yay:
     - github-cli
+    - github-desktop-bin
 # Authenticate with GitHub and change dotfiles repo to use ssh
 # - shell:
 #     - command: gh auth login
