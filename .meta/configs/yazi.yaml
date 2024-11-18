@@ -3,3 +3,4 @@
 
 - link:
     ~/.config/yazi:
+      force: true
