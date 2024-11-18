@@ -9,18 +9,18 @@
     # - qt5-wayland
     # - qt6-wayland
     # - nwg-look
-    - wl-clipboard
-    - clipboard
+    # - wl-clipboard
+    # - clipboard
     - udiskie # automount usb drives
-    - pipewire
+    - pipewire # audio server
     - wireplumber
     - hyprpaper # backend wallpaper setter
     - waypaper # gui frontent for hyprpaper
-    - hyprpicker
+    - hyprpicker # color picker
     - dunst # mako, swaync
-    - rofi-wayland
-    - waybar
-    - wlogout
+    - rofi-wayland # launcher (apps,windows,other)
+    - waybar # status bar
+    - wlogout # logout menu
     - python-pywal
     - wezterm-git # wezterm doesn't start in Hyprland
 
@@ -35,6 +35,5 @@
       force: true
     ~/.config/dunst:
       force: true
-
-- included:
-    - .meta/configs/sddm.yaml
+# - included:
+#     - .meta/configs/sddm.yaml
