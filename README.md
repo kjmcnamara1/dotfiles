@@ -51,6 +51,7 @@ git clone https://github.com/kjmcnamara1/dotfiles ~/dotfiles && cd ~/dotfiles
 exit # exit kjm shell
 exit # exit arch-chroot shell
 ```
+
 Machine will automatically reboot.
 
 ### Configuration
@@ -63,7 +64,7 @@ Connect to the internet with networkmanager tui:
 nmtui
 ```
 
-**Activate a connection** > Select Wi-Fi network > Enter *password* > **OK** > **Back** > **Quit**
+**Activate a connection** > Select Wi-Fi network > Enter _password_ > **OK** > **Back** > **Quit**
 
 Clone dotfiles git repo and run:
 
@@ -74,12 +75,11 @@ git clone https://github.com/kjmcnamara1/dotfiles ~/dotfiles && cd ~/dotfiles
 
 Login via login manager (e.g. sddm).
 
-
 #### Change dotfiles repo to use SSH
 
 ```sh
 gh auth login
-git remote set-url origin git@github.com:kjmcnamara1/dotfiles,
+git remote set-url origin git@github.com:kjmcnamara1/dotfiles
 ```
 
 ### OneDrive
@@ -87,10 +87,10 @@ git remote set-url origin git@github.com:kjmcnamara1/dotfiles,
 ```sh
 onedrive
 ```
+
 1. Paste URL into browser
 2. Log in to MS OneDrive
 3. Copy URL of addressbar of the blank page that results and paste into terminal
-
 
 ### Tmux
 
@@ -98,7 +98,6 @@ Start `tmux`
 
 Install plugins
 prefix (ctrl-a) + I (shift-i)
-
 
 ### QEMU
 
