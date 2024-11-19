@@ -8,6 +8,7 @@
     - hyprland
     - xdg-desktop-portal-hyprland
     # - hyprpolkitagent-git
+    - polkit-gnome
     - qt5-wayland
     - qt6-wayland
     - nwg-look # GTK Theme setter
@@ -30,19 +31,18 @@
 
 # TODO: Need to add bluetooth
 
+- included:
+    - .meta/configs/kitty.yaml
+
 - defaults:
     - link:
         force: true
 
 - link:
     ~/.config/hypr:
-      # force: true
     ~/.config/waybar:
-      # force: true
     ~/.config/rofi:
-      # force: true
     ~/.config/dunst:
-      # force: true
     ~/.config/Kvantum: kde/Kvantum
 # - included:
 #     - .meta/configs/sddm.yaml
