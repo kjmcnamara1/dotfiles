@@ -131,3 +131,21 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.cmd.startinsert()
   end
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Set commentstring for hyprlang",
+  group = augroup("hyprlang"),
+  pattern = "hyprlang",
+  callback = function()
+    vim.bo.commentstring = "# %s"
+  end,
+})
+
+-- vim.api.nvim_create_autocmd("FileType", {
+--   desc = "Set commentstring for hyprlang",
+--   group = augroup("hyprlang"),
+--   pattern = "hyprlang",
+--   callback = function()
+--     vim.bo.commentstring = "# %s"
+--   end,
+-- })

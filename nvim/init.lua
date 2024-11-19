@@ -47,3 +47,10 @@ require("core.keymaps")
 
 -- Custom autocmds
 require("core.autocmds")
+
+-- Set hyprlang filetypes
+vim.filetype.add({
+  pattern = {
+    [".*/hypr/.*%.conf"] = "hyprlang"
+  }
+})
