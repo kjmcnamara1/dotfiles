@@ -152,7 +152,7 @@
         }
     },
     "network_config": {
-        "type": "nm"
+        "type": "iso"
     },
     "no_pkg_lookups": false,
     "ntp": true,
