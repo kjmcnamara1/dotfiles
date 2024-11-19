@@ -1,15 +1,10 @@
--- Vim options
-require("core.options")
-
--- Custom keymaps
-require("core.keymaps")
-
--- Custom autocmds
-require("core.autocmds")
+-- Map leader key to <space> and localleader to '\'
+vim.g.mapleader      = " "
+vim.g.maplocalleader = "\\"
 
 -- ===================== Lazy.nvim Plugin Manager =============================
 -- Set lazy data folder location where plugins will download
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath       = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -43,3 +38,12 @@ require("lazy").setup("plugins", opts)
 if vim.g.vscode then
   require("core.vscode")
 end
+
+-- Vim options
+require("core.options")
+
+-- Custom keymaps
+require("core.keymaps")
+
+-- Custom autocmds
+require("core.autocmds")

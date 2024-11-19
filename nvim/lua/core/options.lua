@@ -1,9 +1,5 @@
 -- ======================== KEYS ========================
 
--- Map leader key to <space> and localleader to '\'
-vim.g.mapleader        = " "
-vim.g.maplocalleader   = "\\"
-
 -- Keymap timeout length in ms
 -- opt.timeoutlen = 300
 
@@ -66,7 +62,8 @@ vim.opt.smartindent   = true                        -- Make indenting smart
 
 vim.opt.completeopt   = "menuone,noinsert,noselect" -- Customize completions
 vim.opt.virtualedit   = "block"                     -- Allow going past the end of line in visual block mode
-vim.opt.formatoptions = "qjl1"                      -- Don't autoformat comments
+vim.opt.textwidth     = 80                          -- Set wrap text width
+vim.opt.formatoptions = "qcrj1"                     -- Don't autoformat comments when useing 'o' or 'O'
 
 
 
