@@ -3,10 +3,10 @@
       create: true
       relink: true
 
-- clean:
-    - ~
-    - ~/.config
-    - ~/Pictures
+# - clean:
+#     - ~
+#     - ~/.config
+#     - ~/Pictures
 
 - link:
     ~/Pictures/profile-crop.jpg:
@@ -17,19 +17,8 @@
     - .meta/configs/git.yaml
 
 - yay:
-    - uv # fast Python package manager (replace poetry/pyenv)
-    - pv # view data pipeline progress
-    - tldr # concice `man`
-    - jq # json query
-    - eza # better `ls`
-    - fd # better `find` (search file names)
-    - fzf # command line fuzzy finder
-    - ripgrep # faster `grep` (regex search file contents)
-    - zoxide # `cd` replacement (easily navigate to previous directories)
     - figlet # write big font in terminal
     - figlet-fonts-extra
-    - unzip
-    - zstd
     - zen-browser-bin
     - firefox-pwa-bin # progressive web app for zen browser
     - proton-vpn-gtk-app
