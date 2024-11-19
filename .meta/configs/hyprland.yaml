@@ -7,10 +7,13 @@
 - yay:
     - hyprland
     - xdg-desktop-portal-hyprland
-    - hyprpolkitagent-git
+    # - hyprpolkitagent-git
     - qt5-wayland
     - qt6-wayland
-    - nwg-look
+    - nwg-look # GTK Theme setter
+    - hyprcursor # cursor backend
+    - nordzy-hyprcursors # hyprcursor theme
+    - nordzy-cursors # xcursor and gtk cursor theme
     - udiskie # automount usb drives
     - pipewire # audio server
     - wireplumber
@@ -27,14 +30,19 @@
 
 # TODO: Need to add bluetooth
 
+- defaults:
+    - link:
+        force: true
+
 - link:
     ~/.config/hypr:
-      force: true
+      # force: true
     ~/.config/waybar:
-      force: true
+      # force: true
     ~/.config/rofi:
-      force: true
+      # force: true
     ~/.config/dunst:
-      force: true
+      # force: true
+    ~/.config/Kvantum: kde/Kvantum
 # - included:
 #     - .meta/configs/sddm.yaml

@@ -1,8 +1,8 @@
 [core]
   editor = nvim
 [user]
-  name = Kevin J. McNamara
-  email = kjmcnamara1@gmail.com
+	name = Kevin
+	email = kevin.j.mcnamara+tech@proton.me
 [pull]
   rebase = false
 [push]

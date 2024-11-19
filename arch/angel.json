@@ -179,6 +179,7 @@
     "ripgrep",
     "zoxide",
     "unzip",
+    "p7zip",
     "zstd"
   ],
   "parallel downloads": 0,
