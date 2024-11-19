@@ -1,17 +1,16 @@
 # BUG: Need to fix flickering issue
-- sudo:
-    - shell:
-        - yay -R wezterm # wezterm doesn't start in Hyprland
+
+# - sudo:
+#     - shell:
+#         - yay -R wezterm # wezterm doesn't start in Hyprland
 
 - yay:
     - hyprland
     - xdg-desktop-portal-hyprland
     - hyprpolkitagent-git
-    # - qt5-wayland
-    # - qt6-wayland
-    # - nwg-look
-    # - wl-clipboard
-    # - clipboard
+    - qt5-wayland
+    - qt6-wayland
+    - nwg-look
     - udiskie # automount usb drives
     - pipewire # audio server
     - wireplumber
@@ -20,10 +19,11 @@
     - hyprpicker # color picker
     - dunst # mako, swaync
     - rofi-wayland # launcher (apps,windows,other)
+    - cliphist # clipboard manager (uses wl-clipboard)
     - waybar # status bar
     - wlogout # logout menu
     - python-pywal
-    - wezterm-git # wezterm doesn't start in Hyprland
+    # - wezterm-git # wezterm doesn't start in Hyprland
 
 # TODO: Need to add bluetooth
 
