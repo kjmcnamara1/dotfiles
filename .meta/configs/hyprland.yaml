@@ -1,6 +1,7 @@
 # BUG: Need to fix flickering issue
-- shell:
-    - yay -R wezterm # wezterm doesn't start in Hyprland
+- sudo:
+    - shell:
+        - yay -R wezterm # wezterm doesn't start in Hyprland
 
 - yay:
     - hyprland
