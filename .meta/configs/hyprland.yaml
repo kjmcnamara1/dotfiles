@@ -11,12 +11,13 @@
     - polkit-gnome # authentication agent
     - qt5-wayland # QT5 library
     - qt6-wayland # QT6 library
-    - qt5ct # QT5 config tool
+    # - qt5ct # QT5 config tool
     - qt6ct # QT6 config tool
     - nwg-look # GTK Theme setter
     - hyprcursor # cursor backend
     - nordzy-hyprcursors # hyprcursor theme
     - nordzy-cursors # xcursor and gtk cursor theme
+    - nordic-theme # GTK Theme
     - udiskie # automount usb drives
     - pipewire # audio server
     - wireplumber
