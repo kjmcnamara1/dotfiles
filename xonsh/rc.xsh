@@ -1,16 +1,21 @@
 import sys
 import logging
+import warnings
+
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 # Fix error when setting up logging.basicConfig
 logging.getLogger("asyncio").setLevel(logging.WARNING)
 
 # Xontribs
 xontrib load coreutils vox
-xontrib load prompt_starship
 xontrib load abbrevs
 xontrib load back2dir
+xontrib load prompt_starship
 xontrib load fish_completer
 xontrib load hist_navigator # keymaps are broken (a-left, a-right, a-up)
+xontrib load term_integration
+xontrib load kitty # allow printing mpl plots in terminal
 # NOTE: check out https://github.com/xxh/xxh
 
 # Environment Variables
