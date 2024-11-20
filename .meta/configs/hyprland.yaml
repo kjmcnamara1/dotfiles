@@ -38,8 +38,8 @@
 #     - .meta/configs/kitty.yaml
 
 - defaults:
-    - link:
-        force: true
+    link:
+      force: true
 
 - link:
     ~/.config/hypr:
