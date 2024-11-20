@@ -13,6 +13,7 @@
     - qt6-wayland # QT6 library
     # - qt5ct # QT5 config tool
     - qt6ct # QT6 config tool
+    - kvantum
     - nwg-look # GTK Theme setter
     - hyprcursor # cursor backend
     - nordzy-hyprcursors # hyprcursor theme
@@ -46,6 +47,11 @@
     ~/.config/waybar:
     ~/.config/rofi:
     ~/.config/dunst:
-    ~/.config/Kvantum: kde/Kvantum
+    ~/.gtkrc-2.0:
+    ~/.config/gtk-3.0:
+    ~/.config/gtk-4.0:
+    ~/.config/xsettingsd:
+    ~/.config/.Xresources:
+    # ~/.config/Kvantum: kde/Kvantum
 # - included:
 #     - .meta/configs/sddm.yaml
