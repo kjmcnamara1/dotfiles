@@ -19,8 +19,9 @@
 - yay:
     - figlet # write big font in terminal
     - figlet-fonts-extra
-    - zen-browser-bin
-    - firefox-pwa-bin # progressive web app for zen browser
+    - brave-bin
+    # - zen-browser-bin
+    # - firefox-pwa-bin # progressive web app for zen browser
     - proton-vpn-gtk-app
     - proton-pass-bin
     - proton-mail-bin
