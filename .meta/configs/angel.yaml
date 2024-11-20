@@ -34,7 +34,7 @@
     - .meta/configs/ipython.yaml
     - .meta/configs/neovim.yaml
     - .meta/configs/starship.yaml
-    - .meta/configs/wezterm.yaml
+    - .meta/configs/kitty.yaml
     - .meta/configs/xonsh.yaml
     - .meta/configs/wallpaper.yaml
     # - .meta/configs/kde.yaml

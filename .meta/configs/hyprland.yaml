@@ -8,9 +8,11 @@
     - hyprland
     - xdg-desktop-portal-hyprland
     # - hyprpolkitagent-git
-    - polkit-gnome
-    - qt5-wayland
-    - qt6-wayland
+    - polkit-gnome # authentication agent
+    - qt5-wayland # QT5 library
+    - qt6-wayland # QT6 library
+    - qt5ct # QT5 config tool
+    - qt6ct # QT6 config tool
     - nwg-look # GTK Theme setter
     - hyprcursor # cursor backend
     - nordzy-hyprcursors # hyprcursor theme
@@ -29,10 +31,10 @@
     - python-pywal
     # - wezterm-git # wezterm doesn't start in Hyprland
 
-# TODO: Need to add bluetooth
+# TODO: Need to add bluetooth and nm applet
 
-- included:
-    - .meta/configs/kitty.yaml
+# - included:
+#     - .meta/configs/kitty.yaml
 
 - defaults:
     - link:
