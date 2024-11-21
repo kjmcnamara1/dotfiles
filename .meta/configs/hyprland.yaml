@@ -45,6 +45,7 @@
 - link:
     ~/.config/hypr:
     ~/.config/waybar:
+    ~/.local/bin/reload-waybar: bin/reload-waybar
     ~/.config/rofi:
     ~/.config/dunst:
     ~/.gtkrc-2.0:
