@@ -19,6 +19,7 @@
 - yay:
     - figlet # write big font in terminal
     - figlet-fonts-extra
+    - vlc # video player
     - brave-bin
     # - zen-browser-bin
     # - firefox-pwa-bin # progressive web app for zen browser
