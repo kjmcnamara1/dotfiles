@@ -1,9 +1,3 @@
-# BUG: Need to fix flickering issue
-
-# - sudo:
-#     - shell:
-#         - yay -R wezterm # wezterm doesn't start in Hyprland
-
 - yay:
     - hyprland
     - xdg-desktop-portal-hyprland
@@ -29,15 +23,15 @@
     - waybar # status bar
     - wlogout # logout menu
     - python-pywal
-    # - wezterm-git # wezterm doesn't start in Hyprland
     - nm-connection-editor # NetworkManager gui
     - network-manager-applet # sys tray icon and menu
     - blueberry-wayland # bluetooth gui
 
 - included:
+    - .meta/configs/sddm.yaml
     - .meta/configs/pipewire.yaml
     - .meta/configs/wezterm.yaml
-  # - .meta/configs/kitty.yaml
+    # - .meta/configs/kitty.yaml
 
 - defaults:
     link:
@@ -55,6 +49,3 @@
     ~/.config/xsettingsd:
     ~/.config/.Xresources:
     # ~/.config/Kvantum: kde/Kvantum
-
-- included:
-    - .meta/configs/sddm.yaml
