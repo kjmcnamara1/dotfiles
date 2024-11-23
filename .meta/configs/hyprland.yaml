@@ -32,8 +32,9 @@
     - wlogout # logout menu
     - python-pywal
     # - wezterm-git # wezterm doesn't start in Hyprland
-
-# TODO: Need to add bluetooth and nm applet
+    - nm-connection-editor # NetworkManager gui
+    - network-manager-applet # sys tray icon and menu
+    - blueberry-wayland # bluetooth gui
 
 # - included:
 #     - .meta/configs/kitty.yaml
