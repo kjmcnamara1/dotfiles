@@ -5,4 +5,4 @@
     - piepwire-alsa
 
 - shell:
-    - systemctl --user enable pipewire.service wireplumber.service pipewire-pulse.service
+    - sudo systemctl --user enable pipewire.service wireplumber.service pipewire-pulse.service
