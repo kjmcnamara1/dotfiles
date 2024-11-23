@@ -1,0 +1,8 @@
+- yay:
+    - pipewire
+    - wireplumber
+    - pipewire-pulse
+    - piepwire-alsa
+
+- shell:
+    - systemctl --user enable pipewire.service wireplumber.service pipewire-pulse.service

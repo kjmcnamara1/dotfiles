@@ -8,4 +8,3 @@
 - sudo:
     - shell:
         - systemctl enable sddm
-        # - systemctl start sddm

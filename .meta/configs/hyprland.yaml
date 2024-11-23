@@ -20,8 +20,6 @@
     - nordzy-cursors # xcursor and gtk cursor theme
     - nordic-theme # GTK Theme
     - udiskie # automount usb drives
-    - pipewire # audio server
-    - wireplumber
     - hyprpaper # backend wallpaper setter
     - waypaper # gui frontent for hyprpaper
     - hyprpicker # color picker
@@ -36,8 +34,10 @@
     - network-manager-applet # sys tray icon and menu
     - blueberry-wayland # bluetooth gui
 
-# - included:
-#     - .meta/configs/kitty.yaml
+- included:
+    - .meta/configs/pipewire.yaml
+    - .meta/configs/wezterm.yaml
+  # - .meta/configs/kitty.yaml
 
 - defaults:
     link:
@@ -55,5 +55,6 @@
     ~/.config/xsettingsd:
     ~/.config/.Xresources:
     # ~/.config/Kvantum: kde/Kvantum
-# - included:
-#     - .meta/configs/sddm.yaml
+
+- included:
+    - .meta/configs/sddm.yaml
