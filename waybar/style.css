@@ -1,176 +1,255 @@
 * {
-  border: none;
-  border-radius: 0px;
-  font-family: "JetBrainsMono Nerd Font";
-  font-weight: bold;
-  font-size: 10px;
-  min-height: 10px;
+	border: none;
+	border-radius: 0px;
+	/*font-family: VictorMono, Iosevka Nerd Font, Noto Sans CJK;*/
+	font-family: Iosevka, FontAwesome, Noto Sans CJK;
+	font-size: 14px;
+	font-style: normal;
+	min-height: 0;
 }
-
-@import "theme.css";
 
 window#waybar {
-  background: @bar-bg;
+	background: rgba(57, 71, 88, 0.5);
+	border-bottom: 1px solid #282828;
+	color: #c8d0e0;
 }
 
-tooltip {
-  background: @main-bg;
-  color: @main-fg;
-  border-radius: 7px;
-  border-width: 0px;
+#workspaces {
+	background: #282828;
+	margin: 5px 5px 5px 5px;
+	padding: 0px 5px 0px 5px;
+	border-radius: 16px;
+	border: solid 0px #c8d0e0;
+	font-weight: normal;
+	font-style: normal;
 }
-
 #workspaces button {
-  box-shadow: none;
-  text-shadow: none;
-  padding: 0px;
-  border-radius: 9px;
-  margin-top: 3px;
-  margin-bottom: 3px;
-  margin-left: 0px;
-  padding-left: 3px;
-  padding-right: 3px;
-  margin-right: 0px;
-  color: @main-fg;
-  animation: ws_normal 20s ease-in-out 1;
+	padding: 0px 5px;
+	border-radius: 16px;
+	color: #646a76;
 }
 
 #workspaces button.active {
-  background: @wb-act-bg;
-  color: @wb-act-fg;
-  margin-left: 3px;
-  padding-left: 12px;
-  padding-right: 12px;
-  margin-right: 3px;
-  animation: ws_active 20s ease-in-out 1;
-  transition: all 0.4s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+	color: #c8d0e0;
+	background-color: transparent;
+	border-radius: 16px;
 }
 
 #workspaces button:hover {
-  background: @wb-hvr-bg;
-  color: @wb-hvr-fg;
-  animation: ws_hover 20s ease-in-out 1;
-  transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+	background-color: #e6b9c6;
+	color: black;
+	border-radius: 16px;
 }
 
-#taskbar button {
-  box-shadow: none;
-  text-shadow: none;
-  padding: 0px;
-  border-radius: 9px;
-  margin-top: 3px;
-  margin-bottom: 3px;
-  margin-left: 0px;
-  padding-left: 3px;
-  padding-right: 3px;
-  margin-right: 0px;
-  color: @wb-color;
-  animation: tb_normal 20s ease-in-out 1;
-}
-
-#taskbar button.active {
-  background: @wb-act-bg;
-  color: @wb-act-color;
-  margin-left: 3px;
-  padding-left: 12px;
-  padding-right: 12px;
-  margin-right: 3px;
-  animation: tb_active 20s ease-in-out 1;
-  transition: all 0.4s cubic-bezier(0.55, -0.68, 0.48, 1.682);
-}
-
-#taskbar button:hover {
-  background: @wb-hvr-bg;
-  color: @wb-hvr-color;
-  animation: tb_hover 20s ease-in-out 1;
-  transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
-}
-
-#tray menu * {
-  min-height: 16px;
-}
-
-#tray menu separator {
-  min-height: 10px;
-}
-
-#backlight,
-#battery,
-#bluetooth,
-#custom-cliphist,
+#custom-date,
 #clock,
-#custom-cpuinfo,
-#cpu,
-#custom-gpuinfo,
-#idle_inhibitor,
-#custom-keybindhint,
-#language,
-#memory,
-#mpris,
-#network,
-#custom-notifications,
-#custom-power,
-#wireplumber,
-#custom-spotify,
-#taskbar,
-#custom-theme,
-#tray,
-#custom-updates,
-#custom-wallchange,
-#custom-wbar,
-#window,
-#workspaces,
-#custom-l_end,
-#custom-r_end,
-#custom-sl_end,
-#custom-sr_end,
-#custom-rl_end,
-#custom-rr_end {
-  color: @main-fg;
-  background: @main-bg;
-  opacity: 1;
-  margin: 4px 0px 4px 0px;
-  padding-left: 4px;
-  padding-right: 4px;
+#battery,
+#pulseaudio,
+#custom-randwall,
+#custom-launcher {
+	background: transparent;
+	padding: 5px 5px 5px 5px;
+	margin: 5px 5px 5px 5px;
+	border-radius: 8px;
+	border: solid 0px #c8d0e0;
 }
 
-#workspaces,
-#taskbar {
-  padding: 0px;
+#custom-date {
+	color: #d3869b;
 }
 
-#custom-r_end {
-  border-radius: 0px 21px 21px 0px;
-  margin-right: 9px;
-  padding-right: 3px;
+#custom-power {
+	color: #24283b;
+	background-color: #db4b4b;
+	border-radius: 5px;
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	padding: 5px 10px;
 }
 
-#custom-l_end {
-  border-radius: 21px 0px 0px 21px;
-  margin-left: 9px;
-  padding-left: 3px;
+#tray {
+	/* background: #282828; */
+	/* margin: 5px 5px 5px 5px; */
+	/* border-radius: 16px; */
+	/* padding: 0px 5px; */
+	/*border-right: solid 1px #282738;*/
 }
 
-#custom-sr_end {
-  border-radius: 0px;
-  margin-right: 9px;
-  padding-right: 3px;
+#clock {
+	color: #e6b9c6;
+	background-color: #282828;
+	border-radius: 0px 0px 0px 24px;
+	padding-left: 13px;
+	padding-right: 15px;
+	margin-right: 0px;
+	margin-left: 10px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-weight: bold;
+	/*border-left: solid 1px #282738;*/
 }
 
-#custom-sl_end {
-  border-radius: 0px;
-  margin-left: 9px;
-  padding-left: 3px;
+#battery {
+	color: #9ece6a;
 }
 
-#custom-rr_end {
-  border-radius: 0px 7px 7px 0px;
-  margin-right: 9px;
-  padding-right: 3px;
+#battery.charging {
+	color: #9ece6a;
 }
 
-#custom-rl_end {
-  border-radius: 7px 0px 0px 7px;
-  margin-left: 9px;
-  padding-left: 3px;
+#battery.warning:not(.charging) {
+	background-color: #f7768e;
+	color: #24283b;
+	border-radius: 5px 5px 5px 5px;
+}
+
+#backlight {
+	background-color: #24283b;
+	color: #db4b4b;
+	border-radius: 0px 0px 0px 0px;
+	margin: 5px;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding: 0px 0px;
+}
+
+#pulseaudio {
+	color: #c8d0e0;
+	border-radius: 8px;
+	margin-left: 0px;
+}
+
+#pulseaudio.muted {
+	background: transparent;
+	color: #928374;
+	border-radius: 8px;
+	margin-left: 0px;
+}
+
+#custom-randwall {
+	color: #c8d0e0;
+	border-radius: 8px;
+	margin-right: 0px;
+}
+
+#custom-launcher {
+	color: #e5809e;
+	background-color: #282828;
+	border-radius: 0px 24px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	padding: 0 20px 0 13px;
+	/*border-right: solid 1px #282738;*/
+	font-size: 20px;
+}
+
+#custom-launcher button:hover {
+	background-color: #fb4934;
+	color: transparent;
+	border-radius: 8px;
+	margin-right: -5px;
+	margin-left: 10px;
+}
+
+#custom-playerctl {
+	background: #282828;
+	padding-left: 15px;
+	padding-right: 14px;
+	border-radius: 16px;
+	/*border-left: solid 1px #282738;*/
+	/*border-right: solid 1px #282738;*/
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 0px;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 16px;
+}
+
+#custom-playerlabel {
+	background: transparent;
+	padding-left: 10px;
+	padding-right: 15px;
+	border-radius: 16px;
+	/*border-left: solid 1px #282738;*/
+	/*border-right: solid 1px #282738;*/
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-weight: normal;
+	font-style: normal;
+}
+
+#window {
+	background: #282828;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-radius: 16px;
+	/*border-left: solid 1px #282738;*/
+	/*border-right: solid 1px #282738;*/
+	margin-top: 5px;
+	margin-bottom: 5px;
+	font-weight: normal;
+	font-style: normal;
+}
+
+#custom-wf-recorder {
+	padding: 0 20px;
+	color: #e5809e;
+	background-color: #1e1e2e;
+}
+
+#cpu {
+	background-color: #282828;
+	/*color: #FABD2D;*/
+	border-radius: 16px;
+	margin: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding: 0px 10px 0px 10px;
+	font-weight: bold;
+}
+
+#memory {
+	background-color: #282828;
+	/*color: #83A598;*/
+	border-radius: 16px;
+	margin: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding: 0px 10px 0px 10px;
+	font-weight: bold;
+}
+
+#disk {
+	background-color: #282828;
+	/*color: #8EC07C;*/
+	border-radius: 16px;
+	margin: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding: 0px 10px 0px 10px;
+	font-weight: bold;
+}
+
+#network {
+	background-color: #282828;
+	/* color: #c8d0e0; */
+	border-radius: 16px;
+	margin: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding: 0px 10px 0px 10px;
+	font-weight: bold;
+}
+
+#custom-hyprpicker {
+	background-color: #282828;
+	/*color: #8EC07C;*/
+	border-radius: 16px;
+	margin: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding: 0px 11px 0px 9px;
+	font-weight: bold;
 }
