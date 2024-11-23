@@ -51,7 +51,7 @@ return {
           }
         },
         virtual_text = {
-          source = "always",
+          -- source = "always",
           spacing = 4,
           prefix = function(diagnostic)
             local signs = { " ", " ", " ", "󰠠 " }
