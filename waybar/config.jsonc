@@ -19,6 +19,7 @@
 		"disk",
 		"custom/randwall",
 		"pulseaudio",
+		// "wireplumber",
 		"network",
 		"tray",
 		"clock"
@@ -111,7 +112,7 @@
 
 	"disk": {
 		"format": "󰋊 {}%",
-		"format-alt": "󰋊 {used}/{total} GiB",
+		"format-alt": "󰋊 {used} / {total}",
 		"interval": 5,
 		"path": "/"
 	},
@@ -149,17 +150,30 @@
 	},
 
 	"pulseaudio": {
-		"format": "{icon} {volume}%",
-		"format-muted": "󰝟",
+		// "format": "{icon} {volume}%",
+		"format": "{icon}",
+		"format-alt": "{volume}%",
+		// "format-muted": "󰝟",
+		"format-muted": "",
 		"format-icons": {
-			"default": ["󰕿", "󰖀", "󰕾"]
+			// "default": ["󰕿", "󰖀", "󰕾"]
+			"default": ["", "", ""]
 		},
-		"on-click": "bash ~/.scripts/volume mute",
-		"on-scroll-up": "bash ~/.scripts/volume up",
-		"on-scroll-down": "bash ~/.scripts/volume down",
+		// "on-click": "bash ~/.scripts/volume mute",
+		// "on-scroll-up": "bash ~/.scripts/volume up",
+		// "on-scroll-down": "bash ~/.scripts/volume down",
 		"scroll-step": 5,
 		"on-click-right": "pavucontrol"
 	},
+
+	// "wireplumber": {
+	// 	"format": "{volume}% ",
+	// 	"format-muted": "",
+	// 	"format-icons": {
+	// 		"default": ["", "", ""]
+	// 	}
+	// },
+
 	"custom/randwall": {
 		"format": "󰏘",
 		"on-click": "bash $HOME/.config/hypr/randwall.sh",

@@ -17,6 +17,7 @@
     - hyprpaper # backend wallpaper setter
     - waypaper # gui frontent for hyprpaper
     - hyprpicker # color picker
+    - hyprlock # lock screen
     - dunst # mako, swaync
     - rofi-wayland # launcher (apps,windows,other)
     - cliphist # clipboard manager (uses wl-clipboard)
@@ -43,6 +44,7 @@
     ~/.local/bin/reload-waybar: bin/reload-waybar
     ~/.config/rofi:
     ~/.config/dunst:
+    ~/.config/wlogout:
     ~/.gtkrc-2.0:
     ~/.config/gtk-3.0:
     ~/.config/gtk-4.0:
