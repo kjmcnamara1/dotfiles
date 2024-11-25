@@ -1,11 +1,12 @@
 - yay:
     - cosmic
-  # - cosmic-session
-  # - cosmic-files
-  # - cosmic-store
-  # - cosmic-terminal
-  # - cosmic-text-editor
-  # - cosmic-wallpapers
+    # - cosmic-session
+    # - cosmic-files
+    # - cosmic-store
+    # - cosmic-terminal
+    # - cosmic-text-editor
+    # - cosmic-wallpapers
+    - wl-clipboard
 
 - link:
     ~/.config/cosmic:

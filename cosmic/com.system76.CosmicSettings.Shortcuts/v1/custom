@@ -9,19 +9,26 @@
         modifiers: [
             Super,
         ],
-    ): System(Launcher),
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "w",
+        key: "s",
     ): Disable,
     (
         modifiers: [
             Super,
         ],
-        key: "p",
-    ): ToggleSticky,
+        key: "y",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "w",
+    ): System(WorkspaceOverview),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Tab",
+    ): Disable,
     (
         modifiers: [
             Super,
@@ -32,9 +39,28 @@
     (
         modifiers: [
             Super,
+            Ctrl,
         ],
-        key: "Tab",
-    ): System(WorkspaceOverview),
+        key: "Return",
+    ): System(Terminal),
+    (
+        modifiers: [
+            Super,
+            Ctrl,
+        ],
+        key: "t",
+    ): ToggleTiling,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "g",
+    ): ToggleStacking,
+    (
+        modifiers: [
+            Super,
+        ],
+    ): System(Launcher),
     (
         modifiers: [
             Super,
@@ -52,6 +78,26 @@
         modifiers: [
             Super,
         ],
+        key: "p",
+    ): ToggleSticky,
+    (
+        modifiers: [
+            Ctrl,
+            Alt,
+        ],
+        key: "Delete",
+        description: Some("Logout"),
+    ): Spawn("loginctl terminate-session \"\""),
+    (
+        modifiers: [
+            Super,
+        ],
         key: "e",
     ): System(HomeFolder),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "t",
+    ): ToggleWindowFloating,
 }
