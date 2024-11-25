@@ -21,8 +21,8 @@
     - figlet-fonts-extra
     - vlc # video player
     - brave-bin
-    # - zen-browser-bin
-    # - firefox-pwa-bin # progressive web app for zen browser
+    - zen-browser-bin
+    - firefox-pwa-bin # progressive web app for zen browser
     - proton-vpn-gtk-app
     - proton-pass-bin
     - proton-mail-bin
