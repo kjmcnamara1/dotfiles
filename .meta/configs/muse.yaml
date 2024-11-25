@@ -12,26 +12,14 @@
     - .meta/configs/git.yaml
 
 - yay:
-    - uv # fast Python package manager (replace poetry/pyenv)
-    - pv # view data pipeline progress
-    - tldr # concice `man`
-    - jq # json query
-    - eza # better `ls`
-    - fd # better `find` (search file names)
-    - fzf # command line fuzzy finder
-    - ripgrep # faster `grep` (regex search file contents)
-    - zoxide # `cd` replacement (easily navigate to previous directories)
     - figlet # write big font in terminal
     - figlet-fonts-extra
-    # - networkmanager
-    # - nm-applet
+    # - network-manager-applet
     # - nm-connection-editor
     # - overskride # gtk4 bluetooth connections manager
     # - blueman # simple gtk bluetooth manager
     # - blueberry # gtk bluetooth manager
     # - xclip
-    - unzip
-    - zstd
     # - packagekit
     # - brave-bin
     - zen-browser-bin
@@ -62,6 +50,4 @@
 - sudo:
     - shell:
         - systemctl enable NetworkManager
-        # - systemctl start NetworkManager
         - systemctl enable bluetooth
-        # - systemctl start bluetooth
