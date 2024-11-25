@@ -47,3 +47,4 @@
     - shell:
         - systemctl enable NetworkManager
         - systemctl enable bluetooth
+        - systemctl mask tpm2.target
