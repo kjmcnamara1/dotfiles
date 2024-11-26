@@ -9,40 +9,20 @@
         modifiers: [
             Super,
         ],
-        key: "s",
-    ): Disable,
+        key: "p",
+    ): ToggleSticky,
     (
         modifiers: [
             Super,
         ],
-        key: "y",
-    ): Disable,
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "w",
-    ): System(WorkspaceOverview),
+        key: "c",
+    ): Close,
     (
         modifiers: [
             Super,
         ],
         key: "Tab",
     ): Disable,
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "Return",
-        description: Some("Wezterm"),
-    ): Spawn("wezterm"),
-    (
-        modifiers: [
-            Super,
-            Ctrl,
-        ],
-        key: "Return",
-    ): System(Terminal),
     (
         modifiers: [
             Super,
@@ -54,8 +34,8 @@
         modifiers: [
             Super,
         ],
-        key: "g",
-    ): ToggleStacking,
+        key: "e",
+    ): System(HomeFolder),
     (
         modifiers: [
             Super,
@@ -65,21 +45,21 @@
         modifiers: [
             Super,
         ],
-        key: "c",
-    ): Close,
+        key: "Return",
+        description: Some("Wezterm"),
+    ): Spawn("wezterm"),
     (
         modifiers: [
             Super,
         ],
-        key: "comma",
-        description: Some("Cosmic Settings"),
-    ): Spawn("cosmic-settings"),
+        key: "s",
+    ): Disable,
     (
         modifiers: [
             Super,
         ],
-        key: "p",
-    ): ToggleSticky,
+        key: "g",
+    ): ToggleStacking,
     (
         modifiers: [
             Ctrl,
@@ -92,12 +72,38 @@
         modifiers: [
             Super,
         ],
-        key: "e",
-    ): System(HomeFolder),
+        key: "d",
+    ): System(WorkspaceOverview),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "y",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "comma",
+        description: Some("Cosmic Settings"),
+    ): Spawn("cosmic-settings"),
+    (
+        modifiers: [
+            Super,
+            Ctrl,
+        ],
+        key: "Return",
+    ): System(Terminal),
     (
         modifiers: [
             Super,
         ],
         key: "t",
     ): ToggleWindowFloating,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "w",
+    ): Disable,
 }
