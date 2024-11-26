@@ -7,9 +7,11 @@
     # - cosmic-text-editor
     # - cosmic-wallpapers
     - wl-clipboard
+    - wezterm
 
 - link:
     ~/.config/cosmic:
+    ~/.config/wezterm:
 
 - sudo:
     - shell:
