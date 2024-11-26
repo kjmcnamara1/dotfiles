@@ -2,7 +2,8 @@
     - pipewire
     - wireplumber
     - pipewire-pulse
-    - piepwire-alsa
+    - pipewire-alsa
+    # - pipewire-jack
 
 - shell:
-    - sudo systemctl --user enable pipewire.service wireplumber.service pipewire-pulse.service
+    - systemctl --user enable pipewire.service wireplumber.service pipewire-pulse.service
