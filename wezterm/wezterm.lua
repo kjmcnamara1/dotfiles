@@ -164,6 +164,7 @@ config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = {
   -- { key = "Enter", mods = "ALT",        action = act.ToggleFullScreen },
   -- { key = "C",     mods = "SHIFT|CTRL", action = act.CopyTo "Clipboard" },
+  { key = "v",   mods = "SHIFT|CTRL", action = act.PasteFrom "Clipboard" },
   { key = "F11", mods = "SHIFT|CTRL", action = act.ToggleFullScreen },
   { key = "F5",  mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
   { key = "v",   mods = "LEADER",     action = act.SplitHorizontal },

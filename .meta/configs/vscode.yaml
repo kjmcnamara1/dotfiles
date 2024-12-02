@@ -1,11 +1,12 @@
 # VS Code
 - yay:
     - visual-studio-code-bin
-- scoop:
-    buckets:
-      - extra
-    apps:
-      - vscode
+# - scoop:
+#     buckets:
+#       - extra
+#     apps:
+#       - vscode
+
 # Code - OSS
 # - yay:
 #     - code

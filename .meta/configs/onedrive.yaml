@@ -2,5 +2,4 @@
     - onedrive-abraunegg
 
 - shell:
-    - systemctl --user enable onedrive
-    - systemctl --user start onedrive
+    - systemctl --user enable --now onedrive
