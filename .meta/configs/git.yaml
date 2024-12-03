@@ -1,5 +1,6 @@
 - link:
     ~/.gitconfig:
+      path: git/gitconfig
       force: true
 
 - yay:
