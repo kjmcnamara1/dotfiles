@@ -11,6 +11,7 @@
     - isoimagewriter
 
 - link:
+    ~/.config/Kvantum: theme/Kvantum
     ~/.config/:
       glob: true
       path: kde/*
