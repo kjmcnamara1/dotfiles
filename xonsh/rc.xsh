@@ -45,6 +45,7 @@ execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
 abbrevs['mkdir'] = 'mkdir -p'
 
 # Aliases
+aliases['c'] = 'clear' # Clear screen
 aliases['p'] = 'paru' # Paru
 aliases['py'] = 'python3' # Python
 aliases['hx'] = 'helix' # Helix text editor
