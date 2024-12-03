@@ -1,6 +1,7 @@
 # - sudo:
 #     - link:
 #         /etc/pacman.conf:
+#           path: system/pacman.conf
 #           force: true
 
 - shell:
