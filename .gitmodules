@@ -18,6 +18,10 @@
 	path = .meta/plugins/yay
 	url = https://github.com/oxson/dotbot-yay
     ignore = dirty
+[submodule "dotbot-paru"]
+	path = .meta/plugins/paru
+	url = https://github.com/michaelray27/dotbot-paru
+    ignore = dirty
 [submodule "dotbot-scoop"]
 	path = .meta/plugins/scoop
 	url = https://github.com/JamJar00/dotbot-scoop
