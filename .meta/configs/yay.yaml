@@ -5,8 +5,12 @@
 #           force: true
 
 - shell:
-    - command: yay --version || (rm -rf /tmp/yay && git clone https://aur.archlinux.org/yay.git /tmp/yay && cd /tmp/yay && makepkg -si --noconfirm)
+    - command: bash -c "yay --version || (rm -rf /tmp/yay && git clone https://aur.archlinux.org/yay-bin.git /tmp/yay && cd /tmp/yay && makepkg -si --noconfirm)"
       description: "Install yay"
       # stdin: true
       # stdout: true
       # stderr: true
+
+- link:
+    ~/.config/yay:
+      force: true
