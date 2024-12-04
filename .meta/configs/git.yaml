@@ -2,6 +2,9 @@
     ~/.gitconfig:
       path: git/gitconfig
       force: true
+    ~/.config/gh:
+      path: git/gh
+      force: true
 
 - yay:
     - github-cli
