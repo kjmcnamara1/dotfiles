@@ -14,20 +14,18 @@ echo "Using config file: $config_file"
 
 # Read credentials from user
 echo
-read -srp "Root Password: " rootpwd
-echo
-read -rp "Admin Username [$DEFAULT_USERNAME]: " username
+read -rp "Username [$DEFAULT_USERNAME]: " username
 username=${username:-$DEFAULT_USERNAME}
-read -srp "Admin User Password: " userpwd
+read -srp "Password: " password
 
 # Save credentials to temp file
 cred_file="$(mktemp)"
-cat >"$cred_file" <<EOF
+cat > "$cred_file" << EOF
 {
-    "!root-password": "$rootpwd",
+    "!root-password": "$password",
     "!users": [
         {
-            "!password": "$userpwd",
+            "!password": "$password",
             "sudo": true,
             "username": "$username"
         }
