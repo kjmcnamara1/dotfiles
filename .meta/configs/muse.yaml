@@ -7,11 +7,11 @@
 #     - systemctl enable NetworkManager # BUG: fails
 
 - included:
-    - .meta/configs/yay.yaml
+    - .meta/configs/paru.yaml
     - .meta/configs/caps2esc.yaml
     - .meta/configs/git.yaml
 
-- yay:
+- paru:
     - figlet # write big font in terminal
     - figlet-fonts-extra
     # - network-manager-applet

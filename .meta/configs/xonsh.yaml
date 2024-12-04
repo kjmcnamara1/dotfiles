@@ -1,7 +1,7 @@
 # NOTE: look into installing with `mamba`. `uv` doesn't work. `pipx` works ok if add xonsh install path to /etc/shells. `yay` has to `--break-system-packages`
 # https://github.com/anki-code/xonsh-install
 
-- yay:
+- paru:
     - python-pipx
     - carapace-bin
 

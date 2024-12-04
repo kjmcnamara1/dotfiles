@@ -6,7 +6,7 @@
       path: git/gh
       force: true
 
-- yay:
+- paru:
     - github-cli
     - github-desktop-bin
 # Authenticate with GitHub and change dotfiles repo to use ssh
