@@ -15,7 +15,7 @@ $character"""
 # right_format = "$cmd_duration$memory_usage$sudo$battery$os"
 
 [fill]
-symbol = "―"
+symbol = "─"
 
 [line_break]
 disabled = true

@@ -2,6 +2,5 @@
     - starship
 
 - link:
-    ~/.config/starship.toml:
-      path: starship/starship.toml
-      force: true
+    ~/.config/starship:
+    ~/.config/starship.toml: ~/.config/starship/starship.toml

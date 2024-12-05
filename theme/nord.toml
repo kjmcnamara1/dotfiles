@@ -6,11 +6,11 @@
 
 [colors]
 foreground = "#c8d0e0" # + Identifier Cursor @variable foreground
-background = "#282828" # ++
+background = "#2e3440" # ++
 
 light_black = "#434c5e" # *
 black = "#3b4252"       # *
-dark_black = "#2e3440"  # * background
+dark_black = "#282828"  # * background
 
 light_white = "#eceff4" # *
 white = "#e5e9f0"       # *
