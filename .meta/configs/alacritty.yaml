@@ -1,0 +1,5 @@
+- paru:
+    - alacritty
+
+- link:
+    ~/.config/alacritty:

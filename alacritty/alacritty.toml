@@ -1,0 +1,39 @@
+[general]
+import = ["colors/nord.toml"]
+# working_directory = "None"
+
+# [env]
+# TERM = "xterm-256color"
+
+[window]
+# padding = { x = 10, y = 20 }
+dynamic_padding = true
+# dynamic_title = false
+
+[font]
+size = 14
+# builtin_box_drawing = false
+
+[font.offset]
+y = 0
+
+[font.glyph_offset]
+y = 0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style = { blinking = "On" }
+blink_interval = 500
+blink_timeout = 0
+
+[mouse]
+hide_when_typing = true
+
+[[mouse.bindings]]
+mouse = "Middle"
+action = "PasteSelection"
