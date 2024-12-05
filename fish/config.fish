@@ -38,16 +38,22 @@ if status is-interactive # connected to keyboard
     enable_transience
 
     # Aliases
+    alias c=clear
+    alias p=paru
     alias py=python3 # Python
     alias hx=helix # Helix text editor
     alias ff=fastfetch # Fastfetch terminal sysinfo viewer
+    alias lg=lazygit
     alias l='eza -F --icons --links --group-directories-first --git --git-repos --smart-group --hyperlink' # horizontal grid
     alias ls='l -1' # single column list
     alias la='ls -A' # all but . and ..
     alias ll='la -l' # long list including hidden
     alias llr='ll --time-style=relative' # long list with relative time
-    alias ltt='ll --tree --total-size' # long list and recurse into directories as tree
-    alias lt='ltt --level=2' # default tree list level 2
+    alias lt='ll --tree --total-size' # long list and recurse into directories as tree
+    alias ltt='lt --level=2' # default tree list level 2
+    alias lttt='lt --level=3' # default tree list level 3
+    alias ltttt='lt --level=4' # default tree list level 4
+    alias lttttt='lt --level=5' # default tree list level 5
     alias df='df -h' # human readable disk free
     alias du='du -h' # human readable disk usage
     # alias ls='ls -hv --color=auto --group-directories-first' # classify files in colour
