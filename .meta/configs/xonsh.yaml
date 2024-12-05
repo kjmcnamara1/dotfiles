@@ -18,8 +18,10 @@
         xonsh -c "xpip install xontrib-hist-navigator";
         xonsh -c "xpip install xontrib-term-integrations";
         xonsh -c "xpip install xontrib-kitty";
+        chsh -s $(which xonsh) $USER;
+      stdin: true
       stdout: true
-      # chsh -s $(which xonsh);
+      stderr: true
 
 - link:
     ~/.config/xonsh:
