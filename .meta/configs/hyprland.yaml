@@ -46,8 +46,8 @@
     ~/.config/dunst:
     ~/.config/wlogout:
     # ~/.gtkrc-2.0: themes/gtkrc-2.0
-    # ~/.config/gtk-3.0: themes/gtk-3.0
-    # ~/.config/gtk-4.0: themes/gtk-4.0
+    ~/.config/gtk-3.0: themes/gtk-3.0
+    ~/.config/gtk-4.0: themes/gtk-4.0
     # ~/.config/xsettingsd: themes/xsettingsd
     # ~/.config/.Xresources: themes/Xresources
     # ~/.config/Kvantum: kde/Kvantum
