@@ -28,6 +28,8 @@ $XONSH_CTRL_BKSP_DELETION = True
 $XONSH_HISTORY_MATCH_ANYWHERE = True
 $YAZI_CONFIG_HOME = '~/.config/yazi'
 $EDITOR = 'nvim'
+$MANROFFOPT = '-c'
+$MANPAGER = 'sh -c "col -bx | bat -l man -p"'
 $PATH.prepend('~/.local/bin') # User binaries
 
 # Allow python to import modules from cwd
@@ -54,6 +56,7 @@ aliases['lg'] = 'lazygit' # Lazygit
 aliases['l'] = 'eza -F --icons --links --group-directories-first --git --git-repos --smart-group --hyperlink' # horizontal grid
 aliases['ls'] = 'l -1' # single column list
 aliases['la'] = 'ls -A' # all but . and ..
+aliases['l.'] = r"la -d @$(eza -a | grep -e '^[.]')" # show only hidden files
 aliases['ll'] = 'la -l' # long list including hidden
 aliases['llr'] = 'll --time-style=relative' # long list with relative time
 aliases['lt'] = 'll --tree --total-size' # long list and recurse into directories as tree
@@ -75,3 +78,5 @@ def _y(args):
     if cwd != '' and cwd != $PWD:
         cd @(cwd)
     rm -f -- @(tmp)
+
+fastfetch

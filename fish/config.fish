@@ -7,6 +7,10 @@ if status is-interactive # connected to keyboard
     # fisher install oh-my-fish/plugin-sudope
     # fisher install acomagu/fish-async-prompt
 
+    function fish_greeting
+        fastfetch
+    end
+
     # VI Mode
     fish_vi_key_bindings
     set fish_cursor_default block
@@ -47,6 +51,7 @@ if status is-interactive # connected to keyboard
     alias l='eza -F --icons --links --group-directories-first --git --git-repos --smart-group --hyperlink' # horizontal grid
     alias ls='l -1' # single column list
     alias la='ls -A' # all but . and ..
+    alias l.='la -d $(eza -a | grep -e \'^[.]\')' # show only hidden files
     alias ll='la -l' # long list including hidden
     alias llr='ll --time-style=relative' # long list with relative time
     alias lt='ll --tree --total-size' # long list and recurse into directories as tree
