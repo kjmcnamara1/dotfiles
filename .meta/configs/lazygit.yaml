@@ -1,0 +1,6 @@
+- paru:
+    - lazygit
+    - ydiff
+
+- link:
+    ~/.config/lazygit:

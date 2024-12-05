@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+
+git:
+  # branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --"
+  paging:
+    colorArg: never
+    pager: ydiff -p cat -s --wrap --width={{columnWidth}}
+    # pager: ydiff
+
+gui:
+  # nerdFontsVersion: "3"
+  # splitDiff: always
+  filterMode: fuzzy
+  sidePanelWidth: .2
