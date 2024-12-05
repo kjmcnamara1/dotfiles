@@ -26,6 +26,7 @@
     - proton-vpn-gtk-app
     - proton-pass-bin
     - proton-mail-bin
+    - mission-center
 
 - included:
     - .meta/configs/bash.yaml
