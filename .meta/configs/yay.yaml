@@ -1,8 +1,8 @@
-# - sudo:
-#     - link:
-#         /etc/pacman.conf:
-#           path: system/pacman.conf
-#           force: true
+- sudo:
+    - link:
+        /etc/pacman.conf:
+          path: system/pacman.conf
+          force: true
 
 - shell:
     - command: bash -c "yay --version || (rm -rf /tmp/yay && git clone https://aur.archlinux.org/yay-bin.git /tmp/yay && cd /tmp/yay && makepkg -si --noconfirm)"

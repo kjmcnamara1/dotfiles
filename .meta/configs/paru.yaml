@@ -1,3 +1,9 @@
+- sudo:
+    - link:
+        /etc/pacman.conf:
+          path: system/pacman.conf
+          force: true
+
 - shell:
     - command: bash -c "paru --version || (rm -rf /tmp/paru && git clone https://aur.archlinux.org/paru-bin.git /tmp/paru && cd /tmp/paru && makepkg -si --noconfirm)"
       description: "Install paru"
