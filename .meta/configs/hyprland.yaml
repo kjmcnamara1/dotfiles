@@ -41,6 +41,7 @@
 - link:
     ~/.config/hypr:
     ~/.config/waybar:
+    ~/.config/waypaper:
     # ~/.local/bin/reload-waybar: bin/reload-waybar
     ~/.config/rofi:
     ~/.config/dunst:
