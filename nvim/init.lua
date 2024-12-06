@@ -48,9 +48,13 @@ require("core.keymaps")
 -- Custom autocmds
 require("core.autocmds")
 
--- Set hyprlang filetypes
+-- Set filetypes
 vim.filetype.add({
+  extension = {
+    rasi = "rasi"
+  },
   pattern = {
-    [".*/hypr/.*%.conf"] = "hyprlang"
+    [".*/hypr/.*%.conf"] = "hyprlang",
+    -- [".*%.rasi"] = "rasi",
   }
 })
