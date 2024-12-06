@@ -31,6 +31,7 @@
 - included:
     - .meta/configs/sddm.yaml
     - .meta/configs/pipewire.yaml
+    - .meta/configs/hyprpm.yaml
     - .meta/configs/wezterm.yaml
     # - .meta/configs/kitty.yaml
 
