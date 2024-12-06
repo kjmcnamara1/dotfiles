@@ -78,5 +78,3 @@ def _y(args):
     if cwd != '' and cwd != $PWD:
         cd @(cwd)
     rm -f -- @(tmp)
-
-fastfetch
