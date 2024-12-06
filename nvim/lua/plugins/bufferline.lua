@@ -20,7 +20,7 @@ return {
     { "<leader>bh", "<cmd>BufferLineMovePrev<cr>",                             desc = "Move buffer left" },
     { "<a-h>",      "<cmd>BufferLineCyclePrev<cr>",                            desc = "Prev buffer" },
     { "<a-l>",      "<cmd>BufferLineCycleNext<cr>",                            desc = "Next buffer" },
-    { "<a-bs>",     function() require("mini.bufremove").delete(0, false) end, desc = "Quit buffer",              mode = { "n", "i", "v" } },
+    { "<a-c>",      function() require("mini.bufremove").delete(0, false) end, desc = "Quit buffer",              mode = { "n", "i", "v" } },
     -- { "<c-x>",      function() require("tabscope").remove_tab_buffer() end, desc = "Quit Buffer",              mode = { "n", "i", "v" } },
   },
   opts = {
