@@ -6,6 +6,7 @@ import = ["colors/nord.toml"]
 # TERM = "xterm-256color"
 
 [window]
+dimensions = { lines = 30, columns = 120 }
 # padding = { x = 10, y = 20 }
 dynamic_padding = true
 # dynamic_title = false
