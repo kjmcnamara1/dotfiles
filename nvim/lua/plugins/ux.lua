@@ -208,6 +208,9 @@ return {
           hidden = true,
           -- theme = "dropdown",
         },
+        live_grep = {
+          additional_args = {"--hidden"},
+        },
         oldfiles = {
           theme = "dropdown",
         },
