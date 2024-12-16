@@ -9,7 +9,7 @@
 - included:
     - .meta/configs/lazygit.yaml
 
-- paru:
+- yay:
     - github-cli
     - github-desktop-bin
 # Authenticate with GitHub and change dotfiles repo to use ssh

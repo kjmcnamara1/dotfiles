@@ -1,4 +1,4 @@
-- paru:
+- yay:
     - sddm
 # - sudo:
 #     - link:

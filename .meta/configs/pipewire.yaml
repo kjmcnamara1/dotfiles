@@ -1,4 +1,4 @@
-- paru:
+- yay:
     - pipewire
     - wireplumber
     - pipewire-pulse
