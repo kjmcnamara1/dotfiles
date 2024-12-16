@@ -6,6 +6,7 @@
     # - cosmic-terminal
     # - cosmic-text-editor
     # - cosmic-wallpapers
+    - cosmic-launcher-git
     - power-profiles-daemon
     - wl-clipboard
     - wezterm

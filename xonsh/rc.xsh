@@ -36,9 +36,9 @@ $PATH.prepend('~/.local/bin') # User binaries
 sys.path.append('')
 
 # Carapace Completion
-# $CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
-# $COMPLETIONS_CONFIRM=True
-# exec($(carapace _carapace))
+$CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+$COMPLETIONS_CONFIRM=True
+exec($(carapace _carapace))
 
 # Zoxide
 execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')

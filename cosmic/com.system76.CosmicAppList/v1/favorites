@@ -1,7 +1,5 @@
 [
-    "zen-alpha",
     "com.system76.CosmicFiles",
+    "zen-beta",
     "org.wezfurlong.wezterm",
-    "com.system76.CosmicStore",
-    "com.system76.CosmicSettings",
 ]

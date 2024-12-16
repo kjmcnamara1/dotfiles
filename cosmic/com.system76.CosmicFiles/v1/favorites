@@ -1,0 +1,12 @@
+[
+    Home,
+    Documents,
+    Downloads,
+    Music,
+    Pictures,
+    Videos,
+    Path("/home/kjm/Downloads"),
+    Path("/home/kjm/dotfiles"),
+    Path("/mnt/NAS"),
+    Path("/mnt/Windows"),
+]
