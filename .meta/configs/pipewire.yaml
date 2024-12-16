@@ -4,7 +4,7 @@
     - pipewire-pulse
     - pipewire-alsa
     # - pipewire-jack
-    - pwvucontrol
+    # - pwvucontrol
 
 - shell:
-    - sudo systemctl --user enable pipewire wireplumber pipewire-pulse
+    - systemctl --user enable pipewire wireplumber pipewire-pulse

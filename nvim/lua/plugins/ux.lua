@@ -178,6 +178,7 @@ return {
       { "<leader>sh",      "<cmd>Telescope help_tags<cr>",                 desc = "Help Pages" },
       { "<leader>sH",      "<cmd>Telescope highlights<cr>",                desc = "Search Highlight Groups" },
       { "<leader>sk",      "<cmd>Telescope keymaps<cr>",                   desc = "Key Maps" },
+      { "<leader>so",      "<cmd>Telescope vim_options<cr>",               desc = "Options" },
     },
     opts = {
       defaults = {

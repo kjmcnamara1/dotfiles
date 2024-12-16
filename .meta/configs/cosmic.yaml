@@ -9,11 +9,13 @@
     # - cosmic-launcher-git
     - power-profiles-daemon
     - wl-clipboard
-    - wezterm
+
+- included:
+    - .meta/configs/pipewire.yaml
+    - .meta/configs/wezterm.yaml
 
 - link:
     ~/.config/cosmic:
-    ~/.config/wezterm:
     ~/.config/gtk-3.0: theme/gtk-3.0
     ~/.config/gtk-4.0: theme/gtk-4.0
 
