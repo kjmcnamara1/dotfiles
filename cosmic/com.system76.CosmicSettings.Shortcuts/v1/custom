@@ -3,20 +3,52 @@
         modifiers: [
             Super,
         ],
-        key: "Right",
-    ): SwitchOutput(Right),
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "u",
-    ): Disable,
+        key: "t",
+    ): ToggleWindowFloating,
     (
         modifiers: [
             Super,
         ],
         key: "Down",
     ): NextWorkspace,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Up",
+    ): PreviousWorkspace,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "z",
+    ): ToggleOrientation,
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "Down",
+    ): MoveToNextWorkspace,
+    (
+        modifiers: [
+            Ctrl,
+            Alt,
+        ],
+        key: "BackSpace",
+        description: Some("Kill Session"),
+    ): Spawn("loginctl kill-session \'\'"),
+    (
+        modifiers: [
+            Super,
+        ],
+    ): System(Launcher),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "d",
+    ): System(WorkspaceOverview),
     (
         modifiers: [
             Super,
@@ -28,105 +60,15 @@
         modifiers: [
             Super,
         ],
-        key: "d",
-    ): System(WorkspaceOverview),
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "p",
-    ): ToggleSticky,
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "apostrophe",
-    ): Spawn("wezterm"),
-    (
-        modifiers: [
-            Super,
-        ],
         key: "Tab",
-    ): Disable,
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "o",
-    ): Focus(Out),
-    (
-        modifiers: [
-            Super,
-        ],
-    ): System(Launcher),
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "w",
-    ): Disable,
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "t",
-    ): ToggleWindowFloating,
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "c",
-    ): Close,
-    (
-        modifiers: [
-            Super,
-            Ctrl,
-        ],
-        key: "t",
-    ): ToggleTiling,
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "z",
-    ): ToggleOrientation,
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "y",
     ): Disable,
     (
         modifiers: [
             Super,
             Shift,
         ],
-        key: "apostrophe",
-    ): Spawn("alacritty"),
-    (
-        modifiers: [
-            Super,
-        ],
         key: "Left",
-    ): SwitchOutput(Left),
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "e",
-    ): System(HomeFolder),
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "s",
-    ): Disable,
-    (
-        modifiers: [
-            Super,
-        ],
-        key: "Up",
-    ): PreviousWorkspace,
+    ): MoveToOutput(Left),
     (
         modifiers: [
             Super,
@@ -137,6 +79,122 @@
         modifiers: [
             Super,
         ],
+        key: "Delete",
+        description: Some("Session Menu"),
+    ): Spawn("wleave -b 6 -f -k --protocol layer-shell -l ~/.config/wlogout/cosmic.layout"),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Left",
+    ): SwitchOutput(Left),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "y",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "semicolon",
+    ): MoveToPreviousOutput,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "w",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "apostrophe",
+        description: Some("Wezterm"),
+    ): Spawn("wezterm"),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "e",
+    ): System(HomeFolder),
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "Up",
+    ): MoveToPreviousWorkspace,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "c",
+    ): Close,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "o",
+    ): Focus(Out),
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "Right",
+    ): MoveToOutput(Right),
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "apostrophe",
+        description: Some("Alacritty"),
+    ): Spawn("alacritty"),
+    (
+        modifiers: [
+            Super,
+            Ctrl,
+        ],
+        key: "t",
+    ): ToggleTiling,
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "semicolon",
+    ): MoveToNextOutput,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "s",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
         key: "g",
     ): ToggleStacking,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Right",
+    ): SwitchOutput(Right),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "p",
+    ): ToggleSticky,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "u",
+    ): Disable,
 }
