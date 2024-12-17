@@ -71,6 +71,17 @@ return {
   },
 
   -- ================================================================================
+  -- * Highlight Colors
+  -- ================================================================================
+  {
+    -- Change background highlight to match color of string, e.g. '#abf4c2'
+    "brenoprata10/nvim-highlight-colors",
+    event = "VeryLazy",
+    opts = {},
+    -- config = true,
+  },
+
+  -- ================================================================================
   -- * Snacks
   -- ================================================================================
   {
@@ -165,8 +176,12 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope-fzf-native.nvim",
       "nvim-tree/nvim-web-devicons",
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release',
+        -- build = 'make',
+      },
     },
     cmd = "Telescope",
     keys = {
@@ -239,10 +254,6 @@ return {
     end,
   },
 
-  {
-    'nvim-telescope/telescope-fzf-native.nvim', 
-    build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' 
-  },
 
   -- ================================================================================
   -- * TODO

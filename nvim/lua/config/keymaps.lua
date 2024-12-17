@@ -12,6 +12,9 @@ end
 map("", ")", "<c-d>", { desc = "Scroll down half page", remap = true })
 map("", "(", "<c-u>", { desc = "Scroll up half page", remap = true })
 
+-- Join Lines
+map("n", "<leader>j", "J", { desc = "Join Lines", remap = true })
+
 -- Move to beginning/end of file
 -- map("", "gg", "gg0", { desc = "Goto beginning of file", remap = true })
 -- map("", "G", "G$", { desc = "Goto end of file", remap = true })
