@@ -9,10 +9,13 @@
     # - cosmic-launcher-git
     - power-profiles-daemon
     - wl-clipboard
+    - loupe # gnome image viewer
+    - gwenview # kde image viewer
 
 - included:
     - .meta/configs/pipewire.yaml
     - .meta/configs/wezterm.yaml
+    - .meta/configs/wleave.yaml
 
 - link:
     ~/.config/cosmic:

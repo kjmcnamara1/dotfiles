@@ -46,7 +46,7 @@
 
 - sudo:
     - shell:
-        # - systemctl enable NetworkManager
+        - systemctl enable NetworkManager
         - systemctl enable bluetooth
         - systemctl mask tpm2.target
         - [timedatectl set-local-rtc 1, Use local time for hwclock]
