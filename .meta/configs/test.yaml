@@ -2,6 +2,9 @@
 #     - .meta/configs/bash.yaml
 #     - .meta/configs/yay.yaml
 
-- sudo:
-    - shell:
-        - [timedatectl set-local-rtc 1, Use local time for hwclock]
+- link:
+    ~/.face.icon: profile-crop.jpg
+
+# - sudo:
+#     - shell:
+#         - [timedatectl set-local-rtc 1, Use local time for hwclock]

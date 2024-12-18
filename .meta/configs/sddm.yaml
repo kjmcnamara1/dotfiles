@@ -1,10 +1,19 @@
 - yay:
     - sddm
-# - sudo:
-#     - link:
-#         /etc/sddm.conf.d:
-#           force: true
+    - sddm-theme-corners-git # needed for dependencies
+
+- shell:
+    - sudo rm -r /usr/share/sddm/themes/corners
+
+- link:
+    ~/.face.icon: profile-crop.jpg
 
 - sudo:
+    - link:
+        /etc/sddm.conf.d: system/sddm.conf.d
+        /usr/share/sddm/themes/corners: system/corners
     - shell:
         - systemctl enable sddm
+
+# - shell:
+#     - sudo cp -rf ~/dotfiles/system/corners /usr/share/sddm/themes/corners

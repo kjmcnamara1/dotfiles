@@ -11,18 +11,23 @@
     - wl-clipboard
     - loupe # gnome image viewer
     - gwenview # kde image viewer
+    - kvantum
+    - qt6-wayland
+    - qt6ct
 
 - included:
     - .meta/configs/pipewire.yaml
     - .meta/configs/wezterm.yaml
     - .meta/configs/wleave.yaml
+    - .meta/configs/printer.yaml
+    - .meta/configs/sddm.yaml
 
 - link:
     ~/.config/cosmic:
     ~/.config/gtk-3.0: theme/gtk-3.0
     ~/.config/gtk-4.0: theme/gtk-4.0
 
-- sudo:
-    - shell:
-        - systemctl enable cosmic-greeter
-        # - systemctl start cosmic-greeter
+# - sudo:
+#     - shell:
+#         - systemctl enable cosmic-greeter
+#         # - systemctl start cosmic-greeter
