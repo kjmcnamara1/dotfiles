@@ -7,9 +7,12 @@ if status is-interactive # connected to keyboard
     # fisher install oh-my-fish/plugin-sudope
     # fisher install acomagu/fish-async-prompt
 
-    function fish_greeting
-        fastfetch
-    end
+    # TODO: Custom fastfetch for fish greeting
+    # use std for opening new wezterm window
+
+    # function fish_greeting
+    #     fastfetch
+    # end
 
     # VI Mode
     fish_vi_key_bindings
@@ -19,16 +22,19 @@ if status is-interactive # connected to keyboard
     set fish_cursor_replace underscore
     set fish_cursor_external line
     set fish_cursor_visual block
+    set fish_vi_force_cursor 1
 
     bind -M insert \eh backward-char
     bind -M insert \el forward-char
     bind -M insert \ej down-or-search
     bind -M insert \ek up-or-search
 
-    set fish_vi_force_cursor 1
-
+  # Use <c-u> instead
     # <c-c> clears the commandline when in insert mode
-    bind --mode insert \cc 'commandline -r ""'
+    # bind --mode insert \cc 'commandline -r ""'
+
+# Environment Variables
+
 
     # Zoxide
     zoxide init --cmd cd fish | source
@@ -41,13 +47,17 @@ if status is-interactive # connected to keyboard
     # starship init fish | source
     enable_transience
 
+    # Abbreviations
+    abbr --add mkdir mkdir -p
+
     # Aliases
-    alias c=clear
-    alias p=paru
+    alias c=clear # Clear screen
+    alias p=paru # Paru
     alias py=python3 # Python
     alias hx=helix # Helix text editor
     alias ff=fastfetch # Fastfetch terminal sysinfo viewer
     alias lg=lazygit
+    alias lvim='set -lx NVIM_APPNAME nvim-lazyvim; nvim'
     alias l='eza -F --icons --links --group-directories-first --git --git-repos --smart-group --hyperlink' # horizontal grid
     alias ls='l -1' # single column list
     alias la='ls -A' # all but . and ..

@@ -25,9 +25,9 @@ PowerIconColor="#2e3440"
 DateTimeSpacing=0
 
 DateColor="#bf616a"
-DateSize=96
+# DateSize=96
 DateFormat="dddd, MMMM d"
 
 TimeColor="#de878f"
-TimeSize=144
+# TimeSize=144
 TimeFormat="HH:mm"
