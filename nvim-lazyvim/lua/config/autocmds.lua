@@ -41,3 +41,15 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
     end
   end,
 })
+
+-- Set filetypes
+vim.filetype.add({
+  -- extension = {
+  --   rasi = "rasi"
+  -- },
+  pattern = {
+    [".*%.conf.*"] = "conf",
+    -- [".*/hypr/.*%.conf"] = "hyprlang",
+    -- [".*%.rasi"] = "rasi",
+  }
+})
