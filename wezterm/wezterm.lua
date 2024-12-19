@@ -12,6 +12,62 @@ local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smar
 --   window:gui_window():maximize()
 -- end)
 
+-- Neovim Zen Mode
+wezterm.on("user-var-changed", function(window, pane, name, value)
+  wezterm.log_info("user-var-changed", name, value, window, pane)
+  if name == "ZEN_MODE" then
+    local overrides = window:get_config_overrides() or {}
+    local incremental = value:find("+")
+    local number_value = tonumber(value)
+    local disable = number_value < 0
+    wezterm.log_info("incremental", incremental)
+    wezterm.log_info("number_value", number_value)
+    wezterm.log_info("disable", disable)
+
+    -- window:toggle_fullscreen()
+
+    if disable then
+      window:restore()
+      window:perform_action(wezterm.action.SetPaneZoomState(false), pane)
+      window:perform_action(wezterm.action.ResetFontSize, pane)
+      overrides.font_size = nil
+      overrides.enable_tab_bar = true
+    else
+      if incremental ~= nil then
+        while (number_value > 0) do
+          window:perform_action(wezterm.action.IncreaseFontSize, pane)
+          number_value = number_value - 1
+        end
+      else
+        overrides.font_size = number_value
+      end
+      overrides.enable_tab_bar = false
+      window:perform_action(wezterm.action.SetPaneZoomState(true), pane)
+      window:maximize()
+    end
+
+    window:set_config_overrides(overrides)
+
+    -- if incremental ~= nil then
+    --   while (number_value > 0) do
+    --     window:perform_action(wezterm.action.IncreaseFontSize, pane)
+    --     number_value = number_value - 1
+    --   end
+    --   overrides.enable_tab_bar = false
+    --   window:perform_action(wezterm.action.ToggleFullScreen, pane)
+    -- elseif number_value < 0 then
+    --   window:perform_action(wezterm.action.ResetFontSize, pane)
+    --   overrides.font_size = nil
+    --   overrides.enable_tab_bar = true
+    -- else
+    --   overrides.font_size = number_value
+    --   overrides.enable_tab_bar = false
+    --   window:perform_action(wezterm.action.ToggleFullScreen, pane)
+    -- end
+    -- window:set_config_overrides(overrides)
+  end
+end)
+
 -- Theme
 config.color_scheme = "nord" -- alt: kanagawa
 -- config.color_scheme = "Catppuccin Frappe"
@@ -48,113 +104,13 @@ config.font_size = 14
 config.line_height = 1.2
 config.adjust_window_size_when_changing_font_size = false
 config.font = wezterm.font_with_fallback({
-  -- {
-  --   family = "VictorMono Nerd Font",
-  --   weight = "Medium",
-  --   harfbuzz_features = {
-  --     "ss06", -- slashed 7
-  --     "ss07", -- straighter 6 and 9
-  --     "ss08", -- turbofish ::<
-  --   },
-  -- },
-  -- {
-  --   family = "FiraCode Nerd Font",
-  --   harfbuzz_features = {
-  --     "zero", -- dotted 0
-  --     "onum", -- offset number heights
-  --     "cv30", -- taller |
-  --     "cv31", -- rounder ()
-  --     "cv25", -- aligned .-
-  --     "cv26", -- aligned :-
-  --     "cv32", -- aligned .=
-  --     "cv28", -- aligned {. .}
-  --     "ss07", -- combined =~ and !~
-  --   },
-  -- },
-  -- "Fira Code Script", -- Fira Code with cursive Italics but no ligatures
-  -- {
-  --   family = "Cascadia Code",
-  --   harfbuzz_features = {
-  --     "ss01", -- cursive italics
-  --     "ss02",
-  --     "ss03",
-  --     "ss20",
-  --   },
-  -- },
-  -- {
-  --   family = "Iosevka Nerd Font",
-  --   harfbuzz_features = {
-  --     "PHPX", -- symbol ligatures
-  --   },
-  -- },
-  -- "IosevkaTerm Nerd Font",
   "JetBrainsMono Nerd Font",
   "Symbols Nerd Font",
   "Font Awesome 6 Free",
   "Noto Color Emoji",
 })
 
--- config.font_rules = {
---   {
---     italic = true,
---     intensity = "Bold",
---     font = wezterm.font({
---       family = "VictorMono Nerd Font",
---       weight = "Bold",
---       style = "Italic",
---     }),
---   },
---   {
---     italic = true,
---     intensity = "Half",
---     font = wezterm.font({
---       family = "VictorMono Nerd Font",
---       weight = "Thin",
---       style = "Italic",
---     }),
---   },
---   {
---     italic = true,
---     intensity = "Normal",
---     font = wezterm.font({
---       family = "VictorMono Nerd Font",
---       weight = "Regular",
---       style = "Italic",
---     }),
---   },
---   -- {
---   --   intensity = "Bold",
---   --   font = wezterm.font({
---   --     family = "VictorMono Nerd Font",
---   --     weight = "Bold",
---   --   }),
---   -- },
--- }
 
-
--- Neovim Zen Mode
-wezterm.on("user-var-changed", function(window, pane, name, value)
-  local overrides = window:get_config_overrides() or {}
-  if name == "ZEN_MODE" then
-    local incremental = value:find("+")
-    local number_value = tonumber(value)
-    if incremental ~= nil then
-      while (number_value > 0) do
-        window:perform_action(wezterm.action.IncreaseFontSize, pane)
-        number_value = number_value - 1
-      end
-      overrides.enable_tab_bar = false
-    elseif number_value < 0 then
-      window:perform_action(wezterm.action.ResetFontSize, pane)
-      overrides.font_size = nil
-      overrides.enable_tab_bar = true
-    else
-      overrides.font_size = number_value
-      overrides.enable_tab_bar = false
-    end
-  end
-  window:set_config_overrides(overrides)
-end)
 
 -- Keybindings
 config.enable_kitty_keyboard = true -- Enable kitty keyboard protocol

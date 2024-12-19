@@ -1,13 +1,13 @@
 # nord
 [colors]
-foreground = "#d8dee9"
+foreground = "#c8d0e0"
 background = "#2e3440"
 cursor_fg = "#3b4252"
-cursor_bg = "#d8dee9"
+cursor_bg = "#c8d0e0"
 cursor_border = "#eceff4"
 compose_cursor = '#d08770'
 selection_fg = "none"
-selection_bg = "#434c5e"
+selection_bg = "#6c7a96"
 # selection_bg = "rgba(67, 76, 94, 50%)"
 scrollbar_thumb = "#434c5e"
 split = "#4c566a"
@@ -16,18 +16,18 @@ ansi = [
   "#bf616a",
   "#a3be8c",
   "#ebcb8b",
-  "#81a1c1",
+  "#5e81ac",
   "#b48ead",
   "#88c0d0",
   "#e5e9f0",
 ]
 brights = [
-  "#4c566a",
+  "#434c5e",
   "#de878f",
-  "#6d8f51",
-  "#d08770",
-  "#5e81ac",
-  "#996690",
+  "#bed1ae",
+  "#f2deb6",
+  "#81a1c1",
+  "#ccb2c7",
   "#8fbcbb",
   "#eceff4",
 ]
