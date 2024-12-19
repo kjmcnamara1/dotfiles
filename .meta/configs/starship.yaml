@@ -3,4 +3,4 @@
 
 - link:
     ~/.config/starship:
-    ~/.config/starship.toml: starship/starship.toml
+    ~/.config/starship.toml: ~/.config/starship/starship.toml
