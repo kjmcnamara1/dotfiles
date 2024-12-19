@@ -25,7 +25,7 @@ if status is-interactive # connected to keyboard
     bind -M insert \ej down-or-search
     bind -M insert \ek up-or-search
 
-    # set fish_vi_force_cursor
+    set fish_vi_force_cursor 1
 
     # <c-c> clears the commandline when in insert mode
     bind --mode insert \cc 'commandline -r ""'
