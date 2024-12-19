@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
   callback = function()
     vim.highlight.on_yank({ timeout = 200, visual = true })
-  end
+  end,
 })
 
 vim.api.nvim_create_autocmd("BufReadPost", {
@@ -103,7 +103,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = augroup("lsp_format"),
   callback = function()
     vim.lsp.buf.format()
-  end
+  end,
 })
 
 -- vim.api.nvim_create_autocmd("FileType", {

@@ -53,6 +53,7 @@ aliases['py'] = 'python3' # Python
 aliases['hx'] = 'helix' # Helix text editor
 aliases['ff'] = 'fastfetch' # Fastfetch terminal sysinfo viewer
 aliases['lg'] = 'lazygit' # Lazygit
+aliases['lvim'] = '''![$NVIM_APPNAME='nvim-lazyvim' nvim]''' # LazyVim
 aliases['l'] = 'eza -F --icons --links --group-directories-first --git --git-repos --smart-group --hyperlink' # horizontal grid
 aliases['ls'] = 'l -1' # single column list
 aliases['la'] = 'ls -A' # all but . and ..

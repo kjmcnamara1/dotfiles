@@ -5,7 +5,7 @@ return {
   -- ================================================================================
   {
     "rmehri01/onenord.nvim",
-    lazy=false,
+    lazy = false,
     name = "onenord",
     opts = {
       styles = {
@@ -27,15 +27,15 @@ return {
       -- { "backdround/tabscope.nvim", config = true },
     },
     keys = {
-      { "<leader>bb", "<cmd>BufferLinePick<cr>",                                 desc = "Pick buffer" },
-      { "<leader>bx",  "<cmd>BufferLinePickClose<cr>",                            desc = "Pick buffer to close" },
-      { "<leader>bp", "<cmd>BufferLineTogglePin<cr>",                            desc = "Toggle pin" },
-      { "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<cr>",                 desc = "Delete non-pinned buffers" },
-      { "<leader>bo", "<cmd>BufferLineCloseOthers<cr>",                          desc = "Delete other buffers" },
-      { "<leader>bl", "<cmd>BufferLineMoveNext<cr>",                             desc = "Move buffer right" },
-      { "<leader>bh", "<cmd>BufferLineMovePrev<cr>",                             desc = "Move buffer left" },
-      { "<a-h>",      "<cmd>BufferLineCyclePrev<cr>",                            desc = "Prev buffer" },
-      { "<a-l>",      "<cmd>BufferLineCycleNext<cr>",                            desc = "Next buffer" },
+      { "<leader>bb", "<cmd>BufferLinePick<cr>",                 desc = "Pick buffer" },
+      { "<leader>bx", "<cmd>BufferLinePickClose<cr>",            desc = "Pick buffer to close" },
+      { "<leader>bp", "<cmd>BufferLineTogglePin<cr>",            desc = "Toggle pin" },
+      { "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<cr>", desc = "Delete non-pinned buffers" },
+      { "<leader>bo", "<cmd>BufferLineCloseOthers<cr>",          desc = "Delete other buffers" },
+      { "<leader>bl", "<cmd>BufferLineMoveNext<cr>",             desc = "Move buffer right" },
+      { "<leader>bh", "<cmd>BufferLineMovePrev<cr>",             desc = "Move buffer left" },
+      { "<a-h>",      "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev buffer" },
+      { "<a-l>",      "<cmd>BufferLineCycleNext<cr>",            desc = "Next buffer" },
     },
     opts = {
       options = {
@@ -105,22 +105,22 @@ return {
       },
     },
     keys = {
-      { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
-      { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
-      { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
-      { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
-      { "<a-c>", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
-      { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
-      { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse" },
-      { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git Blame Line" },
-      { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
-      { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
-      { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)" },
-      { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
-      { "<c-'>",      function() Snacks.terminal() end, desc = "Toggle Terminal", mode = {'n','i','t'} },
+      { "<leader>.",  function() Snacks.scratch() end,                 desc = "Toggle Scratch Buffer" },
+      { "<leader>S",  function() Snacks.scratch.select() end,          desc = "Select Scratch Buffer" },
+      { "<leader>n",  function() Snacks.notifier.show_history() end,   desc = "Notification History" },
+      { "<leader>bd", function() Snacks.bufdelete() end,               desc = "Delete Buffer" },
+      { "<a-c>",      function() Snacks.bufdelete() end,               desc = "Delete Buffer" },
+      { "<leader>cR", function() Snacks.rename.rename_file() end,      desc = "Rename File" },
+      { "<leader>gB", function() Snacks.gitbrowse() end,               desc = "Git Browse" },
+      { "<leader>gb", function() Snacks.git.blame_line() end,          desc = "Git Blame Line" },
+      { "<leader>gf", function() Snacks.lazygit.log_file() end,        desc = "Lazygit Current File History" },
+      { "<leader>gg", function() Snacks.lazygit() end,                 desc = "Lazygit" },
+      { "<leader>gl", function() Snacks.lazygit.log() end,             desc = "Lazygit Log (cwd)" },
+      { "<leader>un", function() Snacks.notifier.hide() end,           desc = "Dismiss All Notifications" },
+      { "<c-'>",      function() Snacks.terminal() end,                desc = "Toggle Terminal",             mode = { 'n', 'i', 't' } },
       -- { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
-      { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
-      { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
+      { "]]",         function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference",              mode = { "n", "t" } },
+      { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference",              mode = { "n", "t" } },
       {
         "<leader>N",
         desc = "Neovim News",
@@ -159,7 +159,8 @@ return {
           Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
           Snacks.toggle.diagnostics():map("<leader>ud")
           Snacks.toggle.line_number():map("<leader>ul")
-          Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>uc")
+          Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map(
+            "<leader>uc")
           Snacks.toggle.treesitter():map("<leader>uT")
           Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
           Snacks.toggle.inlay_hints():map("<leader>uh")
@@ -185,15 +186,15 @@ return {
     },
     cmd = "Telescope",
     keys = {
-      { "<leader><space>", "<cmd>Telescope resume<cr>",                    desc = "Resume" },
-      { "<leader>ff",       "<cmd>Telescope find_files<cr>",                desc = "Find Files" },
-      { "<leader>fr",       "<cmd>Telescope oldfiles<cr>",                  desc = "Recent Files" },
-      { "<leader>fb",       "<cmd>Telescope buffers<cr>",                   desc = "Buffers" },
-      { "<leader>fg",      "<cmd>Telescope live_grep<cr>",                 desc = "Search in CWD" },
-      { "<leader>sh",      "<cmd>Telescope help_tags<cr>",                 desc = "Help Pages" },
-      { "<leader>sH",      "<cmd>Telescope highlights<cr>",                desc = "Search Highlight Groups" },
-      { "<leader>sk",      "<cmd>Telescope keymaps<cr>",                   desc = "Key Maps" },
-      { "<leader>so",      "<cmd>Telescope vim_options<cr>",               desc = "Options" },
+      { "<leader><space>", "<cmd>Telescope resume<cr>",      desc = "Resume" },
+      { "<leader>ff",      "<cmd>Telescope find_files<cr>",  desc = "Find Files" },
+      { "<leader>fr",      "<cmd>Telescope oldfiles<cr>",    desc = "Recent Files" },
+      { "<leader>fb",      "<cmd>Telescope buffers<cr>",     desc = "Buffers" },
+      { "<leader>fg",      "<cmd>Telescope live_grep<cr>",   desc = "Search in CWD" },
+      { "<leader>sh",      "<cmd>Telescope help_tags<cr>",   desc = "Help Pages" },
+      { "<leader>sH",      "<cmd>Telescope highlights<cr>",  desc = "Search Highlight Groups" },
+      { "<leader>sk",      "<cmd>Telescope keymaps<cr>",     desc = "Key Maps" },
+      { "<leader>so",      "<cmd>Telescope vim_options<cr>", desc = "Options" },
     },
     opts = {
       defaults = {
@@ -202,7 +203,7 @@ return {
         entry_prefix = "    ",
         multi_icon = "   ",
         dynamic_preview_title = true,
-        file_ignore_patterns = {"^%.git/", "%.jpg$"},
+        file_ignore_patterns = { "^%.git/", "%.jpg$" },
         sorting_strategy = "ascending",
         -- winblend = 20,
         layout_strategy = "flex",
@@ -225,7 +226,7 @@ return {
           -- theme = "dropdown",
         },
         live_grep = {
-          additional_args = {"--hidden"},
+          additional_args = { "--hidden" },
         },
         oldfiles = {
           theme = "dropdown",
@@ -247,7 +248,7 @@ return {
         },
       },
     },
-    config = function(_,opts)
+    config = function(_, opts)
       local telescope = require("telescope")
       telescope.setup(opts)
       telescope.load_extension("fzf")
@@ -264,8 +265,8 @@ return {
     dependencies = "nvim-lua/plenary.nvim",
     event = { "BufReadPost", "BufNewFile" },
     keys = {
-      {"]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
-      {"[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
+      { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
+      { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo comment" },
     },
     opts = {
       keywords = {
@@ -285,12 +286,12 @@ return {
     "folke/trouble.nvim",
     cmd = "Trouble",
     keys = {
-      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)", },
-      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)", },
-      { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)", },
+      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",                        desc = "Diagnostics (Trouble)", },
+      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           desc = "Buffer Diagnostics (Trouble)", },
+      { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>",                desc = "Symbols (Trouble)", },
       { "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / references / ... (Trouble)", },
-      { "<leader>xL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)", },
-      { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)", },
+      { "<leader>xL", "<cmd>Trouble loclist toggle<cr>",                            desc = "Location List (Trouble)", },
+      { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",                             desc = "Quickfix List (Trouble)", },
     },
     opts = {},
   },
@@ -303,8 +304,8 @@ return {
     "mikavilpas/yazi.nvim",
     event = "VeryLazy",
     keys = {
-      { "<leader>y.", "<cmd>Yazi<cr>", desc = "Open yazi at the current file", },
-      { "<leader>yc", "<cmd>Yazi cwd<cr>", desc = "Open yazi in nvim's working directory" , },
+      { "<leader>y.", "<cmd>Yazi<cr>",        desc = "Open yazi at the current file", },
+      { "<leader>yc", "<cmd>Yazi cwd<cr>",    desc = "Open yazi in nvim's working directory", },
       { '<leader>yy', "<cmd>Yazi toggle<cr>", desc = "Resume the last yazi session", },
     },
     ---@type YaziConfig

@@ -30,9 +30,10 @@ return {
   -- ================================================================================
   {
     "lambdalisue/vim-suda",
-    cmd = {"SudaRead","SudaWrite"},
+    cmd = { "SudaRead", "SudaWrite" },
     keys = {
-      {"<c-s>", 
+      {
+        "<c-s>",
         function()
           local buf = vim.api.nvim_win_get_buf(0)
           if vim.bo[buf].readonly then
@@ -42,7 +43,7 @@ return {
           end
         end,
         desc = "Save file",
-        mode = {"i","x","n","s"},
+        mode = { "i", "x", "n", "s" },
       },
     },
   },

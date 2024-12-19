@@ -11,7 +11,6 @@ import sys
 import pyjson5 as json
 
 
-
 def extract_colors(data):
     colors = set()
 
