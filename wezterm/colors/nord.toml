@@ -1,62 +1,62 @@
 # nord
 [colors]
-foreground = "#c8d0e0"
-background = "#2e3440"
-cursor_fg = "#3b4252"
-cursor_bg = "#c8d0e0"
-cursor_border = "#eceff4"
-compose_cursor = '#d08770'
-selection_fg = "none"
-selection_bg = "#6c7a96"
-# selection_bg = "rgba(67, 76, 94, 50%)"
-scrollbar_thumb = "#434c5e"
-split = "#4c566a"
-ansi = [
-  "#3b4252",
-  "#bf616a",
-  "#a3be8c",
-  "#ebcb8b",
-  "#5e81ac",
-  "#b48ead",
-  "#88c0d0",
-  "#e5e9f0",
-]
-brights = [
-  "#434c5e",
-  "#de878f",
-  "#bed1ae",
-  "#f2deb6",
-  "#81a1c1",
-  "#ccb2c7",
-  "#8fbcbb",
-  "#eceff4",
-]
+  foreground     = "#c8d0e0"
+  background     = "#2e3440"
+  cursor_fg      = "#3b4252"
+  cursor_bg      = "#c8d0e0"
+  cursor_border  = "#eceff4"
+  compose_cursor = '#d08770'
+  selection_fg   = "none"
+  selection_bg   = "#6c7a96"
+  # selection_bg = "rgba(67, 76, 94, 50%)"
+  scrollbar_thumb = "#434c5e"
+  split = "#4c566a"
+  ansi = [
+    "#3b4252",
+    "#bf616a",
+    "#a3be8c",
+    "#ebcb8b",
+    "#5e81ac",
+    "#b48ead",
+    "#88c0d0",
+    "#e5e9f0",
+  ]
+  brights = [
+    "#434c5e",
+    "#de878f",
+    "#bed1ae",
+    "#f2deb6",
+    "#81a1c1",
+    "#ccb2c7",
+    "#8fbcbb",
+    "#eceff4",
+  ]
 
 [colors.tab_bar]
-background = "#3b4252"
+  background = "#3b4252"
 
 [colors.tab_bar.active_tab]
-bg_color = "#dca694"
-fg_color = "#3b4252"
-intensity = "Bold"    # Half | Normal | Bold
-underline = "None"    # None | Single | Double
-italic = false
-strikethrough = false
+  bg_color      = "#dca694"
+  fg_color      = "#3b4252"
+  intensity     = "Bold"    # Half | Normal | Bold
+  underline     = "None"    # None | Single | Double
+  italic        = false
+  strikethrough = false
 
 [colors.tab_bar.inactive_tab]
-bg_color = "#4c566a"
-fg_color = "#e5e9f0"
-intensity = "Half"
+  bg_color  = "#4c566a"
+  fg_color  = "#e5e9f0"
+  intensity = "Half"
 
 [colors.tab_bar.inactive_tab_hover]
-bg_color = "#5e81ac"
-fg_color = "#eceff4"
-intensity = "Normal"
+  bg_color  = "#5e81ac"
+  fg_color  = "#eceff4"
+  intensity = "Normal"
 
 [colors.tab_bar.new_tab]
-bg_color = "#3b4252"
-fg_color = "#eceff4"
+  bg_color = "#3b4252"
+  fg_color = "#eceff4"
 
 [colors.tab_bar.new_tab_hover]
-bg_color = "#405d7e"
-fg_color = "#eceff4"
+  bg_color = "#405d7e"
+  fg_color = "#eceff4"

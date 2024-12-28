@@ -1,9 +1,9 @@
 # yazi.toml
 [manager]
-show_hidden = true
+  show_hidden = true
 
-# [opener]
-# edit = [
-#   { run = 'nvim "$@"', block = true, for = 'unix' },
-#   { run = 'nvim %*', block = true, for = 'windows' },
-# ]
+  # [opener]
+  # edit = [
+  #   { run = 'nvim "$@"', block = true, for = 'unix' },
+  #   { run = 'nvim %*', block = true, for = 'windows' },
+  # ]
