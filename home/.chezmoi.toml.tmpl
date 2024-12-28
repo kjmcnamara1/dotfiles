@@ -1,0 +1,21 @@
+# vim: ft=toml
+progress = true
+encryption = "age"
+
+# [edit]
+# command = "lvim"
+
+[diff]
+# command = "nvim"
+# args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
+command = "delta"
+pager = "delta"
+exclude = ['scripts']
+
+[merge]
+command = "nvim"
+args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
+
+[age]
+identity="~/.config/chezmoi/key.txt"
+recipient="age10g73xtxk2f785e6qq5dzmvnp72m9e58v42h74vk47aq39ssyucwsx20pnl"

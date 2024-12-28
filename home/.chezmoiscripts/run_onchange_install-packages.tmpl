@@ -1,0 +1,9 @@
+{{ if eq .chezmoi.os "linux" -}}
+#! /usr/bin/env bash
+
+{{ end -}}
+{{ if eq .chezmoi.hostname "muse" -}}
+{{ range .packages.muse -}}
+yay -S --noconfirm {{ . | quote }}
+{{ end -}}
+{{ end -}}

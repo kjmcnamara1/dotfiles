@@ -1,0 +1,26 @@
+packages:
+  muse:
+    - interception-caps2esc
+    - lazygit
+    - github-cli
+    - github-desktop-bin
+    - figlet # write big font in terminal
+    - figlet-fonts-extra
+    - zen-browser-bin
+    - firefox-pwa-bin # progressive web app for zen browser
+    - proton-vpn-gtk-app
+    - proton-pass-bin
+    - proton-mail-bin
+    - bat
+    - fastfetch
+    - yazi
+    - ttf-jetbrains-mono-nerd
+    - ttf-nerd-fonts-symbols
+    - ttf-firacode-nerd
+    - ipython
+    - python-ipykernel
+    - neovim
+    - nodejs
+    - npm
+    - starship
+    - wezterm

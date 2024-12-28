@@ -1,0 +1,27 @@
+* {
+  foreground: #c8d0e0;
+  background: #2e3440;
+  // border: #282828;
+  black: #3b4252;
+  white: #e5e9f0;
+  gray: #646a76;
+  red: #bf616a;
+  green: #a3be8c;
+  yellow: #ebcb8b;
+  blue: #5e81ac;
+  purple: #b48ead;
+  cyan: #88c0d0;
+  orange: #d08770;
+  pink: #e85b7a;
+
+  pale-blue: #81a1c1;
+
+  main-bg:            @background;
+  main-fg:            @foreground;
+  main-br:            @purple;
+  main-ex:            #f5e0dcff;
+  select-bg:          @pale-blue;
+  select-fg:          #282828;
+  separatorcolor:     transparent;
+  border-color:       transparent;
+}

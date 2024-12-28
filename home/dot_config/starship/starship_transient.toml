@@ -1,0 +1,59 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = '$status$fill$python$directory $line_break  $character'
+
+palette = "nord"
+
+[palettes.nord]
+black = "#2E3440"
+bright-black = "#4C566A"
+red = "#BF616A"
+green = "#A3BE8C"
+yellow = "#EBCB8B"
+blue = "#5E81AC"
+purple = "#B48EAD"
+cyan = "#88C0D0"
+white = "#e5e9f0"
+bright-white = "#ECEFF4"
+light = "#D8DEE9"
+teal = "#8FBCBB"
+frost = "#81A1C1"
+orange = "#D08770"
+
+[fill]
+symbol = "─"
+style = "bright-black"
+
+[shell]
+disabled = false
+format = "$indicator"
+bash_indicator = "[ ](fg:orange)"
+fish_indicator = "[󰈺 ](fg:blue)"
+zsh_indicator = "[󰵁 ](fg:purple)"
+powershell_indicator = "[󰨊 ](fg:cyan)"
+pwsh_indicator = "[ ](fg:blue)"
+cmd_indicator = "[ ](fg:yellow)"
+nu_indicator = "[> ](fg:green)"
+unknown_indicator = "[ ](fg:red)"
+
+[directory]
+truncation_length = 0
+truncate_to_repo = false
+format = "[ $path]($style)"
+
+# [status]
+# disabled = false
+# map_symbol = true
+
+[python]
+symbol = " "
+style = "yellow bold"
+# format = "via [${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
+format = '( [$symbol$virtualenv]($style))'
+
+[status]
+# disabled = false
+symbol = '● '
+# success_symbol = '● '
+# format = '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
+map_symbol = true
