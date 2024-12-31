@@ -1,0 +1,152 @@
+"tag" = { fg = "red" }
+"attribute" = { fg = "yellow" }
+"comment" = { fg = "light-gray", modifiers = ["italic"] }
+"constant" = { fg = "orange" }
+"constant.numeric" = { fg = "orange" }
+"constant.builtin" = { fg = "orange" }
+"constant.character.escape" = { fg = "dark-yellow" }
+"constructor" = { fg = "blue" }
+"function" = { fg = "light-blue" }
+"function.builtin" = { fg = "light-blue", modifiers = ["bold"] }
+"function.macro" = { fg = "purple" }
+"keyword" = { fg = "purple" }
+"keyword.control" = { fg = "purple", modifiers = ["italic"] }
+# "keyword.control.import" = { fg = "red" }
+"keyword.directive" = { fg = "purple" }
+"label" = { fg = "purple" }
+"namespace" = { fg = "dark-yellow" }
+"operator" = { fg = "dark-cyan" }
+"keyword.operator" = { fg = "purple" }
+# "special" = { fg = "yellow", modifiers = ["italic"] }
+"string" = { fg = "green" }
+"type" = { fg = "yellow" }
+# "variable" = { fg = "blue" }
+"variable.builtin" = { fg = "dark-yellow", modifiers = ["italic"] }
+"variable.parameter" = { fg = "red" }
+"variable.other.member" = { fg = "red" }
+
+"markup.heading" = { fg = "red" }
+"markup.raw.inline" = { fg = "green" }
+"markup.bold" = { fg = "dark-yellow", modifiers = ["bold"] }
+"markup.italic" = { fg = "purple", modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.list" = { fg = "red" }
+"markup.quote" = { fg = "yellow" }
+"markup.link.url" = { fg = "cyan", modifiers = ["underlined"] }
+"markup.link.text" = { fg = "purple" }
+
+"diff.plus" = "green"
+"diff.delta" = "dark-yellow"
+"diff.minus" = "red"
+
+"diagnostic.info".underline = { color = "blue", style = "curl" }
+"diagnostic.hint".underline = { color = "green", style = "curl" }
+"diagnostic.warning".underline = { color = "yellow", style = "curl" }
+"diagnostic.error".underline = { color = "red", style = "curl" }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+"info" = { fg = "blue", modifiers = ["bold"] }
+"hint" = { fg = "green", modifiers = ["bold"] }
+"warning" = { fg = "yellow", modifiers = ["bold"] }
+"error" = { fg = "red", modifiers = ["bold"] }
+
+"ui.background" = { bg = "dark-black" }
+"ui.virtual" = { fg = "dark-gray" }
+"ui.virtual.indent-guide" = { fg = "dark-gray" }
+"ui.virtual.whitespace" = { fg = "light-gray" }
+"ui.virtual.ruler" = { bg = "gray" }
+"ui.virtual.inlay-hint" = { fg = "light-gray" }
+"ui.virtual.jump-label" = { fg = "light-gray", modifiers = ["bold"] }
+
+"ui.cursor" = { fg = "foreground", modifiers = ["reversed"] }
+"ui.cursor.primary" = { fg = "white", modifiers = ["reversed"] }
+"ui.cursor.match" = { fg = "yellow", modifiers = ["underlined"] }
+
+"ui.selection" = { bg = "dark-gray" }
+"ui.selection.primary" = { bg = "gray" }
+"ui.cursorline.primary" = { bg = "black" }
+
+"ui.highlight" = { bg = "gray" }
+"ui.highlight.frameline" = { bg = "#97202a" }
+
+"ui.linenr" = { fg = "light-gray" }
+"ui.linenr.selected" = { fg = "white" }
+
+"ui.statusline" = { fg = "white", bg = "light-black" }
+"ui.statusline.inactive" = { fg = "light-gray", bg = "light-black" }
+"ui.statusline.normal" = { fg = "background", bg = "cyan", modifiers = [
+  "bold",
+] }
+"ui.statusline.insert" = { fg = "background", bg = "green", modifiers = [
+  "bold",
+] }
+"ui.statusline.select" = { fg = "background", bg = "dark-purple", modifiers = [
+  "bold",
+] }
+
+"ui.bufferline" = { fg = "white", bg = "light-black" }
+"ui.bufferline.active" = { fg = "light-black", bg = "cyan", underline = { color = "light-black", style = "line" } }
+"ui.bufferline.background" = { bg = "dark-black" }
+
+"ui.text" = { fg = "white" }
+"ui.text.focus" = { fg = "white", bg = "light-black", modifiers = ["bold"] }
+
+"ui.help" = { fg = "white", bg = "gray" }
+"ui.popup" = { bg = "gray" }
+"ui.window" = { fg = "gray" }
+"ui.menu" = { fg = "white", bg = "gray" }
+"ui.menu.selected" = { fg = "black", bg = "blue" }
+"ui.menu.scroll" = { fg = "white", bg = "light-gray" }
+
+"ui.debug" = { fg = "red" }
+
+[palette]
+foreground = "#C8D0E0" # + Identifier Cursor @variable foreground
+background = "#282828" # ++
+
+light-black = "#434C5E" # *
+black = "#3B4252"       # *
+dark-black = "#2E3440"  # * background
+
+light-white = "#ECEFF4" # *
+white = "#E5E9F0"       # *
+dark-white = "#D8DEE9"  # *
+
+light-gray = "#6C7A96" # + Comment LineNr
+gray = "#646A76"       # +
+dark-gray = "#4C566A"  # *
+
+light-red = "#DE878F" # +
+red = "#BF616A"       # * @constant.macro @variable.parameter @variable.builtin
+dark-red = "#4D2B2E"  # +
+
+light-green = "#BED1AE" # ~
+green = "#A3BE8C"       # * String
+dark-green = "#6D8F51"  # +
+
+light-yellow = "#F2DEB6" # ~
+yellow = "#EBCB8B"       # * Type @constructor @module @tag @type
+dark-yellow = "#D99D26"  # ~
+
+light-blue = "#81A1C1" # * Function enumMember @function.macro @function.method @keyword.import @property @tag.attribute
+blue = "#5E81AC"       # * Delimiter @punctuation @tag.delimiter
+dark-blue = "#405D7E"  # +
+# dark_blue = "#39495D" # +
+# dark_blue = "#2b3e54" # ~
+
+light-purple = "#CCB2C7" # ~
+purple = "#B48EAD"       # *
+dark-purple = "#996690"  # ~
+# dark_purple = "#B988B0" # + StorageClass Structure Operator Exception Conditional Keyword Repeat @keyword.return @label
+
+light-cyan = "#8FBCBB" # *
+cyan = "#88C0D0"       # * Constant @function.builtin @string.special.symbol
+dark-cyan = "#489EB7"  # ~
+
+# light_orange = "#D08F70" # + Boolean Number @constant.builtin @string.regexp @string.escape @type.builtin
+light-orange = "#DCA694" # ~
+orange = "#D08770"       # *
+dark-orange = "#C05E3F"  # ~
+
+pink = "#E85B7A"      # +
+dark-pink = "#E44675" # +

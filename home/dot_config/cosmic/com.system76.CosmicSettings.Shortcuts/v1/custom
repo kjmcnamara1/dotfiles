@@ -1,0 +1,219 @@
+{
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "Left",
+    ): MoveToOutput(Left),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "w",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+    ): System(Launcher),
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "semicolon",
+    ): MoveToNextOutput,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Left",
+    ): SwitchOutput(Left),
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "apostrophe",
+        description: Some("Alacritty"),
+    ): Spawn("alacritty"),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Down",
+    ): NextWorkspace,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "s",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "Up",
+    ): MoveToPreviousWorkspace,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Escape",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "o",
+    ): Focus(Out),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "apostrophe",
+        description: Some("Wezterm"),
+    ): Spawn("wezterm"),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "e",
+    ): System(HomeFolder),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Delete",
+        description: Some("Session Menu"),
+    ): Spawn("wleave -b 5 -r 0 -c 0 -f -k --protocol layer-shell -l ~/.config/wlogout/cosmic.layout -C ~/.config/wlogout/cosmic.style.css"),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "t",
+    ): ToggleWindowFloating,
+    (
+        modifiers: [
+            Super,
+            Ctrl,
+        ],
+        key: "t",
+    ): ToggleTiling,
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "Right",
+    ): MoveToOutput(Right),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "backslash",
+        description: Some("Rofi"),
+    ): Spawn("pkill -x rofi || rofi -show drun"),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "p",
+    ): ToggleSticky,
+    (
+        modifiers: [
+            Super,
+            Shift,
+        ],
+        key: "Down",
+    ): MoveToNextWorkspace,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "m",
+    ): Minimize,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "u",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "d",
+    ): System(WorkspaceOverview),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "f",
+    ): Maximize,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Right",
+    ): SwitchOutput(Right),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "semicolon",
+    ): MoveToPreviousOutput,
+    (
+        modifiers: [
+            Ctrl,
+            Alt,
+        ],
+        key: "BackSpace",
+        description: Some("Kill Session"),
+    ): Spawn("loginctl kill-session \'\'"),
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "c",
+    ): Close,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "z",
+    ): ToggleOrientation,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Up",
+    ): PreviousWorkspace,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Tab",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "y",
+    ): Disable,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "g",
+    ): ToggleStacking,
+    (
+        modifiers: [
+            Super,
+        ],
+        key: "Escape",
+        description: Some("Lock Screen"),
+    ): Spawn("hyprlock"),
+}

@@ -1,0 +1,5 @@
+(
+    show_content: true,
+    show_mounted_drives: true,
+    show_trash: true,
+)

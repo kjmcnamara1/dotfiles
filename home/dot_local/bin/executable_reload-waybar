@@ -1,0 +1,8 @@
+#! /bin/bash
+
+killall waybar
+pkill waybar
+sleep 0.5
+
+# hyprctl dispatch exec waybar >/dev/null
+nohup waybar 2>/dev/null &
