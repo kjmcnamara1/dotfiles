@@ -1,9 +1,0 @@
-- yay:
-    - bat
-# - scoop:
-#     apps:
-#       - bat
-
-- link:
-    ~/.config/bat:
-      force: true

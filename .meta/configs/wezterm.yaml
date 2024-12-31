@@ -1,6 +1,0 @@
-- yay:
-    - wezterm
-
-- link:
-    ~/.config/wezterm:
-      force: true

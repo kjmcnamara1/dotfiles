@@ -1,4 +1,0 @@
-- link:
-    ~/.bashrc:
-      path: bash/bashrc
-      force: true

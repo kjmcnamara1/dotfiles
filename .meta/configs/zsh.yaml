@@ -1,7 +1,0 @@
-- yay:
-    - zsh
-
-- link:
-    ~/.zshrc:
-      path: zsh/zshrc
-      force: true

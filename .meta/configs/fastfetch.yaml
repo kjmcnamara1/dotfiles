@@ -1,9 +1,0 @@
-- yay:
-    - fastfetch
-
-# - scoop:
-#     apps:
-#       - fastfetch
-
-- link:
-    ~/.config/fastfetch:
