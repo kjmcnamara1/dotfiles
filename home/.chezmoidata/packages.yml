@@ -24,3 +24,15 @@ packages:
     - npm
     - starship
     - wezterm
+    # sddm
+    - sddm
+    - sddm-theme-corners-git # includes dependencies
+    # printing
+    - cups
+    - cups-filters
+    - cups-pdf
+    - cups-pk-helper
+    - libcups
+    - avahi
+    - nss-mdns
+    - system-config-printer # GTK gui app
