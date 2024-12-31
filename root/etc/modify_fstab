@@ -1,0 +1,9 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- .chezmoi.stdin | replaceAllRegex "^.*B096898B96895330.*$"
+"UUID=B096898B96895330                       /mnt/Windows            ntfs    rw,auto,user,exec,nofail,utf8,uid=1000,gid=1000,dmask=0022,fmask=0133                                   0 0"
+-}}
+{{- if .chezmoi.stdin | contains "snow.local" | not -}}
+
+# /mnt/nas
+snow.local:/mnt/md1                         /mnt/NAS                nfs     defaults,nofail                                                                                         0 0
+{{- end }}
