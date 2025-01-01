@@ -6,6 +6,6 @@
 {{ range .packages.pipewire -}}
 yay -S --noconfirm {{ . | quote }}
 {{ end -}}
-systemctl --user enable pipewire wireplumber pipewire-pulse
+sudo systemctl --user enable pipewire wireplumber pipewire-pulse
 {{ end -}}
 {{ end }}

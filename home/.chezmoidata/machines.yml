@@ -13,6 +13,7 @@ machines:
       - mission-center
       - bat
       - fastfetch
+      - fish
       - yazi
       - ttf-jetbrains-mono-nerd
       - ttf-nerd-fonts-symbols
@@ -46,6 +47,7 @@ machines:
       - proton-mail-bin
       - bat
       - fastfetch
+      - fish
       - yazi
       - ttf-jetbrains-mono-nerd
       - ttf-nerd-fonts-symbols

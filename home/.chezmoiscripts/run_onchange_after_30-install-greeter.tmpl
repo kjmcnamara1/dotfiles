@@ -5,10 +5,10 @@
 yay -S --noconfirm sddm sddm-theme-corners-git
 setfacl -m u:sddm:x ~/
 setfacl -m u:sddm:r ~/.face.icon
-systemctl enable sddm
+sudo systemctl enable sddm
 {{ end -}}
 {{ if has "cosmic" $machine.greeter }}
 yay -S --noconfirm cosmic-greeter
-systemctl enable cosmic-greeter
+sudo systemctl enable cosmic-greeter
 {{ end -}}
 {{ end }}
