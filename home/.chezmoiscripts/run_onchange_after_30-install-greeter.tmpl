@@ -1,0 +1,14 @@
+{{- $machine := get .machines .chezmoi.hostname -}}
+{{ if eq .chezmoi.os "linux" -}}
+#! /usr/bin/env bash
+{{ if has "sddm" $machine.greeter }}
+yay -S --noconfirm sddm sddm-theme-corners-git
+setfacl -m u:sddm:x ~/
+setfacl -m u:sddm:r ~/.face.icon
+systemctl enable sddm
+{{ end -}}
+{{ if has "cosmic" $machine.greeter }}
+yay -S --noconfirm cosmic-greeter
+systemctl enable cosmic-greeter
+{{ end -}}
+{{ end }}

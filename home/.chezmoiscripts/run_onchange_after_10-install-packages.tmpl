@@ -1,0 +1,10 @@
+{{- $machine := get .machines .chezmoi.hostname -}}
+{{ if eq .chezmoi.os "linux" -}}
+#! /usr/bin/env bash
+
+{{ range $machine.packages -}}
+yay -S --noconfirm {{ . | quote }}
+{{ end -}}
+systemctl enable NetworkManager
+systemctl enable bluetooth
+{{ end }}

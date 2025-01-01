@@ -32,9 +32,16 @@ $lock = hyprlock # swaylock
 monitor = ,preferred,auto,auto
 workspace = special:scratch, on-created-empty: $term
 
-{{ if eq .chezmoi.hostname "angel" }}
+{{ if eq .chezmoi.hostname "muse" }}
 monitor = eDP-1, preferred, auto, 1.25
 {{ end }}
+
+{{ if eq .chezmoi.hostname "angel" }}
+monitor = desc:Dell Inc. DELL S3221QS CQQZ6N3, 2560x1440, auto, 1
+monitor = desc:Dell Inc. DELL S3221QS CQKY6N3, 2560x1440, auto, 1
+{{ end }}
+
+
 
 
 # ░█▀█░█▀█░█▀█░█▀▀░█▀█░█▀▄░█▀█░█▀█░█▀▀░█▀▀

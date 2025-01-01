@@ -1,0 +1,65 @@
+machines:
+  angel:
+    packages:
+      - figlet # write big font in terminal
+      - figlet-fonts-extra
+      - vlc # video player
+      - brave-bin
+      - zen-browser-bin
+      - firefox-pwa-bin # progressive web app for zen browser
+      - proton-vpn-gtk-app
+      - proton-pass-bin
+      - proton-mail-bin
+      - mission-center
+      - bat
+      - fastfetch
+      - yazi
+      - ttf-jetbrains-mono-nerd
+      - ttf-nerd-fonts-symbols
+      - ttf-firacode-nerd
+      - ipython
+      - python-ipykernel
+      - neovim
+      - nodejs
+      - npm
+      - starship
+      - wezterm
+    desktop:
+      - cosmic
+    greeter:
+      - sddm
+    audio:
+      - pipewire
+
+  muse:
+    packages:
+      - interception-caps2esc
+      - lazygit
+      - github-cli
+      - github-desktop-bin
+      - figlet # write big font in terminal
+      - figlet-fonts-extra
+      - zen-browser-bin
+      - firefox-pwa-bin # progressive web app for zen browser
+      - proton-vpn-gtk-app
+      - proton-pass-bin
+      - proton-mail-bin
+      - bat
+      - fastfetch
+      - yazi
+      - ttf-jetbrains-mono-nerd
+      - ttf-nerd-fonts-symbols
+      - ttf-firacode-nerd
+      - ipython
+      - python-ipykernel
+      - neovim
+      - nodejs
+      - npm
+      - starship
+      - wezterm
+    desktop:
+      - hyprland
+    greeter:
+      - sddm
+    audio:
+      - pipewire
