@@ -177,7 +177,8 @@
     "zoxide",
     "unzip",
     "7zip",
-    "zstd"
+    "zstd",
+    "chezmoi"
   ],
   "parallel downloads": 5,
   "profile_config": {
