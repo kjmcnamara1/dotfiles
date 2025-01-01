@@ -5,6 +5,10 @@
 {{ range $machine.packages -}}
 yay -S --noconfirm {{ . | quote }}
 {{ end -}}
-systemctl enable NetworkManager
-systemctl enable bluetooth
+sudo systemctl enable NetworkManager
+sudo systemctl enable bluetooth
+{{ if eq .chezmoi.hostname "angel" }}
+sudo systemctl mask tpm2.target
+sudo timedatectl set-local-rtc 1
+{{ end -}}
 {{ end }}
