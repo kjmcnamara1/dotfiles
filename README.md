@@ -24,7 +24,8 @@ exit # Exit back to commandline
 #### Automated Install Script
 
 ```sh
-mount -m -t nfs snow.local:/mnt/md1 /nas # to save config file to nas
+# mount -m -t nfs snow.local:/mnt/md1 /nas # to save config file to nas
+mount -m -t cifs //192.168.0.10/NAS /nas -o username=admin # cifs-utils comes packaged with archiso
 bash -c "$(curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/main/arch/install)"
 # curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE.sh > /tmp/tmp.sh
 # bash /tmp/tmp.sh
