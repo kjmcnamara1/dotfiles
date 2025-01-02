@@ -33,6 +33,7 @@
     "bluez",
     "ntfs-3g",
     "nfs-utils",
+    "age",
     "chezmoi"
   ],
   "parallel downloads": 5,
