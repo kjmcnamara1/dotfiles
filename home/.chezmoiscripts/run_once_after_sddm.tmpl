@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "linux" -}}
 #! /usr/bin/env bash
 
 echo
@@ -11,3 +12,4 @@ setfacl -m u:sddm:x ~/
 setfacl -m u:sddm:r ~/.face.icon
 
 sudo systemctl enable sddm
+{{- end }}
