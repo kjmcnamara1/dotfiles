@@ -1,5 +1,5 @@
 {{- if eq .chezmoi.os "linux" -}}
 #! /usr/bin/env bash
 
-chsh -s (which fish)
+chsh -s $(which fish)
 {{- end }}
