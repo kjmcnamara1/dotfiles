@@ -1,7 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --export EDITOR:nvim
-SETUVAR --export MANROFFOPT:\x3d\x1e\x2dc
+SETUVAR --export MANPAGER:nvim\x20\x2bMan\x21
 SETUVAR --export MODULAR_HOME:/home/kjm/\x2emodular
 SETUVAR --export YAZI_CONFIG_HOME:\x7e/\x2econfig/yazi
 SETUVAR __fish_initialized:3400
