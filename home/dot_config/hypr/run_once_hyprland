@@ -31,19 +31,19 @@ yay -S --noconfirm nm-connection-editor
 yay -S --noconfirm network-manager-applet
 yay -S --noconfirm blueberry-wayland
 
-echo
-echo "--------------------------------------------------------------------------------"
-echo "*** Hyprland Plugin Manager"
-echo "--------------------------------------------------------------------------------"
+# echo
+# echo "--------------------------------------------------------------------------------"
+# echo "*** Hyprland Plugin Manager"
+# echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm hyprland
-yay -S --noconfirm cmake
-yay -S --noconfirm meson
-yay -S --noconfirm cpio
+# yay -S --noconfirm hyprland
+# yay -S --noconfirm cmake
+# yay -S --noconfirm meson
+# yay -S --noconfirm cpio
 
-hyprpm add https://github.com/hyprwm/hyprland-plugins
-hyprpm add https://github.com/outfoxxed/hy3
-hyprpm update
-hyprpm enable hyprexpo
-hyprpm enable hy3
-hyprpm reload
+# hyprpm add https://github.com/hyprwm/hyprland-plugins
+# hyprpm add https://github.com/outfoxxed/hy3
+# hyprpm update
+# hyprpm enable hyprexpo
+# hyprpm enable hy3
+# hyprpm reload
