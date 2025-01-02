@@ -1,5 +1,10 @@
 #! /bin/bash
 
+echo
+echo "--------------------------------------------------------------------------------"
+echo "*** Decrypt Age Key"
+echo "--------------------------------------------------------------------------------"
+
 if [ ! -f "${HOME}/.config/chezmoi/key.txt" ]; then
   mkdir -p "${HOME}/.config/chezmoi"
   chezmoi age decrypt --output "${HOME}/.config/chezmoi/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"
