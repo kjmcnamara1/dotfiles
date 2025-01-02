@@ -1,0 +1,3 @@
+{{- if ne .chezmoi.hostname "muse" }}
+etc/interception/
+{{- end }}

@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+echo "Installing Caps2Esc"
+yay -S --noconfirm interception-caps2esc
+
+sudo systemctl enable --now udevmon
