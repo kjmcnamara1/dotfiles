@@ -41,7 +41,7 @@ archinstall --config "$config_file" --creds "$cred_file"
 
 read -rp "Do you want to install dotfiles? [Y/n] " install_dotfiles
 case $install_dotfiles in
-y | Y | "") arch-chroot -u "$username" /mnt/archinstall chezmoi init --apply ;;
+y | Y | "") arch-chroot /mnt/archinstall bash -c "sudo -H -u $username chezmoi init --apply kjmcnamara1" ;;
 esac
 
 read -rp "Reboot? [Y/n] " reboot_now
