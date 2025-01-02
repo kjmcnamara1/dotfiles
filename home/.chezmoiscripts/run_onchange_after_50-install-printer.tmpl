@@ -1,8 +1,0 @@
-{{ if eq .chezmoi.os "linux" -}}
-#! /usr/bin/env bash
-
-{{ range .packages.printer -}}
-yay -S --noconfirm {{ . | quote }}
-{{ end }}
-sudo systemctl enable cups avahi-daemon
-{{ end }}

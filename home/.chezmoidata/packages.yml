@@ -1,69 +1,69 @@
 packages:
-  sddm:
-    - sddm
-    - sddm-theme-corners-git # includes dependencies
-  cosmic:
-    - cosmic
-    # - cosmic-session
-    # - cosmic-files
-    # - cosmic-store
-    # - cosmic-terminal
-    # - cosmic-text-editor
-    # - cosmic-wallpapers
-    # - cosmic-launcher-git
-    - power-profiles-daemon
-    - wl-clipboard
-    - loupe # gnome image viewer
-    - gwenview # kde image viewer
-    - kvantum
-    - qt6-wayland
-    - qt6ct
-  hyprland:
-    - hyprland
-    - xdg-desktop-portal-hyprland
-    # - hyprpolkitagent-git
-    - polkit-gnome # authentication agent
-    - qt5-wayland # QT5 library
-    - qt6-wayland # QT6 library
-    # - qt5ct # QT5 config tool
-    # - qt6ct # QT6 config tool
-    - kvantum
-    # - nwg-look # GTK Theme setter
-    - hyprcursor # cursor backend
-    - nordzy-hyprcursors # hyprcursor theme
-    - nordzy-cursors # xcursor and gtk cursor theme
-    # - nordic-theme # GTK Theme
-    - udiskie # automount usb drives
-    - hyprpaper # backend wallpaper setter
-    - waypaper # gui frontent for hyprpaper
-    - hyprpicker # color picker
-    - hyprlock # lock screen
-    - dunst # mako, swaync
-    - rofi-wayland # launcher (apps,windows,other)
-    - cliphist # clipboard manager (uses wl-clipboard)
-    - waybar # status bar
-    - wlogout # logout menu
-    - python-pywal
-    - nm-connection-editor # NetworkManager gui
-    - network-manager-applet # sys tray icon and menu
-    - blueberry-wayland # bluetooth gui
-  hyprpm:
-    - cmake
-    - meson
-    - cpio
-  pipewire:
-    - pipewire
-    - wireplumber
-    - pipewire-pulse
-    - pipewire-alsa
-    # - pipewire-jack
-    # - pwvucontrol
-  printer:
-    - cups
-    - cups-filters
-    - cups-pdf
-    - cups-pk-helper
-    - libcups
-    - avahi
-    - nss-mdns
-    - system-config-printer # GTK gui app
+  # sddm:
+  #   - sddm
+  #   - sddm-theme-corners-git # includes dependencies
+  # cosmic:
+  #   - cosmic
+  #   # - cosmic-session
+  #   # - cosmic-files
+  #   # - cosmic-store
+  #   # - cosmic-terminal
+  #   # - cosmic-text-editor
+  #   # - cosmic-wallpapers
+  #   # - cosmic-launcher-git
+  #   - power-profiles-daemon
+  #   - wl-clipboard
+  #   - loupe # gnome image viewer
+  #   - gwenview # kde image viewer
+  #   - kvantum
+  #   - qt6-wayland
+  #   - qt6ct
+  # hyprland:
+  #   - hyprland
+  #   - xdg-desktop-portal-hyprland
+  #   # - hyprpolkitagent-git
+  #   - polkit-gnome # authentication agent
+  #   - qt5-wayland # QT5 library
+  #   - qt6-wayland # QT6 library
+  #   # - qt5ct # QT5 config tool
+  #   # - qt6ct # QT6 config tool
+  #   - kvantum
+  #   # - nwg-look # GTK Theme setter
+  #   - hyprcursor # cursor backend
+  #   - nordzy-hyprcursors # hyprcursor theme
+  #   - nordzy-cursors # xcursor and gtk cursor theme
+  #   # - nordic-theme # GTK Theme
+  #   - udiskie # automount usb drives
+  #   - hyprpaper # backend wallpaper setter
+  #   - waypaper # gui frontent for hyprpaper
+  #   - hyprpicker # color picker
+  #   - hyprlock # lock screen
+  #   - dunst # mako, swaync
+  #   - rofi-wayland # launcher (apps,windows,other)
+  #   - cliphist # clipboard manager (uses wl-clipboard)
+  #   - waybar # status bar
+  #   - wlogout # logout menu
+  #   - python-pywal
+  #   - nm-connection-editor # NetworkManager gui
+  #   - network-manager-applet # sys tray icon and menu
+  #   - blueberry-wayland # bluetooth gui
+  # hyprpm:
+  #   - cmake
+  #   - meson
+  #   - cpio
+  # pipewire:
+  #   - pipewire
+  #   - wireplumber
+  #   - pipewire-pulse
+  #   - pipewire-alsa
+  #   # - pipewire-jack
+  #   # - pwvucontrol
+  # printer:
+  #   - cups
+  #   - cups-filters
+  #   - cups-pdf
+  #   - cups-pk-helper
+  #   - libcups
+  #   - avahi
+  #   - nss-mdns
+  #   - system-config-printer # GTK gui app

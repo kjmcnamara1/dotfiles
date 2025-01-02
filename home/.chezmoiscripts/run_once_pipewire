@@ -1,0 +1,15 @@
+{{- if eq .chezmoi.os "linux" -}}
+#! /usr/bin/env bash
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo "*** Pipewire"
+echo "--------------------------------------------------------------------------------"
+
+yay -S --noconfirm pipewire
+yay -S --noconfirm wireplumber
+yay -S --noconfirm pipewire-pulse
+yay -S --noconfirm pipewire-alsa
+
+systemctl --user enable pipewire wireplumber pipewire-pulse
+{{- end }}

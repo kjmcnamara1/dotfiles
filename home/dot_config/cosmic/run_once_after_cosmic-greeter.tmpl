@@ -1,0 +1,12 @@
+{{- if false -}}
+#! /usr/bin/env bash
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo "*** Cosmic Greeter"
+echo "--------------------------------------------------------------------------------"
+
+yay -S --noconfirm cosmic-greeter
+
+sudo systemctl enable cosmic-greeter
+{{- end }}

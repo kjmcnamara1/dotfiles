@@ -1,7 +1,0 @@
-{{ if eq .chezmoi.os "linux" -}}
-#! /usr/bin/env bash
-
-{{ end -}}
-{{ if eq .chezmoi.osRelease.id "arch" -}}
-yay --version || (echo "Installing yay..." && rm -rf /tmp/yay && git clone https://aur.archlinux.org/yay-bin.git /tmp/yay && cd /tmp/yay && makepkg -si --noconfirm)
-{{ end -}}

@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo "*** SDDM Greeter"
+echo "--------------------------------------------------------------------------------"
+
+yay -S --noconfirm sddm sddm-theme-corners-git
+
+setfacl -m u:sddm:x ~/
+setfacl -m u:sddm:r ~/.face.icon
+
+sudo systemctl enable sddm

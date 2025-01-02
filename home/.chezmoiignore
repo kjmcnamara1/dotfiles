@@ -1,1 +1,27 @@
 key.txt.age
+
+{{- /* Ignore Everywhere */ -}}
+.config/alacritty
+.config/helix
+.config/kitty
+.config/nushell
+.config/paru
+.config/pypoetry
+.config/tmux
+.config/xonsh
+
+{{- /* Ignore for MUSE */ -}}
+{{- if eq .chezmoi.hostname "muse" }}
+.config/cosmic
+{{- end }}
+
+{{- /* Ignore for ANGEL */ -}}
+{{- if eq .chezmoi.hostname "angel" }}
+.config/hypr
+.config/dunst
+.config/rofi
+.config/waybar
+.config/waypaper
+.config/wlogout
+.config/hypr
+{{- end }}
