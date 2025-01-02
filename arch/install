@@ -20,7 +20,7 @@ read -srp "Password: " password
 
 # Save credentials to temp file
 cred_file="$(mktemp)"
-cat > "$cred_file" << EOF
+cat >"$cred_file" <<EOF
 {
     "!root-password": "$password",
     "!users": [
@@ -37,4 +37,14 @@ EOF
 # echo "$cred_file"
 # cat "$cred_file"
 
-archinstall --config "$config_file" --creds "$cred_file" && reboot
+archinstall --config "$config_file" --creds "$cred_file"
+
+read -rp "Do you want to install dotfiles? [Y/n] " install_dotfiles
+case $install_dotfiles in
+y | Y | "") arch-chroot -u "$username" /mnt chezmoi init --apply ;;
+esac
+
+read -rp "Reboot? [Y/n] " reboot_now
+case $reboot_now in
+y | Y | "") reboot ;;
+esac
