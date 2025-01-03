@@ -37,8 +37,10 @@ EOF
 # echo "$cred_file"
 # cat "$cred_file"
 
+# Run ArchInstall
 archinstall --config "$config_file" --creds "$cred_file"
 
+# Use Chezmoi to copy dotfiles
 read -rp "Do you want to install dotfiles? [Y/n] " install_dotfiles
 case $install_dotfiles in
 y | Y | "")
@@ -47,6 +49,7 @@ y | Y | "")
   ;;
 esac
 
+# Reboot
 read -rp "Reboot? [Y/n] " reboot_now
 case $reboot_now in
 y | Y | "") reboot ;;

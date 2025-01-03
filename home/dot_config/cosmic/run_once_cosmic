@@ -5,11 +5,15 @@ echo "--------------------------------------------------------------------------
 echo "*** Cosmic DE"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm cosmic
-yay -S --noconfirm power-profiles-daemon
-yay -S --noconfirm wl-clipboard
-yay -S --noconfirm loupe # gnome image viewer
-yay -S --noconfirm gwenview # kde image viewer
-yay -S --noconfirm kvantum
-yay -S --noconfirm qt6-wayland
-yay -S --noconfirm qt6ct
+packages=(
+  cosmic
+  power-profiles-daemon
+  wl-clipboard
+  loupe    # gnome image viewer
+  gwenview # kde image viewer
+  kvantum
+  qt6-wayland
+  qt6ct
+)
+
+yay -S --noconfirm "${packages[@]}"

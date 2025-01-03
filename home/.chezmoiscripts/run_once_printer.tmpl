@@ -6,14 +6,18 @@ echo "--------------------------------------------------------------------------
 echo "*** Printer"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm cups
-yay -S --noconfirm cups-filters
-yay -S --noconfirm cups-pdf
-yay -S --noconfirm cups-pk-helper
-yay -S --noconfirm libcups
-yay -S --noconfirm avahi
-yay -S --noconfirm nss-mdns
-yay -S --noconfirm system-config-printer # GTK gui app
+packages=(
+  cups
+  cups-filters
+  cups-pdf
+  cups-pk-helper
+  libcups
+  avahi
+  nss-mdns
+  system-config-printer # GTK gui app
+)
+
+yay -S --noconfirm "${packages[@]}"
 
 sudo systemctl enable cups avahi-daemon
 {{ end }}

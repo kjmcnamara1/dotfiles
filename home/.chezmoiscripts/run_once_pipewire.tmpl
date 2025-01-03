@@ -6,10 +6,14 @@ echo "--------------------------------------------------------------------------
 echo "*** Pipewire"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm pipewire
-yay -S --noconfirm wireplumber
-yay -S --noconfirm pipewire-pulse
-yay -S --noconfirm pipewire-alsa
+packages=(
+  pipewire
+  wireplumber
+  pipewire-pulse
+  pipewire-alsa
+)
+
+yay -S --noconfirm "${packages[@]}"
 
 sudo systemctl --user enable pipewire wireplumber pipewire-pulse
 {{- end }}

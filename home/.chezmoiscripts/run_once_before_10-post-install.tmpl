@@ -6,31 +6,33 @@ echo "--------------------------------------------------------------------------
 echo "*** Post Install"
 echo "--------------------------------------------------------------------------------"
 
-sudo systemctl enable NetworkManager
-sudo systemctl enable bluetooth
+sudo systemctl enable NetworkManager bluetooth
 
-yay -S --noconfirm uv
-yay -S --noconfirm pv
-yay -S --noconfirm tldr
-yay -S --noconfirm jq
-yay -S --noconfirm eza
-yay -S --noconfirm fd
-yay -S --noconfirm fzf
-yay -S --noconfirm ripgrep
-yay -S --noconfirm zoxide
-yay -S --noconfirm unzip
-yay -S --noconfirm 7zip
-yay -S --noconfirm zstd
-yay -S --noconfirm git-delta
-yay -S --noconfirm figlet # write big font in terminal
-yay -S --noconfirm figlet-fonts-extra
-yay -S --noconfirm vlc # video player
-yay -S --noconfirm brave-bin
-yay -S --noconfirm proton-pass-bin
+packages=(
+  uv
+  pv
+  tldr
+  jq
+  eza
+  fd
+  fzf
+  ripgrep
+  zoxide
+  unzip
+  7zip
+  zstd
+  git-delta
+  figlet # write big font in terminal
+  figlet-fonts-extra
+  vlc # video player
+  brave-bin
+  proton-pass-bin
+  ttf-jetbrains-mono-nerd
+  ttf-nerd-fonts-symbols
+  ttf-firacode-nerd
+)
 
-yay -S --noconfirm ttf-jetbrains-mono-nerd
-yay -S --noconfirm ttf-nerd-fonts-symbols
-yay -S --noconfirm ttf-firacode-nerd
+yay -S --noconfirm "${packages[@]}"
 
 {{ if eq .chezmoi.hostname "angel" }}
 sudo systemctl mask tpm2.target

@@ -5,31 +5,35 @@ echo "--------------------------------------------------------------------------
 echo "*** Hyprland"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm hyprland
-yay -S --noconfirm hyprlock
-yay -S --noconfirm hyprpaper
-yay -S --noconfirm xdg-desktop-portal-hyprland
-yay -S --noconfirm polkit-gnome
-yay -S --noconfirm qt5-wayland
-yay -S --noconfirm qt6-wayland
-yay -S --noconfirm kvantum
-yay -S --noconfirm hyprcursor
-yay -S --noconfirm nordzy-hyprcursors
-yay -S --noconfirm nordzy-cursors
-yay -S --noconfirm udiskie
-yay -S --noconfirm hyprpaper
-yay -S --noconfirm waypaper
-yay -S --noconfirm hyprpicker
-yay -S --noconfirm hyprlock
-yay -S --noconfirm dunst
-yay -S --noconfirm rofi-wayland
-yay -S --noconfirm cliphist
-yay -S --noconfirm waybar
-yay -S --noconfirm wlogout
-yay -S --noconfirm python-pywal
-yay -S --noconfirm nm-connection-editor
-yay -S --noconfirm network-manager-applet
-yay -S --noconfirm blueberry-wayland
+packages=(
+  hyprland
+  hyprlock
+  hyprpaper
+  xdg-desktop-portal-hyprland
+  polkit-gnome
+  qt5-wayland
+  qt6-wayland
+  kvantum
+  hyprcursor
+  nordzy-hyprcursors
+  nordzy-cursors
+  udiskie
+  hyprpaper
+  waypaper
+  hyprpicker
+  hyprlock
+  dunst
+  rofi-wayland
+  cliphist
+  waybar
+  wlogout
+  python-pywal
+  nm-connection-editor
+  network-manager-applet
+  blueberry-wayland
+)
+
+yay -S --noconfirm "${packages[@]}"
 
 # echo
 # echo "--------------------------------------------------------------------------------"
