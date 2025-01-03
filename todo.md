@@ -10,6 +10,10 @@ corners
 
 VSC or Code-OSS or Codium
 
+# neovim
+
+configure to nearly match LazyVim config
+
 # chezmoi
 
 write scripts for files outside home dir OR use [rootmoi](https://github.com/twpayne/chezmoi/discussions/1510#discussioncomment-7808924)
