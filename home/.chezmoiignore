@@ -1,6 +1,5 @@
 key.txt.age
 
-{{- /* Ignore Everywhere */ -}}
 .config/alacritty
 .config/helix
 .config/kitty
