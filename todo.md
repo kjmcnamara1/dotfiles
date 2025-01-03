@@ -12,7 +12,8 @@ VSC or Code-OSS or Codium
 
 # neovim
 
-configure to nearly match LazyVim config
+- configure to nearly match LazyVim config
+- alt-shift-i and alt-shift-a in normal mode keymaps for ^ and $
 
 # chezmoi
 
