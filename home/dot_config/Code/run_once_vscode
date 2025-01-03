@@ -5,4 +5,5 @@ echo "--------------------------------------------------------------------------
 echo "*** Visual Studio Code"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm code code-marketplace code-features
+# yay -S --noconfirm code code-marketplace code-features
+yay -S --noconfirm visual-studio-code-bin
