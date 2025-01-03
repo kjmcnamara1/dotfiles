@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo "*** Visual Studio Code"
+echo "--------------------------------------------------------------------------------"
+
+yay -S --noconfirm code code-marketplace code-features

@@ -1,0 +1,766 @@
+{
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[plaintext]": {
+    "editor.detectIndentation": true,
+    "editor.insertSpaces": false,
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.unicodeHighlight.invisibleCharacters": false
+  },
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.detectIndentation": false,
+    "editor.formatOnType": true
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "DotJoshJohnson.xml"
+  },
+  "autoDocstring.customTemplatePath": "C:\\Users\\kjmcn\\code\\workdrive\\Python\\PyVSC.mustache",
+  "autoDocstring.startOnNewLine": true,
+  "codeium.enableConfig": {
+    "*": true,
+    "xml": true
+  },
+  "cSpell.ignoreWords": [
+    "blosc",
+    "brotli",
+    "dtypes",
+    "levelname",
+    "pandera",
+    "pydantic",
+    "zstandard"
+  ],
+  "cSpell.spellCheckOnlyWorkspaceFiles": true,
+  "cSpell.userWords": [
+    "bokeh",
+    "curdoc",
+    "DIPPR",
+    "matplotlib",
+    "ndarray",
+    "pyplot",
+    "scipy",
+    "sklearn",
+    "sympy"
+  ],
+  "csv-edit.fontFamilyInTable": "sameAsCodeEditor",
+  "csv-edit.initiallyFixedColumnsLeft": 1,
+  "csv-edit.initiallyIsInReadonlyMode": true,
+  "csv-edit.openTableAndSelectCellAtCursorPos": "initialOnly_correctRowAndColumn",
+  "csv-edit.readOption_hasHeader": "true",
+  "csv-edit.showDeleteColumnHeaderButton": false,
+  "csv-edit.showDeleteRowHeaderButton": false,
+  "debug.console.wordWrap": false,
+  "debug.internalConsoleOptions": "openOnSessionStart",
+  "diffEditor.codeLens": true,
+  "diffEditor.diffAlgorithm": "advanced",
+  "diffEditor.experimental.showMoves": true,
+  "diffEditor.experimental.useVersion2": true,
+  "diffEditor.maxComputationTime": 10000,
+  "docwriter.hotkey.windows": "Alt + .",
+  "docwriter.style": "Google",
+  "editor.accessibilitySupport": "off",
+  "editor.codeActionsOnSave": {
+    // "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.defaultColorDecorators": "auto",
+  "editor.foldingImportsByDefault": true,
+  "editor.formatOnSave": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.lineNumbers": "relative",
+  "editor.linkedEditing": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.stickyTabStops": true,
+  "emmet.includeLanguages": {
+    "jinja-html": "html"
+  },
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "files.exclude": {
+    ".hypothesis": true,
+    ".venv": true,
+    "**/__pycache__": true,
+    "**/.coverage": true,
+    "**/.pytest_cache": true,
+    "**/*.egg-info": true
+  },
+  "files.readonlyFromPermissions": true,
+  "files.readonlyInclude": {
+    "*.lock": true
+  },
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "gitlens.views.worktrees.files.layout": "list",
+  "hediet.vscode-drawio.resizeImages": null,
+  "indentRainbow.errorColor": "\"\"",
+  "indentRainbow.ignoreLinePatterns": [
+    // "['\"]{3}.*?['\"]{3}/gm",
+    "/[ \t]* [*]/g",
+    "/[ \t]+[/]{2}/g"
+  ],
+  "jupyter.askForKernelRestart": false,
+  "jupyter.interactiveWindow.creationMode": "perFile",
+  "jupyter.interactiveWindow.textEditor.executeSelection": true,
+  "jupyter.notebookFileRoot": "${workspaceFolder}",
+  "jupyter.showVariableViewWhenDebugging": true,
+  "jupyter.themeMatplotlibPlots": true,
+  "jupyter.toc.numbering": true,
+  "jupyter.toc.reverseAnchorsStyle": "arrow1",
+  "jupyter.widgetScriptSources": ["jsdelivr.com", "unpkg.com"],
+  "launch": {
+    "configurations": [
+      {
+        "name": "Python: My Code",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${file}",
+        // "console": "integratedTerminal",
+        "console": "internalConsole",
+        "internalConsoleOptions": "openOnSessionStart",
+        "justMyCode": true,
+        "autoReload": {
+          "enable": true
+        },
+        "env": {
+          "PYTEST_ADDOPTS": "--no-cov"
+        }
+      },
+      {
+        "name": "Python: Others Code",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${file}",
+        "console": "internalConsole",
+        "internalConsoleOptions": "openOnSessionStart",
+        "justMyCode": false,
+        "autoReload": {
+          "enable": true
+        },
+        "env": {
+          "PYTEST_ADDOPTS": "--no-cov"
+        }
+      }
+    ],
+    "version": "0.2.0"
+  },
+  "notebook.codeActionsOnSave": {
+    "source.convertImportFormat": true,
+    "source.organizeImports": true
+  },
+  "notebook.consolidatedRunButton": true,
+  "notebook.formatOnCellExecution": true,
+  "notebook.formatOnSave.enabled": true,
+  "notebook.markup.fontSize": 14,
+  "notebook.output.scrolling": true,
+  "notebook.output.textLineLimit": 100,
+  "peacock.affectActivityBar": false,
+  "peacock.affectStatusBar": false,
+  "problems.autoReveal": false,
+  "python.analysis.autoFormatStrings": true,
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.autoImportUserSymbols": true,
+  "python.analysis.completeFunctionParens": true,
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.fixAll": ["source.convertImportFormat"],
+  "python.analysis.gotoDefinitionInStringLiteral": true,
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.analysis.inlayHints.pytestParameters": true,
+  "python.terminal.activateEnvironment": false,
+  "python.venvFolders": [
+    ".cache/pypoetry/virtualenvs",
+    "OneDrive - Five Star Products, Inc/Code/venv",
+    "AppData\\Local\\pypoetry\\Cache\\virtualenvs"
+  ],
+  "pythonIndent.useTabOnHangingIndent": true,
+  "ruff.codeAction.disableRuleComment": {
+    "enable": false
+  },
+  "settingsSync.keybindingsPerPlatform": false,
+  "terminal.external.windowsExec": "C:\\Users\\kjmcn\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe",
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "block",
+  "terminal.integrated.defaultProfile.linux": "xonsh",
+  "terminal.integrated.defaultProfile.windows": "Xonsh",
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font, FiraCode Nerd Font, monospace",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "path": "C:\\Users\\kjmcn\\scoop\\shims\\pwsh.exe",
+      "icon": "terminal-powershell"
+    },
+    "Command Prompt": {
+      "path": [
+        "${env:windir}\\Sysnative\\cmd.exe",
+        "${env:windir}\\System32\\cmd.exe"
+      ],
+      "args": [],
+      "icon": "terminal-cmd"
+    },
+    "Git Bash": {
+      "source": "Git Bash"
+    },
+    "Git Bash SDK": {
+      "args": ["-defterm", "-here", "-no-start", "-mingw64"],
+      "icon": "terminal-bash",
+      "path": "C:\\git-sdk-64\\msys2_shell.cmd"
+    },
+    "Windows PowerShell 5.1": {
+      "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+    },
+    "Xonsh": {
+      "path": "C:\\Users\\kjmcn\\.local\\bin\\xonsh.exe"
+    }
+  },
+  "todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "NEW",
+    "NOTE",
+    "[ ]",
+    "[x]"
+  ],
+  "todo-tree.highlights.customHighlight": {
+    "[ ]": {
+      "background": "#FF0",
+      "foreground": "#000",
+      "icon": "check",
+      "iconColour": "#FF0"
+    },
+    "[x]": {
+      // "background": "#080",
+      "foreground": "#080",
+      "icon": "check",
+      "iconColour": "#080"
+    },
+    "BUG": {
+      "background": "#F00",
+      "foreground": "#000",
+      "iconColour": "#F00"
+    },
+    "NOTE": {
+      "background": "#888",
+      "foreground": "#FFF",
+      "icon": "note",
+      "iconColour": "#888"
+    },
+    "FIXME": {
+      "background": "#F80",
+      "foreground": "#000",
+      "iconColour": "#F80"
+    },
+    "NEW": {
+      "background": "#08F",
+      "foreground": "#FFF",
+      "icon": "note",
+      "iconColour": "#08F"
+    },
+    "TODO": {
+      "background": "#FFF",
+      "foreground": "#000",
+      "icon": "check",
+      "iconColour": "#FFF"
+    }
+  },
+  "todo-tree.highlights.defaultHighlight": {
+    // "background": "#FFF",
+    // "foreground": "#000",
+    "gutterIcon": true,
+    "icon": "alert",
+    "iconColour": "#4169E1",
+    "opacity": 50,
+    "type": "text-and-comment"
+  },
+  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS).*(\\n\\s*//\\s{2,}.*)*",
+  "vim.easymotion": true,
+  "vim.foldfix": true,
+  "vim.leader": "<space>",
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": ["j", "k"],
+      "after": ["<esc>"]
+    },
+    {
+      "before": ["<c-h>"],
+      "after": ["<left>"]
+    },
+    {
+      "before": ["<c-j>"],
+      "after": ["<down>"]
+    },
+    {
+      "before": ["<c-k>"],
+      "after": ["<up>"]
+    },
+    {
+      "before": ["<c-l>"],
+      "after": ["<right>"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["H"],
+      "after": ["^"]
+    },
+    {
+      "before": ["L"],
+      "after": ["$"]
+    },
+    {
+      "before": ["<c-h>"],
+      "after": ["<c-w>", "h"]
+    },
+    {
+      "before": ["<c-j>"],
+      "after": ["<c-w>", "j"]
+    },
+    {
+      "before": ["<c-k>"],
+      "after": ["<c-w>", "k"]
+    },
+    {
+      "before": ["<c-l>"],
+      "after": ["<c-w>", "l"]
+    },
+    {
+      "before": ["<leader>", "p"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "o"],
+      "commands": ["workbench.action.gotoSymbol"]
+    },
+    {
+      "before": ["<leader>", "t", "h"],
+      "commands": ["workbench.action.moveEditorToLeftGroup"]
+    },
+    {
+      "before": ["<leader>", "t", "j"],
+      "commands": ["workbench.action.moveEditorToBelowGroup"]
+    },
+    {
+      "before": ["<leader>", "t", "k"],
+      "commands": ["workbench.action.moveEditorToAboveGroup"]
+    },
+    {
+      "before": ["<leader>", "t", "l"],
+      "commands": ["workbench.action.moveEditorToRightGroup"]
+    },
+    {
+      "before": ["<leader>", "r"],
+      "commands": ["workbench.action.openRecent"]
+    },
+    {
+      "before": ["<leader>", "t", "d"],
+      "commands": ["todo-tree-view.focus"]
+    },
+    {
+      "before": ["<leader>", "k", "s"],
+      "commands": ["workbench.action.openGlobalKeybindings"]
+    },
+    {
+      "before": ["<leader>", "z"],
+      "commands": ["workbench.action.toggleZenMode"]
+    },
+    {
+      "before": ["<leader>", "c", "a"],
+      "commands": ["editor.action.quickFix"]
+    },
+    // {
+    //   "before": ["<leader>", "o", "i"],
+    //   "commands": ["editor.action.organizeImports"]
+    // },
+    {
+      "before": ["<leader>", "w", "n"],
+      "commands": ["workbench.action.experimentalMoveEditorIntoNewWindowAction"]
+    },
+    {
+      "before": ["<leader>", "w", "m"],
+      "commands": ["workbench.action.toggleMaximizeEditorGroup"]
+    },
+    {
+      "before": ["<leader>", "w", "x"],
+      "commands": ["workbench.action.closeEditorsInGroup"]
+    },
+    {
+      "before": ["<leader>", "w", "h"],
+      "commands": ["workbench.action.moveActiveEditorGroupLeft"]
+    },
+    {
+      "before": ["<leader>", "w", "j"],
+      "commands": ["workbench.action.moveActiveEditorGroupDown"]
+    },
+    {
+      "before": ["<leader>", "w", "k"],
+      "commands": ["workbench.action.moveActiveEditorGroupUp"]
+    },
+    {
+      "before": ["<leader>", "w", "l"],
+      "commands": ["workbench.action.moveActiveEditorGroupRight"]
+    },
+    {
+      "before": ["<c-d>"],
+      "after": ["<c-d>", "z", "z"]
+    },
+    {
+      "before": ["<c-u>"],
+      "after": ["<c-u>", "z", "z"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["H"],
+      "after": ["^"]
+    },
+    {
+      "before": ["L"],
+      "after": ["$"]
+    }
+  ],
+  "vim.operatorPendingModeKeyBindingsNonRecursive": [
+    {
+      "before": ["H"],
+      "after": ["^"]
+    },
+    {
+      "before": ["L"],
+      "after": ["$"]
+    }
+  ],
+  "vim.smartRelativeLine": true,
+  "vim.sneakUseIgnorecaseAndSmartcase": true,
+  "vsicons.dontShowNewVersionMessage": true,
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.startupEditor": "none",
+  "editor.unicodeHighlight.invisibleCharacters": false,
+  "peacock.favoriteColors": [
+    {
+      "name": "Angular Red",
+      "value": "#dd0531"
+    },
+    {
+      "name": "Azure Blue",
+      "value": "#007fff"
+    },
+    {
+      "name": "JavaScript Yellow",
+      "value": "#f9e64f"
+    },
+    {
+      "name": "Mandalorian Blue",
+      "value": "#1857a4"
+    },
+    {
+      "name": "Node Green",
+      "value": "#215732"
+    },
+    {
+      "name": "React Blue",
+      "value": "#61dafb"
+    },
+    {
+      "name": "Something Different",
+      "value": "#832561"
+    },
+    {
+      "name": "Svelte Orange",
+      "value": "#ff3d00"
+    },
+    {
+      "name": "Vue Green",
+      "value": "#42b883"
+    },
+    {
+      "name": "Ubuntu Orange",
+      "value": "#E95420"
+    }
+  ],
+  // "editor.semanticTokenColorCustomizations": {
+  //   "[One Dark Pro]": {
+  //     // Apply to this theme only
+  //     "enabled": true,
+  //     "rules": {
+  //       "magicFunction:python": "#ee0000",
+  //       "function.declaration:python": "#990000",
+  //       "*.decorator:python": "#0000dd",
+  //       "*.typeHint:python": "#5500aa",
+  //       "*.typeHintComment:python": "#aaaaaa",
+  //       "parameter:python": "#aaaaaa"
+  //     }
+  //   }
+  // },
+  "git.mergeEditor": true,
+  "merge-conflict.autoNavigateNextConflict.enabled": true,
+  "workbench.editorAssociations": {
+    "*.db": "sqlite-viewer.option"
+  },
+  "accessibility.dimUnfocused.enabled": true,
+  "accessibility.dimUnfocused.opacity": 0.85,
+  "workbench.editor.empty.hint": "hidden",
+  "workbench.editor.pinnedTabsOnSeparateRow": true,
+  "notebook.gotoSymbols.showAllSymbols": true,
+  "notebook.scrolling.revealNextCellOnExecute": "firstLine",
+  "python.analysis.inlayHints.variableTypes": true,
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "scm.experimental.showSyncView": true,
+  "debug.toolBarLocation": "commandCenter",
+  "todo-tree.general.statusBar": "tags",
+  "todo-tree.general.statusBarClickBehaviour": "toggle highlights",
+  "todo-tree.highlights.enabled": true,
+  "todo-tree.filtering.excludeGlobs": ["**/node_modules/*/**", "**/*.csv"],
+  "files.associations": {
+    "*.pint": "toml",
+    ".gitmodules": "ini"
+  },
+  "editor.mouseWheelZoom": true,
+  "editor.fontFamily": "JetBrainsMono Nerd Font, Fira Code Script, FiraCode Nerd Font",
+  "editor.fontLigatures": true, // "'calt', 'onum', 'cv27'",
+  "editor.rulers": [120],
+  "editor.cursorBlinking": "smooth",
+  "editor.fontSize": 16,
+  "editor.lineHeight": 26,
+  "vim.digraphs": {},
+  "editor.codeActionWidget.includeNearbyQuickFixes": true,
+  "workbench.editor.doubleClickTabToToggleEditorGroupSizes": "maximize",
+  "editor.multiDocumentOccurrencesHighlight": true,
+  "jupyter.executionAnalysis.enabled": true,
+  "vim.enableNeovim": true,
+  "vim.highlightedyank.enable": true,
+  "vim.showMarksInGutter": true,
+  "cSpell.enabled": false,
+  "vim.hlsearch": true,
+  "vim.sneak": true,
+  "vim.sneakReplacesF": true,
+  "vim.targets.enable": true,
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1,
+    "vscodevim.vim": 1
+  },
+  "[lua]": {
+    "editor.defaultFormatter": "sumneko.lua"
+  },
+  "keyboard.dispatch": "keyCode",
+  "zenMode.showTabs": "none",
+  "ruff.organizeImports": false,
+  "isort.args": ["--profile", "black"],
+  "editor.minimap.autohide": true,
+  "window.density.editorTabHeight": "compact",
+  "screencastMode.verticalOffset": 5,
+  "screencastMode.fontSize": 36,
+  "git.openRepositoryInParentFolders": "never",
+  "vim.useSystemClipboard": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "vim.useCtrlKeys": true,
+  "terminal.integrated.shellIntegration.suggestEnabled": true,
+  "explorer.confirmPasteNative": false,
+  "remote.autoForwardPortsSource": "hybrid",
+  "powershell.powerShellAdditionalExePaths": {
+    "PowerShell 7": "C:/Users/kjmcn/scoop/shims/pwsh.exe"
+  },
+  "powershell.powerShellDefaultVersion": "PowerShell 7",
+  "workbench.sideBar.location": "right",
+  "gitlens.graph.layout": "editor",
+  "editor.cursorSurroundingLines": 999,
+  "vscode-neovim.revealCursorScrollLine": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "vscode-neovim.ctrlKeysForNormalMode": [
+    "a",
+    "b",
+    "c",
+    "e",
+    "f",
+    "i",
+    "o",
+    "r",
+    "t",
+    "v",
+    "x",
+    "y",
+    "z",
+    "/",
+    "]",
+    "right",
+    "left",
+    "up",
+    "down",
+    "backspace",
+    "delete",
+    "n",
+    "d",
+    "u"
+  ],
+  "codeium.enableCodeLens": false,
+  "vscode-neovim.compositeKeys": {
+    "jk": { "command": "vscode-neovim.escape" }
+  },
+  "workbench.productIconTheme": "developer-icons",
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "workbench.colorCustomizations": {
+    "commandCenter.border": "#e7e7e799",
+    "sash.hoverBorder": "#1f6fd0",
+    "titleBar.activeBackground": "#1857a4",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#1857a499",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "notebook.editorOptionsCustomizations": {},
+  "notebook.globalToolbarShowLabel": "dynamic",
+  "notebook.outline.showCodeCells": true,
+  "notebook.stickyScroll.enabled": true,
+  "notebook.diff.ignoreMetadata": true,
+  "notebook.diff.ignoreOutputs": true,
+  "code-runner.saveFileBeforeRun": true,
+  "code-runner.executorMap": {
+    "javascript": "node",
+    "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+    "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "zig": "zig run",
+    "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "php": "php",
+    "python": "$pythonPath $fullFileName",
+    "perl": "perl",
+    "perl6": "perl6",
+    "ruby": "ruby",
+    "go": "go run",
+    "lua": "lua",
+    "groovy": "groovy",
+    "powershell": "powershell -ExecutionPolicy ByPass -File",
+    "bat": "cmd /c",
+    "shellscript": "bash",
+    "fsharp": "fsi",
+    "csharp": "scriptcs",
+    "vbscript": "cscript //Nologo",
+    "typescript": "ts-node",
+    "coffeescript": "coffee",
+    "scala": "scala",
+    "swift": "swift",
+    "julia": "julia",
+    "crystal": "crystal",
+    "ocaml": "ocaml",
+    "r": "Rscript",
+    "applescript": "osascript",
+    "clojure": "lein exec",
+    "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
+    "rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
+    "racket": "racket",
+    "scheme": "csi -script",
+    "ahk": "autohotkey",
+    "autoit": "autoit3",
+    "dart": "dart",
+    "pascal": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+    "d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
+    "haskell": "runghc",
+    "nim": "nim compile --verbosity:0 --hints:off --run",
+    "lisp": "sbcl --script",
+    "kit": "kitc --run",
+    "v": "v run",
+    "sass": "sass --style expanded",
+    "scss": "scss --style expanded",
+    "less": "cd $dir && lessc $fileName $fileNameWithoutExt.css",
+    "FortranFreeForm": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "fortran-modern": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "fortran_fixed-form": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "fortran": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "sml": "cd $dir && sml $fileName",
+    "mojo": "mojo run",
+    "erlang": "escript",
+    "spwn": "spwn build",
+    "pkl": "cd $dir && pkl eval -f yaml $fileName -o $fileNameWithoutExt.yaml",
+    "gleam": "gleam run -m $fileNameWithoutExt"
+  },
+  "oneDarkPro.editorTheme": "Nord",
+  "sqltools.useNodeRuntime": false,
+  "python.analysis.typeCheckingMode": "standard",
+  "window.customTitleBarVisibility": "auto",
+  "workbench.colorTheme": "One Nord Pro",
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js",
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.ts",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb",
+    "*.sqlite": "${capture}.${extname}-*",
+    "*.db": "${capture}.${extname}-*",
+    "*.sqlite3": "${capture}.${extname}-*",
+    "*.db3": "${capture}.${extname}-*",
+    "*.sdb": "${capture}.${extname}-*",
+    "*.s3db": "${capture}.${extname}-*"
+  },
+  "codeium.disableSupercomplete": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "better-comments.tags": [
+    {
+      "tag": "!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "?",
+      "color": "#3498DB",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "#",
+      "color": "#474747",
+      "strikethrough": true,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "//",
+      "color": "#474747",
+      "strikethrough": true,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "todo",
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "*",
+      "color": "#98C379",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "window.titleBarStyle": "custom"
+}
