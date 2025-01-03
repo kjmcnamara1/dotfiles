@@ -64,7 +64,7 @@ config.inactive_pane_hsb = { saturation = 0.9, brightness = 0.8 }
 config.initial_rows = 30
 config.initial_cols = 120
 config.scrollback_lines = 10000
-config.enable_scroll_bar = true
+config.enable_scroll_bar = false
 
 -- config.window_background_opacity = 0.75
 -- config.win32_system_backdrop = "Acrylic"

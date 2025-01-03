@@ -1,3 +1,22 @@
 theme = nord
 font-size = 14
 adjust-cell-height = 20%
+mouse-hide-while-typing = true
+window-decoration = false
+window-save-state = always
+# gtk-tabs-location = bottom
+
+# gtk-wide-tabs = false
+bold-is-bright = true
+
+
+keybind = ctrl+shift+x=write_screen_file:paste
+keybind = ctrl+b>o=toggle_tab_overview
+keybind = unconsumed:ctrl+h=goto_split:left
+keybind = unconsumed:ctrl+j=goto_split:bottom
+keybind = unconsumed:ctrl+k=goto_split:top
+keybind = unconsumed:ctrl+l=goto_split:right
+keybind = ctrl+shift+f5=reload_config
+
+keybind = alt+enter=toggle_fullscreen
+keybind = ctrl+alt+enter=toggle_window_decorations
