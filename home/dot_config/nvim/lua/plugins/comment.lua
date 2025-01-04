@@ -3,7 +3,8 @@
 -- ================================================================================
 
 return {
-  "numToStr/Comment.nvim",
+  "Comment.nvim",
+  enabled = false,
   dependencies = {
     "JoosepAlviste/nvim-ts-context-commentstring",
     opts = {

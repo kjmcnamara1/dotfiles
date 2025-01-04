@@ -5,9 +5,9 @@
 return {
   "folke/which-key.nvim",
   dependencies = {
-    "nvim-tree/nvim-web-devicons",
+    -- "nvim-tree/nvim-web-devicons",
+    "echasnovski/mini.icons",
   },
   event = "VeryLazy",
-  keys = { { "<leader>?", function() require("which-key").show() end, desc = "Keymaps (which-key)" } },
   opts = { preset = "helix" },
 }

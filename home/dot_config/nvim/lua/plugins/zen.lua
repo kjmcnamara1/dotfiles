@@ -2,12 +2,11 @@
 -- * Zen Mode
 -- ================================================================================
 
-if true then return {} end
-
 return {
   {
     -- Distraction free interface
     "folke/zen-mode.nvim",
+    enabled = false,
     dependencies = { "folke/twilight.nvim" },
     keys = {
       { "<leader>z", "<cmd>ZenMode<cr>", desc = "Toggle Zen Mode", mode = { "n", "v" } }

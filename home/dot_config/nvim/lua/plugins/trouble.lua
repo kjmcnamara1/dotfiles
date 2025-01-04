@@ -4,7 +4,8 @@
 -- TODO: Configure Trouble
 
 return {
-  "folke/trouble.nvim",
+  "trouble.nvim",
+  enabled = false,
   cmd = "Trouble",
   keys = {
     { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",                        desc = "Diagnostics (Trouble)", },

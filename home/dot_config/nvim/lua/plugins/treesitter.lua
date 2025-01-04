@@ -8,7 +8,10 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
+      "windwp/nvim-ts-autotag",
     },
+    lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+    version = false,             -- last release is way too old and doesn't work on Windows
     main = "nvim-treesitter.configs",
     build = ":TSUpdate",
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
@@ -18,7 +21,7 @@ return {
       highlight = { enable = true },
       indent = { enable = true },
       autopairs = { enable = true },
-      autotag = { enable = true },
+      -- autotag = { enable = true },
       textobjects = {
         move = {
           enable = true,
@@ -84,6 +87,12 @@ return {
     opts = {
       max_lines = 3,
     },
+  },
+
+  {
+    "windwp/nvim-ts-autotag",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {},
   },
 
 }

@@ -11,52 +11,57 @@ return {
   lazy = false,
   opts = {
     bigfile = { enabled = true },
-    dashboard = { enabled = true },
+    indent = { enabled = true },
     notifier = { enabled = true },
+    input = { enabled = true },
     quickfile = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
+    sroll = { enabled = true },
     styles = {
       notification = {
         wo = { wrap = true } -- Wrap notifications
       },
     },
-  },
-  keys = {
-    { "<leader>.",  function() Snacks.scratch() end,                 desc = "Toggle Scratch Buffer" },
-    { "<leader>S",  function() Snacks.scratch.select() end,          desc = "Select Scratch Buffer" },
-    { "<leader>n",  function() Snacks.notifier.show_history() end,   desc = "Notification History" },
-    { "<leader>bd", function() Snacks.bufdelete() end,               desc = "Delete Buffer" },
-    { "<a-c>",      function() Snacks.bufdelete() end,               desc = "Delete Buffer" },
-    { "<leader>cR", function() Snacks.rename.rename_file() end,      desc = "Rename File" },
-    { "<leader>gB", function() Snacks.gitbrowse() end,               desc = "Git Browse" },
-    { "<leader>gb", function() Snacks.git.blame_line() end,          desc = "Git Blame Line" },
-    { "<leader>gf", function() Snacks.lazygit.log_file() end,        desc = "Lazygit Current File History" },
-    { "<leader>gg", function() Snacks.lazygit() end,                 desc = "Lazygit" },
-    { "<leader>gl", function() Snacks.lazygit.log() end,             desc = "Lazygit Log (cwd)" },
-    { "<leader>un", function() Snacks.notifier.hide() end,           desc = "Dismiss All Notifications" },
-    { "<c-'>",      function() Snacks.terminal() end,                desc = "Toggle Terminal",             mode = { 'n', 'i', 't' } },
-    -- { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
-    { "]]",         function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference",              mode = { "n", "t" } },
-    { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference",              mode = { "n", "t" } },
-    {
-      "<leader>N",
-      desc = "Neovim News",
-      function()
-        Snacks.win({
-          file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
-          width = 0.6,
-          height = 0.6,
-          wo = {
-            spell = false,
-            wrap = false,
-            signcolumn = "yes",
-            statuscolumn = " ",
-            conceallevel = 3,
+    dashboard = {
+      sections = {
+        { section = "header" },
+        { section = "keys" --[[ , gap = 1 ]], padding = 1 },
+        { section = "projects", icon = " ", title = "Projects", padding = 2, indent = 2 },
+        { section = "startup" },
+      },
+      preset = {
+        keys = {
+          { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+          { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+          { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+          { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+          { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+          { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+          {
+            icon = " ",
+            key = "N",
+            desc = "Neovim News",
+            action = function()
+              Snacks.win({
+                file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
+                width = 0.6,
+                height = 0.6,
+                wo = {
+                  spell = false,
+                  wrap = false,
+                  signcolumn = "yes",
+                  statuscolumn = " ",
+                  conceallevel = 3,
+                },
+              })
+            end
           },
-        })
-      end,
-    }
+          { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+        },
+      },
+    },
   },
   init = function()
     vim.api.nvim_create_autocmd("User", {
@@ -74,14 +79,39 @@ return {
         -- Create some toggle mappings
         Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
         Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
+        Snacks.toggle.line_number():map("<leader>ul")
         Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
         Snacks.toggle.diagnostics():map("<leader>ud")
-        Snacks.toggle.line_number():map("<leader>ul")
+        Snacks.toggle.dim():map("<leader>uD")
         Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map(
           "<leader>uc")
         Snacks.toggle.treesitter():map("<leader>uT")
         Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
         Snacks.toggle.inlay_hints():map("<leader>uh")
+        Snacks.toggle.indent():map("<leader>ug")
+
+        -- Snacks.toggle.profiler():map("<leader>dpp")
+        -- Snacks.toggle.profiler_highlights():map("<leader>dph")
+
+        -- Create Indent Colors
+        -- local theme_colors = require("onenord.colors").load()
+
+        -- local blend_colors = function(base, tint, amount)
+        --   base = base:gsub("#", "")
+        --   base = { tonumber(base:sub(1, 2), 16), tonumber(base:sub(3, 4), 16), tonumber(base:sub(5, 6), 16) }
+        --   tint = tint:gsub("#", "")
+        --   tint = { tonumber(tint:sub(1, 2), 16), tonumber(tint:sub(3, 4), 16), tonumber(tint:sub(5, 6), 16) }
+        --   local result = "#"
+        --   for i = 1, #base do
+        --     result = result .. string.format("%02x", base[i] + amount * (tint[i] - base[i]))
+        --   end
+        --   return result
+        -- end
+
+        -- for i, color in ipairs({ 'red', 'yellow', 'blue', 'orange', 'green', 'purple', 'cyan', 'pink' }) do
+        --   vim.api.nvim_set_hl(0, "SnacksIndent" .. i,
+        --     { bg = blend_colors(theme_colors.bg, theme_colors[color], 0.05) })
+        -- end
       end,
     })
   end,

@@ -3,7 +3,8 @@
 -- ================================================================================
 
 return {
-  "folke/todo-comments.nvim",
+  "todo-comments.nvim",
+  enabled = false,
   cond = not vim.g.vscode,
   dependencies = "nvim-lua/plenary.nvim",
   event = { "BufReadPost", "BufNewFile" },

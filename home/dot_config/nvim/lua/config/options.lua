@@ -3,7 +3,7 @@
 -- vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
 
 vim.opt.clipboard      = "unnamedplus" -- Sync with system clipboard
-vim.opt.autowrite      = true          -- Auto write file when leaving ubffer
+vim.opt.autowrite      = true          -- Auto write file when leaving buffer
 vim.opt.updatetime     = 200           -- Save swap file and trigger CursorHold
 vim.opt.swapfile       = false         -- Disable swap file
 
