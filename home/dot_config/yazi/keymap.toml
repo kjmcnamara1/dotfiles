@@ -1,0 +1,9 @@
+[[manager.prepend_keymap]]
+  on   = ["g", "t"]
+  run  = "cd ~/.local/share/Trash"
+  desc = "Go Trash"
+
+[[manager.prepend_keymap]]
+  on   = ["g", "z"]
+  run  = "cd ~/.local/share/chezmoi"
+  desc = "Go Chezmoi"
