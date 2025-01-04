@@ -15,5 +15,5 @@ packages=(
 
 yay -S --noconfirm "${packages[@]}"
 
-sudo systemctl --user enable pipewire wireplumber pipewire-pulse
+systemctl --user enable pipewire wireplumber pipewire-pulse
 {{- end }}
