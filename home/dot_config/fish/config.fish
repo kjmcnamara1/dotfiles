@@ -41,6 +41,13 @@ if status is-interactive # connected to keyboard
 
     # Set up fzf key bindings
     fzf --fish | source
+    set -gx FD_OPTIONS "--exclude .git --exclude node_modules"
+    set -gx FZF_DEFAULT_COMMAND "git ls-files --cached --others --exclude-standard | fd $FD_OPTIONS"
+    set -gx FZF_DEFAULT_OPTS "--multi --reverse --height 50% --preview='bat --color=always {}' --preview-window='right:hidden' --bind='f2:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up'"
+    set -gx FZF_CTRL_T_COMMAND "fd --type f --type l $FD_OPTIONS"
+    set -gx FZF_CTRL_T_OPTS ""
+    # set -gx FZF_ALT_C_COMMAND "fd --type d $FD_OPTIONS"
+    # TODO: finish configuring fzf
 
     # Starship Prompt
     source $HOME/.config/starship/starship.fish
