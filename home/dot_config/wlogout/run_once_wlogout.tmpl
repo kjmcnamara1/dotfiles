@@ -5,4 +5,8 @@ echo "--------------------------------------------------------------------------
 echo "*** Wlogout (Session Control Menu)"
 echo "--------------------------------------------------------------------------------"
 
+{{ if eq .chezmoi.hostname "angel" -}}
+yay -S --noconfirm wleave-git
+{{ else -}}
 yay -S --noconfirm wlogout
+{{ end }}

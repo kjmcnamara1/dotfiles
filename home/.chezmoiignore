@@ -21,6 +21,5 @@ key.txt.age
 .config/rofi
 .config/waybar
 .config/waypaper
-.config/wlogout
 .config/hypr
 {{- end }}
