@@ -178,8 +178,7 @@ systemctl start libvirtd
 - General
   - Open File Explorer To = This PC
 
-Pin Home Directory (C:\Users\kjmcn) to Quick Access
-![](docs/img/home_quick_access.png)
+![Pin Home Directory (C:\Users\kjmcn) to Quick Access](docs/img/home_quick_access.png)
 
 #### Taskbar
 
@@ -198,7 +197,7 @@ Create 4 Desktops named:
 1. Extra
 1. Personal
 
-![](docs/img/desktops.png)
+![Windows Desktops](docs/img/desktops.png)
 
 ### [Scoop](https://scoop.sh/)
 

@@ -5,4 +5,4 @@ echo "--------------------------------------------------------------------------
 echo "*** Neovim"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm neovim nodejs npm
+yay -S --noconfirm neovim nodejs npm chafa imagemagick

@@ -5,6 +5,7 @@ return {
     keys = {
       { "<c-q>",      "<cmd>qa<cr>",       desc = "Quit NeoVim" },
       { "U",          "<c-r>",             desc = "Redo" },
+      -- { "<del>",      "<c-o>x",            desc = "Delete",                    mode = "i" },
       -- { ",",          ";",           desc = "Repeat Character Movement Forward" },
       -- { ";",          ",",           desc = "Repeat Character Movement Backward" },
       { "<leader>j",  "J",                 desc = "Join Lines" },
@@ -13,7 +14,28 @@ return {
       { "<a-i>",      "^",                 desc = "Start of Line" },
       { "<a-a>",      "$",                 desc = "End of Line" },
       { "<leader>ui", vim.show_pos,        desc = "Inspect Pos" },
-      { "<esc>",      "<cmd>noh<cr><esc>", desc = "Escape and clear hlsearch", mode = { "i", "n" }, }
+      { "<esc>",      "<cmd>noh<cr><esc>", desc = "Escape and clear hlsearch", mode = { "i", "n" } },
+      { "<leader>L",  "<cmd>Lazy<cr>",     desc = "Lazy Plugin Manager" },
+      { "<esc>",      "<cmd>close<cr>",    desc = "Close Lazy",                ft = "lazy" },
+    },
+  },
+
+  {
+    "akinsho/bufferline.nvim",
+    keys = {
+      { "<leader>bb", "<cmd>BufferLinePick<cr>",                 desc = "Pick buffer" },
+      { "<leader>bx", "<cmd>BufferLinePickClose<cr>",            desc = "Pick buffer to close" },
+      { "<leader>bp", "<cmd>BufferLineTogglePin<cr>",            desc = "Toggle pin" },
+      { "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<cr>", desc = "Delete non-pinned buffers" },
+      { "<leader>bo", "<cmd>BufferLineCloseOthers<cr>",          desc = "Delete other buffers" },
+      { "<leader>bl", "<cmd>BufferLineMoveNext<cr>",             desc = "Move buffer right" },
+      { "<leader>bh", "<cmd>BufferLineMovePrev<cr>",             desc = "Move buffer left" },
+      { "<a-h>",      "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev buffer" },
+      { "<a-l>",      "<cmd>BufferLineCycleNext<cr>",            desc = "Next buffer" },
+      { "[b",         "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev Buffer" },
+      { "]b",         "<cmd>BufferLineCycleNext<cr>",            desc = "Next Buffer" },
+      { "[B",         "<cmd>BufferLineMovePrev<cr>",             desc = "Move buffer right" },
+      { "]B",         "<cmd>BufferLineMoveNext<cr>",             desc = "Move buffer left" },
     },
   },
 
@@ -31,10 +53,74 @@ return {
   {
     "ibhagwan/fzf-lua",
     keys = {
-      { "<leader>ff",      "<cmd>FzfLua files<cr>",                                    desc = "Find Files" },
-      { "<leader><space>", "<cmd>FzfLua resume<cr>",                                   desc = "Fzf Resume" },
-      { "<leader>,",       "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>", desc = "Fzf Buffers" },
-      { "<leader>fH",      "<cmd>FzfLua highlights<cr>",                               desc = "Fzf Highlights" },
+      { "<leader><space>", "<cmd>FzfLua resume<cr>",          desc = "Fzf Resume" },
+      -- files
+      { "<leader>,",       "<cmd>FzfLua buffers<cr>",         desc = "Fzf Buffers" },
+      { "<leader>ff",      "<cmd>FzfLua files<cr>",           desc = "Fzf Files" },
+      { "<leader>fr",      "<cmd>FzfLua oldfiles<cr>",        desc = "Fzf Recent Files" },
+      { "<leader>fg",      "<cmd>FzfLua git_files<cr>",       desc = "Fzf Git Files" },
+      { "<leader>ft",      "<cmd>FzfLua filetypes<cr>",       desc = "Search Filetypes" },
+      -- git
+      { "<leader>gc",      "<cmd>FzfLua git_commits<cr>",     desc = "Search Git Commits" },
+      { "<leader>gs",      "<cmd>FzfLua git_status<cr>",      desc = "Search Git Status" },
+      -- search
+      { "<leader>/",       "<cmd>FzfLua live_grep<cr>",       desc = "Live Grep" },
+      { "<leader>:",       "<cmd>FzfLua command_history<cr>", desc = "Search Command History" },
+      { '<leader>"',       "<cmd>FzfLua registers<cr>",       desc = "Search Registers" },
+      { "<leader>sc",      "<cmd>FzfLua commands<cr>",        desc = "Search Neovim Commands" },
+      { "<leader>sh",      "<cmd>FzfLua helptags<cr>",        desc = "Search Help Pages" },
+      { "<leader>sH",      "<cmd>FzfLua highlights<cr>",      desc = "Search Highlight Groups" },
+      { "<leader>sa",      "<cmd>FzfLua autocmds<cr>",        desc = "Search Auto Commands" },
+      { "<leader>sm",      "<cmd>FzfLua marks<cr>",           desc = "Search Marks" },
+      { "<leader>sM",      "<cmd>FzfLua manpages<cr>",        desc = "Search Man Pages" },
+      { "<leader>sj",      "<cmd>FzfLua jumps<cr>",           desc = "Search Jumps" },
+      { "<leader>sk",      "<cmd>FzfLua keymaps<cr>",         desc = "Search Keymaps" },
+      { "<leader>sq",      "<cmd>FzfLua quickfix<cr>",        desc = "Search Quickfix List" },
+      { "<leader>sl",      "<cmd>FzfLua loclist<cr>",         desc = "Search Location List" },
+      { "<leader>uC",      "<cmd>FzfLua colorschemes<cr>",    desc = "Color Schemes" },
+    },
+  },
+
+
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      on_attach = function(_, bufnr)
+        local map = function(lhs, rhs, desc, opts)
+          opts = vim.deepcopy(opts or {})
+          local mode = opts.mode or 'n'
+          opts.mode = nil
+          desc = desc and "LSP: " .. desc
+          opts = vim.tbl_deep_extend("keep", { buffer = bufnr, desc = desc }, opts)
+          vim.keymap.set(mode, lhs, rhs, opts)
+        end
+
+        -- TODO: Finish LSP Keymaps
+        map('gh', vim.lsp.buf.hover, 'Hover')
+        map('<c-h>', vim.lsp.buf.signature_help, 'Signature Documentation', { mode = 'i' })
+        map('<leader>cr', vim.lsp.buf.rename, 'Rename')
+        -- nmap('<leader>cr', ':IncRename ', 'IncRename')
+        map('gd', vim.lsp.buf.definition, 'Go to Definition')
+        map('gD', vim.lsp.buf.declaration, 'Declaration')
+        map('g.', vim.lsp.buf.code_action, 'Code Action', { mode = { 'n', 'v' } })
+        map('<leader>cf', vim.lsp.buf.format, 'Format', { mode = { 'n', 'v' } })
+        map('<leader>ca', vim.lsp.buf.code_action, 'Code Action', { mode = { 'n', 'v' } })
+        map('<leader>ci', '<cmd>LspInfo<cr>', 'Info')
+        map(']d', vim.diagnostic.goto_next, 'Next Diagnostic')
+        map('[d', vim.diagnostic.goto_prev, 'Previous Diagnostic')
+      end
+    },
+  },
+
+  {
+    "williamboman/mason.nvim",
+    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+  },
+
+  {
+    "danymat/neogen",
+    keys = {
+      { "<leader>cn", function() require("neogen").generate() end, desc = "Generate Annotations (Neogen)" },
     },
   },
 
@@ -136,8 +222,8 @@ return {
   {
     "folke/which-key.nvim",
     keys = {
-      { "<leader>?", function() require("which-key").show() end,                   desc = "Keymaps (which-key)" },
-      { "g?",        function() require("which-key").show({ global = false }) end, desc = "Buffer keymaps (which-key)" },
+      { "<s-f1>", function() require("which-key").show() end,                   desc = "Keymaps (which-key)",        mode = { 'n', 'i', 'x' } },
+      { "<f1>",   function() require("which-key").show({ global = false }) end, desc = "Buffer keymaps (which-key)", mode = { 'n', 'i', 'x' } },
     },
   },
 
