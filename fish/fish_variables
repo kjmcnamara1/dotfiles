@@ -1,7 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --export EDITOR:nvim
-SETUVAR --export MANPAGER:\x3d\x1esh\x20\x2dc\x20\x22col\x20\x2dbx\x20\x7c\x20bat\x20\x2dl\x20man\x20\x2dp\x22
+# SETUVAR --export MANPAGER:\x3d\x1esh\x20\x2dc\x20\x22col\x20\x2dbx\x20\x7c\x20bat\x20\x2dl\x20man\x20\x2dp\x22
 SETUVAR --export MANROFFOPT:\x3d\x1e\x2dc
 SETUVAR --export MODULAR_HOME:/home/kjm/\x2emodular
 SETUVAR --export YAZI_CONFIG_HOME:\x7e/\x2econfig/yazi
@@ -50,3 +50,4 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3d434c5e
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
+SETUVAR fish_user_paths:/home/kjm/\x2elocal/bin

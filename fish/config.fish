@@ -24,16 +24,18 @@ if status is-interactive # connected to keyboard
     set fish_cursor_visual block
     set fish_vi_force_cursor 1
 
+    # Keybindings
     bind -M insert \eh backward-char
     bind -M insert \el forward-char
     bind -M insert \ej down-or-search
     bind -M insert \ek up-or-search
 
-  # Use <c-u> instead
+    # Use <c-u> instead
     # <c-c> clears the commandline when in insert mode
     # bind --mode insert \cc 'commandline -r ""'
 
-# Environment Variables
+    # Environment Variables
+    # fish_add_path $HOME/.local/bin
 
 
     # Zoxide

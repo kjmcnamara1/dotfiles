@@ -144,6 +144,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
   desc = "Show cursor line when entering window",
+  group = augroup("auto_cursorline"),
   callback = function()
     if vim.w.auto_cursorline then
       vim.wo.cursorline = true
@@ -153,6 +154,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
 })
 vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
   desc = "Hide cursor line when leaving window",
+  group = augroup("auto_cursorline"),
   callback = function()
     if vim.wo.cursorline then
       vim.w.auto_cursorline = true

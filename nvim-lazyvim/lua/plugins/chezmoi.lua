@@ -4,6 +4,7 @@ return {
   keys = {
     { "<leader>fz", "<cmd>ChezmoiFzf<cr>", desc = "Find Chezmoi File" },
   },
+  opts = { edit = { watch = true } },
   config = function()
     fzf_chezmoi = function()
       require('fzf-lua').fzf_exec(require("chezmoi.commands").list(), {
@@ -19,5 +20,18 @@ return {
     end
 
     vim.api.nvim_command('command! ChezmoiFzf lua fzf_chezmoi()')
+  end,
+  init = function()
+    vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+      pattern = { os.getenv("HOME") .. "/.local/share/chezmoi/*" },
+      group = vim.api.nvim_create_augroup("chezmoi", { clear = true }),
+      callback = function(ev)
+        local bufnr = ev.buf
+        local edit_watch = function()
+          require("chezmoi.commands.__edit").watch(bufnr)
+        end
+        vim.schedule(edit_watch)
+      end,
+    })
   end
 }

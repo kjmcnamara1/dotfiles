@@ -47,24 +47,6 @@ wezterm.on("user-var-changed", function(window, pane, name, value)
     end
 
     window:set_config_overrides(overrides)
-
-    -- if incremental ~= nil then
-    --   while (number_value > 0) do
-    --     window:perform_action(wezterm.action.IncreaseFontSize, pane)
-    --     number_value = number_value - 1
-    --   end
-    --   overrides.enable_tab_bar = false
-    --   window:perform_action(wezterm.action.ToggleFullScreen, pane)
-    -- elseif number_value < 0 then
-    --   window:perform_action(wezterm.action.ResetFontSize, pane)
-    --   overrides.font_size = nil
-    --   overrides.enable_tab_bar = true
-    -- else
-    --   overrides.font_size = number_value
-    --   overrides.enable_tab_bar = false
-    --   window:perform_action(wezterm.action.ToggleFullScreen, pane)
-    -- end
-    -- window:set_config_overrides(overrides)
   end
 end)
 
@@ -81,8 +63,8 @@ config.inactive_pane_hsb = { saturation = 0.9, brightness = 0.8 }
 
 config.initial_rows = 30
 config.initial_cols = 120
-config.scrollback_lines = 5000
-config.enable_scroll_bar = true
+config.scrollback_lines = 10000
+config.enable_scroll_bar = false
 
 -- config.window_background_opacity = 0.75
 -- config.win32_system_backdrop = "Acrylic"
