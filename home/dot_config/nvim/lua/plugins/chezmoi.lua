@@ -20,18 +20,18 @@ return {
         return self
       end
 
-      -- FIX: too slow
-      -- try to use `chezmoi cat` and `Previewer:populate_preview_buf`
-      function ChezmoiPreviewer:parse_entry(entry_str)
-        local target_path = vim.fn.resolve(cz_commands.target_path()[1] .. "/" .. entry_str)
-        -- local source_path = cz_commands.source_path({ args = { target_path } })[1]
-        return {
-          -- path = source_path,
-          path = target_path,
-          line = 1,
-          col = 1,
-        }
-      end
+      -- -- FIX: too slow
+      -- -- try to use `chezmoi cat` and `Previewer:populate_preview_buf`
+      -- function ChezmoiPreviewer:parse_entry(entry_str)
+      --   local target_path = vim.fn.resolve(cz_commands.target_path()[1] .. "/" .. entry_str)
+      --   -- local source_path = cz_commands.source_path({ args = { target_path } })[1]
+      --   return {
+      --     -- path = source_path,
+      --     path = target_path,
+      --     line = 1,
+      --     col = 1,
+      --   }
+      -- end
 
       function ChezmoiPreviewer:populate_preview_buf(entry_str)
         local tmpbuf = self:get_tmp_buffer()
@@ -39,7 +39,7 @@ return {
       end
 
       require("fzf-lua").fzf_exec(cz_files, {
-        previewer = ChezmoiPreviewer,
+        -- previewer = ChezmoiPreviewer,
         actions = {
           ["default"] = function(selected, opts)
             cz_commands.edit({
