@@ -1,14 +1,6 @@
 return {
 
   {
-    "echasnovski/mini.files",
-    keys = {
-      { "<leader>fm", function() require("mini.files").open(vim.api.nvim_buf_get_name(0), true) end, desc = "mini.files browser (current file)" },
-      { "<leader>fM", function() require("mini.files").open(vim.uv.cwd(), true) end,                 desc = "mini.files (cwd)" },
-    },
-  },
-
-  {
     "rmehri01/onenord.nvim",
     keys = {
       { "<c-q>",      "<cmd>qa<cr>",       desc = "Quit NeoVim" },
@@ -101,6 +93,14 @@ return {
   },
 
   -- TODO: need to add keymaps for gitsigns
+
+  {
+    "echasnovski/mini.files",
+    keys = {
+      { "<leader>fm", function() require("mini.files").open(vim.api.nvim_buf_get_name(0), true) end, desc = "mini.files browser (current file)" },
+      { "<leader>fM", function() require("mini.files").open(vim.uv.cwd(), true) end,                 desc = "mini.files (cwd)" },
+    },
+  },
 
   {
     "neovim/nvim-lspconfig",

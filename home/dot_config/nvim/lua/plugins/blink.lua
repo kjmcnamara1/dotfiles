@@ -12,8 +12,8 @@ return {
     event = { "InsertEnter", "CmdlineEnter" },
     opts = {
       keymap = {
-        ['<c-d>'] = { 'scroll_documentation_down', 'fallback' },
-        ['<c-u>'] = { 'scroll_documentation_up', 'fallback' },
+        ["<c-d>"] = { "scroll_documentation_down", "fallback" },
+        ["<c-u>"] = { "scroll_documentation_up", "fallback" },
       },
       completion = {
         -- accept = {
@@ -28,7 +28,7 @@ return {
       },
       signature = { enabled = true },
       sources = {
-        default = { "nerdfont", "emoji", },
+        default = { "lsp", "path", "snippets", "buffer", "nerdfont", "emoji", },
         providers = {
           nerdfont = {
             name = "nerdfont",
