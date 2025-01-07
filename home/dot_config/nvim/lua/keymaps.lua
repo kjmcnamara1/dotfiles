@@ -49,6 +49,15 @@ return {
   },
 
   {
+    "numToStr/Comment.nvim",
+    keys = {
+      { "<c-/>", function() require("Comment.api").toggle.linewise.current() end, mode = { "i", "n", "x" }, desc = "Toggle line comment" },
+      { "gc",    mode = { "n", "x" } },
+      { "gb",    mode = { "n", "x" } },
+    },
+  },
+
+  {
     "folke/flash.nvim",
     keys = {
       { "s",     function() require("flash").jump() end,              desc = "Flash",               mode = { "n", "x", "o" } },
@@ -59,6 +68,7 @@ return {
     },
   },
 
+  -- TODO: fzf vim_options like telescope
   {
     "ibhagwan/fzf-lua",
     keys = {
@@ -90,6 +100,7 @@ return {
     },
   },
 
+  -- TODO: need to add keymaps for gitsigns
 
   {
     "neovim/nvim-lspconfig",

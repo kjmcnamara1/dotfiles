@@ -1,3 +1,4 @@
+-- TODO: cleanup chezmoi.nvim
 return {
   "xvzc/chezmoi.nvim",
   dependencies = { "nvim-lua/plenary.nvim", "ibhagwan/fzf-lua", },
@@ -7,10 +8,41 @@ return {
   opts = { edit = { watch = true } },
   config = function()
     fzf_chezmoi = function()
-      require("fzf-lua").fzf_exec(require("chezmoi.commands").list(), {
+      local cz_commands = require("chezmoi.commands")
+      local cz_files = cz_commands.list({ args = { "--include=files" } })
+      -- local cz_source = cz_commands.source_path()[1]
+
+      local ChezmoiPreviewer = require("fzf-lua.previewer.builtin").buffer_or_file:extend()
+
+      function ChezmoiPreviewer:new(o, opts, fzf_win)
+        ChezmoiPreviewer.super.new(self, o, opts, fzf_win)
+        setmetatable(self, ChezmoiPreviewer)
+        return self
+      end
+
+      -- FIX: too slow
+      -- try to use `chezmoi cat` and `Previewer:populate_preview_buf`
+      function ChezmoiPreviewer:parse_entry(entry_str)
+        local target_path = vim.fn.resolve(cz_commands.target_path()[1] .. "/" .. entry_str)
+        -- local source_path = cz_commands.source_path({ args = { target_path } })[1]
+        return {
+          -- path = source_path,
+          path = target_path,
+          line = 1,
+          col = 1,
+        }
+      end
+
+      function ChezmoiPreviewer:populate_preview_buf(entry_str)
+        local tmpbuf = self:get_tmp_buffer()
+        vim.api.nvim_buf_set_lines(tmpbuf, 0, -1, false, {})
+      end
+
+      require("fzf-lua").fzf_exec(cz_files, {
+        previewer = ChezmoiPreviewer,
         actions = {
           ["default"] = function(selected, opts)
-            require("chezmoi.commands").edit({
+            cz_commands.edit({
               targets = { "~/" .. selected[1] },
               args = { "--watch" }
             })
@@ -25,11 +57,11 @@ return {
       pattern = { os.getenv("HOME") .. "/.local/share/chezmoi/*" },
       group = vim.api.nvim_create_augroup("chezmoi", { clear = true }),
       callback = function(ev)
-        local bufnr = ev.buf
-        local edit_watch = function()
-          require("chezmoi.commands.__edit").watch(bufnr)
-        end
-        vim.schedule(edit_watch)
+        vim.schedule(
+          function()
+            require("chezmoi.commands.__edit").watch(ev.buf)
+          end
+        )
       end,
     })
   end,
