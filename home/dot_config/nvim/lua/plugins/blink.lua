@@ -16,9 +16,9 @@ return {
         ['<c-u>'] = { 'scroll_documentation_up', 'fallback' },
       },
       completion = {
-        accept = {
-          auto_brackets = { enabled = true }, -- doesn't seem to work
-        },
+        -- accept = {
+        --   auto_brackets = { enabled = true }, -- doesn't seem to work
+        -- },
         menu = {
           draw = {
             treesitter = { "lsp" },

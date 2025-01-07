@@ -1,6 +1,14 @@
 return {
 
   {
+    "echasnovski/mini.files",
+    keys = {
+      { "<leader>fm", function() require("mini.files").open(vim.api.nvim_buf_get_name(0), true) end, desc = "mini.files browser (current file)" },
+      { "<leader>fM", function() require("mini.files").open(vim.uv.cwd(), true) end,                 desc = "mini.files (cwd)" },
+    },
+  },
+
+  {
     "rmehri01/onenord.nvim",
     keys = {
       { "<c-q>",      "<cmd>qa<cr>",       desc = "Quit NeoVim" },
@@ -23,6 +31,7 @@ return {
   {
     "akinsho/bufferline.nvim",
     keys = {
+      { "<leader>'",  "<cmd>e #<cr>",                            desc = "Alternate Buffer" },
       { "<leader>bb", "<cmd>BufferLinePick<cr>",                 desc = "Pick buffer" },
       { "<leader>bx", "<cmd>BufferLinePickClose<cr>",            desc = "Pick buffer to close" },
       { "<leader>bp", "<cmd>BufferLineTogglePin<cr>",            desc = "Toggle pin" },
@@ -88,7 +97,7 @@ return {
       on_attach = function(_, bufnr)
         local map = function(lhs, rhs, desc, opts)
           opts = vim.deepcopy(opts or {})
-          local mode = opts.mode or 'n'
+          local mode = opts.mode or "n"
           opts.mode = nil
           desc = desc and "LSP: " .. desc
           opts = vim.tbl_deep_extend("keep", { buffer = bufnr, desc = desc }, opts)
@@ -96,18 +105,18 @@ return {
         end
 
         -- TODO: Finish LSP Keymaps
-        map('gh', vim.lsp.buf.hover, 'Hover')
-        map('<c-h>', vim.lsp.buf.signature_help, 'Signature Documentation', { mode = 'i' })
-        map('<leader>cr', vim.lsp.buf.rename, 'Rename')
+        map("gh", vim.lsp.buf.hover, "Hover")
+        map("<c-h>", vim.lsp.buf.signature_help, "Signature Documentation", { mode = "i" })
+        map("<leader>cr", vim.lsp.buf.rename, "Rename")
         -- nmap('<leader>cr', ':IncRename ', 'IncRename')
-        map('gd', vim.lsp.buf.definition, 'Go to Definition')
-        map('gD', vim.lsp.buf.declaration, 'Declaration')
-        map('g.', vim.lsp.buf.code_action, 'Code Action', { mode = { 'n', 'v' } })
-        map('<leader>cf', vim.lsp.buf.format, 'Format', { mode = { 'n', 'v' } })
-        map('<leader>ca', vim.lsp.buf.code_action, 'Code Action', { mode = { 'n', 'v' } })
-        map('<leader>ci', '<cmd>LspInfo<cr>', 'Info')
-        map(']d', vim.diagnostic.goto_next, 'Next Diagnostic')
-        map('[d', vim.diagnostic.goto_prev, 'Previous Diagnostic')
+        map("gd", vim.lsp.buf.definition, "Go to Definition")
+        map("gD", vim.lsp.buf.declaration, "Declaration")
+        map("g.", vim.lsp.buf.code_action, "Code Action", { mode = { "n", "v" } })
+        map("<leader>cf", vim.lsp.buf.format, "Format", { mode = { "n", "v" } })
+        map("<leader>ca", vim.lsp.buf.code_action, "Code Action", { mode = { "n", "v" } })
+        map("<leader>ci", "<cmd>LspInfo<cr>", "Info")
+        map("]d", vim.diagnostic.goto_next, "Next Diagnostic")
+        map("[d", vim.diagnostic.goto_prev, "Previous Diagnostic")
       end
     },
   },
@@ -139,7 +148,7 @@ return {
       { "<leader>gg", function() Snacks.lazygit() end,                 desc = "Lazygit" },
       { "<leader>gl", function() Snacks.lazygit.log() end,             desc = "Lazygit Log (cwd)" },
       { "<leader>un", function() Snacks.notifier.hide() end,           desc = "Dismiss All Notifications" },
-      { "<c-'>",      function() Snacks.terminal() end,                desc = "Toggle Terminal",             mode = { 'n', 'i', 't' } },
+      { "<c-'>",      function() Snacks.terminal() end,                desc = "Toggle Terminal",             mode = { "n", "i", "t" } },
       -- { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
       { "]]",         function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference",              mode = { "n", "t" } },
       { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference",              mode = { "n", "t" } },
@@ -215,15 +224,15 @@ return {
     keys = {
       { "<leader>fy", "<cmd>Yazi<cr>",        desc = "Open yazi at the current file", },
       { "<leader>fY", "<cmd>Yazi cwd<cr>",    desc = "Open yazi in nvim's working directory", },
-      { '<leader>y',  "<cmd>Yazi toggle<cr>", desc = "Resume the last yazi session", },
+      { "<leader>y",  "<cmd>Yazi toggle<cr>", desc = "Resume the last yazi session", },
     },
   },
 
   {
     "folke/which-key.nvim",
     keys = {
-      { "<s-f1>", function() require("which-key").show() end,                   desc = "Keymaps (which-key)",        mode = { 'n', 'i', 'x' } },
-      { "<f1>",   function() require("which-key").show({ global = false }) end, desc = "Buffer keymaps (which-key)", mode = { 'n', 'i', 'x' } },
+      { "<s-f1>", function() require("which-key").show() end,                   desc = "Keymaps (which-key)",        mode = { "n", "i", "x" } },
+      { "<f1>",   function() require("which-key").show({ global = false }) end, desc = "Buffer keymaps (which-key)", mode = { "n", "i", "x" } },
     },
   },
 
