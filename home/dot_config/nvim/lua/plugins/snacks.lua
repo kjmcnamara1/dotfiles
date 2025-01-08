@@ -85,10 +85,20 @@ return {
         Snacks.toggle.dim():map("<leader>uD")
         Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map(
           "<leader>uc")
+        Snacks.toggle.option("showtabline", { off = 0, on = 2, name = "Tabline" }):map("<leader>ut")
         Snacks.toggle.treesitter():map("<leader>uT")
         Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
         Snacks.toggle.inlay_hints():map("<leader>uh")
         Snacks.toggle.indent():map("<leader>ug")
+        Snacks.toggle({
+          name = "Git Signs",
+          get = function()
+            return require("gitsigns.config").config.signcolumn
+          end,
+          set = function(state)
+            require("gitsigns").toggle_signs(state)
+          end,
+        }):map("<leader>uG")
 
         -- Snacks.toggle.profiler():map("<leader>dpp")
         -- Snacks.toggle.profiler_highlights():map("<leader>dph")

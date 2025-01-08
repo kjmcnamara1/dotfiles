@@ -1,6 +1,7 @@
 -- ======================== SESSION ========================
 
 vim.opt.clipboard      = "unnamedplus" -- Sync with system clipboard
+vim.opt.autowrite      = true          -- Auto write file when leaving buffer
 
 vim.opt.undofile       = true          -- Enable persistent undo (see also `:h undodir`)
 vim.opt.undolevels     = 10000         -- Set undo history size
@@ -63,3 +64,5 @@ vim.opt.smartindent    = true    -- Make indenting smart
 vim.opt.virtualedit    = "block" -- Allow going past the end of line in visual block mode
 vim.opt.textwidth      = 80      -- Set wrap text width
 vim.opt.formatoptions  = "qcrj1" -- Don't autoformat comments when useing 'o' or 'O'
+
+return {}

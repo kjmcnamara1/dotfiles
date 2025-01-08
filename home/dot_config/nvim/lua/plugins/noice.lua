@@ -1,0 +1,1 @@
+-- TODO: configure noice.nvim

@@ -12,24 +12,49 @@ return {
                 defaultConfig = {
                   quote_style = "double",
                   indent_style = "space",
-                  indent_size = "2",
+                  indent_size = 2,
+                  max_lin_length = 120,
+                  trailing_table_separator = "smart",
                 },
               },
-              -- -- make the language server recognize 'vim' global
-              -- diagnostics = {
-              --   globals = { "vim" },
-              -- },
-              -- workspace = {
-              --   checkThirdParty = false,
-              --   -- make language server aware of runtime files
-              --   library = {
-              --     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-              --     [vim.fn.stdpath("config") .. "/lua"] = true,
-              --   },
-              -- },
             }
           }
         }
+      },
+    },
+  },
+
+  {
+    "folke/lazydev.nvim",
+    dependencies = {
+      "justinsgithub/wezterm-types",
+    },
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        vim.fn.stdpath("config") .. "/lua",
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        { path = "snacks.nvim",        words = { "Snacks" } },
+        { path = "wezterm-types",      mods = { "wezterm" } },
+      },
+    },
+  },
+
+  {
+    "saghen/blink.cmp",
+    opts = {
+      sources = {
+        default = { "lazydev" },
+        providers = {
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            -- make lazydev completions top priority
+            score_offset = 100,
+          },
+        },
       },
     },
   },

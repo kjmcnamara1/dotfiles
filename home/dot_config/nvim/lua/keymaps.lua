@@ -3,20 +3,70 @@ return {
   {
     "rmehri01/onenord.nvim",
     keys = {
-      { "<c-q>",      "<cmd>qa<cr>",       desc = "Quit NeoVim" },
-      { "U",          "<c-r>",             desc = "Redo" },
+      { "<c-q>",     "<cmd>qa<cr>",       desc = "Quit NeoVim" },
+      { "U",         "<c-r>",             desc = "Redo" },
+      { "<esc>",     "<cmd>noh<cr><esc>", desc = "Escape and clear hlsearch",   mode = { "i", "n" } },
+      { "<c-v>",     "<c-r>+",            desc = "Paste from system clipboard", mode = "i" },
       -- { "<del>",      "<c-o>x",            desc = "Delete",                    mode = "i" },
-      -- { ",",          ";",           desc = "Repeat Character Movement Forward" },
-      -- { ";",          ",",           desc = "Repeat Character Movement Backward" },
-      { "<leader>j",  "J",                 desc = "Join Lines" },
-      { "<a-O>",      "O<esc>",            desc = "Put empty line above" },
-      { "<a-o>",      "o<esc>",            desc = "Put empty line below" },
-      { "<a-i>",      "^",                 desc = "Start of Line" },
-      { "<a-a>",      "$",                 desc = "End of Line" },
-      { "<leader>ui", vim.show_pos,        desc = "Inspect Pos" },
-      { "<esc>",      "<cmd>noh<cr><esc>", desc = "Escape and clear hlsearch", mode = { "i", "n" } },
-      { "<leader>L",  "<cmd>Lazy<cr>",     desc = "Lazy Plugin Manager" },
-      { "<esc>",      "<cmd>close<cr>",    desc = "Close Lazy",                ft = "lazy" },
+      -- better indenting
+      { "=",         "=gv",               mode = "v" },
+      { "<",         "<gv",               mode = "v" },
+      { ">",         ">gv",               mode = "v" },
+      { "<leader>j", "J",                 desc = "Join Lines" },
+      { "<c-c>",     "cc<esc>",           desc = "Clear line" },
+      { "<a-O>",     "O<esc>",            desc = "New line above" },
+      { "<a-o>",     "o<esc>",            desc = "New line below" },
+      {
+        "<c-cr>",
+        function()
+          local line = vim.api.nvim_win_get_cursor(0)[1]
+          local count = math.max(vim.v.count, 1)
+          for _ = 1, count do
+            vim.api.nvim_buf_set_lines(0, line, line, true, { "" })
+          end
+        end,
+        desc = "Add blank line below",
+        mode = { "n", "i", "v" },
+      },
+      {
+        "<c-s-cr>",
+        function()
+          local line = vim.api.nvim_win_get_cursor(0)[1] - 1
+          local count = math.max(vim.v.count, 1)
+          for _ = 1, count do
+            vim.api.nvim_buf_set_lines(0, line, line, true, { "" })
+          end
+        end,
+        desc = "Add blank line above",
+        mode = { "n", "i", "v" },
+      },
+      -- move cursor
+      { "<a-h>",              "<left>",                      desc = "Cursor left",           mode = { "i", "t", "c" } },
+      { "<a-l>",              "<right>",                     desc = "Cursor right",          mode = { "i", "t", "c" } },
+      { "<a-j>",              "<down>",                      desc = "Cursor down",           mode = { "i", "t", "c" } },
+      { "<a-k>",              "<up>",                        desc = "Cursor up",             mode = { "i", "t", "c" } },
+      { "<a-i>",              "^",                           desc = "Start of Line" },
+      { "<a-a>",              "$",                           desc = "End of Line" },
+      { "j",                  [[v:count == 0 ? 'gj' : 'j']], desc = "Move down visual line", mode = { "n", "x" },     expr = true },
+      { "k",                  [[v:count == 0 ? 'gk' : 'k']], desc = "Move up visual line",   mode = { "n", "x" },     expr = true },
+
+      -- Move Lines
+      { "<a-j>",              "<cmd>m .+1<cr>==",            desc = "Move down" },
+      { "<a-k>",              "<cmd>m .-2<cr>==",            desc = "Move up" },
+      { "<a-j>",              "<esc><cmd>m .+1<cr>==gi",     desc = "Move down",             mode = { "i" } },
+      { "<a-k>",              "<esc><cmd>m .-2<cr>==gi",     desc = "Move up",               mode = { "i" } },
+      { "<a-j>",              ":m '>+1<cr>gv=gv",            desc = "Move down",             mode = { "v" } },
+      { "<a-k>",              ":m '<-2<cr>gv=gv",            desc = "Move up",               mode = { "v" } },
+
+      { "<leader>ui",         vim.show_pos,                  desc = "Inspect Pos" },
+      { "<leader>L",          "<cmd>Lazy<cr>",               desc = "Lazy Plugin Manager" },
+      { "<esc>",              "<cmd>close<cr>",              desc = "Close Lazy",            ft = "lazy" },
+      -- tabs
+      { "<leader><tab><tab>", "<cmd>tabnew<cr>",             desc = "New Tab" },
+      { "<leader><tab>]",     "<cmd>tabnext<cr>",            desc = "Next Tab" },
+      { "<leader><tab>[",     "<cmd>tabprevious<cr>",        desc = "Previous Tab" },
+      { "<leader><tab>d",     "<cmd>tabclose<cr>",           desc = "Close Tab" },
+      { "<leader><tab>o",     "<cmd>tabonly<cr>",            desc = "Close Other Tabs" },
     },
   },
 
@@ -24,6 +74,7 @@ return {
     "akinsho/bufferline.nvim",
     keys = {
       { "<leader>'",  "<cmd>e #<cr>",                            desc = "Alternate Buffer" },
+      { "<leader>bn", "<cmd>enew<cr>",                           desc = "New file" },
       { "<leader>bb", "<cmd>BufferLinePick<cr>",                 desc = "Pick buffer" },
       { "<leader>bx", "<cmd>BufferLinePickClose<cr>",            desc = "Pick buffer to close" },
       { "<leader>bp", "<cmd>BufferLineTogglePin<cr>",            desc = "Toggle pin" },
@@ -41,11 +92,36 @@ return {
   },
 
   {
+    "xvzc/chezmoi.nvim",
+    keys = {
+      {
+        "<leader>fz",
+        function()
+          local czc = require('chezmoi.commands')
+          require("fzf-lua").fzf_exec(
+            czc.list({ args = { "--include=files" } }),
+            {
+              actions = {
+                ["default"] = function(selected, opts)
+                  czc.edit({
+                    targets = { "~/" .. selected[1] },
+                    args = { "--watch" }
+                  })
+                end
+              }
+            })
+        end,
+        desc = "Fzf Chezmoi File"
+      },
+    }
+  },
+
+  {
     "numToStr/Comment.nvim",
     keys = {
       { "<c-/>", function() require("Comment.api").toggle.linewise.current() end, mode = { "i", "n", "x" }, desc = "Toggle line comment" },
-      { "gc",    mode = { "n", "x" } },
-      { "gb",    mode = { "n", "x" } },
+      { "gc",    desc = "Line comment",                                           mode = { "n", "x" } },
+      { "gb",    desc = "Block comment",                                          mode = { "n", "x" } },
     },
   },
 
@@ -93,6 +169,14 @@ return {
   },
 
   -- TODO: need to add keymaps for gitsigns
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      on_attach = function(buffer)
+
+      end
+    },
+  },
 
   {
     "echasnovski/mini.files",
@@ -103,9 +187,23 @@ return {
   },
 
   {
+    "echasnovski/mini.surround",
+    keys = {
+      { "gsa", desc = "Add surrounding",                      mode = { "n", "v" } },
+      { "gsd", desc = "Delete surrounding", },
+      { "gsf", desc = "Find right surrounding", },
+      { "gsF", desc = "Find left surrounding", },
+      { "gsh", desc = "Highlight surrounding", },
+      { "gsr", desc = "Replace surrounding", },
+      { "gsn", desc = "Update `MiniSurround.config.n_lines`", },
+    },
+  },
+
+  {
     "neovim/nvim-lspconfig",
     opts = {
       on_attach = function(_, bufnr)
+        -- TODO: move to util function?
         local map = function(lhs, rhs, desc, opts)
           opts = vim.deepcopy(opts or {})
           local mode = opts.mode or "n"
@@ -167,6 +265,18 @@ return {
   },
 
   {
+    "folke/todo-comments.nvim",
+    keys = {
+      { "]t",         function() require("todo-comments").jump_next() end,              desc = "Next todo comment" },
+      { "[t",         function() require("todo-comments").jump_prev() end,              desc = "Previous Todo Comment" },
+      { "<leader>xt", "<cmd>Trouble todo toggle<cr>",                                   desc = "Todo (Trouble)" },
+      { "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
+      { "<leader>st", "<cmd>TodoTelescope<cr>",                                         desc = "Todo" },
+      { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",                 desc = "Todo/Fix/Fixme" },
+    }
+  },
+
+  {
     "lambdalisue/vim-suda",
     keys = {
       {
@@ -182,6 +292,7 @@ return {
         desc = "Save file",
         mode = { "i", "x", "n", "s" },
       },
+      { "<c-s-s>", "<cmd>wa<cr>", desc = "Save all files" },
     },
   },
 
@@ -227,6 +338,18 @@ return {
       { "<c-s-k>", function() require("smart-splits").swap_buf_up() end },
       { "<c-s-l>", function() require("smart-splits").swap_buf_right() end },
     },
+  },
+
+  {
+    "folke/trouble.nvim",
+    keys = {
+      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",                        desc = "Diagnostics (Trouble)", },
+      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           desc = "Buffer Diagnostics (Trouble)", },
+      { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>",                desc = "Symbols (Trouble)", },
+      { "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / references / ... (Trouble)", },
+      { "<leader>xL", "<cmd>Trouble loclist toggle<cr>",                            desc = "Location List (Trouble)", },
+      { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",                             desc = "Quickfix List (Trouble)", },
+    }
   },
 
   {

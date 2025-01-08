@@ -1,5 +1,5 @@
-require("config.lazy")
-require("options")
+require("config.lazypm")
+-- require("options")
 
 -- require("config.options")
 -- require("config.autocmds")
