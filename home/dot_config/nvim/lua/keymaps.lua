@@ -114,7 +114,6 @@ return {
           opts = vim.tbl_deep_extend("keep", { buffer = bufnr, desc = desc }, opts)
           vim.keymap.set(mode, lhs, rhs, opts)
         end
-
         -- TODO: Finish LSP Keymaps
         map("gh", vim.lsp.buf.hover, "Hover")
         map("<c-h>", vim.lsp.buf.signature_help, "Signature Documentation", { mode = "i" })

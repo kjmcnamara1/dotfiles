@@ -11,14 +11,15 @@ return {
     version = "*",
     event = { "InsertEnter", "CmdlineEnter" },
     opts = {
+      -- TODO: add keymap <tab> for cmdline complete
       keymap = {
         ["<c-d>"] = { "scroll_documentation_down", "fallback" },
         ["<c-u>"] = { "scroll_documentation_up", "fallback" },
       },
       completion = {
-        -- accept = {
-        --   auto_brackets = { enabled = true }, -- doesn't seem to work
-        -- },
+        accept = {
+          auto_brackets = { enabled = true }, -- doesn't seem to work
+        },
         menu = {
           draw = {
             treesitter = { "lsp" },
