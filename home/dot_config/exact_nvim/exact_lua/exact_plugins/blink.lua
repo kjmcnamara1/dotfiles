@@ -12,10 +12,13 @@ return {
     event = { "InsertEnter", "CmdlineEnter" },
     opts_extend = { "sources.compat", "sources.default" },
     opts = {
-      -- TODO: add keymap <tab> for cmdline complete
       keymap = {
+        preset = "default",
         ["<c-d>"] = { "scroll_documentation_down", "fallback" },
         ["<c-u>"] = { "scroll_documentation_up", "fallback" },
+        cmdline = {
+          preset = "super-tab",
+        },
       },
       completion = {
         accept = {
