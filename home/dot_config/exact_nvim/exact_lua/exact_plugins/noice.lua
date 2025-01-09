@@ -1,9 +1,6 @@
 return {
   "folke/noice.nvim",
   event = "VeryLazy",
-  keys = {
-    { "<leader>sn", function() require("noice").cmd("pick") end, desc = "Search Notifications" },
-  },
   opts = {
     presets = {
       bottom_search = true,

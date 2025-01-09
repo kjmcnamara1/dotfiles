@@ -2,14 +2,15 @@
 -- * LspConfig (Global (not lang specific) LSP Setup)
 -- ================================================================================
 
-return {
+--- Foo func
+---@param bar string yolo
+local function foo(bar)
+  print(bar)
+end
 
-  {
-    "smjonas/inc-rename.nvim",
-    enabled = false,
-    cmd = "IncRename",
-    opts = {},
-  },
+foo('hello')
+
+return {
 
   {
     "neovim/nvim-lspconfig",
@@ -70,7 +71,7 @@ return {
       -- Configure diagnostics
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
-      -- FIXME: No inlay hints appear
+      -- FIX: No inlay hints appear
       if opts.inlay_hints.enabled then
         vim.api.nvim_create_autocmd("LspAttach", {
           callback = function(args)
@@ -81,6 +82,7 @@ return {
                   and vim.bo[args.buf].buftype == ""
                   and not vim.tbl_contains(opts.inlay_hints.exclude, vim.bo[args.buf].filetype)
               then
+                dd('Enabling inlay hints')
                 vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
               end
             end

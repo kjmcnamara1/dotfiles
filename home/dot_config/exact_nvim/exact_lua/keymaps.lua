@@ -102,7 +102,7 @@ return {
             czc.list({ args = { "--include=files" } }),
             {
               actions = {
-                ["default"] = function(selected, opts)
+                ["default"] = function(selected, _)
                   czc.edit({
                     targets = { "~/" .. selected[1] },
                     args = { "--watch" }
@@ -215,8 +215,6 @@ return {
         -- TODO: Finish LSP Keymaps
         map("gh", vim.lsp.buf.hover, "Hover")
         map("<c-h>", vim.lsp.buf.signature_help, "Signature Documentation", { mode = "i" })
-        map("<leader>cr", vim.lsp.buf.rename, "Rename")
-        -- nmap('<leader>cr', ':IncRename ', 'IncRename')
         map("gd", vim.lsp.buf.definition, "Go to Definition")
         map("gD", vim.lsp.buf.declaration, "Declaration")
         map("g.", vim.lsp.buf.code_action, "Code Action", { mode = { "n", "v" } })
@@ -225,6 +223,11 @@ return {
         map("<leader>ci", "<cmd>LspInfo<cr>", "Info")
         map("]d", vim.diagnostic.goto_next, "Next Diagnostic")
         map("[d", vim.diagnostic.goto_prev, "Previous Diagnostic")
+        if require('lazy.core.config').plugins['inc-rename.nvim']._.installed then
+          map("<leader>cr", ":IncRename ", "IncRename")
+        else
+          map("<leader>cr", vim.lsp.buf.rename, "Rename")
+        end
       end
     },
   },
@@ -239,6 +242,13 @@ return {
     keys = {
       { "<leader>cn", function() require("neogen").generate() end, desc = "Generate Annotations (Neogen)" },
     },
+  },
+
+  {
+    "folke/noice.nvim",
+    keys = {
+      { "<leader>sn", function() require("noice").cmd("pick") end, desc = "Search Notifications" },
+    }
   },
 
   {

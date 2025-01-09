@@ -1,3 +1,12 @@
+vim.api.nvim_create_autocmd('FileType', {
+  desc = "Custom Lua Settings",
+  group = vim.api.nvim_create_augroup('CustomLua', { clear = true }),
+  pattern = 'lua',
+  callback = function()
+    vim.opt.formatoptions:remove('o')
+  end
+})
+
 return {
 
   {

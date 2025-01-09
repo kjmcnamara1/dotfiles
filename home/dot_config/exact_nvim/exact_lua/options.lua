@@ -14,6 +14,9 @@ vim.opt.sidescrolloff  = 5
 
 -- ======================== EDITOR ========================
 
+vim.opt.mouse          = "a"  -- Enable mouse for all available modes
+vim.opt.mousemoveevent = true -- Enable mouse hover events
+
 -- Enable relative line numbers with current line as absolute number
 vim.opt.number         = true
 vim.opt.relativenumber = true
