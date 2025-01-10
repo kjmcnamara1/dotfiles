@@ -111,6 +111,7 @@ return {
   {
     "echasnovski/mini.surround",
     opts = {
+      n_lines = 30,
       mappings = {
         add = "gsa",
         delete = "gsd",

@@ -2,14 +2,6 @@
 -- * LspConfig (Global (not lang specific) LSP Setup)
 -- ================================================================================
 
---- Foo func
----@param bar string yolo
-local function foo(bar)
-  print(bar)
-end
-
-foo('hello')
-
 return {
 
   {
@@ -71,7 +63,6 @@ return {
       -- Configure diagnostics
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
-      -- FIX: No inlay hints appear
       if opts.inlay_hints.enabled then
         vim.api.nvim_create_autocmd("LspAttach", {
           callback = function(args)
@@ -82,7 +73,6 @@ return {
                   and vim.bo[args.buf].buftype == ""
                   and not vim.tbl_contains(opts.inlay_hints.exclude, vim.bo[args.buf].filetype)
               then
-                dd('Enabling inlay hints')
                 vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
               end
             end

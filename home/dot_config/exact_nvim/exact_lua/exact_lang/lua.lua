@@ -16,6 +16,8 @@ return {
         lua_ls = {
           settings = {
             Lua = {
+              -- inlay hints
+              hint = { enable = true },
               -- use double quotes
               format = {
                 defaultConfig = {
