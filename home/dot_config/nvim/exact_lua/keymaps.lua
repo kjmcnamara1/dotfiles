@@ -168,7 +168,6 @@ return {
     },
   },
 
-  -- TODO: need to add keymaps for gitsigns
   {
     "lewis6991/gitsigns.nvim",
     keys = {
@@ -226,7 +225,6 @@ return {
     },
   },
 
-  -- TODO: Finish LSP Keymaps
   {
     "neovim/nvim-lspconfig",
     keys = {

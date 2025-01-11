@@ -10,15 +10,44 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    -- animate = { easing = 'quadratic' },
     bigfile = { enabled = true },
-    -- TODO: need to customize/configure indent (now that it seems to work)
-    indent = { enabled = true },
+    indent = {
+      enabled = true,
+      char = "┊",
+      hl = {
+        "SnacksIndent1",
+        "SnacksIndent2",
+        "SnacksIndent3",
+        "SnacksIndent4",
+        "SnacksIndent5",
+        "SnacksIndent6",
+        "SnacksIndent7",
+        "SnacksIndent8",
+        "SnacksIndent9",
+      },
+      chunk = {
+        enabled = true,
+        char = {
+          corner_top = "╭",
+          corner_bottom = "╰",
+          arrow = '󰅂',
+          -- arrow = '─',
+        },
+      },
+    },
     notifier = { enabled = true },
     input = { enabled = true },
     quickfile = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
-    sroll = { enabled = true },
+    scroll = {
+      enabled = true,
+      animate = {
+        duration = { step = 10, total = 100 },
+        easing = 'inOutCubic',
+      },
+    },
     styles = {
       notification = {
         wo = { wrap = true } -- Wrap notifications
@@ -81,6 +110,7 @@ return {
         vim.print = _G.dd -- Override print to use snacks for `:=` command
 
         -- Create some toggle mappings
+        Snacks.toggle.animate():map("<leader>ua")
         Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
         Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
         Snacks.toggle.line_number():map("<leader>ul")
@@ -108,24 +138,24 @@ return {
         -- Snacks.toggle.profiler_highlights():map("<leader>dph")
 
         -- Create Indent Colors
-        -- local theme_colors = require("onenord.colors").load()
+        local theme_colors = require("onenord.colors").load()
 
-        -- local blend_colors = function(base, tint, amount)
-        --   base = base:gsub("#", "")
-        --   base = { tonumber(base:sub(1, 2), 16), tonumber(base:sub(3, 4), 16), tonumber(base:sub(5, 6), 16) }
-        --   tint = tint:gsub("#", "")
-        --   tint = { tonumber(tint:sub(1, 2), 16), tonumber(tint:sub(3, 4), 16), tonumber(tint:sub(5, 6), 16) }
-        --   local result = "#"
-        --   for i = 1, #base do
-        --     result = result .. string.format("%02x", base[i] + amount * (tint[i] - base[i]))
-        --   end
-        --   return result
-        -- end
+        local blend_colors = function(base, tint, amount)
+          base = base:gsub("#", "")
+          base = { tonumber(base:sub(1, 2), 16), tonumber(base:sub(3, 4), 16), tonumber(base:sub(5, 6), 16) }
+          tint = tint:gsub("#", "")
+          tint = { tonumber(tint:sub(1, 2), 16), tonumber(tint:sub(3, 4), 16), tonumber(tint:sub(5, 6), 16) }
+          local result = "#"
+          for i = 1, #base do
+            result = result .. string.format("%02x", base[i] + amount * (tint[i] - base[i]))
+          end
+          return result
+        end
 
-        -- for i, color in ipairs({ 'red', 'yellow', 'blue', 'orange', 'green', 'purple', 'cyan', 'pink' }) do
-        --   vim.api.nvim_set_hl(0, "SnacksIndent" .. i,
-        --     { bg = blend_colors(theme_colors.bg, theme_colors[color], 0.05) })
-        -- end
+        for i, color in ipairs({ 'red', 'yellow', 'blue', 'orange', 'green', 'purple', 'cyan', 'pink' }) do
+          vim.api.nvim_set_hl(0, "SnacksIndent" .. i,
+            { bg = blend_colors(theme_colors.bg, theme_colors[color], 0.05) })
+        end
       end,
     })
   end,

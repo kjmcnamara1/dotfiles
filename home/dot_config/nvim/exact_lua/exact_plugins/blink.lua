@@ -6,7 +6,8 @@ return {
       { "saghen/blink.compat", version = "*" },
       "rafamadriz/friendly-snippets", -- useful snippets
       "chrisgrieser/cmp-nerdfont",    -- nerd font icons
-      "hrsh7th/cmp-emoji",            -- emoji
+      -- "hrsh7th/cmp-emoji",            -- emoji
+      "moyiz/blink-emoji.nvim",
     },
     version = "*",
     event = { "InsertEnter", "CmdlineEnter" },
@@ -33,8 +34,14 @@ return {
       },
       signature = { enabled = true },
       sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
-        compat = { "nerdfont", "emoji" },
+        default = { "lsp", "path", "snippets", "buffer", "emoji" },
+        compat = { "nerdfont" },
+        providers = {
+          emoji = {
+            name = "Emoji",
+            module = "blink-emoji",
+          },
+        },
       },
     },
     config = function(_, opts)

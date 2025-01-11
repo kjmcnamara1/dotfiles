@@ -13,7 +13,12 @@ return {
       H = "fold_close_recursive",
       L = "fold_open_recursive",
     },
-    win = { scrolloff = 5, },
+    indent_guides = false,
+    win = {
+      wo = {
+        scrolloff = 5,
+      },
+    },
     modes = {
       lsp = {
         win = { position = "right" },

@@ -17,7 +17,6 @@ return {
       -- separator_style = "slant",
       -- separator_style = { "", "" },
       -- indicator = { style = "none" },
-      -- TODO: might need to add diagnostics_indicator after configuring lsp
       hover = {
         enabled = true,
         delay = 200,
