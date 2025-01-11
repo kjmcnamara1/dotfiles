@@ -55,17 +55,19 @@ vim.opt.foldlevelstart = 99
 vim.o.foldmethod       = "expr";
 vim.o.foldexpr         = "nvim_treesitter#foldexpr()";
 
-vim.opt.termguicolors  = true -- Enable gui colors
+vim.opt.shortmess:append("WIcC") -- Reduce command line messages
+vim.opt.splitkeep     = "screen" -- Reduce scroll during window split
+vim.opt.termguicolors = true     -- Enable gui colors
 
 -- Editing
-vim.opt.ignorecase     = true    -- Ignore case when searching (use `\C` to force not doing that)
-vim.opt.incsearch      = true    -- Show search results while typing
-vim.opt.infercase      = true    -- Infer letter cases for a richer built-in keyword completion
-vim.opt.smartcase      = true    -- Don't ignore case when searching if pattern has upper case
-vim.opt.smartindent    = true    -- Make indenting smart
+vim.opt.ignorecase    = true     -- Ignore case when searching (use `\C` to force not doing that)
+vim.opt.incsearch     = true     -- Show search results while typing
+vim.opt.infercase     = true     -- Infer letter cases for a richer built-in keyword completion
+vim.opt.smartcase     = true     -- Don't ignore case when searching if pattern has upper case
+vim.opt.smartindent   = true     -- Make indenting smart
 
-vim.opt.virtualedit    = "block" -- Allow going past the end of line in visual block mode
-vim.opt.textwidth      = 80      -- Set wrap text width
-vim.opt.formatoptions  = "qcrj1" -- Don't autoformat comments when useing 'o' or 'O'
+vim.opt.virtualedit   = "block"  -- Allow going past the end of line in visual block mode
+vim.opt.textwidth     = 80       -- Set wrap text width
+vim.opt.formatoptions = "qcrj1"  -- Don't autoformat comments when useing 'o' or 'O'
 
 return {}

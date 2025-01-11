@@ -59,6 +59,7 @@ return {
       { "<a-k>",              ":m '<-2<cr>gv=gv",            desc = "Move up",               mode = { "v" } },
 
       { "<leader>ui",         vim.show_pos,                  desc = "Inspect Pos" },
+      { "<leader>ut",         "<cmd>InspectTree<cr>",        desc = "Inspect Tree" },
       { "<leader>L",          "<cmd>Lazy<cr>",               desc = "Lazy Plugin Manager" },
       { "<esc>",              "<cmd>close<cr>",              desc = "Close Lazy",            ft = "lazy" },
       -- tabs
@@ -103,10 +104,7 @@ return {
             {
               actions = {
                 ["default"] = function(selected, _)
-                  czc.edit({
-                    targets = { "~/" .. selected[1] },
-                    args = { "--watch" }
-                  })
+                  czc.edit({ targets = { "~/" .. selected[1] }, args = { "--watch" } })
                 end
               }
             })
@@ -140,41 +138,70 @@ return {
   {
     "ibhagwan/fzf-lua",
     keys = {
-      { "<leader><space>", "<cmd>FzfLua resume<cr>",          desc = "Fzf Resume" },
+      { "<leader><space>", "<cmd>FzfLua resume<cr>",                    desc = "Fzf Resume" },
       -- files
-      { "<leader>,",       "<cmd>FzfLua buffers<cr>",         desc = "Fzf Buffers" },
-      { "<leader>ff",      "<cmd>FzfLua files<cr>",           desc = "Fzf Files" },
-      { "<leader>fr",      "<cmd>FzfLua oldfiles<cr>",        desc = "Fzf Recent Files" },
-      { "<leader>fg",      "<cmd>FzfLua git_files<cr>",       desc = "Fzf Git Files" },
-      { "<leader>ft",      "<cmd>FzfLua filetypes<cr>",       desc = "Search Filetypes" },
+      { "<leader>,",       "<cmd>FzfLua buffers<cr>",                   desc = "Fzf Buffers" },
+      { "<leader>ff",      "<cmd>FzfLua files<cr>",                     desc = "Fzf Files" },
+      { "<leader>fr",      "<cmd>FzfLua oldfiles<cr>",                  desc = "Fzf Recent Files" },
+      { "<leader>fg",      "<cmd>FzfLua git_files<cr>",                 desc = "Fzf Git Files" },
+      { "<leader>ft",      "<cmd>FzfLua filetypes<cr>",                 desc = "Search Filetypes" },
       -- git
-      { "<leader>gc",      "<cmd>FzfLua git_commits<cr>",     desc = "Search Git Commits" },
-      { "<leader>gs",      "<cmd>FzfLua git_status<cr>",      desc = "Search Git Status" },
+      { "<leader>gc",      "<cmd>FzfLua git_commits<cr>",               desc = "Search Git Commits" },
+      { "<leader>gs",      "<cmd>FzfLua git_status<cr>",                desc = "Search Git Status" },
       -- search
-      { "<leader>/",       "<cmd>FzfLua live_grep<cr>",       desc = "Live Grep" },
-      { "<leader>:",       "<cmd>FzfLua command_history<cr>", desc = "Search Command History" },
-      { '<leader>"',       "<cmd>FzfLua registers<cr>",       desc = "Search Registers" },
-      { "<leader>sc",      "<cmd>FzfLua commands<cr>",        desc = "Search Neovim Commands" },
-      { "<leader>sh",      "<cmd>FzfLua helptags<cr>",        desc = "Search Help Pages" },
-      { "<leader>sH",      "<cmd>FzfLua highlights<cr>",      desc = "Search Highlight Groups" },
-      { "<leader>sa",      "<cmd>FzfLua autocmds<cr>",        desc = "Search Auto Commands" },
-      { "<leader>sm",      "<cmd>FzfLua marks<cr>",           desc = "Search Marks" },
-      { "<leader>sM",      "<cmd>FzfLua manpages<cr>",        desc = "Search Man Pages" },
-      { "<leader>sj",      "<cmd>FzfLua jumps<cr>",           desc = "Search Jumps" },
-      { "<leader>sk",      "<cmd>FzfLua keymaps<cr>",         desc = "Search Keymaps" },
-      { "<leader>sq",      "<cmd>FzfLua quickfix<cr>",        desc = "Search Quickfix List" },
-      { "<leader>sl",      "<cmd>FzfLua loclist<cr>",         desc = "Search Location List" },
-      { "<leader>uC",      "<cmd>FzfLua colorschemes<cr>",    desc = "Color Schemes" },
+      { "<leader>/",       "<cmd>FzfLua live_grep<cr>",                 desc = "Live Grep" },
+      { "<leader>:",       "<cmd>FzfLua command_history<cr>",           desc = "Search Command History" },
+      { '<leader>"',       "<cmd>FzfLua registers<cr>",                 desc = "Search Registers" },
+      { "<leader>sc",      "<cmd>FzfLua commands<cr>",                  desc = "Search Neovim Commands" },
+      { "<leader>sh",      "<cmd>FzfLua helptags<cr>",                  desc = "Search Help Pages" },
+      { "<leader>sH",      "<cmd>FzfLua highlights<cr>",                desc = "Search Highlight Groups" },
+      { "<leader>sa",      "<cmd>FzfLua autocmds<cr>",                  desc = "Search Auto Commands" },
+      { "<leader>sm",      "<cmd>FzfLua marks<cr>",                     desc = "Search Marks" },
+      { "<leader>sM",      "<cmd>FzfLua manpages<cr>",                  desc = "Search Man Pages" },
+      { "<leader>sj",      "<cmd>FzfLua jumps<cr>",                     desc = "Search Jumps" },
+      { "<leader>sk",      "<cmd>FzfLua keymaps<cr>",                   desc = "Search Keymaps" },
+      { "<leader>sq",      "<cmd>FzfLua quickfix<cr>",                  desc = "Search Quickfix List" },
+      { "<leader>sl",      "<cmd>FzfLua loclist<cr>",                   desc = "Search Location List" },
+      { "<leader>sd",      "<cmd>FzfLua lsp_workspace_diagnostics<cr>", desc = "Search Workspace Diagnostics" },
+      { "<leader>sD",      "<cmd>FzfLua lsp_document_diagnostics<cr>",  desc = "Search Document Diagnostics" },
+      { "<leader>uC",      "<cmd>FzfLua colorschemes<cr>",              desc = "Color Schemes" },
     },
   },
 
   -- TODO: need to add keymaps for gitsigns
   {
     "lewis6991/gitsigns.nvim",
-    opts = {
-      on_attach = function(buffer)
-
-      end
+    keys = {
+      { ']h', function()
+        if vim.wo.diff then
+          vim.cmd.normal({ "]c", bang = true })
+        else
+          require("gitsigns").nav_hunk('next')
+        end
+      end, "Next Hunk" },
+      { '[h', function()
+        if vim.wo.diff then
+          vim.cmd.normal({ "[c", bang = true })
+        else
+          require("gitsigns").nav_hunk('prev')
+        end
+      end, "Previous Hunk" },
+      { ']H',          '<cmd>Gitsigns nav_hunk last<cr>',             desc = 'Last Hunk',            buffer = 0 },
+      { '[H',          '<cmd>Gitsigns nav_hunk first<cr>',            desc = 'First Hunk',           buffer = 0 },
+      { "<leader>ghs", ":Gitsigns stage_hunk<cr>",                    desc = "Stage Hunk",           buffer = 0, mode = { 'n', 'v' } },
+      { "<leader>ghu", ":Gitsigns undo_stage_hunk<cr>",               desc = "Undo Stage Hunk",      buffer = 0, mode = { 'n', 'v' } },
+      { "<leader>ghr", ":Gitsigns reset_hunk<cr>",                    desc = "Reset Hunk",           buffer = 0, mode = { 'n', 'v' } },
+      { "<leader>ghS", "<cmd>Gitsigns stage_buffer<cr>",              desc = "Stage Buffer",         buffer = 0 },
+      { "<leader>ghR", "<cmd>Gitsigns reset_buffer<cr>",              desc = "Reset Buffer",         buffer = 0 },
+      { "<leader>ghp", "<cmd>Gitsigns preview_hunk<cr>",              desc = "Preview Hunk",         buffer = 0 },
+      { "<leader>ghi", "<cmd>Gitsigns preview_hunk_inline<cr>",       desc = "Preview Hunk Inline",  buffer = 0 },
+      { "<leader>ghb", "<cmd>Gitsigns blame_line<cr>",                desc = "Blame Line",           buffer = 0 },
+      { "<leader>ugB", "<cmd>Gitsigns blame<cr>",                     desc = "Blame Buffer",         buffer = 0 },
+      { "<leader>ugb", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle Git Blame",     buffer = 0 },
+      { "<leader>ugw", "<cmd>Gitsigns toggle_word_diff<cr>",          desc = "Toggle Git Word Diff", buffer = 0 },
+      -- { "<leader>ghd", "<cmd>Gitsigns diffthis<cr>",                  desc = "Diff This",            buffer = 0 },
+      -- { "<leader>ghD", "<cmd>Gitsigns diffthis ~<cr>",                desc = "Diff This ~",          buffer = 0 },
+      { 'ih',          ":<c-u>Gitsigns select_hunk<cr>",              desc = "Select Hunk",          buffer = 0, mode = { "o", "x" } },
     },
   },
 
@@ -199,36 +226,36 @@ return {
     },
   },
 
+  -- TODO: Finish LSP Keymaps
   {
     "neovim/nvim-lspconfig",
-    opts = {
-      on_attach = function(_, bufnr)
-        -- TODO: move to util function?
-        local map = function(lhs, rhs, desc, opts)
-          opts = vim.deepcopy(opts or {})
-          local mode = opts.mode or "n"
-          opts.mode = nil
-          desc = desc and "LSP: " .. desc
-          opts = vim.tbl_deep_extend("keep", { buffer = bufnr, desc = desc }, opts)
-          vim.keymap.set(mode, lhs, rhs, opts)
-        end
-        -- TODO: Finish LSP Keymaps
-        map("gh", vim.lsp.buf.hover, "Hover")
-        map("<c-h>", vim.lsp.buf.signature_help, "Signature Documentation", { mode = "i" })
-        map("gd", vim.lsp.buf.definition, "Go to Definition")
-        map("gD", vim.lsp.buf.declaration, "Declaration")
-        map("g.", vim.lsp.buf.code_action, "Code Action", { mode = { "n", "v" } })
-        map("<leader>cf", vim.lsp.buf.format, "Format", { mode = { "n", "v" } })
-        map("<leader>ca", vim.lsp.buf.code_action, "Code Action", { mode = { "n", "v" } })
-        map("<leader>ci", "<cmd>LspInfo<cr>", "Info")
-        map("]d", vim.diagnostic.goto_next, "Next Diagnostic")
-        map("[d", vim.diagnostic.goto_prev, "Previous Diagnostic")
-        if require('lazy.core.config').plugins['inc-rename.nvim']._.installed then
-          map("<leader>cr", ":IncRename ", "IncRename")
-        else
-          map("<leader>cr", vim.lsp.buf.rename, "Rename")
-        end
-      end
+    keys = {
+      { 'gh',         vim.lsp.buf.hover,                                                                         desc = "LSP Hover",                   buffer = 0 },
+      { '<c-h>',      vim.lsp.buf.signature_help,                                                                desc = "LSP Signature Documentation", buffer = 0, mode = "i" },
+      { ']d',         vim.diagnostic.goto_next,                                                                  desc = "Next Diagnostic",             buffer = 0 },
+      { '[d',         vim.diagnostic.goto_prev,                                                                  desc = "Previous Diagnostic",         buffer = 0 },
+      -- { 'gd',         vim.lsp.buf.definition,                                                                desc = "LSP Definition",              buffer = 0 },
+      -- { 'gD',         vim.lsp.buf.declaration,                                                               desc = "LSP Declaration",             buffer = 0 },
+      { 'gd',         "<cmd>FzfLua lsp_definitions jump_to_single_result=true ignore_current_line=true<cr>",     desc = "LSP Definition",              buffer = 0 },
+      { 'gD',         "<cmd>FzfLua lsp_declarations jump_to_single_result=true ignore_current_line=true<cr>",    desc = "LSP Declaration",             buffer = 0 },
+      { 'gr',         "<cmd>FzfLua lsp_references ignore_current_line=true<cr>",                                 desc = "LSP References",              buffer = 0 },
+      { 'gI',         "<cmd>FzfLua lsp_implementations jump_to_single_result=true ignore_current_line=true<cr>", desc = "LSP Implementation",          buffer = 0 },
+      { 'gy',         "<cmd>FzfLua lsp_typedefs jump_to_single_result=true ignore_current_line=true<cr>",        desc = "LSP Type Definition",         buffer = 0 },
+      -- { 'g.',         vim.lsp.buf.code_action,                                                                   desc = "LSP Code Action",             buffer = 0, mode = { "n", "v" } },
+      { 'g.',         "<cmd>FzfLua lsp_code_actions<cr>",                                                        desc = "LSP Code Action",             buffer = 0, mode = { "n", "v" } },
+      { '<leader>ca', "<cmd>FzfLua lsp_code_actions<cr>",                                                        desc = "LSP Code Action",             buffer = 0, mode = { "n", "v" } },
+      { '<leader>cf', vim.lsp.buf.format,                                                                        desc = "LSP Format",                  buffer = 0, mode = { "n", "v" } },
+      { '<leader>ci', "<cmd>LspInfo<cr>",                                                                        desc = "LSP Info",                    buffer = 0 },
+      -- { '<leader>cr', vim.lsp.buf.rename,         desc = "LSP Rename",                  buffer = 0 },
+      { '<leader>o',  "<cmd>FzfLua lsp_document_symbols<cr>",                                                    desc = "LSP Document Symbols",        buffer = 0 },
+      { '<leader>O',  "<cmd>FzfLua lsp_workspace_symbols<cr>",                                                   desc = "LSP Workspace Symbols",       buffer = 0 },
+    },
+  },
+
+  {
+    "smjonas/inc-rename.nvim",
+    keys = {
+      { '<leader>cr', ":IncRename ", desc = "LSP Rename", buffer = 0 },
     },
   },
 
@@ -277,12 +304,10 @@ return {
   {
     "folke/todo-comments.nvim",
     keys = {
-      { "]t",         function() require("todo-comments").jump_next() end,              desc = "Next todo comment" },
-      { "[t",         function() require("todo-comments").jump_prev() end,              desc = "Previous Todo Comment" },
-      { "<leader>xt", "<cmd>Trouble todo toggle<cr>",                                   desc = "Todo (Trouble)" },
-      { "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
-      { "<leader>st", "<cmd>TodoTelescope<cr>",                                         desc = "Todo" },
-      { "<leader>sT", "<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>",                 desc = "Todo/Fix/Fixme" },
+      { "]t",         function() require("todo-comments").jump_next() end,                                         desc = "Next todo comment" },
+      { "[t",         function() require("todo-comments").jump_prev() end,                                         desc = "Previous Todo Comment" },
+      { "<leader>st", function() require('todo-comments.fzf').todo() end,                                          desc = "Todo" },
+      { "<leader>sT", function() require('todo-comments.fzf').todo({ keywords = { 'TODO', 'FIX', 'FIXME' } }) end, desc = "Todo/Fix/Fixme" },
     }
   },
 
@@ -353,12 +378,14 @@ return {
   {
     "folke/trouble.nvim",
     keys = {
-      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",                        desc = "Diagnostics (Trouble)", },
-      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",           desc = "Buffer Diagnostics (Trouble)", },
-      { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>",                desc = "Symbols (Trouble)", },
-      { "<leader>cl", "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", desc = "LSP Definitions / references / ... (Trouble)", },
-      { "<leader>xL", "<cmd>Trouble loclist toggle<cr>",                            desc = "Location List (Trouble)", },
-      { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",                             desc = "Quickfix List (Trouble)", },
+      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",                            desc = "Diagnostics (Trouble)", },
+      { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",               desc = "Buffer Diagnostics (Trouble)", },
+      { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>",                    desc = "Symbols (Trouble)", },
+      { "<leader>cl", "<cmd>Trouble lsp toggle focus=false<cr>",                        desc = "LSP Definitions / references / ... (Trouble)", },
+      { "<leader>xL", "<cmd>Trouble loclist toggle<cr>",                                desc = "Location List (Trouble)", },
+      { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",                                 desc = "Quickfix List (Trouble)", },
+      { "<leader>xt", "<cmd>Trouble todo toggle<cr>",                                   desc = "Todo (Trouble)" },
+      { "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
     }
   },
 

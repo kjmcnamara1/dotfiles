@@ -11,6 +11,7 @@ return {
   lazy = false,
   opts = {
     bigfile = { enabled = true },
+    -- TODO: need to customize/configure indent (now that it seems to work)
     indent = { enabled = true },
     notifier = { enabled = true },
     input = { enabled = true },
@@ -21,6 +22,9 @@ return {
     styles = {
       notification = {
         wo = { wrap = true } -- Wrap notifications
+      },
+      notification_history = {
+        keys = { ['<esc>'] = 'close' },
       },
     },
     dashboard = {
@@ -85,11 +89,11 @@ return {
         Snacks.toggle.dim():map("<leader>uD")
         Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map(
           "<leader>uc")
-        Snacks.toggle.option("showtabline", { off = 0, on = 2, name = "Tabline" }):map("<leader>ut")
+        Snacks.toggle.option("showtabline", { off = 0, on = 2, name = "Bufferline" }):map("<leader>uB")
         Snacks.toggle.treesitter():map("<leader>uT")
         Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
         Snacks.toggle.inlay_hints():map("<leader>uh")
-        Snacks.toggle.indent():map("<leader>ug")
+        Snacks.toggle.indent():map("<leader>uI")
         Snacks.toggle({
           name = "Git Signs",
           get = function()

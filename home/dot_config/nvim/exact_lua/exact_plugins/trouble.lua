@@ -1,12 +1,8 @@
 -- ================================================================================
 -- * Trouble
 -- ================================================================================
--- TODO: Configure Trouble
 
--- vim.api.nvim_create_autocmd('FileType',{
---   desc="Trouble options"
--- })
-
+-- TODO: add keymap for changing todo levels (same as toggle severity filter)
 return {
   "folke/trouble.nvim",
   cmd = "Trouble",
@@ -19,6 +15,9 @@ return {
     },
     win = { scrolloff = 5, },
     modes = {
+      lsp = {
+        win = { position = "right" },
+      },
       todo = {
         win = { position = "right" },
       },

@@ -49,37 +49,46 @@ return {
         },
       },
       winopts = {
-        width = .6,
+        width = .7,
         height = .5,
         row = .5,
         col = .5,
         preview = {
           -- scrollbar = "border",
-          scrollchars = { "┃", "" },
+          scrollchars = { "┃", "" }, -- doesn't do anything
           winopts = {
             number = false,
           },
         },
       },
-      ui_select = function(fzf_opts, items)
-        return vim.tbl_deep_extend("force", fzf_opts, {
+      lsp = {
+        symbols = {
+          symbol_style = 2,
+          symbol_fmt = function(s, opts) return s end,
+        },
+        code_actions = {
+          prompt = " ",
+          previewer = "codeaction_native",
+          winopts = {
+            width = .5,
+            preview = {
+              layout = 'vertical',
+              vertical = 'down:15,border-top',
+            },
+          }
+        },
+      },
+      ui_select = function(opts, items)
+        local select_opts = {
           prompt = " ",
           winopts = {
-            title = " " .. vim.trim((fzf_opts.prompt or "Select"):gsub("%s*:%s*$", "")) .. " ",
+            title = " " .. vim.trim((opts.prompt or "Select"):gsub("%s*:%s*$", "")) .. " ",
             title_pos = "center",
             width = .5,
-          },
-        }, fzf_opts.kind == "codeaction" and {
-          winopts = {
-            -- height is number of items minus 15 lines for the preview, with a max of 80% screen height
-            height = math.floor(math.min(vim.o.lines * .8 - 16, #items + 2) + .5) + 16,
-          }
-        } or {
-          winopts = {
-            -- height is number of items, with a max of 80% screen height
             height = math.floor(math.min(vim.o.lines * .8, #items + 2) + .5),
-          }
-        })
+          },
+        }
+        return select_opts
       end,
     },
     config = function(_, opts)
@@ -110,7 +119,7 @@ return {
           },
         }
       })
-
+      -- vim.print(opts.ui_select)
       require("fzf-lua").setup(opts)
       require("fzf-lua").register_ui_select(opts.ui_select or nil)
     end,

@@ -1,5 +1,15 @@
 local CustomGroup = vim.api.nvim_create_augroup("Custom", { clear = true })
 
+-- vim.api.nvim_create_autocmd("BufModifiedset", {
+--   desc = "Close non-modifiable buffers with <esc>",
+--   group = CustomGroup,
+--   callback = function()
+--     if vim.o.modifiable ~= true and vim.o.filetype ~= "trouble" then
+--       vim.keymap.set("n", "<esc>", "<cmd>close<cr>", { buffer = true, silent = true })
+--     end
+--   end
+-- })
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight selection on yank",
   group = CustomGroup,

@@ -17,7 +17,10 @@ return {
           settings = {
             Lua = {
               -- inlay hints
-              hint = { enable = true },
+              hint = {
+                enable = true,
+                arrayIndex = "Disable",
+              },
               -- use double quotes
               format = {
                 defaultConfig = {
