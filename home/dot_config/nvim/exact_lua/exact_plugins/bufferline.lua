@@ -14,9 +14,6 @@ return {
     options = {
       diagnostics = "nvim_lsp",
       always_show_bufferline = false,
-      -- separator_style = "slant",
-      -- separator_style = { "", "" },
-      -- indicator = { style = "none" },
       hover = {
         enabled = true,
         delay = 200,
