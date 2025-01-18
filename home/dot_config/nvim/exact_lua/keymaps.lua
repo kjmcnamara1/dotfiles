@@ -5,15 +5,19 @@ return {
     keys = {
       { "<c-q>",     "<cmd>qa<cr>",       desc = "Quit NeoVim" },
       { "U",         "<c-r>",             desc = "Redo" },
+      { "<leader>m", "m",                 desc = "Mark" },
+      { "mm",        "%",                 desc = "Matching bracket" },
       { "<esc>",     "<cmd>noh<cr><esc>", desc = "Escape and clear hlsearch",   mode = { "i", "n" } },
       { "<c-v>",     "<c-r>+",            desc = "Paste from system clipboard", mode = "i" },
       -- { "<del>",      "<c-o>x",            desc = "Delete",                    mode = "i" },
+
       -- better indenting
       { "=",         "=gv",               mode = "v" },
       { "<",         "<gv",               mode = "v" },
       { ">",         ">gv",               mode = "v" },
+
       { "<leader>j", "J",                 desc = "Join Lines" },
-      { "<c-c>",     "cc<esc>",           desc = "Clear line" },
+      -- { "<c-c>",     "cc<esc>",           desc = "Clear line" }, -- use mini.ai 'L' textobject
       { "<a-O>",     "O<esc>",            desc = "New line above" },
       { "<a-o>",     "o<esc>",            desc = "New line below" },
       {
@@ -40,13 +44,15 @@ return {
         desc = "Add blank line above",
         mode = { "n", "i", "v" },
       },
+
       -- move cursor
       { "<a-h>",              "<left>",                      desc = "Cursor left",           mode = { "i", "t", "c" } },
       { "<a-l>",              "<right>",                     desc = "Cursor right",          mode = { "i", "t", "c" } },
       { "<a-j>",              "<down>",                      desc = "Cursor down",           mode = { "i", "t", "c" } },
       { "<a-k>",              "<up>",                        desc = "Cursor up",             mode = { "i", "t", "c" } },
-      { "<a-i>",              "^",                           desc = "Start of Line" },
-      { "<a-a>",              "$",                           desc = "End of Line" },
+      { "gh",                 "0",                           desc = "Beginning of Line" },
+      { "gs",                 "^",                           desc = "Start of Line" },
+      { "gl",                 "$",                           desc = "End of Line" },
       { "j",                  [[v:count == 0 ? 'gj' : 'j']], desc = "Move down visual line", mode = { "n", "x" },     expr = true },
       { "k",                  [[v:count == 0 ? 'gk' : 'k']], desc = "Move up visual line",   mode = { "n", "x" },     expr = true },
 
@@ -62,6 +68,7 @@ return {
       { "<leader>ut",         "<cmd>InspectTree<cr>",        desc = "Inspect Tree" },
       { "<leader>L",          "<cmd>Lazy<cr>",               desc = "Lazy Plugin Manager" },
       { "<esc>",              "<cmd>close<cr>",              desc = "Close Lazy",            ft = "lazy" },
+
       -- tabs
       { "<leader><tab><tab>", "<cmd>tabnew<cr>",             desc = "New Tab" },
       { "<leader><tab>]",     "<cmd>tabnext<cr>",            desc = "Next Tab" },
@@ -85,10 +92,10 @@ return {
       { "<leader>bh", "<cmd>BufferLineMovePrev<cr>",             desc = "Move buffer left" },
       { "<a-h>",      "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev buffer" },
       { "<a-l>",      "<cmd>BufferLineCycleNext<cr>",            desc = "Next buffer" },
-      { "[b",         "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev Buffer" },
-      { "]b",         "<cmd>BufferLineCycleNext<cr>",            desc = "Next Buffer" },
-      { "[B",         "<cmd>BufferLineMovePrev<cr>",             desc = "Move buffer right" },
-      { "]B",         "<cmd>BufferLineMoveNext<cr>",             desc = "Move buffer left" },
+      -- { "[b",         "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev Buffer" },
+      -- { "]b",         "<cmd>BufferLineCycleNext<cr>",            desc = "Next Buffer" },
+      -- { "[B",         "<cmd>BufferLineMovePrev<cr>",             desc = "Move buffer right" },
+      -- { "]B",         "<cmd>BufferLineMoveNext<cr>",             desc = "Move buffer left" },
     },
   },
 
@@ -215,23 +222,23 @@ return {
   {
     "echasnovski/mini.surround",
     keys = {
-      { "gsa", desc = "Add surrounding",                      mode = { "n", "v" } },
-      { "gsd", desc = "Delete surrounding", },
-      { "gsf", desc = "Find right surrounding", },
-      { "gsF", desc = "Find left surrounding", },
-      { "gsh", desc = "Highlight surrounding", },
-      { "gsr", desc = "Replace surrounding", },
-      { "gsn", desc = "Update `MiniSurround.config.n_lines`", },
+      { "ms", desc = "Add surrounding",                     mode = { "n", "v" } },
+      { "md", desc = "Delete surrounding" },
+      { "mf", desc = "Find right surrounding" },
+      { "mF", desc = "Find left surrounding" },
+      { "mh", desc = "Highlight surrounding" },
+      { "mr", desc = "Replace surrounding" },
+      { "mn", desc = "Update `MiniSurround.config.n_lines`" },
     },
   },
 
   {
     "neovim/nvim-lspconfig",
     keys = {
-      { 'gh',         vim.lsp.buf.hover,                                                                         desc = "LSP Hover",                   buffer = 0 },
-      { '<c-h>',      vim.lsp.buf.signature_help,                                                                desc = "LSP Signature Documentation", buffer = 0, mode = "i" },
-      { ']d',         vim.diagnostic.goto_next,                                                                  desc = "Next Diagnostic",             buffer = 0 },
-      { '[d',         vim.diagnostic.goto_prev,                                                                  desc = "Previous Diagnostic",         buffer = 0 },
+      { '<leader>k',  vim.lsp.buf.hover,                                                                         desc = "LSP Hover",                   buffer = 0 },
+      { '<c-k>',      vim.lsp.buf.signature_help,                                                                desc = "LSP Signature Documentation", buffer = 0, mode = "i" },
+      -- { ']d',         vim.diagnostic.goto_next,                                                                  desc = "Next Diagnostic",             buffer = 0 },
+      -- { '[d',         vim.diagnostic.goto_prev,                                                                  desc = "Previous Diagnostic",         buffer = 0 },
       -- { 'gd',         vim.lsp.buf.definition,                                                                desc = "LSP Definition",              buffer = 0 },
       -- { 'gD',         vim.lsp.buf.declaration,                                                               desc = "LSP Declaration",             buffer = 0 },
       { 'gd',         "<cmd>FzfLua lsp_definitions jump_to_single_result=true ignore_current_line=true<cr>",     desc = "LSP Definition",              buffer = 0 },
@@ -242,7 +249,7 @@ return {
       -- { 'g.',         vim.lsp.buf.code_action,                                                                   desc = "LSP Code Action",             buffer = 0, mode = { "n", "v" } },
       { 'g.',         "<cmd>FzfLua lsp_code_actions<cr>",                                                        desc = "LSP Code Action",             buffer = 0, mode = { "n", "v" } },
       { '<leader>ca', "<cmd>FzfLua lsp_code_actions<cr>",                                                        desc = "LSP Code Action",             buffer = 0, mode = { "n", "v" } },
-      { '<leader>cf', vim.lsp.buf.format,                                                                        desc = "LSP Format",                  buffer = 0, mode = { "n", "v" } },
+      { '=',          vim.lsp.buf.format,                                                                        desc = "LSP Format",                  buffer = 0, mode = { "n", "v" } },
       { '<leader>ci', "<cmd>LspInfo<cr>",                                                                        desc = "LSP Info",                    buffer = 0 },
       -- { '<leader>cr', vim.lsp.buf.rename,         desc = "LSP Rename",                  buffer = 0 },
       { '<leader>o',  "<cmd>FzfLua lsp_document_symbols<cr>",                                                    desc = "LSP Document Symbols",        buffer = 0 },

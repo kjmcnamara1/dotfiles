@@ -4,6 +4,7 @@
 
 return {
   "akinsho/bufferline.nvim",
+  enabled = not vim.g.vscode,
   event = "VeryLazy",
   dependencies = {
     "echasnovski/mini.icons",

@@ -1,57 +1,59 @@
 theme = "onenord"
 
 [editor]
-line-number = "relative"
-cursorline = true
-bufferline = "always"
-color-modes = true
+  line-number = "relative"
+  cursorline  = true
+  bufferline  = "always"
+  color-modes = true
 
-[editor.cursor-shape]
-insert = "bar"
-normal = "block"
-select = "underline"
+  [editor.cursor-shape]
+    insert = "bar"
+    normal = "block"
+    select = "underline"
 
-[editor.statusline]
-left = [
-  "mode",
-  "version-control",
-  "spinner",
-  "file-name",
-  "read-only-indicator",
-  "file-modification-indicator",
-]
-right = [
-  "diagnostics",
-  "selections",
-  "register",
-  "position-percentage",
-  "separator",
-  "position",
-  "file-encoding",
-]
-separator = " |"
-mode.normal = "NORMAL"
-mode.insert = "INSERT"
-mode.select = "SELECT"
+  [editor.statusline]
+    left = [
+      "mode",
+      "version-control",
+      "spinner",
+      "file-name",
+      "read-only-indicator",
+      "file-modification-indicator",
+    ]
+    right = [
+      "diagnostics",
+      "selections",
+      "register",
+      "position-percentage",
+      "separator",
+      "position",
+      "file-encoding",
+    ]
+    separator = " |"
+    mode.normal = "NORMAL"
+    mode.insert = "INSERT"
+    mode.select = "SELECT"
 
-[editor.lsp]
-display-inlay-hints = true
+  [editor.lsp]
+    display-inlay-hints = true
 
-[editor.file-picker]
-hidden = false
+  [editor.file-picker]
+    hidden = false
 
-[editor.indent-guides]
-render = true
-skip-levels = 1
-# character="▏"
+  [editor.indent-guides]
+    render      = true
+    skip-levels = 1
+    # character="▏"
 
 [keys.insert]
-j = { k = "normal_mode" }
+  j = { k = "normal_mode" }
 
 [keys.normal]
-tab = "move_parent_node_end"
-S-tab = "move_parent_node_start"
+  x = "extend_line"
+  # tab   = "move_parent_node_end"
+  # S-tab = "move_parent_node_start"
 
 [keys.select]
-tab = "extend_parent_node_end"
-S-tab = "extend_parent_node_start"
+  x = "extend_line"
+  # tab   = "extend_parent_node_end"
+  # S-tab = "extend_parent_node_start"

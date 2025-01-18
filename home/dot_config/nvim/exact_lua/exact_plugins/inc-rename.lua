@@ -4,6 +4,7 @@ return {
 
   {
     "smjonas/inc-rename.nvim",
+    enabled = not vim.g.vscode,
     cmd = "IncRename",
     opts = {},
   },

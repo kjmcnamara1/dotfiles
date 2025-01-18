@@ -1,5 +1,6 @@
 return {
   "xvzc/chezmoi.nvim",
+  enabled = not vim.g.vscode,
   dependencies = { "nvim-lua/plenary.nvim", "ibhagwan/fzf-lua", },
   opts = { edit = { watch = true } },
   init = function()

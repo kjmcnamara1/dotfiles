@@ -1,7 +1,7 @@
 key.txt.age
 
 .config/alacritty
-.config/helix
+# .config/helix
 .config/kitty
 .config/nushell
 .config/paru

@@ -6,6 +6,7 @@ return {
 
   {
     "ibhagwan/fzf-lua",
+    enabled = not vim.g.vscode,
     dependencies = { "echasnovski/mini.icons" },
     event = "VeryLazy",
     cmd = "FzfLua",

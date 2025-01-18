@@ -6,6 +6,7 @@ return {
 
   {
     "neovim/nvim-lspconfig",
+    enabled = not vim.g.vscode,
     dependencies = {
       "williamboman/mason-lspconfig.nvim",  -- automatically install LSPs
     },

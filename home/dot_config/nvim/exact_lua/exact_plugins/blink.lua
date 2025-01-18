@@ -2,6 +2,7 @@ return {
 
   {
     "saghen/blink.cmp",
+    enabled = not vim.g.vscode,
     dependencies = {
       { "saghen/blink.compat", version = "*" },
       "rafamadriz/friendly-snippets", -- useful snippets

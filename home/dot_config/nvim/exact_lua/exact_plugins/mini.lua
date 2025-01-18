@@ -2,9 +2,11 @@ return {
 
   {
     "echasnovski/mini.ai",
+    dependencies = 'echasnovski/mini.extra',
     event = "VeryLazy",
     opts = function()
       local ai = require("mini.ai")
+      local gen_ai_spec = require('mini.extra').gen_ai_spec
       return {
         n_lines = 500,
         custom_textobjects = {
@@ -19,20 +21,15 @@ return {
           -- TODO: add textobject for indent
           Q = { "([\"'])%1%1.-%1%1%1", "^...().-()...$" },                                  -- balanced python triple quote
           t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },               -- tags
-          d = { "%f[%d]%d+" },                                                              -- digits
           e = {                                                                             -- Word with case
             { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" },
             "^().*()$",
           },
-          g = function()
-            local from = { line = 1, col = 1 }
-            local to = {
-              line = vim.fn.line("$"),
-              col = math.max(vim.fn.getline("$"):len(), 1),
-            }
-            return { from = from, to = to }
-          end,                                                       -- buffer
-          -- f = ai.gen_spec.function_call(),                           -- function call incl dots
+          i = gen_ai_spec.indent(),
+          d = gen_ai_spec.diagnostic(),
+          L = gen_ai_spec.line(),
+          N = gen_ai_spec.number(),
+          B = gen_ai_spec.buffer(),                                  -- entire buffer
           F = ai.gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
         },
       }
@@ -108,18 +105,28 @@ return {
     },
   },
 
+  -- {
+  --   'echasnovski/mini.pick',
+  --   opts = {},
+  -- },
+
+  {
+    'echasnovski/mini.splitjoin',
+    opts = {},
+  },
+
   {
     "echasnovski/mini.surround",
     opts = {
       n_lines = 30,
       mappings = {
-        add = "gsa",
-        delete = "gsd",
-        find = "gsf",
-        find_left = "gsF",
-        highlight = "gsh",
-        replace = "gsr",
-        update_n_lines = "gsn",
+        add = "ms",
+        delete = "md",
+        find = "mf",
+        find_left = "mF",
+        highlight = "mh",
+        replace = "mr",
+        update_n_lines = "mn",
       }
     }
   },

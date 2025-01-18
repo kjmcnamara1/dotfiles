@@ -2,6 +2,7 @@ return {
 
   {
     "Exafunction/codeium.nvim",
+    enabled = not vim.g.vscode,
     cmd = "Codeium",
     event = "InsertEnter",
     build = ":Codeium Auth",
