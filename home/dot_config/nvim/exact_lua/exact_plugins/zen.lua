@@ -6,10 +6,10 @@ return {
   {
     -- Distraction free interface
     "folke/zen-mode.nvim",
-    enabled = false,
+    -- enabled = false,
     dependencies = { "folke/twilight.nvim" },
     keys = {
-      { "<leader>z", "<cmd>ZenMode<cr>", desc = "Toggle Zen Mode", mode = { "n", "v" } }
+      { "<leader>uz", "<cmd>ZenMode<cr>", desc = "Toggle Zen Mode", mode = { "n", "v" } }
     },
     opts = {
       window = {

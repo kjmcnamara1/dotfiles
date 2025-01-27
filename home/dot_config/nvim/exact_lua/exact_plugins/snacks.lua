@@ -95,6 +95,23 @@ return {
         },
       },
     },
+    -- zen = {
+    --   win = {
+    --     minimal = true,
+    --     backdrop = {
+    --       bg = "#3b4252",
+    --       transparent = false,
+    --     },
+    --   },
+    --   toggles = {
+    --     dim = true,
+    --     git_signs = true,
+    --     mini_diff_signs = true,
+    --     line_number = false,
+    --     diagnostics = true,
+    --     inlay_hints = false,
+    --   },
+    -- }
   },
   init = function()
     vim.api.nvim_create_autocmd("User", {
@@ -124,6 +141,8 @@ return {
         Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
         Snacks.toggle.inlay_hints():map("<leader>uh")
         Snacks.toggle.indent():map("<leader>uI")
+        Snacks.toggle.zoom():map("<leader>wm")
+        -- Snacks.toggle.zen():map("<leader>uz")
         Snacks.toggle({
           name = "Git Signs",
           get = function()
