@@ -5,3 +5,4 @@ echo "*** Ipython"
 echo "--------------------------------------------------------------------------------"
 
 yay -S --noconfirm ipython python-ipykernel
+yay -S --noconfirm python-pandas

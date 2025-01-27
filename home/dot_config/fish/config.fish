@@ -61,6 +61,7 @@ if status is-interactive # connected to keyboard
     alias c=clear # Clear screen
     alias p=paru # Paru
     alias py=python3 # Python
+    alias ipy=ipython # Interactive Python Shell
     alias hx=helix # Helix text editor
     alias ff=fastfetch # Fastfetch terminal sysinfo viewer
     alias lg=lazygit

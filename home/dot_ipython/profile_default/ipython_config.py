@@ -390,7 +390,7 @@ c.InteractiveShellApp.exec_lines.append(
 #  nodes should be run interactively (displaying output from expressions).
 #  Choices: any of ['all', 'last', 'last_expr', 'none', 'last_expr_or_assign']
 #  Default: 'last_expr'
-c.InteractiveShell.ast_node_interactivity = 'all'
+c.InteractiveShell.ast_node_interactivity = "all"
 
 ## A list of ast.NodeTransformer subclass instances, which will be applied to
 #  user input before code is run.
@@ -607,7 +607,7 @@ c.InteractiveShell.ast_node_interactivity = 'all'
 #  Control-Z/Enter in Windows). By typing 'exit' or 'quit', you can force a
 #  direct exit without any confirmation.
 #  Default: True
-# c.TerminalInteractiveShell.confirm_exit = True
+c.TerminalInteractiveShell.confirm_exit = False
 
 #  See also: InteractiveShell.debug
 # c.TerminalInteractiveShell.debug = False
