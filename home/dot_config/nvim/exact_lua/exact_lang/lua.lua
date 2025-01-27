@@ -21,7 +21,6 @@ return {
                 enable = true,
                 arrayIndex = "Disable",
               },
-              -- use double quotes
               format = {
                 defaultConfig = {
                   quote_style = "double",

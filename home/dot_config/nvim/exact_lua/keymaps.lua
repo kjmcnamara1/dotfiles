@@ -50,9 +50,9 @@ return {
       { "<a-l>",              "<right>",                     desc = "Cursor right",          mode = { "i", "t", "c" } },
       { "<a-j>",              "<down>",                      desc = "Cursor down",           mode = { "i", "t", "c" } },
       { "<a-k>",              "<up>",                        desc = "Cursor up",             mode = { "i", "t", "c" } },
-      { "gh",                 "0",                           desc = "Beginning of Line" },
-      { "gs",                 "^",                           desc = "Start of Line" },
-      { "gl",                 "$",                           desc = "End of Line" },
+      { "gh",                 "0",                           desc = "Beginning of Line",     mode = { 'n', 'v' } },
+      { "gs",                 "^",                           desc = "Start of Line",         mode = { 'n', 'v' } },
+      { "gl",                 "$",                           desc = "End of Line",           mode = { 'n', 'v' } },
       { "j",                  [[v:count == 0 ? 'gj' : 'j']], desc = "Move down visual line", mode = { "n", "x" },     expr = true },
       { "k",                  [[v:count == 0 ? 'gk' : 'k']], desc = "Move up visual line",   mode = { "n", "x" },     expr = true },
 
@@ -75,6 +75,9 @@ return {
       { "<leader><tab>[",     "<cmd>tabprevious<cr>",        desc = "Previous Tab" },
       { "<leader><tab>d",     "<cmd>tabclose<cr>",           desc = "Close Tab" },
       { "<leader><tab>o",     "<cmd>tabonly<cr>",            desc = "Close Other Tabs" },
+
+      -- windows
+      { "<leader>w",          "<c-w>",                       desc = "Windows" },
     },
   },
 
@@ -176,6 +179,13 @@ return {
   },
 
   {
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Search Options" },
+    }
+  },
+
+  {
     "lewis6991/gitsigns.nvim",
     keys = {
       { ']h', function()
@@ -267,6 +277,13 @@ return {
   {
     "williamboman/mason.nvim",
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+  },
+
+  {
+    "nvimtools/none-ls.nvim",
+    keys = {
+      { "<leader>cI", "<cmd>NullLsInfo<cr>", desc = "Null Ls Info", buffer = 0 },
+    },
   },
 
   {
@@ -392,6 +409,11 @@ return {
       { "<leader>xt", "<cmd>Trouble todo toggle<cr>",                                   desc = "Todo (Trouble)" },
       { "<leader>xT", "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
     }
+  },
+
+  {
+    "linux-cultist/venv-selector.nvim",
+    keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv", ft = "python" } },
   },
 
   {
