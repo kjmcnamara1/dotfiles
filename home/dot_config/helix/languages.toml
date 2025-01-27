@@ -1,7 +1,30 @@
 [[language]]
-name = "python"
-auto-format = true
+  name             = "python"
+  language-servers = ['ruff', 'pyright']
+  auto-format      = true
+
+[language-server.ruff]
+  command = "ruff"
+  args    = ['server']
 
 [[language]]
-name = "toml"
-auto-format = true
+  name        = "toml"
+  auto-format = true
+
+  # [[language]]
+  #   name        = "lua"
+  #   auto-format = true
+
+[language-server.lua-language-server.config.Lua.diagnostics]
+  globals = ['vim']
+
+[language-server.lua-language-server.config.Lua.hint]
+  enable     = true
+  arrayIndex = "Disable"
+
+[language-server.lua-language-server.config.Lua.format.defaultConfig]
+  quote_style              = "double"
+  indent_style             = "space"
+  indent_size              = 2
+  max_lin_length           = 120
+  trailing_table_separator = "smart"

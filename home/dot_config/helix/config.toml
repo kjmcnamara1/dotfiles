@@ -1,10 +1,11 @@
 theme = "onenord"
 
 [editor]
-  line-number = "relative"
-  cursorline  = true
-  bufferline  = "always"
-  color-modes = true
+  line-number             = "relative"
+  cursorline              = true
+  bufferline              = "multiple"
+  color-modes             = true
+  end-of-line-diagnostics = 'hint'
 
   [editor.cursor-shape]
     insert = "bar"
@@ -50,10 +51,16 @@ theme = "onenord"
 
 [keys.normal]
   x = "extend_line"
+"C-q" = ":q"
+"C-s" = ":w"
+"C-S-s" = "save_selection"
   # tab   = "move_parent_node_end"
   # S-tab = "move_parent_node_start"
 
 [keys.select]
   x = "extend_line"
+"C-q" = ":q"
+"C-s" = ":w"
+"C-S-s" = "save_selection"
   # tab   = "extend_parent_node_end"
   # S-tab = "extend_parent_node_start"
