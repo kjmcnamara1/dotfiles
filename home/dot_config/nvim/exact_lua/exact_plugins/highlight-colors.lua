@@ -4,7 +4,7 @@
 
 return {
   "brenoprata10/nvim-highlight-colors",
-  enabled = false,
+  -- enabled = false,
   event = "VeryLazy",
   opts = {},
 }

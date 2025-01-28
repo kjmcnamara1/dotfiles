@@ -7,7 +7,7 @@ return {
       { "U",         "<c-r>",             desc = "Redo" },
       { "<leader>m", "m",                 desc = "Mark" },
       { "mm",        "%",                 desc = "Matching bracket",            mode = { 'n', 'v', 'o' } },
-      { "<esc>",     "<cmd>noh<cr><esc>", desc = "Escape and clear hlsearch",   mode = { "i", "n" } },
+      { "<esc>",     "<cmd>noh<cr><esc>", desc = "Escape and clear hlsearch",   mode = "i" },
       { "<c-v>",     "<c-r>+",            desc = "Paste from system clipboard", mode = "i" },
       -- { "<del>",      "<c-o>x",            desc = "Delete",                    mode = "i" },
 
@@ -137,7 +137,7 @@ return {
     "folke/flash.nvim",
     keys = {
       { "s",     function() require("flash").jump() end,              desc = "Flash",               mode = { "n", "x", "o" } },
-      { "S",     function() require("flash").treesitter() end,        desc = "Flash Trweesitter",   mode = { "n", "x", "o" } },
+      { "S",     function() require("flash").treesitter() end,        desc = "Flash Trweesitter",   mode = { "n", "o" } },
       { "r",     function() require("flash").remote() end,            desc = "Remote Flash",        mode = "o" },
       { "R",     function() require("flash").treesitter_search() end, desc = "Treesitter Search",   mode = { "o", "x" } },
       { "<c-s>", function() require("flash").toggle() end,            desc = "Toggle Flash Search", mode = { "c" } },
@@ -245,7 +245,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     keys = {
-      -- { '<leader>k',  vim.lsp.buf.hover,                                                                         desc = "LSP Hover",                   buffer = 0 },
+      { '<leader>k',  vim.lsp.buf.hover,                                                                         desc = "LSP Hover",             buffer = 0 },
       -- { '<c-k>',      vim.lsp.buf.signature_help,                                                                desc = "LSP Signature Documentation", buffer = 0, mode = "i" },
       -- { ']d',         vim.diagnostic.goto_next,                                                                  desc = "Next Diagnostic",             buffer = 0 },
       -- { '[d',         vim.diagnostic.goto_prev,                                                                  desc = "Previous Diagnostic",         buffer = 0 },
@@ -272,6 +272,62 @@ return {
     keys = {
       { '<leader>cr', ":IncRename ", desc = "LSP Rename", buffer = 0 },
     },
+  },
+
+  {
+    "jake-stewart/multicursor.nvim",
+    keys = function()
+      local mc = require("multicursor-nvim")
+      return {
+        { "J",             function() mc.lineAddCursor(1) end,     desc = 'Add cursor below',                       mode = { "n", "v" } },
+        { "K",             function() mc.lineAddCursor(-1) end,    desc = 'Add cursor above',                       mode = { "n", "v" } },
+        { "<a-s-j>",       function() mc.lineSkipCursor(1) end,    desc = 'Move main cursor below',                 mode = { "n", "v" } },
+        { "<a-s-k>",       function() mc.lineSkipCursor(-1) end,   desc = 'Move main cursor above',                 mode = { "n", "v" } },
+        { "<c-n>",         function() mc.matchAddCursor(1) end,    desc = 'Add cursor next cword/sel',              mode = { "n", "v" } },
+        { "<c-p>",         function() mc.matchAddCursor(-1) end,   desc = 'Add cursor previous cword/sel',          mode = { "n", "v" } },
+        { "<a-c-n>",       function() mc.matchSkipCursor(1) end,   desc = 'Move main cursor next cword/sel',        mode = { "n", "v" } },
+        { "<a-c-p>",       function() mc.matchSkipCursor(-1) end,  desc = 'Move main cursor previous cword/sel',    mode = { "n", "v" } },
+        { "mcA",           mc.matchAllAddCursors,                  desc = 'Add cursor to all cword/sel',            mode = { "n", "v" } },
+        -- BUG: next/prevCursor removes cursors when looping around (fixed by disabling wrap)
+        { "L",             function() mc.nextCursor(false) end,    desc = 'Move main cursor to next selection',     mode = { "n", "v" } },
+        { "H",             function() mc.prevCursor(false) end,    desc = 'Move main cursor to previous selection', mode = { "n", "v" } },
+        -- BUG: first/lastCursor removes cursors
+        { "<a-s-l>",       mc.lastCursor,                          desc = 'Move main cursor to last selection',     mode = { "n", "v" } },
+        { "<a-s-h>",       mc.firstCursor,                         desc = 'Move main cursor to first selection',    mode = { "n", "v" } },
+        { "<c-i>",         mc.jumpForward,                         desc = 'Jump forwards',                          mode = { "n", "v" } },
+        { "<c-o>",         mc.jumpBackward,                        desc = 'Jump backwards',                         mode = { "n", "v" } },
+        { "<c-c>",         mc.deleteCursor,                        desc = 'Delete main cursor' },
+        { "mcx",           mc.deleteCursor,                        desc = 'Delete main cursor',                     mode = { "n", "v" } },
+        { "mcc",           mc.toggleCursor,                        desc = 'Add/remove main cursor',                 mode = { "n", "v" } },
+        { "mcd",           mc.duplicateCursors,                    desc = 'Duplicate cursors',                      mode = { "n", "v" } },
+        { "mcq",           mc.clearCursors,                        desc = 'Clear cursors' },
+        { "<c-leftmouse>", mc.handleMouse,                         desc = 'Add/remove cursor' },
+        { "<leader>gv",    mc.restoreCursors,                      desc = 'Restore cursors' },
+        { "&",             mc.alignCursors,                        desc = 'Align cursors' },
+        { "mca",           mc.alignCursors,                        desc = 'Align cursors' },
+        { "I",             mc.insertVisual,                        desc = 'Insert before cursors',                  mode = "v" },
+        { "A",             mc.appendVisual,                        desc = 'Append after cursors',                   mode = "v" },
+        { "S",             mc.splitCursors,                        desc = 'Split cursors',                          mode = "v" },
+        { "M",             mc.matchCursors,                        desc = 'Match cursors',                          mode = "v" },
+        { "mct",           function() mc.transposeCursors(1) end,  desc = 'Transpose selections forwards',          mode = "v" },
+        { "mcT",           function() mc.transposeCursors(-1) end, desc = 'Transpose selections backwards',         mode = "v" },
+        { "mcl",           function() mc.swapCursors(1) end,       desc = 'Swap selection forwards',                mode = "v" },
+        { "mch",           function() mc.swapCursors(-1) end,      desc = 'Swap selection backwards',               mode = "v" },
+        {
+          "<esc>",
+          function()
+            if not mc.cursorsEnabled() then
+              mc.enableCursors()
+            elseif mc.hasCursors() then
+              mc.clearCursors()
+            else
+              vim.cmd.noh()
+            end
+          end,
+          desc = "Escape and clear hlsearch",
+        },
+      }
+    end
   },
 
   {

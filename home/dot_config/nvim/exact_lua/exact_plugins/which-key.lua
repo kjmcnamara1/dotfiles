@@ -26,6 +26,7 @@ return {
       { "]", group = "next" },
       { "g", group = "goto" },
       { "m", group = "surround" },
+      { "mc", group = "multicursor" },
       { "z", group = "fold" },
       {
         "<leader>b",
