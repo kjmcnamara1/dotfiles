@@ -24,7 +24,7 @@ return {
       -- autotag = { enable = true },
       textobjects = {
         move = {
-          enable = false,
+          enable = true,
           set_jumps = true,
           goto_next_start = {
             ["]c"] = "@comment.outer",

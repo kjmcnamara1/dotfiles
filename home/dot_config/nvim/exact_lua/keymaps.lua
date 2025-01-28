@@ -300,6 +300,37 @@ return {
     }
   },
 
+  -- -- TODO: helix keybinds for navigating treesitter
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   keys = {
+  --     {
+  --       '<a-o>',
+  --       function()
+  --         require('nvim-treesitter.ts_utils').goto_node(vim.treesitter.get_node():parent())
+  --       end,
+  --       desc = 'Parent Treesitter Node',
+  --       mode = { 'n', 'v' },
+  --     },
+  --     {
+  --       '<a-n>',
+  --       function()
+  --         require('nvim-treesitter.ts_utils').goto_node(vim.treesitter.get_node():next_sibling())
+  --       end,
+  --       desc = 'Next Treesitter Node',
+  --       mode = { 'n', 'v' },
+  --     },
+  --     {
+  --       '<a-p>',
+  --       function()
+  --         require('nvim-treesitter.ts_utils').goto_node(vim.treesitter.get_node():prev_sibling())
+  --       end,
+  --       desc = 'Previous Treesitter Node',
+  --       mode = { 'n', 'v' },
+  --     },
+  --   },
+  -- },
+
   {
     "folke/snacks.nvim",
     keys = {
@@ -351,14 +382,6 @@ return {
       },
       { "<c-s-s>", "<cmd>wa<cr>", desc = "Save all files" },
     },
-  },
-
-  {
-    "saifulapm/commasemi.nvim",
-    keys = {
-      { "<localleader>,", desc = "Toggle , at End of Line" },
-      { "<localleader>;", desc = "Toggle ; at End of Line" },
-    }
   },
 
   {

@@ -18,7 +18,6 @@ return {
           m = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),     -- method / function definition
           c = ai.gen_spec.treesitter({ a = "@comment.outer", i = "@comment.inner" }),       -- comment
           C = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }),           -- class
-          -- TODO: add textobject for indent
           Q = { "([\"'])%1%1.-%1%1%1", "^...().-()...$" },                                  -- balanced python triple quote
           t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },               -- tags
           e = {                                                                             -- Word with case
