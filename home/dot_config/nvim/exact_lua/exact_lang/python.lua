@@ -1,4 +1,9 @@
--- TODO: add detection for .ipy files
+vim.filetype.add({
+  extension = {
+    ipy = "python"
+  }
+})
+
 return {
 
   {
