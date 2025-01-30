@@ -1,4 +1,3 @@
-{{- if eq .chezmoi.os "linux" -}}
 #! /usr/bin/env bash
 
 echo
@@ -9,4 +8,3 @@ echo "--------------------------------------------------------------------------
 yay -S --noconfirm onlyoffice-bin
 
 xdg-mime default onlyoffice-bin.desktop application/pdf
-{{- end }}
