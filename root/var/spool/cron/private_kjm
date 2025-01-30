@@ -1,0 +1,1 @@
+*/5 * * * * rclone bisync Proton: ~/Proton >> $HOME/.local/share/rclone/logs/Proton.log 2>&1
