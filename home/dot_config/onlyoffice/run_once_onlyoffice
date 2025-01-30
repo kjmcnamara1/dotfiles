@@ -7,4 +7,4 @@ echo "--------------------------------------------------------------------------
 
 yay -S --noconfirm onlyoffice-bin
 
-xdg-mime default onlyoffice-bin.desktop application/pdf
+xdg-mime default onlyoffice-desktopeditors.desktop application/pdf
