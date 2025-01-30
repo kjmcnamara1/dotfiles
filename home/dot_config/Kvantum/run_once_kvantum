@@ -2,17 +2,7 @@
 
 echo
 echo "--------------------------------------------------------------------------------"
-echo "*** Cosmic DE"
+echo "*** Kvantum"
 echo "--------------------------------------------------------------------------------"
 
-packages=(
-  cosmic
-  power-profiles-daemon
-  wl-clipboard
-  loupe    # gnome image viewer
-  gwenview # kde image viewer
-  qt6-wayland
-  qt6ct
-)
-
-yay -S --noconfirm "${packages[@]}"
+yay -S --noconfirm kvantum kvantum-qt5
