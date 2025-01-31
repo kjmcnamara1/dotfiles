@@ -7,34 +7,42 @@ return {
     event = "InsertEnter",
     build = ":Codeium Auth",
     opts = {
+      enable_cmp_source = false,
       virtual_text = {
         enabled = true,
+        -- idle_delay = 0,
+        accept_fallback = "<right>",
         key_bindings = {
           -- accept = false, -- handled by nvim-cmp / blink.cmp
+          accept = "<a-l>",
+          accept_word = "<c-l>",
+          accept_line = "<c-j>",
           --   next = "<M-]>",
           --   prev = "<M-[>",
         },
       },
     },
+    config = function(_, opts)
+      require("codeium").setup(opts)
+      -- HACK: to force `require("codeium.virtual_text").set_style()`
+      vim.cmd([[do ColorScheme]])
+    end
   },
 
-  -- TODO: don't integrate with blink
-  -- set separate keybind for accept
-  -- change highlight group to distinguish from blink completions
-  {
-    "saghen/blink.cmp",
-    opts = {
-      sources = {
-        compat = { "codeium" },
-        providers = {
-          codeium = {
-            -- kind = "Codeium",
-            score_offset = 100,
-            async = true,
-          },
-        },
-      },
-    },
-  }
+  -- {
+  --   "saghen/blink.cmp",
+  --   opts = {
+  --     sources = {
+  --       compat = { "codeium" },
+  --       providers = {
+  --         codeium = {
+  --           -- kind = "Codeium",
+  --           score_offset = 100,
+  --           async = true,
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
 
 }
