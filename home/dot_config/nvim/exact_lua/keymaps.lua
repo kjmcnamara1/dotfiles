@@ -16,7 +16,7 @@ return {
       { "<",         "<gv",               mode = "v" },
       { ">",         ">gv",               mode = "v" },
 
-      { "<leader>j", "J",                 desc = "Join Lines" },
+      { "<leader>j", "J",                 desc = "Join Lines",                  mode = { 'n', 'v' } },
       -- { "<c-c>",     "cc<esc>",           desc = "Clear line" }, -- use mini.ai 'L' textobject
       { "<a-O>",     "O<esc>",            desc = "New line above" },
       { "<a-o>",     "o<esc>",            desc = "New line below" },
@@ -222,6 +222,25 @@ return {
   },
 
   {
+    "iamcco/markdown-preview.nvim",
+    keys = {
+      { "<leader>cp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview", ft = "markdown" },
+    },
+  },
+
+  {
+    "OXY2DEV/markview.nvim",
+    keys = {
+      { "<leader>um", "<cmd>Markview toggle<cr>",       desc = "Toggle Render Markdown",      ft = "markdown" },
+      { "<leader>uM", "<cmd>Markview hybridToggle<cr>", desc = "Toggle Markview Hybrid Mode", ft = "markdown" },
+      { "<c-t>",      "<cmd>Checkbox toggle<cr>",       desc = "Toggle Checkbox",             ft = "markdown" },
+      { "<leader>cb", "<cmd>Checkbox interactive<cr>",  desc = "Interactive Checkbox",        ft = "markdown" },
+      { "<c-right>",  "<cmd>Heading increase<cr>",      desc = "Increase Heading",            ft = "markdown" },
+      { "<c-left>",   "<cmd>Heading decrease<cr>",      desc = "Decrease Heading",            ft = "markdown" },
+    },
+  },
+
+  {
     "echasnovski/mini.files",
     keys = {
       { "<leader>fm", function() require("mini.files").open(vim.api.nvim_buf_get_name(0), true) end, desc = "mini.files browser (current file)" },
@@ -245,6 +264,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     keys = {
+      { '<leader>cC', "<cmd>lua =vim.lsp.get_clients()[1].server_capabilities<cr>",                              desc = "LSP Capabilities",      buffer = 0 },
       { '<leader>k',  vim.lsp.buf.hover,                                                                         desc = "LSP Hover",             buffer = 0 },
       -- { '<c-k>',      vim.lsp.buf.signature_help,                                                                desc = "LSP Signature Documentation", buffer = 0, mode = "i" },
       -- { ']d',         vim.diagnostic.goto_next,                                                                  desc = "Next Diagnostic",             buffer = 0 },
