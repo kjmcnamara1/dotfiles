@@ -100,17 +100,18 @@ config.use_dead_keys = false        -- disable international accent keys for dia
 -- config.disable_default_key_bindings = true
 config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = {
+  { key = "Enter", mods = "ALT",        action = act.DisableDefaultAssignment },
   -- { key = "Enter", mods = "ALT",        action = act.ToggleFullScreen },
   -- { key = "C",     mods = "SHIFT|CTRL", action = act.CopyTo "Clipboard" },
-  { key = "v",   mods = "SHIFT|CTRL", action = act.PasteFrom "Clipboard" },
-  { key = "F11", mods = "SHIFT|CTRL", action = act.ToggleFullScreen },
-  { key = "F5",  mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
-  { key = "v",   mods = "LEADER",     action = act.SplitHorizontal },
-  { key = "s",   mods = "LEADER",     action = act.SplitVertical },
-  { key = "j",   mods = "LEADER",     action = act.ScrollToPrompt(1) },
-  { key = "k",   mods = "LEADER",     action = act.ScrollToPrompt(-1) },
-  { key = "g",   mods = "LEADER",     action = act.ScrollToTop },
-  { key = "G",   mods = "LEADER",     action = act.ScrollToBottom },
+  { key = "v",     mods = "SHIFT|CTRL", action = act.PasteFrom "Clipboard" },
+  { key = "F11",   mods = "SHIFT|CTRL", action = act.ToggleFullScreen },
+  { key = "F5",    mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
+  { key = "v",     mods = "LEADER",     action = act.SplitHorizontal },
+  { key = "s",     mods = "LEADER",     action = act.SplitVertical },
+  { key = "j",     mods = "LEADER",     action = act.ScrollToPrompt(1) },
+  { key = "k",     mods = "LEADER",     action = act.ScrollToPrompt(-1) },
+  { key = "g",     mods = "LEADER",     action = act.ScrollToTop },
+  { key = "G",     mods = "LEADER",     action = act.ScrollToBottom },
 }
 
 -- Change mouse scroll amount

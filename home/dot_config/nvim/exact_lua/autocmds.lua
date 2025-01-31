@@ -49,4 +49,41 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  desc = "Auto create dir when saving a file, in case some intermediate directory does not exist",
+  group = CustomGroup,
+  callback = function(event)
+    if event.match:match("^%w%w+://") then
+      return
+    end
+    local file = vim.uv.fs_realpath(event.match) or event.match
+    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Open help in vertical split",
+  group = CustomGroup,
+  pattern = "help",
+  callback = function()
+    vim.bo.bufhidden = "unload"
+    vim.bo.buflisted = false
+    vim.cmd.wincmd("L")
+    vim.api.nvim_win_set_width(0, 80)
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = true, silent = true })
+    vim.keymap.set("n", "<esc>", "<cmd>close<cr>", { buffer = true, silent = true })
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Health windows settings",
+  group = CustomGroup,
+  pattern = "checkhealth",
+  callback = function()
+    vim.bo.bufhidden = "wipe"
+    vim.bo.buflisted = false
+    vim.keymap.set("n", "<esc>", "<cmd>close<cr>", { buffer = true, silent = true })
+  end,
+})
+
 return {}
