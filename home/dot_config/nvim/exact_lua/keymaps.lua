@@ -3,7 +3,7 @@ return {
   {
     "rmehri01/onenord.nvim",
     keys = {
-      { "<c-q>",     "<cmd>qa<cr>",       desc = "Quit NeoVim" },
+      { "<c-q>",     "<cmd>wqa<cr>",      desc = "Write & Quit NeoVim" },
       { "U",         "<c-r>",             desc = "Redo" },
       { "<leader>m", "m",                 desc = "Mark" },
       { "mm",        "%",                 desc = "Matching bracket",            mode = { 'n', 'v', 'o' } },
@@ -469,7 +469,7 @@ return {
       {
         "<c-s-q>",
         function()
-          require("persistence").stop(); vim.cmd([[:qa]])
+          require("persistence").stop(); vim.cmd([[:qa!]])
         end,
         desc = "Quit Neovim without saving session"
       },
