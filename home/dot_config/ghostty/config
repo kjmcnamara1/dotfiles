@@ -9,14 +9,91 @@ window-save-state = always
 # gtk-wide-tabs = false
 bold-is-bright = true
 
+# ================================================================================
+# * Keybindings
+# ================================================================================
 
-keybind = ctrl+shift+x=write_screen_file:paste
-keybind = ctrl+b>o=toggle_tab_overview
-keybind = unconsumed:ctrl+h=goto_split:left
-keybind = unconsumed:ctrl+j=goto_split:bottom
-keybind = unconsumed:ctrl+k=goto_split:top
-keybind = unconsumed:ctrl+l=goto_split:right
+# keybind = ctrl+shift+x=write_screen_file:paste
+
+# Remove default bindings
+keybind = ctrl+shift+q=unbind
+keybind = ctrl+enter=unbind
+keybind = ctrl+shift+enter=unbind
+keybind = ctrl+shift+e=unbind
+keybind = ctrl+shift+o=unbind
+keybind = ctrl+shift+page_up=unbind
+keybind = ctrl+shift+page_down=unbind
+keybind = super+ctrl+[=unbind
+keybind = super+ctrl+]=unbind
+keybind = super+ctrl+shift+equal=unbind
+keybind = super+ctrl+shift+left=unbind
+keybind = super+ctrl+shift+up=unbind
+keybind = super+ctrl+shift+down=unbind
+keybind = super+ctrl+shift+right=unbind
+
+# Reload config
 keybind = ctrl+shift+f5=reload_config
 
+# Tab overview
+keybind = ctrl+g>o=toggle_tab_overview
+keybind = ctrl+alt+o=toggle_tab_overview
+
+# Window control
 keybind = alt+enter=toggle_fullscreen
 keybind = ctrl+alt+enter=toggle_window_decorations
+
+# Navigate splits
+keybind = ctrl+alt+h=goto_split:left
+keybind = ctrl+alt+j=goto_split:down
+keybind = ctrl+alt+k=goto_split:up
+keybind = ctrl+alt+l=goto_split:right
+keybind = ctrl+alt+n=goto_split:next
+keybind = ctrl+alt+p=goto_split:previous
+
+# keybind = ctrl+g>h=goto_split:left
+# keybind = ctrl+g>j=goto_split:down
+# keybind = ctrl+g>k=goto_split:up
+# keybind = ctrl+g>l=goto_split:right
+# keybind = ctrl+g>n=goto_split:next
+# keybind = ctrl+g>p=goto_split:previous
+
+keybind = ctrl+g>h=new_split:left
+keybind = ctrl+g>j=new_split:down
+keybind = ctrl+g>k=new_split:up
+keybind = ctrl+g>l=new_split:right
+
+# keybind = ctrl+alt+shift+h=new_split:left
+# keybind = ctrl+alt+shift+j=new_split:down
+# keybind = ctrl+alt+shift+k=new_split:up
+# keybind = ctrl+alt+shift+l=new_split:right
+
+# keybind = ctrl+g>shift+h=new_split:left
+# keybind = ctrl+g>shift+j=new_split:down
+# keybind = ctrl+g>shift+k=new_split:up
+# keybind = ctrl+g>shift+l=new_split:right
+
+# keybind = unconsumed:ctrl+h=goto_split:left
+# keybind = performable:ctrl+j=goto_split:down
+# keybind = unconsumed:ctrl+k=goto_split:up
+# keybind = unconsumed:ctrl+l=goto_split:right
+
+# Split sizing
+keybind = ctrl+g>equal=equalize_splits
+keybind = ctrl+g>z=toggle_split_zoom
+keybind = ctrl+alt+left=resize_split:left,10
+keybind = ctrl+alt+down=resize_split:down,10
+keybind = ctrl+alt+up=resize_split:up,10
+keybind = ctrl+alt+right=resize_split:right,10
+
+# Scrolling
+keybind = ctrl+b=jump_to_prompt:-1
+keybind = ctrl+f=jump_to_prompt:1
+
+keybind = ctrl+alt+u=scroll_page_up
+keybind = ctrl+alt+d=scroll_page_down
+
+keybind = ctrl+g>g=scroll_to_top
+keybind = ctrl+g>shift+g=scroll_to_bottom
+
+keybind = ctrl+alt+g=scroll_to_top
+keybind = ctrl+alt+shift+g=scroll_to_bottom
