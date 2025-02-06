@@ -31,7 +31,8 @@ if status is-interactive # connected to keyboard
 
     # Use <c-u> instead
     # <c-c> clears the commandline when in insert mode
-    # bind --mode insert \cc 'commandline -r ""'
+    bind --mode insert \cc __fish_toggle_comment_commandline
+    bind \cc __fish_toggle_comment_commandline
 
     # Environment Variables
 
