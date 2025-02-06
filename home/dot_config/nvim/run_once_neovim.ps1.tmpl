@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "linux" -}}
 #! /usr/bin/env bash
 
 echo
@@ -6,3 +7,6 @@ echo "*** Neovim"
 echo "--------------------------------------------------------------------------------"
 
 yay -S --noconfirm neovim nodejs npm chafa imagemagick
+{{- else if eq .chezmoi.os "windows" -}}
+scoop install neovim
+{{ end }}
