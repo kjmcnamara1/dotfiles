@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "linux" -}}
 #! /usr/bin/env bash
 
 echo
@@ -6,3 +7,6 @@ echo "*** Starship"
 echo "--------------------------------------------------------------------------------"
 
 yay -S --noconfirm starship
+{{- else if eq .chezmoi.os "windows" -}}
+scoop install starship
+{{ end }}
