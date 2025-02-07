@@ -1,0 +1,22 @@
+{{- if eq .chezmoi.os "linux" -}}
+#! /usr/bin/env bash
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo "*** Decrypt Age Key"
+echo "--------------------------------------------------------------------------------"
+
+if [ ! -f "${HOME}/.config/chezmoi/key.txt" ]; then
+  mkdir -p "${HOME}/.config/chezmoi"
+  chezmoi age decrypt --output "{{ .chezmoi.homeDir }}/.config/chezmoi/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"
+  chmod 600 "${HOME}/.config/chezmoi/key.txt"
+  # notify-send "ran decrypt"
+fi
+{{- else if eq .chezmoi.os "windows" -}}
+if (!(Test-Path $HOME/.config/chezmoi/key.txt)) {
+  if (!(Test-Path $HOME/.config/chezmoi)) {
+    mkdir -p "$HOME/.config/chezmoi"
+  }
+  chezmoi age decrypt --output "{{ .chezmoi.homeDir }}/.config/chezmoi/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/key.txt.age"
+}
+{{ end }}
