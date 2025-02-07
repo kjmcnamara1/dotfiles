@@ -22,7 +22,7 @@ xontrib load term_integration
 
 # Environment Variables
 if platform.system() == "Windows":
-    $HOME = str($HOMEPATH)
+    $HOME = $(echo $HOMEPATH)
 $CASE_SENSITIVE_COMPLETIONS = ''
 $CMD_COMPLETIONS_SHOW_DESC = True
 $DOTGLOB = True
