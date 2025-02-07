@@ -1,5 +1,7 @@
 key.txt.age
 
+{{- if ne .chezmoi.os "windows" -}}
+AppData
 .config/alacritty
 # .config/helix
 .config/kitty
@@ -8,13 +10,12 @@ key.txt.age
 .config/pypoetry
 .config/tmux
 .config/xonsh
+{{- end }}
 
-{{- /* Ignore for MUSE */ -}}
 {{- if eq .chezmoi.hostname "muse" }}
 .config/cosmic
 {{- end }}
 
-{{- /* Ignore for ANGEL */ -}}
 {{- if eq .chezmoi.hostname "angel" }}
 .config/hypr
 .config/dunst
@@ -22,4 +23,26 @@ key.txt.age
 .config/waybar
 .config/waypaper
 .config/hypr
+{{- end }}
+
+{{- if eq .chezmoi.os "windows" -}}
+Proton/
+.face.icon
+.config/yay
+.config/paru
+.config/wlogout
+.config/tmux
+.config/rclone
+.config/pypoetry
+.config/onlyoffice
+.config/nushell
+.config/kitty
+.config/ghostty
+.config/fish
+.config/cosmic
+.config/alacritty
+.config/Kvantum
+.config/gtk-*
+.config/zed
+.local
 {{- end }}
