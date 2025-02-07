@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "linux" -}}
 #! /usr/bin/env bash
 
 echo
@@ -6,3 +7,7 @@ echo "*** Wezterm"
 echo "--------------------------------------------------------------------------------"
 
 yay -S --noconfirm wezterm
+{{- else if eq .chezmoi.os "windows" -}}
+scoop install wezterm
+reg import "C:\Users\kjmcn\scoop\apps\wezterm\current\install-context.reg"
+{{ end }}

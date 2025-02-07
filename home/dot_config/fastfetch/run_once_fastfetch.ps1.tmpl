@@ -1,8 +1,12 @@
+{{- if eq .chezmoi.os "linux" -}}
 #! /usr/bin/env bash
 
 echo
 echo "--------------------------------------------------------------------------------"
-echo "*** LazyGit"
+echo "*** Fastfetch"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm lazygit
+yay -S --noconfirm fastfetch
+{{- else if eq .chezmoi.os "windows" -}}
+scoop install fastfetch
+{{ end }}

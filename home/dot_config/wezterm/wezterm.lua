@@ -5,7 +5,14 @@ local act = wezterm.action
 local config = wezterm.config_builder()
 local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 
+local function is_windows()
+  return wezterm.target_triple:find("windows") ~= nil
+end
+
 -- Session
+if is_windows() then
+  config.default_prog = { "xonsh" }
+end
 -- config.default_prog = { "wsl", "--cd", "~" }
 -- wezterm.on("gui-startup", function(cmd)
 --   local tab, pane, window = mux.spawn_window(cmd or { position = { x = 100, y = 300, origin = "ActiveScreen" } })
@@ -56,7 +63,7 @@ config.color_scheme = "nord" -- alt: kanagawa
 config.default_cursor_style = "SteadyBlock"
 
 -- Window Settings
-config.window_decorations = "RESIZE"
+config.window_decorations = is_windows() and "TITLE|RESIZE" or "RESIZE"
 config.window_close_confirmation = "NeverPrompt"
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
 config.inactive_pane_hsb = { saturation = 0.9, brightness = 0.8 }
@@ -100,18 +107,18 @@ config.use_dead_keys = false        -- disable international accent keys for dia
 -- config.disable_default_key_bindings = true
 config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = {
-  { key = "Enter", mods = "ALT",        action = act.DisableDefaultAssignment },
+  -- { key = "Enter", mods = "ALT",        action = act.DisableDefaultAssignment },
   -- { key = "Enter", mods = "ALT",        action = act.ToggleFullScreen },
   -- { key = "C",     mods = "SHIFT|CTRL", action = act.CopyTo "Clipboard" },
-  { key = "v",     mods = "SHIFT|CTRL", action = act.PasteFrom "Clipboard" },
-  { key = "F11",   mods = "SHIFT|CTRL", action = act.ToggleFullScreen },
-  { key = "F5",    mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
-  { key = "v",     mods = "LEADER",     action = act.SplitHorizontal },
-  { key = "s",     mods = "LEADER",     action = act.SplitVertical },
-  { key = "j",     mods = "LEADER",     action = act.ScrollToPrompt(1) },
-  { key = "k",     mods = "LEADER",     action = act.ScrollToPrompt(-1) },
-  { key = "g",     mods = "LEADER",     action = act.ScrollToTop },
-  { key = "G",     mods = "LEADER",     action = act.ScrollToBottom },
+  { key = "v",   mods = "SHIFT|CTRL", action = act.PasteFrom "Clipboard" },
+  { key = "F11", mods = "SHIFT|CTRL", action = act.ToggleFullScreen },
+  { key = "F5",  mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
+  { key = "v",   mods = "LEADER",     action = act.SplitHorizontal },
+  { key = "s",   mods = "LEADER",     action = act.SplitVertical },
+  { key = "j",   mods = "LEADER",     action = act.ScrollToPrompt(1) },
+  { key = "k",   mods = "LEADER",     action = act.ScrollToPrompt(-1) },
+  { key = "g",   mods = "LEADER",     action = act.ScrollToTop },
+  { key = "G",   mods = "LEADER",     action = act.ScrollToBottom },
 }
 
 -- Change mouse scroll amount

@@ -1,8 +1,12 @@
+{{- if eq .chezmoi.os "linux" -}}
 #! /usr/bin/env bash
 
 echo
 echo "--------------------------------------------------------------------------------"
-echo "*** Helix"
+echo "*** Yazi (Terminal File Explorer)"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm helix
+yay -S --noconfirm yazi
+{{- else if eq .chezmoi.os "windows" -}}
+scoop install yazi
+{{ end }}
