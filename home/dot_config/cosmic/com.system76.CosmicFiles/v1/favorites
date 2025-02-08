@@ -10,4 +10,5 @@
     Path("/home/kjm/dotfiles"),
     Path("/mnt/NAS"),
     Path("/mnt/Windows"),
+    Path("/home/kjm/OneDrive"),
 ]
