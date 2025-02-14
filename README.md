@@ -41,19 +41,11 @@ You will need to select options for disk layout. Any other preconfigured options
 
 Arch linux will be installed.
 
-Select "Yes" when asked to chroot into the new installation.
+Select "No" when asked to chroot into the new installation.
 
-Switch user and clone dotfiles repo:
+Script will ask if you want to install chezmoi dotfiles.
 
-```sh
-su kjm
-git clone https://github.com/kjmcnamara1/dotfiles ~/dotfiles && cd ~/dotfiles
-./dotbot muse cosmic
-exit # exit kjm shell
-exit # exit arch-chroot shell
-```
-
-Machine will automatically reboot.
+Script will prompt to reboot.
 
 ### Configuration
 
