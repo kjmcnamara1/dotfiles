@@ -46,3 +46,28 @@ Proton
 .config/zed
 .local
 {{- end }}
+
+
+{{- if eq .chezmoi.hostname "snow" }}
+Proton
+.face.icon
+.local
+.ipython
+.chezmoiscripts/10-post-install
+.chezmoiscripts/pipewire
+.chezmoiscripts/printer
+.chezmoiscripts/sddm
+.config/*
+!.config/bat
+!.config/fastfetch
+!.config/fish
+!.config/gh
+!.config/helix
+!.config/lazygit
+!.config/nvim
+!.config/starship
+!.config/starship.toml
+!.config/yay
+!.config/yazi
+wallpapers
+{{- end }}
