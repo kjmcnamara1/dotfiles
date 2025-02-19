@@ -3,6 +3,12 @@
 include outputs
 include workspaces
 # include autostart
+include theme
+include rules
+
+exec swaync -s /home/kjm/.config/swaync/preset-1.css
+
+exec waypaper --restore
 
 ### Variables
 #
@@ -14,29 +20,20 @@ set $down j
 set $up k
 set $right l
 # Preferred terminal emulator
-set $term wezterm
+set $term wezterm start --always-new-process
 # Preferred application launcher
 set $menu ulauncher
 # Preferred web browser
 set $browser brave
 
-set $border_size 3
+set $powermenu waylogout
 
-gaps inner 10
-gaps outer 0
-smart_gaps off
+set $lock swaylock -f
 
-font pango:JetBrainsMono Nerd Font 10
-
-# for_window [class=".*"] border pixel 2
-for_window [title=".*"] border pixel $border_size, title_format "<b> %app_id >> %title </b>"
-default_border pixel $border_size
 
 default_orientation auto
 workspace_layout default
 
-title_align center
-# for_window [app_id=".*"] title_format "%app_id | %title"
 
 smart_borders off
 
@@ -51,7 +48,6 @@ popup_during_fullscreen smart
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # exec ~/.azotebg
-exec waypaper --restore
 
 # Example configuration:
 #
@@ -90,11 +86,18 @@ exec waypaper --restore
 #
 # Basics:
 #
+
+    bindsym $mod+delete exec $powermenu
+
+    bindsym $mod+escape exec $lock
+
     # Start a terminal
     bindsym $mod+Return exec $term
 
     # Close focused window
     bindsym $mod+c kill
+    # super + middle mouse button
+    bindsym --whole-window $mod+button2 kill
 
     # Start launcher
     bindsym $mod+slash exec $menu
@@ -113,7 +116,7 @@ exec waypaper --restore
     bindsym $mod+shift+r reload, exec notify-send 'Reloaded sway config'
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 #
 # Moving around:
@@ -204,6 +207,10 @@ exec waypaper --restore
     # Move focus to the child container
     bindsym alt+tab focus next
 
+    bindsym $mod+y border toggle
+
+    bindsym $mod+p sticky toggle
+
 #
 # Scratchpad:
 #
@@ -224,16 +231,16 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $left resize shrink width 20px
+    bindsym $down resize grow height 20px
+    bindsym $up resize shrink height 20px
+    bindsym $right resize grow width 20px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym Left resize shrink width 20px
+    bindsym Down resize grow height 20px
+    bindsym Up resize shrink height 20px
+    bindsym Right resize grow width 20px
 
     # Return to default mode
     bindsym Return mode "default"

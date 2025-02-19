@@ -1,0 +1,13 @@
+# vim: ft=swayconfig
+set $border_size 3
+
+gaps inner 10
+gaps outer 0
+smart_gaps off
+
+font pango:JetBrainsMono Nerd Font 10
+
+# for_window [class=".*"] border pixel 2
+for_window [title=".*"] border pixel $border_size, title_format "<b> %app_id </b> | %title "
+default_border pixel $border_size
+title_align center

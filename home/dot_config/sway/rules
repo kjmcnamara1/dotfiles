@@ -1,0 +1,3 @@
+# vim: ft=swayconfig
+for_window [app_id="ulauncher|onagre"] border none, floating enable
+
