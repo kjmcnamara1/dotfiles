@@ -99,6 +99,18 @@ config.font = wezterm.font_with_fallback({
   "Noto Color Emoji",
 })
 
+config.font_rules = {
+  {
+    intensity = "Bold",
+    italic = false,
+    font = wezterm.font("JetBrains Mono Nerd Font", { weight = "Bold", stretch = "Normal", style = "Normal" }),
+  },
+  {
+    intensity = "Bold",
+    italic = true,
+    font = wezterm.font("JetBrains Mono Nerd Font", { weight = "Bold", stretch = "Normal", style = "Italic" }),
+  },
+}
 
 
 -- Keybindings
