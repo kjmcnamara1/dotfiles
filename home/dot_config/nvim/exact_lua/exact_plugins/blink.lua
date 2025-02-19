@@ -18,7 +18,9 @@ return {
         preset = "default",
         ["<c-d>"] = { "scroll_documentation_down", "fallback" },
         ["<c-u>"] = { "scroll_documentation_up", "fallback" },
-        cmdline = {
+      },
+      cmdline = {
+        keymap = {
           preset = "super-tab",
         },
       },
