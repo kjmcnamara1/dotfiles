@@ -1,13 +1,32 @@
 # vim: ft=swayconfig
-set $border_size 3
+set $font JetBrainsMono Nerd Font 10
+set $border_style pixel
+set $border_size 5
+
+set $fg          #c8d0e0
+set $bg          #2e3440
+set $active      #ebcb8b
+set $inactive    #5e81ac
+set $indicator   #88c0d0
+set $nofocus     #3b4252
+set $urgent      #bf616a
+set $placeholder $bg
+# set $indicator #b48ead
+# set $active $urgent
 
 gaps inner 10
 gaps outer 0
-smart_gaps off
 
-font pango:JetBrainsMono Nerd Font 10
+font pango:$font
 
-# for_window [class=".*"] border pixel 2
-for_window [title=".*"] border pixel $border_size, title_format "<b> %app_id </b> | %title "
-default_border pixel $border_size
+for_window [title=".*"] border $border_style $border_size, title_format " <b>%app_id</b> | %title "
+default_border $border_style $border_size
 title_align center
+
+# class                 border    background text indicator  child_border
+client.focused          $active   $active    $bg  $indicator $active
+client.focused_inactive $inactive $inactive  $bg  $indicator $inactive
+client.unfocused        $nofocus  $nofocus   $fg  $nofocus
+client.urgent           $urgent   $urgent    $fg  $indicator $urgent
+# client.placeholder
+# client.background $bg

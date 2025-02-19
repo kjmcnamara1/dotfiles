@@ -9,6 +9,8 @@ local function is_windows()
   return wezterm.target_triple:find("windows") ~= nil
 end
 
+-- config.enable_wayland = false
+
 -- Session
 if is_windows() then
   config.default_prog = { "xonsh" }

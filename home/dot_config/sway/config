@@ -21,6 +21,7 @@ set $up k
 set $right l
 # Preferred terminal emulator
 set $term wezterm start --always-new-process
+# set $term wezterm
 # Preferred application launcher
 set $menu ulauncher
 # Preferred web browser
@@ -33,11 +34,14 @@ set $lock swaylock -f
 
 default_orientation auto
 workspace_layout default
-
+workspace_auto_back_and_forth yes
 
 smart_borders off
+smart_gaps off
 
 focus_follows_mouse yes
+focus_on_window_activation smart
+focus_wrapping yes
 
 mouse_warping output
 
@@ -86,6 +90,12 @@ popup_during_fullscreen smart
 #
 # Basics:
 #
+
+show_marks yes
+bindsym $mod+m mark --toggle X
+
+    bindsym $mod+n exec swaync-client -t
+    bindsym $mod+shift+n exec swaync-client -C
 
     bindsym $mod+delete exec $powermenu
 
@@ -144,11 +154,21 @@ popup_during_fullscreen smart
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
 
-    # bindsym $mod+alt+c move absolute position center
+    bindsym $mod+alt+c move position center
     # bindsym $mod+alt+p move position mouse
 #
 # Workspaces:
 #
+
+    bindsym $mod+u workspace back_and_forth
+    bindsym $mod+shift+u move container to workspace back_and_forth, workspace back_and_forth
+
+    bindsym $mod+period workspace next_on_output
+    bindsym $mod+comma workspace prev_on_output
+
+    bindsym $mod+shift+period move container to workspace next_on_output
+    bindsym $mod+shift+comma move container to workspace prev_on_output
+
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
