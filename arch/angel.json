@@ -1,13 +1,15 @@
 {
   "additional-repositories": [],
   "archinstall-language": "English",
+  "audio_config": {
+    "audio": "pipewire"
+  },
   "bootloader": "Systemd-boot",
-  "config_version": "2.8.1",
-  "debug": false,
+  "config_version": "3.0.1",
+  "disk_config": null,
+  "disk_encryption": null,
   "hostname": "angel",
-  "kernels": [
-    "linux"
-  ],
+  "kernels": ["linux"],
   "locale_config": {
     "kb_layout": "us",
     "sys_enc": "UTF-8",
@@ -16,9 +18,7 @@
   "network_config": {
     "type": "iso"
   },
-  "no_pkg_lookups": false,
   "ntp": true,
-  "offline": false,
   "packages": [
     "man-db",
     "man-pages",
@@ -46,12 +46,9 @@
       "main": "Minimal"
     }
   },
-  "script": "guided",
-  "silent": false,
-  "skip_ntp": false,
-  "skip_version_check": false,
+  "save_config": true,
   "swap": false,
   "timezone": "America/New_York",
   "uki": false,
-  "version": "2.8.6"
+  "version": "3.0.1"
 }
