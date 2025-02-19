@@ -1,0 +1,37 @@
+# vim: ft=config
+hide-cancel
+screenshots
+font="Fira Sans"
+# fade-in=2
+effect-blur=7x5
+# effect-vignette=0.7:1.0
+effect-greyscale
+selection-label
+reverse-arrows
+instant-run
+
+indicator-thickness=20
+indicator-separation=20
+
+ring-color=646a76aa
+inside-color=5e81ac66
+text-color=ebcb8baa
+line-color=2e344088
+
+ring-selection-color=6c7a96aa
+inside-selection-color=bf616a66
+text-selection-color=eceff4aa
+line-selection-color=3b425288
+
+# lock-command="sleep 1; exec killall -SIGUSR1 swayidle"
+lock-command="swaylock -f"
+logout-command="swaymsg exit"
+poweroff-command="systemctl poweroff"
+suspend-command="systemctl suspend"
+reboot-command="systemctl reboot"
+
+lock-shortcut=l
+logout-shortcut=x
+poweroff-shortcut=p
+suspend-shortcut=s
+reboot-shortcut=r
