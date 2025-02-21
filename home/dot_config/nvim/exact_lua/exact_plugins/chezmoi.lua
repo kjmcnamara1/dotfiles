@@ -9,8 +9,13 @@ return {
       vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
         pattern = { os.getenv("HOME") .. "/.local/share/chezmoi/*" },
         group = vim.api.nvim_create_augroup("chezmoi", { clear = true }),
-        callback = function()
+        callback = function(event)
+          local filename = vim.fs.basename(event.file)
+          if vim.startswith(filename, 'run_') then -- exclude chezmoi run scripts
+            return
+          end
           vim.schedule(require("chezmoi.commands.__edit").watch)
+          vim.notify('Chezmoi watching ' .. filename, vim.log.levels.INFO)
         end,
       })
     end,
