@@ -109,14 +109,14 @@ return {
         files = {
           actions = {
             ["alt-i"] = actions.toggle_ignore,
-            ["alt-h"] = actions.toggle_hidden,
+            ["alt-H"] = actions.toggle_hidden,
             -- ["ctrl-g"] = {},
           }
         },
         grep = {
           actions = {
             ["alt-i"] = actions.toggle_ignore,
-            ["alt-h"] = actions.toggle_hidden,
+            ["alt-H"] = actions.toggle_hidden,
           },
         }
       })
