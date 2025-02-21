@@ -1,0 +1,14 @@
+[config]
+allow_images=true
+width=500
+show=drun
+prompt=Search
+# term=wezterm
+height=400
+matching=fuzzy
+gtk_dark=true
+hide_scroll=true
+print_command=true
+insensitive=true
+columns=1
+no_actions=true

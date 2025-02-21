@@ -6,7 +6,11 @@ include workspaces
 include theme
 include rules
 
-exec swaync -s /home/kjm/.config/swaync/preset-1.css
+# exec swaync -s /home/kjm/.config/swaync/preset-1.css
+exec swaync
+
+exec wl-paste --type text --watch cliphist store # Stores only text data
+exec wl-paste --type image --watch cliphist store # Stores only image data
 
 exec waypaper --restore
 
@@ -14,20 +18,24 @@ exec waypaper --restore
 #
 # Logo key Mod4. Use Mod1 for Alt.
 set $mod super
-# Home row direction keys, like vim
+
 set $left h
 set $down j
 set $up k
 set $right l
-# Preferred terminal emulator
+
 set $term wezterm start --always-new-process
 # set $term wezterm
-# Preferred application launcher
-set $menu ulauncher
-# Preferred web browser
-set $browser brave
 
-set $powermenu waylogout
+set $browser brave --ozone-platform=wayland
+
+# set $menu ulauncher
+# set $menu wofi
+# set $menu rofi
+set $menu ~/.config/rofi/scripts/launcher_t2
+# set $powermenu waylogout
+set $powermenu ~/.config/rofi/scripts/powermenu_t2
+# TODO: add var/keybind for window switcher
 
 set $lock swaylock -f
 
@@ -94,8 +102,9 @@ popup_during_fullscreen smart
 show_marks yes
 bindsym $mod+m mark --toggle X
 
-    bindsym $mod+n exec swaync-client -t
-    bindsym $mod+shift+n exec swaync-client -C
+bindsym $mod+n exec swaync-client -t
+bindsym $mod+shift+n exec swaync-client -C
+bindsym $mod+ctrl+n exec ~/.config/swaync/refresh
 
     bindsym $mod+delete exec $powermenu
 
@@ -126,7 +135,8 @@ bindsym $mod+m mark --toggle X
     bindsym $mod+shift+r reload, exec notify-send 'Reloaded sway config'
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    # bindsym $mod+shift+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+shift+q exit
 
 #
 # Moving around:

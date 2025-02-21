@@ -1,0 +1,16 @@
+#! /usr/bin/env bash
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo "*** NWG Look"
+echo "--------------------------------------------------------------------------------"
+
+packages=(
+  nwg-look
+  nordzy-cursors
+  papirus-icon-theme
+  qogir-icon-theme
+  materia-gtk-theme
+)
+
+yay -S --noconfirm "${packages[@]}"
