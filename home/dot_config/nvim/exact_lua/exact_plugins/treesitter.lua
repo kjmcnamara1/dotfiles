@@ -16,6 +16,7 @@ return {
     build = ":TSUpdate",
     event = { "BufReadPre", "BufNewFile", "VeryLazy" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo", "TSUpdateSync", "TSUpdate", },
+    opts_extend = { "ensure_installed" },
     opts = {
       auto_install = true,
       highlight = { enable = true },
