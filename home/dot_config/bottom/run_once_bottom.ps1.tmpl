@@ -1,0 +1,12 @@
+{{- if eq .chezmoi.os "linux" -}}
+#! /usr/bin/env bash
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo "*** Bottom"
+echo "--------------------------------------------------------------------------------"
+
+yay -S --noconfirm bottom
+{{- else if eq .chezmoi.os "windows" -}}
+scoop install bottom
+{{ end }}
