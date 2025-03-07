@@ -12,6 +12,7 @@ return {
   opts_extend = { "spec" },
   opts = {
     preset = "helix",
+    win = { border = "none", },
     spec = {
       mode = { "n", "v" },
       { "<leader><tab>", group = "tabs" },

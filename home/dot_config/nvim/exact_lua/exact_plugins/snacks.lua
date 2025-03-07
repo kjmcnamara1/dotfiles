@@ -42,7 +42,7 @@ return {
     statuscolumn = { enabled = true },
     words = { enabled = true },
     scroll = {
-      enabled = true,
+      enabled = false, -- breaks multi-cursor
       animate = {
         duration = { step = 10, total = 100 },
         easing = 'inOutCubic',

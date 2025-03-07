@@ -30,6 +30,7 @@ require("lazy").setup({
     { import = "autocmds" },
     { import = "keymaps" },
     { import = "options" },
+    { import = "vscode-settings", cond = not not vim.g.vscode },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.

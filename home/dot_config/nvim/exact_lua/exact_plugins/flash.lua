@@ -12,7 +12,7 @@ return {
       -- rainbow = { enabled = true }
     },
     modes = {
-      search = { enabled = true },
+      search = { enabled = false },
       treesitter = { label = { rainbow = { enabled = true } } },
       treesitter_search = { label = { rainbow = { enabled = true } } },
       remote = { jump = { pos = "range", autojump = false, } },

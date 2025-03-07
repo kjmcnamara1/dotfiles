@@ -59,7 +59,7 @@ return {
       },
     },
     config = function(_, opts)
-      -- dd(opts)
+      -- vim.print(opts)
 
       -- Configure diagnostics
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
@@ -126,6 +126,7 @@ return {
             return
           end
         end
+        -- vim.print(server, server_opts)
         require("lspconfig")[server].setup(server_opts)
       end
 

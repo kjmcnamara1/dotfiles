@@ -281,7 +281,7 @@ return {
       { '<leader>ca', "<cmd>FzfLua lsp_code_actions<cr>",                                        desc = "LSP Code Action",       buffer = 0, mode = { "n", "v" } },
       { '=',          vim.lsp.buf.format,                                                        desc = "LSP Format",            buffer = 0, mode = { "n", "v" } },
       { '<leader>ci', "<cmd>LspInfo<cr>",                                                        desc = "LSP Info",              buffer = 0 },
-      -- { '<leader>cr', vim.lsp.buf.rename,         desc = "LSP Rename",                  buffer = 0 },
+      { '<leader>cr', vim.lsp.buf.rename,                                                        desc = "LSP Rename",            buffer = 0 },
       { '<leader>o',  "<cmd>FzfLua lsp_document_symbols<cr>",                                    desc = "LSP Document Symbols",  buffer = 0 },
       { '<leader>O',  "<cmd>FzfLua lsp_workspace_symbols<cr>",                                   desc = "LSP Workspace Symbols", buffer = 0 },
     },
@@ -290,7 +290,7 @@ return {
   {
     "smjonas/inc-rename.nvim",
     keys = {
-      { '<leader>cr', ":IncRename ", desc = "LSP Rename", buffer = 0 },
+      -- { '<leader>cr', ":IncRename ", desc = "LSP Rename", buffer = 0 },
     },
   },
 
@@ -456,7 +456,8 @@ return {
         desc = "Save file",
         mode = { "i", "x", "n", "s" },
       },
-      { "<c-s-s>", "<cmd>wa<cr>", desc = "Save all files" },
+      -- { "<c-s-s>", "<cmd>wa<cr>", desc = "Save all files" },
+      { "<c-s-s>", "<cmd>noautocmd w<cr>", desc = "Save without autoformatting" },
     },
   },
 
