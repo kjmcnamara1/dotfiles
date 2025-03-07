@@ -6,50 +6,50 @@
 
 [colors]
   foreground = "#c8d0e0" # + Identifier Cursor @variable foreground
-  background = "#2e3440" # ++
+  background = "#2e3440" # ++ PolarNight0
 
-  light_black = "#434c5e" # *
-  black       = "#3b4252" # *
+  light_black = "#434c5e" # * PolarNight2
+  black       = "#3b4252" # * PolarNight1
   dark_black  = "#282828" # * background
 
-  light_white = "#eceff4" # *
-  white       = "#e5e9f0" # *
-  dark_white  = "#d8dee9" # *
+  light_white = "#eceff4" # * SnowStorm2
+  white       = "#e5e9f0" # * SnowStorm1
+  dark_white  = "#d8dee9" # * SnowStorm0
 
   light_gray = "#6c7a96" # + Comment LineNr
   gray       = "#646a76" # +
-  dark_gray  = "#4c566a" # *
+  dark_gray  = "#4c566a" # * PolarNight3
 
   light_red = "#de878f" # +
-  red       = "#bf616a" # * @constant.macro @variable.parameter @variable.builtin
+  red       = "#bf616a" # * Aurora0 @constant.macro @variable.parameter @variable.builtin
   dark_red  = "#4d2b2e" # +
 
   light_green = "#bed1ae" # ~
-  green       = "#a3be8c" # * String
+  green       = "#a3be8c" # * Aurora3 String
   dark_green  = "#6d8f51" # +
 
   light_yellow = "#f2deb6" # ~
-  yellow       = "#ebcb8b" # * Type @constructor @module @tag @type
+  yellow       = "#ebcb8b" # * Aurora2 Type @constructor @module @tag @type
   dark_yellow  = "#d99d26" # ~
 
-  light_blue = "#81a1c1" # * Function enumMember @function.macro @function.method @keyword.import @property @tag.attribute
-  blue       = "#5e81ac" # * Delimiter @punctuation @tag.delimiter
+  light_blue = "#81a1c1" # * Frost2 Function enumMember @function.macro @function.method @keyword.import @property @tag.attribute
+  blue       = "#5e81ac" # * Frost3 Delimiter @punctuation @tag.delimiter
   dark_blue  = "#405d7e" # +
   # dark_blue = "#39495d" # +
   # dark_blue = "#2b3e54" # ~
 
   light_purple = "#ccb2c7" # ~
-  purple       = "#b48ead" # *
+  purple       = "#b48ead" # * Aurora4
   dark_purple  = "#996690" # ~
   # dark_purple = "#b988b0" # + StorageClass Structure Operator Exception Conditional Keyword Repeat @keyword.return @label
 
-  light_cyan = "#8fbcbb" # *
-  cyan       = "#88c0d0" # * Constant @function.builtin @string.special.symbol
+  light_cyan = "#8fbcbb" # * Frost0
+  cyan       = "#88c0d0" # * Frost1 Constant @function.builtin @string.special.symbol
   dark_cyan  = "#489eb7" # ~
 
   # light_orange = "#d08f70" # + Boolean Number @constant.builtin @string.regexp @string.escape @type.builtin
   light_orange = "#dca694" # ~
-  orange       = "#d08770" # *
+  orange       = "#d08770" # * Aurora1
   dark_orange  = "#c05e3f" # ~
 
   pink      = "#e85b7a" # +
