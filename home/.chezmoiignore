@@ -27,11 +27,16 @@ AppData
 # .config/hypr
 .gtkrc-2.0
 .config/*
+!.config/Code
 !.config/bat
+!.config/bottom
+!.config/btop
 !.config/fastfetch
 !.config/fish
 !.config/gh
+!.config/ghostty
 !.config/helix
+!.config/hypr
 !.config/lazygit
 !.config/nvim
 !.config/nwg-displays
@@ -42,13 +47,17 @@ AppData
 !.config/sway
 !.config/swaync
 !.config/swaylock
+!.config/Thunar
 !.config/yay
 !.config/yazi
+!.config/ulauncher
+!.config/wallust
+!.config/waybar
 !.config/waypaper
 !.config/wezterm
 !.config/wofi
 !.config/rofi
-.local
+.local/share/rclone
 Proton
 {{- end }}
 

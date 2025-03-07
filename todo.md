@@ -1,23 +1,24 @@
 # finish waybar config
 
 1. tweak window title
+2. fix wallust/nord colors
 
-# sddm config
+# swaync
 
-corners
+fix wallust/nord colors
+
+# bottom
+
+config and theme bottom
 
 # visual studio code
 
-VSC or Code-OSS or Codium
-
-# neovim
-
-- configure to nearly match LazyVim config
-- alt-shift-i and alt-shift-a in normal mode keymaps for ^ and $
+integrate wallust theme
 
 # chezmoi
 
 write scripts for files outside home dir OR use [rootmoi](https://github.com/twpayne/chezmoi/discussions/1510#discussioncomment-7808924)
+use specific `sudo chezmoi` commands for relevant files/directories
 
 - sddm
 - interception
@@ -27,5 +28,5 @@ write scripts for files outside home dir OR use [rootmoi](https://github.com/twp
 
 # ghostty
 
-1. create custom (one)nord theme
-1. other config options
+1. create wallust template
+2. other config options
