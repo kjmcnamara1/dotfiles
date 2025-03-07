@@ -1,12 +1,8 @@
-{{- if eq .chezmoi.os "linux" -}}
 #! /usr/bin/env bash
 
 echo
 echo "--------------------------------------------------------------------------------"
-echo "*** Bottom"
+echo "*** Thunar"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm bottom-git rocm-smi-lib
-{{- else if eq .chezmoi.os "windows" -}}
-scoop install bottom
-{{ end }}
+yay -S --noconfirm thunar gvfs

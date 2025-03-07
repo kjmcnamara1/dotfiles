@@ -3,10 +3,10 @@
 
 echo
 echo "--------------------------------------------------------------------------------"
-echo "*** Bottom"
+echo "*** Btop"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm bottom-git rocm-smi-lib
+yay -S --noconfirm btop rocm-smi-lib # allows collecting gpu data
 {{- else if eq .chezmoi.os "windows" -}}
 scoop install bottom
 {{ end }}
