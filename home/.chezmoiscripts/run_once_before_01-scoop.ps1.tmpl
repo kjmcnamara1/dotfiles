@@ -1,0 +1,12 @@
+{{- if eq .chezmoi.os "windows" -}}
+echo ""
+echo "--------------------------------------------------------------------------------"
+echo "*** Scoop (Windows package manager)"
+echo "--------------------------------------------------------------------------------"
+
+scoop -v
+if (-not $?) {
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+    Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+  }
+{{- end }}

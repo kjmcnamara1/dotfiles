@@ -41,4 +41,12 @@ yay -S --noconfirm "${packages[@]}"
 sudo systemctl mask tpm2.target
 sudo timedatectl set-local-rtc 1
 {{ end -}}
+
+{{- else if eq .chezmoi.os "windows" -}}
+scoop install vim git wget curlie python openssh age chezmoi winbtrfs-np
+scoop install go uv jq eza fd fzf ripgrep zoxide unzip 7zip zstd delta figlet vlc brave
+scoop install clink coreutils ffmpeg gcc megasync peazip vcredist
+# scoop install ps3-system-software rpcs3
+scoop bucket add nerd-fonts
+scoop install JetBrainsMono-NF
 {{ end }}

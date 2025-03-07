@@ -13,18 +13,9 @@ AppData
 .config/xonsh
 {{- end }}
 
-{{- if eq .chezmoi.hostname "muse" }}
-.config/cosmic
-{{- end }}
-
 {{- if eq .chezmoi.hostname "angel" }}
-# .config/cosmic
-# .config/hypr
-# .config/dunst
-# .config/rofi
-# .config/waybar
-# .config/waypaper
-# .config/hypr
+Proton
+.local/share/rclone
 .gtkrc-2.0
 .config/*
 !.config/Code
@@ -57,30 +48,26 @@ AppData
 !.config/wezterm
 !.config/wofi
 !.config/rofi
-.local/share/rclone
-Proton
 {{- end }}
 
-{{- if eq .chezmoi.os "windows" }}
+{{- if eq .chezmoi.hostname "wings" }}
 Proton
-.face.icon
-.config/yay
-.config/paru
-.config/wlogout
-.config/tmux
-.config/rclone
-.config/pypoetry
-.config/onlyoffice
-.config/nushell
-.config/kitty
-.config/ghostty
-.config/fish
-.config/cosmic
-.config/alacritty
-.config/Kvantum
-.config/gtk-*
-.config/zed
 .local
+.face.icon
+.gtkrc-2.0
+.profile
+.config/*
+!.config/bat
+!.config/botom
+!.config/btop
+!.config/fastfetch
+!.config/gh
+!.config/helix
+!.config/lazygit
+!.config/nvim
+!.config/wezterm
+!.config/xonsh
+!.config/yazi
 {{- end }}
 
 

@@ -1,0 +1,21 @@
+{{- if eq .chezmoi.os "linux" -}}
+#! /usr/bin/env bash
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo "*** Xonsh"
+echo "--------------------------------------------------------------------------------"
+
+yay -S --noconfirm xonsh carapace-bin
+{{- else if eq .chezmoi.os "windows" -}}
+scoop install carapace-bin
+pip install 'xonsh[full]'
+pip install xontrib-vox
+pip install xontrib-abbrevs
+pip install xontrib-back2dir
+pip install xontrib-prompt-starship
+pip install xontrib-fish-completer
+pip install xontrib-hist-navigator
+pip install xontrib-term-integrations
+pip install xontrib-kitty
+{{ end }}
