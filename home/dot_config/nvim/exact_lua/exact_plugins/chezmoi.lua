@@ -7,8 +7,9 @@ return {
     opts = { edit = { watch = true } },
     init = function()
       vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-        pattern = { os.getenv("HOME") .. "/.local/share/chezmoi/*" },
+        desc = "Auto-watch chezmoi files",
         group = vim.api.nvim_create_augroup("chezmoi", { clear = true }),
+        pattern = vim.fn.fnamemodify('~/.local/share/chezmoi/*', ":p"):gsub('\\', '/'),
         callback = function(event)
           local filename = vim.fs.basename(event.file)
           if vim.startswith(filename, 'run_') then -- exclude chezmoi run scripts
