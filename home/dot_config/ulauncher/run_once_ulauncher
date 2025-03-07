@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo "*** Ulauncher"
+echo "--------------------------------------------------------------------------------"
+
+yay -S --noconfirm ulauncher python-simpleeval python-pint
