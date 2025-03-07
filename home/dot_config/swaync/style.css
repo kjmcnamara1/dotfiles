@@ -1,10 +1,10 @@
-@import url("../../.cache/wal/colors-waybar.css");
+@import url("colors/wallust.css");
 @define-color mpris-album-art-overlay alpha(@background, 0.55);
 @define-color mpris-button-hover alpha(@background, 0.50);
-@define-color text @color15;
-@define-color bg alpha(@background,.5);
-@define-color bg-hover alpha(@background,.8);
-@define-color mycolor @color9;
+@define-color text @foreground;
+@define-color bg alpha(@background, .5);
+@define-color bg-hover alpha(@background, .8);
+@define-color mycolor @color12;
 @define-color border-color alpha(@mycolor, 0.15);
 
 @keyframes fadeIn {
@@ -13,17 +13,21 @@
     margin-left: 50;
     margin-right: 50;
   }
+
   100% {
     padding: 0;
     margin: 0;
   }
 }
+
 * {
   outline: none;
 }
+
 .control-center .notification-row {
   background-color: unset;
 }
+
 .control-center .notification-row .notification-background .notification,
 .control-center
   .notification-row
@@ -39,6 +43,7 @@
   .notification
   .notification-content {
 }
+
 .notification {
   background: alpha(@mycolor, 0.5);
 }
@@ -48,6 +53,7 @@
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
   background: alpha(@mycolor, 0.3);
 }
+
 .floating-notifications .notification {
   animation: fadeIn 0.5s ease-in-out;
 }
@@ -75,9 +81,11 @@
   .notification-content {
   border-radius: 0.818rem;
 }
+
 .notification widget:hover {
   background: alpha(@mycolor, 0.2);
 }
+
 .floating-notifications.background
   .notification-background
   .notification
@@ -204,9 +212,11 @@
   label {
   color: #680003;
 }
+
 .notification-content {
   padding: 5;
 }
+
 .control-center
   .notification-row
   .notification-background
@@ -300,6 +310,7 @@
   border: none;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.65);
 }
+
 .widget-title {
   padding: unset;
   margin: unset;
@@ -341,6 +352,7 @@
 
 .widget-mpris {
 }
+
 .widget-mpris .widget-mpris-player {
   padding: 16px;
   margin: 16px 20px;
@@ -348,6 +360,7 @@
   border-radius: 12px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.65);
 }
+
 .widget-mpris .widget-mpris-player button:hover {
   all: unset;
   background: @bg-hover;
@@ -358,6 +371,7 @@
   margin: 5px;
   transition: all 0.5s ease;
 }
+
 .widget-mpris .widget-mpris-player button {
   color: @text;
   text-shadow: none;
@@ -367,10 +381,12 @@
   margin: 5px;
   transition: all 0.5s ease;
 }
+
 .widget-mpris .widget-mpris-player button:not(.selected) {
   background: transparent;
   border: 2px solid transparent;
 }
+
 .widget-mpris .widget-mpris-player button:hover {
   border: 2px solid transparent;
 }
@@ -392,6 +408,7 @@
 .widget-mpris .widget-mpris-player > box > button:hover {
   background-color: @mpris-button-hover;
 }
+
 .widget-buttons-grid {
   font-family: "CodeNewRoman Nerd Font Propo";
   padding-left: 8px;
@@ -407,11 +424,13 @@
   color: @color7;
   transition: all 0.7s ease;
 }
+
 .widget-buttons-grid > flowbox > flowboxchild > button:hover label {
   font-size: 20px;
   color: @text;
   transition: all 0.7s ease;
 }
+
 .widget-buttons-grid > flowbox > flowboxchild > button {
   background: transparent;
   border-radius: 12px;
@@ -419,6 +438,7 @@
   box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.02);
   transition: all 0.5s ease;
 }
+
 .widget-buttons-grid > flowbox > flowboxchild > button:hover {
   background: @color4;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
@@ -428,6 +448,7 @@
 .widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked {
   background: @mycolor;
 }
+
 .widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked label {
   color: @background;
 }
@@ -454,6 +475,7 @@ trough highlight {
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
   transition: all 0.7s ease;
 }
+
 trough highlight:hover {
   padding: 5px;
   background: @mycolor;
@@ -465,6 +487,7 @@ trough highlight:hover {
 trough slider {
   background: transparent;
 }
+
 trough slider:hover {
   background: transparent;
 }
@@ -475,6 +498,7 @@ trough slider:hover {
   margin: 8px;
   border-radius: 12px;
 }
+
 .widget-backlight {
   background-color: transparent;
   padding: 8px;

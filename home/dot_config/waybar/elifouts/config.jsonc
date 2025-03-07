@@ -1,0 +1,177 @@
+{
+  "layer": "top",
+  "position": "top",
+  "reload_style_on_change": true,
+  "modules-left": ["hyprland/workspaces", "sway/workspaces", "sway/mode"],
+  "modules-center": ["sway/window"],
+  "modules-right": [
+    "group/expand",
+    "tray",
+    "bluetooth",
+    "network",
+    "battery",
+    "custom/pacman",
+    "clock",
+    "custom/notification",
+  ],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "active": "",
+      "default": "",
+      "empty": "",
+    },
+    "persistent-workspaces": {
+      "*": [1, 2, 3, 4, 5],
+    },
+  },
+  "sway/workspaces": {
+    "format": "{icon} {windows}",
+    "format-icons": {
+      "focused": "",
+      "default": "",
+      "empty": "",
+    },
+    "window-rewrite-default": "{name}",
+    "format-window-separator": " | ",
+    "persistent-workspaces": {
+      "1": ["DP-1"],
+      "2": ["DP-2"],
+      "3": ["DP-1"],
+      "4": ["DP-3"],
+      "5": ["HDMI-A-1"],
+      "6": ["DP-2"],
+      "7": ["DP-3"],
+      "8": ["HDMI-A-1"],
+    },
+  },
+  // "sway/mode": {
+  //   "format": " {}",
+  //   "max-length": 50,
+  // },
+  "sway/window": {
+    "icon": true,
+    // "icon-size": 16,
+    // "hide-empty-text": true,
+    "all-outputs": true,
+    "offscreen-css": true,
+    // "offscreen-css-text": "(inactive)",
+    "rewrite": {
+      "(.*) - Brave": " $1",
+    },
+  },
+  "custom/notification": {
+    "tooltip": false,
+    "format": "",
+    "on-click": "swaync-client -t -sw",
+    "escape": true,
+  },
+  // "clock": {
+  //   "format": "{:%I:%M:%S %p} ",
+  //   "interval": 1,
+  //   "tooltip-format": "<tt>{calendar}</tt>",
+  //   "calendar": {
+  //     "format": {
+  //       "today": "<span color='#fAfBfC'><b>{}</b></span>",
+  //     },
+  //   },
+  //   "actions": {
+  //     "on-click-right": "shift_down",
+  //     "on-click": "shift_up",
+  //   },
+  // },
+  "network": {
+    "format-alt": "<span foreground='#99ffdd'>  {bandwidthDownBytes}</span>  <span foreground='#ffcc66'>  {bandwidthUpBytes}</span>",
+    "format-wifi": "",
+    // "format-ethernet": "",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "",
+    "tooltip-format-disconnected": "Error",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname} 🖧 ",
+    // TODO: use rofi network script instead for right click
+    // "on-click-right": "wezterm start nmtui",
+  },
+  "bluetooth": {
+    "format-on": "󰂯",
+    "format-off": "BT-off",
+    "format-disabled": "󰂲",
+    "format-connected-battery": "{device_battery_percentage}% 󰂯",
+    "format-alt": "{device_alias} 󰂯",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
+    "on-click-right": "blueberry",
+  },
+  "battery": {
+    "interval": 30,
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 20,
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% 󰂄",
+    "format-plugged": "{capacity}% 󰂄 ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["󰁻", "󰁼", "󰁾", "󰂀", "󰂂", "󰁹"],
+  },
+  "custom/pacman": {
+    // TODO: don't display if no updates
+    "format": "󰅢 {}",
+    "interval": 30,
+    "exec": "checkupdates | wc -l",
+    "exec-if": "exit 0",
+    "on-click": "kitty sh -c 'yay -Syu; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
+    "signal": 8,
+    "tooltip": false,
+  },
+  "custom/expand": {
+    "format": "",
+    "tooltip": false,
+  },
+  "custom/endpoint": {
+    "format": "|",
+    "tooltip": false,
+  },
+  "group/expand": {
+    "orientation": "horizontal",
+    "drawer": {
+      "transition-duration": 600,
+      "transition-to-left": true,
+      "click-to-reveal": true,
+    },
+    "modules": [
+      "custom/expand",
+      "custom/colorpicker",
+      "cpu",
+      "memory",
+      "temperature",
+      "custom/endpoint",
+    ],
+  },
+  "custom/colorpicker": {
+    "format": "{}",
+    "return-type": "json",
+    "interval": "once",
+    "exec": "~/.config/waybar/scripts/colorpicker.sh -j",
+    "on-click": "~/.config/waybar/scripts/colorpicker.sh",
+    "signal": 1,
+  },
+  "cpu": {
+    "format": "󰻠",
+    "tooltip": true,
+  },
+  "memory": {
+    "format": "",
+  },
+  "temperature": {
+    "critical-threshold": 80,
+    "format": "",
+  },
+  "tray": {
+    "icon-size": 14,
+    "spacing": 10,
+  },
+}

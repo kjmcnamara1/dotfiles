@@ -1,0 +1,68 @@
+{#
+Wezterm with colors from wallust
+
+You can use this template by adding the following to wallust.toml:
+wezterm = { src = "wezterm.toml", dst = "~/.config/wezterm/colors/wallust.toml" }
+
+and then in wezterm.lua:
+config.color_scheme = "wallust"
+-#}
+[colors]
+foreground = "{{foreground}}"
+background = "{{background}}"
+cursor_fg = "{{background}}"
+cursor_bg = "{{foreground}}"
+cursor_border = "{{foreground}}"
+# selection_fg = "none"
+selection_bg = "{{color8 | blend(background)}}"
+scrollbar_thumb = "{{color0}}"
+split = "{{color0}}"
+ansi = [
+  "{{color0}}",
+  "{{color1}}",
+  "{{color2}}",
+  "{{color3}}",
+  "{{color4}}",
+  "{{color5}}",
+  "{{color6}}",
+  "{{color7}}",
+]
+brights = [
+  "{{color8}}",
+  "{{color1 | lighten(0.33)}}",
+  "{{color10}}",
+  "{{color11}}",
+  "{{color12}}",
+  "{{color13}}",
+  "{{color14}}",
+  "{{color15}}",
+]
+
+[colors.tab_bar]
+background = "{{background}}"
+
+[colors.tab_bar.active_tab]
+bg_color = "{{color0 | blend(background)}}"
+fg_color = "{{color6}}"
+intensity = "Bold"                          # Half | Normal | Bold
+underline = "None"                          # None | Single | Double
+italic = false
+strikethrough = false
+
+[colors.tab_bar.inactive_tab]
+bg_color = "{{background}}"
+fg_color = "{{foreground}}"
+intensity = "Half"
+
+[colors.tab_bar.inactive_tab_hover]
+bg_color = "{{background}}"
+fg_color = "{{color6}}"
+intensity = "Normal"
+
+[colors.tab_bar.new_tab]
+bg_color = "{{background}}"
+fg_color = "{{foreground}}"
+
+[colors.tab_bar.new_tab_hover]
+bg_color = "{{background}}"
+fg_color = "{{color6}}"

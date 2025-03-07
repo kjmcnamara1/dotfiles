@@ -73,7 +73,7 @@
         },
         {
           "label": "",
-          "command": "blueman-manager"
+          "command": "blueberry"
         },
         {
           "label": "󰤄",
@@ -85,20 +85,20 @@
           "command": "gnome-network-displays"
         },
         {
-          "label": "󰈙",
-          "command": "kitty bash -i -c 'Docs'"
+          "label": "",
+          "command": "wezterm -e btm"
         },
         {
           "label": "",
           "command": "kitty bash -i -c 'Settings'"
         },
         {
-          "label": "",
-          "command": "kitty bash -i -c 'tasks'"
+          "label": "󰍃",
+          "command": "~/.local/bin/logout"
         },
         {
           "label": "",
-          "command": "hyprlock"
+          "command": "~/.local/bin/lock"
         },
         {
           "label": "",
@@ -106,7 +106,7 @@
         },
         {
           "label": "",
-          "command": "shutdown now"
+          "command": "poweroff"
         }
       ]
     }

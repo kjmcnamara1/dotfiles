@@ -60,7 +60,7 @@ wezterm.on("user-var-changed", function(window, pane, name, value)
 end)
 
 -- Theme
-config.color_scheme = "nord" -- alt: kanagawa
+config.color_scheme = "wallust" -- alt: kanagawa
 -- config.color_scheme = "Catppuccin Frappe"
 config.default_cursor_style = "SteadyBlock"
 

@@ -1,5 +1,3 @@
-# vim: ft=hyprlang
-
 # ░█░█░█▀█░█▀▄░▀█▀░█▀█░█▀▄░█░░░█▀▀░█▀▀
 # ░▀▄▀░█▀█░█▀▄░░█░░█▀█░█▀▄░█░░░█▀▀░▀▀█
 # ░░▀░░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀▀▀░▀▀▀
@@ -13,32 +11,47 @@ $wez = [float;tile] wezterm start --always-new-process
 
 # Assign apps
 $alt_term = alacritty
-$term = $wez
+$term1 = ghostty
+$term2 = $wez
+$term = $term2
 $editor = code
-$file = $wez -e --class yazi yazi
-# $file = dolphin
-$browser = zen-browser
-$alt_browser = brave --profile-directory="Default"
-$menu = rofi
+$file1 = $wez --class=yazi -e yazi
+$file2 = thunar
+$browser = brave --ozone-platform=wayland --profile-directory="Default"
+$alt_browser = zen-browser
+$menu = ulauncher
+# $menu = ~/.config/rofi/scripts/launcher_t2
 # $logout = wleave || wlogout -s -b 6 -c 0 -r 0 -m 0 --protocol layer-shell # exit
-$logout = wlogout -b 5 -r 0 -c 0 -s --protocol layer-shell -l ~/.config/wlogout/cosmic.layout -C ~/.config/wlogout/cosmic.style.css
+# $powermenu = wlogout -b 5 -r 0 -c 0 -s --protocol layer-shell -l ~/.config/wlogout/cosmic.layout -C ~/.config/wlogout/cosmic.style.css
+$powermenu = ~/.config/rofi/scripts/powermenu_t2
 $lock = hyprlock # swaylock
 
+# Environment for xdg-desktop-portal-hyprland
+exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP # DISPLAY
+exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec-once = waypaper --restore # will implicitly run hyprpaper
+exec-once = waybar # env GTK_DEBUG=interactive waybar
+exec-once = swaync # env GTK_DEBUG=interactive swaync
+exec-once = swaync-client -df
+exec-once = pypr
+exec-once = hypridle
+
+
+source = colors/wallust.conf
 
 # ░█▄█░█▀█░█▀█░▀█▀░▀█▀░█▀█░█▀▄░█▀▀
 # ░█░█░█░█░█░█░░█░░░█░░█░█░█▀▄░▀▀█
 # ░▀░▀░▀▀▀░▀░▀░▀▀▀░░▀░░▀▀▀░▀░▀░▀▀▀
 
 monitor = ,preferred,auto,auto
-workspace = special:scratch, on-created-empty: $term
 
 {{ if eq .chezmoi.hostname "muse" }}
-monitor = eDP-1, preferred, auto, 1.25
+# monitor = eDP-1, preferred, auto, 1.25
 {{ end }}
 
 {{ if eq .chezmoi.hostname "angel" }}
-monitor = desc:Dell Inc. DELL S3221QS CQQZ6N3, 2560x1440, auto, 1
-monitor = desc:Dell Inc. DELL S3221QS CQKY6N3, 2560x1440, auto, 1
+# monitor = desc:Dell Inc. DELL S3221QS CQQZ6N3, 2560x1440, auto, 1
+# monitor = desc:Dell Inc. DELL S3221QS CQKY6N3, 2560x1440, auto, 1
 {{ end }}
 
 
@@ -49,15 +62,15 @@ monitor = desc:Dell Inc. DELL S3221QS CQKY6N3, 2560x1440, auto, 1
 # ░▀░▀░▀░░░▀░░░▀▀▀░▀░▀░▀░▀░▀░▀░▀░▀░▀▀▀░▀▀▀
 
 general {
-  border_size = 0
+  border_size = 3
   gaps_in = 10
   gaps_out = 15
   # no_border_on_floating = true
-  col.active_border = rgba(81a1c1ff) rgba(c8d0e0ff) 45deg
-  col.inactive_border = rgba(ffffff88)
-  layout = dwindle
+  col.active_border = rgb($color4) rgb($color15) rgb($color4) 45deg
+  col.inactive_border = rgb($color0)
   no_focus_fallback = true
   resize_on_border = true
+  layout = dwindle
 
   snap {
     enabled = true
@@ -95,17 +108,33 @@ decoration {
     ignore_opacity = true
     # xray = true
     popups = true
-    blurls = waybar
+    # blurls = waybar
   }
 
   shadow {
     enabled = true
     range = 30
     render_power = 3
-    color = 0xcc000000
-    color_inactive = 0x66000000
+    color = rgba($color12,0.8)
+    color_inactive = rgba($background,0.8)
     # offset = 3 3
   }
+}
+
+animations {
+    enabled = true
+    bezier = wind, 0.05, 0.9, 0.1, 1.05
+    bezier = winIn, 0.1, 1.1, 0.1, 1.1
+    bezier = winOut, 0.3, -0.3, 0, 1
+    bezier = liner, 1, 1, 1, 1
+    animation = windows, 1, 4, wind, slide
+    animation = windowsIn, 1, 4, winIn, slide
+    animation = windowsOut, 1, 3, winOut, slide
+    animation = windowsMove, 1, 3, wind, slide
+    animation = border, 1, 1, liner
+    animation = borderangle, 1, 30, liner, loop
+    animation = fade, 1, 5, default
+    animation = workspaces, 1, 3, wind, slidevert
 }
 
 group {
@@ -114,10 +143,10 @@ group {
   col.border_active = rgba(ff000000)
 
   groupbar {
-    text_color = 0xc8d0e0ff
-    col.active = rgba(996690ff)
+    text_color = rgb($foreground)
+    col.active = rgba($color5,0.8)
     # col.active = rgba(405d7eff)
-    col.inactive = rgba(2e3440cc)
+    col.inactive = rgba($background,0.8)
   }
 }
 
@@ -153,6 +182,13 @@ cursor {
 debug {
   # overlay = true
 }
+
+layerrule = blur, waybar
+layerrule = ignorealpha 0.5, waybar
+layerrule = blur, swaync-control-center
+layerrule = ignorealpha 0.5, swaync-control-center
+layerrule = blur, swaync-notification-window
+layerrule = ignorealpha 0.5, swaync-notification-window
 
 
 # ░█▀▀░█▀█░█░█
@@ -207,14 +243,19 @@ env = ELECTRON_OZONE_PLATFORM_HINT, wayland # tell electron apps (vs code) to us
 # source = conf/monitors.conf
 source = conf/input.conf
 source = conf/keybindings.conf
-source = conf/animations.conf
+# source = conf/animations.conf
 source = conf/windowrules.conf
-source = conf/autostart.conf
+# source = conf/autostart.conf
 source = conf/cliphist.conf
 source = conf/cursor.conf
 # source = conf/plugins.conf
 # source = themes/kjm.conf
-source = conf/muse.conf
+# source = conf/muse.conf
 
+source = plugins/hy3.conf
+
+# Generated by nwg-displays
+source = monitors.conf
+source = workspaces.conf
 
 # exec = notify-send "Hyprland reloaded"

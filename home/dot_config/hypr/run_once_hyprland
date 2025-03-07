@@ -7,29 +7,26 @@ echo "--------------------------------------------------------------------------
 
 packages=(
   hyprland
-  hyprlock
   hyprpaper
+  hyprlock
+  hypridle
+  hyprcursor
+  hyprpicker
+  cliphist
   xdg-desktop-portal-hyprland
   polkit-gnome
-  qt5-wayland
-  qt6-wayland
-  hyprcursor
+  blueberry-wayland
+  brightnessctl
+  # qt5-wayland
+  # qt6-wayland
   nordzy-hyprcursors
   nordzy-cursors
-  udiskie
-  hyprpaper
-  waypaper
-  hyprpicker
-  hyprlock
-  dunst
-  rofi-wayland
-  cliphist
-  waybar
-  wlogout
-  python-pywal
-  nm-connection-editor
-  network-manager-applet
-  blueberry-wayland
+  pyprland
+  # udiskie
+  # dunst
+  # wlogout
+  # nm-connection-editor
+  # network-manager-applet
 )
 
 yay -S --noconfirm "${packages[@]}"

@@ -5,4 +5,13 @@ echo "--------------------------------------------------------------------------
 echo "*** Sway"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm sway swaybg cliphist
+packages=(
+  sway
+  swaybg
+  cliphist
+  xdg-desktop-portal-wlr
+  polkit-gnome
+  blueberry-wayland
+)
+
+yay -S --noconfirm "${packages[@]}"
