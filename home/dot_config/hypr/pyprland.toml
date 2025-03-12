@@ -7,8 +7,8 @@
     #     term = "alacritty"
 
 [scratchpads.dropterm]
-  animation = "fromTop"
   command   = "[term] --class=dropterm"
+  animation = "fromTop"
   class     = "dropterm"
   position  = "17% 6%"
   size      = "65% 60%"
@@ -22,8 +22,9 @@
   #   offset    = "200%"
 
 [scratchpads.taskbar]
+  command = "[term] --class=taskbar -e btm -b"
+  # command   = "missioncenter"
   animation = "fromLeft"
-  command   = "[term] --class=taskbar -e btm -b"
   class     = "taskbar"
   size      = "30% 80%"
   offset    = "200%"

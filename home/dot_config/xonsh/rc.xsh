@@ -85,6 +85,6 @@ aliases['dc'] = 'docker compose' # Docker compose
 def _y(args):
     with tempfile.NamedTemporaryFile(prefix="yazi-cwd.") as tmp:
         yazi @(args) --cwd-file=@(tmp.name)
-        cwd = tmp.read().decode("utf-8")
+        cwd = tmp.read().decode("utf-8").strip()
         if cwd != '' and cwd != $PWD:
             cd @(cwd)

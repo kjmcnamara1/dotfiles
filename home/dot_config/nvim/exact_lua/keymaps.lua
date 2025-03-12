@@ -519,7 +519,7 @@ return {
   {
     "mikavilpas/yazi.nvim",
     keys = {
-      { "<leader>fy", "<cmd>Yazi<cr>",        desc = "Open yazi at the current file", },
+      { "<leader>fy", "<cmd>Yazi<cr>",        desc = "Open yazi at the current file",         mode = { 'n', 'v' }, },
       { "<leader>fY", "<cmd>Yazi cwd<cr>",    desc = "Open yazi in nvim's working directory", },
       { "<leader>y",  "<cmd>Yazi toggle<cr>", desc = "Resume the last yazi session", },
     },

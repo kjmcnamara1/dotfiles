@@ -1,9 +1,14 @@
+source = colors/wallust.conf
+
 # ░█░█░█▀█░█▀▄░▀█▀░█▀█░█▀▄░█░░░█▀▀░█▀▀
 # ░▀▄▀░█▀█░█▀▄░░█░░█▀█░█▀▄░█░░░█▀▀░▀▀█
 # ░░▀░░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀▀▀░▀▀▀
 
 # Main modifier
 $mainMod = SUPER # super / meta / windows key
+
+# Scripts directory
+$scriptsDir = ~/.config/hypr/scripts
 
 # HACK: wezterm fix so I don't have to use wezterm-git
 # https://github.com/wez/wezterm/issues/5103#issuecomment-2078555510
@@ -26,18 +31,66 @@ $menu = ulauncher
 $powermenu = ~/.config/rofi/scripts/powermenu_t2
 $lock = hyprlock # swaylock
 
-# Environment for xdg-desktop-portal-hyprland
-exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP # DISPLAY
-exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec-once = waypaper --restore # will implicitly run hyprpaper
+
+# ░█▀▀░█▀█░█░█
+# ░█▀▀░█░█░▀▄▀
+# ░▀▀▀░▀░▀░░▀░
+
+env = EDITOR, nvim
+
+# XDG Desktop Portal
+env = XDG_CURRENT_DESKTOP, Hyprland
+env = XDG_SESSION_TYPE, wayland
+env = XDG_SESSION_DESKTOP, Hyprland
+
+# Graphics card to use for hyprland
+env = AQ_DRM_DEVICES,/dev/dri/card1
+
+# QT
+env = QT_QPA_PLATFORM,wayland;xcb
+env = QT_QPA_PLATFORMTHEME, qt6ct
+# env = QT_QPA_PLATFORMTHEME, qt5ct
+env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
+env = QT_AUTO_SCREEN_SCALE_FACTOR, 1
+# env = QT_STYLE_OVERRIDE, kvantum
+
+# GTK
+# env = GTK_THEME, Orchis Nord:dark
+# env = GTK_THEME, Nordic
+# env = GTK_THEME, Adwaita:dark
+
+# GDK
+# env = GDK_SCALE, 1.5
+
+# Toolkit Backend
+env = GDK_BACKEND,wayland,x11,*
+env = CLUTTER_BACKEND,wayland
+
+# Mozilla
+# env = MOZ_ENABLE_WAYLAND, 0
+
+# Disable appimage launcher by default
+env = APPIMAGELAUNCHER_DISABLE,1
+
+# Ozone
+env = OZONE_PLATFORM, wayland
+env = ELECTRON_OZONE_PLATFORM_HINT, wayland # tell electron apps (vs code) to use wayland
+
+
+# ░█▀█░█░█░▀█▀░█▀█░█▀▀░▀█▀░█▀█░█▀▄░▀█▀
+# ░█▀█░█░█░░█░░█░█░▀▀█░░█░░█▀█░█▀▄░░█░
+# ░▀░▀░▀▀▀░░▀░░▀▀▀░▀▀▀░░▀░░▀░▀░▀░▀░░▀░
+
+exec-once = waypaper --restore --no-post-command # will implicitly run hyprpaper
 exec-once = waybar # env GTK_DEBUG=interactive waybar
 exec-once = swaync # env GTK_DEBUG=interactive swaync
 exec-once = swaync-client -df
 exec-once = pypr
 exec-once = hypridle
+# Environment for xdg-desktop-portal-hyprland
+exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP # DISPLAY
+exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-
-source = colors/wallust.conf
 
 # ░█▄█░█▀█░█▀█░▀█▀░▀█▀░█▀█░█▀▄░█▀▀
 # ░█░█░█░█░█░█░░█░░░█░░█░█░█▀▄░▀▀█
@@ -45,16 +98,37 @@ source = colors/wallust.conf
 
 monitor = ,preferred,auto,auto
 
-{{ if eq .chezmoi.hostname "muse" }}
-# monitor = eDP-1, preferred, auto, 1.25
-{{ end }}
 
-{{ if eq .chezmoi.hostname "angel" }}
-# monitor = desc:Dell Inc. DELL S3221QS CQQZ6N3, 2560x1440, auto, 1
-# monitor = desc:Dell Inc. DELL S3221QS CQKY6N3, 2560x1440, auto, 1
-{{ end }}
+# ░▀█▀░█▀█░█▀█░█░█░▀█▀
+# ░░█░░█░█░█▀▀░█░█░░█░
+# ░▀▀▀░▀░▀░▀░░░▀▀▀░░▀░
+
+input {
+  kb_layout = us
+  numlock_by_default = true
+  mouse_refocus = false
+
+  follow_mouse = 1
+  touchpad {
+    natural_scroll = false
+  }
+  sensitivity = 0 # Pointer speed: -1.0 - 1.0, 0 means no modification.
+  force_no_accel = 1
+}
+
+gestures {
+  workspace_swipe = true
+}
 
 
+# ░█▀▀░█░█░█▀▄░█▀▀░█▀█░█▀▄
+# ░█░░░█░█░█▀▄░▀▀█░█░█░█▀▄
+# ░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░▀
+
+env = XCURSOR_THEME, Nordzy-cursors
+env = XCURSOR_SIZE, 24
+exec-once = gsettings set org.gnome.desktop.interface cursor-theme 'Nordzy-cursors'
+exec-once = hyprctl setcursor Nordzy-cursors 24
 
 
 # ░█▀█░█▀█░█▀█░█▀▀░█▀█░█▀▄░█▀█░█▀█░█▀▀░█▀▀
@@ -191,49 +265,60 @@ layerrule = blur, swaync-notification-window
 layerrule = ignorealpha 0.5, swaync-notification-window
 
 
-# ░█▀▀░█▀█░█░█
-# ░█▀▀░█░█░▀▄▀
-# ░▀▀▀░▀░▀░░▀░
+# ░█░█░▀█▀░█▀█░█▀▄░█▀█░█░█░░░█▀▄░█░█░█░░░█▀▀░█▀▀
+# ░█▄█░░█░░█░█░█░█░█░█░█▄█░░░█▀▄░█░█░█░░░█▀▀░▀▀█
+# ░▀░▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░░░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀
 
-env = EDITOR, nvim
+# See https://wiki.hyprland.org/Configuring/Window-Rules/
 
-# XDG Desktop Portal
-env = XDG_CURRENT_DESKTOP, Hyprland
-env = XDG_SESSION_TYPE, wayland
-env = XDG_SESSION_DESKTOP, Hyprland
+# System Mission Center
+windowrulev2 = float, class:(io.missioncenter.MissionCenter)
+windowrulev2 = pin, class:(io.missioncenter.MissionCenter)
+windowrulev2 = center, class:(io.missioncenter.MissionCenter)
+windowrulev2 = size 900 600, class:(io.missioncenter.MissionCenter)
 
-# Graphics card to use for hyprland
-env = AQ_DRM_DEVICES,/dev/dri/card1
+# Emoji Picker Smile
+windowrulev2 = float,class:(it.mijorus.smile)
+windowrulev2 = pin, class:(it.mijorus.smile)
+windowrulev2 = move 100%-w-40 90,class:(it.mijorus.smile)
 
-# QT
-env = QT_QPA_PLATFORM,wayland;xcb
-env = QT_QPA_PLATFORMTHEME, qt6ct
-# env = QT_QPA_PLATFORMTHEME, qt5ct
-env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
-env = QT_AUTO_SCREEN_SCALE_FACTOR, 1
-# env = QT_STYLE_OVERRIDE, kvantum
+# Hyprland Share Picker
+windowrulev2 = float, class:(hyprland-share-picker)
+windowrulev2 = pin, class:(hyprland-share-picker)
+windowrulev2 = center, title:class:(hyprland-share-picker)
+windowrulev2 = size 600 400,class:(hyprland-share-picker)
 
-# GTK
-# env = GTK_THEME, Orchis Nord:dark
-# env = GTK_THEME, Nordic
-# env = GTK_THEME, Adwaita:dark
+# Browser Picture in Picture
+$pip_x_pad = $(hyprctl getoption general:gaps_out -j | jq -r '.custom | split(" ")[1] | tonumber * 2')
+windowrulev2 = float, title:^(Picture-in-Picture)$
+windowrulev2 = pin, title:^(Picture-in-Picture)$
+windowrulev2 = size 20% 20%, title:^(Picture-in-Picture)$
+windowrulev2 = move onscreen 100%-w-30 100%-w-30, title:^(Picture-in-Picture)$
+windowrulev2 = noinitialfocus, title:^(Picture-in-Picture)$
 
-# GDK
-# env = GDK_SCALE, 1.5
+# NetworkManager Connection Editor
+windowrulev2 = float, class:(nm-connection-editor)
 
-# Toolkit Backend
-env = GDK_BACKEND,wayland,x11,*
-env = CLUTTER_BACKEND,wayland
+# Bluetooth Manager
+windowrulev2 = float, class:(blueberry.py)
+windowrulev2 = float, class:(Overskride)
 
-# Mozilla
-# env = MOZ_ENABLE_WAYLAND, 0
+# Audio controls
+windowrulev2 = float, class:(com.saivert.pwvucontrol)
 
-# Disable appimage launcher by default
-env = APPIMAGELAUNCHER_DISABLE,1
+# Waypaper
+windowrulev2 = float, class:(waypaper)
 
-# Ozone
-env = OZONE_PLATFORM, wayland
-env = ELECTRON_OZONE_PLATFORM_HINT, wayland # tell electron apps (vs code) to use wayland
+# Settings
+windowrulev2 = float, class:(nwg-look)
+windowrulev2 = float, class:(nwg-displays)
+
+# Ulauncher
+windowrulev2 = float, class:(ulauncher)
+windowrulev2 = noshadow, class:(ulauncher)
+windowrulev2 = noborder, class:(ulauncher)
+windowrulev2 = noblur, class:(ulauncher)
+windowrulev2 = noanim, class:(ulauncher)
 
 
 # ░▀█▀░█▀█░█▀▀░█░░░█░█░█▀▄░█▀▀
@@ -241,17 +326,17 @@ env = ELECTRON_OZONE_PLATFORM_HINT, wayland # tell electron apps (vs code) to us
 # ░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀░░▀▀▀
 
 # source = conf/monitors.conf
-source = conf/input.conf
+# source = conf/input.conf
 source = conf/keybindings.conf
 # source = conf/animations.conf
-source = conf/windowrules.conf
+# source = conf/windowrules.conf
 # source = conf/autostart.conf
-source = conf/cliphist.conf
-source = conf/cursor.conf
+# source = conf/cursor.conf
 # source = conf/plugins.conf
 # source = themes/kjm.conf
 # source = conf/muse.conf
 
+source = plugins/cliphist.conf
 source = plugins/hy3.conf
 
 # Generated by nwg-displays

@@ -23,8 +23,22 @@
   "com.github.rdnetto.ulauncher-sway": {
     "id": "com.github.rdnetto.ulauncher-sway",
     "url": "https://github.com/rdnetto/ulauncher-sway",
-    "updated_at": "2025-02-18T18:05:01.486818",
+    "updated_at": "2025-03-02T08:10:18.350692",
     "last_commit": "9fc141f01959fb5086518699229af97d920ca865",
     "last_commit_time": "2021-07-22T12:29:13"
+  },
+  "com.github.iboyperson.ulauncher-system": {
+    "id": "com.github.iboyperson.ulauncher-system",
+    "url": "https://github.com/iboyperson/ulauncher-system",
+    "updated_at": "2025-03-02T08:12:33.594533",
+    "last_commit": "7dedd992709fa2297735cddf852404144d4da47c",
+    "last_commit_time": "2023-11-14T16:53:20"
+  },
+  "com.github.nastuzzisamy.ulauncher-youtube-search": {
+    "id": "com.github.nastuzzisamy.ulauncher-youtube-search",
+    "url": "https://github.com/NastuzziSamy/ulauncher-youtube-search",
+    "updated_at": "2025-03-02T08:16:25.914766",
+    "last_commit": "fe855811358b2f15ec6ed69ca18e20639874fa28",
+    "last_commit_time": "2021-03-27T11:29:18"
   }
 }

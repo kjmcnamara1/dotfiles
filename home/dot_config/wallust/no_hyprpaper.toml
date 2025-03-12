@@ -43,23 +43,20 @@ check_contrast = true
 #alpha = 100
 
 [templates]
-  # NOTE: prefer '' over "" for paths, avoids escaping.
-  pywal = { src = 'pywal/', dst = '~/.cache/wal/', pywal = true }
+# NOTE: prefer '' over "" for paths, avoids escaping.
+pywal = { src = 'pywal/', dst = '~/.cache/wal/', pywal = true }
 
-  colors.src = 'colors'
-  colors.dst = '~/.cache/wallust/colors'
+colors.src = 'colors'
+colors.dst = '~/.cache/wallust/colors'
 
-  wezterm.src = 'wezterm.toml'
-  wezterm.dst = '~/.config/wezterm/colors/wallust.toml'
+wezterm.src = 'wezterm.toml'
+wezterm.dst = '~/.config/wezterm/colors/wallust.toml'
 
-  waybar.src = 'waybar.css'
-  waybar.dst = '~/.config/waybar/colors/wallust.css'
+waybar.src = 'waybar.css'
+waybar.dst = '~/.config/waybar/colors/wallust.css'
 
-  swaync.src = 'swaync.css'
-  swaync.dst = '~/.config/swaync/colors/wallust.css'
+swaync.src = 'swaync.css'
+swaync.dst = '~/.config/swaync/colors/wallust.css'
 
-  hyprland.src = 'hyprland.conf'
-  hyprland.dst = '~/.config/hypr/colors/wallust.conf'
-
-  hyprpaper.src = 'hyprpaper.conf'
-  hyprpaper.dst = '~/.config/hypr/hyprpaper.conf'
+hyprland.src = 'hyprland.conf'
+hyprland.dst = '~/.config/hypr/colors/wallust.conf'

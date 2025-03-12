@@ -37,6 +37,7 @@
       "github": "",
       "title<.*youtube.*>": "",
       "title<.*gitlab.*>": "",
+      "class<taskbar>": "",
       "brave-browser": "",
       "firefox": "",
       "yazi|thunar": "",

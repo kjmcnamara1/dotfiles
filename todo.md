@@ -1,11 +1,17 @@
 # finish waybar config
 
-1. tweak window title
-2. fix wallust/nord colors
+- [ ] tweak window title
+- [ ] fix wallust/nord colors
+- [ ] pacman status widget
+
+# wallpaper
+
+- [x] waypaper changes wallpaper without running wallust
+- [x] on start hyprland: only load last waypaper wallpaper. don't run wallust
 
 # swaync
 
-fix wallust/nord colors
+- [x] fix wallust/nord colors
 
 # bottom
 

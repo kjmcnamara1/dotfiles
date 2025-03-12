@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+floating=$(hyprctl activewindow -j | jq -r .floating)
+layout=$(hyprctl getoption general:layout -j | jq -r .str)
+
+if [[ $floating == "true" ]]; then
+  dispatcher="moveactive"
+  args=("$2" "$3")
+else
+  dispatcher="movewindow"
+  args=("$1")
+  [[ $layout == "hy3" ]] && dispatcher="hy3:$dispatcher"
+fi
+
+hyprctl dispatch "$dispatcher" "${args[@]}"
