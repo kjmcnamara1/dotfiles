@@ -25,9 +25,6 @@ packages=(
   git-delta
   figlet # write big font in terminal
   figlet-fonts-extra
-  vlc # video player
-  brave-bin
-  proton-pass-bin
   nerd-fonts
   ## ttf-jetbrains-mono-nerd
   ## ttf-nerd-fonts-symbols
@@ -40,6 +37,12 @@ yay -S --noconfirm "${packages[@]}"
 {{ if eq .chezmoi.hostname "angel" }}
 sudo systemctl mask tpm2.target
 sudo timedatectl set-local-rtc 1
+
+{{ end -}}
+
+{{ if ne .chezmoi.hostname "snow" }}
+## gui applications
+yay -S --noconfirm vlc brave-bin proton-pass-bin
 {{ end -}}
 
 {{- else if eq .chezmoi.os "windows" -}}
