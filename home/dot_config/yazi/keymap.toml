@@ -45,5 +45,5 @@
 
 [[manager.prepend_keymap]]
   on   = "!"
-  run  = 'shell "$SHELL" --block'
+  run  = 'shell "env DISABLE_BACK2DIR=1 $SHELL" --block'
   desc = "Open shell here"
