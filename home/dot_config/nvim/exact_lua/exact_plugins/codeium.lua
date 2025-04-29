@@ -3,6 +3,7 @@ return {
   {
     "Exafunction/codeium.nvim",
     enabled = not vim.g.vscode,
+    lazy = false, -- HACK: fix autocmd error
     cmd = "Codeium",
     event = "InsertEnter",
     build = ":Codeium Auth",
