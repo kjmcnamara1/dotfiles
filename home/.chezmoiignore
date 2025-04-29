@@ -49,6 +49,7 @@ Proton
 !.config/wezterm
 !.config/wofi
 !.config/rofi
+!.config/Ryujinx
 {{- end }}
 
 {{- if eq .chezmoi.hostname "wings" }}
