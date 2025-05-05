@@ -6,7 +6,7 @@ echo "--------------------------------------------------------------------------
 echo "*** Wezterm"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm wezterm
+yay -S --noconfirm wezterm-git
 {{- else if eq .chezmoi.os "windows" -}}
 scoop install wezterm
 reg import "C:\Users\kjmcn\scoop\apps\wezterm\current\install-context.reg"

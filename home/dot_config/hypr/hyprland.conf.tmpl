@@ -12,7 +12,10 @@ $scriptsDir = ~/.config/hypr/scripts
 
 # HACK: wezterm fix so I don't have to use wezterm-git
 # https://github.com/wez/wezterm/issues/5103#issuecomment-2078555510
-$wez = [float;tile] wezterm start --always-new-process
+# $wez = [float;tile] wezterm start --always-new-process
+
+# Just use wezterm-git
+$wez = wezterm start
 
 # Assign apps
 $alt_term = alacritty

@@ -65,7 +65,7 @@ config.color_scheme = "wallust" -- alt: kanagawa
 config.default_cursor_style = "SteadyBlock"
 
 -- Window Settings
-config.window_decorations = is_windows() and "TITLE|RESIZE" or "RESIZE"
+config.window_decorations = is_windows() and "TITLE|RESIZE" or "NONE" -- HACK: use NONE to hide titlebar for hyprland
 config.window_close_confirmation = "NeverPrompt"
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
 config.inactive_pane_hsb = { saturation = 0.9, brightness = 0.8 }
