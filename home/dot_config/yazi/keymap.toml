@@ -1,49 +1,49 @@
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
   on   = ["g", "t"]
   run  = "cd ~/.local/share/Trash"
   desc = "Go Trash"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
   on   = ["g", "z"]
   run  = "cd ~/.local/share/chezmoi"
   desc = "Go Chezmoi"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
   on   = ["g", "r"]
   run  = "cd /"
   desc = "Go Root"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
   on   = ["g", "w"]
   run  = "cd /mnt/Windows"
   desc = "Go Windows"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
   on   = ["g", "n"]
   run  = "cd /mnt/NAS"
   desc = "Go NAS"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
   on   = ["E"]
   run  = "plugin eza-preview"
   desc = "Toggle tree/list dir preview"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
   on   = ["C"]
   run  = "plugin ouch --args=zip"
   desc = "Compress with ouch"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
   on   = ["c", "m"]
   run  = "plugin chmod"
   desc = "Chmod on selected files"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
   on   = "F"
   run  = "plugin smart-filter"
   desc = "Smart filter"
 
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
   on   = "!"
   run  = 'shell "env DISABLE_BACK2DIR=1 $SHELL" --block'
   desc = "Open shell here"
