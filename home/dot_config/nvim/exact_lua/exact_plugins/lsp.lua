@@ -101,8 +101,7 @@ return {
 
       local servers = opts.servers
       local has_mason, mlsp = pcall(require, "mason-lspconfig")
-      local all_mslp_servers = has_mason and
-          vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package) or {}
+      local all_mslp_servers = has_mason and mlsp.get_mappings().lspconfig_to_package or {}
 
       --- Function to set up each LSP Server
       ---@param server string
