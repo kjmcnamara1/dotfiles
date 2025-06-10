@@ -110,6 +110,9 @@ format = """$shell$all"""
   style  = "blue"
   format = '[(\($symbol$virtualenv\) )]($style)'
 
+[nodejs]
+  format = ' [$symbol($version)]($style)'
+
 [os]
   disabled = false
 
