@@ -96,3 +96,28 @@ Proton
 !.config/yazi
 wallpapers
 {{- end }}
+
+{{- if eq .chezmoi.hostname "archcraft" }}
+Proton
+.face.icon
+.local
+.ipython
+.chezmoiscripts/pipewire
+.chezmoiscripts/printer
+.chezmoiscripts/sddm
+.config/*
+!.config/bat
+!.config/fastfetch
+!.config/fish
+!.config/gh
+!.config/helix
+!.config/lazygit
+!.config/nvim
+!.config/starship
+!.config/starship.toml
+!.config/wezterm
+!.config/yay
+!.config/yazi
+wallpapers
+.zshrc
+{{- end }}
