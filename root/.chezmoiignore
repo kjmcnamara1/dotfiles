@@ -1,4 +1,5 @@
-# var/spool/cron/kjm
+# vim: ft=gitignore.chezmoitmpl
+var/spool/cron/kjm
 {{- if ne .chezmoi.hostname "muse" }}
 etc/interception/
 {{- end }}
