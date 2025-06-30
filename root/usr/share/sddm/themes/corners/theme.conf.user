@@ -1,4 +1,5 @@
 [General]
+AllowBadUsernames=true
 BgSource="backgrounds/mountain-valley-art.png"
 FontFamily="Fira Sans"
 FontSize=24
