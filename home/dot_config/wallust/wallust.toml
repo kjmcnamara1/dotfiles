@@ -60,6 +60,3 @@ check_contrast = true
 
   hyprland.src = 'hyprland.conf'
   hyprland.dst = '~/.config/hypr/colors/wallust.conf'
-
-  hyprpaper.src = 'hyprpaper.conf'
-  hyprpaper.dst = '~/.config/hypr/hyprpaper.conf'
