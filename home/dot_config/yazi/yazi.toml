@@ -3,6 +3,9 @@
   show_hidden = true
   linemode    = "size"
 
+[tasks]
+  image_bound = [0, 0]
+
 [opener]
   extract = [
     { run = 'ouch d -y "%*"', desc = "Extract here with ouch", for = "windows" },
