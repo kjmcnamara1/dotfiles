@@ -1,42 +1,42 @@
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
 rev = "a63550b"
-hash = "c2021386289a0cbb3e152a052f67c177"
+hash = "733c7340b1ca2d3ef274c427a0cf21b"
 
 [[plugin.deps]]
 use = "Reledia/glow"
 rev = "bd3eaa5"
-hash = "92b5c58159a51c567f82b618cee2b78"
+hash = "f8d302ba41ab9deb4133fe3d0a64b6c6"
 
 [[plugin.deps]]
 use = "AnirudhG07/nbpreview"
 rev = "7fb073f"
-hash = "a3e32d62ea3cc703e6bf677bdb18a544"
+hash = "c52246362f02c69cc8cf9c9929b567a1"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
 rev = "cc12f3f"
-hash = "b92e44ad5004f1b45e5c3d717a60ed24"
+hash = "4c0b8f7e27455f5ac19ee7e01434d771"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"
-rev = "bb941c4"
-hash = "956b02fe8213e7b92e21a941b9abe764"
+rev = "0742fff"
+hash = "8803b7801055d3d3a59c6f90ffb79a22"
 
 [[plugin.deps]]
 use = "AnirudhG07/rich-preview"
 rev = "843c3fa"
-hash = "b4040931f0d2f9670ddb4923e55cd881"
+hash = "56397401675a83833f14283d8de96abf"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
 rev = "b886025"
-hash = "1adc12c2b2b025411ab61eb8f0879574"
+hash = "780a6bc3271c895c85119937cf47149"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
 rev = "b886025"
-hash = "a9d553bd19a3cd7f4eab3abaac5d67ff"
+hash = "216a7e0260d83fe146f21ed8bae201fd"
 
 [flavor]
 deps = []
