@@ -67,6 +67,8 @@ Proton
 !.config/helix
 !.config/lazygit
 !.config/nvim
+!.config/starship
+!.config/starship.toml
 !.config/wezterm
 !.config/xonsh
 !.config/yazi
