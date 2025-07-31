@@ -8,6 +8,12 @@ echo "--------------------------------------------------------------------------
 
 yay -S --noconfirm yazi ffmpeg mediainfo 7zip jq poppler fd rg fzf zoxide imagemagick wl-clipboard glow
 {{- else if eq .chezmoi.os "windows" -}}
-scoop install yazi ffmpeg mediainfo 7zip jq poppler fd rg fzf zoxide imagemagick glow
+echo ""
+echo "--------------------------------------------------------------------------------"
+echo "*** Yazi (Terminal File Explorer)"
+echo "--------------------------------------------------------------------------------"
+
+scoop install yazi ffmpeg mediainfo 7zip jq poppler fd ripgrep fzf zoxide imagemagick glow
 {{ end }}
-ya pack -i
+ya pkg install
+ya pkg upgrade

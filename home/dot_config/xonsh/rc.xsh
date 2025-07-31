@@ -87,4 +87,4 @@ def _y(args):
         yazi @(args) --cwd-file=@(tmp.name)
         cwd = tmp.read().decode("utf-8").strip()
         if cwd != '' and cwd != $PWD:
-            cd @(cwd)
+            __zoxide_cd @(cwd)

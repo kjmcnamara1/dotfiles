@@ -15,8 +15,8 @@ hash = "c52246362f02c69cc8cf9c9929b567a1"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
-rev = "cc12f3f"
-hash = "4c0b8f7e27455f5ac19ee7e01434d771"
+rev = "f89605c"
+hash = "8450ddc10853919844b9d65ab8efe511"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"
@@ -30,13 +30,13 @@ hash = "56397401675a83833f14283d8de96abf"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "b886025"
+rev = "de53d90"
 hash = "780a6bc3271c895c85119937cf47149"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-filter"
-rev = "b886025"
-hash = "216a7e0260d83fe146f21ed8bae201fd"
+rev = "de53d90"
+hash = "311ae0f43071af72443a93e3f4e4612c"
 
 [flavor]
 deps = []
