@@ -1,6 +1,7 @@
 vim.filetype.add({
   extension = {
-    ipy = "python"
+    ipy = "python",
+    xsh = "xonsh",
   }
 })
 
@@ -37,6 +38,11 @@ return {
         },
       },
     },
+  },
+
+  {
+    "linkinpark342/xonsh-vim",
+    ft = "xonsh",
   },
 
 }
