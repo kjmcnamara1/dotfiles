@@ -4,13 +4,8 @@
   linemode    = "size"
 
 [tasks]
-  image_bound = [0, 0]
+  # image_bound = [0, 0]
   image_alloc = 1073741824 # = 1024*1024*1024 = 1024MB
-
-
-[preview]
-  max_width  = 1000
-  max_height = 1000
 
 [opener]
   extract = [
@@ -25,10 +20,6 @@
     { run = 'code -w %*', desc = "code (block)", block = true, for = "windows" },
   ]
 
-  # [[plugin.prepend_previewers]]
-  #   name = "*/"
-  #   run  = "eza-preview"
-
 [plugin]
   prepend_preloaders = [
     # Replace magick, image, video with mediainfo
@@ -38,6 +29,8 @@
     { mime = "application/postscript", run = "mediainfo" },
   ]
   prepend_previewers = [
+
+    # { name = "*/", run = "eza-preview" },
 
     { name = "*.csv", run = "rich-preview" },   # for csv files
     { name = "*.md", run = "rich-preview" },    # for markdown (.md) files

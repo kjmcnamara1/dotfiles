@@ -58,5 +58,10 @@ use = "yazi-rs/plugins:zoom"
 rev = "de53d90"
 hash = "6a802572270653c14379ab6acf800787"
 
+[[plugin.deps]]
+use = "ahkohd/eza-preview"
+rev = "b114b01"
+hash = "de4d8aa68ed73157c6359fc3d1510c14"
+
 [flavor]
 deps = []
