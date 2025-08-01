@@ -6,7 +6,7 @@ echo "--------------------------------------------------------------------------
 echo "*** Neovim"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm neovim nodejs npm chafa imagemagick go
+yay -S --noconfirm neovim nodejs npm chafa imagemagick go gzip
 {{- else if eq .chezmoi.os "windows" -}}
-scoop install neovim nodejs chafa imagemagick go
+scoop install neovim nodejs chafa imagemagick go gzip
 {{ end }}
