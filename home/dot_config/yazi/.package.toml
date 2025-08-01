@@ -34,9 +34,29 @@ rev = "de53d90"
 hash = "780a6bc3271c895c85119937cf47149"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:smart-filter"
+use = "yazi-rs/plugins:full-border"
 rev = "de53d90"
-hash = "311ae0f43071af72443a93e3f4e4612c"
+hash = "b16b6e08085a3dfec72335415e4c83ed"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "de53d90"
+hash = "88b42fd123aeaa31b336e3b2f3d53289"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "de53d90"
+hash = "e65e6528de15012b5ccdead4ed26b8bd"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "de53d90"
+hash = "e671ad6617800ea6adae1ede7930c105"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:zoom"
+rev = "de53d90"
+hash = "6a802572270653c14379ab6acf800787"
 
 [flavor]
 deps = []

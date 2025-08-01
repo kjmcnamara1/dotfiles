@@ -5,16 +5,25 @@
 
 [tasks]
   image_bound = [0, 0]
+  image_alloc = 1073741824 # = 1024*1024*1024 = 1024MB
+
+
+[preview]
+  max_width  = 1000
+  max_height = 1000
 
 [opener]
   extract = [
     { run = 'ouch d -y "%*"', desc = "Extract here with ouch", for = "windows" },
     { run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
   ]
-  # edit = [
-  #   { run = 'nvim "$@"', block = true, for = 'unix' },
-  #   { run = 'nvim %*', block = true, for = 'windows' },
-  # ]
+
+  edit = [
+    { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+    { run = '%EDITOR% %*', desc = "$EDITOR", block = true, for = "windows" },
+    { run = 'code %*', desc = "code", orphan = true, for = "windows" },
+    { run = 'code -w %*', desc = "code (block)", block = true, for = "windows" },
+  ]
 
   # [[plugin.prepend_previewers]]
   #   name = "*/"
@@ -25,6 +34,8 @@
     # Replace magick, image, video with mediainfo
     { mime = "{audio,video,image}/*", run = "mediainfo" },
     { mime = "application/subrip", run = "mediainfo" },
+    # Adobe Illustrator, Adobe Photoshop is image/adobe.photoshop, already handled above
+    { mime = "application/postscript", run = "mediainfo" },
   ]
   prepend_previewers = [
 
@@ -38,6 +49,8 @@
     # Replace magick, image, video with mediainfo
     { mime = "{audio,video,image}/*", run = "mediainfo" },
     { mime = "application/subrip", run = "mediainfo" },
+    # Adobe Illustrator, Adobe Photoshop is image/adobe.photoshop, already handled above
+    { mime = "application/postscript", run = "mediainfo" },
 
     # { name = "*.md", run = "glow" },
 
@@ -51,3 +64,13 @@
     { mime = "application/x-xz", run = "ouch" },
 
   ]
+
+  [[plugin.prepend_fetchers]]
+    id   = "git"
+    name = "*"
+    run  = "git"
+
+  [[plugin.prepend_fetchers]]
+    id   = "git"
+    name = "*/"
+    run  = "git"

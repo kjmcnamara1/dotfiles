@@ -23,6 +23,21 @@
   run  = "cd /mnt/NAS"
   desc = "Go NAS"
 
+  # [[mgr.prepend_keymap]]
+  #   on   = "+"
+  #   run  = "plugin zoom 1"
+  #   desc = "Zoom in hovered file"
+
+  # [[mgr.prepend_keymap]]
+  #   on   = "-"
+  #   run  = "plugin zoom -1"
+  #   desc = "Zoom out hovered file"
+
+[[mgr.prepend_keymap]]
+  on   = "T"
+  run  = "plugin toggle-pane max-preview"
+  desc = "Maximize or restore the preview pane"
+
 [[mgr.prepend_keymap]]
   on   = ["E"]
   run  = "plugin eza-preview"
@@ -39,11 +54,10 @@
   desc = "Chmod on selected files"
 
 [[mgr.prepend_keymap]]
-  on   = "F"
-  run  = "plugin smart-filter"
-  desc = "Smart filter"
-
-[[mgr.prepend_keymap]]
   on   = "!"
   run  = 'shell "env DISABLE_BACK2DIR=1 $SHELL" --block'
   desc = "Open shell here"
+
+[[mgr.prepend_keymap]]
+  on  = "M"
+  run = "plugin mount"
