@@ -233,7 +233,7 @@ return {
     keys = {
       { "<leader>um", "<cmd>Markview toggle<cr>",       desc = "Toggle Render Markdown",      ft = "markdown" },
       { "<leader>uM", "<cmd>Markview hybridToggle<cr>", desc = "Toggle Markview Hybrid Mode", ft = "markdown" },
-      { "<c-a-t>",    "<cmd>Checkbox toggle<cr>",       desc = "Toggle Checkbox",             ft = "markdown" },
+      { "<c-t>",      "<cmd>Checkbox toggle<cr>",       desc = "Toggle Checkbox",             ft = "markdown" },
       { "<leader>cb", "<cmd>Checkbox interactive<cr>",  desc = "Interactive Checkbox",        ft = "markdown" },
       { "<c-right>",  "<cmd>Heading increase<cr>",      desc = "Increase Heading",            ft = "markdown" },
       { "<c-left>",   "<cmd>Heading decrease<cr>",      desc = "Decrease Heading",            ft = "markdown" },
@@ -423,7 +423,7 @@ return {
       { "<leader>gl", function() Snacks.lazygit.log() end,             desc = "Lazygit Log (cwd)" },
       { "<leader>un", function() Snacks.notifier.hide() end,           desc = "Dismiss All Notifications" },
       { "<c-'>",      function() Snacks.terminal() end,                desc = "Toggle Terminal",             mode = { "n", "i", "t" } },
-      { "<c-t>",      function() Snacks.terminal() end,                desc = "Toggle Terminal",             mode = { "n", "i", "t" } },
+      { "<c-a-t>",    function() Snacks.terminal() end,                desc = "Toggle Terminal",             mode = { "n", "i", "t" } },
       -- { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
       { "]]",         function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference",              mode = { "n", "t" } },
       { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference",              mode = { "n", "t" } },
