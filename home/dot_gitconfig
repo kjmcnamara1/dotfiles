@@ -47,12 +47,12 @@
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
-	helper = !'C:\\Users\\kjmcn\\scoop\\apps\\gh\\current\\bin\\gh.exe' auth git-credential
+	helper = !'C:\\Users\\kjm\\scoop\\apps\\gh\\current\\bin\\gh.exe' auth git-credential
 
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
-	helper = !'C:\\Users\\kjmcn\\scoop\\apps\\gh\\current\\bin\\gh.exe' auth git-credential
+	helper = !'C:\\Users\\kjm\\scoop\\apps\\gh\\current\\bin\\gh.exe' auth git-credential
 
 [delta]
   syntax-theme = Nord
