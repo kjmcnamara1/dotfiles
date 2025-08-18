@@ -6,14 +6,14 @@ echo "--------------------------------------------------------------------------
 echo "*** Yazi (Terminal File Explorer)"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm yazi ffmpeg mediainfo 7zip jq poppler fd rg fzf zoxide imagemagick wl-clipboard glow
+yay -S --noconfirm yazi ffmpeg mediainfo 7zip jq poppler fd rg fzf zoxide imagemagick wl-clipboard glow ouch
 {{- else if eq .chezmoi.os "windows" -}}
 echo ""
 echo "--------------------------------------------------------------------------------"
 echo "*** Yazi (Terminal File Explorer)"
 echo "--------------------------------------------------------------------------------"
 
-scoop install git yazi ffmpeg mediainfo 7zip jq poppler fd ripgrep fzf zoxide resvg imagemagick glow
+scoop install git yazi ffmpeg mediainfo 7zip jq poppler fd ripgrep fzf zoxide resvg imagemagick glow ouch
 
 # Fix for windows (https://yazi-rs.github.io/docs/installation#windows)
 [Environment]::SetEnvironmentVariable("YAZI_FILE_ONE", "{{ .chezmoi.homeDir }}/scoop/apps/git/current/usr/bin/file.exe", "User")

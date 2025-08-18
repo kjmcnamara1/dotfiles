@@ -4,7 +4,7 @@ git:
   # branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --"
   paging:
     colorArg: always
-    pager: delta --dark --paging=never
+    pager: delta --dark --paging=never # BUG: Doesn't work on windows (https://github.com/jesseduffield/lazygit/issues/1453)
     # colorArg: never
     # pager: ydiff -p cat -s --wrap --width={{columnWidth}}
 
