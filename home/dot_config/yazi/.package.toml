@@ -1,67 +1,67 @@
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
 rev = "a63550b"
-hash = "733c7340b1ca2d3ef274c427a0cf21b"
+hash = "c2021386289a0cbb3e152a052f67c177"
 
 [[plugin.deps]]
 use = "Reledia/glow"
 rev = "bd3eaa5"
-hash = "f8d302ba41ab9deb4133fe3d0a64b6c6"
+hash = "92b5c58159a51c567f82b618cee2b78"
 
 [[plugin.deps]]
 use = "AnirudhG07/nbpreview"
 rev = "7fb073f"
-hash = "c52246362f02c69cc8cf9c9929b567a1"
+hash = "a3e32d62ea3cc703e6bf677bdb18a544"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
 rev = "0e2ae47"
-hash = "fb2277a27f8d819d73db516f11b11582"
+hash = "6656f2869ae2274a0e1860876f15186f"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"
 rev = "0742fff"
-hash = "8803b7801055d3d3a59c6f90ffb79a22"
+hash = "2bd799b42b8e42b8ef100310be71f8d1"
 
 [[plugin.deps]]
 use = "AnirudhG07/rich-preview"
 rev = "843c3fa"
-hash = "56397401675a83833f14283d8de96abf"
+hash = "b4040931f0d2f9670ddb4923e55cd881"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
 rev = "e95c7b3"
-hash = "780a6bc3271c895c85119937cf47149"
+hash = "1adc12c2b2b025411ab61eb8f0879574"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
 rev = "e95c7b3"
-hash = "b16b6e08085a3dfec72335415e4c83ed"
+hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
 rev = "e95c7b3"
-hash = "6aa17d50c0dd49a51b77cf57e4d2409"
+hash = "e1de3054c0d1a2d8dc6f007eadc0fa31"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
 rev = "e95c7b3"
-hash = "e65e6528de15012b5ccdead4ed26b8bd"
+hash = "63b6c222bf2103b3023389dde5e2ecfe"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
 rev = "e95c7b3"
-hash = "e671ad6617800ea6adae1ede7930c105"
+hash = "d6f60c24d8c0cf57a855bf46115b2502"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:zoom"
 rev = "e95c7b3"
-hash = "6a802572270653c14379ab6acf800787"
+hash = "4a47a9cd4d8b3a963cb4cc593664b77e"
 
 [[plugin.deps]]
 use = "ahkohd/eza-preview"
 rev = "a97cf55"
-hash = "8e2173449f8542f3a37d4b4df12c954e"
+hash = "cc3aef07a8b1c3fe820f1fbb9a5a2483"
 
 [flavor]
 deps = []
