@@ -60,7 +60,7 @@ Proton
 .profile
 .config/*
 !.config/bat
-!.config/botom
+!.config/bottom
 !.config/btop
 !.config/fastfetch
 !.config/gh
@@ -86,6 +86,7 @@ Proton
 .chezmoiscripts/sddm
 .config/*
 !.config/bat
+!.config/bottom
 !.config/fastfetch
 !.config/fish
 !.config/gh
