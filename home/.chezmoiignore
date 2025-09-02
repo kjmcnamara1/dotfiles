@@ -52,7 +52,7 @@ Proton
 !.config/Ryujinx
 {{- end }}
 
-{{- if eq .chezmoi.hostname "wings" }}
+{{- if eq .chezmoi.hostname "muse" }}
 Proton
 .local
 .face.icon
