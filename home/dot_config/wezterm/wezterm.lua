@@ -70,7 +70,7 @@ config.window_close_confirmation = "NeverPrompt"
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
 config.inactive_pane_hsb = { saturation = 0.9, brightness = 0.8 }
 
-config.initial_rows = 30
+config.initial_rows = 25
 config.initial_cols = 120
 config.scrollback_lines = 10000
 config.enable_scroll_bar = false
