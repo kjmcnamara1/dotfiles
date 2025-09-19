@@ -1,4 +1,4 @@
-theme = nord
+theme = Nord
 font-size = 14
 adjust-cell-height = 20%
 mouse-hide-while-typing = true
