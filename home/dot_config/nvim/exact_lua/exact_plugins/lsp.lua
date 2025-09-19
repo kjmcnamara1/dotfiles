@@ -126,7 +126,7 @@ return {
           end
         end
         -- vim.print(server, server_opts)
-        require("lspconfig")[server].setup(server_opts)
+        vim.lsp.config(server, server_opts)
       end
 
       -- loop through declared servers
