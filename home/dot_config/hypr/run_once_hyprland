@@ -22,7 +22,7 @@ packages=(
   nordzy-hyprcursors
   nordzy-cursors
   pyprland
-  # udiskie
+  udiskie
   # dunst
   # wlogout
   # nm-connection-editor
