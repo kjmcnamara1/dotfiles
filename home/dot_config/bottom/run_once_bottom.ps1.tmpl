@@ -6,7 +6,7 @@ echo "--------------------------------------------------------------------------
 echo "*** Bottom"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm bottom-git rocm-smi-lib
+yay -S --noconfirm bottom rocm-smi-lib
 {{- else if eq .chezmoi.os "windows" -}}
 scoop install bottom
 {{ end }}
