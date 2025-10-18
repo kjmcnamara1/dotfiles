@@ -1,5 +1,21 @@
 # dotfiles
 
+## Login Manager
+
+## Desktop Environment
+
+[Hyprland](https://wiki.hypr.land/)
+
+## Fonts
+
+- [JetBrains Mono](https://www.programmingfonts.org/#jetbrainsmono)
+
+## TUIs
+
+- [Impala](https://github.com/pythops/impala) - TUI for managing wifi on Linux
+- [Bluetui](https://github.com/pythops/bluetui) - TUI for managing bluetooth on Linux
+- [Dust](https://github.com/bootandy/dust) - A more intuitive version of du in rust
+
 ## Arch Linux
 
 ### Installation
