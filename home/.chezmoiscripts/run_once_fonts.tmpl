@@ -3,17 +3,18 @@
 
 echo
 echo "--------------------------------------------------------------------------------"
-echo "*** Pipewire"
+echo "*** Fonts"
 echo "--------------------------------------------------------------------------------"
 
 packages=(
-  pipewire
-  wireplumber
-  pipewire-pulse
-  pipewire-alsa
+  figlet # write big font in terminal
+  figlet-fonts-extra
+  ttf-jetbrains-mono-nerd
+  ttf-nerd-fonts-symbols
+  ## ttf-firacode-nerd
+  noto-fonts-emoji
 )
 
 yay -S --needed --noconfirm "${packages[@]}"
 
-systemctl --user enable pipewire wireplumber pipewire-pulse
-{{- end }}
+{{ end -}}

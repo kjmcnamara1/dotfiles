@@ -1,8 +1,0 @@
-# vim: ft=swayconfig
-for_window [app_id="ulauncher|onagre"] border none, floating enable
-for_window [app_id="nwg-look"] floating enable
-for_window [app_id="nwg-displays"] floating enable
-for_window [app_id="blueberry.py"] floating enable
-for_window [app_id="org.wezfurlong.wezterm"] floating enable, floating disable
-# for_window [title="nmtui"] floating enable
-

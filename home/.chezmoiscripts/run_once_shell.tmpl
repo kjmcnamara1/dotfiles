@@ -1,17 +1,31 @@
+{{- if eq .chezmoi.os "linux" -}}
 #! /usr/bin/env bash
 
 echo
 echo "--------------------------------------------------------------------------------"
-echo "*** Sway"
+echo "*** Shell Tools"
 echo "--------------------------------------------------------------------------------"
 
 packages=(
-  sway
-  swaybg
-  cliphist
-  xdg-desktop-portal-wlr
-  polkit-gnome
-  blueberry-wayland
+  pv
+  tldr
+  jq
+  eza
+  fd
+  fzf
+  ripgrep
+  zoxide
+
+  go
+  uv
+
+  git-delta
+
+  unzip
+  7zip
+  zstd
 )
 
-yay -S --noconfirm "${packages[@]}"
+yay -S --needed --noconfirm "${packages[@]}"
+
+{{ end -}}

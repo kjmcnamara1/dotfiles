@@ -42,8 +42,10 @@ zoxide
 ripgrep
 eza
 fd
+fzf
 fastfetch
 bat
+jq
 fish
 xonsh
 zsh

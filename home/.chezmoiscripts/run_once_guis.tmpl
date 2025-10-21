@@ -1,8 +1,17 @@
+{{- if and (eq .chezmoi.os "linux") (ne .chezmoi.hostname "snow") -}}
 #! /usr/bin/env bash
 
 echo
 echo "--------------------------------------------------------------------------------"
-echo "*** Swaylock"
+echo "*** GUIs"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm swaylock-effects
+packages=(
+vlc
+brave-bin
+proton-pass-bin
+)
+
+yay -S --needed --noconfirm "${packages[@]}"
+
+{{ end -}}
