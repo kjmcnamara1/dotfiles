@@ -5,7 +5,7 @@ key.txt.age
 AppData
 {{- end }}
 
-{{- if eq .chezmoi.hostname "angel" }}
+{{- if eq .chezmoi.hostname "muse" }}
 .chezmoiscripts/change-shell
 .chezmoiscripts/pipewire
 .chezmoiscripts/printer
