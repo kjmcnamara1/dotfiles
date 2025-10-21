@@ -21,7 +21,7 @@ wallpapers
 .config/Code
 .config/cosmic
 .config/dunst
-.config/fish
+# .config/fish
 .config/FreeCAD
 .config/hypr
 .config/kitty
