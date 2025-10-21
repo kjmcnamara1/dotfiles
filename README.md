@@ -2,19 +2,135 @@
 
 ## Login Manager
 
+- sddm
+
+## Package manager
+
+- yay
+
 ## Desktop Environment
 
 [Hyprland](https://wiki.hypr.land/)
+hyprlock
+hypridle
+pyprland
+waybar
+uwsm - Universal Wayland Session Manager
+
+### Launcher
+
+walker
+rofi
+ulauncher
 
 ## Fonts
 
 - [JetBrains Mono](https://www.programmingfonts.org/#jetbrainsmono)
 
+## Editors
+
+- [Neovim](https://neovim.io/)
+- [Helix](https://helix-editor.com/)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Zed](https://zed.dev/)
+
+## Shell Tools
+
+### [fzf](https://junegunn.github.io/fzf/)
+
+zoxide
+ripgrep
+eza
+fd
+fastfetch
+bat
+fish
+xonsh
+zsh
+starship
+github-cli
+
+## Terminal
+
+- wezterm
+- ghostty
+- alacritty
+
 ## TUIs
+
+### Network
 
 - [Impala](https://github.com/pythops/impala) - TUI for managing wifi on Linux
 - [Bluetui](https://github.com/pythops/bluetui) - TUI for managing bluetooth on Linux
+
 - [Dust](https://github.com/bootandy/dust) - A more intuitive version of du in rust
+- lazygit
+- lazydocker
+
+### Task manager
+
+- btop
+- bottom
+
+### Files
+
+- Yazi
+
+## GUIs
+
+- Obsidian
+- Pinta
+- LocalSend
+- MegaSync
+- Thunar - file manager
+- nwg-look
+- nwg-displays
+
+### Office
+
+- LibreOffice
+- OnlyOffice
+
+### Messaging
+
+- Signal
+
+### Media
+
+- mpv - video player
+- OBS Studio - screen recording
+- Kdenlive - video editor
+
+## Hotkeys
+
+| Key            | Action          |
+| -------------- | --------------- |
+| `Super+c`      | Close window    |
+| `Super+Return` | Launch terminal |
+
+## Web Apps
+
+- Proton Mail
+- Proton Calendar
+- Proton Pass
+- Proton Drive
+- X
+- Youtube
+- WhatsApp
+
+## Theme
+
+- wallust - ansinord
+- waypaper - desktop background/wallpaper
+
+## Gaming
+
+- Steam
+- Lutris
+
+## Python
+
+- uv
 
 ## Arch Linux
 
