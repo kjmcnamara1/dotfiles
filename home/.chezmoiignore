@@ -48,7 +48,6 @@ Proton
 !.config/waypaper
 !.config/wezterm
 !.config/wofi
-!.config/rofi
 !.config/Ryujinx
 {{- end }}
 
@@ -63,13 +62,17 @@ Proton
 !.config/bottom
 !.config/btop
 !.config/fastfetch
+!.config/fish
 !.config/gh
 !.config/helix
+!.config/hypr
 !.config/lazygit
 !.config/nvim
+!.config/rofi
 !.config/starship
 !.config/starship.toml
 !.config/wezterm
+!.config/wallust
 !.config/xonsh
 !.config/yazi
 {{- end }}
