@@ -7,6 +7,14 @@ echo "*** Shell Tools"
 echo "--------------------------------------------------------------------------------"
 
 packages=(
+  man-db
+  amd-ucode
+  vim
+  git
+  wget
+  curl
+  openssh
+
   pv
   tldr
   jq
@@ -17,6 +25,7 @@ packages=(
   zoxide
 
   go
+  python
   uv
 
   git-delta
@@ -24,6 +33,10 @@ packages=(
   unzip
   7zip
   zstd
+
+  ntfs-3g
+  nfs-utils
+  age
 )
 
 yay -S --needed --noconfirm "${packages[@]}"
