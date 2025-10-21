@@ -66,6 +66,7 @@ github-cli
 - [Dust](https://github.com/bootandy/dust) - A more intuitive version of du in rust
 - lazygit
 - lazydocker
+- caligula - burn iso to usb
 
 ### Task manager
 
