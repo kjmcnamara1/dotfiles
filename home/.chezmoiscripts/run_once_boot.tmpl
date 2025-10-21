@@ -3,7 +3,7 @@
 
 echo
 echo "--------------------------------------------------------------------------------"
-echo "*** Plymouth"
+echo "*** Bootloader and Plymouth"
 echo "--------------------------------------------------------------------------------"
 
 yay -S --needed --noconfirm plymouth plymouth-theme-arch-charge-big
@@ -14,5 +14,15 @@ sudo sed -i '/^HOOKS=/!b; /plymouth/!s/\(base udev\)/\1 plymouth/' /etc/mkinitcp
 
 # Change theme and regenerate initramfs
 sudo plymouth-set-default-theme -R arch-charge-big
+
+# Add quiet and splash to default boot entry (but only once)
+default_boot_entry=bootctl list --json=short | jq -r '.[] | select(.isDefault == true) | .path'
+sudo sed -i '/^options / { s/ quiet//g; s/ splash//g; s/$/ quiet splash/ }' "$default_boot_entry"
+
+# Write systemd-boot config
+sudo tee /boot/loader/loader.conf > /dev/null <<EOF
+timeout 0
+consle-mode auto
+EOF
 
 {{ end }}
