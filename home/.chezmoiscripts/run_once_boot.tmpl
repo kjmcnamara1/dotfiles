@@ -22,7 +22,7 @@ sudo sed -i '/^options / { s/ quiet//g; s/ splash//g; s/$/ quiet splash/ }' "$de
 # Write systemd-boot config
 sudo tee /boot/loader/loader.conf > /dev/null <<EOF
 timeout 0
-consle-mode auto
+console-mode auto
 EOF
 
 {{ end }}
