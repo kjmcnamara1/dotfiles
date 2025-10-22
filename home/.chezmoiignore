@@ -23,7 +23,7 @@ wallpapers
 .config/dunst
 # .config/fish
 .config/FreeCAD
-.config/hypr
+# .config/hypr
 .config/kitty
 .config/Kvantum
 .config/nushell

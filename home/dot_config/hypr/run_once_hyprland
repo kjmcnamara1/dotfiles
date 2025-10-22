@@ -6,6 +6,7 @@ echo "*** Hyprland"
 echo "--------------------------------------------------------------------------------"
 
 packages=(
+  uwsm
   hyprland
   hyprpaper
   hyprlock
@@ -15,7 +16,7 @@ packages=(
   cliphist
   xdg-desktop-portal-hyprland
   polkit-gnome
-  blueberry-wayland
+  # blueberry-wayland
   brightnessctl
   # qt5-wayland
   # qt6-wayland
@@ -29,7 +30,7 @@ packages=(
   # network-manager-applet
 )
 
-yay -S --noconfirm "${packages[@]}"
+yay -S --needed --noconfirm "${packages[@]}"
 
 # echo
 # echo "--------------------------------------------------------------------------------"
