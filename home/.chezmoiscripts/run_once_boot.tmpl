@@ -16,7 +16,7 @@ sudo sed -i '/^HOOKS=/!b; /plymouth/!s/\(base udev\)/\1 plymouth/' /etc/mkinitcp
 sudo plymouth-set-default-theme -R arch-charge-big
 
 # Add quiet and splash to default boot entry (but only once)
-default_boot_entry=bootctl list --json=short | jq -r '.[] | select(.isDefault == true) | .path'
+default_boot_entry=$(bootctl list --json=short | jq -r '.[] | select(.isDefault == true) | .path')
 sudo sed -i '/^options / { s/ quiet//g; s/ splash//g; s/$/ quiet splash/ }' "$default_boot_entry"
 
 # Write systemd-boot config
