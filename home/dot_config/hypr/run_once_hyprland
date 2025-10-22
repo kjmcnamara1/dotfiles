@@ -13,6 +13,7 @@ packages=(
   hypridle
   hyprcursor
   hyprpicker
+  hyprmon-bin
   cliphist
   xdg-desktop-portal-hyprland
   polkit-gnome
