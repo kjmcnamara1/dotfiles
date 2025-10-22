@@ -107,7 +107,7 @@ alias lvim='set -lx NVIM_APPNAME nvim-lazyvim; nvim'
 alias l='eza -F --icons --links --group-directories-first --git --git-repos --smart-group --hyperlink' # horizontal grid
 alias ls='l -1' # single column list
 alias la='ls -A' # all but . and ..
-alias l.='la -d $(eza -a | grep -e \'^[.]\')' # show only hidden files
+alias l.='la -d $(eza -a | grep -e "^\.")' # show only hidden files
 alias ll='la -l' # long list including hidden
 alias llr='ll --time-style=relative' # long list with relative time
 alias lt='ll --tree --total-size' # long list and recurse into directories as tree
