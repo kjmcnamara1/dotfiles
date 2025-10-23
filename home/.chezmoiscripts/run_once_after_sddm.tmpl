@@ -6,7 +6,7 @@ echo "--------------------------------------------------------------------------
 echo "*** SDDM Autologin"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --needed --noconfirm sddm
+yay -S --needed --noconfirm sddm sddm-silent-theme
 
 setfacl -m u:sddm:x ~/
 setfacl -m u:sddm:r ~/.face.icon
@@ -18,6 +18,9 @@ if [ ! -f /etc/sddm.conf.d/autologin.conf ]; then
 [Autologin]
 User=$USER
 Session=hyprland-uwsm
+
+[Theme]
+Current=silent
 EOF
 fi
 
