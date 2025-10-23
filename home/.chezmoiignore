@@ -19,7 +19,7 @@ wallpapers
 .config/alacritty
 .config/Code
 .config/cosmic
-.config/dunst
+# .config/dunst
 # .config/fish
 .config/FreeCAD
 # .config/hypr

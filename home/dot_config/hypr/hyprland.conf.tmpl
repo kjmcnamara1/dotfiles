@@ -85,8 +85,9 @@ env = ELECTRON_OZONE_PLATFORM_HINT, wayland # tell electron apps (vs code) to us
 
 exec-once = waypaper --restore --no-post-command # will implicitly run hyprpaper
 exec-once = waybar # env GTK_DEBUG=interactive waybar
-exec-once = swaync # env GTK_DEBUG=interactive swaync
-exec-once = swaync-client -df
+# exec-once = swaync # env GTK_DEBUG=interactive swaync
+# exec-once = swaync-client -df
+exec-once = dunst
 exec-once = pypr
 exec-once = hypridle
 exec-once = udiskie
