@@ -7,7 +7,7 @@ window-save-state = always
 # gtk-tabs-location = bottom
 
 # gtk-wide-tabs = false
-bold-is-bright = true
+bold-color = bright
 
 # ================================================================================
 # * Keybindings
