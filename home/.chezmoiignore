@@ -23,7 +23,7 @@ wallpapers
 # .config/fish
 .config/FreeCAD
 # .config/hypr
-.config/kitty
+# .config/kitty
 .config/Kvantum
 .config/nushell
 .config/nwg-displays
