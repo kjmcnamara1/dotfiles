@@ -1,38 +1,67 @@
-# finish waybar config
+# To Do
 
+## Hyprland
+
+- [ ] Split hyprland.conf into multiple files?
+
+### Write scripts
+
+- [ ] System update (pacman/yay)
+- [x] Wifi (impala)
+- [x] Bluetooth (bluetui)
+- [x] Monitors (hyprmon)
+
+### Rofi
+
+- [ ] Power menu
+- [ ] Applications
+- [ ] Monitor profiles
+- [ ] Keybinds
+- [ ]
+
+## Theming
+
+- [ ] use adw-gtk3-dark theme
+- [ ] generate ansinord gtk.css files from wallust
+  - [ ] ~/.config/gtk-3.0/gtk.css
+  - [ ] ~/.config/gtk-4.0/gtk.css
+- [ ] Nordzy-cursors
+- [ ] Sans serif font (Fira sans?)
+- [ ] Prefer dark theme
+
+### Waybar
+
+- [ ] Solid bar all the way across
+- [ ] Date/time in center with update system indicator 
+- [ ] Workspaces on left (include numbers?)
+- [ ] Widgets on right (wifi, bluetooth, monitors, battery)
 - [ ] tweak window title
 - [ ] fix wallust/nord colors
-- [ ] pacman status widget
 
-# wallpaper
+### Notifications
+
+- [x] No SwayNC
+- [ ] Use dunst or mako
+- [ ] Wallust for dunst
+- [ ] SwayOSD for onscreen volume/mute/brightness
+
+### Visual Studio Code
+
+- [ ] Integrate wallust theme
+
+### Wallpaper
 
 - [x] waypaper changes wallpaper without running wallust
 - [x] on start hyprland: only load last waypaper wallpaper. don't run wallust
+- [ ] load wallpaper on autologin before hyprlock executes
 
-# swaync
-
-- [x] fix wallust/nord colors
-
-# bottom
-
-config and theme bottom
-
-# visual studio code
-
-integrate wallust theme
-
-# chezmoi
+## Chezmoi
 
 write scripts for files outside home dir OR use [rootmoi](https://github.com/twpayne/chezmoi/discussions/1510#discussioncomment-7808924)
 use specific `sudo chezmoi` commands for relevant files/directories
 
-- sddm
-- interception
-- fstab
-- nsswitch.conf (printing)
-- pacman.conf
-
-# ghostty
-
-1. create wallust template
-2. other config options
+- [x] sddm
+- [ ] interception
+- [ ] fstab
+- [ ] nsswitch.conf (printing)
+- [ ] pacman.conf
