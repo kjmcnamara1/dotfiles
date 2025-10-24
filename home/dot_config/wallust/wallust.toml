@@ -60,3 +60,6 @@ check_contrast = true
 
   hyprland.src = 'hyprland.conf'
   hyprland.dst = '~/.config/hypr/colors/wallust.conf'
+
+  swayosd.src = 'swayosd.css'
+  swayosd.dst = '~/.config/swayosd/colors/wallust.css'

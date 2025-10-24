@@ -21,14 +21,17 @@ packages=(
   brightnessctl
   # qt5-wayland
   # qt6-wayland
-  nordzy-hyprcursors
-  nordzy-cursors
   pyprland
   udiskie
   # dunst
   # wlogout
   # nm-connection-editor
   # network-manager-applet
+
+  # theming
+  nordzy-hyprcursors
+  nordzy-cursors
+  adw-gtk-theme
 )
 
 yay -S --needed --noconfirm "${packages[@]}"
