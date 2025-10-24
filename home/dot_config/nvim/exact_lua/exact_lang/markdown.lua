@@ -31,9 +31,9 @@ return {
     opts = {
       preview = {
         icon_provider = "mini",
-        enable_hybrid_mode = true,
+        -- enable_hybrid_mode = true,
         -- linewise_hybrid_mode = true,
-        hybrid_modes = { 'n' },
+        -- hybrid_modes = { 'n' },
       },
       markdown_inline = {
         hyperlinks = {
