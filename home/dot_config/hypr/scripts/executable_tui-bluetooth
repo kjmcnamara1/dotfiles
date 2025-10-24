@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if command -v bluetui &> /dev/null; then
+  rfkill unblock bluetooth
+  pkill -x bluetui || exec setsid uwsm-app -- "$TUI_TERMINAL" --class=bluetui -e bluetui "$@"
+else
+  notify-send -u critical "Bluetooth tool (bluetui) not installed!"
+fi

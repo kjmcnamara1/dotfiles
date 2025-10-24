@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Get info about the active window and open it in nvim (inside wezterm)
+
+# Create a temporary file with window info
+tmpfile=$(mktemp /tmp/hypr-activewindow.XXXXXX)
+hyprctl activewindow > "$tmpfile"
+
+# Launch wezterm with nvim reading that file
+$TUI_TERMINAL --title "ActiveWindowInfo" -e bash -c "nvim '$tmpfile'"

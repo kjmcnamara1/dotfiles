@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# ~/.local/bin/open-yazi.sh
+
+# Try terminals in order: wezterm → kitty → alacritty
+
+if command -v wezterm &> /dev/null; then
+  exec setsid uwsm-app -- wezterm -e "$@"
+elif command -v kitty &> /dev/null; then
+  exec setsid uwsm-app -- kitty -e "$@"
+elif command -v alacritty &> /dev/null; then
+  exec setsid uwsm-app -- alacritty -e "$@"
+else
+  notify-send "No terminal found to launch Yazi!" "Install wezterm, kitty, or alacritty."
+fi
