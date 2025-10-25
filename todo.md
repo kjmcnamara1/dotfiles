@@ -2,7 +2,10 @@
 
 ## Hyprland
 
-- [ ] Split hyprland.conf into multiple files?
+- [x] Split hyprland.conf into multiple files?
+- [ ] Move windowrules to separate file
+- [ ] Desktop entries for TUIs and Web Apps
+- [ ] Simplify starship prompt
 
 ### Write scripts
 
@@ -41,9 +44,9 @@
 ### Notifications
 
 - [x] No SwayNC
-- [ ] Use dunst or mako
-- [ ] Wallust for dunst
-- [ ] SwayOSD for onscreen volume/mute/brightness
+- [x] Use mako
+- [x] Wallust for mako
+- [x] SwayOSD for onscreen volume/mute/brightness
 
 ### Visual Studio Code
 
