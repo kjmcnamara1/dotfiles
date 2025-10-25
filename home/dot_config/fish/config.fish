@@ -35,7 +35,7 @@ if status is-interactive # connected to keyboard
     bind \cc __fish_toggle_comment_commandline
 
     # Environment Variables
-    # fish_add_path -g ~/.local/bin
+    fish_add_path -g ~/.local/bin
 
     # Zoxide
     zoxide init --cmd cd fish | source
