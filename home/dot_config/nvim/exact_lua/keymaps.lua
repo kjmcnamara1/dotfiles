@@ -144,7 +144,6 @@ return {
     },
   },
 
-  -- TODO: fzf vim_options like telescope
   {
     "ibhagwan/fzf-lua",
     keys = {
@@ -162,6 +161,7 @@ return {
       { "<leader>/",       "<cmd>FzfLua live_grep<cr>",                 desc = "Live Grep" },
       { "<leader>:",       "<cmd>FzfLua command_history<cr>",           desc = "Search Command History" },
       { '<leader>"',       "<cmd>FzfLua registers<cr>",                 desc = "Search Registers" },
+      { "<leader>so",      "<cmd>FzfLua nvim_options<cr>",              desc = "Search Neovim Options" },
       { "<leader>sc",      "<cmd>FzfLua commands<cr>",                  desc = "Search Neovim Commands" },
       { "<leader>sh",      "<cmd>FzfLua helptags<cr>",                  desc = "Search Help Pages" },
       { "<leader>sH",      "<cmd>FzfLua highlights<cr>",                desc = "Search Highlight Groups" },
@@ -176,13 +176,6 @@ return {
       { "<leader>sD",      "<cmd>FzfLua lsp_document_diagnostics<cr>",  desc = "Search Document Diagnostics" },
       { "<leader>uC",      "<cmd>FzfLua colorschemes<cr>",              desc = "Color Schemes" },
     },
-  },
-
-  {
-    "nvim-telescope/telescope.nvim",
-    keys = {
-      { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Search Options" },
-    }
   },
 
   {
@@ -311,7 +304,6 @@ return {
         -- BUG: next/prevCursor removes cursors when looping around (fixed by disabling wrap)
         { "L",             function() mc.nextCursor(false) end,    desc = 'Move main cursor to next selection',     mode = { "n", "v" } },
         { "H",             function() mc.prevCursor(false) end,    desc = 'Move main cursor to previous selection', mode = { "n", "v" } },
-        -- BUG: first/lastCursor removes cursors
         { "<a-s-l>",       mc.lastCursor,                          desc = 'Move main cursor to last selection',     mode = { "n", "v" } },
         { "<a-s-h>",       mc.firstCursor,                         desc = 'Move main cursor to first selection',    mode = { "n", "v" } },
         { "<c-i>",         mc.jumpForward,                         desc = 'Jump forwards',                          mode = { "n", "v" } },

@@ -126,139 +126,139 @@ return {
     end,
   },
 
-  {
-    "nvim-telescope/telescope.nvim",
-    cond = not vim.g.vscode,
-    version = false,
-    cmd = "Telescope",
-    dependencies = {
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-        enabled = vim.fn.executable("make") == 1,
-      }
-    },
-    opts = {
-      defaults = {
-        prompt_prefix = "   ",
-        selection_caret = "   ",
-        entry_prefix = "    ",
-        multi_icon = "   ",
-        dynamic_preview_title = true,
-        file_ignore_patterns = { "^%.git/", "%.jpg$" },
-        -- hidden = true,
-        sorting_strategy = "ascending",
-        -- winblend = 20,
-        layout_strategy = "flex",
-        layout_config = {
-          prompt_position = "top",
-        },
-        -- -- include hidden files in live_grep
-        -- vimgrep_arguments = {
-        --   "rg",
-        --   "--color=never",
-        --   "--no-heading",
-        --   "--with-filename",
-        --   "--line-number",
-        --   "--column",
-        --   "--smart-case",
-        --   "--hidden",
-        -- },
-        mappings = {
-          i = {
-            ["<c-h>"] = false,
-            ["<c-j>"] = false,
-            ["<c-k>"] = false,
-            ["<c-l>"] = false,
-            ['<esc>'] = "close",
-          },
-          -- n = {
-          --   ["<c-c>"] = "close",
-          -- },
-        },
-      },
-      pickers = {
-        find_files = {
-          -- include hidden files but not .git dir
-          -- find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-          hidden = true,
-        },
-        live_grep = {
-          additional_args = { '--hidden' },
-        },
-        oldfiles = {
-          theme = "dropdown",
-        },
-        -- grep_string = {
-        --   -- include hidden files but not .git dir
-        --   find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
-        -- },
-        command_history = {
-          theme = "dropdown",
-        },
-        buffers = {
-          theme = "dropdown",
-          -- layout_strategy = 'center',
-          previewer = false,
-          ignore_current_buffer = true,
-          sort_mru = true,
-          sort_lastused = true,
-          layout_config = {
-            anchor = "N",
-          },
-          mappings = {
-            i = {
-              ["<a-c>"] = "delete_buffer",
-            },
-            -- n = {
-            --   x = "delete_buffer",
-            -- },
-          },
-        },
-        colorscheme = {
-          enable_preview = true,
-          layout_strategy = "vertical",
-          layout_config = {
-            anchor = "SE",
-            width = 30,
-            height = 20,
-            preview_height = 1,
-            prompt_position = "bottom",
-          }
-        },
-        filetypes = {
-          layout_config = {
-            anchor = "SE",
-            width = 30,
-            height = 10,
-            prompt_position = "bottom",
-          },
-        },
-        diagnostics = {
-          theme = "ivy",
-        },
-        -- symbols = {
-        --   theme = "cursor",
-        --   layout_config = { width = 50 },
-        -- },
-      },
-      extensions = {
-        fzf = {
-          fuzzy = true,
-          override_generic_sorter = true,
-          override_file_sorter = true,
-          case_mode = "smart_case",
-        },
-      }
-    },
-    config = function(_, opts)
-      local telescope = require("telescope")
+  -- {
+  --   "nvim-telescope/telescope.nvim",
+  --   cond = not vim.g.vscode,
+  --   version = false,
+  --   cmd = "Telescope",
+  --   dependencies = {
+  --     {
+  --       "nvim-telescope/telescope-fzf-native.nvim",
+  --       build = "make",
+  --       enabled = vim.fn.executable("make") == 1,
+  --     }
+  --   },
+  --   opts = {
+  --     defaults = {
+  --       prompt_prefix = "   ",
+  --       selection_caret = "   ",
+  --       entry_prefix = "    ",
+  --       multi_icon = "   ",
+  --       dynamic_preview_title = true,
+  --       file_ignore_patterns = { "^%.git/", "%.jpg$" },
+  --       -- hidden = true,
+  --       sorting_strategy = "ascending",
+  --       -- winblend = 20,
+  --       layout_strategy = "flex",
+  --       layout_config = {
+  --         prompt_position = "top",
+  --       },
+  --       -- -- include hidden files in live_grep
+  --       -- vimgrep_arguments = {
+  --       --   "rg",
+  --       --   "--color=never",
+  --       --   "--no-heading",
+  --       --   "--with-filename",
+  --       --   "--line-number",
+  --       --   "--column",
+  --       --   "--smart-case",
+  --       --   "--hidden",
+  --       -- },
+  --       mappings = {
+  --         i = {
+  --           ["<c-h>"] = false,
+  --           ["<c-j>"] = false,
+  --           ["<c-k>"] = false,
+  --           ["<c-l>"] = false,
+  --           ['<esc>'] = "close",
+  --         },
+  --         -- n = {
+  --         --   ["<c-c>"] = "close",
+  --         -- },
+  --       },
+  --     },
+  --     pickers = {
+  --       find_files = {
+  --         -- include hidden files but not .git dir
+  --         -- find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+  --         hidden = true,
+  --       },
+  --       live_grep = {
+  --         additional_args = { '--hidden' },
+  --       },
+  --       oldfiles = {
+  --         theme = "dropdown",
+  --       },
+  --       -- grep_string = {
+  --       --   -- include hidden files but not .git dir
+  --       --   find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+  --       -- },
+  --       command_history = {
+  --         theme = "dropdown",
+  --       },
+  --       buffers = {
+  --         theme = "dropdown",
+  --         -- layout_strategy = 'center',
+  --         previewer = false,
+  --         ignore_current_buffer = true,
+  --         sort_mru = true,
+  --         sort_lastused = true,
+  --         layout_config = {
+  --           anchor = "N",
+  --         },
+  --         mappings = {
+  --           i = {
+  --             ["<a-c>"] = "delete_buffer",
+  --           },
+  --           -- n = {
+  --           --   x = "delete_buffer",
+  --           -- },
+  --         },
+  --       },
+  --       colorscheme = {
+  --         enable_preview = true,
+  --         layout_strategy = "vertical",
+  --         layout_config = {
+  --           anchor = "SE",
+  --           width = 30,
+  --           height = 20,
+  --           preview_height = 1,
+  --           prompt_position = "bottom",
+  --         }
+  --       },
+  --       filetypes = {
+  --         layout_config = {
+  --           anchor = "SE",
+  --           width = 30,
+  --           height = 10,
+  --           prompt_position = "bottom",
+  --         },
+  --       },
+  --       diagnostics = {
+  --         theme = "ivy",
+  --       },
+  --       -- symbols = {
+  --       --   theme = "cursor",
+  --       --   layout_config = { width = 50 },
+  --       -- },
+  --     },
+  --     extensions = {
+  --       fzf = {
+  --         fuzzy = true,
+  --         override_generic_sorter = true,
+  --         override_file_sorter = true,
+  --         case_mode = "smart_case",
+  --       },
+  --     }
+  --   },
+  --   config = function(_, opts)
+  --     local telescope = require("telescope")
 
-      telescope.setup(opts)
-      -- if vim.fn.executable("make") == 1 then
-      telescope.load_extension("fzf")
-      -- end
-    end,
-  }
+  --     telescope.setup(opts)
+  --     -- if vim.fn.executable("make") == 1 then
+  --     telescope.load_extension("fzf")
+  --     -- end
+  --   end,
+  -- }
 
 }
