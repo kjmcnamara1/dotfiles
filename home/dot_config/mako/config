@@ -1,0 +1,20 @@
+# vim:ft=dosini
+
+include=~/.config/mako/colors/wallust.ini
+
+anchor=top-right
+default-timeout=5000
+font=sans-serif 20px
+width=420
+# max-icon-size=32
+
+border-size=3
+border-radius=10
+padding=10,15
+outer-margin=20
+
+[mode=do-not-disturb]
+invisible=true
+
+[urgency=critical]
+default-timeout=0

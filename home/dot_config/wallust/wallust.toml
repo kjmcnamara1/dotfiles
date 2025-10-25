@@ -63,3 +63,6 @@ check_contrast = true
 
   swayosd.src = 'swayosd.css'
   swayosd.dst = '~/.config/swayosd/colors/wallust.css'
+
+  mako.src = 'mako.ini'
+  mako.dst = '~/.config/mako/colors/wallust.ini'
