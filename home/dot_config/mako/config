@@ -1,6 +1,5 @@
-# vim:ft=dosini
-
-include=~/.config/mako/colors/wallust.ini
+# vim: ft=cfg
+include=~/.config/mako/colors/wallust.cfg
 
 anchor=top-right
 default-timeout=5000
@@ -12,6 +11,8 @@ border-size=3
 border-radius=10
 padding=10,15
 outer-margin=20
+
+icon-path=/usr/share/icons/Papirus-Dark:/usr/share/icons/Adwaita
 
 [mode=do-not-disturb]
 invisible=true
