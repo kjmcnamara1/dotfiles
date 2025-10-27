@@ -14,8 +14,9 @@
 - [x] Bluetooth (bluetui)
 - [x] Monitors (hyprmon)
 
-### Rofi
+### Launcher
 
+- [ ] Walker/elephant? or Rofi
 - [ ] Power menu
 - [ ] Applications
 - [ ] Monitor profiles
