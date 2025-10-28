@@ -1,0 +1,12 @@
+{{- if eq .chezmoi.os "linux" -}}
+#! /usr/bin/env bash
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo "*** MPV Video Player"
+echo "--------------------------------------------------------------------------------"
+
+yay -S --needed --noconfirm mpv
+{{- else if eq .chezmoi.os "windows" -}}
+scoop install mpv
+{{ end }}
