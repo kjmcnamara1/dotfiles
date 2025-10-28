@@ -69,3 +69,6 @@ alpha = 50
 
   swayosd.src = 'swayosd.css'
   swayosd.dst = '~/.config/swayosd/colors/wallust.css'
+
+  walker.src = 'walker.css'
+  walker.dst = '~/.config/walker/themes/wallust/colors.css'

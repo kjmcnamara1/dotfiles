@@ -16,11 +16,11 @@
 
 ### Launcher
 
-- [ ] Walker/elephant? or Rofi
+- [x] Walker/elephant? or Rofi
 - [ ] Power menu
-- [ ] Applications
+- [x] Applications
 - [ ] Monitor profiles
-- [ ] Keybinds
+- [x] Keybinds
 - [ ]
 
 ## Theming
