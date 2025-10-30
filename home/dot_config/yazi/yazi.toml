@@ -4,7 +4,7 @@
   linemode    = "size"
 
 [tasks]
-  # image_bound = [0, 0]
+  image_bound = [0, 0]
   image_alloc = 1073741824 # = 1024*1024*1024 = 1024MB
 
 [opener]
