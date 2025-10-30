@@ -159,6 +159,7 @@ return {
       { "<leader>gs",      "<cmd>FzfLua git_status<cr>",                desc = "Search Git Status" },
       -- search
       { "<leader>/",       "<cmd>FzfLua live_grep<cr>",                 desc = "Live Grep" },
+      { "<leader>\\",      "<cmd>FzfLua grep_cword<cr>",                desc = "Live Grep" },
       { "<leader>:",       "<cmd>FzfLua command_history<cr>",           desc = "Search Command History" },
       { '<leader>"',       "<cmd>FzfLua registers<cr>",                 desc = "Search Registers" },
       { "<leader>so",      "<cmd>FzfLua nvim_options<cr>",              desc = "Search Neovim Options" },
