@@ -6,4 +6,4 @@ tmpfile=$(mktemp /tmp/hypr-activewindow.XXXXXX)
 hyprctl activewindow > "$tmpfile"
 
 # Launch wezterm with nvim reading that file
-$TUI_TERMINAL --title "ActiveWindowInfo" -e bash -c "nvim '+set nonu nornu laststatus=0' '$tmpfile'"
+$TERMINAL --class "ActiveWindowInfo" -e bash -c "nvim '+set nonu nornu laststatus=0' '$tmpfile'"

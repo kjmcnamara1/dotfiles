@@ -9,7 +9,8 @@ local function is_windows()
   return wezterm.target_triple:find("windows") ~= nil
 end
 
--- config.enable_wayland = false
+-- Enable wayland only when running wezterm-git in wayland. `false` for repo
+config.enable_wayland = false
 
 -- Session
 if is_windows() then
