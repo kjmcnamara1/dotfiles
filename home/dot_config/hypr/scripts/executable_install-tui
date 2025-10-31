@@ -38,12 +38,12 @@ else
   APP_CLASS="TUI.$APP_NAME.tile"
 fi
 
-cat >"$DESKTOP_FILE" <<EOF
+cat > "$DESKTOP_FILE" << EOF
 [Desktop Entry]
 Version=1.0
 Name=$APP_NAME
 Comment=$APP_NAME ($APP_EXEC)
-Exec=\$TUI_TERMINAL --class=$APP_CLASS -e $APP_EXEC
+Exec=\$TERMINAL --class=$APP_CLASS -e $APP_EXEC
 Terminal=false
 Type=Application
 Icon=$ICON_PATH

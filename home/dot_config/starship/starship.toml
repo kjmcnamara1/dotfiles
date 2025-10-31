@@ -3,23 +3,16 @@
 # add_newline = false
 command_timeout = 750
 
-format = """\
-$all $fill $python$shell
-$jobs\
-$battery\
-$time\
-$status\
-$os\
-$container\
-$character"""
+format = """ $all"""
 
-# right_format = "$cmd_duration$memory_usage$sudo$battery$os"
+right_format = "$battery$shell$os"
 
 [fill]
+  # disabled = true
   symbol = "─"
 
 [line_break]
-  disabled = true
+  disabled = false
 
 [shell]
   disabled             = false
@@ -31,7 +24,7 @@ $character"""
   pwsh_indicator       = "[󰨊 ](blue)"
   cmd_indicator        = "[ ](yellow)"
   nu_indicator         = "[> ](#39884d)"
-  xonsh_indicator      = "[@ ](purple)"
+  xonsh_indicator      = "[🐚 ](purple)"
   unknown_indicator    = "[ ](red)"
 
 [username]
@@ -40,8 +33,8 @@ $character"""
   style_user = 'yellow'
 
 [hostname]
-  # ssh_only = false
-  format     = "[@($ssh_symbol )$hostname]($style)"
+  # ssh_only   = false
+  format     = "[@($ssh_symbol )$hostname]($style) "
   ssh_symbol = '🌏'
   # detect_env_vars = ['SSH_TTY', 'SSH_CONNECTION', 'SSH_CLIENT']
 
@@ -54,49 +47,49 @@ $character"""
   # truncate_to_repo = false
   # style = "bg:bright-black fg:cyan inverted"
   repo_root_style = "bold"
-  read_only = " "
+  read_only = " "
   read_only_style = "red"
   style = "cyan"
   format = """\
 [$read_only]($read_only_style)\
-[ $path]($style)\
+[$path]($style) \
 """
   repo_root_format = """\
 [$read_only]($read_only_style)\
-[ $before_root_path]($before_repo_root_style)\
+[$before_root_path]($before_repo_root_style)\
 [ $repo_root]($style $repo_root_style)\
-[$path]($style)\
+[$path]($style) \
 """
   use_logical_path = false
   # fish_style_pwd_dir_length = 1
 
 [git_branch]
   symbol = "󰘬 "
-  format = """[ $symbol$branch(:$remote_branch)]($style)"""
+  format = """[$symbol$branch(:$remote_branch)]($style) """
   style  = "purple"
 
 [git_commit]
-  format = '[\($hash$tag\)]($style)'
+  format = '[\($hash$tag\)]($style) '
   style  = "#646A76"
 
 [git_status]
-  format           = "[($all_status$ahead_behind )]($style)"
+  format           = "[$all_status$ahead_behind]($style)"
   style            = "default"
-  windows_starship = "/mnt/c/Users/McNamaraK/scoop/shims/starship.exe"
-  conflicted       = "[ ‼$count](red)"                                 # =
-  stashed          = "[  $count](white)"                              # \\$
-  deleted          = "[ 󰆴$count](bold red)"                            # ✘
-  renamed          = "[  $count](bold yellow)"                        # »
-  modified         = "[  $count](yellow)"                             # !
-  staged           = "[  $count](green)"                              # +
-  untracked        = "[  $count](bold black)"                         # ?
-  diverged         = " ⇕$ahead_count/$behind_count"
-  ahead            = "[ ⇡$count](blue)"
-  behind           = "[ ⇣$count](bold blue)"
+  windows_starship = "/mnt/c/Users/McNamaraK/scoop/shims/starship.exe" # NOTE: may need to change
+  conflicted       = "[‼$count](red) "                                 # =
+  stashed          = "[ $count](white) "                              # \\$
+  deleted          = "[󰆴$count](bold red) "                            # ✘
+  renamed          = "[ $count](bold yellow) "                        # »
+  modified         = "[ $count](yellow) "                             # !
+  staged           = "[ $count](green) "                              # +
+  untracked        = "[ $count](bold black) "                         # ?
+  diverged         = "⇕$ahead_count/$behind_count "
+  ahead            = "[⇡$count](blue) "
+  behind           = "[⇣$count](bold blue) "
 
 [package]
   disabled = true
-  format   = "[$symbol$version]($style)"
+  format   = "[$symbol$version]($style) "
   style    = "bold yellow"
 
 [lua]
@@ -105,13 +98,13 @@ $character"""
 [python]
   symbol = " "
   style  = "blue"
-  format = '[(\($symbol$virtualenv\) )]($style)'
+  format = '[$symbol$pyenv_prefix($version )(\($virtualenv\) )]($style)'
 
 [nodejs]
-  format = ' [$symbol($version)]($style)'
+  format = '[$symbol($version)]($style) '
 
 [os]
-  # disabled = false
+  disabled = true
 
   [os.symbols]
     Windows          = "󰍲 "
@@ -135,10 +128,10 @@ $character"""
     RedHatEnterprise = "󱄛 "
 
 [cmd_duration]
-  disabled           = true
-  style              = "bold yellow"
-  format             = "[( $duration )]($style)"
-  show_notifications = true
+  # disabled           = true
+  style  = "bold yellow"
+  format = "[($duration )]($style) "
+  # show_notifications = true
 
 [character]
   # disabled = true

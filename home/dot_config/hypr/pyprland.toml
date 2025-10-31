@@ -2,10 +2,10 @@
   plugins = ["scratchpads", "toggle_special"]
 
   [pyprland.variables]
-    # term = "wezterm start"
+    term = "wezterm start"
     # term = "wezterm start --always-new-process"
     # term = "ghostty"
-    term = "kitty"
+    # term = "kitty"
     # term = "alacritty"
 
 [scratchpads.dropterm]

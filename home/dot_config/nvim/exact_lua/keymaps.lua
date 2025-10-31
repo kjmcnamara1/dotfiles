@@ -302,7 +302,6 @@ return {
         { "<a-c-n>",       function() mc.matchSkipCursor(1) end,   desc = 'Move main cursor next cword/sel',        mode = { "n", "v" } },
         { "<a-c-p>",       function() mc.matchSkipCursor(-1) end,  desc = 'Move main cursor previous cword/sel',    mode = { "n", "v" } },
         { "mcA",           mc.matchAllAddCursors,                  desc = 'Add cursor to all cword/sel',            mode = { "n", "v" } },
-        -- BUG: next/prevCursor removes cursors when looping around (fixed by disabling wrap)
         { "L",             function() mc.nextCursor(false) end,    desc = 'Move main cursor to next selection',     mode = { "n", "v" } },
         { "H",             function() mc.prevCursor(false) end,    desc = 'Move main cursor to previous selection', mode = { "n", "v" } },
         { "<a-s-l>",       mc.lastCursor,                          desc = 'Move main cursor to last selection',     mode = { "n", "v" } },
