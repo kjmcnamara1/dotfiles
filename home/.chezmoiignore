@@ -3,8 +3,6 @@ key.txt.age
 
 {{- if ne .chezmoi.os "windows" }}
 AppData
-<<<<<<< Updated upstream
-=======
 .config/alacritty
 # .config/helix
 .config/kitty
@@ -55,7 +53,6 @@ Proton
 !.config/wezterm
 !.config/wofi
 !.config/Ryujinx
->>>>>>> Stashed changes
 {{- end }}
 
 {{- if eq .chezmoi.hostname "muse" }}
