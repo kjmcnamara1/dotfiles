@@ -5,7 +5,7 @@ command_timeout = 750
 
 format = """ $all"""
 
-right_format = "$battery$shell$os"
+# right_format = "$battery$shell$os"
 
 [fill]
   # disabled = true
@@ -17,15 +17,15 @@ right_format = "$battery$shell$os"
 [shell]
   disabled             = false
   format               = "$indicator"
-  bash_indicator       = "[ ](bright-yellow)"
-  fish_indicator       = "[󰈺 ](blue)"
-  zsh_indicator        = "[󰵁 ](bright-purple)"
-  powershell_indicator = "[ ](cyan)"
-  pwsh_indicator       = "[󰨊 ](blue)"
-  cmd_indicator        = "[ ](yellow)"
-  nu_indicator         = "[> ](#39884d)"
-  xonsh_indicator      = "[🐚 ](purple)"
-  unknown_indicator    = "[ ](red)"
+  bash_indicator       = "[ ](bright-yellow)"
+  fish_indicator       = "[ 󰈺](blue)"
+  zsh_indicator        = "[ 󰵁](bright-purple)"
+  powershell_indicator = "[ ](cyan)"
+  pwsh_indicator       = "[ 󰨊](blue)"
+  cmd_indicator        = "[ ](yellow)"
+  nu_indicator         = "[ >](#39884d)"
+  xonsh_indicator      = "[ 🐚](purple)"
+  unknown_indicator    = "[ ](red)"
 
 [username]
   # show_always = true
