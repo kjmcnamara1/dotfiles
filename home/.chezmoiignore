@@ -32,6 +32,7 @@ Proton
 !.config/ghostty
 !.config/helix
 !.config/hypr
+!.config/hyprmon
 !.config/lazygit
 !.config/mpv
 !.config/nvim
