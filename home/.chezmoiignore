@@ -3,6 +3,58 @@ key.txt.age
 
 {{- if ne .chezmoi.os "windows" }}
 AppData
+<<<<<<< Updated upstream
+=======
+.config/alacritty
+# .config/helix
+.config/kitty
+.config/nushell
+.config/paru
+.config/pypoetry
+.config/tmux
+.config/xonsh
+{{- end }}
+
+{{- if eq .chezmoi.hostname "angel" }}
+Proton
+.local/share/rclone
+.gtkrc-2.0
+.config/*
+!.config/Code
+!.config/bat
+!.config/bottom
+!.config/btop
+!.config/dunst
+!.config/fastfetch
+!.config/fish
+!.config/FreeCAD
+!.config/gh
+!.config/ghostty
+!.config/helix
+!.config/hypr
+!.config/lazygit
+!.config/mpv
+!.config/nvim
+!.config/nwg-displays
+!.config/nwg-look
+!.config/rofi
+!.config/starship
+!.config/starship.toml
+!.config/sway
+!.config/swaync
+!.config/swaylock
+!.config/swayosd
+!.config/Thunar
+!.config/yay
+!.config/yazi
+!.config/ulauncher
+!.config/wallust
+!.config/waybar
+!.config/waypaper
+!.config/wezterm
+!.config/wofi
+!.config/Ryujinx
+>>>>>>> Stashed changes
 {{- end }}
 
 {{- if eq .chezmoi.hostname "muse" }}
