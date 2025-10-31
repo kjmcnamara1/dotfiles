@@ -53,8 +53,7 @@ if status is-interactive # connected to keyboard
     # Starship Prompt
     function starship_transient_prompt_func
         starship module line_break
-        starship module directory
-        starship module line_break
+        echo " $(starship module directory)"
         starship module character
     end
     # source $HOME/.config/starship/starship.fish
