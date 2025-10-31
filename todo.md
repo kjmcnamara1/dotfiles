@@ -35,12 +35,12 @@
 
 ### Waybar
 
-- [ ] Solid bar all the way across
-- [ ] Date/time in center with update system indicator 
-- [ ] Workspaces on left (include numbers?)
-- [ ] Widgets on right (wifi, bluetooth, monitors, battery)
-- [ ] tweak window title
-- [ ] fix wallust/nord colors
+- [x] Solid bar all the way across
+- [x] Date/time in center with update system indicator 
+- [x] Workspaces on left (include numbers?)
+- [x] Widgets on right (wifi, bluetooth, monitors, battery)
+- [ ] Get window title separate-outputs to work
+- [x] fix wallust/nord colors
 
 ### Notifications
 

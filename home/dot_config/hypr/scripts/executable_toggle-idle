@@ -7,3 +7,4 @@ else
   uwsm-app -- hypridle >/dev/null 2>&1 &
   notify-send "Now locking computer when idle"
 fi
+pkill -SIGRTMIN+9 waybar # send signal to waybar to update custom/hypridle module
