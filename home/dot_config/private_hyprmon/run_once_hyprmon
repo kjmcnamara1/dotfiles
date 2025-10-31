@@ -5,4 +5,4 @@ echo "--------------------------------------------------------------------------
 echo "*** Hyprmon (Monitor Configuration Tool)"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm hyprmon-bin
+yay -S --needed --noconfirm hyprmon-bin
