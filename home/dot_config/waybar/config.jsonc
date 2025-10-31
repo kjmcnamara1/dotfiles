@@ -43,6 +43,7 @@
       "title<.*gitlab.*>": "",
       "class<taskbar>": "",
       "brave-browser": "",
+      "chromium": "",
       "firefox": "",
       "yazi|thunar": "",
       "ghostty|wezterm": "",
