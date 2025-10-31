@@ -5,7 +5,7 @@
 - [x] Split hyprland.conf into multiple files?
 - [ ] Move windowrules to separate file
 - [ ] Desktop entries for TUIs and Web Apps
-- [ ] Simplify starship prompt
+- [x] Simplify starship prompt
 
 ### Write scripts
 

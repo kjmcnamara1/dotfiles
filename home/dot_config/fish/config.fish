@@ -51,8 +51,14 @@ if status is-interactive # connected to keyboard
     # TODO: finish configuring fzf
 
     # Starship Prompt
-    source $HOME/.config/starship/starship.fish
-    # starship init fish | source
+    function starship_transient_prompt_func
+        starship module line_break
+        starship module directory
+        starship module line_break
+        starship module character
+    end
+    # source $HOME/.config/starship/starship.fish
+    starship init fish | source
     enable_transience
 
     # Abbreviations
