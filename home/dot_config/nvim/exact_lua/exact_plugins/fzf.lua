@@ -35,6 +35,7 @@ return {
       },
       previewers = {
         builtin = {
+          -- HACK: graphics protocol works in kitty and ghostty
           extensions = {
             -- ["jpg"] = { "ueberzug" },
             ["png"] = { "chafa", "{file}", "--format=symbols" },
