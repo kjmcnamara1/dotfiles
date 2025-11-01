@@ -4,22 +4,33 @@
 
 - [x] Split hyprland.conf into multiple files?
 - [ ] Move windowrules to separate file
-- [ ] Desktop entries for TUIs and Web Apps
+- [ ] Better keybinds for moving around windows/monitors/workspaces (mimic
+      cosmic)
+- [x] Desktop entries for TUIs
+- [ ] Desktop entries for Web Apps
 - [x] Simplify starship prompt
+- [ ] Xonsh as main shell?
+- [ ] Switch to kitty/ghostty as primary terminal
+  - [ ] Pyprland scratchpads
+  - [ ] Waybar TUIs
+  - [ ] Images in FzfLua in neovim and Yazi
+  - [ ] Use neovim as scrollback buffer
+  - [ ] Keybinds for splits/multiplexing etc.
 
 ### Write scripts
 
-- [ ] System update (pacman/yay)
+- [x] System update (pacman/yay)
 - [x] Wifi (impala)
 - [x] Bluetooth (bluetui)
 - [x] Monitors (hyprmon)
+- [ ] Print settings???
 
 ### Launcher
 
 - [x] Walker/elephant? or Rofi
 - [ ] Power menu
 - [x] Applications
-- [ ] Monitor profiles
+- [x] Monitor profiles
 - [x] Keybinds
 - [ ]
 
@@ -39,7 +50,7 @@
 - [x] Date/time in center with update system indicator 
 - [x] Workspaces on left (include numbers?)
 - [x] Widgets on right (wifi, bluetooth, monitors, battery)
-- [ ] Get window title separate-outputs to work
+- [c] Get window title separate-outputs to work
 - [x] fix wallust/nord colors
 
 ### Notifications

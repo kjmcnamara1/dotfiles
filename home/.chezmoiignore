@@ -58,8 +58,7 @@ Proton
 {{- if eq .chezmoi.hostname "muse" }}
 .chezmoiscripts/change-shell
 .chezmoiscripts/pipewire
-.chezmoiscripts/printer
-wallpapers
+# wallpapers
 .ipython
 .profile
 .gtkrc-2.0
@@ -69,7 +68,7 @@ wallpapers
 .config/alacritty
 .config/Code
 .config/cosmic
-# .config/dunst
+.config/dunst
 # .config/fish
 .config/FreeCAD
 # .config/hypr
@@ -77,7 +76,7 @@ wallpapers
 .config/Kvantum
 .config/nushell
 .config/nwg-displays
-.config/nwg-look
+# .config/nwg-look
 .config/onlyoffice
 .config/rofi
 .config/swaync
