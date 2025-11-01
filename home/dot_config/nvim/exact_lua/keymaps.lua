@@ -460,7 +460,7 @@ return {
     keys = {
       { "<leader>ss", function() require("persistence").load() end,                desc = "Restore Session" },
       { "<leader>sS", function() require("persistence").select() end,              desc = "Select Session" },
-      { "<leader>sl", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
+      { "<leader>sL", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
       {
         "<c-s-q>",
         function()
