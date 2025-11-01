@@ -16,6 +16,7 @@ packages=(
   elephant-symbols-bin
   elephant-snippets-bin
   elephant-unicode-bin
+  elephant-windows-bin
   elephant-bluetooth-bin
   elephant-clipboard-bin
   elephant-websearch-bin
