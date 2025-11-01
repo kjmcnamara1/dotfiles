@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-if command -v impala &> /dev/null; then
-  rfkill unblock wifi
-  pkill -x impala || exec setsid uwsm-app -- "$TERMINAL" --class=impala -e impala "$@"
-else
-  notify-send -u critical "Wifi tool (impala) not installed!"
-fi

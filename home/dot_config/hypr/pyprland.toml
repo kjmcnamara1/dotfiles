@@ -12,16 +12,13 @@
   command   = "[term] --class=dropterm"
   animation = "fromTop"
   class     = "dropterm"
-  position  = "17% 6%"
   size      = "65% 60%"
-  offset    = "200%"
 
   # [scratchpads.music]
   #   animation = "fromBottom"
   #   command   = "kitty --class kitty-pulsemixer -e pulsemixer"
   #   class     = "kitty-pulsemixer"
   #   size      = "50% 20%"
-  #   offset    = "200%"
 
 [scratchpads.taskbar]
   command = "[term] --class=taskbar -e btm -b"
@@ -29,4 +26,28 @@
   animation = "fromLeft"
   class     = "taskbar"
   size      = "30% 80%"
-  offset    = "200%"
+
+[scratchpads.wifi]
+  command   = "[term] --class=wifi -e impala"
+  animation = "fromRight"
+  class     = "wifi"
+  size      = "50% 60%"
+
+[scratchpads.bluetooth]
+  command   = "[term] --class=bluetooth -e bluetui"
+  animation = "fromRight"
+  class     = "bluetooth"
+  size      = "30% 60%"
+
+[scratchpads.audio]
+  command   = "[term] --class=audio -e wiremix"
+  animation = "fromRight"
+  class     = "audio"
+  size      = "40% 60%"
+
+[scratchpads.monitors]
+  command   = "[term] --class=monitors -e hyprmon profiles"
+  animation = "fromRight"
+  class     = "monitors"
+  size      = "500px 300px"
+  # position  = "50% 60px"

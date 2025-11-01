@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-if command -v hyprmon &> /dev/null; then
-  pkill -x hyprmon || exec setsid uwsm-app -- "$TERMINAL" --class=hyprmon -e hyprmon "$@"
-else
-  notify-send -u critical "Monitor tool (hyprmon) not installed!"
-fi

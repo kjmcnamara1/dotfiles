@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-if command -v wiremix &> /dev/null; then
-  pkill -x wiremix || exec setsid uwsm-app -- "$TERMINAL" --class=wiremix -e wiremix "$@"
-else
-  notify-send -u critical "Audio tool (wiremix) not installed!"
-fi
