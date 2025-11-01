@@ -21,11 +21,16 @@ debug                     = false     # enables debug printing for some stuff, f
   resume_last_query = ["ctrl r"]
   quick_activate    = []
 
-[providers.clipboard]
-  time_format = "%m/%d   %H:%M" # format for the clipboard item date
-  desktopapplications = [
-    { action = "pin", bind = "ctrl shift p", after = "AsyncReload" },
-    { action = "unpin", bind = "ctrl shift p", after = "AsyncReload" },
-    { action = "pinup", bind = "ctrl j", after = "AsyncReload" },
-    { action = "pindown", bind = "ctrl k", after = "AsyncReload" },
-  ]
+[providers]
+  default = ["desktopapplications", "menus", "websearch"]
+
+  [providers.clipboard]
+    time_format = "%m/%d   %H:%M" # format for the clipboard item date
+
+  [providers.actions]
+    desktopapplications = [
+      { action = "pin", bind = "ctrl shift p", after = "AsyncReload" },
+      { action = "unpin", bind = "ctrl shift p", after = "AsyncReload" },
+      { action = "pinup", bind = "ctrl j", after = "AsyncReload" },
+      { action = "pindown", bind = "ctrl k", after = "AsyncReload" },
+    ]
