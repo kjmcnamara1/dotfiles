@@ -47,10 +47,12 @@ Proton
 !.config/yay
 !.config/yazi
 !.config/ulauncher
+!.config/walker
 !.config/wallust
 !.config/waybar
 !.config/waypaper
 !.config/wezterm
+!.config/wiremix
 !.config/wofi
 !.config/Ryujinx
 {{- end }}
