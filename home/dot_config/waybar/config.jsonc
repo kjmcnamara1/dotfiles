@@ -181,6 +181,7 @@
     "tooltip-format-wifi": "  {essid} ({signalStrength}%)\n  {ifname}\n\n󱑽 {frequency}GHz\t󰒢 {signaldBm}dBm\n\n󰩠 {ipaddr}/{cidr}\n󰲝 {netmask}\n󰊙 {gwaddr}\n\n {bandwidthDownBits}\t {bandwidthUpBits}",
     "tooltip-format-ethernet": "󰈀  {ifname}\n\n󰩠 {ipaddr}/{cidr}\n󰲝 {netmask}\n󰊙 {gwaddr}\n\n {bandwidthDownBits}\t {bandwidthUpBits}",
     "on-click": "pypr toggle wifi",
+    "on-click-middle": "rfkill list -o SOFT wifi | grep unblocked && rfkill block wifi || rfkill unblock wifi",
   },
   "bluetooth": {
     "format-disabled": "󰂲", // rfkill [un]block bluetooth
@@ -195,24 +196,32 @@
     "tooltip-format-enumerate-connected-battery": "󰂱 {device_alias}\n {device_address}\n󰥂 {device_battery_percentage}%\n",
     // "on-click-middle":"toggle bluetooth power"; // TODO: toggle bluetooth power on middle click
     "on-click": "pypr toggle bluetooth",
+    "on-click-middle": "rfkill list -o SOFT bluetooth | grep unblocked && rfkill block bluetooth || rfkill unblock bluetooth",
   },
   // TODO: configure waybar pulseaudio
   "pulseaudio": {
     "format": "{icon}",
-    "on-click-right": "$TERMINAL --class=Audio -e wiremix",
-    "on-click-middle": "pamixer -t",
-    "tooltip-format": "Playing at {volume}%",
+    "format-bluetooth": "󰂰 {icon}",
+    "tooltip-format": "{desc}\n\n{icon} {volume}%\n{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": " {volume}%",
     "scroll-step": 5,
     "format-muted": "",
     "format-icons": {
       "default": ["", "", ""],
+      "headphone": "",
+      // "hands-free": "",
+      "headset": "󰋎",
+      "phone": "",
+      "phone-muted": "",
+      "portable": "",
+      "car": "",
     },
     "on-click": "pypr toggle audio",
+    "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
   },
   "battery": {
     "format": "{icon}",
-    // "format-discharging": "{icon}",
-    // "format-charging": "{icon}",
     "format-plugged": "",
     // "format-full": "󰂅",
     // "format-alt": "{time} {icon}",
@@ -224,7 +233,7 @@
     "tooltip-format-charging": " {capacity}%\t󱐋 {power:>1.0f}W↑\n {cycles}\t󰉛 {health}\n\n󰥔 {timeTo}",
     "interval": 5,
     "states": {
-      "good": 95,
+      "good": 90,
       "warning": 20,
       "critical": 10,
     },
