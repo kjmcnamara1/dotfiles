@@ -1,0 +1,46 @@
+name        = "session"
+name_pretty = "Session"
+description = "Session Control"
+# icon        = "applications-system"
+# icon = "preferences-system-power"
+icon        = "preferences-system-session"
+search_name = true
+fixed_order = true
+action      = "notify-send %VALUE%"
+
+[[entries]]
+  text    = "Lock"
+  subtext = "Hyprlock"
+  icon    = "system-lock-screen"
+  actions = { "lock" = "uwsm-app -- hyprlock" }
+
+[[entries]]
+  text     = "Suspend"
+  icon     = "system-suspend"
+  keywords = ["sleep"]
+  actions  = { "suspend" = "systemctl suspend" }
+
+[[entries]]
+  text     = "Log Out"
+  subtext  = "Exit Hyprland"
+  icon     = "system-log-out"
+  keywords = ["exit"]
+  actions  = { "logout" = "hyprctl dispatch exit" }
+
+[[entries]]
+  text    = "Hibernate"
+  icon    = "system-hibernate"
+  actions = { "hibernate" = "systemctl hibernate" }
+
+[[entries]]
+  text     = "Reboot"
+  icon     = "system-reboot"
+  keywords = ["restart"]
+  actions  = { "reboot" = "systemctl reboot" }
+
+[[entries]]
+  text     = "Shutdown"
+  subtext  = "Power Off"
+  icon     = "system-shutdown"
+  keywords = ["off"]
+  actions  = { "shutdown" = "systemctl poweroff" }
