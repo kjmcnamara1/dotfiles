@@ -23,6 +23,7 @@ Proton
 !.config/bottom
 !.config/btop
 !.config/dunst
+!.config/elephant
 !.config/fastfetch
 !.config/fish
 !.config/FreeCAD
@@ -37,6 +38,7 @@ Proton
 !.config/nwg-displays
 !.config/nwg-look
 !.config/rofi
+!.config/Ryujinx
 !.config/starship
 !.config/starship.toml
 !.config/sway
@@ -54,7 +56,7 @@ Proton
 !.config/wezterm
 !.config/wiremix
 !.config/wofi
-!.config/Ryujinx
+!.config/yt-dlp
 {{- end }}
 
 {{- if eq .chezmoi.hostname "muse" }}
