@@ -36,6 +36,7 @@ if status is-interactive # connected to keyboard
 
     # Environment Variables
     fish_add_path -g ~/.local/bin
+    fish_add_path -g ~/.config/hypr/scripts
 
     # Zoxide
     zoxide init --cmd cd fish | source
