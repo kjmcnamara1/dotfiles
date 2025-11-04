@@ -55,6 +55,10 @@ return {
       notification_history = {
         keys = { ['<esc>'] = 'close' },
       },
+      lazygit = {
+        width = 0,
+        height = 0,
+      },
     },
     dashboard = {
       sections = {
