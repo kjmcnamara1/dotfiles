@@ -24,3 +24,16 @@ gui:
   nerdFontsVersion: 3
   screenMode: normal # half | full
   filterMode: fuzzy
+
+keybinding:
+  universal:
+    gotoTop: "g"
+    gotoBottom: "G"
+    nextPage: <c-d>
+    prevPage: <c-u>
+    nextTab: ">"
+    prevTab: "<"
+  files:
+    toggleTreeView: "'"
+  commits:
+    viewResetOptions: U
