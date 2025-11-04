@@ -1,0 +1,319 @@
+/* vim: ft=css */
+
+/* #ui */
+/* ^ do not remove this line ^ */
+* {
+  --shadow: 0 10px 4px rgba(0, 0, 0, 0.4);
+  /* --shadow: 0 1px 10px 2px #00000080; */
+
+  /* ----------  LINK HINTS  ---------- */
+  --lh-fg: #2e3440;
+  --lh-bg-1: #f2dcb1;
+  --lh-bg-2: #ebcb8b;
+  --lh-border: #bf616a;
+
+  /* ----------  HUD  ---------- */
+  --hud-fg-l: #5e81ac;
+  --hud-bg-l: #d8dee9;
+  --hud-fg-d: #e5e9f0;
+  --hud-bg-d: #2e3440;
+
+  font-family: "JetBrainsMono Nerd Font", sans;
+}
+
+/* ---------- LINK HINTS ---------- */
+.LH,
+.D .LH {
+  color: var(--lh-fg);
+  background: linear-gradient(var(--lh-bg-1), var(--lh-bg-2));
+  border: 1px solid var(--lh-border);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- LINK HINT MATCH ---------- */
+.MC,
+.D .MC {
+  color: var(--lh-border);
+}
+
+/* ---------- HUD ---------- */
+.HUD {
+  bottom: 1rem;
+  right: 1rem;
+  border-radius: 40px;
+  text-transform: lowercase;
+  height: 1.5rem !important;
+  max-width: 420px;
+  min-width: unset;
+  line-height: unset;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  color: var(--hud-fg-l);
+  box-shadow: var(--shadow);
+}
+
+.HUD:after {
+  background: var(--hud-bg-l);
+  border: none;
+}
+
+.HUD.D {
+  color: var(--hud-fg-d);
+}
+
+.HUD.D:after {
+  background: var(--hud-bg-d);
+}
+
+.HUD.UI {
+  min-width: 380px;
+  align-items: unset;
+}
+
+/* #omni */
+/* ^ do not remove this line ^ */
+* {
+  --font-size: 17px;
+  --font-size-bot: 12px;
+  --shadow: 0 10px 4px rgba(0, 0, 0, 0.4);
+
+  /* ----------  LIGHT THEME  ---------- */
+  --bar-fg-l: #2e3440;
+  --bar-bg-l: #d8dee9;
+  --list-bg-l: #eceff4;
+  --accent-l: #88c0d0;
+  --border-l: #d8dee9;
+  --top-l: #5e81ac;
+  --top-match-l: #bf616a;
+  --bot-l: #b48ead;
+  --bot-match-l: #a3be8c;
+
+  /* ---------- DARK THEME ---------- */
+  --bar-fg-d: #e5e9f0;
+  --bar-bg-d: #3b4252;
+  --list-bg-d: #2e3440;
+  --accent-d: #8fbcbb;
+  --border-d: #434c5e;
+  --top-d: #b48ead;
+  --top-match-d: #a3be8c;
+  --bot-d: #81a1c1;
+  --bot-match-d: #ebcb8b;
+
+  font-family: "JetBrainsMono Nerd Font", sans;
+}
+
+body {
+  animation: show 200ms cubic-bezier(0, 0, 0.2, 1) forwards;
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+}
+
+/* Animate Slide in */
+@keyframes show {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------- BAR ------------------- */
+#bar {
+  padding: 10px;
+  border-bottom: none;
+}
+
+#bar::before {
+  /*for hint or content icon before typing*/
+  content: "➤";
+  position: absolute;
+  left: 20px;
+  z-index: 300;
+  padding: 6px 0;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* ------------------- INPUT ------------------- */
+#input {
+  padding: 0 38px;
+  border: none;
+  box-shadow: none;
+}
+
+/* ------------------- TOOLBAR ------------------- */
+#toolbar {
+  opacity: 0.5;
+}
+
+#toolbar:hover {
+  opacity: 1;
+}
+
+#toolbar .button:hover {
+  background: unset;
+}
+
+/* ------------------- LIST ------------------- */
+.item .icon {
+  width: 24px;
+  height: 24px;
+  padding-right: unset;
+  margin-right: 10px;
+  margin-top: 5px;
+  background-position: bottom right;
+}
+
+.item .icon path {
+  opacity: 0.25;
+  position: absolute;
+  z-index: -1;
+  transform-origin: 0px 0px;
+  transform: scale(0.75);
+}
+
+.item.s,
+.item:hover {
+  border: 3px rgba(0, 0, 0, 0.02) solid;
+  cursor: pointer;
+}
+
+.item .top {
+  position: relative;
+  height: 30px;
+}
+
+.item .top .title {
+  line-height: 10px;
+  margin-top: 2px;
+}
+
+.item .top .title match {
+  text-decoration: none;
+}
+
+.item .top .title:empty::after {
+  content: "<blank>";
+}
+
+.item .bottom {
+  margin-top: -14px;
+  padding-left: 14px;
+}
+
+.item .bottom a {
+  font-size: 0.7rem;
+}
+
+.item .bottom a match {
+  text-decoration: none;
+}
+
+/* ------------------- LIGHT COLORING ------------------- */
+#bar,
+#input {
+  color: var(--bar-fg-l);
+  background: var(--bar-bg-l);
+}
+
+#bar::before {
+  color: var(--accent-l);
+}
+
+#list {
+  background: var(--list-bg-l);
+}
+
+.item {
+  border-top: 1px solid var(--border-l);
+}
+
+.item.s,
+.item:hover {
+  background-color: var(--border-l);
+}
+
+.item .icon path {
+  fill: var(--bar-fg-l);
+}
+
+.item .top {
+  color: var(--top-l);
+}
+
+.item .top .title match {
+  color: var(--top-match-l);
+}
+
+.item .bottom a {
+  color: var(--bot-l);
+}
+
+.item .bottom a match {
+  color: var(--bot-match-l);
+}
+
+/* ------------------- DARK COLORING ------------------- */
+.has-dark #bar,
+.has-dark #input {
+  color: var(--bar-fg-d);
+  background: var(--bar-bg-d);
+}
+
+#input::selection {
+  color: var(--list-bg-d);
+  background: var(--bot-d);
+}
+
+.has-dark #bar::before {
+  color: var(--accent-d);
+}
+
+.has-dark #list {
+  background: var(--list-bg-d);
+}
+
+.has-dark .item {
+  border-top: 1px solid var(--border-d);
+}
+
+.has-dark .item.s,
+.has-dark .item:hover {
+  background-color: var(--border-d);
+}
+
+.has-dark .item .icon path {
+  fill: var(--bar-fg-d);
+}
+
+.has-dark .item .top {
+  color: var(--top-d);
+}
+
+.has-dark .item .top .title match {
+  color: var(--top-match-d);
+}
+
+.has-dark .item .bottom a {
+  color: var(--bot-d);
+}
+
+.has-dark .item .bottom a match {
+  color: var(--bot-match-d);
+}
+
+/* #find:selection */
+/* ^ do not remove this line ^ */
+::selection {
+  background: #d08770 !important;
+}
+
+.Flash.Sel {
+  box-shadow: 0 0 4px 2px #ebcb8b;
+}
