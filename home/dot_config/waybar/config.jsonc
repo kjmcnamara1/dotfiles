@@ -98,7 +98,7 @@
     "exec-if": "which yay",
     // TODO: get number of repo vs aur packages to update and run yay in popup
     // terminal window
-    "on-click": "hyprctl dispatch exec \"[float] uwsm-app -- $TERMINAL sh -c 'yay -Syu --noconfirm; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar\"",
+    "on-click": "hyprctl dispatch exec \"uwsm-app -- $TERMINAL --class=update sh -c 'yay -Syu --noconfirm; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar\"",
     "signal": 8,
     // "tooltip": false,
     "tooltip-format": "  {} Packages need updating",
