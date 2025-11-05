@@ -52,25 +52,27 @@ tooltip {
 }
 
 #workspaces button {
-  color: shade(@foreground, 0.4);
+  color: alpha(@foreground, 0.5);
   padding: 10px 20px;
-  border-radius: 10px;
 }
 
 #workspaces button.empty {
-  color: shade(@foreground, 0.3);
+  /* color: @background; */
+  color: transparent;
+  text-shadow: 0 0 3px alpha(black, 0.3);
 }
 
 #workspaces button.visible {
-  color: @foreground;
+  color: @color3;
 }
 
 #workspaces button.active {
-  color: @color4;
+  background: @color4;
 }
 
 #workspaces button:hover {
-  background: alpha(@cursor, 0.5);
+  color: transparent;
+  text-shadow: 0 0 3px alpha(black, 0.7);
 }
 
 #window {
