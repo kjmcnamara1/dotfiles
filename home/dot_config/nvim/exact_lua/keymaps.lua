@@ -59,10 +59,10 @@ return {
       -- Move Lines
       { "<a-j>",              "<cmd>m .+1<cr>==",            desc = "Move down" },
       { "<a-k>",              "<cmd>m .-2<cr>==",            desc = "Move up" },
-      { "<a-j>",              "<esc><cmd>m .+1<cr>==gi",     desc = "Move down",             mode = { "i" } },
-      { "<a-k>",              "<esc><cmd>m .-2<cr>==gi",     desc = "Move up",               mode = { "i" } },
       { "<a-j>",              ":m '>+1<cr>gv=gv",            desc = "Move down",             mode = { "v" } },
       { "<a-k>",              ":m '<-2<cr>gv=gv",            desc = "Move up",               mode = { "v" } },
+      -- { "<a-j>",              "<esc><cmd>m .+1<cr>==gi",     desc = "Move down",             mode = { "i" } }, -- Clashes with move cursor
+      -- { "<a-k>",              "<esc><cmd>m .-2<cr>==gi",     desc = "Move up",               mode = { "i" } }, -- Clashes with move cursor
 
       { "<leader>ui",         vim.show_pos,                  desc = "Inspect Pos" },
       { "<leader>ut",         "<cmd>InspectTree<cr>",        desc = "Inspect Tree" },
@@ -93,35 +93,15 @@ return {
       { "<leader>bo", "<cmd>BufferLineCloseOthers<cr>",          desc = "Delete other buffers" },
       { "<leader>bl", "<cmd>BufferLineMoveNext<cr>",             desc = "Move buffer right" },
       { "<leader>bh", "<cmd>BufferLineMovePrev<cr>",             desc = "Move buffer left" },
-      { "<a-h>",      "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev buffer" },
+      { "<a-s-l>",    "<cmd>BufferLineMoveNext<cr>",             desc = "Move buffer right" },
+      { "<a-s-h>",    "<cmd>BufferLineMovePrev<cr>",             desc = "Move buffer left" },
       { "<a-l>",      "<cmd>BufferLineCycleNext<cr>",            desc = "Next buffer" },
+      { "<a-h>",      "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev buffer" },
       -- { "[b",         "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev Buffer" },
       -- { "]b",         "<cmd>BufferLineCycleNext<cr>",            desc = "Next Buffer" },
       -- { "[B",         "<cmd>BufferLineMovePrev<cr>",             desc = "Move buffer right" },
       -- { "]B",         "<cmd>BufferLineMoveNext<cr>",             desc = "Move buffer left" },
     },
-  },
-
-  {
-    "xvzc/chezmoi.nvim",
-    keys = {
-      {
-        "<leader>fz",
-        function()
-          local czc = require('chezmoi.commands')
-          require("fzf-lua").fzf_exec(
-            czc.list({ args = { "--include=files" } }),
-            {
-              actions = {
-                ["default"] = function(selected, _)
-                  czc.edit({ targets = { "~/" .. selected[1] }, args = { "--watch" } })
-                end
-              }
-            })
-        end,
-        desc = "Fzf Chezmoi File"
-      },
-    }
   },
 
   {
@@ -144,39 +124,14 @@ return {
     },
   },
 
+  -- TODO: write custom Snacks.pickers
   {
     "ibhagwan/fzf-lua",
     keys = {
-      { "<leader><space>", "<cmd>FzfLua resume<cr>",                    desc = "Fzf Resume" },
-      -- files
-      { "<leader>,",       "<cmd>FzfLua buffers<cr>",                   desc = "Fzf Buffers" },
-      { "<leader>ff",      "<cmd>FzfLua files<cr>",                     desc = "Fzf Files" },
-      { "<leader>fr",      "<cmd>FzfLua oldfiles<cr>",                  desc = "Fzf Recent Files" },
-      { "<leader>fg",      "<cmd>FzfLua git_files<cr>",                 desc = "Fzf Git Files" },
-      { "<leader>ft",      "<cmd>FzfLua filetypes<cr>",                 desc = "Fzf Filetypes" },
-      -- git
-      { "<leader>gc",      "<cmd>FzfLua git_commits<cr>",               desc = "Search Git Commits" },
-      { "<leader>gs",      "<cmd>FzfLua git_status<cr>",                desc = "Search Git Status" },
-      -- search
-      { "<leader>/",       "<cmd>FzfLua live_grep<cr>",                 desc = "Live Grep" },
-      { "<leader>\\",      "<cmd>FzfLua grep_cword<cr>",                desc = "Grep Word Under Cursor",      mode = { 'n', 'x' } },
-      { "<leader>:",       "<cmd>FzfLua command_history<cr>",           desc = "Search Command History" },
-      { '<leader>"',       "<cmd>FzfLua registers<cr>",                 desc = "Search Registers",            mode = { 'n', 'x' } },
-      { "<leader>s/",      "<cmd>FzfLua search_history<cr>",            desc = "Search Search History" },
-      { "<leader>so",      "<cmd>FzfLua nvim_options<cr>",              desc = "Search Neovim Options" },
-      { "<leader>sc",      "<cmd>FzfLua commands<cr>",                  desc = "Search Neovim Commands" },
-      { "<leader>sh",      "<cmd>FzfLua helptags<cr>",                  desc = "Search Help Pages" },
-      { "<leader>sH",      "<cmd>FzfLua highlights<cr>",                desc = "Search Highlight Groups" },
-      { "<leader>sa",      "<cmd>FzfLua autocmds<cr>",                  desc = "Search Auto Commands" },
-      { "<leader>sm",      "<cmd>FzfLua marks<cr>",                     desc = "Search Marks" },
-      { "<leader>sM",      "<cmd>FzfLua manpages<cr>",                  desc = "Search Man Pages" },
-      { "<leader>sj",      "<cmd>FzfLua jumps<cr>",                     desc = "Search Jumps" },
-      { "<leader>sk",      "<cmd>FzfLua keymaps<cr>",                   desc = "Search Keymaps",              mode = { 'n', 'x' } },
-      { "<leader>sq",      "<cmd>FzfLua quickfix<cr>",                  desc = "Search Quickfix List" },
-      { "<leader>sl",      "<cmd>FzfLua loclist<cr>",                   desc = "Search Location List" },
-      { "<leader>sd",      "<cmd>FzfLua lsp_workspace_diagnostics<cr>", desc = "Search Workspace Diagnostics" },
-      { "<leader>sD",      "<cmd>FzfLua lsp_document_diagnostics<cr>",  desc = "Search Document Diagnostics" },
-      { "<leader>uC",      "<cmd>FzfLua colorschemes<cr>",              desc = "Color Schemes" },
+      -- { "<leader>ft", "<cmd>FzfLua filetypes<cr>",                desc = "Fzf Filetypes" },
+      { "<leader>so", "<cmd>FzfLua nvim_options<cr>",             desc = "Search Neovim Options" },
+      -- { "<leader>sd", "<cmd>FzfLua lsp_workspace_diagnostics<cr>", desc = "Search Workspace Diagnostics" },
+      { "<leader>sD", "<cmd>FzfLua lsp_document_diagnostics<cr>", desc = "Search Document Diagnostics" },
     },
   },
 
@@ -199,14 +154,14 @@ return {
       end, "Previous Hunk" },
       { ']H',          '<cmd>Gitsigns nav_hunk last<cr>',             desc = 'Last Hunk',            buffer = 0 },
       { '[H',          '<cmd>Gitsigns nav_hunk first<cr>',            desc = 'First Hunk',           buffer = 0 },
-      { "<leader>ghs", ":Gitsigns stage_hunk<cr>",                    desc = "Stage Hunk",           buffer = 0, mode = { 'n', 'v' } },
-      { "<leader>ghu", ":Gitsigns undo_stage_hunk<cr>",               desc = "Undo Stage Hunk",      buffer = 0, mode = { 'n', 'v' } },
-      { "<leader>ghr", ":Gitsigns reset_hunk<cr>",                    desc = "Reset Hunk",           buffer = 0, mode = { 'n', 'v' } },
-      { "<leader>ghS", "<cmd>Gitsigns stage_buffer<cr>",              desc = "Stage Buffer",         buffer = 0 },
-      { "<leader>ghR", "<cmd>Gitsigns reset_buffer<cr>",              desc = "Reset Buffer",         buffer = 0 },
-      { "<leader>ghp", "<cmd>Gitsigns preview_hunk<cr>",              desc = "Preview Hunk",         buffer = 0 },
-      { "<leader>ghi", "<cmd>Gitsigns preview_hunk_inline<cr>",       desc = "Preview Hunk Inline",  buffer = 0 },
-      { "<leader>ghb", "<cmd>Gitsigns blame_line<cr>",                desc = "Blame Line",           buffer = 0 },
+      { "<leader>hs",  ":Gitsigns stage_hunk<cr>",                    desc = "Stage Hunk",           buffer = 0, mode = { 'n', 'v' } },
+      { "<leader>hu",  ":Gitsigns undo_stage_hunk<cr>",               desc = "Undo Stage Hunk",      buffer = 0, mode = { 'n', 'v' } },
+      { "<leader>hr",  ":Gitsigns reset_hunk<cr>",                    desc = "Reset Hunk",           buffer = 0, mode = { 'n', 'v' } },
+      { "<leader>hS",  "<cmd>Gitsigns stage_buffer<cr>",              desc = "Stage Buffer",         buffer = 0 },
+      { "<leader>hR",  "<cmd>Gitsigns reset_buffer<cr>",              desc = "Reset Buffer",         buffer = 0 },
+      { "<leader>hp",  "<cmd>Gitsigns preview_hunk<cr>",              desc = "Preview Hunk",         buffer = 0 },
+      { "<leader>hi",  "<cmd>Gitsigns preview_hunk_inline<cr>",       desc = "Preview Hunk Inline",  buffer = 0 },
+      { "<leader>hb",  "<cmd>Gitsigns blame_line<cr>",                desc = "Blame Line",           buffer = 0 },
       { "<leader>ugB", "<cmd>Gitsigns blame<cr>",                     desc = "Blame Buffer",         buffer = 0 },
       { "<leader>ugb", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle Git Blame",     buffer = 0 },
       { "<leader>ugw", "<cmd>Gitsigns toggle_word_diff<cr>",          desc = "Toggle Git Word Diff", buffer = 0 },
@@ -256,36 +211,26 @@ return {
     },
   },
 
+  -- TODO: use Snacks.picker for lsp_code_actions
   {
     "neovim/nvim-lspconfig",
     keys = {
-      { '<leader>cC', "<cmd>lua =vim.lsp.get_clients()[1].server_capabilities<cr>",              desc = "LSP Capabilities",      buffer = 0 },
-      { '<leader>k',  vim.lsp.buf.hover,                                                         desc = "LSP Hover",             buffer = 0 },
-      -- { '<c-k>',      vim.lsp.buf.signature_help,                                                                desc = "LSP Signature Documentation", buffer = 0, mode = "i" },
-      -- { ']d',         vim.diagnostic.goto_next,                                                                  desc = "Next Diagnostic",             buffer = 0 },
-      -- { '[d',         vim.diagnostic.goto_prev,                                                                  desc = "Previous Diagnostic",         buffer = 0 },
-      -- { 'gd',         vim.lsp.buf.definition,                                                                desc = "LSP Definition",              buffer = 0 },
-      -- { 'gD',         vim.lsp.buf.declaration,                                                               desc = "LSP Declaration",             buffer = 0 },
-      { 'gd',         "<cmd>FzfLua lsp_definitions jump1=true ignore_current_line=true<cr>",     desc = "LSP Definition",        buffer = 0 },
-      { 'gD',         "<cmd>FzfLua lsp_declarations jump1=true ignore_current_line=true<cr>",    desc = "LSP Declaration",       buffer = 0 },
-      { 'gr',         "<cmd>FzfLua lsp_references ignore_current_line=true<cr>",                 desc = "LSP References",        buffer = 0 },
-      { 'gI',         "<cmd>FzfLua lsp_implementations jump1=true ignore_current_line=true<cr>", desc = "LSP Implementation",    buffer = 0 },
-      { 'gy',         "<cmd>FzfLua lsp_typedefs jump1=true ignore_current_line=true<cr>",        desc = "LSP Type Definition",   buffer = 0 },
-      -- { 'g.',         vim.lsp.buf.code_action,                                                                   desc = "LSP Code Action",             buffer = 0, mode = { "n", "v" } },
-      { 'g.',         "<cmd>FzfLua lsp_code_actions<cr>",                                        desc = "LSP Code Action",       buffer = 0, mode = { "n", "v" } },
-      { '<leader>ca', "<cmd>FzfLua lsp_code_actions<cr>",                                        desc = "LSP Code Action",       buffer = 0, mode = { "n", "v" } },
-      { '=',          vim.lsp.buf.format,                                                        desc = "LSP Format",            buffer = 0, mode = { "n", "v" } },
-      { '<leader>ci', "<cmd>LspInfo<cr>",                                                        desc = "LSP Info",              buffer = 0 },
-      { '<leader>cr', vim.lsp.buf.rename,                                                        desc = "LSP Rename",            buffer = 0 },
-      { '<leader>o',  "<cmd>FzfLua lsp_document_symbols<cr>",                                    desc = "LSP Document Symbols",  buffer = 0 },
-      { '<leader>O',  "<cmd>FzfLua lsp_workspace_symbols<cr>",                                   desc = "LSP Workspace Symbols", buffer = 0 },
+      { '<leader>cC', "<cmd>lua =vim.lsp.get_clients()[1].server_capabilities<cr>", desc = "LSP Capabilities", buffer = 0 },
+      { '<leader>k',  vim.lsp.buf.hover,                                            desc = "LSP Hover",        buffer = 0 },
+      -- { '<c-k>',      vim.lsp.buf.signature_help,                                                desc = "LSP Signature Documentation", buffer = 0, mode = "i" },
+      { 'g.',         vim.lsp.buf.code_action,                                      desc = "LSP Code Action",  buffer = 0, mode = { "n", "v" } },
+      { 'gra',        "<cmd>FzfLua lsp_code_actions<cr>",                           desc = "LSP Code Action",  buffer = 0, mode = { "n", "v" } },
+      { '<leader>cf', vim.lsp.buf.format,                                           desc = "LSP Format",       buffer = 0, mode = { "n", "v" } },
+      { '<leader>ci', "<cmd>LspInfo<cr>",                                           desc = "LSP Info",         buffer = 0 },
+      { '<leader>cr', vim.lsp.buf.rename,                                           desc = "LSP Rename",       buffer = 0 },
     },
   },
 
   {
     "smjonas/inc-rename.nvim",
     keys = {
-      -- { '<leader>cr', ":IncRename ", desc = "LSP Rename", buffer = 0 },
+      { 'grn', ":IncRename ",                                                   desc = "LSP IncRename", buffer = 0 },
+      { 'grN', function() return ":IncRename " .. vim.fn.expand("<cword>") end, desc = "LSP IncRename", buffer = 0, expr = true },
     },
   },
 
@@ -337,7 +282,7 @@ return {
               vim.cmd.noh()
             end
           end,
-          desc = "Escape and clear hlsearch",
+          desc = "MultiCursor:Escape and clear hlsearch",
         },
       }
     end
@@ -360,13 +305,6 @@ return {
     keys = {
       { "<leader>cn", function() require("neogen").generate() end, desc = "Generate Annotations (Neogen)" },
     },
-  },
-
-  {
-    "folke/noice.nvim",
-    keys = {
-      { "<leader>ns", function() require("noice").cmd("pick") end, desc = "Notifications: Search" },
-    }
   },
 
   -- -- TODO: helix keybinds for navigating treesitter
@@ -403,23 +341,94 @@ return {
   {
     "folke/snacks.nvim",
     keys = {
-      { "<leader>.",  function() Snacks.scratch() end,                 desc = "Toggle Scratch Buffer" },
-      { "<leader>S",  function() Snacks.scratch.select() end,          desc = "Select Scratch Buffer" },
-      { "<leader>nh", function() Snacks.notifier.show_history() end,   desc = "Notifications: History" },
-      { "<leader>bd", function() Snacks.bufdelete() end,               desc = "Delete Buffer" },
-      { "<a-c>",      function() Snacks.bufdelete() end,               desc = "Delete Buffer" },
-      { "<leader>cR", function() Snacks.rename.rename_file() end,      desc = "Rename File" },
-      { "<leader>gB", function() Snacks.gitbrowse() end,               desc = "Git Browse" },
-      { "<leader>gb", function() Snacks.git.blame_line() end,          desc = "Git Blame Line" },
-      { "<leader>gf", function() Snacks.lazygit.log_file() end,        desc = "Lazygit Current File History" },
-      { "<leader>gg", function() Snacks.lazygit() end,                 desc = "Lazygit" },
-      { "<leader>gl", function() Snacks.lazygit.log() end,             desc = "Lazygit Log (cwd)" },
-      { "<leader>un", function() Snacks.notifier.hide() end,           desc = "Notifications: Dismiss All" },
-      { "<c-'>",      function() Snacks.terminal() end,                desc = "Toggle Terminal",             mode = { "n", "i", "t" } },
-      { "<c-a-t>",    function() Snacks.terminal() end,                desc = "Toggle Terminal",             mode = { "n", "i", "t" } },
+      -- Top Pickers & Explorer
+      { "<leader>pp",      function() Snacks.picker.pickers() end,                                                desc = "Pick: Pickers" },
+      { "<leader><space>", function() Snacks.picker.smart() end,                                                  desc = "Pick: Smart Files" },
+      { "<leader>,",       function() Snacks.picker.buffers() end,                                                desc = "Pick: Buffers" },
+      { "<leader>/",       function() Snacks.picker.grep() end,                                                   desc = "Pick: Grep" },
+      { "<leader>:",       function() Snacks.picker.command_history() end,                                        desc = "Pick: Command History" },
+      { "<leader>e",       function() Snacks.explorer() end,                                                      desc = "Pick: File Explorer" },
+      -- find
+      { "<leader>fc",      function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,                desc = "Pick: Config Files" },
+      { "<leader>fz",      function() Snacks.picker.chezmoi_files() end,                                          desc = "Pick: Chezmoi File" },
+      { "<leader>ff",      function() Snacks.picker.files() end,                                                  desc = "Pick: Files" },
+      { "<leader>fg",      function() Snacks.picker.git_files() end,                                              desc = "Pick: Git Files" },
+      { "<leader>fp",      function() Snacks.picker.projects() end,                                               desc = "Pick: Projects" },
+      { "<leader>fr",      function() Snacks.picker.recent() end,                                                 desc = "Pick: Recent" },
+      { "<leader>ft",      function() Snacks.picker.filetypes() end,                                              desc = "Pick: Filetypes", },
+      -- git
+      { "<leader>gb",      function() Snacks.picker.git_branches() end,                                           desc = "Pick: Git Branches" },
+      { "<leader>gl",      function() Snacks.picker.git_log() end,                                                desc = "Pick: Git Log" },
+      { "<leader>gL",      function() Snacks.picker.git_log_line() end,                                           desc = "Pick: Git Log Line" },
+      { "<leader>gs",      function() Snacks.picker.git_status() end,                                             desc = "Pick: Git Status" },
+      { "<leader>gS",      function() Snacks.picker.git_stash() end,                                              desc = "Pick: Git Stash" },
+      { "<leader>gd",      function() Snacks.picker.git_diff() end,                                               desc = "Pick: Git Diff (Hunks)" },
+      { "<leader>gf",      function() Snacks.picker.git_log_file() end,                                           desc = "Pick: Git Log File" },
+      -- GitHub
+      { "<leader>ghi",     function() Snacks.picker.gh_issue() end,                                               desc = "Pick: GitHub Issues (open)" },
+      { "<leader>ghI",     function() Snacks.picker.gh_issue({ state = "all" }) end,                              desc = "Pick: GitHub Issues (all)" },
+      { "<leader>ghp",     function() Snacks.picker.gh_pr() end,                                                  desc = "Pick: GitHub Pull Requests (open)" },
+      { "<leader>ghP",     function() Snacks.picker.gh_pr({ state = "all" }) end,                                 desc = "Pick: GitHub Pull Requests (all)" },
+      -- grep
+      { "<leader>sb",      function() Snacks.picker.lines() end,                                                  desc = "Pick: Buffer Lines" },
+      { "<leader>sB",      function() Snacks.picker.grep_buffers() end,                                           desc = "Pick: Grep Open Buffers" },
+      { "<leader>sw",      function() Snacks.picker.grep_word() end,                                              desc = "Pick: Visual selection or word",   mode = { "n", "x" } },
+      -- search
+      { '<leader>s"',      function() Snacks.picker.registers() end,                                              desc = "Pick: Registers" },
+      { '<leader>s/',      function() Snacks.picker.search_history() end,                                         desc = "Pick: Search History" },
+      { "<leader>sa",      function() Snacks.picker.autocmds() end,                                               desc = "Pick: Autocmds" },
+      { "<leader>sc",      function() Snacks.picker.commands() end,                                               desc = "Pick: Commands" },
+      { "<leader>sd",      function() Snacks.picker.diagnostics() end,                                            desc = "Pick: Diagnostics" },
+      { "<leader>sD",      function() Snacks.picker.diagnostics_buffer() end,                                     desc = "Pick: Buffer Diagnostics" },
+      { "<leader>sh",      function() Snacks.picker.help() end,                                                   desc = "Pick: Help Pages" },
+      { "<leader>sH",      function() Snacks.picker.highlights() end,                                             desc = "Pick: Highlights" },
+      { "<leader>si",      function() Snacks.picker.icons() end,                                                  desc = "Pick: Icons" },
+      { "<leader>sj",      function() Snacks.picker.jumps() end,                                                  desc = "Pick: Jumps" },
+      { "<leader>sk",      function() Snacks.picker.keymaps() end,                                                desc = "Pick: Keymaps" },
+      { "<leader>sm",      function() Snacks.picker.marks() end,                                                  desc = "Pick: Marks" },
+      { "<leader>sM",      function() Snacks.picker.man() end,                                                    desc = "Pick: Man Pages" },
+      { "<leader>sO",      function() Snacks.picker.nvim_options() end,                                           desc = "Pick: Neovim Options" },
+      { "<leader>sp",      function() Snacks.picker.lazy() end,                                                   desc = "Pick: Search for Plugin Spec" },
+      { "<leader>sq",      function() Snacks.picker.qflist() end,                                                 desc = "Pick: Quickfix List" },
+      { "<leader>sl",      function() Snacks.picker.loclist() end,                                                desc = "Pick: Location List" },
+      { "<leader>st",      function() Snacks.picker.todo_comments() end,                                          desc = "Pick: Todo" },
+      { "<leader>sT",      function() Snacks.picker.todo_comments({ keywords = { 'TODO', 'FIX', 'FIXME' } }) end, desc = "Pick: Todo/Fix/Fixme" },
+      { "<leader>sR",      function() Snacks.picker.resume() end,                                                 desc = "Pick: Resume" },
+      { "<leader>su",      function() Snacks.picker.undo() end,                                                   desc = "Pick: Undo History" },
+      { "<leader>uC",      function() Snacks.picker.colorschemes() end,                                           desc = "Pick: Colorschemes" },
+      -- LSP
+      { "gd",              function() Snacks.picker.lsp_definitions() end,                                        desc = "LSP: Goto Definition" },
+      { "grd",             function() Snacks.picker.lsp_declarations() end,                                       desc = "LSP: Goto Declaration" },
+      { "grr",             function() Snacks.picker.lsp_references() end,                                         desc = "LSP: References",                  nowait = true },
+      { "gri",             function() Snacks.picker.lsp_implementations() end,                                    desc = "LSP: Goto Implementation" },
+      { "grt",             function() Snacks.picker.lsp_type_definitions() end,                                   desc = "LSP: Goto Type Definition" },
+      { "gai",             function() Snacks.picker.lsp_incoming_calls() end,                                     desc = "LSP: C[a]lls Incoming" },
+      { "gao",             function() Snacks.picker.lsp_outgoing_calls() end,                                     desc = "LSP: C[a]lls Outgoing" },
+      { "go",              function() Snacks.picker.lsp_symbols() end,                                            desc = "LSP: Symbols" },
+      { "gO",              function() Snacks.picker.lsp_workspace_symbols() end,                                  desc = "LSP: Workspace Symbols" },
+      { "grf",             function() Snacks.rename.rename_file() end,                                            desc = "LSP: Rename File" },
+      -- { "gra",             function() Snacks.picker.lsp_code_actions() end,                                       desc = "LSP: Code Actions" },
+
+
+      { "<leader>.",       function() Snacks.scratch() end,                                                       desc = "Toggle Scratch Buffer" },
+      { "<leader>S",       function() Snacks.scratch.select() end,                                                desc = "Select Scratch Buffer" },
+
+      { "<leader>n",       function() Snacks.notifier.hide() end,                                                 desc = "Notifications: Dismiss All" },
+      { "<leader>N",       function() Snacks.notifier.show_history() end,                                         desc = "Notifications: History" },
+      { "<leader>sn",      function() Snacks.picker.notifications() end,                                          desc = "Pick: Search Notifications" },
+
+      { "<leader>bd",      function() Snacks.bufdelete() end,                                                     desc = "Delete Buffer" },
+      { "<a-c>",           function() Snacks.bufdelete() end,                                                     desc = "Delete Buffer" },
+      { "<leader>gB",      function() Snacks.gitbrowse() end,                                                     desc = "Git Browse" },
+      { "<leader>gb",      function() Snacks.git.blame_line() end,                                                desc = "Git Blame Line" },
+      { "<leader>lgf",     function() Snacks.lazygit.log_file() end,                                              desc = "Lazygit Current File History" },
+      { "<leader>lgg",     function() Snacks.lazygit() end,                                                       desc = "Lazygit" },
+      { "<leader>lgl",     function() Snacks.lazygit.log() end,                                                   desc = "Lazygit Log (cwd)" },
+      { "<c-'>",           function() Snacks.terminal() end,                                                      desc = "Toggle Terminal",                  mode = { "n", "i", "t" } },
+      { "<a-t>",           function() Snacks.terminal() end,                                                      desc = "Toggle Terminal",                  mode = { "n", "i", "t" } },
       -- { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
-      { "]]",         function() Snacks.words.jump(vim.v.count1) end,  desc = "Next Reference",              mode = { "n", "t" } },
-      { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference",              mode = { "n", "t" } },
+      { "]]",              function() Snacks.words.jump(vim.v.count1) end,                                        desc = "Next Reference",                   mode = { "n", "t" } },
+      { "[[",              function() Snacks.words.jump(-vim.v.count1) end,                                       desc = "Prev Reference",                   mode = { "n", "t" } },
       -- { "<leader>dps", function() Snacks.profiler.scratch() end,        desc = "Profiler Scratch Bufer" },
     },
   },
@@ -427,10 +436,8 @@ return {
   {
     "folke/todo-comments.nvim",
     keys = {
-      { "]t",         function() require("todo-comments").jump_next() end,                                         desc = "Next todo comment" },
-      { "[t",         function() require("todo-comments").jump_prev() end,                                         desc = "Previous Todo Comment" },
-      { "<leader>st", function() require('todo-comments.fzf').todo() end,                                          desc = "Search Todo" },
-      { "<leader>sT", function() require('todo-comments.fzf').todo({ keywords = { 'TODO', 'FIX', 'FIXME' } }) end, desc = "Search Todo/Fix/Fixme" },
+      { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo comment" },
+      { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous Todo Comment" },
     }
   },
 
@@ -496,8 +503,8 @@ return {
     keys = {
       { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>",                                  desc = "Diagnostics (Trouble)", },
       { "<leader>xX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",                     desc = "Buffer Diagnostics (Trouble)", },
-      { "<leader>cs", "<cmd>Trouble symbols toggle focus=false<cr>",                          desc = "Symbols (Trouble)", },
-      { "<leader>cl", "<cmd>Trouble lsp toggle focus=false<cr>",                              desc = "LSP Definitions / references / ... (Trouble)", },
+      { "<leader>xs", "<cmd>Trouble symbols toggle focus=false<cr>",                          desc = "Symbols (Trouble)", },
+      { "<leader>xl", "<cmd>Trouble lsp toggle focus=false<cr>",                              desc = "LSP Definitions / references / ... (Trouble)", },
       { "<leader>xL", "<cmd>Trouble loclist toggle<cr>",                                      desc = "Location List (Trouble)", },
       { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>",                                       desc = "Quickfix List (Trouble)", },
       { "<leader>xt", "<cmd>Trouble todo toggle focus filter = {tag = {TODO,FIX,FIXME}}<cr>", desc = "Todo/Fix/Fixme (Trouble)" },

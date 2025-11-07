@@ -11,7 +11,7 @@ return {
   lazy = false,
   opts = {
     -- animate = { easing = 'quadratic' },
-    bigfile = { enabled = true },
+    bigfile = {},
     indent = {
       enabled = true,
       char = "┊",
@@ -36,11 +36,144 @@ return {
         },
       },
     },
-    notifier = { enabled = true },
-    input = { enabled = true },
-    quickfile = { enabled = true },
-    statuscolumn = { enabled = true },
-    words = { enabled = true },
+    notifier = {},
+    explorer = {},
+    picker = {
+      layout = "left",
+      sources = {
+        buffers = { layout = "vscode" },
+        keymaps = { layout = "select" },
+
+        -- Custom Sources
+        filetypes = {
+          finder = function(_opts, _ctx)
+            return vim.iter(vim.fn.getcompletion("", "filetype")):map(function(ft)
+              return { text = ft }
+            end):totable()
+          end,
+          format = function(item)
+            local icon, icon_hl = Snacks.util.icon(item.text, "filetype")
+            return {
+              { icon or "", icon_hl or "SnacksPickerIcon" },
+              { " ",        "" },
+              { item.text,  "SnacksPickerLabel" },
+            }
+          end,
+          confirm = function(picker, item)
+            picker:close()
+            vim.bo.filetype = item.text
+          end,
+          layout = {
+            reverse = true,
+            layout = {
+              backdrop = false,
+              row = -1,
+              col = -1,
+              box = "vertical",
+              border = true,
+              width = 20,
+              height = 10,
+              title = "{title}",
+              { win = "list",  border = "none" },
+              { win = "input", height = 1,     border = "top" },
+            }
+          },
+        },
+
+        chezmoi_files = {
+          finder = function(_opts, _ctx)
+            local czc = require('chezmoi.commands')
+            local targets = czc.list({ args = { "--include=files", "--path-style=absolute" } })
+            return vim.iter(targets):map(function(absolute)
+              return { text = absolute, file = absolute }
+            end):totable()
+          end,
+          confirm = function(picker, item)
+            picker:close()
+            local czc = require('chezmoi.commands')
+            czc.edit({ targets = item.file, args = { "--watch" } })
+          end,
+        },
+
+        nvim_options = {
+          layout = "default",
+          finder = function()
+            local options = {}
+            for name, info in pairs(vim.api.nvim_get_all_options_info()) do
+              local ok, value = pcall(vim.api.nvim_get_option_value, name, {})
+              if ok then
+                info["type"] = info.type:gsub("^%l", string.upper)
+                info["value"] = value
+                table.insert(options, info)
+              end
+            end
+            return options
+          end,
+          format = function(item, picker)
+            -- local icon, icon_hl = Snacks.util.icon(item.type, "kind")
+            -- local icons = {}
+            -- for k, v in pairs(picker.opts.icons.kinds) do
+            --   icons[k:lower()] = v
+            -- end
+            -- dd(item)
+            return {
+              { picker.opts.icons.kinds[item.type] or "", "SnacksPickerIcon" .. item.type },
+              { " ", "" },
+              { ("%-30s"):format(item.name), "SnacksPickerLabel" },
+              { "│ ", "SnacksPickerCol" },
+              { tostring(item.value), item.value == item.default and "SnacksPickerUnselected" or "SnacksPickerSelected" },
+            }
+          end,
+        },
+      },
+
+      formatters = {
+        file = {
+          filename_first = true,
+        },
+      },
+
+      win = {
+        input = {
+          keys = {
+            ["<c-c>"] = { "stopinsert", mode = "i" },
+            ["<esc>"] = { "cancel", mode = { "i", "n" } },
+            -- ["<a-s-h>"] = { "toggle_hidden", mode = { "i", "n" } },
+            -- ["<a-h>"] = { "<left>", mode = { "n", "i" } },
+            ["<a-s>"] = { "flash", mode = { "n", "i" } },
+            ["s"] = { "flash" },
+          },
+        },
+      },
+
+      actions = {
+        stopinsert = function(_)
+          vim.cmd.stopinsert()
+        end,
+        flash = function(picker)
+          require("flash").jump({
+            pattern = "^",
+            search = {
+              mode = "search",
+              exclude = {
+                function(win)
+                  return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "snacks_picker_list"
+                end,
+              },
+            },
+            action = function(match)
+              local idx = picker.list:row2idx(match.pos[1])
+              picker.list:_move(idx, true, true)
+            end,
+          })
+        end,
+      },
+
+    },
+    input = {},
+    quickfile = {},
+    statuscolumn = {},
+    words = {},
     scroll = {
       enabled = false, -- breaks multi-cursor
       animate = {
@@ -145,7 +278,7 @@ return {
         Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
         Snacks.toggle.inlay_hints():map("<leader>uh")
         Snacks.toggle.indent():map("<leader>uI")
-        Snacks.toggle.zoom():map("<leader>wm")
+        Snacks.toggle.zoom():map("<a-m>")
         -- Snacks.toggle.zen():map("<leader>uz")
         Snacks.toggle({
           name = "Git Signs",
