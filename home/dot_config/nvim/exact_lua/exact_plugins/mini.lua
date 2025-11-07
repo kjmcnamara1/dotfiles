@@ -104,11 +104,6 @@ return {
     },
   },
 
-  -- {
-  --   'echasnovski/mini.pick',
-  --   opts = {},
-  -- },
-
   {
     'echasnovski/mini.splitjoin',
     opts = {},

@@ -15,7 +15,7 @@ return {
         accept_fallback = "<right>",
         key_bindings = {
           -- accept = false, -- handled by nvim-cmp / blink.cmp
-          accept = "<a-l>",
+          accept = "<a-s-l>",
           accept_word = "<c-l>",
           accept_line = "<c-j>",
           --   next = "<M-]>",

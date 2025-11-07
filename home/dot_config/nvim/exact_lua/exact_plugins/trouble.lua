@@ -17,15 +17,16 @@ return {
     win = {
       wo = {
         scrolloff = 5,
+        -- wrap = true,
       },
     },
     modes = {
       lsp = {
         win = { position = "right" },
       },
-      todo = {
-        win = { position = "right" },
-      },
+      -- todo = {
+      --   win = { position = "right" },
+      -- },
     },
   },
 }

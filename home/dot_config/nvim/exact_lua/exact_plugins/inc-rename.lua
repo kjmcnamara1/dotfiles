@@ -7,6 +7,7 @@ return {
     enabled = not vim.g.vscode,
     cmd = "IncRename",
     opts = {},
+    -- opts = { input_buffer_type = "snacks" },
   },
 
   {
