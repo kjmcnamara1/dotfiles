@@ -32,6 +32,7 @@ Proton
 !.config/helix
 !.config/hypr
 !.config/hyprmon
+!.config/kitty
 !.config/lazygit
 !.config/mpv
 !.config/nvim
