@@ -24,8 +24,8 @@ AppData
 .config/alacritty
 .config/elephant
 .config/walker
-# .config/Code
-# .config/cosmic
+.config/Code
+.config/cosmic
 .config/dunst
 # .config/fish
 .config/FreeCAD
@@ -45,6 +45,7 @@ AppData
 .config/tmux
 .config/ulauncher
 .config/Ryujinx
+.config/wallust
 .config/xsettingsd
 .config/zed
 {{- end }}
