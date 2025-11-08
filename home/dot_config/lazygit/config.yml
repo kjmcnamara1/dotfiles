@@ -20,7 +20,7 @@ gui:
   expandedSidePanelWeight: 4
   timeFormat: 02 Jan 2006
   shortTimeFormat: 03:04
-  showFileTree: false
+  # showFileTree: false
   nerdFontsVersion: 3
   screenMode: normal # half | full
   filterMode: fuzzy
