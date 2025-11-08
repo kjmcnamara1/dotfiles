@@ -5,4 +5,4 @@ echo "--------------------------------------------------------------------------
 echo "*** Thunar"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm thunar sshfs gvfs gvfs-smb gvfs-nfs gvfs-google gvfs-onedrive
+yay -S --noconfirm thunar sshfs gvfs gvfs-smb gvfs-nfs gvfs-google gvfs-onedrive gnome-disk-utility
