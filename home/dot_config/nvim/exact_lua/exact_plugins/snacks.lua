@@ -43,6 +43,7 @@ return {
       sources = {
         buffers = { layout = "vscode" },
         keymaps = { layout = "select" },
+        explorer = { layout = { preview = "main" } },
 
         -- Custom Sources
         filetypes = {
