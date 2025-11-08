@@ -31,6 +31,7 @@ packages=(
   nordzy-hyprcursors
   nordzy-cursors
   adw-gtk-theme
+  papirus-icon-theme
 )
 
 yay -S --needed --noconfirm "${packages[@]}"
