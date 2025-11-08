@@ -4,8 +4,6 @@ key.txt.age
 {{- if ne .chezmoi.os "windows" }}
 AppData
 .config/alacritty
-# .config/helix
-.config/kitty
 .config/nushell
 .config/paru
 .config/pypoetry
@@ -14,54 +12,45 @@ AppData
 {{- end }}
 
 {{- if eq .chezmoi.hostname "angel" }}
-Proton
-.local/share/rclone
+# .chezmoiscripts/change-shell
+.chezmoiscripts/pipewire
+# wallpapers
+.ipython
+.profile
 .gtkrc-2.0
-.config/*
-!.config/Code
-!.config/bat
-!.config/bottom
-!.config/btop
-!.config/dunst
-!.config/elephant
-!.config/fastfetch
-!.config/fish
-!.config/FreeCAD
-!.config/gh
-!.config/ghostty
-!.config/helix
-!.config/hypr
-!.config/hyprmon
-!.config/kitty
-!.config/lazygit
-!.config/mpv
-!.config/nvim
-!.config/nwg-displays
-!.config/nwg-look
-!.config/rofi
-!.config/Ryujinx
-!.config/starship
-!.config/starship.toml
-!.config/sway
-!.config/swaync
-!.config/swaylock
-!.config/swayosd
-!.config/Thunar
-!.config/yay
-!.config/yazi
-!.config/ulauncher
-!.config/walker
-!.config/wallust
-!.config/waybar
-!.config/waypaper
-!.config/wezterm
-!.config/wiremix
-!.config/wofi
-!.config/yt-dlp
+.zshrc
+.config/gtk-3.0
+.config/gtk-4.0
+.config/alacritty
+.config/elephant
+.config/walker
+# .config/Code
+# .config/cosmic
+.config/dunst
+# .config/fish
+.config/FreeCAD
+.config/ghostty
+.config/helix
+.config/superfile
+.config/nwg-look
+# .config/hypr
+# .config/kitty
+.config/Kvantum
+.config/nushell
+.config/nwg-displays
+# .config/nwg-look
+.config/onlyoffice
+# .config/rofi
+.config/swaync
+.config/tmux
+.config/ulauncher
+.config/Ryujinx
+.config/xsettingsd
+.config/zed
 {{- end }}
 
 {{- if eq .chezmoi.hostname "muse" }}
-.chezmoiscripts/change-shell
+# .chezmoiscripts/change-shell
 .chezmoiscripts/pipewire
 # wallpapers
 .ipython
