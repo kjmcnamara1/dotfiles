@@ -13,10 +13,11 @@ default_boot_entry=$(bootctl list --json=short | jq -r '.[] | select(.isDefault 
 sudo sed -i '/^options / { s/ quiet//g; s/ splash//g; s/$/ quiet splash/ }' "$default_boot_entry"
 
 # Write systemd-boot config
-sudo tee /boot/loader/loader.conf > /dev/null <<EOF
-timeout 0
-console-mode auto
-EOF
+sudo bootctl set-timeout "0" # Should also change the EFI variable
+# sudo tee /boot/loader/loader.conf > /dev/null <<EOF
+# timeout 0
+# console-mode auto
+# EOF
 
 # Add plymouth to mkinitcpio hooks after 'base udev'
 # it will only add 'plymouth' if it is not already present
