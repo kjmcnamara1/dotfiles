@@ -43,7 +43,9 @@ return {
       sources = {
         buffers = { layout = "vscode" },
         keymaps = { layout = "select" },
-        explorer = { layout = { preview = "main" } },
+        files = { hidden = true },
+        grep = { hidden = true },
+        explorer = { hidden = true, layout = { preview = "main" } },
 
         -- Custom Sources
         filetypes = {
