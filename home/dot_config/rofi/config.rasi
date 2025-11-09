@@ -8,3 +8,29 @@ configuration {
 	kb-row-down: "Down,Control+n,Control+j,Alt+j";
 	kb-row-up: "Up,Control+p,Control+k,Alt+k";
 }
+
+// @theme "/dev/null"
+
+// Theme
+* {
+  font: "JetBrainsMono Nerd Font 14";
+  background-color: transparent;
+}
+
+window {
+  background-color: #2e344080;
+  // background-color: rgba(46,52,64,0.5);
+  border: 3px;
+  border-color: #434c5e;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+  inputbar {
+  padding: 10px;
+  background-color: #3b4252;
+}
+
+mainbox {
+
+}

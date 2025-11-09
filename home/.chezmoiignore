@@ -73,7 +73,7 @@ AppData
 .config/nwg-displays
 # .config/nwg-look
 .config/onlyoffice
-.config/rofi
+# .config/rofi
 .config/swaync
 .config/tmux
 .config/ulauncher
