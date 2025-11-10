@@ -1,36 +1,207 @@
 configuration {
 
-  modi: "window,drun,filebrowser";
+  // General
+  modes: [combi, run, keys];
+  show-icons: true;
+  icon-theme: "Papirus";
+  steal-focus: false;
+  case-smart: true;
+  scroll-method: 1; // continuous scroll
+  markup: true;
+
+  // Matching
+  matching: "fuzzy";
+  drun-display-format: "{name}\n<span weight='light' size='small'><i>{generic}</i></span>";
+  // drun-show-actions: true;
+  // sorting-method: "fzf";
+
+  // Run settings
+  run-command: "uwsm-app -- {cmd}";
+
+  // Window switcher settings
+  // window-format: "{w} {t} {n} {r} {c}";
+  window-format: "{t}\n<span weight='light' size='small'><i>{c}</i></span>";
+  window-thumbnail: true;
+
+  // application-fallback-icon: "application-other";
+
+  // Combi settings
+  combi-modes: [window, drun];
+  // combi-display-format: "{text}\t<span size='small'>{mode}</span>";
+  combi-display-format: "{mode} {text}";
 
   // Keybindings
   kb-remove-to-eol: "";
+  kb-move-char-back: "Left,Alt+h";
+  kb-move-char-forward: "Right,Alt+l";
   kb-accept-entry: "Return,KP_Enter";
-	kb-row-down: "Down,Control+n,Control+j,Alt+j";
-	kb-row-up: "Up,Control+p,Control+k,Alt+k";
+  kb-row-down: "Down,Control+n,Control+j,Alt+j";
+  kb-row-up: "Up,Control+p,Control+k,Alt+k";
+  kb-page-next: "Page_Down,Control+f";
+  kb-page-prev: "Page_Up,Control+b";
+
+  drun {
+    // display-name: "<span foreground='#EBCB8B'> </span>";
+    display-name: " ";
+  }
+
+  window {
+    // display-name: "<span foreground='#5E81AC'> </span>";
+    display-name: " ";
+    hide-active-window: true;
+    close-on-delete: false;
+  }
+
+  combi {
+    display-name: " ";
+  }
+
+  run {
+    display-name: "󰜎 ";
+  }
+
+  keys {
+    display-name: " ";
+  }
+
+  filebrowser {
+    display-name: " ";
+    // directory: "/home/kjm";
+    directories-first: true;
+    sorting-method: "name";
+    show-hidden: true;
+  }
 }
 
-// @theme "/dev/null"
+@theme "/dev/null"
 
 // Theme
 * {
-  font: "JetBrainsMono Nerd Font 14";
+  fg: #E5E9F0;
+  bg: #2e344080;
+
+  // font: "JetBrainsMono Nerd Font 12";
+  font: "Sans 11";
+  text-color: @fg;
   background-color: transparent;
 }
 
 window {
-  background-color: #2e344080;
-  // background-color: rgba(46,52,64,0.5);
+  /* location: north; */
+  /* y-offset: 30px; */
+  width: 600px;
+  padding: 20px;
+  transparency: "real";
+  background-color: @bg;
   border: 3px;
   border-color: #434c5e;
   border-radius: 20px;
-  padding: 20px;
-}
-
-  inputbar {
-  padding: 10px;
-  background-color: #3b4252;
 }
 
 mainbox {
+  spacing: 10px;
+  children: [inputbar, message, listview, keybinds];
+}
 
+inputbar {
+  padding: 10px;
+  background-color: #3b425280;
+  border-radius: 10px;
+  children: [prompt, entry, overlay, num-filtered-rows, textbox-num-sep, num-rows, case-indicator];
+}
+
+prompt {
+  // enabled: false;
+  text-color: #5E81AC;
+}
+
+entry {
+  text-color: #e5e9f0;
+  placeholder: "  Search...";
+  placeholder-markup: true;
+  placeholder-color: #e5e9f080;
+  cursor-color: #A3BE8C;
+  blink: true;
+  cursor: text;
+  // hide-cursor-on-empty: true;
+}
+
+overlay {}
+
+num-filtered-rows {
+  expand: false;
+  text-color: #8FBCBB;
+}
+
+textbox-num-sep {
+  expand: false;
+  content: "/";
+  text-color: #8FBCBB;
+}
+
+num-rows {
+  expand: false;
+  text-color: #8FBCBB;
+}
+
+case-indicator {
+  text-color: #B48EAD;
+}
+
+listview {
+  fixed-height: false;
+  lines: 8;
+  scrollbar: true;
+}
+
+scrollbar {
+  handle-width: 8px;
+  handle-rounded-corners: true;
+  handle-color: #4c566a;
+}
+
+element {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+element selected {
+  background-color: #4C566A80;
+}
+
+element-icon {
+  size: 1.9em;
+  margin: 0 10px 0 0;
+}
+
+keybinds {
+  expand: false;
+  orientation: horizontal;
+  spacing: 10px;
+  padding: 10px;
+  border: 1px solid 0 solid 0 solid;
+  border-color: #4c566a80;
+  children: [dummy-expand, textbox-alt, textbox-return];
+}
+
+dummy-expand {
+  expand: true;
+}
+
+textbox-alt {
+  expand: false;
+  content: "<b>alt return</b>\nalt start";
+  markup: true;
+  font: "Sans 8";
+  horizontal-align: 0.5;
+  text-color: #E5E9F0D0;
+}
+
+textbox-return {
+  expand: false;
+  content: "<b>return</b>\nstart";
+  markup: true;
+  font: "Sans 8";
+  horizontal-align: 0.5;
+  text-color: #E5E9F0D0;
 }
