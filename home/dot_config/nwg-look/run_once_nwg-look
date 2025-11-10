@@ -11,8 +11,8 @@ packages=(
   adw-gtk-theme
   papirus-icon-theme
 
-  qogir-icon-theme
-  materia-gtk-theme
+  # qogir-icon-theme
+  # materia-gtk-theme
 )
 
 yay -S --needed --noconfirm "${packages[@]}"
