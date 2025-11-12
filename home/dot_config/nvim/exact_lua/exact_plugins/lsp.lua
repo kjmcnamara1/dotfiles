@@ -212,7 +212,8 @@ return {
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
     keys = {
-      { '<leader>cf', function() require('conform').format() end, desc = "LSP Format", buffer = 0, mode = { "n", "v" } },
+      { '<leader>cc', "<cmd>ConformInfo<cr>",                     desc = "LSP Conform Info", buffer = 0, mode = { "n", "v" } },
+      { '<leader>cf', function() require('conform').format() end, desc = "LSP Format",       buffer = 0, mode = { "n", "v" } },
     },
     opts = {
       format_on_save = {
