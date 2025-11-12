@@ -36,15 +36,14 @@ packages=(
 
 yay -S --needed --noconfirm "${packages[@]}"
 
+# yay -S --needed --noconfirm hyprland-plugin-hyprscrolling
+
 # echo
 # echo "--------------------------------------------------------------------------------"
 # echo "*** Hyprland Plugin Manager"
 # echo "--------------------------------------------------------------------------------"
 
-# yay -S --noconfirm hyprland
-# yay -S --noconfirm cmake
-# yay -S --noconfirm meson
-# yay -S --noconfirm cpio
+# yay -S --needed --noconfirm cmake meson cpio pkg-config git g++ gcc
 
 # hyprpm add https://github.com/hyprwm/hyprland-plugins
 # hyprpm add https://github.com/outfoxxed/hy3
