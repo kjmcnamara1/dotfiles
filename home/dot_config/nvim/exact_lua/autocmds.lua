@@ -47,13 +47,14 @@ vim.api.nvim_create_autocmd("VimResized", {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-  desc = "Format file on save",
-  group = CustomGroup,
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
+-- NOTE: Replaced with conform.nvim
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   desc = "Format file on save",
+--   group = CustomGroup,
+--   callback = function()
+--     vim.lsp.buf.format()
+--   end,
+-- })
 
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
   desc = "Show cursor line when entering window",

@@ -32,8 +32,7 @@ scrollbar {
   color: @theme_fg_color;
 }
 
-.box {
-}
+.box {}
 
 .search-container {
   border-radius: 10px;
@@ -51,24 +50,19 @@ scrollbar {
 }
 
 .input:focus,
-.input:active {
-}
+.input:active {}
 
-.content-container {
-}
+.content-container {}
 
-.placeholder {
-}
+.placeholder {}
 
-.scroll {
-}
+.scroll {}
 
 .list {
   color: @theme_fg_color;
 }
 
-child {
-}
+child {}
 
 .item-box {
   border-radius: 10px;
@@ -86,8 +80,7 @@ child:selected .item-box {
   background: alpha(@accent_bg_color, 0.25);
 }
 
-.item-text-box {
-}
+.item-text-box {}
 
 .item-subtext {
   font-size: 12px;
@@ -114,8 +107,7 @@ child:selected .item-box {
   font-size: 24px;
 }
 
-.calc .item-subtext {
-}
+.calc .item-subtext {}
 
 .symbols .item-image {
   font-size: 24px;
@@ -148,11 +140,9 @@ child:selected .item-box {
   color: @theme_fg_color;
 }
 
-.keybinds {
-}
+.keybinds {}
 
-.keybind {
-}
+.keybind {}
 
 .keybind-bind {
   /* color: lighter(@window_bg_color); */
@@ -160,8 +150,7 @@ child:selected .item-box {
   text-transform: lowercase;
 }
 
-.keybind-label {
-}
+.keybind-label {}
 
 .error {
   padding: 10px;

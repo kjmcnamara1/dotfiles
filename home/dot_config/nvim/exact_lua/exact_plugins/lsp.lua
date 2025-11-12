@@ -19,11 +19,12 @@ return {
         underline = true,
         update_in_insert = false,
         severity_sort = true,
-        virtual_text = {
-          spacing = 4,
-          source = 'if_many',
-          prefix = "●",
-        },
+        virtual_text = false,
+        -- virtual_text = {
+        --   spacing = 4,
+        --   source = 'if_many',
+        --   prefix = "●",
+        -- },
         signs = {
           text = { " ", " ", " ", "󰠠 " },
           numhl = {
@@ -154,6 +155,79 @@ return {
         })
       end
     end
+  },
+
+  -- Rename
+  {
+    "smjonas/inc-rename.nvim",
+    enabled = not vim.g.vscode,
+    cmd = "IncRename",
+    opts = {},
+    -- opts = { input_buffer_type = "snacks" },
+  },
+
+  {
+    "folke/noice.nvim",
+    opts = {
+      presets = { inc_rename = true },
+    },
+  },
+
+  -- Diagnostics
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy",
+    priority = 1000,
+    opts = {
+      options = {
+        multilines = {
+          enabled = true,
+        },
+        use_icons_from_diagnostic = true,
+      },
+    },
+  },
+
+  {
+    "rachartier/tiny-code-action.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "folke/snacks.nvim",
+    },
+    event = "LspAttach",
+    keys = {
+      { "g.",         function() require("tiny-code-action").code_action() end, desc = "LSP: Code Action", buffer = 0, mode = { "n", "x" } },
+      { "gra",        function() require("tiny-code-action").code_action() end, desc = "LSP: Code Action", buffer = 0, mode = { "n", "x" } },
+      { "<leader>ca", function() require("tiny-code-action").code_action() end, desc = "LSP: Code Action", buffer = 0, mode = { "n", "x" } },
+    },
+    opts = {
+      backend = "delta",
+      picker = "snacks",
+    },
+  },
+
+  -- Formatting
+  {
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    keys = {
+      { '<leader>cf', function() require('conform').format() end, desc = "LSP Format", buffer = 0, mode = { "n", "v" } },
+    },
+    opts = {
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_format = "fallback",
+      },
+      default_format_opts = {
+        lsp_format = "prefer",
+        async = true,
+      },
+    },
+    init = function()
+      -- If you want the formatexpr, here is the place to set it
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
   },
 
 }

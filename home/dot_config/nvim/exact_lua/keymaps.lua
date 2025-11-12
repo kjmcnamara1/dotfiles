@@ -211,16 +211,12 @@ return {
     },
   },
 
-  -- TODO: use Snacks.picker for lsp_code_actions
   {
     "neovim/nvim-lspconfig",
     keys = {
       { '<leader>cC', "<cmd>lua =vim.lsp.get_clients()[1].server_capabilities<cr>", desc = "LSP Capabilities", buffer = 0 },
       { '<leader>k',  vim.lsp.buf.hover,                                            desc = "LSP Hover",        buffer = 0 },
       -- { '<c-k>',      vim.lsp.buf.signature_help,                                                desc = "LSP Signature Documentation", buffer = 0, mode = "i" },
-      { 'g.',         vim.lsp.buf.code_action,                                      desc = "LSP Code Action",  buffer = 0, mode = { "n", "v" } },
-      { 'gra',        "<cmd>FzfLua lsp_code_actions<cr>",                           desc = "LSP Code Action",  buffer = 0, mode = { "n", "v" } },
-      { '<leader>cf', vim.lsp.buf.format,                                           desc = "LSP Format",       buffer = 0, mode = { "n", "v" } },
       { '<leader>ci', "<cmd>LspInfo<cr>",                                           desc = "LSP Info",         buffer = 0 },
       { '<leader>cr', vim.lsp.buf.rename,                                           desc = "LSP Rename",       buffer = 0 },
     },
@@ -241,8 +237,8 @@ return {
       return {
         { "J",             function() mc.lineAddCursor(1) end,     desc = 'MultiCursor: Add cursor below',                       mode = { "n", "v" } },
         { "K",             function() mc.lineAddCursor(-1) end,    desc = 'MultiCursor: Add cursor above',                       mode = { "n", "v" } },
-        { "<a-s-j>",       function() mc.lineSkipCursor(1) end,    desc = 'MultiCursor: Move main cursor below',                 mode = { "n", "v" } },
-        { "<a-s-k>",       function() mc.lineSkipCursor(-1) end,   desc = 'MultiCursor: Move main cursor above',                 mode = { "n", "v" } },
+        { "<c-s-j>",       function() mc.lineSkipCursor(1) end,    desc = 'MultiCursor: Move main cursor below',                 mode = { "n", "v" } },
+        { "<c-s-k>",       function() mc.lineSkipCursor(-1) end,   desc = 'MultiCursor: Move main cursor above',                 mode = { "n", "v" } },
         { "<c-n>",         function() mc.matchAddCursor(1) end,    desc = 'MultiCursor: Add cursor next cword/sel',              mode = { "n", "v" } },
         { "<c-p>",         function() mc.matchAddCursor(-1) end,   desc = 'MultiCursor: Add cursor previous cword/sel',          mode = { "n", "v" } },
         { "<a-c-n>",       function() mc.matchSkipCursor(1) end,   desc = 'MultiCursor: Move main cursor next cword/sel',        mode = { "n", "v" } },
@@ -250,8 +246,8 @@ return {
         { "mcA",           mc.matchAllAddCursors,                  desc = 'MultiCursor: Add cursor to all cword/sel',            mode = { "n", "v" } },
         { "L",             function() mc.nextCursor(false) end,    desc = 'MultiCursor: Move main cursor to next selection',     mode = { "n", "v" } },
         { "H",             function() mc.prevCursor(false) end,    desc = 'MultiCursor: Move main cursor to previous selection', mode = { "n", "v" } },
-        { "<a-s-l>",       mc.lastCursor,                          desc = 'MultiCursor: Move main cursor to last selection',     mode = { "n", "v" } },
-        { "<a-s-h>",       mc.firstCursor,                         desc = 'MultiCursor: Move main cursor to first selection',    mode = { "n", "v" } },
+        { "<c-s-l>",       mc.lastCursor,                          desc = 'MultiCursor: Move main cursor to last selection',     mode = { "n", "v" } },
+        { "<c-s-h>",       mc.firstCursor,                         desc = 'MultiCursor: Move main cursor to first selection',    mode = { "n", "v" } },
         { "<c-i>",         mc.jumpForward,                         desc = 'MultiCursor: Jump forwards',                          mode = { "n", "v" } },
         { "<c-o>",         mc.jumpBackward,                        desc = 'MultiCursor: Jump backwards',                         mode = { "n", "v" } },
         { "<c-c>",         mc.deleteCursor,                        desc = 'MultiCursor: Delete main cursor' },
@@ -407,7 +403,6 @@ return {
       { "go",              function() Snacks.picker.lsp_symbols() end,                                            desc = "LSP: Symbols" },
       { "gO",              function() Snacks.picker.lsp_workspace_symbols() end,                                  desc = "LSP: Workspace Symbols" },
       { "grf",             function() Snacks.rename.rename_file() end,                                            desc = "LSP: Rename File" },
-      -- { "gra",             function() Snacks.picker.lsp_code_actions() end,                                       desc = "LSP: Code Actions" },
 
 
       { "<leader>.",       function() Snacks.scratch() end,                                                       desc = "Toggle Scratch Buffer" },
@@ -421,9 +416,9 @@ return {
       { "<a-c>",           function() Snacks.bufdelete() end,                                                     desc = "Delete Buffer" },
       { "<leader>gB",      function() Snacks.gitbrowse() end,                                                     desc = "Git Browse" },
       { "<leader>gb",      function() Snacks.git.blame_line() end,                                                desc = "Git Blame Line" },
-      { "<leader>gF",     function() Snacks.lazygit.log_file() end,                                              desc = "Lazygit Current File History" },
-      { "<leader>gg",     function() Snacks.lazygit() end,                                                       desc = "Lazygit" },
-      { "<leader>gl",     function() Snacks.lazygit.log() end,                                                   desc = "Lazygit Log (cwd)" },
+      { "<leader>gF",      function() Snacks.lazygit.log_file() end,                                              desc = "Lazygit Current File History" },
+      { "<leader>gg",      function() Snacks.lazygit() end,                                                       desc = "Lazygit" },
+      { "<leader>gl",      function() Snacks.lazygit.log() end,                                                   desc = "Lazygit Log (cwd)" },
       { "<c-'>",           function() Snacks.terminal() end,                                                      desc = "Toggle Terminal",                  mode = { "n", "i", "t" } },
       { "<a-t>",           function() Snacks.terminal() end,                                                      desc = "Toggle Terminal",                  mode = { "n", "i", "t" } },
       -- { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
