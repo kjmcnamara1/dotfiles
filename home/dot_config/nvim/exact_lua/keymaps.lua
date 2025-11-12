@@ -391,6 +391,7 @@ return {
       { "<leader>sT",      function() Snacks.picker.todo_comments({ keywords = { 'TODO', 'FIX', 'FIXME' } }) end, desc = "Pick: Todo/Fix/Fixme" },
       { "<leader>sR",      function() Snacks.picker.resume() end,                                                 desc = "Pick: Resume" },
       { "<leader>su",      function() Snacks.picker.undo() end,                                                   desc = "Pick: Undo History" },
+      { "<leader>sy",      function() Snacks.picker.cliphist() end,                                               desc = "Pick: Clipboard" },
       { "<leader>uC",      function() Snacks.picker.colorschemes() end,                                           desc = "Pick: Colorschemes" },
       -- LSP
       { "gd",              function() Snacks.picker.lsp_definitions() end,                                        desc = "LSP: Goto Definition" },

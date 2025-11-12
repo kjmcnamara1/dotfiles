@@ -43,6 +43,7 @@ return {
       sources = {
         buffers = { layout = "vscode" },
         keymaps = { layout = "select" },
+        cliphist = { layout = "dropdown" },
         files = { hidden = true },
         grep = { hidden = true },
         explorer = { hidden = true, layout = { preview = "main" } },
