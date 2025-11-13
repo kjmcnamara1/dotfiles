@@ -34,6 +34,7 @@ $YAZI_CONFIG_HOME = '~/.config/yazi'
 $EDITOR = 'nvim'
 $MANROFFOPT = '-c'
 $MANPAGER = 'sh -c "col -bx | bat -l man -p"'
+# $MANPAGER = 'nvim +Man!'
 $PATH.prepend('~/.local/bin') # User binaries
 
 # Allow python to import modules from cwd
@@ -45,17 +46,27 @@ $COMPLETIONS_CONFIRM=True
 exec($(carapace _carapace))
 
 # Zoxide
+# BUG: fix zoxide-xonsh error
+# xonsh: For full traceback set: $XONSH_SHOW_TRACEBACK = True
+# Exception: Recursive calls to "cd" alias.
+# Exception raised in event handler; ignored.
 execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
 
 # TODO: set up fzf integration
 
 # Abbreviations
-abbrevs['mkdir'] = 'mkdir -p'
+# aliases['...'] = 'cd ../..'
+# aliases['....'] = 'cd ../../..'
+# aliases['.....'] = 'cd ../../../..'
 
 # Aliases
+aliases['xuv'] = '$UV_PYTHON=@(__xonsh__.imp.sys.executable) uv pip @($args)'
+
+aliases['mkdir'] = 'mkdir -p'
 aliases['c'] = 'clear' # Clear screen
-aliases['p'] = 'paru' # Paru
+# aliases['p'] = 'paru' # Paru
 aliases['py'] = 'python3' # Python
+aliases['ipy'] = 'ipython' # Interactive Python Shell
 aliases['hx'] = 'helix' # Helix text editor
 aliases['ff'] = 'fastfetch' # Fastfetch terminal sysinfo viewer
 aliases['lg'] = 'lazygit' # Lazygit

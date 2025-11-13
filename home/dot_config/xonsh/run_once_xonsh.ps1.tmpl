@@ -6,7 +6,11 @@ echo "--------------------------------------------------------------------------
 echo "*** Xonsh"
 echo "--------------------------------------------------------------------------------"
 
-yay -S --noconfirm xonsh carapace-bin
+yay -S --noconfirm uv carapace-bin
+uv tool install xonsh[full] --with xontrib-vox,xontrib-abbrevs,xontrib-back2dir,xontrib-prompt-starship,xontrib-fish-completer,xontrib-hist-navigator,xontrib-term-integrations,xontrib-kitty
+
+grep -q "^$(which xonsh)$" /etc/shells || echo "$(which xonsh)" | sudo tee -a /etc/shells
+
 {{- else if eq .chezmoi.os "windows" -}}
 scoop install carapace-bin
 pip install 'xonsh[full]'
