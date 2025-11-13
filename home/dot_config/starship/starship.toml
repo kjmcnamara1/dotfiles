@@ -63,6 +63,12 @@ format = """ $all"""
   use_logical_path = false
   # fish_style_pwd_dir_length = 1
 
+  # [directory.substitutions]
+  #   '/mnt/NAS' = '󱛟 '
+  #   library    = '📚'
+  #   books      = '📖'
+  #   software   = '💾'
+
 [git_branch]
   symbol = "󰘬 "
   format = """[$symbol$branch(:$remote_branch)]($style) """

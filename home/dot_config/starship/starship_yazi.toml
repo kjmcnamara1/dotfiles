@@ -71,7 +71,7 @@ format = """$shell$all"""
 [$path]($style)\
 """
   use_logical_path = false
-  # fish_style_pwd_dir_length = 1
+  fish_style_pwd_dir_length = 1
 
 [git_branch]
   symbol = "󰘬 "
