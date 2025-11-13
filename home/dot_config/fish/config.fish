@@ -66,6 +66,9 @@ if status is-interactive # connected to keyboard
     abbr --add mkdir mkdir -p
 
     # Aliases
+    alias '...'='cd ../..'
+    alias '....'='cd ../../..'
+    alias '.....'='cd ../../../..'
     alias c=clear # Clear screen
     alias p=paru # Paru
     alias py=python3 # Python
