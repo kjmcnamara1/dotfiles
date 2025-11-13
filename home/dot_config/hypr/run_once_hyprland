@@ -13,6 +13,7 @@ packages=(
   hypridle
   hyprcursor
   hyprpicker
+  hyprprop-git # allows clicking window to get hyprland properties
   cliphist
   xdg-desktop-portal-hyprland
   polkit-gnome

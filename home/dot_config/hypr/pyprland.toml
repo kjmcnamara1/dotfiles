@@ -8,42 +8,63 @@
     # term = "kitty"
     # term = "alacritty"
 
+    # [scratchpads.music]
+    #   animation = "fromBottom"
+    #   command   = "kitty --class kitty-pulsemixer -e pulsemixer"
+    #   class     = "kitty-pulsemixer"
+    #   size      = "50% 20%"
+
 [scratchpads.dropterm]
   command   = "[term] --class=dropterm"
   animation = "fromTop"
   class     = "dropterm"
   size      = "65% 60%"
+  # unfocus   = "hide"
+  multi = false
+  lazy  = true
 
-  # [scratchpads.music]
-  #   animation = "fromBottom"
-  #   command   = "kitty --class kitty-pulsemixer -e pulsemixer"
-  #   class     = "kitty-pulsemixer"
-  #   size      = "50% 20%"
-
-[scratchpads.taskbar]
-  command = "[term] --class=taskbar -e btm -b"
-  # command   = "missioncenter"
+[scratchpads.processes]
+  command   = "[term] --class=processes -e btm -b"
+  class     = "processes"
   animation = "fromLeft"
-  class     = "taskbar"
   size      = "30% 80%"
+  unfocus   = "hide"
+  multi     = false
+  lazy      = true
+
+[scratchpads.missioncenter]
+  command   = "missioncenter"
+  class     = "io.missioncenter.MissionCenter"
+  animation = "fromTop"
+  multi     = false
+  lazy      = true
 
 [scratchpads.wifi]
   command   = "[term] --class=wifi -e impala"
   animation = "fromRight"
   class     = "wifi"
   size      = "50% 60%"
+  unfocus   = "hide"
+  multi     = false
+  lazy      = true
 
 [scratchpads.bluetooth]
   command   = "[term] --class=bluetooth -e bluetui"
   animation = "fromRight"
   class     = "bluetooth"
   size      = "30% 60%"
+  unfocus   = "hide"
+  multi     = false
+  lazy      = true
 
 [scratchpads.audio]
   command   = "[term] --class=audio -e wiremix"
   animation = "fromRight"
   class     = "audio"
   size      = "40% 60%"
+  unfocus   = "hide"
+  multi     = false
+  lazy      = true
 
 [scratchpads.monitors]
   command   = "[term] --class=monitors -e hyprmon profiles"
@@ -51,3 +72,14 @@
   class     = "monitors"
   size      = "500px 300px"
   # position  = "50% 60px"
+  unfocus = "hide"
+  multi   = false
+  lazy    = true
+
+[scratchpads.weather]
+  command   = "mousam"
+  animation = "fromTop"
+  class     = "io.github.amit9838.mousam"
+  size      = "980px 720px"
+  # unfocus   = "hide"
+  multi = false
