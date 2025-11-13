@@ -1,5 +1,16 @@
 return {
 
+  -- {
+  --   "greggh/claude-code.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim", -- Required for git operations
+  --   },
+  --   keys = {
+  --     { "<leader>cc", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude Code" },
+  --   },
+  --   opts = {},
+  -- },
+
   {
     "Exafunction/codeium.nvim",
     enabled = not vim.g.vscode,

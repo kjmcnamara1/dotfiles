@@ -214,11 +214,11 @@ return {
   {
     "neovim/nvim-lspconfig",
     keys = {
-      { '<leader>cC', "<cmd>lua =vim.lsp.get_clients()[1].server_capabilities<cr>", desc = "LSP Capabilities", buffer = 0 },
-      { '<leader>k',  vim.lsp.buf.hover,                                            desc = "LSP Hover",        buffer = 0 },
+      { '<leader>cC',  "<cmd>lua =vim.lsp.get_clients()[1].server_capabilities<cr>", desc = "LSP Capabilities", buffer = 0 },
+      { '<leader>k',   vim.lsp.buf.hover,                                            desc = "LSP Hover",        buffer = 0 },
       -- { '<c-k>',      vim.lsp.buf.signature_help,                                                desc = "LSP Signature Documentation", buffer = 0, mode = "i" },
-      { '<leader>ci', "<cmd>LspInfo<cr>",                                           desc = "LSP Info",         buffer = 0 },
-      { '<leader>cr', vim.lsp.buf.rename,                                           desc = "LSP Rename",       buffer = 0 },
+      { '<leader>cil', "<cmd>LspInfo<cr>",                                           desc = "Info: LSP",        buffer = 0 },
+      { '<leader>cr',  vim.lsp.buf.rename,                                           desc = "LSP Rename",       buffer = 0 },
     },
   },
 
@@ -292,7 +292,7 @@ return {
   {
     "nvimtools/none-ls.nvim",
     keys = {
-      { "<leader>cI", "<cmd>NullLsInfo<cr>", desc = "Null Ls Info", buffer = 0 },
+      { "<leader>cin", "<cmd>NullLsInfo<cr>", desc = "Info: Null-Ls", buffer = 0 },
     },
   },
 
