@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 # Get info about the active window and open it in nvim (inside wezterm)
 
+pgrep hyprprop && exit
+
 # Create a temporary file with window info
 tmpfile=$(mktemp /tmp/hypr-activewindow.XXXXXX)
-hyprctl activewindow > "$tmpfile"
+# hyprctl activewindow > "$tmpfile"
+hyprprop > "$tmpfile"
 
 # Launch wezterm with nvim reading that file
-$TERMINAL --class "ActiveWindowInfo" -e bash -c "nvim '+set nonu nornu laststatus=0' '$tmpfile'"
+# $TERMINAL --class "ActiveWindowInfo" -e bash -c "nvim '+set nonu nornu laststatus=0' '$tmpfile'"
+$TERMINAL --class "ActiveWindowInfo" -e bash -c "nvim --cmd 'let g:basic = 1' '$tmpfile'"
+# $TERMINAL --class "ActiveWindowInfo" -e bash -c "hyprprop | nvim --cmd 'let g:basic = 1'"
