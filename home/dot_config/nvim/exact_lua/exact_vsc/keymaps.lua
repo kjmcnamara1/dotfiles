@@ -11,14 +11,14 @@ vim.keymap.set("n", "<leader>ft", function() vscode.action("workbench.action.edi
 
 vim.keymap.set("n", "<leader>sk", function() vscode.action("workbench.action.openGlobalKeybindings") end)
 
-vim.keymap.set({ "n", "x" }, "gr", function() vscode.action("editor.action.referenceSearch.trigger") end)
-vim.keymap.set({ "n", "x" }, "<leader>o", function() vscode.action("workbench.action.gotoSymbol") end)
-vim.keymap.set({ "n", "x" }, "<leader>O", function() vscode.action("workbench.action.showAllSymbols") end)
-vim.keymap.set({ "n", "x" }, "<leader>cr", function() vscode.action("editor.action.rename") end)
+vim.keymap.set({ "n", "x" }, "grr", function() vscode.action("editor.action.referenceSearch.trigger") end)
+vim.keymap.set({ "n", "x" }, "go", function() vscode.action("workbench.action.gotoSymbol") end)
+vim.keymap.set({ "n", "x" }, "gO", function() vscode.action("workbench.action.showAllSymbols") end)
+vim.keymap.set({ "n", "x" }, "grn", function() vscode.action("editor.action.rename") end)
 
 vim.keymap.set("n", "]d", function() vscode.action("editor.action.marker.next") end)
 vim.keymap.set("n", "[d", function() vscode.action("editor.action.marker.prev") end)
-vim.keymap.set("n", "<leader>dd", function() vscode.action("workbench.actions.view.problems") end)
+vim.keymap.set("n", "<leader>xx", function() vscode.action("workbench.actions.view.problems") end)
 
 vim.keymap.set("n", "]h", function() vscode.action("workbench.action.editor.nextChange") end)     -- next hunk
 vim.keymap.set("n", "[h", function() vscode.action("workbench.action.editor.previousChange") end) -- prev hunk

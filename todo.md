@@ -2,6 +2,8 @@
 
 ## Hyprland
 
+- [ ] Screenshot support (grim/slurp/grimblast?)
+- [ ] Systemd wants instead of exec-once in hyprland.conf
 - [x] Split hyprland.conf into multiple files?
 - [ ] Move windowrules to separate file
 - [ ] Better keybinds for moving around windows/monitors/workspaces (mimic
@@ -28,14 +30,20 @@
 ### Launcher
 
 - [x] Walker/elephant? or Rofi
-- [ ] Power menu
+- [ ] Power menu for rofi
 - [x] Applications
 - [x] Monitor profiles
 - [x] Keybinds
 - [ ]
 
+### Monitor configuration
+
+Python TUI for configuring hyprland/sway/niri monitors  
+Similar to [hyprmon](https://github.com/erans/hyprmon)
+
 ## Theming
 
+- [ ] Use matugen instead?
 - [ ] use adw-gtk3-dark theme
 - [ ] generate ansinord gtk.css files from wallust
   - [ ] ~/.config/gtk-3.0/gtk.css
@@ -62,7 +70,7 @@
 
 ### Visual Studio Code
 
-- [ ] Integrate wallust theme
+- [ ] Integrate wallust/matugen theme
 
 ### Wallpaper
 
@@ -80,3 +88,11 @@ use specific `sudo chezmoi` commands for relevant files/directories
 - [ ] fstab
 - [ ] nsswitch.conf (printing)
 - [ ] pacman.conf
+
+## Neovim
+
+- [X] Split config into profiles
+  - [X] Base/core for popups (common to all)
+  - [X] VS Code
+  - [X] Full/Neovim
+

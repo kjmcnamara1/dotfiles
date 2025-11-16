@@ -10,6 +10,13 @@ return {
     dependencies = { "echasnovski/mini.icons" },
     event = "VeryLazy",
     cmd = "FzfLua",
+    -- TODO: write custom Snacks.pickers
+    keys = {
+      -- { "<leader>ft", "<cmd>FzfLua filetypes<cr>",                desc = "Fzf Filetypes" },
+      { "<leader>so", "<cmd>FzfLua nvim_options<cr>",             desc = "Search Neovim Options" },
+      -- { "<leader>sd", "<cmd>FzfLua lsp_workspace_diagnostics<cr>", desc = "Search Workspace Diagnostics" },
+      { "<leader>sD", "<cmd>FzfLua lsp_document_diagnostics<cr>", desc = "Search Document Diagnostics" },
+    },
     opts = {
       "borderless_full",
       fzf_colors = {

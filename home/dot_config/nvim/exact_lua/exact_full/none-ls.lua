@@ -16,6 +16,9 @@ return {
     cond = not vim.g.vscode,
     dependencies = { "williamboman/mason.nvim" },
     cmd = { "NullLsInfo", "NullLsLog" },
+    keys = {
+      { "<leader>cin", "<cmd>NullLsInfo<cr>", desc = "Info: Null-Ls", buffer = 0 },
+    },
     opts = function(_, opts)
       -- local nls = require("null-ls")
       -- opts.sources = vim.list_extend(opts.sources or {}, {

@@ -1,6 +1,15 @@
 return {
 
   {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        fish_lsp = {},
+      },
+    },
+  },
+
+  {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {

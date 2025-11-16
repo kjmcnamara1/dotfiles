@@ -8,6 +8,9 @@ return {
     "williamboman/mason.nvim",
     cmd = { "Mason", "MasonUpdate", "MasonInstall", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
     build = ":MasonUpdate",
+    keys = {
+      { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
+    },
     opts = {
       ui = {
         -- border = "rounded",

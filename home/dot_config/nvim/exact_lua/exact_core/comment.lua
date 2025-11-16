@@ -12,6 +12,11 @@ return {
         enable_autocmd = false,
       },
     },
+    keys = {
+      { "<c-/>", function() require("Comment.api").toggle.linewise.current() end, mode = { "i", "n", "x" }, desc = "Toggle line comment" },
+      { "gc",    desc = "Line comment",                                           mode = { "n", "x" } },
+      { "gb",    desc = "Block comment",                                          mode = { "n", "x" } },
+    },
     opts = {
       ignore = "^%s*$", -- Ignore blank lines
       pre_hook = function()

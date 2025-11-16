@@ -9,6 +9,10 @@ return {
     "echasnovski/mini.icons",
   },
   event = "VeryLazy",
+  keys = {
+    { "<s-f1>", function() require("which-key").show() end,                   desc = "Keymaps (which-key)",        mode = { "n", "i", "x" } },
+    { "<f1>",   function() require("which-key").show({ global = false }) end, desc = "Buffer keymaps (which-key)", mode = { "n", "i", "x" } },
+  },
   opts_extend = { "spec" },
   opts = {
     preset = "helix",

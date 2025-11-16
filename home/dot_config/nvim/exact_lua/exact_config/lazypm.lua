@@ -25,12 +25,13 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
   spec = {
     -- import your plugins
-    { import = "plugins" },
-    { import = "lang" },
-    { import = "autocmds" },
-    { import = "keymaps" },
-    { import = "options" },
-    { import = "vscode-settings", cond = not not vim.g.vscode },
+    { import = "core" },
+    -- { import = "keymaps" },
+    -- { import = "plugins", cond = not vim.g.basic and not vim.g.vscode },
+    { import = "basic", cond = not not vim.g.basic },
+    { import = "full",  cond = not vim.g.basic and not vim.g.vscode },
+    { import = "lang",  cond = not vim.g.basic and not vim.g.vscode },
+    { import = "vsc",   cond = not not vim.g.vscode },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.

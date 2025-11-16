@@ -26,7 +26,7 @@ return {
           },
           i = gen_ai_spec.indent(),
           d = gen_ai_spec.diagnostic(),
-          L = gen_ai_spec.line(),
+          l = gen_ai_spec.line(),                                    -- use ll/nl - same behavior for last and next
           N = gen_ai_spec.number(),
           B = gen_ai_spec.buffer(),                                  -- entire buffer
           F = ai.gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
@@ -41,30 +41,6 @@ return {
     --     end)
     --   end)
     -- end,
-  },
-
-  {
-    "echasnovski/mini.files",
-    opts = {
-      windows = {
-        preview = true,
-        width_focus = 40,
-        width_preview = 30,
-      },
-      mappings = {
-        close = "<esc>",
-        synchronize = "<cr>",
-      },
-    },
-    config = function(_, opts)
-      require('mini.files').setup(opts)
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "MiniFilesActionRename",
-        callback = function(event)
-          Snacks.rename.on_rename_file(event.data.from, event.data.to)
-        end,
-      })
-    end
   },
 
   {
@@ -111,6 +87,15 @@ return {
 
   {
     "echasnovski/mini.surround",
+    keys = {
+      { "ms", desc = "Add surrounding",                     mode = { "n", "v" } },
+      { "md", desc = "Delete surrounding" },
+      { "mf", desc = "Find right surrounding" },
+      { "mF", desc = "Find left surrounding" },
+      { "mh", desc = "Highlight surrounding" },
+      { "mr", desc = "Replace surrounding" },
+      { "mn", desc = "Update `MiniSurround.config.n_lines`" },
+    },
     opts = {
       n_lines = 30,
       mappings = {

@@ -12,6 +12,13 @@ return {
     },
     event = { "BufReadPre", "BufNewFile" }, -- with BufReadPost, lsp won't automatically attach to buffer
     cmd = { "LspInfo", "LspStart", "LspStop", "LspRestart" },
+    keys = {
+      { '<leader>cC',  "<cmd>lua =vim.lsp.get_clients()[1].server_capabilities<cr>", desc = "LSP Capabilities", buffer = 0 },
+      { '<leader>k',   vim.lsp.buf.hover,                                            desc = "LSP Hover",        buffer = 0 },
+      -- { '<c-k>',      vim.lsp.buf.signature_help,                                                desc = "LSP Signature Documentation", buffer = 0, mode = "i" },
+      { '<leader>cil', "<cmd>LspInfo<cr>",                                           desc = "Info: LSP",        buffer = 0 },
+      { '<leader>cr',  vim.lsp.buf.rename,                                           desc = "LSP Rename",       buffer = 0 },
+    },
     opts = {
       inlay_hints = { enabled = true, exclude = {} },
       codelens = { enabled = true },
@@ -162,6 +169,10 @@ return {
     "smjonas/inc-rename.nvim",
     enabled = not vim.g.vscode,
     cmd = "IncRename",
+    keys = {
+      { 'grn', ":IncRename ",                                                   desc = "LSP IncRename", buffer = 0 },
+      { 'grN', function() return ":IncRename " .. vim.fn.expand("<cword>") end, desc = "LSP IncRename", buffer = 0, expr = true },
+    },
     opts = {},
     -- opts = { input_buffer_type = "snacks" },
   },
