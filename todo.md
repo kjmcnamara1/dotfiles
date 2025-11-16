@@ -11,7 +11,7 @@
 - [x] Desktop entries for TUIs
 - [ ] Desktop entries for Web Apps
 - [x] Simplify starship prompt
-- [ ] Xonsh as main shell?
+- [X] Xonsh as main shell?
 - [ ] Switch to kitty/ghostty as primary terminal
   - [ ] Pyprland scratchpads
   - [ ] Waybar TUIs

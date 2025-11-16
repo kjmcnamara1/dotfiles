@@ -8,7 +8,7 @@ AppData
 .config/paru
 .config/pypoetry
 .config/tmux
-.config/xonsh
+# .config/xonsh
 {{- end }}
 
 {{- if eq .chezmoi.hostname "angel" }}
