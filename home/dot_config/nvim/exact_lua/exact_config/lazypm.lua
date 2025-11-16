@@ -26,8 +26,6 @@ require("lazy").setup({
   spec = {
     -- import your plugins
     { import = "core" },
-    -- { import = "keymaps" },
-    -- { import = "plugins", cond = not vim.g.basic and not vim.g.vscode },
     { import = "basic", cond = not not vim.g.basic },
     { import = "full",  cond = not vim.g.basic and not vim.g.vscode },
     { import = "lang",  cond = not vim.g.basic and not vim.g.vscode },

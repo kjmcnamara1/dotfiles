@@ -12,11 +12,11 @@
 - [ ] Desktop entries for Web Apps
 - [x] Simplify starship prompt
 - [X] Xonsh as main shell?
-- [ ] Switch to kitty/ghostty as primary terminal
-  - [ ] Pyprland scratchpads
-  - [ ] Waybar TUIs
-  - [ ] Images in FzfLua in neovim and Yazi
-  - [ ] Use neovim as scrollback buffer
+- [X] Switch to kitty/ghostty as primary terminal
+  - [X] Pyprland scratchpads
+  - [X] Waybar TUIs
+  - [X] Images in FzfLua in neovim and Yazi
+  - [X] Use neovim as scrollback buffer
   - [ ] Keybinds for splits/multiplexing etc.
 
 ### Write scripts
@@ -60,6 +60,7 @@ Similar to [hyprmon](https://github.com/erans/hyprmon)
 - [x] Widgets on right (wifi, bluetooth, monitors, battery)
 - [c] Get window title separate-outputs to work
 - [x] fix wallust/nord colors
+- [ ] add weather widget (maybe [wttrbar](https://github.com/bjesus/wttrbar))
 
 ### Notifications
 
