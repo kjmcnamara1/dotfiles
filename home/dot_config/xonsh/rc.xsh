@@ -35,6 +35,7 @@ $EDITOR = 'nvim'
 $MANROFFOPT = '-c'
 $MANPAGER = 'sh -c "col -bx | bat -l man -p"'
 # $MANPAGER = 'nvim +Man!'
+$PATH.prepend('~/.config/hypr/scripts') # Hyprland scripts
 $PATH.prepend('~/.local/bin') # User binaries
 
 # Allow python to import modules from cwd
@@ -46,10 +47,6 @@ $COMPLETIONS_CONFIRM=True
 exec($(carapace _carapace))
 
 # Zoxide
-# BUG: fix zoxide-xonsh error
-# xonsh: For full traceback set: $XONSH_SHOW_TRACEBACK = True
-# Exception: Recursive calls to "cd" alias.
-# Exception raised in event handler; ignored.
 execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
 
 # TODO: set up fzf integration
