@@ -36,6 +36,7 @@
   command   = "missioncenter"
   class     = "io.missioncenter.MissionCenter"
   animation = "fromTop"
+  size      = "80% 80%"
   multi     = false
   lazy      = true
 
