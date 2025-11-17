@@ -12,9 +12,10 @@ vim.keymap.set("n", "<leader>ft", function() vscode.action("workbench.action.edi
 vim.keymap.set("n", "<leader>sk", function() vscode.action("workbench.action.openGlobalKeybindings") end)
 
 vim.keymap.set({ "n", "x" }, "grr", function() vscode.action("editor.action.referenceSearch.trigger") end)
+vim.keymap.set({ "n", "x" }, "grn", function() vscode.action("editor.action.rename") end)
 vim.keymap.set({ "n", "x" }, "go", function() vscode.action("workbench.action.gotoSymbol") end)
 vim.keymap.set({ "n", "x" }, "gO", function() vscode.action("workbench.action.showAllSymbols") end)
-vim.keymap.set({ "n", "x" }, "grn", function() vscode.action("editor.action.rename") end)
+vim.keymap.set({ "n", "x" }, "<leader>k", function() vscode.action("editor.action.showHover") end)
 
 vim.keymap.set("n", "]d", function() vscode.action("editor.action.marker.next") end)
 vim.keymap.set("n", "[d", function() vscode.action("editor.action.marker.prev") end)
