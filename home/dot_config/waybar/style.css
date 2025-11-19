@@ -18,16 +18,15 @@ window#waybar {
   /* border: 1px solid @foreground; */
 }
 
-label {
-  /* border: 1px solid @foreground; */
-  /* margin: 3px 0px; */
-}
-
 tooltip {
   background: alpha(@background, 0.5);
   border: 3px solid @cursor;
   border-radius: 10px;
   padding: 5px;
+}
+
+.module {
+  min-height: 30px;
 }
 
 .modules-center .module {
@@ -39,7 +38,6 @@ tooltip {
   /* border: 1px solid @foreground; */
   margin-right: 10px;
   min-width: 24px;
-  min-height: 30px;
 }
 
 .modules-right .module:hover {
@@ -47,32 +45,65 @@ tooltip {
 }
 
 #workspaces {
-  font-size: 30px;
   /* border: 1px solid @foreground; */
+  padding: 0 5px;
 }
 
 #workspaces button {
   color: alpha(@foreground, 0.5);
-  padding: 10px 20px;
+  background: @color4;
+  min-height: 20px;
+  min-width: 20px;
+  /* min-width: 1.4em; */
+  margin: 10px 5px;
+  border: 1px solid @cursor;
+  border-radius: 1em;
+  box-shadow: 0 1px 1px 1px alpha(black, 0.3);
 }
 
 #workspaces button.empty {
-  /* color: @background; */
-  color: transparent;
-  text-shadow: 0 0 3px alpha(black, 0.3);
+  background: alpha(@background, 0.5);
 }
 
 #workspaces button.visible {
-  color: @color3;
+  min-width: 40px;
+  /* min-width: 2.8em; */
 }
 
 #workspaces button.active {
-  background: @color4;
+  color: alpha(@background, 0.5);
+  font-weight: bold;
+  background: @color3;
 }
 
 #workspaces button:hover {
-  color: transparent;
-  text-shadow: 0 0 3px alpha(black, 0.7);
+  box-shadow: 0 1px 3px 3px alpha(black, 0.3);
+}
+
+#workspaces .workspace-label {
+  font-size: 0.9rem;
+}
+
+#workspaces button:hover label {
+  font-size: 1rem;
+}
+
+#taskbar {
+  background: @background;
+  border: 1px solid @cursor;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 0 4px;
+}
+
+#taskbar.empty {
+  background: transparent;
+  border: none;
+}
+
+#taskbar button {
+  /* border: 1px solid white; */
+  margin: 0 2px;
 }
 
 #window {
