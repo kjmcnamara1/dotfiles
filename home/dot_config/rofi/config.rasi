@@ -1,7 +1,7 @@
 configuration {
 
   // General
-  modes: [combi, run, keys];
+  modes: [combi, run, keys,"kb:~/.config/rofi/scripts/keybinds.py","session:~/.config/rofi/scripts/session.xsh"];
   show-icons: true;
   icon-theme: "Papirus";
   steal-focus: false;
@@ -11,7 +11,7 @@ configuration {
 
   // Matching
   matching: "fuzzy";
-  drun-display-format: "{name}\n<span weight='light' size='small'><i>{generic}</i></span>";
+  drun-display-format: "{name}\n<span foreground='gray' size='small'><i>{generic}</i></span>";
   // drun-show-actions: true;
   // sorting-method: "fzf";
 
@@ -20,7 +20,7 @@ configuration {
 
   // Window switcher settings
   // window-format: "{w} {t} {n} {r} {c}";
-  window-format: "{t}\n<span weight='light' size='small'><i>{c}</i></span>";
+  window-format: "{t}\n<span foreground='gray' size='small'><i>{c}</i></span>";
   window-thumbnail: true;
 
   // application-fallback-icon: "application-other";
@@ -80,8 +80,8 @@ configuration {
   fg: #E5E9F0;
   bg: #2e344080;
 
-  // font: "JetBrainsMono Nerd Font 12";
-  font: "Sans 11";
+  font: "JetBrainsMono Nerd Font 12";
+  // font: "Sans 11";
   text-color: @fg;
   background-color: transparent;
 }
@@ -89,7 +89,7 @@ configuration {
 window {
   /* location: north; */
   /* y-offset: 30px; */
-  width: 600px;
+  // width: 600px;
   padding: 20px;
   transparency: "real";
   background-color: @bg;
@@ -175,6 +175,7 @@ element-icon {
 }
 
 keybinds {
+  enabled: false;
   expand: false;
   orientation: horizontal;
   spacing: 10px;
