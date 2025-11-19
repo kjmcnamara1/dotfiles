@@ -2,9 +2,9 @@ local vscode = require("vscode-neovim")
 
 vim.notify = vscode.notify
 
-vim.keymap.set("n", "<leader>ff", function() vscode.action("workbench.action.quickOpen") end)
+vim.keymap.set("n", "<leader><space>", function() vscode.action("workbench.action.quickOpen") end)
 vim.keymap.set("n", "<leader>fr", function() vscode.action("workbench.action.openRecent") end)
-vim.keymap.set("n", "<leader>fm", function() vscode.action("workbench.view.explorer") end)
+vim.keymap.set("n", "<leader>e", function() vscode.action("workbench.view.explorer") end)
 vim.keymap.set("n", "<leader>bn", function() vscode.action("workbench.action.files.newUntitledFile") end)
 
 vim.keymap.set("n", "<leader>ft", function() vscode.action("workbench.action.editor.changeLanguageMode") end)
@@ -13,6 +13,7 @@ vim.keymap.set("n", "<leader>sk", function() vscode.action("workbench.action.ope
 
 vim.keymap.set({ "n", "x" }, "grr", function() vscode.action("editor.action.referenceSearch.trigger") end)
 vim.keymap.set({ "n", "x" }, "grn", function() vscode.action("editor.action.rename") end)
+vim.keymap.set({ "n", "x" }, "g.", function() vscode.action("editor.action.quickFix") end)
 vim.keymap.set({ "n", "x" }, "go", function() vscode.action("workbench.action.gotoSymbol") end)
 vim.keymap.set({ "n", "x" }, "gO", function() vscode.action("workbench.action.showAllSymbols") end)
 vim.keymap.set({ "n", "x" }, "<leader>k", function() vscode.action("editor.action.showHover") end)
