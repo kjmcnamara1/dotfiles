@@ -1,7 +1,7 @@
 configuration {
 
   // General
-  modes: [combi, run, keys,"kb:~/.config/rofi/scripts/keybinds.py","session:~/.config/rofi/scripts/session.xsh"];
+  modes: [combi, run, keys];
   show-icons: true;
   icon-theme: "Papirus";
   steal-focus: false;
@@ -89,7 +89,7 @@ configuration {
 window {
   /* location: north; */
   /* y-offset: 30px; */
-  // width: 600px;
+  width: 600px;
   padding: 20px;
   transparency: "real";
   background-color: @bg;

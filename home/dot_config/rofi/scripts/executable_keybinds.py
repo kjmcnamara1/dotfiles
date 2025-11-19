@@ -148,11 +148,6 @@ def create_keystring(
     return keystring
 
 
-def write_mode(option: str, value: str):
-    """Write a mode option for Rofi."""
-    print(f"\0{option}\x1f{value}")
-
-
 def substitute_keys(keystr: str) -> str:
     return " ".join(
         [KEY_SUBSTITUTIONS.get(word.casefold(), word) for word in keystr.split()]
@@ -161,15 +156,6 @@ def substitute_keys(keystr: str) -> str:
 
 def format_basic(kbl: KeybindLine) -> str:
     return f"{kbl.keys:30} | {kbl.description:50} | {kbl.command}"
-
-
-def format_rofi(kbl: KeybindLine, width: int = 80, replace_chars: bool = True) -> str:
-    ret = substitute_keys(kbl.keys) if replace_chars else kbl.keys
-    ret += kbl.description.rjust(width - len(ret))
-    ret += f"\r<span foreground='gray' size='small'><i>{kbl.command}</i></span>"
-    ret += f"\0info\x1f{kbl.command}"
-    ret += f"\x1fmeta\x1f{kbl.keys}"
-    return ret
 
 
 def calculate_rofi_width(
@@ -187,14 +173,40 @@ def calculate_rofi_width(
     )
 
 
-def main():
-    if not (rofi_status := os.environ.get("ROFI_RETV")):
-        print("Please run this script through Rofi.")
-        return
+def write_mode(option: str, value: str):
+    print(f"\0{option}\x1f{value}")
 
-    if int(rofi_status) > 0 and (dispatch := os.environ.get("ROFI_INFO", "")):
-        command = ["hyprctl", "dispatch"] + shlex.split(dispatch)
-        subprocess.run(command, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+def write_row(label: str, subtext: str = "", **options: str):
+    row = f"""{label}\r<span foreground='gray' size='small'><i>{subtext}</i></span>"""
+    for key, val in options.items():
+        row += f"\x1f{key}\x1f{val}"
+    row = row.replace("\x1f", "\0", 1)
+    print(row)
+
+
+def format_rofi(kbl: KeybindLine, width: int = 80, replace_chars: bool = True):
+    label = substitute_keys(kbl.keys) if replace_chars else kbl.keys
+    label += kbl.description.rjust(width - len(label))
+    write_row(label, kbl.command, info=kbl.command, meta=kbl.keys)
+    # ret += f"\r<span foreground='gray' size='small'><i>{kbl.command}</i></span>"
+    # ret += f"\0info\x1f{kbl.command}"
+    # ret += f"\x1fmeta\x1f{kbl.keys}"
+    # return ret
+
+
+def main():
+    if not (ROFI_RETV := os.environ.get("ROFI_RETV")):
+        print("Please run this script through Rofi.")
+        # return
+        ROFI_RETV = 0
+
+    if int(ROFI_RETV) > 0 and (dispatch := os.environ.get("ROFI_INFO", "")):
+        subprocess.Popen(
+            shlex.split(f"hyprctl dispatch {dispatch}"),
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
         return
 
     raw_binds = get_raw_binds()
@@ -210,18 +222,22 @@ def main():
         for kb in clean_binds
     ]
     rofi_width = calculate_rofi_width(keybind_lines)
+    # print(rofi_width)
 
+    # Rofi Options
     write_mode("prompt", " ⌨ ")
     write_mode("markup-rows", "true")
     write_mode(
         "theme",
-        "entry { placeholder: 'Hyprland Keybinds'; }"
+        "entry { placeholder: 'Hyprland Keybinds'; } "
         f"window {{ width: {rofi_width + 13}ch; }} ",
         # "element-icon { enabled: false; }"
     )
     # print("\0theme\x1fwindow { width: 600px;}")
+
+    # List Items
     for kbl in keybind_lines:
-        print(format_rofi(kbl, rofi_width))
+        format_rofi(kbl, rofi_width)
 
 
 if __name__ == "__main__":

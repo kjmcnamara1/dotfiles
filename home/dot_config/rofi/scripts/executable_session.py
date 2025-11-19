@@ -59,7 +59,6 @@ def write_row(label: str, subtext: str = "", **options: str):
     for key, val in options.items():
         row += f"\x1f{key}\x1f{val}"
     row = row.replace("\x1f", "\0", 1)
-    # row = re.sub('\x1f', '\0', row, count=1)
     print(row)
 
 
@@ -78,16 +77,15 @@ def main():
 
     # Rofi Options
     write_mode("prompt", " 󰍂 ")
-    # write_mode("message", "Session Control")
     write_mode("markup-rows", "true")
     write_mode(
         "theme",
-        "entry {placeholder: 'Select...';} "
+        "entry {placeholder: 'Session Control';} "
         "window {width: 400px;} "
         "listview {scrollbar: false;}",
     )
 
-    # List Options
+    # List Items
     write_row(
         "Lock", "Hyprlock", icon="system-lock-screen", info="uwsm-app -- hyprlock"
     )
