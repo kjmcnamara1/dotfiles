@@ -48,7 +48,7 @@ $COMPLETIONS_CONFIRM = True
 exec($(carapace _carapace))
 
 # Zoxide
-execx($(zoxide init - -cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
+execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
 
 # TODO: set up fzf integration
 
@@ -96,7 +96,7 @@ aliases['dc'] = 'docker compose'  # Docker compose
 @aliases.register
 def _y(args):
     with tempfile.NamedTemporaryFile(prefix="yazi-cwd.") as tmp:
-        yazi @ (args) - -cwd-file = @(tmp.name)
+        yazi @(args) --cwd-file=@(tmp.name)
         cwd = tmp.read().decode("utf-8").strip()
         if cwd != '' and cwd != $PWD:
             cd @ (cwd)
