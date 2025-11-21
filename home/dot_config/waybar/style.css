@@ -144,17 +144,17 @@ tooltip {
   font-size: 1em;
 }
 
-/* #tray { */
-/*   padding: 0px 5px; */
-/*   transition: all 0.3s ease; */
-/* } */
-
-#tray menu * {
-  /* padding: 0px 5px; */
-  /* transition: all 0.3s ease; */
+#tray {
+  padding: 0px 5px;
+  transition: all 0.3s ease;
 }
 
-/* #tray menu separator { */
-/*   padding: 0px 5px; */
-/*   transition: all 0.3s ease; */
-/* } */
+#tray menu * {
+  padding: 0px 5px;
+  transition: all 0.3s ease;
+}
+
+#tray menu separator {
+  padding: 0px 5px;
+  transition: all 0.3s ease;
+}

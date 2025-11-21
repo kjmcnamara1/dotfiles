@@ -11,6 +11,7 @@
     "hyprland/submap",
     "group/expand",
     "tray",
+    // "idle_inhibitor",
     "custom/hypridle",
     "network",
     "bluetooth",
@@ -113,7 +114,7 @@
     "exec-if": "which yay",
     // TODO: get number of repo vs aur packages to update and run yay in popup
     // terminal window
-    "on-click": "hyprctl dispatch exec \"uwsm-app -- $TERMINAL --class=update sh -c 'yay -Syu --noconfirm; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar\"",
+    "on-click": "hyprctl dispatch exec \"uwsm-app -- $TERMINAL --class=update sh -c 'yay -Syu --noconfirm; echo Done!!!; sleep 3; pkill -SIGRTMIN+8 waybar\"",
     "signal": 8,
     "tooltip-format": "  {} Packages need updating",
   },
@@ -169,6 +170,13 @@
   "tray": {
     "icon-size": 14,
     "spacing": 10,
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": "",
+    },
   },
   "custom/hypridle": {
     "format": "{icon}",

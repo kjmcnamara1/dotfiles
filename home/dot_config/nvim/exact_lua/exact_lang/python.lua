@@ -5,6 +5,16 @@ vim.filetype.add({
   }
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Custom Python Settings",
+  group = vim.api.nvim_create_augroup('Xonsh', { clear = true }),
+  pattern = 'xonsh',
+  callback = function()
+    -- vim.opt.formatoptions:remove('o')
+    vim.bo.commentstring = '# %s'
+  end
+})
+
 return {
 
   {
@@ -46,6 +56,16 @@ return {
   {
     "linkinpark342/xonsh-vim",
     ft = "xonsh",
+  },
+
+
+  {
+    "folke/ts-comments.nvim",
+    opts = {
+      lang = {
+        xonsh = "# %s",
+      },
+    },
   },
 
 }
