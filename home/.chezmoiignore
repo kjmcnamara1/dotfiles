@@ -51,7 +51,7 @@ AppData
 {{- end }}
 
 {{- if eq .chezmoi.hostname "muse" }}
-# .chezmoiscripts/change-shell
+.chezmoiscripts/change-shell
 .chezmoiscripts/pipewire
 # wallpapers
 .ipython
@@ -64,20 +64,27 @@ AppData
 .config/Code
 .config/cosmic
 .config/dunst
-# .config/fish
+.config/elephant
+.config/walker
+.config/fish
 .config/FreeCAD
+.config/ghostty
+.config/helix
 # .config/hypr
 # .config/kitty
 .config/Kvantum
 .config/nushell
 .config/nwg-displays
-# .config/nwg-look
+.config/nwg-look
 .config/onlyoffice
 # .config/rofi
 .config/swaync
+.config/superfile
 .config/tmux
 .config/ulauncher
 .config/Ryujinx
+.config/wallust
+.config/wezterm
 .config/xsettingsd
 .config/zed
 {{- end }}
