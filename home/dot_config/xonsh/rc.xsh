@@ -17,6 +17,7 @@ xontrib load prompt_starship
 xontrib load fish_completer
 xontrib load hist_navigator  # keymaps are broken (a-left, a-right, a-up)
 xontrib load term_integration
+xontrib load fzf-widgets
 # xontrib load kitty # allow printing mpl plots in terminal
 # NOTE: check out https://github.com/xxh/xxh
 
@@ -39,8 +40,13 @@ $MANPAGER = 'sh -c "col -bx | bat -l man -p"'
 $PATH.prepend('~/.config/hypr/scripts')  # Hyprland scripts
 $PATH.prepend('~/.local/bin')  # User binaries
 
+# Change colors of default completion menu
+$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu'] = "bg:#2E3440 #E5E9F0"
+$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu.Completion'] = "bg:#2e3440 #E5E9F0"
+$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu.Completion.Current'] = "bg:#EBCB8B #434C5E" # These colors are inverted
+
 # Allow python to import modules from cwd
-sys.path.append('')
+sys.path.insert(0, '')
 
 # Carapace Completion
 $CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'  # optional
@@ -51,6 +57,9 @@ exec($(carapace _carapace))
 execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
 
 # TODO: set up fzf integration
+$fzf_history_binding = "c-r"
+$fzf_file_binding = "c-t"
+$fzf_dir_binding = "c-g"
 
 # Abbreviations
 # aliases['...'] = 'cd ../..'
