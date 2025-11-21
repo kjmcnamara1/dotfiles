@@ -42,6 +42,8 @@ packages=(
 yay -S --needed --noconfirm "${packages[@]}"
 
 # seed zoxide database
+mkdir -p ~/Downloads ~/.local/share/applications
+sudo mkdir -p /mnt/NAS
 zoxide add ~/Downloads ~/.config ~/.local/share/chezmoi ~/.local/share/applications /mnt/NAS
 
 {{ end -}}
