@@ -9,4 +9,10 @@ return {
     },
   },
 
+  {
+    'cachebag/nvim-tcss',
+    opts = {}
+  },
+
+
 }
