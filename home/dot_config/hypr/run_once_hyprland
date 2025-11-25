@@ -37,6 +37,8 @@ packages=(
 
 yay -S --needed --noconfirm "${packages[@]}"
 
+systemctl --user enable hypridle udiskie
+
 # yay -S --needed --noconfirm hyprland-plugin-hyprscrolling
 
 # echo
