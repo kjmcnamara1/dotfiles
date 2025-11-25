@@ -6,3 +6,5 @@ echo "*** SwayOSD (On Screen Display)"
 echo "--------------------------------------------------------------------------------"
 
 yay -S --noconfirm swayosd
+
+systemctl --user enable swayosd-server

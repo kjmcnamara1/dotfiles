@@ -6,3 +6,5 @@ echo "*** Waybar"
 echo "--------------------------------------------------------------------------------"
 
 yay -S --noconfirm waybar
+
+systemctl --user enable waybar
