@@ -10,7 +10,8 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 logging.getLogger("asyncio").setLevel(logging.WARNING)
 
 # Xontribs
-xontrib load coreutils vox
+xontrib load coreutils
+xontrib load vox autovox
 xontrib load abbrevs
 xontrib load back2dir
 xontrib load prompt_starship
@@ -31,6 +32,7 @@ $VI_MODE = True
 $XONSH_AUTOPAIR = True
 $XONSH_CTRL_BKSP_DELETION = True
 $XONSH_HISTORY_MATCH_ANYWHERE = True
+$XONSH_SHOW_TRACEBACK = False
 $UPDATE_OS_ENVIRON = True
 $YAZI_CONFIG_HOME = '~/.config/yazi'
 $EDITOR = 'nvim'
@@ -59,7 +61,7 @@ execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
 # TODO: set up fzf integration
 $fzf_history_binding = "c-r"
 $fzf_file_binding = "c-t"
-$fzf_dir_binding = "c-g"
+# $fzf_dir_binding = "c-g"
 
 # Abbreviations
 # aliases['...'] = 'cd ../..'
@@ -108,4 +110,10 @@ def _y(args):
         yazi @(args) --cwd-file=@(tmp.name)
         cwd = tmp.read().decode("utf-8").strip()
         if cwd != '' and cwd != $PWD:
-            cd @ (cwd)
+            cd @(cwd)
+
+@events.autovox_policy
+def dotvenv_policy(path,**_) -> "str|Path|None":
+    venv = path / ".venv"
+    if venv.exists():
+      return venv
