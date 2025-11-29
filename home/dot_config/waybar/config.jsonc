@@ -7,8 +7,8 @@
   "modules-left": ["hyprland/workspaces", "wlr/taskbar"],
   "modules-center": ["clock"],
   "modules-right": [
-    "custom/yay",
     "hyprland/submap",
+    "custom/yay",
     "group/expand",
     "tray",
     // "idle_inhibitor",
@@ -185,7 +185,7 @@
     "hide-empty-text": true,
     "interval": "once",
     "signal": 9,
-    "exec": "pgrep -x hypridle >/dev/null || echo 'not_idle'",
+    "exec": "systemctl --user is-active --quiet hypridle || echo 'not idle'",
     "on-click": "~/.config/hypr/scripts/hypr-toggle-idle",
   },
   "network": {

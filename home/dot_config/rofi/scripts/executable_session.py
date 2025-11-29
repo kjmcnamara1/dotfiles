@@ -87,7 +87,10 @@ def main():
 
     # List Items
     write_row(
-        "Lock", "Hyprlock", icon="system-lock-screen", info="uwsm-app -- hyprlock"
+        "Lock",
+        "Hyprlock",
+        icon="system-lock-screen",
+        info="systemctl --user start hyprlock",
     )
     write_row(
         "Suspend",
