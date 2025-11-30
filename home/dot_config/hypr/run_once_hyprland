@@ -11,6 +11,7 @@ packages=(
   hyprpaper
   hyprlock
   hypridle
+  hyprsunset
   hyprcursor
   hyprpicker
   hyprprop-git # allows clicking window to get hyprland properties
