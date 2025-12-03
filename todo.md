@@ -3,7 +3,7 @@
 ## Hyprland
 
 - [ ] Screenshot support (grim/slurp/grimblast?)
-- [ ] Systemd wants instead of exec-once in hyprland.conf
+- [X] Systemd wants instead of exec-once in hyprland.conf
 - [x] Split hyprland.conf into multiple files?
 - [ ] Move windowrules to separate file
 - [ ] Better keybinds for moving around windows/monitors/workspaces (mimic
@@ -30,7 +30,7 @@
 ### Launcher
 
 - [x] Walker/elephant? or Rofi
-- [ ] Power menu for rofi
+- [X] Power menu for rofi
 - [x] Applications
 - [x] Monitor profiles
 - [x] Keybinds

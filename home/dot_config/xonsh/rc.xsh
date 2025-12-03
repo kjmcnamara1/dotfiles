@@ -61,7 +61,7 @@ execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
 # TODO: set up fzf integration
 $fzf_history_binding = "c-r"
 $fzf_file_binding = "c-t"
-# $fzf_dir_binding = "c-g"
+$fzf_dir_binding = "c-g"
 
 # Abbreviations
 # aliases['...'] = 'cd ../..'
