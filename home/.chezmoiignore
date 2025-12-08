@@ -53,6 +53,7 @@ AppData
 {{- if eq .chezmoi.hostname "muse" }}
 .chezmoiscripts/change-shell
 .chezmoiscripts/pipewire
+.chezmoiscripts/sddm
 # wallpapers
 .ipython
 .profile
