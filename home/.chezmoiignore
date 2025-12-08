@@ -86,7 +86,7 @@ AppData
 .config/Ryujinx
 .config/wallust
 .config/wezterm
-.config/xonsh
+# .config/xonsh
 .config/xsettingsd
 .config/zed
 {{- end }}
