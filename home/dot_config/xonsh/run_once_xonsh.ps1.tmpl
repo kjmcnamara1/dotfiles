@@ -10,7 +10,20 @@ yay -S --noconfirm uv carapace-bin
 
 # NOTE: use python 3.11 - interpolated env vars in f-strings don't work in python 3.12+
 # see https://github.com/xonsh/xonsh/issues/5166
-uv tool install xonsh[full] --python 3.11 --with xontrib-vox,xontrib-abbrevs,xontrib-back2dir,xontrib-prompt-starship,xontrib-fish-completer,xontrib-hist-navigator,xontrib-term-integrations,xontrib-kitty,xontrib-fzf-widgets
+sudo \
+UV_TOOL_DIR=/usr/lib/uv/tools \
+UV_PYTHON_INSTALL_DIR=/usr/lib/uv/python \
+UV_TOOL_BIN_DIR=/usr/bin \
+uv tool install xonsh[full] --python 3.11 --with \
+  xontrib-vox, \
+  xontrib-abbrevs, \
+  xontrib-back2dir, \
+  xontrib-prompt-starship, \
+  xontrib-fish-completer, \
+  xontrib-hist-navigator, \
+  xontrib-term-integrations, \
+  xontrib-kitty, \
+  xontrib-fzf-widgets
 
 grep -q "^$(which xonsh)$" /etc/shells || echo "$(which xonsh)" | sudo tee -a /etc/shells
 
