@@ -15,24 +15,24 @@ AppData
 # .chezmoiscripts/change-shell
 .chezmoiscripts/pipewire
 # wallpapers
-.ipython
-.profile
+# .ipython
+# .profile
 .gtkrc-2.0
 .zshrc
 .config/gtk-3.0
 .config/gtk-4.0
 .config/alacritty
-.config/elephant
-.config/walker
+# .config/elephant
+# .config/walker
 .config/Code
 .config/cosmic
 .config/dunst
 # .config/fish
 .config/FreeCAD
 .config/ghostty
-.config/helix
+# .config/helix
 .config/superfile
-.config/nwg-look
+# .config/nwg-look
 # .config/hypr
 # .config/kitty
 .config/Kvantum
@@ -85,6 +85,7 @@ AppData
 .config/Ryujinx
 .config/wallust
 .config/wezterm
+.config/xonsh
 .config/xsettingsd
 .config/zed
 {{- end }}
