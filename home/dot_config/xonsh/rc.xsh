@@ -90,7 +90,7 @@ aliases['l.'] = r"la -d @$(eza -a | grep -e '^[.]')"  # show only hidden files
 aliases['ll'] = 'la -l'  # long list including hidden
 aliases['llr'] = 'll --time-style=relative'  # long list with relative time
 # long list and recurse into directories as tree
-aliases['lt'] = 'll --tree --total-size'
+aliases['lt'] = 'll --tree --total-size --git-ignore'
 aliases['ltt'] = 'lt --level=2'  # default tree list level 2
 aliases['lttt'] = 'lt --level=3'  # default tree list level 3
 aliases['ltttt'] = 'lt --level=4'  # default tree list level 4
