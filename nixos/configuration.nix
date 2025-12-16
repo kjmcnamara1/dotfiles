@@ -7,8 +7,10 @@
 {
   imports = [
     # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+    /etc/nixos/hardware-configuration.nix
   ];
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -159,6 +161,9 @@
     delta
 
     nfs-utils
+
+    nixd
+    nixfmt
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
