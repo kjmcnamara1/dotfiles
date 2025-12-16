@@ -5,10 +5,10 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -80,41 +80,44 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-# services.interception-tools.enable = true;
+  # services.interception-tools.enable = true;
 
-	 services.interception-tools = {
-		 enable = false;
-		 plugins = [ pkgs.interception-tools-plugins.caps2esc ];
-	# plugins = with pkgs.interception-tools-plugins; [ caps2esc ];
-	udevmonConfig = ''
-	- JOB: ${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc -m 1 | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE
-	  DEVICE:
-	    EVENTS:
-	      EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
-	'';
-	 };
+  services.interception-tools = {
+    enable = false;
+    plugins = [ pkgs.interception-tools-plugins.caps2esc ];
+    # plugins = with pkgs.interception-tools-plugins; [ caps2esc ];
+    udevmonConfig = ''
+      - JOB: ${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc -m 1 | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE
+        DEVICE:
+          EVENTS:
+            EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+    '';
+  };
 
-fonts.packages = with pkgs; [
-  nerd-fonts.jetbrains-mono
-];
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kjm = {
     isNormalUser = true;
     description = "kevin";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.fish;
     packages = with pkgs; [
-    #  thunderbird
-    chezmoi
-    brave
+      #  thunderbird
+      chezmoi
+      brave
     ];
   };
 
   # Install firefox.
   # programs.firefox.enable = true;
 
-programs.fish = {
+  programs.fish = {
     enable = true;
   };
 
@@ -130,7 +133,7 @@ programs.fish = {
     curl
     openssh
     kitty
-    
+
     fish
     bat
     eza
