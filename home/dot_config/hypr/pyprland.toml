@@ -38,7 +38,6 @@
   animation = "fromTop"
   size      = "80% 80%"
   multi     = false
-  lazy      = true
 
 [scratchpads.wifi]
   command   = "[term] --class=wifi -e impala"
