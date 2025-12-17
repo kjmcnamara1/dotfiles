@@ -1,5 +1,12 @@
 # To Do
 
+## Kitty
+
+- [ ] Clean up config directory
+- [ ] Customize keybinds
+- [ ] [kitty-scrollback.nvim](https://github.com/mikesmithgh/kitty-scrollback.nvim)
+- [ ] [smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim)
+
 ## Hyprland
 
 - [ ] Screenshot support (grim/slurp/grimblast?)
