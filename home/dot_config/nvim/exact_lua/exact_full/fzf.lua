@@ -130,7 +130,7 @@ return {
       })
       -- vim.print(opts.ui_select)
       require("fzf-lua").setup(opts)
-      require("fzf-lua").register_ui_select(opts.ui_select or nil)
+      -- require("fzf-lua").register_ui_select(opts.ui_select or nil)
     end,
   },
 

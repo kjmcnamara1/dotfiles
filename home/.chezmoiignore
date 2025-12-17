@@ -19,8 +19,8 @@ AppData
 # .profile
 .gtkrc-2.0
 .zshrc
-.config/gtk-3.0
-.config/gtk-4.0
+# .config/gtk-3.0
+# .config/gtk-4.0
 .config/alacritty
 # .config/elephant
 # .config/walker
@@ -46,6 +46,7 @@ AppData
 .config/ulauncher
 .config/Ryujinx
 .config/wallust
+.config/xonsh
 .config/xsettingsd
 .config/zed
 {{- end }}
