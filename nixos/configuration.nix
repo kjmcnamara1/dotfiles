@@ -35,30 +35,28 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  programs.niri.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+  };
+
+  security.polkit.enable = true;
+
+  programs.waybar.enable = true;
+  programs.hyprlock.enable = true;
 
   # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
+  # services.xserver.xkb = {
+  #   layout = "us";
+  #   variant = "";
+  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -162,6 +160,38 @@
 
     nixd
     nixfmt
+
+    hyprpaper
+    hyprsunset
+    hyprcursor
+    hyprpicker
+    hyprprop
+    cliphist
+    # polkit_gnome
+    brightnessctl
+    pyprland
+    udiskie
+
+    rofi
+    walker
+    nautilus
+    # waybar
+    swayosd
+
+    nwg-displays
+    nwg-look
+    nordzy-cursor-theme
+    # nordzy-icon-theme
+    adw-gtk3
+    papirus-nord
+    # papirus-icon-theme
+
+    hyprmon
+    impala
+    bluetui
+    wiremix
+
+    carapace
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
