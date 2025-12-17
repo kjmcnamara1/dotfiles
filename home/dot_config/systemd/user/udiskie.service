@@ -1,0 +1,13 @@
+[Unit]
+Description=Auto mount USB devices
+Documentation=man:udiskie(8)
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/udiskie
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=default.target

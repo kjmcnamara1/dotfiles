@@ -5,6 +5,16 @@ vim.filetype.add({
   }
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "Custom Python Settings",
+  group = vim.api.nvim_create_augroup('Xonsh', { clear = true }),
+  pattern = 'xonsh',
+  callback = function()
+    -- vim.opt.formatoptions:remove('o')
+    vim.bo.commentstring = '# %s'
+  end
+})
+
 return {
 
   {
@@ -28,9 +38,11 @@ return {
 
   {
     "linux-cultist/venv-selector.nvim",
-    branch = "regexp", -- Use this branch for the new version
     cmd = "VenvSelect",
-    ft = "python",
+    ft = { "python", "xonsh" },
+    keys = {
+      { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv", ft = "python" }
+    },
     opts = {
       settings = {
         options = {
@@ -43,6 +55,16 @@ return {
   {
     "linkinpark342/xonsh-vim",
     ft = "xonsh",
+  },
+
+
+  {
+    "folke/ts-comments.nvim",
+    opts = {
+      lang = {
+        xonsh = "# %s",
+      },
+    },
   },
 
 }

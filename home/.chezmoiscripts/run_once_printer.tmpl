@@ -17,7 +17,7 @@ packages=(
   system-config-printer # GTK gui app
 )
 
-yay -S --noconfirm "${packages[@]}"
+yay -S --needed --noconfirm "${packages[@]}"
 
-sudo systemctl enable cups avahi-daemon
+sudo systemctl enable --now cups avahi-daemon
 {{ end }}

@@ -8,9 +8,11 @@ echo "--------------------------------------------------------------------------
 packages=(
   nwg-look
   nordzy-cursors
+  adw-gtk-theme
   papirus-icon-theme
-  qogir-icon-theme
-  materia-gtk-theme
+
+  # qogir-icon-theme
+  # materia-gtk-theme
 )
 
-yay -S --noconfirm "${packages[@]}"
+yay -S --needed --noconfirm "${packages[@]}"

@@ -36,6 +36,7 @@ if status is-interactive # connected to keyboard
 
     # Environment Variables
     fish_add_path -g ~/.local/bin
+    fish_add_path -g ~/.config/hypr/scripts
 
     # Zoxide
     zoxide init --cmd cd fish | source
@@ -51,16 +52,25 @@ if status is-interactive # connected to keyboard
     # TODO: finish configuring fzf
 
     # Starship Prompt
-    source $HOME/.config/starship/starship.fish
-    # starship init fish | source
+    function starship_transient_prompt_func
+        starship module line_break
+        echo " $(starship module directory)"
+        starship module shell
+        starship module character
+    end
+    # source $HOME/.config/starship/starship.fish
+    starship init fish | source
     enable_transience
 
     # Abbreviations
     abbr --add mkdir mkdir -p
 
     # Aliases
+    alias '...'='cd ../..'
+    alias '....'='cd ../../..'
+    alias '.....'='cd ../../../..'
     alias c=clear # Clear screen
-    alias p=paru # Paru
+    # alias p=paru # Paru
     alias py=python3 # Python
     alias ipy=ipython # Interactive Python Shell
     alias hx=helix # Helix text editor
@@ -77,7 +87,7 @@ if status is-interactive # connected to keyboard
     alias l.='la -d $(eza -a | grep -e \'^[.]\')' # show only hidden files
     alias ll='la -l' # long list including hidden
     alias llr='ll --time-style=relative' # long list with relative time
-    alias lt='ll --tree --total-size' # long list and recurse into directories as tree
+    alias lt='ll --tree --total-size --git-ignore' # long list and recurse into directories as tree
     alias ltt='lt --level=2' # default tree list level 2
     alias lttt='lt --level=3' # default tree list level 3
     alias ltttt='lt --level=4' # default tree list level 4

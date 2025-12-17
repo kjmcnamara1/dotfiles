@@ -13,7 +13,7 @@ packages=(
   pipewire-alsa
 )
 
-yay -S --noconfirm "${packages[@]}"
+yay -S --needed --noconfirm "${packages[@]}"
 
 systemctl --user enable pipewire wireplumber pipewire-pulse
 {{- end }}

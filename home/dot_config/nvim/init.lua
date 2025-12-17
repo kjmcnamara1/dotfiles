@@ -1,4 +1,4 @@
-require("config.lazypm")
+require("lazypm")
 -- require("options")
 
 -- require("config.options")

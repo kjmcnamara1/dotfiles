@@ -1,0 +1,18 @@
+{{- if eq .chezmoi.os "linux" -}}
+#! /usr/bin/env bash
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo "*** Network and Bluetooth"
+echo "--------------------------------------------------------------------------------"
+
+packages=(
+  iwd
+  impala
+  bluez
+  bluetui
+)
+
+yay -S --needed --noconfirm "${packages[@]}"
+
+{{- end }}

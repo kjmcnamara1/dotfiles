@@ -1,0 +1,16 @@
+[Unit]
+Description=Hyprland's lock screen
+Documentation=https://wiki.hypr.land/Hypr-Ecosystem/hyprlock
+PartOf=graphical-session.target
+Requires=graphical-session.target
+After=hyprpaper.service
+ConditionEnvironment=WAYLAND_DISPLAY
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/hyprlock
+Slice=session.slice
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

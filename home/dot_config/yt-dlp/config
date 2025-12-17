@@ -1,0 +1,4 @@
+-P "~/Videos"
+-o "%(extractor_key)s/%(channel)s/%(title)s [%(id)s].%(ext)s"
+
+--mtime

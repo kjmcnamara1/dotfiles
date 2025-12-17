@@ -1,0 +1,36 @@
+# GH: https://github.com/abenz1267/walker
+# WIKI: https://benz.gitbook.io/walker/
+force_keyboard_focus      = false     # forces keyboard forcus to stay in Walker
+close_when_open           = true      # close walker when invoking while already opened
+click_to_close            = true      # closes walker if clicking outside of the main content area
+selection_wrap            = false     # wrap list if at bottom or top
+global_argument_delimiter = "#"       # query: firefox#https://benz.dev => part after delimiter will be ignored when querying. this should be the same as in the elephant config
+exact_search_prefix       = "'"       # disable fuzzy searching
+theme                     = "wallust" # theme to use
+disable_mouse             = false     # disable mouse (on input and list only)
+debug                     = false     # enables debug printing for some stuff, f.e. keybinds
+
+[placeholders]
+  "default" = { input = "  Search...", list = "No Results" } # placeholders for input and empty list, key is the providers name, so f.e. "desktopapplications" or "menus:other"
+
+[keybinds]
+  close             = ["Escape"]
+  next              = ["Down", "alt j", "ctrl n"]
+  previous          = ["Up", "alt k", "ctrl p"]
+  toggle_exact      = ["ctrl e"]
+  resume_last_query = ["ctrl r"]
+  quick_activate    = []
+
+[providers]
+  default = ["desktopapplications", "menus", "websearch"]
+
+  [providers.clipboard]
+    time_format = "%m/%d   %H:%M" # format for the clipboard item date
+
+  [providers.actions]
+    desktopapplications = [
+      { action = "pin", bind = "ctrl shift p", after = "AsyncReload" },
+      { action = "unpin", bind = "ctrl shift p", after = "AsyncReload" },
+      { action = "pinup", bind = "ctrl j", after = "AsyncReload" },
+      { action = "pindown", bind = "ctrl k", after = "AsyncReload" },
+    ]

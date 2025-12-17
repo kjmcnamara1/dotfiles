@@ -6,7 +6,7 @@
 [[mgr.prepend_keymap]]
   on   = ["g", "z"]
   run  = "cd ~/.local/share/chezmoi"
-  desc = "Go Chezmoi"
+  desc = "Go cheZmoi"
 
 [[mgr.prepend_keymap]]
   on   = ["g", "r"]
@@ -59,5 +59,11 @@
   desc = "Open shell here"
 
 [[mgr.prepend_keymap]]
-  on  = "M"
-  run = "plugin mount"
+  on   = "M"
+  run  = "plugin mount"
+  desc = "Mount plugin"
+
+[[mgr.prepend_keymap]]
+  on   = "<a-z>"
+  run  = 'shell -- zoxide add "$@"'
+  desc = "Add selection to zoxide"

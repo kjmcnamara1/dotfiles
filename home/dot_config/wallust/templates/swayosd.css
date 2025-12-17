@@ -1,0 +1,5 @@
+@define-color background-color {{background}}{{alpha | alpha_hexa}};
+@define-color border-color {{cursor}};
+@define-color label {{foreground}};
+@define-color image {{foreground}};
+@define-color progress {{foreground}};

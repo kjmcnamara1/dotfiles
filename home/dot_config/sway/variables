@@ -1,5 +1,0 @@
-set $term wezterm
-set $browser brave --enable-features=UseOzonePlatform --ozone-platform=wayland
-set $editor nvim
-set $launcher nwg-drawer
-set $exit $launcher

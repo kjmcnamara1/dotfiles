@@ -1,0 +1,22 @@
+@import "colors/wallust.css";
+
+window {
+  opacity: 0.8;
+  border: 3px solid @border-color;
+
+  background-color: @background-color;
+}
+
+label {
+  font-family: "JetBrainsMono Nerd Font";
+
+  color: @label;
+}
+
+image {
+  color: @image;
+}
+
+progress {
+  background-color: @progress;
+}

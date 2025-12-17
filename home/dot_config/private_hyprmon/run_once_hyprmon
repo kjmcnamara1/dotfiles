@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo "*** Hyprmon (Monitor Configuration Tool)"
+echo "--------------------------------------------------------------------------------"
+
+yay -S --needed --noconfirm hyprmon-bin

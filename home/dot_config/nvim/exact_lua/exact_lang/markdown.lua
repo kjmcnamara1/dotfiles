@@ -28,12 +28,20 @@ return {
       "echasnovski/mini.icons",
       -- "nvim-tree/nvim-web-devicons"
     },
+    keys = {
+      { "<leader>um", "<cmd>Markview toggle<cr>",       desc = "Toggle Render Markdown",      ft = "markdown" },
+      { "<leader>uM", "<cmd>Markview hybridToggle<cr>", desc = "Toggle Markview Hybrid Mode", ft = "markdown" },
+      { "<c-t>",      "<cmd>Checkbox toggle<cr>",       desc = "Toggle Checkbox",             ft = "markdown" },
+      { "<leader>cb", "<cmd>Checkbox interactive<cr>",  desc = "Interactive Checkbox",        ft = "markdown" },
+      { "<c-right>",  "<cmd>Heading increase<cr>",      desc = "Increase Heading",            ft = "markdown" },
+      { "<c-left>",   "<cmd>Heading decrease<cr>",      desc = "Decrease Heading",            ft = "markdown" },
+    },
     opts = {
       preview = {
         icon_provider = "mini",
-        enable_hybrid_mode = true,
+        -- enable_hybrid_mode = true,
         -- linewise_hybrid_mode = true,
-        hybrid_modes = { 'n' },
+        -- hybrid_modes = { 'n' },
       },
       markdown_inline = {
         hyperlinks = {
@@ -62,6 +70,9 @@ return {
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    keys = {
+      { "<leader>cp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview", ft = "markdown" },
+    },
     build = function(plugin)
       vim.cmd("!cd " .. plugin.dir .. " && cd app && ./install.sh")
     end,

@@ -40,7 +40,7 @@ check_contrast = true
 #saturation = 35
 
 # Alpha value for templating, by default 100 (no other use whatsoever)
-#alpha = 100
+alpha = 50
 
 [templates]
   # NOTE: prefer '' over "" for paths, avoids escaping.
@@ -55,8 +55,20 @@ check_contrast = true
   waybar.src = 'waybar.css'
   waybar.dst = '~/.config/waybar/colors/wallust.css'
 
-  swaync.src = 'swaync.css'
-  swaync.dst = '~/.config/swaync/colors/wallust.css'
+  mako.src = 'mako.cfg'
+  mako.dst = '~/.config/mako/colors/wallust.cfg'
+
+  # dunst.src = 'dunst.cfg'
+  # dunst.dst = '~/.config/dunst/colors/wallust.cfg'
+
+  # swaync.src = 'swaync.css'
+  # swaync.dst = '~/.config/swaync/colors/wallust.css'
 
   hyprland.src = 'hyprland.conf'
   hyprland.dst = '~/.config/hypr/colors/wallust.conf'
+
+  swayosd.src = 'swayosd.css'
+  swayosd.dst = '~/.config/swayosd/colors/wallust.css'
+
+  walker.src = 'walker.css'
+  walker.dst = '~/.config/walker/themes/wallust/colors.css'

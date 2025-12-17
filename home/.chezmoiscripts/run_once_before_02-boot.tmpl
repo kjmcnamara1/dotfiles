@@ -1,0 +1,30 @@
+{{- if eq .chezmoi.os "linux" -}}
+#! /usr/bin/env bash
+
+echo
+echo "--------------------------------------------------------------------------------"
+echo "*** Bootloader and Plymouth"
+echo "--------------------------------------------------------------------------------"
+
+yay -S --needed --noconfirm plymouth plymouth-theme-arch-charge-big
+
+# Add plymouth to mkinitcpio hooks after 'base udev'
+# it will only add 'plymouth' if it is not already present
+sudo sed -i '/^HOOKS=/!b; /plymouth/!s/\(base udev\)/\1 plymouth/' /etc/mkinitcpio.conf
+
+# Change theme and regenerate initramfs
+sudo plymouth-set-default-theme -R arch-charge-big
+
+# BUG: bootctl doesn't work in arch-chroot
+# Add quiet and splash to default boot entry (but only once)
+default_boot_entry=$(bootctl list --json=short | jq -r '.[] | select(.isDefault == true) | .path')
+sudo sed -i '/^options / { s/ quiet//g; s/ splash//g; s/$/ quiet splash/ }' "$default_boot_entry"
+
+# Write systemd-boot config
+sudo bootctl set-timeout "0" # Should also change the EFI variable
+# sudo tee /boot/loader/loader.conf > /dev/null <<EOF
+# timeout 0
+# console-mode auto
+# EOF
+
+{{ end }}

@@ -45,6 +45,16 @@ return {
     },
   },
 
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        json = { "prettierd", "prettier" },
+        jsonc = { "prettierd", "prettier" },
+      }
+    }
+  },
+
   -- {
   --   "nvimtools/none-ls.nvim",
   --   opts = function(_, opts)

@@ -1,3 +1,4 @@
+# vim: ft=cfg
 #      _                 _    
 #   __| |_   _ _ __  ___| |_  
 #  / _` | | | | '_ \/ __| __| 
@@ -34,13 +35,13 @@
     # dynamic width from 0 to 300
     # width = (0, 300)
     # constant width of 300
-    width = 300
+    width = 420
 
     # The maximum height of a single notification, excluding the frame.
     height = (0,300)
 
     # Position the notification in the top right corner
-    origin = top-center
+    origin = top-right
 
     # Offset from the origin
     offset = 30x30
@@ -105,7 +106,7 @@
     frame_width = 1
 
     # Defines color of the frame around the notification window.
-    frame_color = "#ffffff"
+    frame_color = "#434C5E"
 
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
@@ -133,7 +134,7 @@
 
     ### Text ###
 
-    font = "Fira Sans Semibold" 9
+    font = JetBrainsMono Nerd Font 16
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -309,6 +310,8 @@
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
 
+    timeout = 5
+
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
 [experimental]
@@ -323,24 +326,23 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#000000CC"
-    foreground = "#888888"
-    timeout = 6
+    background = "#46526480"
+    foreground = "#737578"
+    timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_normal]
-    background = "#000000CC"
-    foreground = "#ffffff"
-    timeout = 6
+    background = "#46526480"
+    foreground = "#E5E9F0"
+    timeout = 5
     # Icon for notifications with normal urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_critical]
-    background = "#900000CC"
-    foreground = "#ffffff"
-    frame_color = "#ffffff"
-    timeout = 6
+    background = "#BF616A80"
+    foreground = "#E5E9F0"
+    timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
     #default_icon = /path/to/icon
 
@@ -466,4 +468,3 @@
 #    appname = "some_volume_notifiers"
 #    set_stack_tag = "volume"
 #
-# vim: ft=cfg

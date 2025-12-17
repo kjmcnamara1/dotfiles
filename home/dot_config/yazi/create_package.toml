@@ -1,0 +1,67 @@
+[[plugin.deps]]
+use = "Rolv-Apneseth/starship"
+rev = "a63550b"
+hash = "c2021386289a0cbb3e152a052f67c177"
+
+[[plugin.deps]]
+use = "Reledia/glow"
+rev = "bd3eaa5"
+hash = "92b5c58159a51c567f82b618cee2b78"
+
+[[plugin.deps]]
+use = "AnirudhG07/nbpreview"
+rev = "b504594"
+hash = "b83919985400521dee78e1c352b5d9db"
+
+[[plugin.deps]]
+use = "boydaihungst/mediainfo"
+rev = "7543154"
+hash = "212fe977a845f44da073a397e0170e60"
+
+[[plugin.deps]]
+use = "ndtoan96/ouch"
+rev = "0742fff"
+hash = "2bd799b42b8e42b8ef100310be71f8d1"
+
+[[plugin.deps]]
+use = "AnirudhG07/rich-preview"
+rev = "831234e"
+hash = "ed3363e256e210593f0f8e4cec3e36a9"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:chmod"
+rev = "8f1d971"
+hash = "8ad3e90b079190b4905f24a44f4ca06b"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "8f1d971"
+hash = "3996fc74044bc44144b323686f887e1"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "8f1d971"
+hash = "4fccaaf10c36dc2466e2438a386ff017"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "8f1d971"
+hash = "63b6c222bf2103b3023389dde5e2ecfe"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "8f1d971"
+hash = "8a7c58225816a163a6e8730c0adafbc8"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:zoom"
+rev = "8f1d971"
+hash = "9dee2bf990ea941ccf67df74bca45468"
+
+[[plugin.deps]]
+use = "ahkohd/eza-preview"
+rev = "a97cf55"
+hash = "cc3aef07a8b1c3fe820f1fbb9a5a2483"
+
+[flavor]
+deps = []

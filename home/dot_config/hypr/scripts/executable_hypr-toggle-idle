@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+if pgrep -x hypridle > /dev/null; then
+  systemctl --user stop hypridle
+  pkill -x hypridle
+  notify-send "Stop locking computer when idle"
+else
+  systemctl --user start hypridle
+  notify-send "Now locking computer when idle"
+fi
+
+pkill -SIGRTMIN+9 waybar # send signal to waybar to update custom/hypridle module
