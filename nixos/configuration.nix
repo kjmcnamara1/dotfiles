@@ -119,6 +119,22 @@
     enable = true;
   };
 
+  programs.xonsh = {
+    enable = true;
+    extraPackages =
+      ps: with ps; [
+        xonsh.xontribs.xontrib-vox
+        xonsh.xontribs.xontrib-abbrevs
+        # xonsh.xontribs.xontrib-back2dir
+        # xonsh.xontribs.xontrib-prompt-starship
+        xonsh.xontribs.xontrib-fish-completer
+        # xonsh.xontribs.xontrib-hist-navigator
+        # xonsh.xontribs.xontrib-term-integrations
+        # xonsh.xontribs.xontrib-kitty
+        # xonsh.xontribs.xontrib-fzf-widgets
+      ];
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
