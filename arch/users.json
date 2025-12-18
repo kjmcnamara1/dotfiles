@@ -1,0 +1,11 @@
+{
+    "root_enc_password": "$y$j9T$eovzeEGAimGlX6lHax0V9.$mmUVzhGT0V5XIVBpQTte7184hay47dRRpwKdTjHpTV.",
+    "users": [
+        {
+            "enc_password": "$y$j9T$uk3AQCzIq.D3HZLfie.IG.$YHWWX/Nt1OCeTcszRaBq9vLI0s4B.emJ8HEwD82meR0",
+            "groups": [],
+            "sudo": true,
+            "username": "kjm"
+        }
+    ]
+}
