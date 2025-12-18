@@ -1,0 +1,11 @@
+[services]
+  system = ["cups", "avahi-daemon", "udevmon", "sddm"]
+  user = [
+    "pipewire",
+    "wireplumber",
+    "pipewire-pulse",
+    "hypridle",
+    "udiskie",
+    "swayosd-server",
+    "waybar",
+  ]

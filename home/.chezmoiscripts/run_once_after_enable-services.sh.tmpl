@@ -1,0 +1,19 @@
+#! /usr/bin/env bash
+
+# Enable elephant.service if installed
+command -v elephant &>/dev/null && elephant service enable
+
+system_services=(
+  {{ range .services.system -}}
+  {{ . }}
+  {{ end -}}
+)
+
+user_services=(
+  {{ range .services.user -}}
+  {{ . }}
+  {{ end -}}
+)
+
+systemctl enable "${system_services[@]}"
+systemctl --user enable "${user_services[@]}"

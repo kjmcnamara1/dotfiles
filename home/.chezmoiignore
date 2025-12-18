@@ -1,92 +1,25 @@
 # vim: ft=gitignore.chezmoitmpl
 key.txt.age
 
-{{- if ne .chezmoi.os "windows" }}
-AppData
-.config/alacritty
-.config/nushell
-.config/paru
-.config/pypoetry
-.config/tmux
-# .config/xonsh
+{{- if ne .opt.shell "bash" }}
+.bashrc
 {{- end }}
 
-{{- if eq .chezmoi.hostname "angel" }}
-# .chezmoiscripts/change-shell
-.chezmoiscripts/pipewire
-# wallpapers
-# .ipython
-# .profile
-.gtkrc-2.0
+{{- if ne .opt.shell "zsh" }}
 .zshrc
-.config/gtk-3.0
-.config/gtk-4.0
-.config/alacritty
-# .config/elephant
-# .config/walker
-.config/Code
-.config/cosmic
-.config/dunst
-# .config/fish
-.config/FreeCAD
-.config/ghostty
-# .config/helix
-.config/superfile
-# .config/nwg-look
-# .config/hypr
-# .config/kitty
-.config/Kvantum
-.config/nushell
-.config/nwg-displays
-# .config/nwg-look
-.config/onlyoffice
-# .config/rofi
-.config/swaync
-.config/tmux
-.config/ulauncher
-.config/Ryujinx
-.config/wallust
-.config/xsettingsd
-.config/zed
 {{- end }}
 
-{{- if eq .chezmoi.hostname "muse" }}
-.chezmoiscripts/change-shell
-.chezmoiscripts/pipewire
-.chezmoiscripts/sddm
-# wallpapers
-.ipython
-.profile
-.gtkrc-2.0
-.zshrc
-.config/gtk-3.0
-.config/gtk-4.0
-.config/alacritty
-.config/Code
-.config/cosmic
-.config/dunst
-.config/elephant
-.config/walker
+{{- if ne .opt.shell "fish" }}
 .config/fish
-.config/FreeCAD
-.config/ghostty
-.config/helix
-# .config/hypr
-# .config/kitty
-.config/Kvantum
-.config/nushell
-.config/nwg-displays
-.config/nwg-look
-.config/onlyoffice
-# .config/rofi
-.config/swaync
-.config/superfile
-.config/tmux
-.config/ulauncher
-.config/Ryujinx
-.config/wallust
-.config/wezterm
-# .config/xonsh
-.config/xsettingsd
-.config/zed
 {{- end }}
+
+{{- if ne .opt.shell "xonsh" }}
+.config/xonsh
+{{- end }}
+
+
+.chezmoiscripts/02-boot
+.chezmoiscripts/change-shell
+.chezmoiscripts/sddm
+.chezmoiscripts/zoxide
+

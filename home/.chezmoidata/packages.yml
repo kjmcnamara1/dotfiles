@@ -1,69 +1,185 @@
 packages:
-  # sddm:
-  #   - sddm
-  #   - sddm-theme-corners-git # includes dependencies
-  # cosmic:
-  #   - cosmic
-  #   # - cosmic-session
-  #   # - cosmic-files
-  #   # - cosmic-store
-  #   # - cosmic-terminal
-  #   # - cosmic-text-editor
-  #   # - cosmic-wallpapers
-  #   # - cosmic-launcher-git
-  #   - power-profiles-daemon
-  #   - wl-clipboard
-  #   - loupe # gnome image viewer
-  #   - gwenview # kde image viewer
-  #   - kvantum
-  #   - qt6-wayland
-  #   - qt6ct
-  # hyprland:
-  #   - hyprland
-  #   - xdg-desktop-portal-hyprland
-  #   # - hyprpolkitagent-git
-  #   - polkit-gnome # authentication agent
-  #   - qt5-wayland # QT5 library
-  #   - qt6-wayland # QT6 library
-  #   # - qt5ct # QT5 config tool
-  #   # - qt6ct # QT6 config tool
-  #   - kvantum
-  #   # - nwg-look # GTK Theme setter
-  #   - hyprcursor # cursor backend
-  #   - nordzy-hyprcursors # hyprcursor theme
-  #   - nordzy-cursors # xcursor and gtk cursor theme
-  #   # - nordic-theme # GTK Theme
-  #   - udiskie # automount usb drives
-  #   - hyprpaper # backend wallpaper setter
-  #   - waypaper # gui frontent for hyprpaper
-  #   - hyprpicker # color picker
-  #   - hyprlock # lock screen
-  #   - dunst # mako, swaync
-  #   - rofi-wayland # launcher (apps,windows,other)
-  #   - cliphist # clipboard manager (uses wl-clipboard)
-  #   - waybar # status bar
-  #   - wlogout # logout menu
-  #   - python-pywal
-  #   - nm-connection-editor # NetworkManager gui
-  #   - network-manager-applet # sys tray icon and menu
-  #   - blueberry-wayland # bluetooth gui
-  # hyprpm:
-  #   - cmake
-  #   - meson
-  #   - cpio
-  # pipewire:
-  #   - pipewire
-  #   - wireplumber
-  #   - pipewire-pulse
-  #   - pipewire-alsa
-  #   # - pipewire-jack
-  #   # - pwvucontrol
-  # printer:
-  #   - cups
-  #   - cups-filters
-  #   - cups-pdf
-  #   - cups-pk-helper
-  #   - libcups
-  #   - avahi
-  #   - nss-mdns
-  #   - system-config-printer # GTK gui app
+  essential:
+    - chezmoi
+    - git
+    - wget
+    - curl
+    - openssh
+    - iwd
+    - bluez
+
+    - man-db
+    - interception-caps2esc
+
+    # - amd-ucode
+    - ntfs-3g
+    - nfs-utils
+  boot:
+    - plymouth
+    - plymouth-theme-arch-charge-big
+  shell:
+    - zsh
+    - fish
+    - nushell
+    - xonsh
+    # - pythn-pip
+    # - python-prompt_toolkit
+    # - python-pygments
+    # - python-setproctitle
+  font:
+    - figlet
+    - figlet-fonts-extra
+    - ttf-jetbrains-mono-nerd
+    # - ttf-nerd-fonts-symbols
+    # - ttf-firacode-nerd
+    # - noto-fonts-emoji
+  langs:
+    - go
+    - python
+    - ipython
+    - python-ipykernel
+    - python-pandas
+  display_manager:
+    - sddm
+    - greetd
+  terminal:
+    - bat
+    - eza
+    - jq
+    - starship
+    - fd
+    - ripgrep
+    - fzf
+    - television
+    - zoxide
+    - pv
+    - tldr
+    - fastfetch
+    - github-cli # scoop gh
+    # - age
+
+    # - helix
+    - neovim
+    - nodejs
+    - npm
+    - shellcheck
+    
+    # - tmux
+
+    - yazi
+    - ffmpeg
+    - mediainfo
+    - poppler
+    - resvg
+    - imagemagick
+    - glow
+    - ouch
+    - 7zip
+    - wl-clipboard
+    # - unzip
+    # - zstd
+    # - gzip
+
+    # - superfile
+    # - perl-image-exiftool
+
+    # - wallust
+    # - matugen
+
+    - lazygit
+    - git-delta # scoop delta
+
+    - btop
+    - rocm-smi-lib # allows collecting gpu data
+
+    - yt-dlp
+
+    - impala
+    - bluetui
+    - wiremix
+    - hyprmon-bin
+  session:
+    hyprland:
+      - uwsm
+      - hyprland
+      - hyprpaper
+      - waypaper
+      - hyprlock
+      - hypridle
+      - hyprsunset
+      - hyprcursor
+      - hyprpicker
+      - hyprprop-git
+      - cliphist
+      - xdg-desktop-portal-gnome
+      # - xdg-desktop-portal-hyprland
+      - polkit-gnome
+      - brightnessctl
+      - pyprland
+      - udiskie
+      - mako
+      # - dunst
+      # - swaync
+      - waybar
+      - swayosd
+
+      - kitty
+      # - alacritty
+      # - ghostty
+      # - wezterm
+
+      - rofi
+      # - walker-bin
+      # - elephant-all-bin
+      # - openbsd-netcat
+
+      # - thunar
+      - nautilus
+      - sshfs
+      - gvfs
+      - gvfs-smb
+      - gvfs-nfs
+      - gvfs-google
+      - gvfs-onedrive
+      - gnome-disk-utility
+
+      - qt5-wayland
+      - qt6-wayland
+
+      # - nwg-displays
+      - nwg-look
+      - adw-gtk-theme
+      - papirus-icon-theme
+      - nordzy-icon-theme
+      - nordzy-cursors
+      - nordzy-hyprcursors
+      # - qogir-icon-theme
+      # - materia-gtk-theme
+    niri:
+      - niri
+      - xwayland-satellite
+      - xdg-desktop-portal-gnome
+      - wl-clipboard
+      - cliphist
+      - mako
+      - waybar
+  guis:
+    - brave-bin
+    - proton-pass-bin
+    - mpv
+    - visual-studio-code-bin # scoop vscode
+    - zed-preview-bin
+  audio:
+    - pipewire
+    - wireplumber
+    - pipewire-pulse
+    - pipewire-alsa
+  printer:
+    - cups
+    - cups-filters
+    - cups-pdf
+    - cups-pk-helper
+    - libcups
+    - avahi
+    - nss-mdns
+    - system-config-printer # GTK gui app

@@ -1,0 +1,34 @@
+{{- if eq .chezmoi.os "linux" -}}
+#! /usr/bin/env bash
+
+{{ end -}}
+echo
+echo "--------------------------------------------------------------------------------"
+echo "*** Install packages"
+echo "--------------------------------------------------------------------------------"
+
+package_manager = {{ .opt.packageManager }}
+
+{{ if eq .opt.packageManager "yay" -}}
+{{ $session := .opt.session -}}
+packages = (
+  {{ range $module, $packages := .packages -}}
+    {{ if not (has $module (list "shell" "display_manager" "session")) -}}
+      {{ range $packages -}}
+        {{ . }}
+      {{ end -}}
+    {{ else if eq $module "session" -}}
+      {{ range ( index $packages $session ) -}}
+        {{ . }}
+      {{ end -}}
+    {{ end -}}
+  {{ end -}}
+  {{ .opt.shell }}
+  {{ .opt.displayManager }}
+)
+
+yay -S --needed --noconfirm "${packages[@]}"
+
+{{- else if eq .chezmoi.os "windows" -}}
+package_manager install packages
+{{ end }}
