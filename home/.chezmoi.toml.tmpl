@@ -6,16 +6,47 @@ encryption = "age"
 # command = "lvim"
 
 [diff]
-# command = "nvim"
-# args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
-command = "delta"
-pager = "delta"
-exclude = ['scripts']
+  # command = "nvim"
+  # args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
+  command = "delta"
+  pager = "delta"
+  # exclude = ['scripts']
 
 [merge]
-command = "nvim"
-args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
+  command = "nvim"
+  args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
 
 [age]
-identity="~/.config/chezmoi/key.txt"
-recipient="age10g73xtxk2f785e6qq5dzmvnp72m9e58v42h74vk47aq39ssyucwsx20pnl"
+  identity = "~/.config/chezmoi/key.txt"
+  recipient = "age10g73xtxk2f785e6qq5dzmvnp72m9e58v42h74vk47aq39ssyucwsx20pnl"
+
+{{- $fonts := list "jetbrains-mono-nerd" "firacode-nerd" "iosevka-nerd" }}
+{{- $shells := list "bash" "zsh" "fish" "xonsh" "nushell" }}
+{{- $displayManagers := list "agetty" "sddm" "greetd" }}
+{{- $sessions := list "hyprland" "niri" }}
+
+{{- $font := promptChoice "Choose a font" $fonts "jetbrains-mono-nerd" }}
+{{- $shell := promptChoice "Choose a shell" $shells "fish" }}
+{{- $displayManager := promptChoice "Choose a display manager" $displayManagers "agetty" }}
+{{- $session := promptChoice "Choose a session" $sessions "hyprland" }}
+
+{{- $packageManager := "apt" -}} {{/* Default fallback */}}
+
+{{- if eq .chezmoi.os "windows" -}}
+    {{- $packageManager = "scoop" -}}
+{{- else if eq .chezmoi.os "linux" -}}
+    {{- if eq .chezmoi.osRelease.id "arch" -}}
+        {{- $packageManager = "yay" -}}
+    {{- else if eq .chezmoi.osRelease.id "fedora" -}}
+        {{- $packageManager = "dnf" -}}
+    {{- end -}}
+{{- else if eq .chezmoi.os "darwin" -}}
+    {{- $packageManager = "brew" -}}
+{{- end }}
+
+[data.opt]
+  font = {{ $font | quote }}
+  shell = {{ $shell | quote }}
+  displayManager = {{ $displayManager | quote }}
+  session = {{ $session | quote }}
+  packageManager = {{ $packageManager | quote }}
