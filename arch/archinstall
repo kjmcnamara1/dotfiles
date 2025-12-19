@@ -17,27 +17,29 @@ pacman -S --needed --noconfirm git jq
 rm -rf "$dotfiles"
 git clone --branch "$host" https://github.com/kjmcnamara1/dotfiles "$dotfiles"
 
-read -rp "Press enter to continue..."
+# read -rp "Press enter to continue..."
 
 username=$(cat "$users" | jq -r '.users[0].username')
 
-# [ ] Remove all EFI boot entries
+# [x] Remove all EFI boot entries
 for entry in $(efibootmgr | grep '^Boot[0-9]' | awk -F'[* ]' '{print substr($1,5)}'); do
   sudo efibootmgr -b "$entry" -B
 done
 
-# [ ] Install arch with machine specific config, including disk layout
+# read -rp "Press enter to continue..."
+
+# [x] Install arch with machine specific config, including disk layout
 archinstall --config "$config" --creds "$users"
 
 # [x] Copy interception-tools config and pacman.conf
 cp -r "$dotfiles/arch/etc" "$archmount"
 
-read -rp "Press enter to continue..."
+# read -rp "Press enter to continue..."
 
-# [ ] Init and apply dotfiles
+# [x] Init and apply dotfiles
 arch-chroot "$archmount" bash -c "sudo -H -u $username chezmoi init --branch $host --apply kjmcnamara1"
 
-read -rp "Press enter to continue..."
+# read -rp "Press enter to continue..."
 
 # [x] Disable default action of power button
 sed -i 's/.*HandlePowerKey=.*/HandlePowerKey=ignore/' \
@@ -45,7 +47,7 @@ sed -i 's/.*HandlePowerKey=.*/HandlePowerKey=ignore/' \
 # [x] Add mDNS for printer
 sed -i 's/mymachines resolve/mymachines mdns_minimal [NOTFOUND=return] resolve/' \
   "$archmount/etc/nsswitch.conf"
-# [ ] Add NAS mount to fstab
+# [x] Add NAS mount to fstab
 grep -q "192.168.0.10:/mnt/md1" "$archmount/etc/fstab" \
   || printf "\n# /mnt/NAS\n192.168.0.10:/mnt/md1 /mnt/NAS nfs defaults 0 0" >> "$archmount/etc/fstab"
 
@@ -57,9 +59,9 @@ done
 # it will only add 'plymouth' if it is not already present
 sed -i '/^HOOKS=/!b; /plymouth/!s/\(base udev\)/\1 plymouth/' \
   "$archmount/etc/mkinitcpio.conf"
-# [ ] Change theme and regenerate initramfs
+# [x] Change theme and regenerate initramfs
 arch-chroot "$archmount" plymouth-set-default-theme -R arch-charge-big
-# [ ] Write systemd-boot config (Should also change the EFI variable)
+# [x] Write systemd-boot config (Should also change the EFI variable)
 bootctl --esp-path="$archmount/boot" --boot-path="$archmount/boot" set-timeout "0"
 
 # reboot
