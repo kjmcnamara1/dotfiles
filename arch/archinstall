@@ -25,7 +25,7 @@ cp -r "$dotfiles/arch/etc" "$archmount"
 
 read -rp "Press enter to continue..."
 
-arch-chroot "$archmount" bash -c "sudo -H -u $username chezmoi init --apply kjmcnamara1"
+arch-chroot "$archmount" bash -c "sudo -H -u $username chezmoi init --branch $host --apply kjmcnamara1"
 
 read -rp "Press enter to continue..."
 
