@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# print each command before it is executed, expanding variables
+set -x
+
 host="$1"
 dotfiles="/root/dotfiles"
 config="$dotfiles/arch/$host.json"
