@@ -4,7 +4,7 @@
 set -x
 
 host="$1"
-dotfiles="/root/dotfiles"
+dotfiles="/tmp/dotfiles"
 config="$dotfiles/arch/$host.json"
 users="$dotfiles/arch/users.json"
 archmount="/mnt/archinstall"
