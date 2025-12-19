@@ -16,4 +16,5 @@ user_services=(
 )
 
 sudo systemctl enable "${system_services[@]}"
+# BUG: systemctl --user enable doesn't work from archiso
 systemctl --user enable "${user_services[@]}"
