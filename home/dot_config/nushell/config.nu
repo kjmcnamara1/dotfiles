@@ -763,6 +763,7 @@ $env.config = {
 alias core-ls = ls
 alias py = if $nu.os-info.name != 'windows' {python3 } else {py}
 alias cat = bat
+alias rg = rg --smart-case
 
 # Prompt
 use ~/.config/starship/starship.nu

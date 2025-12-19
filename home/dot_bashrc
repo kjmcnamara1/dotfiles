@@ -124,6 +124,7 @@ alias egrep='egrep --color=auto'                            # show differences i
 alias fgrep='fgrep --color=auto'                            # show differences in colour
 alias dc='docker compose'
 alias cat='bat'
+alias rg='rg --smart-case'
 
 # Function definitions.
 # if [ -f ~/.bash_functions ]; then

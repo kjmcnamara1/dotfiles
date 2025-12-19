@@ -71,6 +71,7 @@ alias df='df -h'                                            # human readable dis
 alias du='du -h'                                            # human readable disk usage
 alias py='python3'                                          # Python
 alias cat='bat'
+alias rg='rg --smart-case'
 
 # Yazi
 export YAZI_CONFIG_HOME='~/.config/yazi'

@@ -101,6 +101,7 @@ aliases['du'] = 'du -h'  # human readable disk usage
 # aliases['l'] = '/usr/bin/ls -hv --color=auto --group-directories-first' # shorthand plain ls
 aliases['dc'] = 'docker compose'  # Docker compose
 aliases['cat'] = 'bat'
+aliases['rg'] = 'rg --smart-case'
 
 # Yazi wrapper
 

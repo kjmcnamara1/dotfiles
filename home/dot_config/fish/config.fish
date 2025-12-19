@@ -98,6 +98,7 @@ if status is-interactive # connected to keyboard
     # alias l='/usr/bin/ls -hv --color=auto --group-directories-first' # shorthand plain ls
     alias dc='docker compose'
     alias cat='bat'
+    alias rg='rg --smart-case'
 
     # Yazi Wrapper
     function y
