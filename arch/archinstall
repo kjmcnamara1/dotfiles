@@ -6,6 +6,9 @@ config="$dotfiles/arch/$host.json"
 users="$dotfiles/arch/users.json"
 archmount="/mnt/archinstall"
 
+pacman -Sy
+pacman -S git
+
 git clone --branch "$host" git@github.com:kjmcnamara1/dotfiles "$dotfiles"
 
 username=$(cat "$users" | jq -r '.users[0].username')
