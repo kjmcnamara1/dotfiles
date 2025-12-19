@@ -1,6 +1,10 @@
 # vim: ft=gitignore.chezmoitmpl
 key.txt.age
 
+{{- if ne .chezmoi.os "windows" }}
+AppData
+{{- end }}
+
 {{- if ne .opt.shell "bash" }}
 .bashrc
 {{- end }}
