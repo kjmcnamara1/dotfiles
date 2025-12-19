@@ -7,7 +7,7 @@ host="$1"
 dotfiles="/tmp/dotfiles"
 config="$dotfiles/arch/$host.json"
 users="$dotfiles/arch/users.json"
-archmount="/mnt/archinstall"
+archmount="/mnt"
 
 pacman -Sy
 pacman -S --needed --noconfirm git jq
