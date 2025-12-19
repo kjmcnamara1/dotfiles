@@ -34,7 +34,6 @@ AppData
 {{- end }}
 
 .chezmoiscripts/02-boot
-.chezmoiscripts/change-shell
 .chezmoiscripts/sddm
 .chezmoiscripts/zoxide
 
