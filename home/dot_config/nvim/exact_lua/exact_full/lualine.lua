@@ -1,6 +1,6 @@
 return {
   "nvim-lualine/lualine.nvim",
-  enabled = not vim.g.vscode,
+  enabled = not (vim.g.vscode or vim.env.KITTY_SCROLLBACK_NVIM == "true"),
   dependencies = {
     "echasnovski/mini.icons",
     -- "folke/noice.nvim",

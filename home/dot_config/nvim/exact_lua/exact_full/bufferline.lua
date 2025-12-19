@@ -2,6 +2,7 @@
 -- * BufferLine
 -- ================================================================================
 
+-- TODO:  Maybe check out barbar.nvim https://github.com/romgrk/barbar.nvim
 return {
   "akinsho/bufferline.nvim",
   -- enabled = not vim.g.vscode,
