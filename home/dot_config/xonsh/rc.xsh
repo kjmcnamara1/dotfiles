@@ -100,6 +100,7 @@ aliases['du'] = 'du -h'  # human readable disk usage
 # aliases['ls'] = 'ls -hv --color=auto --group-directories-first' # classify files in colour
 # aliases['l'] = '/usr/bin/ls -hv --color=auto --group-directories-first' # shorthand plain ls
 aliases['dc'] = 'docker compose'  # Docker compose
+aliases['cat'] = 'bat'
 
 # Yazi wrapper
 

@@ -123,6 +123,7 @@ alias grep='grep --color'                                   # show differences i
 alias egrep='egrep --color=auto'                            # show differences in colour
 alias fgrep='fgrep --color=auto'                            # show differences in colour
 alias dc='docker compose'
+alias cat='bat'
 
 # Function definitions.
 # if [ -f ~/.bash_functions ]; then
