@@ -15,5 +15,5 @@ user_services=(
   {{ end -}}
 )
 
-systemctl enable "${system_services[@]}"
+sudo systemctl enable "${system_services[@]}"
 systemctl --user enable "${user_services[@]}"
