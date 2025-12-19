@@ -155,7 +155,7 @@
         "https://arch.hugeblank.dev/$repo/os/$arch"
       ]
     },
-    "optional_repositories": []
+    "optional_repositories": ["multilib"]
   },
   "network_config": {
     "type": "iso"
