@@ -181,6 +181,7 @@ packages:
     - mpv
     - visual-studio-code-bin # scoop vscode
     - zed-preview-bin
+    - baobab # GTK disk usage analyzer (filelight)
   audio:
     - pipewire
     - wireplumber
