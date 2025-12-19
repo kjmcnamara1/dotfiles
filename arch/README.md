@@ -19,7 +19,7 @@
 ## ArchInstall Script
 
 ```sh
-bash -c "$(curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/muse/arch/archinstall muse)"
+curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/muse/arch/archinstall | bash -s -- muse
 ```
 
 ## Manual Script
