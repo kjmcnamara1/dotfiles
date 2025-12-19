@@ -7,11 +7,11 @@ echo "--------------------------------------------------------------------------
 echo "*** Install packages"
 echo "--------------------------------------------------------------------------------"
 
-package_manager = {{ .opt.packageManager }}
+package_manager={{- .opt.packageManager }}
 
 {{ if eq .opt.packageManager "yay" -}}
 {{ $session := .opt.session -}}
-packages = (
+packages=(
   {{ range $module, $packages := .packages -}}
     {{ if not (has $module (list "shell" "display_manager" "session")) -}}
       {{ range $packages -}}

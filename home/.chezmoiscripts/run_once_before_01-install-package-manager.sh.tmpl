@@ -1,7 +1,7 @@
 {{- if or (eq .opt.packageManager "yay") (eq .opt.packageManager "paru") -}}
 #! /usr/bin/env bash
 
-package_manager={{ .opt.packageManager }}
+package_manager={{- .opt.packageManager }}
 
 echo
 echo "--------------------------------------------------------------------------------"
