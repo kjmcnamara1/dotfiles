@@ -122,8 +122,11 @@ source = conf/bar/waybar.conf
 source = conf/notification/mako.conf
 
 # Menu
+{{- if eq .chezmoi.hostname "muse" }}
 source = conf/menu/rofi.conf
-# source = conf/menu/walker.conf
+{{- else if eq .chezmoi.hostname "angel" }}
+source = conf/menu/walker.conf
+{{- end }}
 
 # On Screen Display
 source = conf/osd/swayosd.conf
