@@ -49,7 +49,7 @@ sed -i 's/mymachines resolve/mymachines mdns_minimal [NOTFOUND=return] resolve/'
   "$archmount/etc/nsswitch.conf"
 # [x] Add NAS mount to fstab
 grep -q "192.168.0.10:/mnt/md1" "$archmount/etc/fstab" \
-  || printf "\n# /mnt/NAS\n192.168.0.10:/mnt/md1 /mnt/NAS nfs defaults 0 0" >> "$archmount/etc/fstab"
+  || printf "\n# /mnt/NAS\n192.168.0.10:/mnt/md1 /mnt/NAS nfs defaults,nofail 0 0" >> "$archmount/etc/fstab"
 
 # [x] Idempotently add 'quiet splash' to all boot entries
 for entry in "$archmount"/boot/loader/entries/*.conf; do
