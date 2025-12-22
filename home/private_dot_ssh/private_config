@@ -1,0 +1,13 @@
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/github
+  IdentitiesOnly yes
+  AddKeysToAgent yes
+
+Host snow.local
+  HostName snow.local
+  User admin
+  IdentityFile ~/.ssh/snow
+  IdentitiesOnly yes
+  AddKeysToAgent yes

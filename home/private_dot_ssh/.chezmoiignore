@@ -1,0 +1,10 @@
+{{ if ne .chezmoi.hostname "snow" }}
+authorized_keys
+{{ else }}
+config
+github
+github.pub
+snow
+snow.pub
+known_hosts
+{{ end }}
