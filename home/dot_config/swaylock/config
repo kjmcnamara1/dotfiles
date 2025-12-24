@@ -1,0 +1,26 @@
+# vim: ft=conf
+ignore-empty-password
+show-failed-attempts
+# show-keyboard-layout
+indicator-caps-lock
+
+# screenshots
+image=~/wallpapers/swiss-alps.jpg
+effect-blur=30x3
+# effect-vignette=0.5:0.5
+
+clock
+timestr=%H:%M
+datestr=%a %d %b
+
+# indicator-idle-visible
+indicator-thickness=15
+indicator-image=/home/kjm/.face.icon
+indicator-radius=100
+inside-color=00000000
+
+bs-hl-color=BF616A
+key-hl-color=EBCB8B
+text-color=EBCB8B
+ring-color=5E81AC
+separator-color=434C5E
