@@ -1,4 +1,14 @@
 [[mgr.prepend_keymap]]
+  on   = ["<"]
+  run  = "tab_switch -1 --relative"
+  desc = "Switch to previous tab"
+
+[[mgr.prepend_keymap]]
+  on   = [">"]
+  run  = "tab_switch 1 --relative"
+  desc = "Switch to next tab"
+
+[[mgr.prepend_keymap]]
   on   = ["g", "t"]
   run  = "cd ~/.local/share/Trash"
   desc = "Go Trash"
