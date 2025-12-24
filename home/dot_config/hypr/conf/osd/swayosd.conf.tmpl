@@ -19,9 +19,10 @@ binddel = , XF86AudioRaiseVolume , Raise volume       , exec, $osdclient --outpu
 binddel = , XF86AudioMicMute     , Mute microphone    , exec, $osdclient --input-volume mute-toggle
 binddel = , XF86MonBrightnessUp  , Increase brightness, exec, $osdclient --brightness raise
 binddel = , XF86MonBrightnessDown, Decrease brightness, exec, $osdclient --brightness lower
+{{ if eq .chezmoi.hostname "angel" }}
 binddel = , XF86MonBrightnessUp  , Increase brightness, exec, hyprctl hyprsunset gamma +10
 binddel = , XF86MonBrightnessDown, Decrease brightness, exec, hyprctl hyprsunset gamma -10
-
+{{ end }}
 
 # Precise 1% multimedia adjustments with Alt modifier
 bindeld = ALT, XF86AudioLowerVolume, Volume down precise, exec, $osdclient --output-volume -1
