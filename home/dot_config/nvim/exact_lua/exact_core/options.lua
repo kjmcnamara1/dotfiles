@@ -53,7 +53,7 @@ vim.opt.fillchars      = {
 vim.opt.foldenable     = true
 vim.opt.foldlevelstart = 99
 vim.o.foldmethod       = "expr";
-vim.o.foldexpr         = "nvim_treesitter#foldexpr()";
+vim.o.foldexpr         = "v:lua.vim.treesitter.foldexpr()";
 
 vim.opt.shortmess:append("WIcC") -- Reduce command line messages
 vim.opt.splitkeep     = "screen" -- Reduce scroll during window split

@@ -60,6 +60,7 @@ packages:
 
     # - helix
     - neovim
+    - tree-sitter-cli
     - nodejs
     - npm
     - shellcheck

@@ -14,15 +14,31 @@ return {
     },
     label = {
       current = false,
-      after = false,
-      before = true,
-      -- rainbow = { enabled = true }
     },
     modes = {
       search = { enabled = false },
-      treesitter = { label = { rainbow = { enabled = true } } },
-      treesitter_search = { label = { rainbow = { enabled = true } } },
-      remote = { jump = { pos = "range", autojump = false, } },
+      treesitter = {
+        label = {
+          style = "overlay",
+          rainbow = {
+            enabled = true
+          }
+        }
+      },
+      treesitter_search = {
+        label = {
+          style = "overlay",
+          rainbow = {
+            enabled = true
+          }
+        }
+      },
+      remote = {
+        jump = {
+          pos = "range",
+          autojump = false,
+        }
+      },
       char = {
         char_actions = function(motion)
           return {

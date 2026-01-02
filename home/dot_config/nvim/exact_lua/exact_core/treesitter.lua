@@ -5,80 +5,59 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "nvim-treesitter/nvim-treesitter-context",
-      "windwp/nvim-ts-autotag",
-    },
-    lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
-    version = false,             -- last release is way too old and doesn't work on Windows
-    main = "nvim-treesitter.configs",
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
-    event = { "BufReadPre", "BufNewFile", "VeryLazy" },
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo", "TSUpdateSync", "TSUpdate", },
-    opts_extend = { "ensure_installed" },
+  },
+
+  {
+    "mks-h/treesitter-autoinstall.nvim",
     opts = {
-      auto_install = true,
-      highlight = { enable = true },
-      indent = { enable = true },
-      autopairs = { enable = true },
-      -- autotag = { enable = true },
-      textobjects = {
-        move = {
-          enable = true,
-          set_jumps = true,
-          goto_next_start = {
-            ["]c"] = "@comment.outer",
-            ["]a"] = "@parameter.inner",
-            ["]m"] = "@function.outer",
-            ["]f"] = "@call.outer",
-            ["]C"] = "@class.outer",
-            ["]A"] = "@assignment.inner",
-            ["]l"] = "@loop.outer",
-            ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
-            -- ["]z"] = { query = '@fold', query_group = 'folds', desc = 'Next fold' },
-            -- ["<tab>"] = {query={'@variable*','@attribute.inner*','@parameter.inner','@assignment.inner','@conditional.inner','@call.inner'}},
-          },
-          -- goto_next_end = {
-          --   [']C'] = '@comment.outer',
-          --   [']A'] = '@parameter.outer',
-          --   ["]F"] = "@function.outer",
-          --   ["]["] = "@class.outer"
-          -- },
-          goto_previous_start = {
-            ["[c"] = "@comment.outer",
-            ["[a"] = "@parameter.inner",
-            ["[m"] = "@function.outer",
-            ["[f"] = "@call.outer",
-            ["[C"] = "@class.outer",
-            ["[A"] = "@assignment.inner",
-            ["[l"] = "@loop.outer",
-            ["[s"] = { query = "@scope", query_group = "locals", desc = "Previous scope" },
-            -- ["[z"] = { query = '@fold', query_group = 'folds', desc = 'Previous fold' },
-            -- ["<s-tab>"] = {query={'@variable*','@attribute.inner*','@parameter.inner','@assignment.inner','@conditional.inner','@call.inner'}},
-          },
-          -- goto_previous_end = {
-          --   ['[C'] = '@comment.outer',
-          --   ['[A'] = '@parameter.outer',
-          --   ["[F"] = "@function.outer",
-          --   ["[]"] = "@class.outer"
-          -- },
-          -- goto_next = {[']c'] = '@comment.outer'},
-          -- goto_previous = {['[c'] = '@comment.outer'},
-        },
-        swap = {
-          enable = true,
-          swap_next = {
-            ["<leader>xna"] = "@parameter.inner",
-            ["<leader>xnm"] = "@function.outer",
-          },
-          swap_previous = {
-            ["<leader>xpa"] = "@parameter.inner",
-            ["<leader>xpm"] = "@function.outer",
-          },
-        },
+      ignore = { 'snacks_notif', 'noice', 'blink-cmp-menu', },
+    },
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
+    event = "VeryLazy",
+    opts = {
+      move = {
+        set_jumps = true,
       },
     },
+    keys = {
+      {
+        "]z",
+        function() require("nvim-treesitter-textobjects.move").goto_next_start("@fold", "folds") end,
+        desc = "Goto next fold",
+      },
+      {
+        "[z",
+        function() require("nvim-treesitter-textobjects.move").goto_previous_start("@fold", "folds") end,
+        desc = "Goto previous fold",
+      },
+      {
+        "<leader>xna",
+        function() require("nvim-treesitter-textobjects.swap").swap_next("@parameter.inner") end,
+        desc = "Swap with next argument",
+      },
+      {
+        "<leader>xpa",
+        function() require("nvim-treesitter-textobjects.swap").swap_previous("@parameter.inner") end,
+        desc = "Swap with previous argument",
+      },
+      {
+        "<leader>xnm",
+        function() require("nvim-treesitter-textobjects.swap").swap_next("@function.outer") end,
+        desc = "Swap with next method",
+      },
+      {
+        "<leader>xpm",
+        function() require("nvim-treesitter-textobjects.swap").swap_previous("@function.outer") end,
+        desc = "Swap with previous method",
+      },
+    }
   },
 
   {
@@ -86,7 +65,7 @@ return {
     cond = not vim.g.vscode,
     event = { "BufReadPre", "BufNewFile" },
     opts = {
-      max_lines = 3,
+      max_lines = 5,
     },
   },
 
