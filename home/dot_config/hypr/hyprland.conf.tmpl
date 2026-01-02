@@ -36,69 +36,55 @@ monitor = ,preferred,auto,auto
 # See https://wiki.hyprland.org/Configuring/Window-Rules/
 
 # System Mission Center
-windowrule = float, class:(io.missioncenter.MissionCenter)
-windowrule = pin, class:(io.missioncenter.MissionCenter)
-windowrule = center, class:(io.missioncenter.MissionCenter)
+windowrule = match:class io.missioncenter.MissionCenter, float on, pin on, center on
 
 # Mousam Weather App
-windowrule = float, class:(io.github.amit9838.mousam)
+windowrule = match:class io.github.amit9838.mousam, float on
 # windowrule = size 980 720, class:(io.github.amit9838.mousam)
 # windowrule = center, class:(io.github.amit9838.mousam)
 # windowrule = move 0 -100%, class:(io.github.amit9838.mousam)
 
 # Hyprland Share Picker
-windowrule = float, class:(hyprland-share-picker)
-windowrule = pin, class:(hyprland-share-picker)
-windowrule = center, title:class:(hyprland-share-picker)
-windowrule = size 600 400,class:(hyprland-share-picker)
+windowrule = match:class hyprland-share-picker, float on, pin on, center on, size 600 400
 
 # Browser Picture in Picture
 $pip_x_pad = $(hyprctl getoption general:gaps_out -j | jq -r '.custom | split(" ")[1] | tonumber * 2')
-windowrule = float, title:^(Picture-in-Picture)$
-windowrule = pin, title:^(Picture-in-Picture)$
-windowrule = size 20% 20%, title:^(Picture-in-Picture)$
-windowrule = move onscreen 100%-w-30 100%-w-30, title:^(Picture-in-Picture)$
-windowrule = noinitialfocus, title:^(Picture-in-Picture)$
+windowrule = match:title Picture-in-Picture, float on, pin on, size 20% 20%, move onscreen (monitor_w-window_w-30) (monitor_h-window_h-30), no_initial_focus on
 
 # NetworkManager Connection Editor
-windowrule = float, class:(nm-connection-editor)
+windowrule = match:class nm-connection-editor, float on
+
+# Proton VPN
+windowrule = match:class protonvpn-app, float on, size 400 50%, move (monitor_w-window_w-30) 60
 
 # Bluetooth Manager
-windowrule = float, class:(blueberry.py)
-windowrule = float, class:(Overskride)
+windowrule = match:class blueberry.py, float on
+windowrule = match:class Overskride, float on
 
 # Audio controls
-windowrule = float, class:(com.saivert.pwvucontrol)
+windowrule = match:class com.saivert.pwvucontrol, float on
 
 # Settings
-windowrule = float, class:(nwg-look)
-windowrule = float, class:(nwg-displays)
+windowrule = match:class nwg-look, float on
+windowrule = match:class nwg-displays, float on
 
 # Thunar File Operation Progress
-windowrule = float, class:(thunar),title:^(File Operation Progress)$
+windowrule = match:class thunar,match:title (File Operation Progress), float on
 
 # ActiveWindowInfo in nvim
-windowrule = float, class:^(ActiveWindowInfo)$
-windowrule = size 600 800, class:^(ActiveWindowInfo)$
-windowrule = center, class:^(ActiveWindowInfo)$
-# windowrule = stayfocused, class:^(ActiveWindowInfo)$
+windowrule = match:class ActiveWindowInfo, float on, size 600 800, center on
 
 # Settings TUIs
-windowrule = float, title:(impala)
-windowrule = float, title:(bluetui)
-windowrule = float, title:(wiremix)
-windowrule = float, title:(hyprmon)
+windowrule = match:class dropterm|processes|wifi|bluetooth|audio|monitors, float on
 
 # Yay/Pacman Update
-windowrule = float, class:^(update)$
-windowrule = center, class:^(update)$
+windowrule = match:class update, float on, center on
 
 # Gaming
-windowrule = fullscreen, class:steam_app_default
-windowrule = idleinhibit always, class:steam_app_default
+windowrule = match:class steam_app_default, fullscreen on, idle_inhibit always
 
 # Idle inhibit all fullscreen windows
-windowrule = idleinhibit always, fullscreen:1
+# windowrule = match:fullscreen, idle_inhibit always
 
 
 # ░▀█▀░█▀█░█▀▀░█░░░█░█░█▀▄░█▀▀
