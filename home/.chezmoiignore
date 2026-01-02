@@ -21,14 +21,6 @@ AppData
 .config/xonsh
 {{- end }}
 
-{{- if ne .opt.session "hyprland" }}
-.config/hypr
-{{- end }}
-
-{{- if ne .opt.session "niri" }}
-.config/niri
-{{- end }}
-
 {{- if ne .opt.session "cosmic" }}
 .config/cosmic
 {{- end }}

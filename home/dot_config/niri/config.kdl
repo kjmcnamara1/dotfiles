@@ -1,0 +1,378 @@
+// This config is in the KDL format: https://kdl.dev
+// "/-" comments out the following node.
+// Check the wiki for a full description of the configuration:
+// https://yalter.github.io/niri/Configuration:-Introduction
+// Input device configuration.
+// Find the full list of options on the wiki:
+// https://yalter.github.io/niri/Configuration:-Input
+
+// ENVIRONMENT VARIABLES
+environment {
+    NERD_FONT "JetBrainsMono Nerd Font"
+    TERMINAL "kitty"
+    EDITOR "nvim"
+
+    // OZONE_PLATFORM "wayland"
+    // ELECTRON_OZONE_PLATFORM_HINT "wayland"
+    // ELECTRON_OZONE_PLATFORM_HINT "auto"
+    // GDK_BACKEND "wayland"
+    // GDK_SCALE "1.5"
+}
+
+// INPUT
+input {
+    keyboard {
+        xkb {}
+        numlock
+    }
+    touchpad {
+        // off
+        tap
+        // dwt
+        // dwtp
+        // drag false
+        // drag-lock
+        natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+        scroll-method "two-finger"
+        disabled-on-external-mouse
+    }
+    mouse {}
+    trackpoint {}
+    warp-mouse-to-focus
+    // focus-follows-mouse max-scroll-amount="0%"
+    // focus-follows-mouse
+}
+
+cursor {
+  hide-when-typing
+}
+
+// MONITORS
+output "DP-1" {
+    scale 1.5
+    position x=-2560 y=0
+    focus-at-startup
+}
+output "DP-2" {
+    // mode "2560x1440"
+    scale 1.5
+    position x=0 y=0
+    focus-at-startup
+}
+output "DP-3" {
+    position x=-1920 y=-1080
+}
+output "HDMI-A-1" {
+    position x=0 y=-1080
+}
+
+// LAYOUT
+// https://yalter.github.io/niri/Configuration:-Layout
+layout {
+    gaps 20
+    background-color "transparent"
+    center-focused-column "never"
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+    // preset-window-heights { }
+    default-column-width {
+        // proportion 0.33333
+        proportion 0.66667
+    }
+    focus-ring {
+        width 2
+        // active-color "#7fc8ff"
+        // active-color "#5E81AC"
+        // active-color "#81A1C1"
+        active-color "#88C0D0"
+        inactive-color "#4C566A"
+    }
+    tab-indicator {
+        width 10
+        gaps-between-tabs 20
+        corner-radius 5
+        place-within-column
+        active-color "#B48EAD"
+    }
+    /-border {
+    off
+    width 4
+    active-color "#ffc87f"
+    inactive-color "#505050"
+    urgent-color "#9b0000"
+    }
+    shadow {
+        on
+        softness 10
+        spread 5
+        offset x=0 y=5
+        color "#0008"
+    }
+ /-struts {
+        left 64
+        right 64
+        top 64
+        bottom 64
+    }
+}
+
+// OVERVIEW
+overview {
+  // workspace-shadow { off; }
+}
+
+layer-rule {
+    match namespace="dms:blurwallpaper"
+    place-within-backdrop true
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// https://yalter.github.io/niri/Configuration:-Animations
+animations {
+ // off
+    // slowdown 3.0
+
+}
+
+// WINDOW RULES
+window-rule {
+    match app-id="^org\\.wezfurlong\\.wezterm$"
+    default-column-width {}
+}
+window-rule {
+    match app-id="firefox$" title="^Picture-in-Picture$"
+    open-floating true
+}
+/-window-rule {
+match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+match app-id=r#"^org\.gnome\.World\.Secrets$"#
+block-out-from "screen-capture"
+}
+window-rule {
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+
+// LAYER RULES
+
+// KEYBINDS
+binds {
+    SUPER+SHIFT+Slash { show-hotkey-overlay; }
+
+    // APPLICATIONS
+    SUPER+Return hotkey-overlay-title="Terminal" {
+        spawn "kitty"
+    }
+    SUPER+E hotkey-overlay-title="File Browser" {
+        spawn "thunar"
+    }
+
+    // SHELL
+    SUPER+Space hotkey-overlay-title="Launcher: spotlight" {
+        spawn "dms" "ipc" "call" "spotlight" "toggle"
+    }
+    SUPER+ALT+Space hotkey-overlay-title="Launcher: rofi" {
+        spawn-sh "pkill -x rofi || rofi -show drun"
+    }
+    SUPER+CTRL+Space hotkey-overlay-title="Launcher: walker" {
+        spawn-sh "walker"
+    }
+    SUPER+W hotkey-overlay-title="Window Switcher" {
+        spawn "dms" "ipc" "call" "spotlight" "toggleQuery" "!"
+    }
+    SUPER+Escape hotkey-overlay-title="Lock Screen" allow-when-locked=true {
+        spawn "dms" "ipc" "call" "lock" "lock"
+    }
+    SUPER+Delete hotkey-overlay-title="Power Menu" {
+        spawn "dms" "ipc" "call" "powermenu" "toggle"
+    }
+    SUPER+V hotkey-overlay-title="Clipboard" {
+        spawn "dms" "ipc" "call" "clipboard" "toggle"
+    }
+    SUPER+B hotkey-overlay-title="Browser: Brave" {
+        spawn "brave"
+    }
+    SUPER+N hotkey-overlay-title="Notifications" {
+        spawn "dms" "ipc" "call" "notifications" "toggle"
+    }
+    // MEDIA
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+    }
+    XF86AudioMute allow-when-locked=true {
+        spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    }
+    XF86AudioMicMute allow-when-locked=true {
+        spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+    }
+    XF86MonBrightnessUp allow-when-locked=true {
+        spawn "brightnessctl" "--class=backlight" "set" "+10%"
+    }
+    XF86MonBrightnessDown allow-when-locked=true {
+        spawn "brightnessctl" "--class=backlight" "set" "10%-"
+    }
+    SUPER+O repeat=false {
+        toggle-overview
+    }
+    SUPER+C repeat=false {
+        close-window
+    }
+    // NAVIGATION
+    SUPER+H { focus-column-left; }
+    SUPER+J { focus-window-down; }
+    SUPER+K { focus-window-up; }
+    SUPER+L { focus-column-right; }
+
+    SUPER+CTRL+H { move-column-left; }
+    SUPER+CTRL+J { move-window-down; }
+    SUPER+CTRL+K { move-window-up; }
+    SUPER+CTRL+L { move-column-right; }
+
+    // Alternative commands that move across workspaces when reaching
+    // the first or last window in a column.
+    // SUPER+J     { focus-window-or-workspace-down; }
+    // SUPER+K     { focus-window-or-workspace-up; }
+    // SUPER+CTRL+J     { move-window-down-or-to-workspace-down; }
+    // SUPER+CTRL+K     { move-window-up-or-to-workspace-up; }
+
+    SUPER+Home { focus-column-first; }
+    SUPER+End { focus-column-last; }
+    SUPER+CTRL+Home { move-column-to-first; }
+    SUPER+CTRL+End { move-column-to-last; }
+    SUPER+SHIFT+H { focus-monitor-left; }
+    SUPER+SHIFT+J { focus-monitor-down; }
+    SUPER+SHIFT+K { focus-monitor-up; }
+    SUPER+SHIFT+L { focus-monitor-right; }
+    SUPER+CTRL+SHIFT+H { move-column-to-monitor-left; }
+    SUPER+CTRL+SHIFT+J { move-column-to-monitor-down; }
+    SUPER+CTRL+SHIFT+K { move-column-to-monitor-up; }
+    SUPER+CTRL+SHIFT+L { move-column-to-monitor-right; }
+
+    // Alternatively, there are commands to move just a single window:
+    // SUPER+SHIFT+CTRL+Left  { move-window-to-monitor-left; }
+    // ...
+
+    // And you can also move a whole workspace to another monitor:
+    // SUPER+SHIFT+CTRL+Left  { move-workspace-to-monitor-left; }
+    // ...
+
+    // SUPER+Page_Down      { focus-workspace-down; }
+    // SUPER+Page_Up        { focus-workspace-up; }
+
+    SUPER+U { focus-workspace-down; }
+    SUPER+I { focus-workspace-up; }
+
+    // SUPER+CTRL+Page_Down { move-column-to-workspace-down; }
+    // SUPER+CTRL+Page_Up   { move-column-to-workspace-up; }
+
+    SUPER+CTRL+U { move-column-to-workspace-down; }
+    SUPER+CTRL+I { move-column-to-workspace-up; }
+
+    // Alternatively, there are commands to move just a single window:
+    // SUPER+CTRL+Page_Down { move-window-to-workspace-down; }
+    // ...
+
+    SUPER+SHIFT+Page_Down { move-workspace-down; }
+    SUPER+SHIFT+Page_Up { move-workspace-up; }
+
+    // SUPER+SHIFT+U         { move-workspace-down; }
+    // SUPER+SHIFT+I         { move-workspace-up; }
+
+    SUPER+WheelScrollDown cooldown-ms=150 {
+        focus-workspace-down
+    }
+    SUPER+WheelScrollUp cooldown-ms=150 {
+        focus-workspace-up
+    }
+    SUPER+CTRL+WheelScrollDown cooldown-ms=150 {
+        move-column-to-workspace-down
+    }
+    SUPER+CTRL+WheelScrollUp cooldown-ms=150 {
+        move-column-to-workspace-up
+    }
+    SUPER+WheelScrollRight { focus-column-right; }
+    SUPER+WheelScrollLeft { focus-column-left; }
+    SUPER+CTRL+WheelScrollRight { move-column-right; }
+    SUPER+CTRL+WheelScrollLeft { move-column-left; }
+
+    // Same use shift+wheel scroll if don't have side scroll ability
+    SUPER+SHIFT+WheelScrollDown { focus-column-right; }
+    SUPER+SHIFT+WheelScrollUp { focus-column-left; }
+    SUPER+CTRL+SHIFT+WheelScrollDown { move-column-right; }
+    SUPER+CTRL+SHIFT+WheelScrollUp { move-column-left; }
+
+    // Similarly, you can bind touchpad scroll "ticks".
+    // Touchpad scrolling is continuous, so for these binds it is split into
+    // discrete intervals.
+    // These binds are also affected by touchpad's natural-scroll, so these
+    // example binds are "inverted", since we have natural-scroll enabled for
+    // touchpads by default.
+    // SUPER+TouchpadScrollDown { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+"; }
+    // SUPER+TouchpadScrollUp   { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
+    // Switches focus between the current and the previous workspace.
+    /-SUPER+Tab {
+    focus-workspace-previous
+    }
+
+    SUPER+ALT+H { consume-or-expel-window-left; }
+    SUPER+ALT+L { consume-or-expel-window-right; }
+    // SUPER+Comma { consume-window-into-column; }
+    // SUPER+Period { expel-window-from-column; }
+
+    // RESIZE
+    SUPER+R { switch-preset-column-width; }
+    SUPER+ALT+R { switch-preset-window-height; }
+    SUPER+CTRL+R { reset-window-height; }
+
+    // FULLSCREEN
+    SUPER+F { maximize-column; }
+    // SUPER+F { maximize-window-to-edges; } // NOTE: wait until next release
+    SUPER+ALT+F { fullscreen-window; }
+    SUPER+CTRL+F { expand-column-to-available-width; }
+    SUPER+SHIFT+F { toggle-windowed-fullscreen; } // make window (i.e. browser) think it is fullscreen
+
+    SUPER+M { center-column; }
+    SUPER+CTRL+M { center-visible-columns; }
+
+    SUPER+Minus { set-column-width "-10%"; }
+    SUPER+Equal { set-column-width "+10%"; }
+    SUPER+SHIFT+Minus { set-window-height "-10%"; }
+    SUPER+SHIFT+Equal { set-window-height "+10%"; }
+
+    SUPER+T { toggle-window-floating; }
+    SUPER+Tab { switch-focus-between-floating-and-tiling; }
+    SUPER+G hotkey-overlay-title="Group: Toggle" {
+        toggle-column-tabbed-display
+    }
+
+    // SCREENSHOT
+    SUPER+SHIFT+S { screenshot; }
+    Print { screenshot; }
+    CTRL+Print { screenshot-screen; }
+    ALT+Print { screenshot-window; }
+
+    SUPER+ALT+Escape allow-inhibiting=false {
+        toggle-keyboard-shortcuts-inhibit
+    }
+
+  // QUIT
+    CTRL+ALT+Backspace { quit; }
+    CTRL+ALT+Delete { quit; }
+
+    SUPER+SHIFT+P { power-off-monitors; }
+}
+
