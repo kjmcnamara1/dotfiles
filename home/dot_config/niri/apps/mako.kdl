@@ -1,0 +1,5 @@
+binds {
+  SUPER+N hotkey-overlay-title="Notifications: Dismiss" {
+    spawn "makoctl" "dismiss" "-a"
+  }
+}

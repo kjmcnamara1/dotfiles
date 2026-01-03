@@ -6,6 +6,9 @@
 // Find the full list of options on the wiki:
 // https://yalter.github.io/niri/Configuration:-Input
 
+include "apps/walker.kdl"
+include "apps/mako.kdl"
+
 // ENVIRONMENT VARIABLES
 environment {
     NERD_FONT "JetBrainsMono Nerd Font"
@@ -41,8 +44,13 @@ input {
     mouse {}
     trackpoint {}
     warp-mouse-to-focus
-    // focus-follows-mouse max-scroll-amount="0%"
-    // focus-follows-mouse
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+gestures {
+  hot-corners {
+    off
+  }
 }
 
 cursor {
@@ -82,7 +90,8 @@ layout {
     // preset-window-heights { }
     default-column-width {
         // proportion 0.33333
-        proportion 0.66667
+        proportion 0.5
+        // proportion 0.66667
     }
     focus-ring {
         width 2
@@ -175,37 +184,42 @@ binds {
         spawn "kitty"
     }
     SUPER+E hotkey-overlay-title="File Browser" {
-        spawn "thunar"
-    }
-
-    // SHELL
-    SUPER+Space hotkey-overlay-title="Launcher: spotlight" {
-        spawn "dms" "ipc" "call" "spotlight" "toggle"
-    }
-    SUPER+ALT+Space hotkey-overlay-title="Launcher: rofi" {
-        spawn-sh "pkill -x rofi || rofi -show drun"
-    }
-    SUPER+CTRL+Space hotkey-overlay-title="Launcher: walker" {
-        spawn-sh "walker"
-    }
-    SUPER+W hotkey-overlay-title="Window Switcher" {
-        spawn "dms" "ipc" "call" "spotlight" "toggleQuery" "!"
-    }
-    SUPER+Escape hotkey-overlay-title="Lock Screen" allow-when-locked=true {
-        spawn "dms" "ipc" "call" "lock" "lock"
-    }
-    SUPER+Delete hotkey-overlay-title="Power Menu" {
-        spawn "dms" "ipc" "call" "powermenu" "toggle"
-    }
-    SUPER+V hotkey-overlay-title="Clipboard" {
-        spawn "dms" "ipc" "call" "clipboard" "toggle"
+        spawn "nautilus"
     }
     SUPER+B hotkey-overlay-title="Browser: Brave" {
         spawn "brave"
     }
-    SUPER+N hotkey-overlay-title="Notifications" {
-        spawn "dms" "ipc" "call" "notifications" "toggle"
+
+    SUPER+ALT+V hotkey-overlay-title="Open URL in mpv" {
+        spawn-sh "notify-send 'Opening URL in MPV:' $(wl-paste); mpv $(wl-paste)"
     }
+    SUPER+CTRL+V hotkey-overlay-title="Lock Screen" allow-when-locked=true {
+        spawn-sh "notify-send 'Downloading video from URL:' $(wl-paste); yt-dlp $(wl-paste)"
+    }
+
+    // SHELL
+    SUPER+CTRL+Space hotkey-overlay-title="Launcher: spotlight" {
+        spawn "dms" "ipc" "call" "spotlight" "toggle"
+    }
+    // SUPER+ALT+Space hotkey-overlay-title="Launcher: rofi" {
+    //     spawn-sh "pkill -x rofi || rofi -show drun"
+    // }
+    // SUPER+W hotkey-overlay-title="Window Switcher" {
+    //     spawn "dms" "ipc" "call" "spotlight" "toggleQuery" "!"
+    // }
+    // SUPER+Escape hotkey-overlay-title="Lock Screen" allow-when-locked=true {
+    //     spawn "dms" "ipc" "call" "lock" "lock"
+    // }
+    // SUPER+Delete hotkey-overlay-title="Power Menu" {
+    //     spawn "dms" "ipc" "call" "powermenu" "toggle"
+    // }
+    // SUPER+V hotkey-overlay-title="Clipboard" {
+    //     spawn "dms" "ipc" "call" "clipboard" "toggle"
+    // }
+    // SUPER+N hotkey-overlay-title="Notifications" {
+    //     spawn "dms" "ipc" "call" "notifications" "toggle"
+    // }
+
     // MEDIA
     XF86AudioRaiseVolume allow-when-locked=true {
         spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
@@ -354,7 +368,7 @@ binds {
     SUPER+SHIFT+Equal { set-window-height "+10%"; }
 
     SUPER+T { toggle-window-floating; }
-    SUPER+Tab { switch-focus-between-floating-and-tiling; }
+    // SUPER+Tab { switch-focus-between-floating-and-tiling; }
     SUPER+G hotkey-overlay-title="Group: Toggle" {
         toggle-column-tabbed-display
     }
@@ -369,9 +383,13 @@ binds {
         toggle-keyboard-shortcuts-inhibit
     }
 
-  // QUIT
+  // Session
     CTRL+ALT+Backspace { quit; }
-    CTRL+ALT+Delete { quit; }
+    // CTRL+ALT+Delete { quit; }
+    SUPER+Escape hotkey-overlay-title="Lock Screen" allow-when-locked=true {
+        spawn-sh "systemctl --user start hyprlock";
+    }
+
 
     SUPER+SHIFT+P { power-off-monitors; }
 }
