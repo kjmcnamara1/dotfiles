@@ -1,0 +1,24 @@
+spawn-at-startup "walker" "--gapplication-service"
+
+binds {
+
+    SUPER+Space hotkey-overlay-title="Launcher: walker" {
+        // spawn-sh "nc -U /run/user/1000/walker/walker.sock"
+        spawn "walker"
+    }
+    SUPER+ALT+Space hotkey-overlay-title="Launcher: packages" {
+        spawn "walker" "-m" "archlinuxpkgs"
+    }
+    SUPER+Tab hotkey-overlay-title="Window Switcher" {
+        spawn "walker" "-m" "windows"
+    }
+    SUPER+V hotkey-overlay-title="Clipboard" {
+        spawn "walker" "-m" "clipboard"
+    }
+    SUPER+Delete hotkey-overlay-title="Session menu" {
+        spawn-sh "walker -Nm menus:session --width=100 --height=100"
+    }
+    SUPER+Backspace hotkey-overlay-title="Session menu" {
+        spawn-sh "walker -Nm menus:session --width=100 --height=100"
+    }
+}
