@@ -185,7 +185,10 @@ binds {
         spawn "kitty"
     }
     SUPER+E hotkey-overlay-title="File Browser" {
-        spawn "nautilus"
+        spawn-sh "kitty --class=yazi -e yazi"
+    }
+    SUPER+ALT+E hotkey-overlay-title="File Browser" {
+        spawn-sh "nautilus --new-window"
     }
     SUPER+B hotkey-overlay-title="Browser: Brave" {
         spawn "brave"
@@ -247,10 +250,10 @@ binds {
         close-window
     }
     // NAVIGATION
-    SUPER+H { focus-column-left; }
-    SUPER+J { focus-window-down; }
-    SUPER+K { focus-window-up; }
-    SUPER+L { focus-column-right; }
+    SUPER+H { focus-column-or-monitor-left; }
+    SUPER+J { focus-window-or-monitor-down; }
+    SUPER+K { focus-window-or-monitor-up; }
+    SUPER+L { focus-column-or-monitor-right; }
 
     SUPER+CTRL+H { move-column-left; }
     SUPER+CTRL+J { move-window-down; }
@@ -357,8 +360,8 @@ binds {
     SUPER+F { maximize-column; }
     // SUPER+F { maximize-window-to-edges; } // NOTE: wait until next release
     SUPER+ALT+F { fullscreen-window; }
-    SUPER+CTRL+F { expand-column-to-available-width; }
-    SUPER+SHIFT+F { toggle-windowed-fullscreen; } // make window (i.e. browser) think it is fullscreen
+    SUPER+CTRL+F { toggle-windowed-fullscreen; } // make window (i.e. browser) think it is fullscreen
+    SUPER+SHIFT+F { expand-column-to-available-width; }
 
     SUPER+M { center-column; }
     SUPER+CTRL+M { center-visible-columns; }
