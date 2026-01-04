@@ -13,7 +13,7 @@ return {
   {
     "mks-h/treesitter-autoinstall.nvim",
     opts = {
-      ignore = { 'snacks_notif', 'noice', 'blink-cmp-menu', },
+      ignore = { "snacks_notif", "noice", "blink-cmp-menu", "snacks_picker_preview", },
     },
   },
 
