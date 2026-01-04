@@ -132,7 +132,13 @@ return {
     picker = {
       layout = "left",
       sources = {
-        buffers = { layout = "vscode" },
+        buffers = {
+          layout = {
+            preset = "vscode",
+            preview = "main",
+            hidden = false
+          }
+        },
         keymaps = { layout = "select" },
         cliphist = { layout = "dropdown" },
         files = { hidden = true },
