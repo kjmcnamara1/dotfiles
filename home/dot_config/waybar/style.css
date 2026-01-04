@@ -65,12 +65,16 @@ tooltip {
   background: alpha(@background, 0.5);
 }
 
-#workspaces button.visible {
+/* The workspace is active/visible on its output */
+#workspaces button.active, /* niri */
+#workspaces button.visible { /* hyprland */
   min-width: 40px;
   /* min-width: 2.8em; */
 }
 
-#workspaces button.active {
+/* The single focused workspace */
+#workspaces button.focused { /* niri */
+/* #workspaces button.active { */ /* hyprland */
   color: alpha(@background, 0.5);
   font-weight: bold;
   background: @color3;

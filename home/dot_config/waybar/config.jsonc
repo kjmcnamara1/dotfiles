@@ -4,7 +4,12 @@
   "layer": "top",
   "position": "top",
   "reload_style_on_change": true,
-  "modules-left": ["hyprland/workspaces", "wlr/taskbar"],
+  "modules-left": [
+    "hyprland/workspaces",
+    "niri/workspaces",
+    "wlr/taskbar",
+    "niri/window",
+  ],
   "modules-center": ["clock"],
   "modules-right": [
     "hyprland/submap",
@@ -54,6 +59,11 @@
       "org.freecad.FreeCAD": "󰦆",
     },
   },
+  "niri/workspaces": {
+    "format": "{icon}",
+    "on-scroll-up": "hyprctl dispatch workspace r+1",
+    "on-scroll-down": "hyprctl dispatch workspace r-1",
+  },
   "wlr/taskbar": {
     "icon-size": 24,
     "markup": true,
@@ -81,6 +91,17 @@
       "nvim (.*)": "$1  ",
       // "(.*) - Brave Search": "$1 󰶚 ",
       // "(.*) - Google Search .*": "$1  ",
+    },
+  },
+  "niri/window": {
+    "icon": true,
+    "icon-size": 24,
+    "seprate-outputs": true,
+    "tooltip": false,
+    "rewrite": {
+      "(.*) - Brave": "$1",
+      "(.*) - Thunar": "$1",
+      "nvim (.*)": "$1  ",
     },
   },
   "clock": {
