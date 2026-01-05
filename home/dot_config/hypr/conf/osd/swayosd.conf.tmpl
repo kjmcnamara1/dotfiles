@@ -7,8 +7,7 @@
 # exec-once = uwsm-app -- swayosd-server
 
 # Appearance
-layerrule = blur, swayosd
-layerrule = ignorezero, swayosd
+layerrule = match:namespace swayosd, blur on, ignore_alpha 0
 
 # Keybinds
 $osdclient = swayosd-client --monitor "$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')"
