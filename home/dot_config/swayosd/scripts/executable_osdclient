@@ -2,7 +2,7 @@
 
 case "$XDG_CURRENT_DESKTOP" in
   "Hyprland") 
-    active_monitor=$(hyprctl monitors -j)
+    active_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .name')
     ;;
   "sway") 
     active_monitor=swaymsg
@@ -15,6 +15,6 @@ case "$XDG_CURRENT_DESKTOP" in
     exit 1
 esac
 
-echo "$active_monitor"
+# echo "$active_monitor"
 
 swayosd-client --monitor "$active_monitor" "$@"

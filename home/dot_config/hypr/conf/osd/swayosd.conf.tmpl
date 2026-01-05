@@ -1,3 +1,4 @@
+# vim: ft=hyprlang
 # ░█▀▀░█░█░█▀█░█░█░█▀█░█▀▀░█▀▄
 # ░▀▀█░█▄█░█▀█░░█░░█░█░▀▀█░█░█
 # ░▀▀▀░▀░▀░▀░▀░░▀░░▀▀▀░▀▀▀░▀▀░
@@ -12,16 +13,16 @@ layerrule = match:namespace swayosd, blur on, ignore_alpha 0
 # Keybinds
 $osdclient = swayosd-client --monitor "$(hyprctl monitors -j | jq -r '.[] | select(.focused == true).name')"
 # Laptop multimedia keys for volume and LCD brightness (with OSD)
-binddel = , XF86AudioMute        , Mute volume        , exec, $osdclient --output-volume mute-toggle
-binddel = , XF86AudioLowerVolume , Lower volume       , exec, $osdclient --output-volume lower
-binddel = , XF86AudioRaiseVolume , Raise volume       , exec, $osdclient --output-volume raise
-binddel = , XF86AudioMicMute     , Mute microphone    , exec, $osdclient --input-volume mute-toggle
-binddel = , XF86MonBrightnessUp  , Increase brightness, exec, $osdclient --brightness raise
-binddel = , XF86MonBrightnessDown, Decrease brightness, exec, $osdclient --brightness lower
-{{ if eq .chezmoi.hostname "angel" }}
+binddel = , XF86AudioMute        , Mute volume        , exec, ~/.config/swayosd/scripts/osdclient --output-volume mute-toggle
+binddel = , XF86AudioLowerVolume , Lower volume       , exec, ~/.config/swayosd/scripts/osdclient --output-volume lower
+binddel = , XF86AudioRaiseVolume , Raise volume       , exec, ~/.config/swayosd/scripts/osdclient --output-volume raise
+binddel = , XF86AudioMicMute     , Mute microphone    , exec, ~/.config/swayosd/scripts/osdclient --input-volume mute-toggle
+binddel = , XF86MonBrightnessUp  , Increase brightness, exec, ~/.config/swayosd/scripts/osdclient --brightness raise
+binddel = , XF86MonBrightnessDown, Decrease brightness, exec, ~/.config/swayosd/scripts/osdclient --brightness lower
+# {{ if eq .chezmoi.hostname "angel" }}
 binddel = , XF86MonBrightnessUp  , Increase brightness, exec, hyprctl hyprsunset gamma +10
 binddel = , XF86MonBrightnessDown, Decrease brightness, exec, hyprctl hyprsunset gamma -10
-{{ end }}
+# {{ end }}
 
 # Precise 1% multimedia adjustments with Alt modifier
 bindeld = ALT, XF86AudioLowerVolume, Volume down precise, exec, $osdclient --output-volume -1
