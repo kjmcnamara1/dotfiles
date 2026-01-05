@@ -197,8 +197,12 @@ binds {
     SUPER+ALT+V hotkey-overlay-title="Open URL in mpv" {
         spawn-sh "notify-send 'Opening URL in MPV:' $(wl-paste); mpv $(wl-paste)"
     }
-    SUPER+CTRL+V hotkey-overlay-title="Lock Screen" allow-when-locked=true {
+    SUPER+CTRL+V hotkey-overlay-title="Download video from URL" {
         spawn-sh "notify-send 'Downloading video from URL:' $(wl-paste); yt-dlp $(wl-paste)"
+    }
+
+    SUPER+CTRL+ALT+I hotkey-overlay-title="Settings: Idle Lock" {
+      spawn-sh "~/.config/hypr/scripts/hypr-toggle-idle"
     }
 
     // SHELL
@@ -225,30 +229,40 @@ binds {
     // }
 
     // MEDIA
-    XF86AudioRaiseVolume allow-when-locked=true {
-        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-    }
-    XF86AudioLowerVolume allow-when-locked=true {
-        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-    }
     XF86AudioMute allow-when-locked=true {
-        spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      // spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume mute-toggle"
     }
     XF86AudioMicMute allow-when-locked=true {
-        spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+      // spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+      spawn-sh "~/.config/swayosd/scripts/osdclient --input-volume mute-toggle"
+    }
+    XF86AudioRaiseVolume allow-when-locked=true {
+        // spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume raise"
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+        // spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume lower"
     }
     XF86MonBrightnessUp allow-when-locked=true {
-        spawn "brightnessctl" "--class=backlight" "set" "+10%"
+        // spawn "brightnessctl" "--class=backlight" "set" "+10%"
+        spawn-sh "~/.config/swayosd/scripts/osdclient --brightness raise"
     }
     XF86MonBrightnessDown allow-when-locked=true {
-        spawn "brightnessctl" "--class=backlight" "set" "10%-"
+        // spawn "brightnessctl" "--class=backlight" "set" "10%-"
+        spawn-sh "~/.config/swayosd/scripts/osdclient --brightness lower"
     }
-    SUPER+O repeat=false {
-        toggle-overview
-    }
-    SUPER+C repeat=false {
-        close-window
-    }
+
+    // Precise 1% multimedia adjustments with Alt modifier
+    ALT+XF86AudioRaiseVolume  { spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume +1"; }
+    ALT+XF86AudioLowerVolume  { spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume -1"; }
+    ALT+XF86MonBrightnessUp   { spawn-sh "~/.config/swayosd/scripts/osdclient --brightness +1";    }
+    ALT+XF86MonBrightnessDown { spawn-sh "~/.config/swayosd/scripts/osdclient --brightness -1";    }
+
+    SUPER+Tab repeat=false { toggle-overview; }
+    SUPER+C   repeat=false { close-window; }
+
     // NAVIGATION
     SUPER+H { focus-column-or-monitor-left; }
     SUPER+J { focus-window-or-monitor-down; }
@@ -382,13 +396,14 @@ binds {
     Print { screenshot; }
     CTRL+Print { screenshot-screen; }
     ALT+Print { screenshot-window; }
+    SUPER+ALT+S { screenshot-window; }
 
     SUPER+ALT+Escape allow-inhibiting=false {
         toggle-keyboard-shortcuts-inhibit
     }
 
   // Session
-    CTRL+ALT+Backspace { quit; }
+    CTRL+ALT+Backspace { quit skip-confirmation=true; }
     // CTRL+ALT+Delete { quit; }
     SUPER+Escape hotkey-overlay-title="Lock Screen" allow-when-locked=true {
         spawn-sh "systemctl --user start hyprlock";
