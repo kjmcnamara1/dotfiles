@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+case "$XDG_CURRENT_DESKTOP" in
+  "Hyprland") 
+    active_monitor=$(hyprctl monitors -j)
+    ;;
+  "sway") 
+    active_monitor=swaymsg
+    ;;
+  "niri") 
+    active_monitor=$(niri msg -j focused-output | jq -r '.name')
+    ;;
+  *)
+    echo "no match"
+    exit 1
+esac
+
+echo "$active_monitor"
+
+swayosd-client --monitor "$active_monitor" "$@"
