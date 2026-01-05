@@ -60,7 +60,7 @@
     },
   },
   "niri/workspaces": {
-    "format": "{icon}",
+    "format": "{name}",
     "on-scroll-up": "hyprctl dispatch workspace r+1",
     "on-scroll-down": "hyprctl dispatch workspace r-1",
   },

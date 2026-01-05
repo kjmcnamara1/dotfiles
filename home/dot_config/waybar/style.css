@@ -53,28 +53,30 @@ tooltip {
   color: alpha(@foreground, 0.5);
   background: @color4;
   min-height: 20px;
-  min-width: 20px;
+  /* min-width: 22px; */
   /* min-width: 1.4em; */
   margin: 10px 5px;
+  padding: 0 11px;
   border: 1px solid @cursor;
   border-radius: 1em;
   box-shadow: 0 1px 1px 1px alpha(black, 0.3);
 }
 
 #workspaces button.empty {
-  background: alpha(@background, 0.5);
+  /* background: alpha(@background, 0.5); */
+  background: @background;
 }
 
 /* The workspace is active/visible on its output */
-#workspaces button.active, /* niri */
-#workspaces button.visible { /* hyprland */
-  min-width: 40px;
+#workspaces button.active,
+#workspaces button.visible {
+  min-width: 20px;
   /* min-width: 2.8em; */
 }
 
 /* The single focused workspace */
-#workspaces button.focused { /* niri */
-/* #workspaces button.active { */ /* hyprland */
+#workspaces button.focused {
+  /* #workspaces button.active { */
   color: alpha(@background, 0.5);
   font-weight: bold;
   background: @color3;
