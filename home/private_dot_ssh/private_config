@@ -8,6 +8,6 @@ Host github.com
 Host snow.local
   HostName snow.local
   User admin
-  IdentityFile ~/.ssh/snow
+  IdentityFile ~/.ssh/local
   IdentitiesOnly yes
   AddKeysToAgent yes
