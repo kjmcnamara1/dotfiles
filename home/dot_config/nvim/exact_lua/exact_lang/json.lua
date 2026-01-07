@@ -20,7 +20,7 @@ return {
               validate = { enable = true },
             },
           },
-          -- BUG: can't disable 'Trailing comma' warning
+          -- FIX: can't disable 'Trailing comma' warning
           handlers = {
             ["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
               local opd = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {})
