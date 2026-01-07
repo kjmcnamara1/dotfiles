@@ -8,6 +8,9 @@ return {
     branch = "main",
     lazy = false,
     build = ":TSUpdate",
+    -- lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+    -- event = { "BufReadPre", "BufNewFile", "VeryLazy" },
+    -- cmd = { "TSInstall", "TSUpdate", "TSContext", "TSInstallFromGrammar", "TSLog", "TSUninstall" },
   },
 
   {
@@ -16,14 +19,20 @@ return {
       ignore = {
         "snacks_notif",
         "noice",
+        "lazy",
         "blink-cmp-menu",
+        "snacks_win",
         "snacks_win_backdrop",
         "snacks_notif_history",
+        "snacks_picker_input",
         "snacks_picker_list",
         "snacks_picker_preview",
+        "snacks_layout_box",
+        "snacks_terminal",
         "yazi",
         "flash_prompt",
         "minifiles",
+        "lazy_backdrop",
       },
     },
   },
