@@ -25,14 +25,14 @@ binddel = , XF86MonBrightnessDown, Decrease brightness, exec, hyprctl hyprsunset
 # {{ end }}
 
 # Precise 1% multimedia adjustments with Alt modifier
-bindeld = ALT, XF86AudioLowerVolume, Volume down precise, exec, $osdclient --output-volume -1
-bindeld = ALT, XF86AudioRaiseVolume, Volume up precise, exec, $osdclient --output-volume +1
-bindeld = ALT, XF86MonBrightnessUp, Brightness up precise, exec, $osdclient --brightness +1
-bindeld = ALT, XF86MonBrightnessDown, Brightness down precise, exec, $osdclient --brightness -1
+bindeld = ALT, XF86AudioLowerVolume , Volume down precise    , exec, ~/.config/swayosd/scripts/osdclient --output-volume -1
+bindeld = ALT, XF86AudioRaiseVolume , Volume up precise      , exec, ~/.config/swayosd/scripts/osdclient --output-volume +1
+bindeld = ALT, XF86MonBrightnessUp  , Brightness up precise  , exec, ~/.config/swayosd/scripts/osdclient --brightness +1
+bindeld = ALT, XF86MonBrightnessDown, Brightness down precise, exec, ~/.config/swayosd/scripts/osdclient --brightness -1
 
 # Media control
-binddl = , XF86AudioPlay , Play          , exec, $osdclient --playerctl play-pause
-binddl = , XF86AudioPause, Pause         , exec, $osdclient --playerctl play-pause
-binddl = , XF86AudioNext , Next track    , exec, $osdclient --playerctl next
-binddl = , XF86AudioPrev , Previous track, exec, $osdclient --playerctl previous
+binddl = , XF86AudioPlay , Play          , exec, ~/.config/swayosd/scripts/osdclient --playerctl play-pause
+binddl = , XF86AudioPause, Pause         , exec, ~/.config/swayosd/scripts/osdclient --playerctl play-pause
+binddl = , XF86AudioNext , Next track    , exec, ~/.config/swayosd/scripts/osdclient --playerctl next
+binddl = , XF86AudioPrev , Previous track, exec, ~/.config/swayosd/scripts/osdclient --playerctl previous
 
