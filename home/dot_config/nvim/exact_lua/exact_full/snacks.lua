@@ -11,12 +11,13 @@ return {
   lazy = false,
   keys = {
     -- Top Pickers & Explorer
-    { "<leader>pp",      function() Snacks.picker.pickers() end,                                                desc = "Pick: Pickers" },
     { "<leader><space>", function() Snacks.picker.smart() end,                                                  desc = "Pick: Smart Files" },
+    { "<leader>pp",      function() Snacks.picker.pickers() end,                                                desc = "Pick: Pickers" },
     { "<leader>,",       function() Snacks.picker.buffers() end,                                                desc = "Pick: Buffers" },
     { "<leader>/",       function() Snacks.picker.grep() end,                                                   desc = "Pick: Grep" },
     { "<leader>:",       function() Snacks.picker.command_history() end,                                        desc = "Pick: Command History" },
     { "<leader>e",       function() Snacks.explorer() end,                                                      desc = "Pick: File Explorer" },
+    { "<leader>r",       function() Snacks.picker.resume() end,                                                 desc = "Pick: Resume" },
     -- find
     { "<leader>fc",      function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,                desc = "Pick: Config Files" },
     { "<leader>fz",      function() Snacks.picker.chezmoi_files() end,                                          desc = "Pick: Chezmoi File" },
@@ -62,7 +63,6 @@ return {
     { "<leader>sl",      function() Snacks.picker.loclist() end,                                                desc = "Pick: Location List" },
     { "<leader>st",      function() Snacks.picker.todo_comments() end,                                          desc = "Pick: Todo" },
     { "<leader>sT",      function() Snacks.picker.todo_comments({ keywords = { 'TODO', 'FIX', 'FIXME' } }) end, desc = "Pick: Todo/Fix/Fixme" },
-    { "<leader>sR",      function() Snacks.picker.resume() end,                                                 desc = "Pick: Resume" },
     { "<leader>su",      function() Snacks.picker.undo() end,                                                   desc = "Pick: Undo History" },
     { "<leader>sy",      function() Snacks.picker.cliphist() end,                                               desc = "Pick: Clipboard" },
     { "<leader>uC",      function() Snacks.picker.colorschemes() end,                                           desc = "Pick: Colorschemes" },
@@ -85,6 +85,7 @@ return {
     { "<leader>n",       function() Snacks.notifier.hide() end,                                                 desc = "Notifications: Dismiss All" },
     { "<leader>N",       function() Snacks.notifier.show_history() end,                                         desc = "Notifications: History" },
     { "<leader>sn",      function() Snacks.picker.notifications() end,                                          desc = "Pick: Search Notifications" },
+    { "<leader>sN",      function() Snacks.picker.noice() end,                                                  desc = "Pick: Search Noice" },
 
     { "<leader>bd",      function() Snacks.bufdelete() end,                                                     desc = "Delete Buffer" },
     { "<a-c>",           function() Snacks.bufdelete() end,                                                     desc = "Delete Buffer" },
@@ -196,6 +197,7 @@ return {
           end,
         },
 
+        -- TODO: add preview to show help page for option (like FzfLua does)
         nvim_options = {
           layout = "default",
           finder = function()
@@ -238,6 +240,7 @@ return {
         input = {
           keys = {
             ["<c-c>"] = { "stopinsert", mode = "i" },
+            -- ["<cr>"] = { "stopinsert", mode = "i" }, -- want cr to still 'confirm' when in normal mode
             ["<esc>"] = { "cancel", mode = { "i", "n" } },
             -- ["<a-s-h>"] = { "toggle_hidden", mode = { "i", "n" } },
             -- ["<a-h>"] = { "<left>", mode = { "n", "i" } },
