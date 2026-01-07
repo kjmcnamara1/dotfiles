@@ -10,8 +10,13 @@ case "$XDG_CURRENT_DESKTOP" in
   "niri") 
     active_monitor=$(niri msg -j focused-output | jq -r '.name')
     ;;
+  "mango")
+    # can't get active_monitor
+    swayosd-client "$@"
+    exit 0
+    ;;
   *)
-    echo "no match"
+    echo "No match for Desktop: $XDG_CURRENT_DESKTOP"
     exit 1
 esac
 

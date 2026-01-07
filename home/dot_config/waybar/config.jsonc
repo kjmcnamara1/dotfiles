@@ -7,6 +7,7 @@
   "modules-left": [
     "hyprland/workspaces",
     "niri/workspaces",
+    // "ext/workspaces",
     "wlr/taskbar",
     "niri/window",
   ],
@@ -63,6 +64,12 @@
     "format": "{name}",
     "on-scroll-up": "hyprctl dispatch workspace r+1",
     "on-scroll-down": "hyprctl dispatch workspace r-1",
+  },
+  "ext/workspaces": {
+    // "format": "{name}",
+    "format": "",
+    "on-scroll-up": "mmsg -d viewtoleft",
+    "on-scroll-down": "mmsg -d viewtoright",
   },
   "wlr/taskbar": {
     "icon-size": 24,
