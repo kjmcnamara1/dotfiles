@@ -12,6 +12,7 @@ include "apps/walker.kdl"
 include "apps/mako.kdl"
 include "apps/waybar.kdl"
 include "apps/active-window-info.kdl"
+spawn-sh-at-startup "swaybg -i ~/.cache/wallpaper/.current.blur"
 
 // ENVIRONMENT VARIABLES
 environment {
@@ -137,10 +138,12 @@ layout {
 // OVERVIEW
 overview {
   // workspace-shadow { off; }
+  backdrop-color "#2E3440"
 }
 
 layer-rule {
-    match namespace="dms:blurwallpaper"
+    match namespace="dms:blurwallpaper" // dank material shell
+    match namespace="wallpaper" // swaybg
     place-within-backdrop true
 }
 
@@ -204,6 +207,7 @@ binds {
         spawn-sh "notify-send 'Downloading video from URL:' $(wl-paste); yt-dlp $(wl-paste)"
     }
 
+    // SETTINGS
     SUPER+CTRL+ALT+I hotkey-overlay-title="Settings: Idle Lock" {
       spawn-sh "~/.config/hypr/scripts/hypr-toggle-idle"
     }
