@@ -8,4 +8,9 @@ vim.opt.showmode       = false
 vim.opt.showcmd        = false
 vim.opt.shortmess:append("F")
 
-return {}
+return {
+  "rmehri01/onenord.nvim",
+  keys = {
+    { "<c-q>", "<cmd>qa!<cr>", desc = "Quit" },
+  },
+}
