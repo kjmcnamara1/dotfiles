@@ -94,6 +94,10 @@ tooltip {
   font-size: 1rem;
 }
 
+/* #workspaces button#niri-workspace-scratch { */
+/*   visibility: hidden; */
+/* } */
+
 #taskbar {
   background: @background;
   border: 1px solid @cursor;

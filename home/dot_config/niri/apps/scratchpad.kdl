@@ -1,0 +1,21 @@
+spawn-sh-at-startup "$TERMINAL --class=dropterm"
+
+input {
+  workspace-auto-back-and-forth
+}
+
+workspace "scratch" {
+  layout {
+    always-center-single-column true
+  }
+}
+
+window-rule {
+  match app-id="dropterm"
+  open-on-workspace "dropterm"
+  open-floating true
+}
+
+binds {
+  SUPER+Apostrophe { spawn "~/.config/niri/scripts/scratchpad-toggle" "dropterm"; }
+}

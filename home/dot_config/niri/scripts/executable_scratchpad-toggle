@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+APP_ID="$1"
+
+WINDOW_ID=$(niri msg -j windows | jq ".[] | select(.app_id == \"$APP_ID\") | .id")
+
+echo "WINDOW_ID: $WINDOW_ID"
+
+OUTPUT_ID=$(niri msg -j focused-output | jq -r '.name')
+
+niri msg action move-window-to-monitor --id "$WINDOW_ID" "$OUTPUT_ID"
