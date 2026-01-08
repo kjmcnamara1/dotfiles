@@ -64,7 +64,7 @@ return {
     { "<leader>st",      function() Snacks.picker.todo_comments() end,                                          desc = "Pick: Todo" },
     { "<leader>sT",      function() Snacks.picker.todo_comments({ keywords = { 'TODO', 'FIX', 'FIXME' } }) end, desc = "Pick: Todo/Fix/Fixme" },
     { "<leader>su",      function() Snacks.picker.undo() end,                                                   desc = "Pick: Undo History" },
-    { "<leader>sy",      function() Snacks.picker.cliphist() end,                                               desc = "Pick: Clipboard" },
+    { "<leader>sy",      function() Snacks.picker.cliphist() end,                                               desc = "Pick: Yank History" },
     { "<leader>uC",      function() Snacks.picker.colorschemes() end,                                           desc = "Pick: Colorschemes" },
     -- LSP
     { "gd",              function() Snacks.picker.lsp_definitions() end,                                        desc = "LSP: Goto Definition" },
@@ -79,16 +79,16 @@ return {
     { "grf",             function() Snacks.rename.rename_file() end,                                            desc = "LSP: Rename File" },
 
 
-    { "<leader>.",       function() Snacks.scratch() end,                                                       desc = "Toggle Scratch Buffer" },
-    { "<leader>S",       function() Snacks.scratch.select() end,                                                desc = "Select Scratch Buffer" },
+    { "<leader>.",       function() Snacks.scratch() end,                                                       desc = "Scratch: Toggle Buffer" },
+    { "<leader>S",       function() Snacks.scratch.select() end,                                                desc = "Scratch: Select Buffer" },
 
     { "<leader>n",       function() Snacks.notifier.hide() end,                                                 desc = "Notifications: Dismiss All" },
     { "<leader>N",       function() Snacks.notifier.show_history() end,                                         desc = "Notifications: History" },
     { "<leader>sn",      function() Snacks.picker.notifications() end,                                          desc = "Pick: Search Notifications" },
     { "<leader>sN",      function() Snacks.picker.noice() end,                                                  desc = "Pick: Search Noice" },
 
-    { "<leader>bd",      function() Snacks.bufdelete() end,                                                     desc = "Delete Buffer" },
-    { "<a-c>",           function() Snacks.bufdelete() end,                                                     desc = "Delete Buffer" },
+    { "<leader>bd",      function() Snacks.bufdelete() end,                                                     desc = "Buffer: Delete" },
+    { "<a-c>",           function() Snacks.bufdelete() end,                                                     desc = "Buffer: Delete" },
     { "<leader>gB",      function() Snacks.gitbrowse() end,                                                     desc = "Git Browse" },
     { "<leader>gb",      function() Snacks.git.blame_line() end,                                                desc = "Git Blame Line" },
     { "<leader>gF",      function() Snacks.lazygit.log_file() end,                                              desc = "Lazygit Current File History" },
