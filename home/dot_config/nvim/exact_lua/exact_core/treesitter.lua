@@ -20,6 +20,8 @@ return {
         "snacks_notif",
         "noice",
         "lazy",
+        "lazyjj",
+        "jjui",
         "blink-cmp-menu",
         "snacks_win",
         "snacks_win_backdrop",

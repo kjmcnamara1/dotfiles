@@ -18,7 +18,7 @@ return {
       { "<",         "<gv",               mode = "v" },
       { ">",         ">gv",               mode = "v" },
 
-      { "<leader>j", "J",                 desc = "Join Lines",                  mode = { 'n', 'v' } },
+      { "<leader>J", "J",                 desc = "Join Lines",                  mode = { 'n', 'v' } },
       -- { "<c-c>",     "cc<esc>",           desc = "Clear line" }, -- use mini.ai 'L' textobject
       { "<a-O>",     "O<esc>",            desc = "New line above" },
       { "<a-o>",     "o<esc>",            desc = "New line below" },
