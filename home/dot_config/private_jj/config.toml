@@ -10,8 +10,8 @@
   # merge-editor = "neovim"
   # diff-formatter = "neovim"
   # diff-formatter = ":git"
-  # diff-formatter = "difftastic"
-  color = "always"
+  diff-formatter = "difftastic"
+  color          = "always"
   # pager = [
   #   "delta",
   #   "--syntax-theme=Nord",
