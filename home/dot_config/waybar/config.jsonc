@@ -163,7 +163,7 @@
     },
     "modules": [
       "custom/expand",
-      "custom/colorpicker",
+      // "custom/colorpicker",
       "disk",
       "cpu",
       "memory",
