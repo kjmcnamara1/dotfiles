@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+app="$1"
+
+case $app in
+  "dropterm")
+    ${TERMINAL:-kitty} --class=$app
+    ;;
+    *)
+      echo "Usage: toggle-window [dropterm]"
+      exit 1
+      ;;
+esac

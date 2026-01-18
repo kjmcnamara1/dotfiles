@@ -2,7 +2,7 @@
 
 if pgrep -x hypridle > /dev/null; then
   systemctl --user stop hypridle
-  pkill -x hypridle
+  killall hypridle
   notify-send "Stop locking computer when idle"
 else
   systemctl --user start hypridle
