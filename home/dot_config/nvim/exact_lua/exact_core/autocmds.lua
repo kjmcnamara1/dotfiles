@@ -10,6 +10,17 @@ local CustomGroup = vim.api.nvim_create_augroup("Custom", { clear = true })
 --   end
 -- })
 
+vim.api.nvim_create_autocmd("BufWritePost", {
+  desc = "Detect filetype on save for new files",
+  group = CustomGroup,
+  pattern = "*",
+  callback = function()
+    if vim.bo.filetype == "" then
+      vim.cmd("filetype detect")
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight selection on yank",
   group = CustomGroup,

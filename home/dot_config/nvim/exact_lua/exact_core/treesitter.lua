@@ -17,6 +17,7 @@ return {
     "mks-h/treesitter-autoinstall.nvim",
     opts = {
       ignore = {
+        "sh",
         "snacks_notif",
         "noice",
         "lazy",

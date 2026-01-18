@@ -1,3 +1,13 @@
+vim.api.nvim_create_autocmd("BufRead", {
+  pattern = "*",
+  callback = function()
+    local line = vim.api.nvim_get_current_line()
+    if line and line:match("^#!.*bash") then
+      vim.bo.filetype = "bash"
+    end
+  end
+})
+
 return {
 
   {
