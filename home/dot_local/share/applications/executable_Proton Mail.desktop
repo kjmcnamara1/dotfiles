@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Proton Mail
+Comment=Proton Mail
+Exec=launch-webapp https://mail.proton.me
+Terminal=false
+Type=Application
+Icon=/home/kjm/.local/share/applications/icons/Proton Mail.png
+StartupNotify=true
