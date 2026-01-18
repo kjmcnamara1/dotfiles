@@ -212,6 +212,9 @@ binds {
     SUPER+ALT+B {
         spawn "~/.local/bin/launch-browser" "--private"
     }
+    SUPER+A hotkey-overlay-title="AI: Gemini" {
+      spawn-sh "uwsm app -- Gemini.desktop"
+    }
 
     SUPER+ALT+V hotkey-overlay-title="Open URL in mpv" {
         spawn-sh "notify-send 'Opening URL in MPV:' $(wl-paste); mpv $(wl-paste)"
