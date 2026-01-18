@@ -200,14 +200,17 @@ binds {
     SUPER+Return hotkey-overlay-title="Terminal" {
         spawn "kitty"
     }
-    SUPER+E hotkey-overlay-title="File Browser" {
+    SUPER+E hotkey-overlay-title="Files: Yazi" {
         spawn-sh "kitty --class=yazi -e yazi"
     }
-    SUPER+ALT+E hotkey-overlay-title="File Browser" {
+    SUPER+ALT+E hotkey-overlay-title="Files: Nautilus" {
         spawn-sh "nautilus --new-window"
     }
-    SUPER+B hotkey-overlay-title="Browser: Brave" {
-        spawn "brave"
+    SUPER+B hotkey-overlay-title="Browser: Default" {
+        spawn "~/.local/bin/launch-browser"
+    }
+    SUPER+ALT+B {
+        spawn "~/.local/bin/launch-browser" "--private"
     }
 
     SUPER+ALT+V hotkey-overlay-title="Open URL in mpv" {
