@@ -1,0 +1,9 @@
+/-window-rule {
+  match app-id="waypaper"
+
+  open-floating
+}
+
+binds {
+  SUPER+CTRL+W { spawn "waypaper"; }
+}
