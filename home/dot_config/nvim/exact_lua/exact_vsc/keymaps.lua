@@ -4,6 +4,8 @@ vim.notify = vscode.notify
 
 vim.keymap.set("n", "<leader><space>", function() vscode.action("workbench.action.quickOpen") end)
 vim.keymap.set("n", "<leader>fr", function() vscode.action("workbench.action.openRecent") end)
+vim.keymap.set("n", "<leader>,", function() vscode.action("workbench.action.showAllEditors") end)
+vim.keymap.set("n", "<leader>'", function() vscode.action("workbench.action.openNextRecentlyUsedEditorInGroup") end)
 vim.keymap.set("n", "<leader>e", function() vscode.action("workbench.view.explorer") end)
 vim.keymap.set("n", "<leader>bn", function() vscode.action("workbench.action.files.newUntitledFile") end)
 
@@ -25,7 +27,7 @@ vim.keymap.set("n", "<leader>xx", function() vscode.action("workbench.actions.vi
 vim.keymap.set("n", "]h", function() vscode.action("workbench.action.editor.nextChange") end)     -- next hunk
 vim.keymap.set("n", "[h", function() vscode.action("workbench.action.editor.previousChange") end) -- prev hunk
 
-vim.keymap.set("n", "<leader>ui", function() vscode.actioan("editor.action.inspectTMScopes") end)
+vim.keymap.set("n", "<leader>ui", function() vscode.action("editor.action.inspectTMScopes") end)
 vim.keymap.set("n", "<leader>uC", function() vscode.action("workbench.action.selectTheme") end)
 vim.keymap.set("n", "<leader>uz", function() vscode.action("workbench.action.toggleZenMode") end)
 
