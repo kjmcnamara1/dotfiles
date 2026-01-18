@@ -1,9 +1,9 @@
 vim.api.nvim_create_autocmd("BufRead", {
   pattern = "*",
-  callback = function()
-    local line = vim.api.nvim_get_current_line()
+  callback = function(args)
+    local line = vim.api.nvim_buf_get_lines(args.buf, 0, 1, false)[1]
     if line and line:match("^#!.*bash") then
-      vim.bo.filetype = "bash"
+      vim.bo[args.buf].filetype = "bash"
     end
   end
 })
