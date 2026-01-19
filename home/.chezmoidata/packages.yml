@@ -64,7 +64,7 @@ packages:
     - nodejs
     - npm
     - shellcheck
-    
+
     # - tmux
 
     - yazi
@@ -100,6 +100,9 @@ packages:
     - bluetui
     - wiremix
     - hyprmon-bin
+
+    - voxtype-bin
+    - wtype
   session:
     hyprland:
       - uwsm
