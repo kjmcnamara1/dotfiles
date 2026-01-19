@@ -13,7 +13,7 @@ import os
 import shlex
 import subprocess
 from dataclasses import dataclass
-from enum import Flag, show_flag_values  # type: ignore
+from enum import Flag
 from typing import Any, Callable
 
 KEY_SUBSTITUTIONS = {
@@ -62,7 +62,7 @@ class Mod(Flag):
     SUPER = 64
 
     def format(self, reverse: bool = True, sep: str = " + ") -> str:
-        mods = [Mod(mod).name or "UNKNOWN" for mod in show_flag_values(self)]
+        mods = [mod.name or "UNKNOWN" for mod in self]
         if reverse:
             mods.reverse()
         return sep.join(mods)
