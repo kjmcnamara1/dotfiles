@@ -19,4 +19,14 @@ return {
     end,
   },
 
+  {
+    "danymat/neogen",
+    dependencies = "L3MON4D3/LuaSnip",
+    cmd = "Neogen",
+    keys = {
+      { "<leader>cn", function() require("neogen").generate() end, desc = "Generate Annotations (Neogen)" },
+    },
+    opts = { snippet_engine = "luasnip" },
+  },
+
 }
