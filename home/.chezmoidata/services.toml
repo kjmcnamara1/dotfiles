@@ -3,7 +3,7 @@
     "cups",
     "avahi-daemon",
     "udevmon",
-    "sddm",
+    # "sddm",
     # "cosmic-greeter",
   ]
   user = [
