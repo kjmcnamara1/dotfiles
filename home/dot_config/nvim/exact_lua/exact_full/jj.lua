@@ -16,5 +16,6 @@ return {
   },
   opts = {
     floating_window_winblend = 5,
+    floating_window_scaling_factor = 1,
   },
 }

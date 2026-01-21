@@ -36,6 +36,7 @@ return {
         "flash_prompt",
         "minifiles",
         "lazy_backdrop",
+        "kitty_scrollback",
       },
     },
   },
