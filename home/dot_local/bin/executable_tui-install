@@ -20,6 +20,7 @@ fi
 
 ICON_DIR="$HOME/.local/share/applications/icons"
 DESKTOP_FILE="$HOME/.local/share/applications/$APP_NAME.desktop"
+mkdir -p "$ICON_DIR"
 
 if [[ ! "$ICON_URL" =~ ^https?:// ]] && [ -f "$ICON_URL" ]; then
   ICON_PATH="$ICON_URL"
