@@ -14,6 +14,9 @@ packages:
     # - amd-ucode
     - ntfs-3g
     - nfs-utils
+    - btrfs-progs
+    - snapper
+    - snap-pac
   boot:
     - plymouth
     - plymouth-theme-arch-charge-big
@@ -30,9 +33,9 @@ packages:
     - figlet
     - figlet-fonts-extra
     - ttf-jetbrains-mono-nerd
+    - noto-fonts-emoji
     # - ttf-nerd-fonts-symbols
     # - ttf-firacode-nerd
-    # - noto-fonts-emoji
   langs:
     - go
     - python
@@ -67,6 +70,8 @@ packages:
 
     # - tmux
 
+    - gum
+
     - yazi
     - ffmpeg
     - mediainfo
@@ -89,6 +94,9 @@ packages:
 
     - lazygit
     - git-delta # scoop delta
+    - difftastic
+    - jujutsu
+    - jjui-bin
 
     # - btop
     - bottom
@@ -164,12 +172,36 @@ packages:
       # - materia-gtk-theme
     niri:
       - niri
+      - uwsm
       - xwayland-satellite
       - xdg-desktop-portal-gnome
       - wl-clipboard
       - cliphist
+      - udiskie
+      - swayosd
       - mako
       - waybar
+      - wlsunset
+      - hyprpaper
+      - hyprlock
+      - hypridle
+      - swaybg
+      - kitty
+      - nautilus
+      - sshfs
+      - gvfs
+      - gvfs-smb
+      - gvfs-nfs
+      - gvfs-google
+      - gvfs-onedrive
+      - gnome-disk-utility
+      - openbsd-metcat
+      - walker-bin
+      - elephant-all-bin
+      - rofi
+      - adw-gtk-theme
+      - papirus-icon-theme
+      - nordzy-cursors
     cosmic:
       - cosmic
       - power-profiles-daemon
@@ -200,3 +232,18 @@ packages:
     - avahi
     - nss-mdns
     - system-config-printer # GTK gui app
+  gaming:
+    - steam
+    - lutris
+    - wine
+    - vulkan-radeon
+    - lib32-vulkan-radeon
+    - mangohud
+    - lib32-mangohud
+    - gamescope
+    - gamemode
+    - lib32-gamemode
+    - dxvk-bin
+    - vkd3d
+    - lib32-vkd3d
+    - protonup-qt
