@@ -225,7 +225,8 @@ binds {
 
     // SETTINGS
     SUPER+CTRL+ALT+I hotkey-overlay-title="Settings: Idle Lock" {
-      spawn-sh "~/.local/bin/idle-toggle"
+      // spawn-sh "~/.local/bin/idle-toggle"
+      spawn "stasis" "toggle-inhibit"
     }
 
     // SHELL
