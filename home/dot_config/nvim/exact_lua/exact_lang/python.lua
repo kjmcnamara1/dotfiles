@@ -18,6 +18,11 @@ vim.api.nvim_create_autocmd("FileType", {
 return {
 
   {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = { ensure_installed = { "ruff", "pyright" } },
+  },
+
+  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {

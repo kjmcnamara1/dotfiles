@@ -1,4 +1,10 @@
 return {
+
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = { ensure_installed = { "nixfmt" } },
+  },
+
   {
     "neovim/nvim-lspconfig",
     opts = {

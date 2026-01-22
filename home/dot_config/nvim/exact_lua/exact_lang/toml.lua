@@ -1,6 +1,11 @@
 return {
 
   {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = { ensure_installed = { "taplo" } },
+  },
+
+  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {

@@ -17,6 +17,11 @@ vim.filetype.add({
 return {
 
   {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = { ensure_installed = { "jinja-lsp" } },
+  },
+
+  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {

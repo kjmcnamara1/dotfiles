@@ -11,6 +11,11 @@ vim.api.nvim_create_autocmd("BufRead", {
 return {
 
   {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = { ensure_installed = { "bash-language-server", "shfmt" } },
+  },
+
+  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {

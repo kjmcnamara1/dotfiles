@@ -1,6 +1,11 @@
 return {
 
   {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = { ensure_installed = { "lua-language-server" } },
+  },
+
+  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {

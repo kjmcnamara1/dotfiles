@@ -93,7 +93,7 @@ return {
       -- if opts.codelens.enabled and vim.lsp.codelens then
       -- end
 
-      -- Compose global lsp server capabilities
+      -- Compose global lsp client capabilities
       local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
       local has_blink, blink = pcall(require, "blink")
       local capabilities = vim.tbl_deep_extend(

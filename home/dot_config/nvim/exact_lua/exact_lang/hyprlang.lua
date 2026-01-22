@@ -7,6 +7,11 @@ vim.filetype.add({
 return {
 
   {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = { ensure_installed = { "hyprls" } },
+  },
+
+  {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {

@@ -31,4 +31,16 @@ return {
     opts = {},
   },
 
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    dependencies = "williamboman/mason.nvim",
+    -- lazy = false,
+    -- cmd = { "MasonToolsInstall", "MasonToolsInstallSync", "MasonToolsUpdate", "MasonToolsUpdateSync", "MasonToolsClean" },
+    opts_extend = { "ensure_installed" },
+    opts = {
+      auto_update = true,
+      run_on_start = true,
+    },
+  }
+
 }
