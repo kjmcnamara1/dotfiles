@@ -3,7 +3,11 @@
     "users": [
         {
             "enc_password": "$y$j9T$uk3AQCzIq.D3HZLfie.IG.$YHWWX/Nt1OCeTcszRaBq9vLI0s4B.emJ8HEwD82meR0",
-            "groups": [],
+            "groups": [
+                "wheel",
+                "input",
+                "video",
+            ],
             "sudo": true,
             "username": "kjm"
         }
