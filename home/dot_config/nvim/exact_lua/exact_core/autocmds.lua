@@ -30,6 +30,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  desc = "Disable auto-comment on `o` for all filetypes",
+  group = CustomGroup,
+  callback = function()
+    vim.opt_local.formatoptions:remove('o')
+  end
+})
+
 vim.api.nvim_create_autocmd("BufReadPost", {
   desc = "Go to last location when opening a buffer",
   group = CustomGroup,
