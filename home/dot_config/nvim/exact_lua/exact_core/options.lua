@@ -50,10 +50,21 @@ vim.opt.fillchars      = {
   eob = " ", -- Don't show '~' outside of buffer
 }
 
+function _G.CustomFoldText()
+  local line = vim.fn.getline(vim.v.foldstart)
+  local fold_size = vim.v.foldend - vim.v.foldstart + 1
+  local percentage = math.floor((fold_size / vim.fn.line('$')) * 100)
+  return line .. " ... (" .. fold_size .. " lines: " .. percentage .. "%)"
+end
+
+-- vim.opt.foldtext       = "v:lua.CustomFoldText()"
+vim.opt.foldtext       = "";
+
 vim.opt.foldenable     = true
 vim.opt.foldlevelstart = 99
-vim.o.foldmethod       = "expr";
-vim.o.foldexpr         = "v:lua.vim.treesitter.foldexpr()";
+vim.opt.foldmethod     = "expr";
+vim.opt.foldexpr       = "v:lua.vim.treesitter.foldexpr()";
+-- vim.opt.foldexpr       = "v:lua.vim.lsp.foldexpr()";
 
 vim.opt.shortmess:append("WIcC") -- Reduce command line messages
 vim.opt.splitkeep     = "screen" -- Reduce scroll during window split
