@@ -62,6 +62,7 @@ stasis:
   inhibit_apps [
     "vlc"
     "mpv"
+    "gamescope"
     r"steam_app_.*"
   ]
 
