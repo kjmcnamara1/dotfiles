@@ -46,21 +46,33 @@ theme = "onenord"
     skip-levels = 1
     # character="▏"
 
-[keys.insert]
-  j = { k = "normal_mode" }
+    # [keys.insert]
+    #   j = { k = "normal_mode" }
 
 [keys.normal]
-  x = "extend_line"
-"C-q" = ":q"
-"C-s" = ":w"
-"C-S-s" = "save_selection"
-  # tab   = "move_parent_node_end"
-  # S-tab = "move_parent_node_start"
+  x       = "extend_line"
+  "}"     = "goto_next_paragraph"
+  "{"     = "goto_prev_paragraph"
+  "C-q"   = ":quit"
+  "C-s"   = ":write"
+  "C-S-s" = "save_selection"
+  C-r     = ":config-reload"
+  A-c     = ":buffer-close"
+  A-h     = ":buffer-previous"
+  A-l     = ":buffer-next"
+  # tab     = "move_parent_node_end"
+  # S-tab   = "move_parent_node_start"
 
 [keys.select]
-  x = "extend_line"
-"C-q" = ":q"
-"C-s" = ":w"
-"C-S-s" = "save_selection"
+  x       = "extend_line"
+  "}"     = "goto_next_paragraph"
+  "{"     = "goto_prev_paragraph"
+  "C-q"   = ":quit"
+  "C-s"   = ":write"
+  "C-S-s" = "save_selection"
+  C-r     = ":config-reload"
+  A-c     = ":buffer-close"
+  A-h     = ":buffer-previous"
+  A-l     = ":buffer-next"
   # tab   = "extend_parent_node_end"
   # S-tab = "extend_parent_node_start"
