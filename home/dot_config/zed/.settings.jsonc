@@ -7,33 +7,42 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "base_keymap": "None",
+  "helix_mode": false,
+  "ssh_connections": [
+    {
+      "host": "snow.local",
+      "args": [],
+      "projects": [],
+    },
+  ],
 
   // ░█▀█░▀█▀
   // ░█▀█░░█░
   // ░▀░▀░▀▀▀
-  "assistant": {
-    "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-latest"
+  "agent": {
+    "inline_assistant_model": {
+      "provider": "google",
+      "model": "gemini-2.5-pro"
     },
-    "version": "2"
+    "default_model": {
+      "provider": "google",
+      "model": "gemini-2.5-flash",
+    },
+    "favorite_models": [],
+    "model_parameters": [],
   },
-  "features": {
-    "inline_completion_provider": "supermaven"
-  },
+  "base_keymap": "None",
 
   // ░█░█░▀█▀░█▄█
   // ░▀▄▀░░█░░█░█
   // ░░▀░░▀▀▀░▀░▀
   "vim_mode": true,
   "vim": {
-    "use_multiline_find": true,
     "use_smartcase_find": true,
-    "toggle_relative_line_numbers": true
+    "toggle_relative_line_numbers": true,
   },
 
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "pane_split_direction_horizontal": "down",
   "pane_split_direction_vertical": "right",
   "vertical_scroll_margin": 99,
@@ -43,33 +52,29 @@
   // ░▀▀▀░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀
   "languages": {
     "Python": {
-      "language_servers": ["pyright", "ruff"],
+      // "language_servers": ["pyright", "ruff"],
       "format_on_save": "on",
       "formatter": [
         {
           "language_server": {
-            "name": "ruff"
-          }
+            "name": "ruff",
+          },
         },
         {
-          "code_actions": {
-            // "source.fixAll.ruff": true, // Fix all auto-fixable lint violations
-            "source.organizeImports.ruff": true // Organize imports
-          }
-        }
-      ]
-    }
+          "code_action": "source.organizeImports.ruff",
+        },
+      ],
+    },
   },
   "jupyter": {
     "kernel_selections": {
-      "python": "python3"
-    }
+      "python": "python3",
+    },
   },
 
   // ░▀█▀░█░█░█▀▀░█▄█░█▀▀
   // ░░█░░█▀█░█▀▀░█░█░█▀▀
   // ░░▀░░▀░▀░▀▀▀░▀░▀░▀▀▀
-  "border_size": 0.5,
   "ui_font_size": 16,
   "buffer_font_family": "JetBrainsMono Nerd Font",
   // "buffer_font_family": "FiraCode Nerd Font",
@@ -78,10 +83,10 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "One Nord Pro Dark"
+    "dark": "One Nord Pro Dark",
   },
   "experimental.theme_overrides": {
-    "syntax": { "comment": { "font_style": "italic" } }
-  }
+    "syntax": { "comment": { "font_style": "italic" } },
+  },
   // "inlay_hints": { "enabled": true }
 }
