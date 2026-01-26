@@ -176,6 +176,7 @@ packages:
       - xwayland-satellite
       - xdg-desktop-portal-gnome
       - polkit-gnome
+      - gnome-keyring
       - wl-clipboard
       - cliphist
       - udiskie

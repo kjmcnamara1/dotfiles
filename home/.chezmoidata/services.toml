@@ -10,6 +10,7 @@
     "pipewire",
     "wireplumber",
     "pipewire-pulse",
+    "gnome-keyring-daemon",
     "hypridle",
     "udiskie",
     "swayosd-server",
