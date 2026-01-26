@@ -16,6 +16,8 @@ include "apps/active-window-info.kdl"
 
 spawn-sh-at-startup "swaybg -i ~/.cache/wallpaper/.current.blur"
 spawn-sh-at-startup "wlsunset -l 34.8 -L -77.4"
+spawn-sh-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 // ENVIRONMENT VARIABLES
 environment {

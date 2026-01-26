@@ -175,6 +175,7 @@ packages:
       - uwsm
       - xwayland-satellite
       - xdg-desktop-portal-gnome
+      - polkit-gnome
       - wl-clipboard
       - cliphist
       - udiskie
