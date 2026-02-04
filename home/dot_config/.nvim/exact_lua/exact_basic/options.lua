@@ -4,6 +4,7 @@ vim.opt.sidescrolloff  = 0
 vim.opt.number         = false
 vim.opt.relativenumber = false
 
+vim.opt.cmdheight      = 0
 vim.opt.showmode       = false
 vim.opt.showcmd        = false
 vim.opt.shortmess:append("F")
@@ -12,5 +13,6 @@ return {
   "rmehri01/onenord.nvim",
   keys = {
     { "<c-q>", "<cmd>qa!<cr>", desc = "Quit" },
+    { "<esc>", "ZQ",           desc = "Quit" },
   },
 }

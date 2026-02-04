@@ -46,7 +46,7 @@ return {
     cmd = "VenvSelect",
     ft = { "python", "xonsh" },
     keys = {
-      { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv", ft = "python" }
+      { "<leader>cv", "<cmd>VenvSelect<cr>", desc = "Select VirtualEnv", ft = "python" }
     },
     opts = {
       settings = {

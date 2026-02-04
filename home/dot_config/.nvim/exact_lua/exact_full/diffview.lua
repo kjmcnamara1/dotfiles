@@ -15,6 +15,7 @@ return {
     config = function()
       require("difftastic-nvim").setup({
         download = true, -- Auto-download pre-built binary
+        vcs = "git",
       })
     end,
   },

@@ -90,7 +90,7 @@ return {
     { "<leader>bd",      function() Snacks.bufdelete() end,                                                     desc = "Buffer: Delete" },
     { "<a-c>",           function() Snacks.bufdelete() end,                                                     desc = "Buffer: Delete" },
     { "<leader>gB",      function() Snacks.gitbrowse() end,                                                     desc = "Git Browse" },
-    { "<leader>gb",      function() Snacks.git.blame_line() end,                                                desc = "Git Blame Line" },
+    -- { "<leader>gb",      function() Snacks.git.blame_line() end,                                                desc = "Git Blame Line" },
     { "<leader>gF",      function() Snacks.lazygit.log_file() end,                                              desc = "Lazygit Current File History" },
     { "<leader>gg",      function() Snacks.lazygit() end,                                                       desc = "Lazygit" },
     { "<leader>gl",      function() Snacks.lazygit.log() end,                                                   desc = "Lazygit Log (cwd)" },
