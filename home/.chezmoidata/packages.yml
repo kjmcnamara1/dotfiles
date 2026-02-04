@@ -62,7 +62,7 @@ packages:
     # - age
 
     # - helix
-    - neovim
+    - neovim-nightly-bin
     - tree-sitter-cli
     - nodejs
     - npm
