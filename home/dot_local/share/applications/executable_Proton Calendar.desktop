@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Proton Calendar
+Comment=Proton Calendar
+Exec=launch-webapp https://calendar.proton.me
+Terminal=false
+Type=Application
+Icon=/home/kjm/.local/share/applications/icons/Proton Calendar.png
+StartupNotify=true
