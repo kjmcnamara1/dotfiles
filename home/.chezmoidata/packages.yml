@@ -234,6 +234,12 @@ packages:
     - avahi
     - nss-mdns
     - system-config-printer # GTK gui app
+  scanner:
+    - sane
+    - libksane
+    - sane-airscan
+    - simple-scan
+    - avahi
   gaming:
     - steam
     - lutris
