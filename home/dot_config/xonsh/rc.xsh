@@ -61,6 +61,9 @@ exec($(carapace _carapace))
 execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
 
 # TODO: set up fzf integration
+$FD_OPTIONS = "--hidden --follow --exclude .git --exclude node_modules --exclude Games --exclude snow_backup"
+$FZF_DEFAULT_COMMAND = "fd --type f " + $FD_OPTIONS
+$FZF_DEFAULT_OPTS = "--multi --reverse --height 50% --preview='bat --color=always {}' --preview-window='right:hidden' --bind='f2:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up'"
 $fzf_history_binding = "c-r"
 $fzf_file_binding = "c-t"
 $fzf_dir_binding = "c-g"
