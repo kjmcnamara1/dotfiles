@@ -3,6 +3,7 @@ import logging
 import warnings
 import platform
 import tempfile
+from dotenv import dotenv_values
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -16,7 +17,8 @@ xontrib load abbrevs
 xontrib load back2dir
 xontrib load prompt_starship
 xontrib load fish_completer
-xontrib load hist_navigator  # keymaps are broken (a-left, a-right, a-up)
+# keymaps are broken (a-left, a-right, a-up)
+xontrib load hist_navigator
 xontrib load term_integration
 xontrib load fzf-widgets
 # xontrib load kitty # allow printing mpl plots in terminal
@@ -44,7 +46,7 @@ $PATH.prepend('~/.local/bin')  # User binaries
 
 # Change colors of default completion menu
 $XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu'] = "bg:#2E3440 #E5E9F0"
-$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu.Completion'] = "bg:#2e3440 #E5E9F0"
+$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu.Completion'] = "bg:#2E3440 #E5E9F0"
 $XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu.Completion.Current'] = "bg:#EBCB8B #434C5E" # These colors are inverted
 
 # Allow python to import modules from cwd
@@ -62,6 +64,10 @@ execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
 $fzf_history_binding = "c-r"
 $fzf_file_binding = "c-t"
 $fzf_dir_binding = "c-g"
+
+#  Load environment variables from .env.secrets
+for k,v in dotenv_values(dotenv_path=p"~/.env.secrets").items():
+    ${k} = v
 
 # Abbreviations
 # aliases['...'] = 'cd ../..'
@@ -104,8 +110,6 @@ aliases['cat'] = 'bat'
 aliases['rg'] = 'rg --smart-case'
 
 # Yazi wrapper
-
-
 @aliases.register
 def _y(args):
     with tempfile.NamedTemporaryFile(prefix="yazi-cwd.") as tmp:
@@ -114,6 +118,7 @@ def _y(args):
         if cwd != '' and cwd != $PWD:
             cd @(cwd)
 
+# Automatically activate python virtual environment when entering a directory
 @events.autovox_policy
 def dotvenv_policy(path,**_) -> "str|Path|None":
     venv = path / ".venv"

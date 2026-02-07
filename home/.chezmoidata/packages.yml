@@ -26,6 +26,7 @@ packages:
     - nushell
     - xonsh
     # - pythn-pip
+    # - python-dotenv
     # - python-prompt_toolkit
     # - python-pygments
     # - python-setproctitle
