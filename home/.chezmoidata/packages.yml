@@ -218,6 +218,10 @@ packages:
     - brave-bin
     - proton-pass-bin
     - mpv
+    - mpv-mpris
+    - mpd
+    - mpd-mpris
+    - playerctl
     - visual-studio-code-bin # scoop vscode
     - zed-preview-bin
     - baobab # GTK disk usage analyzer (filelight)
