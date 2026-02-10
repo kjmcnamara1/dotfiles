@@ -69,13 +69,13 @@ $fzf_file_binding = "c-t"
 $fzf_dir_binding = "c-g"
 
 #  Load environment variables from .env.secrets
-for k,v in dotenv_values(dotenv_path=p"~/.env.secrets").items():
+for k, v in dotenv_values(dotenv_path=p"~/.env.secrets").items():
     ${k} = v
 
 # Abbreviations
-# aliases['...'] = 'cd ../..'
-# aliases['....'] = 'cd ../../..'
-# aliases['.....'] = 'cd ../../../..'
+## aliases['...'] = 'cd ../..'
+## aliases['....'] = 'cd ../../..'
+## aliases['.....'] = 'cd ../../../..'
 
 # Aliases
 aliases['xuv'] = '$UV_PYTHON=@(__xonsh__.imp.sys.executable) uv pip @($args)'
