@@ -3,15 +3,15 @@
 LOCKFILE="${XDG_RUNTIME_DIR:-/tmp}/active-window-info.lock"
 
 # 1. Open the lock file on FD 200
-exec 200>"$LOCKFILE"
+exec 200> "$LOCKFILE"
 
 # 2. Try to acquire the lock. If it fails, FD 200 is still open, but the script exits
-flock -n 200 || \
-  { notify-send -i dialog-error \
-    "Active Window Info" \
-    "Program is already running!"; \
-    exit 1; 
-  }
+flock -n 200 || {
+    notify-send -i dialog-error \
+      "Active Window Info" \
+      "Program is already running!"
+    exit 1
+}
 
 # --- LOCKED SECTION START ---
 datafile=$(mktemp /tmp/activewindow.XXXXXX)
@@ -36,4 +36,4 @@ fi
 # 5. Now launch the terminal
 # Another instance of this script can now be started even while this terminal is open.
 $TERMINAL --class="active-window-info" -e \
-  bash -c "nvim --cmd 'let g:basic=1' '$datafile'; rm -f '$datafile'"
+  bash -c "nvim --cmd 'lua vim.g.minimal=true' '$datafile'; rm -f '$datafile'"
