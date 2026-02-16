@@ -215,6 +215,7 @@ packages:
       - qt6ct
       - cosmic-greeter
   guis:
+    - libreoffice-fresh
     - brave-bin
     - proton-pass-bin
     - mpv
@@ -225,6 +226,8 @@ packages:
     - visual-studio-code-bin # scoop vscode
     - zed-preview-bin
     - baobab # GTK disk usage analyzer (filelight)
+    - evince # GTK pdf viewer
+    - localsend #  GTK file sharing
   audio:
     - pipewire
     - wireplumber
