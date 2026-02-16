@@ -217,6 +217,8 @@ packages:
   guis:
     - libreoffice-fresh
     - brave-bin
+    - qutebrowser
+    - python-adblock
     - proton-pass-bin
     - mpv
     - mpv-mpris
