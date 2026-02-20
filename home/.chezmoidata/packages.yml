@@ -1,5 +1,8 @@
 packages:
   essential:
+    - base
+    - base-devel
+    - pacman-contrib
     - chezmoi
     - git
     - wget
@@ -43,6 +46,7 @@ packages:
     - ipython
     - python-ipykernel
     - python-pandas
+    - uv
   display_manager:
     - sddm
     - greetd
