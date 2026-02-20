@@ -1,7 +1,14 @@
+# vim: ft=sshconfig
 Host github.com
   HostName github.com
   User git
   IdentityFile ~/.ssh/github
+  IdentitiesOnly yes
+  AddKeysToAgent yes
+
+Host aur.archlinux.org
+  User aur
+  IdentityFile ~/.ssh/aur
   IdentitiesOnly yes
   AddKeysToAgent yes
 
