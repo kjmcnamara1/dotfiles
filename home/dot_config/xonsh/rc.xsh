@@ -88,9 +88,9 @@ aliases['ipy'] = 'ipython'  # Interactive Python Shell
 aliases['hx'] = 'helix'  # Helix text editor
 aliases['ff'] = 'fastfetch'  # Fastfetch terminal sysinfo viewer
 aliases['lg'] = 'lazygit'  # Lazygit
-aliases['cz'] = 'chezmoi'  # Chezmoi dotfiles manager
+aliases['chz'] = 'chezmoi'  # Chezmoi dotfiles manager
 aliases['schezmoi'] = 'sudo chezmoi --destination / --source ~/.local/share/chezmoi/root --working-tree ~/.local/share/chezmoi/root --config ~/.config/chezmoi/chezmoi.toml'
-aliases['scz'] = 'schezmoi'
+aliases['schz'] = 'schezmoi'
 aliases['lvim'] = '''![$NVIM_APPNAME='nvim-lazyvim' nvim]'''  # LazyVim
 aliases['l'] = 'eza -F --icons --links --group-directories-first --git --git-repos --smart-group --hyperlink'  # horizontal grid
 aliases['ls'] = 'l -1'  # single column list

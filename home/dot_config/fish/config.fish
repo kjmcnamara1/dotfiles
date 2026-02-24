@@ -76,9 +76,9 @@ if status is-interactive # connected to keyboard
     alias hx=helix # Helix text editor
     alias ff=fastfetch # Fastfetch terminal sysinfo viewer
     alias lg=lazygit
-    alias cz=chezmoi # Chezmoi dotfiles manager
+    alias chz=chezmoi # Chezmoi dotfiles manager
     alias schezmoi='sudo chezmoi --destination / --source ~/.local/share/chezmoi/root --working-tree ~/.local/share/chezmoi/root --config ~/.config/chezmoi/chezmoi.toml'
-    alias scz=schezmoi
+    alias schz=schezmoi
     alias wal='wallust pywal'
     alias lvim='set -lx NVIM_APPNAME nvim-lazyvim; nvim'
     alias l='eza -F --icons --links --group-directories-first --git --git-repos --smart-group --hyperlink' # horizontal grid
