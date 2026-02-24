@@ -291,6 +291,7 @@ binds {
 
     SUPER+Tab repeat=false { toggle-overview; }
     SUPER+C   repeat=false { close-window; }
+    SUPER+ALT+C hotkey-overlay-title="Pick Color" { spawn-sh "niri msg pick-color | rg -o '#[0-9a-fA-F]{6}' | wl-copy"; }
 
     // NAVIGATION
     SUPER+H { focus-column-or-monitor-left; }
