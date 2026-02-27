@@ -1,0 +1,8 @@
+--background '#81A1C1'
+--pad-horiz 50
+--pad-vert 60
+--font 'JetBrainsMono Nerd Font'
+--shadow-color '#333333'
+--shadow-blur-radius 10
+--shadow-offset-y 5
+--theme 'TwoDark'

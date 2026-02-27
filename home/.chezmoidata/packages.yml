@@ -75,7 +75,12 @@ packages:
 
     # - tmux
 
-    - gum
+    - gum # beautiful bash scripting
+    - silicon # generate code screenshots
+    - vhs # generate code/terminal gifs
+    - asciinema # record terminal session to asciicast
+    - asciinema-edit # edit asciicast
+    - asciinema-agg # convert asciicast to gif
 
     - yazi
     - ffmpeg
@@ -224,6 +229,7 @@ packages:
     - qutebrowser
     - python-adblock
     - proton-pass-bin
+    - imv # mpv like image viewer
     - mpv
     - mpv-mpris
     - mpd
