@@ -67,7 +67,8 @@ packages:
     # - age
 
     # - helix
-    - neovim-nightly-bin
+    - neovim
+    # - neovim-nightly-bin
     - tree-sitter-cli
     - nodejs
     - npm
@@ -118,6 +119,7 @@ packages:
     - bluetui
     - wiremix
     - hyprmon-bin
+    - caligula
 
     - voxtype-bin
     - wtype
