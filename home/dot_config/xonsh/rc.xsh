@@ -43,11 +43,8 @@ $MANPAGER = 'sh -c "col -bx | bat -l man -p"'
 # $MANPAGER = 'nvim +Man!'
 $PATH.prepend('~/.config/hypr/scripts')  # Hyprland scripts
 $PATH.prepend('~/.local/bin')  # User binaries
-
-# Change colors of default completion menu
-$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu'] = "bg:#2E3440 #E5E9F0"
-$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu.Completion'] = "bg:#2E3440 #E5E9F0"
-$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu.Completion.Current'] = "bg:#EBCB8B #434C5E" # These colors are inverted
+$PATH.prepend('~/.cargo/bin')  # Rust binaries
+$PATH.prepend('~/.pixi/bin')   # Pixi binaries
 
 # Allow python to import modules from cwd
 sys.path.insert(0, '')
@@ -100,6 +97,7 @@ aliases['ll'] = 'la -l'  # long list including hidden
 aliases['llr'] = 'll --time-style=relative'  # long list with relative time
 # long list and recurse into directories as tree
 aliases['lt'] = 'll --tree --total-size --git-ignore'
+aliases['lti'] = 'll --tree --total-size' # [L]ist [T]ree [I]nclude ignored files
 aliases['ltt'] = 'lt --level=2'  # default tree list level 2
 aliases['lttt'] = 'lt --level=3'  # default tree list level 3
 aliases['ltttt'] = 'lt --level=4'  # default tree list level 4
@@ -127,3 +125,9 @@ def dotvenv_policy(path,**_) -> "str|Path|None":
     venv = path / ".venv"
     if venv.exists():
       return venv
+
+# Change colors of default completion menu
+$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu'] = "bg:#2E3440 #E5E9F0"
+$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu.Completion'] = "bg:#2E3440 #E5E9F0"
+$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu.Completion.Current'] = "bg:#EBCB8B #434C5E" # These colors are inverted
+
