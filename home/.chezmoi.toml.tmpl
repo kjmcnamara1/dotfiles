@@ -27,8 +27,8 @@ encryption = "age"
 
 {{- $font := promptChoice "Choose a font" $fonts "jetbrains-mono-nerd" }}
 {{- $shell := promptChoice "Choose a shell" $shells "fish" }}
-{{- $displayManager := promptChoice "Choose a display manager" $displayManagers "agetty" }}
-{{- $session := promptChoice "Choose a session" $sessions "hyprland" }}
+{{- $displayManager := promptChoice "Choose a display manager" $displayManagers "greetd" }}
+{{- $session := promptChoice "Choose a session" $sessions "niri" }}
 
 {{- $packageManager := "apt" -}} {{/* Default fallback */}}
 
