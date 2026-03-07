@@ -161,7 +161,11 @@ exit # Exit back to commandline
 ```sh
 # mount -m -t nfs snow.local:/mnt/md1 /nas # to save config file to nas
 mount -m -t cifs //192.168.0.10/NAS /nas -o username=admin # cifs-utils comes packaged with archiso
-bash -c "$(curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/main/arch/install)"
+# Can't pass arguments
+# bash -c "$(curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/main/arch/install)"
+# Can't recognize interactive prompts/tui
+# curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/muse/arch/archinstall | bash -s -- muse
+bash <(curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/refs/heads/muse/arch/archinstall) muse
 # curl -s https://raw.githubusercontent.com/kjmcnamara1/dotfiles/main/scripts/MUSE.sh > /tmp/tmp.sh
 # bash /tmp/tmp.sh
 ```
@@ -237,4 +241,3 @@ sudo usermod -aG libvirt $(whoami)
 systemctl enable libvirtd
 systemctl start libvirtd
 ```
-
