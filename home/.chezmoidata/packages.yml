@@ -209,7 +209,7 @@ packages:
       - gvfs-google
       - gvfs-onedrive
       - gnome-disk-utility
-      - openbsd-metcat
+      - openbsd-netcat
       - walker-bin
       - elephant-all-bin
       - rofi
