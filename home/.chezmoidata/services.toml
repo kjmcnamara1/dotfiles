@@ -5,6 +5,7 @@
     "udevmon",
     # "sddm",
     # "cosmic-greeter",
+    "greetd",
   ]
   user = [
     "pipewire",
