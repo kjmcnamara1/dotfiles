@@ -198,7 +198,7 @@ packages:
       - wlsunset
       - hyprpaper
       - hyprlock
-      - hypridle
+      - stasis
       - swaybg
       - kitty
       - nautilus
