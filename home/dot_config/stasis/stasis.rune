@@ -28,6 +28,7 @@ default:
     # "mpv"
     "gamescope"
     r"steam_app_.*"
+    "pyrogenesis" # 0 A.D. game
   ]
 
   lid_close_action "lock_screen"
