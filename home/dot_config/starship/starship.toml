@@ -3,7 +3,7 @@
 # add_newline = false
 command_timeout = 750
 
-format = """ $all"""
+format = """ $all${env_var.yazilevel}"""
 
 # right_format = "$battery$shell$os"
 
@@ -147,3 +147,10 @@ format = """ $all"""
   vimcmd_replace_one_symbol = '[ ✘](purple)'
   vimcmd_replace_symbol     = '[ ✘](bold yellow)'
   vimcmd_visual_symbol      = '[ ](yellow)'
+
+[env_var.yazi_level]
+  description = "Indicate the shell was launched by `yazi`"
+  variable    = "YAZI_LEVEL"
+  symbol      = "󰇥"
+  format      = '[$symbol ]($style)'
+  style       = "yellow"
