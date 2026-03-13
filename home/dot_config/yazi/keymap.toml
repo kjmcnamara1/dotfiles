@@ -33,25 +33,10 @@
   run  = "cd /mnt/NAS"
   desc = "Go NAS"
 
-  # [[mgr.prepend_keymap]]
-  #   on   = "+"
-  #   run  = "plugin zoom 1"
-  #   desc = "Zoom in hovered file"
-
-  # [[mgr.prepend_keymap]]
-  #   on   = "-"
-  #   run  = "plugin zoom -1"
-  #   desc = "Zoom out hovered file"
-
 [[mgr.prepend_keymap]]
-  on   = "T"
+  on   = "<a-m>"
   run  = "plugin toggle-pane max-preview"
   desc = "Maximize or restore the preview pane"
-
-[[mgr.prepend_keymap]]
-  on   = ["E"]
-  run  = "plugin eza-preview"
-  desc = "Toggle tree/list dir preview"
 
 [[mgr.prepend_keymap]]
   on   = ["C"]
@@ -67,11 +52,6 @@
   on   = "!"
   run  = 'shell "env DISABLE_BACK2DIR=1 $SHELL" --block'
   desc = "Open shell here"
-
-[[mgr.prepend_keymap]]
-  on   = "M"
-  run  = "plugin mount"
-  desc = "Mount plugin"
 
 [[mgr.prepend_keymap]]
   on   = "<a-z>"
