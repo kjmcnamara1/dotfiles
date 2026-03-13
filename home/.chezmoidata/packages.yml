@@ -89,7 +89,8 @@ packages:
     - poppler
     - resvg
     - imagemagick
-    - glow
+    - rich-cli
+    # - glow
     - ouch
     - 7zip
     - wl-clipboard
