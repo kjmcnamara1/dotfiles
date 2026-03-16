@@ -116,6 +116,9 @@ packages:
 
     - yt-dlp
 
+    - mise
+    - pixi
+
     - impala
     - bluetui
     - wiremix

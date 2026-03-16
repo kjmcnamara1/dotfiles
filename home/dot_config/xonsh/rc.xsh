@@ -46,6 +46,9 @@ $PATH.prepend('~/.local/bin')  # User binaries
 $PATH.prepend('~/.cargo/bin')  # Rust binaries
 $PATH.prepend('~/.pixi/bin')   # Pixi binaries
 
+# Mise
+execx($(mise activate xonsh))
+
 # Allow python to import modules from cwd
 sys.path.insert(0, '')
 
