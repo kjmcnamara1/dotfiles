@@ -7,36 +7,33 @@
 @description "Lightweight feature packed idle manager for Wayland"
 
 default:
-  # enable_loginctl true
-  # pre_suspend_command "systemctl --user start hyprlock"
+  enable_loginctl true
   monitor_media true
-  ignore_remote_media true # Ignore remote players such as Spotify, KDE Connect, etc.
-  #media_blacklist ["spotify"] 
+  ignore_remote_media true
   respect_idle_inhibitors true
 
-  # Lock detection method: "process" (default) or "logind"
-  # Use "logind" if your locker uses loginctl (e.g., quickshell)
-  # lock_detection_type "logind"
-
-  #debounce-seconds 4
-  #notify_on_unpause true
-  #notify-before-command true
-  #notify-seconds-before 10
-
   inhibit_apps [
-    # "vlc"
-    # "mpv"
     "gamescope"
     r"steam_app_.*"
     "pyrogenesis" # 0 A.D. game
+    "ELDEN RING"
   ]
 
   lid_close_action "lock_screen"
   lid_open_action "wake"
 
+  # BUG: Stasis locks during sustained idle_waiting
+  # https://github.com/saltnpepper97/stasis/issues/79
+
+  # notify_before_action true
+  # notify:
+  #   timeout 5
+  #   command ""
+  #   notification "Stasis has been idle for 5 seconds"
+  # end
+
   lock_screen:
     timeout 300 # 5 minute(s)
-    # command "loginctl lock-session"
     command "hyprlock"
   end
 
