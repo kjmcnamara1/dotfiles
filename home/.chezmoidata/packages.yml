@@ -202,7 +202,7 @@ packages:
       - wlsunset
       - hyprpaper
       - hyprlock
-      - stasis
+      - stasis-git
       - swaybg
       - kitty
       - nautilus
