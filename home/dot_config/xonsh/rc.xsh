@@ -1,3 +1,4 @@
+import os
 import sys
 import logging
 import warnings
@@ -41,10 +42,18 @@ $EDITOR = 'nvim'
 $MANROFFOPT = '-c'
 $MANPAGER = 'sh -c "col -bx | bat -l man -p"'
 # $MANPAGER = 'nvim +Man!'
-$PATH.prepend('~/.config/hypr/scripts')  # Hyprland scripts
-$PATH.prepend('~/.local/bin')  # User binaries
-$PATH.prepend('~/.cargo/bin')  # Rust binaries
-$PATH.prepend('~/.pixi/bin')   # Pixi binaries
+
+def xonsh_add_path(path: str):
+    expanded_path = str(Path(os.path.expandvars(path)).expanduser().resolve())
+    if expanded_path in $PATH:
+        return
+    $PATH.prepend(path)
+    print(f"Added {path} to $PATH")
+
+xonsh_add_path('~/.config/hypr/scripts')  # Hyprland scripts
+xonsh_add_path('~/.local/bin')  # User binaries
+xonsh_add_path('~/.cargo/bin')  # Rust binaries
+xonsh_add_path('~/.pixi/bin')   # Pixi binaries
 
 # Mise
 execx($(mise activate xonsh))
@@ -124,7 +133,7 @@ def _y(args):
 
 # Automatically activate python virtual environment when entering a directory
 @events.autovox_policy
-def dotvenv_policy(path,**_) -> "str|Path|None":
+def dotvenv_policy(path, **_) -> "str|Path|None":
     venv = path / ".venv"
     if venv.exists():
       return venv
