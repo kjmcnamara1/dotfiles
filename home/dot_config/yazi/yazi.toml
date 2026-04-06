@@ -8,18 +8,18 @@
   image_alloc = 1073741824 # = 1024*1024*1024 = 1024MB
 
 [opener]
-  extract = [
-    { run = 'ouch d -y %*', desc = "Extract here with ouch", for = "windows" },
-    { run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
-  ]
+  # extract = [
+  #   { run = 'ouch d -y %*', desc = "Extract here with ouch", for = "windows" },
+  #   { run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
+  # ]
 
-  edit = [
-    { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-    { run = '%EDITOR% %*', desc = "$EDITOR", block = true, for = "windows" },
-    { run = 'code "$@"', desc = "VS Code", orphan = true, for = "unix" },
-    { run = 'code %*', desc = "VS Code", orphan = true, for = "windows" },
-    { run = 'code -w %*', desc = "VS Code (block)", block = true, for = "windows" },
-  ]
+  # edit = [
+  #   { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+  #   { run = '%EDITOR% %*', desc = "$EDITOR", block = true, for = "windows" },
+  #   { run = 'code "$@"', desc = "VS Code", orphan = true, for = "unix" },
+  #   { run = 'code %*', desc = "VS Code", orphan = true, for = "windows" },
+  #   { run = 'code -w %*', desc = "VS Code (block)", block = true, for = "windows" },
+  # ]
 
   # mount = [
   #   { run = 'udisksctl loop-setup -r -f "$1"', desc = "Mount ISO", block = true, for = "unix" },
@@ -28,6 +28,10 @@
   # [[open.prepend_rules]]
   #   url = "*.iso"
   #   use = "mount"
+
+[[open.prepend_rules]]
+  url = "*.zip"
+  use = ["extract", "reveal"]
 
 # Replace magick, image, video with mediainfo
 [[plugin.prepend_preloaders]]
@@ -52,6 +56,7 @@
 
 [[plugin.prepend_previewers]]
   mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}"
+  url  = "*.zip"
   run  = "ouch --show-file-icons"
 
 [[plugin.prepend_previewers]]
