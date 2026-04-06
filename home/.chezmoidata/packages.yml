@@ -27,7 +27,7 @@ packages:
     - zsh
     - fish
     - nushell
-    - xonsh
+    # - xonsh
     # - pythn-pip
     # - python-dotenv
     # - python-prompt_toolkit
