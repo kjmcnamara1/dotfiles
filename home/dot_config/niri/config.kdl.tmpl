@@ -194,6 +194,63 @@ window-rule {
 }
 
 // LAYER RULES
+layer-rule {
+  match namespace="waybar"
+
+  background-effect {
+    blur true
+  }
+  popups {
+  geometry-corner-radius 10
+    background-effect {
+      blur true
+    }
+  }
+}
+
+layer-rule {
+  match namespace="swayosd"
+
+  geometry-corner-radius 40
+  background-effect {
+    blur true
+    xray false
+  }
+}
+
+layer-rule {
+  match namespace="rofi"
+
+  geometry-corner-radius 20
+  background-effect {
+    blur true
+    xray false
+  }
+}
+
+// BUG: mako and walker blur beyond window borders
+
+// layer-rule {
+//   match namespace="notifications"
+
+//   geometry-corner-radius 10
+//   clip-to-geometry true
+//   background-effect {
+//     blur true
+//     xray false
+//   }
+// }
+
+// layer-rule {
+//   match namespace="walker"
+
+//   clip-to-geometry true
+//   geometry-corner-radius 40
+//   background-effect {
+//     blur true
+//     xray false
+//   }
+// }
 
 // KEYBINDS
 binds {
