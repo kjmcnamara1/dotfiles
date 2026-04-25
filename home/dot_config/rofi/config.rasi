@@ -78,7 +78,7 @@ configuration {
 // Theme
 * {
   fg: #E5E9F0;
-  bg: #2e3440;
+  bg: #2e344080;
 
   font: "JetBrainsMono Nerd Font 12";
   // font: "Sans 11";
