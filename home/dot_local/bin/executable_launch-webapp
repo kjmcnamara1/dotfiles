@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+# Launch the passed in URL as a web app in the default browser (or chromium if the default doesn't support --app).
+
+url_to_dirname() {
+    local url="$1"
+    # Remove protocol + optional www. + trailing slash
+    local cleaned="${url#*://}"          # remove http(s)://
+    cleaned="${cleaned#www.}"            # optional: strip common www.
+    cleaned="${cleaned%/}"               # remove trailing /
+
+    # Replace unsafe chars with _ (keep . - _)
+    cleaned=$(tr -s ':/?#&@%+=[]{}<>|"'\'' ' '_' <<< "$cleaned" | tr -d '\000-\037')
+
+    # Optional: collapse multiple _ into one
+    cleaned=$(sed 's/__*/_/g; s/^_//; s/_$//' <<< "$cleaned")
+
+    # Output hash for consistent length directory names
+    echo "$cleaned" | md5sum | cut -c1-12
+}
+
+browser=$(xdg-settings get default-web-browser)
+
+case $browser in
+  google-chrome* | brave-browser* | microsoft-edge* | opera* | vivaldi* | helium* | *qutebrowser*) ;;
+  *) browser="chromium.desktop" ;;
+esac
+
+browser_exec=$(sed -n 's/^Exec=\([^ ]*\).*/\1/p' {~/.local,~/.nix-profile,/usr}/share/applications/"$browser" 2> /dev/null | head -1)
+
+case $browser_exec in
+  qutebrowser)
+    cmd=(
+      "$browser_exec"
+      --target window
+      --basedir "${XDG_DATA_HOME:-$HOME/.local/share}/qutebrowser/webapps/$(url_to_dirname "$1")"
+      --config-py "${XDG_CONFIG_HOME:-$HOME/.config}/qutebrowser/config.py"
+      --set tabs.show multiple
+      --set statusbar.show in-mode
+      --set tabs.tabs_are_windows true
+      "$1"
+      "${@:2}"
+    )
+    ;;
+  *)
+     cmd=(
+      "$browser_exec"
+      --app="$1"
+      "${@:2}"
+    )
+    ;;
+esac
+
+echo "${cmd[@]}"
+
+exec setsid uwsm-app -- "${cmd[@]}"

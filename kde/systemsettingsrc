@@ -1,9 +1,0 @@
-[MainWindow]
-MenuBar=Disabled
-ToolBarsMovable=Disabled
-
-[Notification Messages]
-welcome=false
-
-[systemsettings_sidebar_mode]
-HighlightNonDefaultSettings=true

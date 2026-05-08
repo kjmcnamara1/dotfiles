@@ -35,16 +35,25 @@ if status is-interactive # connected to keyboard
     bind \cc __fish_toggle_comment_commandline
 
     # Environment Variables
-    fish_add_path -g ~/.local/bin
     fish_add_path -g ~/.config/hypr/scripts
+    fish_add_path -g ~/.local/bin
+    fish_add_path -g ~/.cargo/bin
+    fish_add_path -g ~/.pixi/bin
+
+    # Mise
+    mise activate fish | source
 
     # Zoxide
     zoxide init --cmd cd fish | source
 
+    #  Load environment variables from .env.secrets
+    envsource ~/.env.secrets
+
     # Set up fzf key bindings
     fzf --fish | source
-    set -gx FD_OPTIONS "--exclude .git --exclude node_modules"
-    set -gx FZF_DEFAULT_COMMAND "git ls-files --cached --others --exclude-standard | fd $FD_OPTIONS"
+    set -gx FD_OPTIONS "--hidden --follow --exclude .git --exclude node_modules --exclude Games --exclude snow_backup"
+    # set -gx FZF_DEFAULT_COMMAND "git ls-files --cached --others --exclude-standard | fd $FD_OPTIONS"
+    set -gx FZF_DEFAULT_COMMAND "fd --type f $FD_OPTIONS"
     set -gx FZF_DEFAULT_OPTS "--multi --reverse --height 50% --preview='bat --color=always {}' --preview-window='right:hidden' --bind='f2:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up'"
     # set -gx FZF_CTRL_T_COMMAND "fd --type f --type l $FD_OPTIONS"
     # set -gx FZF_CTRL_T_OPTS ""
@@ -76,9 +85,9 @@ if status is-interactive # connected to keyboard
     alias hx=helix # Helix text editor
     alias ff=fastfetch # Fastfetch terminal sysinfo viewer
     alias lg=lazygit
-    alias cz=chezmoi # Chezmoi dotfiles manager
+    alias chz=chezmoi # Chezmoi dotfiles manager
     alias schezmoi='sudo chezmoi --destination / --source ~/.local/share/chezmoi/root --working-tree ~/.local/share/chezmoi/root --config ~/.config/chezmoi/chezmoi.toml'
-    alias scz=schezmoi
+    alias schz=schezmoi
     alias wal='wallust pywal'
     alias lvim='set -lx NVIM_APPNAME nvim-lazyvim; nvim'
     alias l='eza -F --icons --links --group-directories-first --git --git-repos --smart-group --hyperlink' # horizontal grid
@@ -87,7 +96,8 @@ if status is-interactive # connected to keyboard
     alias l.='la -d $(eza -a | grep -e \'^[.]\')' # show only hidden files
     alias ll='la -l' # long list including hidden
     alias llr='ll --time-style=relative' # long list with relative time
-    alias lt='ll --tree --total-size --git-ignore' # long list and recurse into directories as tree
+    alias lt='ll --tree --total-size --git-ignore --ignore-glob=.git' # long list and recurse into directories as tree
+    alias lti='ll --tree --total-size' # [L]ist [T]ree [I]nclude ignored files
     alias ltt='lt --level=2' # default tree list level 2
     alias lttt='lt --level=3' # default tree list level 3
     alias ltttt='lt --level=4' # default tree list level 4
@@ -97,6 +107,8 @@ if status is-interactive # connected to keyboard
     # alias ls='ls -hv --color=auto --group-directories-first' # classify files in colour
     # alias l='/usr/bin/ls -hv --color=auto --group-directories-first' # shorthand plain ls
     alias dc='docker compose'
+    alias cat='bat'
+    alias rg='rg --smart-case'
 
     # Yazi Wrapper
     function y

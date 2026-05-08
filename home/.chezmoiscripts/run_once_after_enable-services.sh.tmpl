@@ -1,0 +1,20 @@
+#! /usr/bin/env bash
+
+# Enable elephant.service if installed
+command -v elephant &>/dev/null && elephant service enable
+
+system_services=(
+  {{ range .services.system -}}
+  {{ . }}
+  {{ end -}}
+)
+
+user_services=(
+  {{ range .services.user -}}
+  {{ . }}
+  {{ end -}}
+)
+
+sudo systemctl enable "${system_services[@]}"
+# BUG: systemctl --user enable doesn't work from archiso
+systemctl --user enable "${user_services[@]}"

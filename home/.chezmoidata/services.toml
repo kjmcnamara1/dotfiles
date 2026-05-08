@@ -1,0 +1,20 @@
+[services]
+  system = [
+    "cups",
+    "avahi-daemon",
+    "udevmon",
+    # "sddm",
+    # "cosmic-greeter",
+    "greetd",
+  ]
+  user = [
+    "pipewire",
+    "wireplumber",
+    "pipewire-pulse",
+    "gnome-keyring-daemon",
+    # "hypridle",
+    "stasis",
+    "udiskie",
+    "swayosd-server",
+    "waybar",
+  ]

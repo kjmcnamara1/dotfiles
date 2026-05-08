@@ -2,15 +2,15 @@
 
 ## Kitty
 
-- [ ] Clean up config directory
+- [x] Clean up config directory
 - [ ] Customize keybinds
-- [ ] [kitty-scrollback.nvim](https://github.com/mikesmithgh/kitty-scrollback.nvim)
-- [ ] [smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim)
+- [x] [kitty-scrollback.nvim](https://github.com/mikesmithgh/kitty-scrollback.nvim)
+- [x] [smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim)
 
 ## Hyprland
 
 - [ ] Screenshot support (grim/slurp/grimblast?)
-- [X] Systemd wants instead of exec-once in hyprland.conf
+- [x] Systemd wants instead of exec-once in hyprland.conf
 - [x] Split hyprland.conf into multiple files?
 - [ ] Move windowrules to separate file
 - [ ] Better keybinds for moving around windows/monitors/workspaces (mimic
@@ -18,12 +18,12 @@
 - [x] Desktop entries for TUIs
 - [ ] Desktop entries for Web Apps
 - [x] Simplify starship prompt
-- [X] Xonsh as main shell?
-- [X] Switch to kitty/ghostty as primary terminal
-  - [X] Pyprland scratchpads
-  - [X] Waybar TUIs
-  - [X] Images in FzfLua in neovim and Yazi
-  - [X] Use neovim as scrollback buffer
+- [x] Xonsh as main shell?
+- [x] Switch to kitty/ghostty as primary terminal
+  - [x] Pyprland scratchpads
+  - [x] Waybar TUIs
+  - [x] Images in FzfLua in neovim and Yazi
+  - [x] Use neovim as scrollback buffer
   - [ ] Keybinds for splits/multiplexing etc.
 
 ### Write scripts
@@ -37,11 +37,11 @@
 ### Launcher
 
 - [x] Walker/elephant? or Rofi
-- [X] Power menu for rofi
+- [x] Power menu for rofi
 - [x] Applications
 - [x] Monitor profiles
 - [x] Keybinds
-- [ ]
+- [ ] Wofi?
 
 ### Monitor configuration
 
@@ -51,7 +51,7 @@ Similar to [hyprmon](https://github.com/erans/hyprmon)
 ## Theming
 
 - [ ] Use matugen instead?
-- [ ] use adw-gtk3-dark theme
+- [x] use adw-gtk3-dark theme
 - [ ] generate ansinord gtk.css files from wallust
   - [ ] ~/.config/gtk-3.0/gtk.css
   - [ ] ~/.config/gtk-4.0/gtk.css
@@ -92,15 +92,14 @@ write scripts for files outside home dir OR use [rootmoi](https://github.com/twp
 use specific `sudo chezmoi` commands for relevant files/directories
 
 - [x] sddm
-- [ ] interception
-- [ ] fstab
-- [ ] nsswitch.conf (printing)
-- [ ] pacman.conf
+- [x] interception
+- [x] fstab
+- [x] nsswitch.conf (printing)
+- [x] pacman.conf
 
 ## Neovim
 
-- [X] Split config into profiles
-  - [X] Base/core for popups (common to all)
-  - [X] VS Code
-  - [X] Full/Neovim
-
+- [x] Split config into profiles
+  - [x] Base/core for popups (common to all)
+  - [x] VS Code
+  - [x] Full/Neovim

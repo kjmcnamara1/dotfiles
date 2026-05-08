@@ -1,0 +1,110 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "helix_mode": true,
+  "git": {
+    "hunk_style": "staged_hollow",
+    "inline_blame": {
+      "show_commit_summary": true,
+      "delay_ms": 300,
+    },
+  },
+  "git_panel": {
+    "tree_view": true,
+    "collapse_untracked_diff": true,
+    "sort_by_path": false,
+    "status_style": "label_color",
+  },
+  "active_pane_modifiers": {
+    "border_size": 3.0,
+    "inactive_opacity": 0.5,
+  },
+  "tabs": {
+    "show_diagnostics": "errors",
+    "file_icons": true,
+    "git_status": true,
+  },
+  "tab_bar": {
+    "show_pinned_tabs_in_separate_row": false,
+    "show_tab_bar_buttons": true,
+    "show_nav_history_buttons": false,
+    "show": true,
+  },
+  "status_bar": {
+    "active_language_button": true,
+  },
+  "project_panel": {
+    "hide_hidden": false,
+    "hide_root": false,
+    "starts_open": false,
+    "button": true,
+  },
+  "title_bar": {
+    "show_menus": false,
+    "show_user_menu": true,
+    "show_onboarding_banner": true,
+    "show_project_items": true,
+    "show_branch_icon": true,
+  },
+  "search": {
+    "center_on_match": true,
+  },
+  "use_smartcase_search": true,
+  "diagnostics": {
+    "inline": {
+      "enabled": false,
+    },
+  },
+  "prettier": {
+    "allowed": true,
+  },
+  "colorize_brackets": true,
+  "extend_comment_on_newline": false,
+  "inlay_hints": {
+    "show_background": true,
+    "enabled": false,
+    "toggle_on_modifiers_press": {
+      "control": true,
+      "shift": true,
+    },
+  },
+  "show_whitespaces": "trailing",
+  "vim": {
+    "cursor_shape": {
+      "visual": "hollow",
+    },
+    "use_smartcase_find": true,
+    "use_system_clipboard": "on_yank",
+    "toggle_relative_line_numbers": true,
+  },
+  "indent_guides": {
+    "coloring": "indent_aware",
+    "active_line_width": 5,
+  },
+  "gutter": {
+    "min_line_number_digits": 1,
+  },
+  "relative_line_numbers": "enabled",
+  "show_signature_help_after_edits": true,
+  "auto_signature_help": true,
+  "vertical_scroll_margin": 5.0,
+  "sticky_scroll": {
+    "enabled": true,
+  },
+  "autoscroll_on_clicks": true,
+  "which_key": {
+    "delay_ms": 300,
+    "enabled": true,
+  },
+  "vim_mode": false,
+  "base_keymap": "VSCode",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "ui_font_size": 16,
+  "buffer_font_size": 16.0,
+}

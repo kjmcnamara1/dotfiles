@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+case "$XDG_CURRENT_DESKTOP" in
+  "Hyprland") 
+    active_monitor=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .name')
+    ;;
+  "sway") 
+    active_monitor=swaymsg
+    ;;
+  "niri") 
+    active_monitor=$(niri msg -j focused-output | jq -r '.name')
+    ;;
+  "mango")
+    # can't get active_monitor
+    swayosd-client "$@"
+    exit 0
+    ;;
+  *)
+    echo "No match for Desktop: $XDG_CURRENT_DESKTOP"
+    exit 1
+esac
+
+# echo "$active_monitor"
+
+swayosd-client --monitor "$active_monitor" "$@"

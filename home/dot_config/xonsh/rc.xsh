@@ -1,8 +1,10 @@
+import os
 import sys
 import logging
 import warnings
 import platform
 import tempfile
+from dotenv import dotenv_values
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -16,7 +18,8 @@ xontrib load abbrevs
 xontrib load back2dir
 xontrib load prompt_starship
 xontrib load fish_completer
-xontrib load hist_navigator  # keymaps are broken (a-left, a-right, a-up)
+# keymaps are broken (a-left, a-right, a-up)
+xontrib load hist_navigator
 xontrib load term_integration
 xontrib load fzf-widgets
 # xontrib load kitty # allow printing mpl plots in terminal
@@ -39,13 +42,21 @@ $EDITOR = 'nvim'
 $MANROFFOPT = '-c'
 $MANPAGER = 'sh -c "col -bx | bat -l man -p"'
 # $MANPAGER = 'nvim +Man!'
-$PATH.prepend('~/.config/hypr/scripts')  # Hyprland scripts
-$PATH.prepend('~/.local/bin')  # User binaries
 
-# Change colors of default completion menu
-$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu'] = "bg:#2E3440 #E5E9F0"
-$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu.Completion'] = "bg:#2e3440 #E5E9F0"
-$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu.Completion.Current'] = "bg:#EBCB8B #434C5E" # These colors are inverted
+def xonsh_add_path(path: str):
+    expanded_path = str(Path(os.path.expandvars(path)).expanduser().resolve())
+    if expanded_path in $PATH:
+        return
+    $PATH.prepend(path)
+    print(f"Added {path} to $PATH")
+
+xonsh_add_path('~/.config/hypr/scripts')  # Hyprland scripts
+xonsh_add_path('~/.local/bin')  # User binaries
+xonsh_add_path('~/.cargo/bin')  # Rust binaries
+xonsh_add_path('~/.pixi/bin')   # Pixi binaries
+
+# Mise
+execx($(mise activate xonsh))
 
 # Allow python to import modules from cwd
 sys.path.insert(0, '')
@@ -59,14 +70,21 @@ exec($(carapace _carapace))
 execx($(zoxide init --cmd cd xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
 
 # TODO: set up fzf integration
+$FD_OPTIONS = "--hidden --follow --exclude .git --exclude node_modules --exclude Games --exclude snow_backup"
+$FZF_DEFAULT_COMMAND = "fd --type f " + $FD_OPTIONS
+$FZF_DEFAULT_OPTS = "--multi --reverse --height 50% --preview='bat --color=always {}' --preview-window='right:hidden' --bind='f2:toggle-preview,ctrl-d:half-page-down,ctrl-u:half-page-up'"
 $fzf_history_binding = "c-r"
 $fzf_file_binding = "c-t"
 $fzf_dir_binding = "c-g"
 
+#  Load environment variables from .env.secrets
+for k, v in dotenv_values(dotenv_path=p"~/.env.secrets").items():
+    ${k} = v
+
 # Abbreviations
-# aliases['...'] = 'cd ../..'
-# aliases['....'] = 'cd ../../..'
-# aliases['.....'] = 'cd ../../../..'
+## aliases['...'] = 'cd ../..'
+## aliases['....'] = 'cd ../../..'
+## aliases['.....'] = 'cd ../../../..'
 
 # Aliases
 aliases['xuv'] = '$UV_PYTHON=@(__xonsh__.imp.sys.executable) uv pip @($args)'
@@ -79,9 +97,9 @@ aliases['ipy'] = 'ipython'  # Interactive Python Shell
 aliases['hx'] = 'helix'  # Helix text editor
 aliases['ff'] = 'fastfetch'  # Fastfetch terminal sysinfo viewer
 aliases['lg'] = 'lazygit'  # Lazygit
-aliases['cz'] = 'chezmoi'  # Chezmoi dotfiles manager
+aliases['chz'] = 'chezmoi'  # Chezmoi dotfiles manager
 aliases['schezmoi'] = 'sudo chezmoi --destination / --source ~/.local/share/chezmoi/root --working-tree ~/.local/share/chezmoi/root --config ~/.config/chezmoi/chezmoi.toml'
-aliases['scz'] = 'schezmoi'
+aliases['schz'] = 'schezmoi'
 aliases['lvim'] = '''![$NVIM_APPNAME='nvim-lazyvim' nvim]'''  # LazyVim
 aliases['l'] = 'eza -F --icons --links --group-directories-first --git --git-repos --smart-group --hyperlink'  # horizontal grid
 aliases['ls'] = 'l -1'  # single column list
@@ -90,7 +108,8 @@ aliases['l.'] = r"la -d @$(eza -a | grep -e '^[.]')"  # show only hidden files
 aliases['ll'] = 'la -l'  # long list including hidden
 aliases['llr'] = 'll --time-style=relative'  # long list with relative time
 # long list and recurse into directories as tree
-aliases['lt'] = 'll --tree --total-size --git-ignore'
+aliases['lt'] = 'll --tree --total-size --git-ignore --ignore-glob=.git'
+aliases['lti'] = 'll --tree --total-size' # [L]ist [T]ree [I]nclude ignored files
 aliases['ltt'] = 'lt --level=2'  # default tree list level 2
 aliases['lttt'] = 'lt --level=3'  # default tree list level 3
 aliases['ltttt'] = 'lt --level=4'  # default tree list level 4
@@ -100,10 +119,10 @@ aliases['du'] = 'du -h'  # human readable disk usage
 # aliases['ls'] = 'ls -hv --color=auto --group-directories-first' # classify files in colour
 # aliases['l'] = '/usr/bin/ls -hv --color=auto --group-directories-first' # shorthand plain ls
 aliases['dc'] = 'docker compose'  # Docker compose
+aliases['cat'] = 'bat'
+aliases['rg'] = 'rg --smart-case'
 
 # Yazi wrapper
-
-
 @aliases.register
 def _y(args):
     with tempfile.NamedTemporaryFile(prefix="yazi-cwd.") as tmp:
@@ -112,8 +131,15 @@ def _y(args):
         if cwd != '' and cwd != $PWD:
             cd @(cwd)
 
+# Automatically activate python virtual environment when entering a directory
 @events.autovox_policy
-def dotvenv_policy(path,**_) -> "str|Path|None":
+def dotvenv_policy(path, **_) -> "str|Path|None":
     venv = path / ".venv"
     if venv.exists():
       return venv
+
+# Change colors of default completion menu
+$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu'] = "bg:#2E3440 #E5E9F0"
+$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu.Completion'] = "bg:#2E3440 #E5E9F0"
+$XONSH_STYLE_OVERRIDES['Token.PTK.CompletionMenu.Completion.Current'] = "bg:#EBCB8B #434C5E" # These colors are inverted
+

@@ -1,7 +1,0 @@
-{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.hostname "angel") -}}
-#! /usr/bin/env bash
-
-sudo systemctl mask tpm2.target
-sudo timedatectl set-local-rtc 1
-
-{{ end -}}
