@@ -64,11 +64,13 @@
   run  = 'faster-piper -- sqlite3 "$1" ".schema --indent"'
 
 [[plugin.prepend_fetchers]]
-  id  = "git"
-  url = "*"
-  run = "git"
+  id    = "git"
+  url   = "*"
+  run   = "git"
+  group = "git"
 
 [[plugin.prepend_fetchers]]
-  id  = "git"
-  url = "*/"
-  run = "git"
+  id    = "git"
+  url   = "*/"
+  run   = "git"
+  group = "git"
