@@ -56,7 +56,8 @@ xonsh_add_path('~/.cargo/bin')  # Rust binaries
 xonsh_add_path('~/.pixi/bin')   # Pixi binaries
 
 # Mise
-execx($(mise activate xonsh))
+# execx($(mise activate xonsh))
+import mise
 
 # Allow python to import modules from cwd
 sys.path.insert(0, '')
