@@ -71,23 +71,7 @@ cursor {
 }
 
 // MONITORS
-output "DP-1" {
-    scale 1.5
-    position x=0 y=1080
-    focus-at-startup
-}
-output "DP-2" {
-    // mode "2560x1440"
-    scale 1.5
-    position x=2560 y=1080
-    focus-at-startup
-}
-output "DP-3" {
-    position x=640 y=0
-}
-output "HDMI-A-1" {
-    position x=2560 y=0
-}
+include "outputs.kdl"
 
 // LAYOUT
 // https://yalter.github.io/niri/Configuration:-Layout
