@@ -23,7 +23,7 @@ encryption = "age"
 {{- $fonts := list "jetbrains-mono-nerd" "firacode-nerd" "iosevka-nerd" }}
 {{- $shells := list "bash" "zsh" "fish" "xonsh" "nushell" }}
 {{- $displayManagers := list "agetty" "sddm" "greetd" }}
-{{- $sessions := list "hyprland" "niri" }}
+{{- $sessions := list "hyprland" "niri" "none" }}
 
 {{- $font := promptChoice "Choose a font" $fonts "jetbrains-mono-nerd" }}
 {{- $shell := promptChoice "Choose a shell" $shells "fish" }}
