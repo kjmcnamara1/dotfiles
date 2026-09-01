@@ -34,6 +34,11 @@
   desc = "Go NAS"
 
 [[mgr.prepend_keymap]]
+  on   = ["g", "m"]
+  run  = "cd /run/media/$USER"
+  desc = "Go Mounted Media"
+
+[[mgr.prepend_keymap]]
   on   = "<a-m>"
   run  = "plugin toggle-pane max-preview"
   desc = "Maximize or restore the preview pane"
