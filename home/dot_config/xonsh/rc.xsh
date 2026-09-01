@@ -43,12 +43,14 @@ $MANROFFOPT = '-c'
 $MANPAGER = 'sh -c "col -bx | bat -l man -p"'
 # $MANPAGER = 'nvim +Man!'
 
+$QML2_IMPORT_PATH = '/usr/lib/qt6/qml'
+
 def xonsh_add_path(path: str):
     expanded_path = str(Path(os.path.expandvars(path)).expanduser().resolve())
     if expanded_path in $PATH:
         return
     $PATH.prepend(path)
-    print(f"Added {path} to $PATH")
+    # print(f"Added {path} to $PATH")
 
 xonsh_add_path('~/.config/hypr/scripts')  # Hyprland scripts
 xonsh_add_path('~/.local/bin')  # User binaries
