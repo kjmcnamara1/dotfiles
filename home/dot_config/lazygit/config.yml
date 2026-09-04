@@ -2,17 +2,15 @@
 
 quitOnTopLevelReturn: true
 disableStartupPopups: true
-
 git:
   # branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --"
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --dark --paging=never # BUG: Doesn't work on windows (https://github.com/jesseduffield/lazygit/issues/1453)
+      command: delta --dark --paging=never # BUG: Doesn't work on windows (https://github.com/jesseduffield/lazygit/issues/1453)
       # colorArg: never
       # pager: ydiff -p cat -s --wrap --width={{columnWidth}}
   # log:
   #   showWholeGraph: true
-
 gui:
   # splitDiff: always
   sidePanelWidth: .2
@@ -21,18 +19,17 @@ gui:
   timeFormat: 02 Jan 2006
   shortTimeFormat: 03:04
   # showFileTree: false
-  nerdFontsVersion: 3
+  nerdFontsVersion: "3"
   screenMode: normal # half | full
   filterMode: fuzzy
   spinner:
     frames:
-      - ''
-      - ''
-      - ''
-      - ''
-      - ''
-      - ''
-
+      - ""
+      - ""
+      - ""
+      - ""
+      - ""
+      - ""
 keybinding:
   universal:
     gotoTop: "g"
