@@ -13,7 +13,7 @@ git:
   #   showWholeGraph: true
 gui:
   # splitDiff: always
-  sidePanelWidth: .2
+  # sidePanelWidth: .2
   expandFocusedSidePanel: true
   expandedSidePanelWeight: 4
   timeFormat: 02 Jan 2006
