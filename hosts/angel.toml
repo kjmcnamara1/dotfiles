@@ -1,0 +1,23 @@
+description = "Home Desktop"
+
+[config]
+  package_manager  = "pacman"
+  aur_helper       = "yay"
+  editor           = "nvim"
+  dotfiles_manager = "chezmoi"
+
+[modules]
+  required = ["system", "niri", "dms"]
+  excluded = []
+
+[packages]
+  required = []
+  excluded = []
+
+[hooks]
+  pre      = "hooks/angel-pre.sh"
+  post     = "hooks/angel-post.sh"
+  behavior = "ask"
+
+[files]
+  dot_gitconfig = "~/.gitconfig"

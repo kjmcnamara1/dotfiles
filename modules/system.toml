@@ -1,0 +1,21 @@
+description = "System"
+
+[modules]
+  required = [
+    "disk",
+    "boot",
+    "arch",
+    "locale",
+    "network",
+    "bluetooth",
+    "pipewire",
+    "power",
+    "printing",
+    "git",
+    "backup",
+    "fish",
+    "ssh",
+  ]
+
+[packages]
+  required = ["wget", "curl"]
