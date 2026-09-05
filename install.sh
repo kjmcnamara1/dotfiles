@@ -3,13 +3,13 @@
 # print each command before it is executed, expanding variables
 set -x
 
-read -rp "Hostname: " hostname
+read -rp "Hostname: " host
 read -rps "Root Password: " root_password
-read -rp "Admin Username: " username
-read -rps "Admin User Password: " password
+read -rp "Admin Username: " admin_username
+read -rps "Admin User Password: " admin_password
 
 dotfiles="/tmp/dotfiles"
-config="$dotfiles/arch/$hostname.json"
+config="$dotfiles/arch/$host.json"
 users="$dotfiles/arch/users.json"
 archmount="/mnt"
 
@@ -45,7 +45,7 @@ archinstall --config "$config" --creds "$users"
 cp -r "$dotfiles/arch/etc" "$archmount"
 
 # [x] Init and apply dotfiles
-arch-chroot "$archmount" bash -c "sudo -H -u $username chezmoi init --branch $hostname --apply kjmcnamara1"
+arch-chroot "$archmount" bash -c "sudo -H -u $admin_username chezmoi init --branch $host --apply kjmcnamara1"
 
 # read -rp "Press enter to continue..."
 
