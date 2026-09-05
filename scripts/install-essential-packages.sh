@@ -14,10 +14,12 @@ pacstrap -K "$archmount" \
   linux \
   linux-firmware \
   btrfs-progs \
+  plymouth \
   man-db \
   man-pages \
   git \
   sudo \
   wget \
   curl \
-  chezmoi
+  chezmoi \
+  nfs-utils

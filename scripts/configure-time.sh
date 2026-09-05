@@ -40,16 +40,11 @@ detect_timezone() {
 }
 
 timezone=$(detect_timezone) || timezone=''
-if [ -n "$timezone" ]; then
-  echo "Detected timezone from public IP: $timezone"
+if [ -z "$timezone" ]; then
+  timezone=America/New_York
+  echo "Could not determine timezone from the public IP; using $timezone." >&2
 else
-  echo "Could not determine a valid timezone from the current public IP." >&2
-  while ! valid_timezone "$timezone"; do
-    read -rp "Timezone (for example, America/New_York): " timezone || return 1
-    if ! valid_timezone "$timezone"; then
-      echo "'$timezone' is not a valid timezone in the target system." >&2
-    fi
-  done
+  echo "Detected timezone from public IP: $timezone"
 fi
 
 # A symlink is the normal Arch Linux timezone configuration. systemd-timesyncd
