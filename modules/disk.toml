@@ -1,0 +1,7 @@
+description = "normally covered by archinstall disk config"
+
+[packages]
+  required = ["btrfs-progs", "ntfs-3g", "nfs-utils", "snapper", "snap-pac"]
+
+[hooks]
+  pre = "scripts/partition-disk.sh"

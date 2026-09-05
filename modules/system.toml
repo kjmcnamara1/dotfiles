@@ -1,9 +1,7 @@
-description = "System"
+description = "what would normally be covered by archinstall config"
 
 [modules]
   required = [
-    "disk",
-    "boot",
     "arch",
     "locale",
     "network",

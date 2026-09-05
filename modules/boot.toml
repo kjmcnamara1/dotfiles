@@ -1,0 +1,8 @@
+description = "Bootloader"
+
+[packages]
+  required = ["plymouth"]
+  optional = ["plymouth-theme-arch-charge-big"]
+
+[hooks]
+  post = "run_once_before_02-boot.tmpl"

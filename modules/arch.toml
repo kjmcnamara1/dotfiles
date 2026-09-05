@@ -1,4 +1,7 @@
+description = "Arch Linux"
 
+[modules]
+  required = ["disk", "boot"]
 
 [packages]
   required = ["base", "base-devel", "pacman-contrib"]
