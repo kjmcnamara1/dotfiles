@@ -55,7 +55,7 @@ source scripts/configure-users.sh
 # cp -r "$dotfiles/arch/etc" "$archmount"
 
 # [x] Init and apply dotfiles
-arch-chroot "$archmount" bash -c "sudo -H -u $admin_username chezmoi init --branch dots --apply kjmcnamara1"
+# arch-chroot "$archmount" bash -c "sudo -H -u $admin_username chezmoi init --branch dots --apply kjmcnamara1"
 
 # read -rp "Press enter to continue..."
 
