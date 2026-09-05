@@ -4,9 +4,9 @@
 set -x
 
 read -rp "Hostname: " host
-read -rps "Root Password: " root_password
+read -srp "Root Password: " root_password
 read -rp "Admin Username: " admin_username
-read -rps "Admin User Password: " admin_password
+read -srp "Admin User Password: " admin_password
 
 dotfiles="/tmp/dotfiles"
 config="$dotfiles/arch/$host.json"
