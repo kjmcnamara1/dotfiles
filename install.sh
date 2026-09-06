@@ -94,7 +94,7 @@ echo "Installing base packages..."
 pacstrap /mnt base base-devel pacman-contrib linux linux-firmware \
   btrfs-progs plymouth man-db man-pages git wget curl chezmoi \
   networkmanager iwd nfs-utils sudo \
-  limine snapper snap-pac zram-generator
+  amd-ucode limine snapper snap-pac zram-generator
 
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -169,6 +169,8 @@ timeout: 5
     module_path: boot():/amd-ucode.img
     initrd_path: boot():/initramfs-linux.img
 LIMINECONF
+
+efibootmgr --create --disk $TARGET_DRIVE --part 1 --label "Limine Boot Manager" --loader '\EFI\BOOT\BOOTX64.EFI' --unicode
 
 # --- Configure Chaotic-AUR Repo & Install yay + limine-snapper-sync ---
 echo "Setting up Chaotic-AUR repository..."
