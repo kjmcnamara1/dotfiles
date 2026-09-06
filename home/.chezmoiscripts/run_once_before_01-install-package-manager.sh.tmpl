@@ -13,7 +13,7 @@ sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.ta
 sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
 
 if ! grep -q "\[chaotic-aur\]" /etc/pacman.conf; then
-  cat << CHAOTIC >> /etc/pacman.conf
+  cat << CHAOTIC sudo tee -a /etc/pacman.conf
 
 [chaotic-aur]
 Include = /etc/pacman.d/chaotic-mirrorlist
