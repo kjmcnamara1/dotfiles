@@ -147,16 +147,16 @@ echo "Setting up Limine bootloader..."
 mkdir -p /boot/EFI/BOOT
 cp /usr/share/limine/BOOTX64.EFI /boot/EFI/BOOT/BOOTX64.EFI
 
-ROOT_UUID=\$(blkid -s UUID -o value $ROOT_PART)
+ROOT_UUID=$(blkid -s UUID -o value "$ROOT_PART")
 
 cat <<LIMINECONF > /boot/limine.conf
 timeout: 5
 
 /Arch Linux
     protocol: linux
-    kernel_path: boot:///vmlinuz-linux
-    cmdline: root=UUID=\${ROOT_UUID} rootflags=subvol=@ rw quiet splash
-    initrd_path: boot:///initramfs-linux.img
+    kernel_path: boot://1/vmlinuz-linux
+    cmdline: root=UUID=${ROOT_UUID} rootflags=subvol=@ rw quiet splash
+    initrd_path: boot://1/initramfs-linux.img
 LIMINECONF
 
 # --- Configure Chaotic-AUR Repo & Install yay + limine-snapper-sync ---
