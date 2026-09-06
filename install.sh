@@ -15,7 +15,7 @@ HOSTNAME=$(gum input --placeholder "Hostname" \
 ROOT_PASS=$(gum input --password \
   --placeholder "Root Password" --header "Enter ROOT password:")
 ADMIN_USER=$(gum input --placeholder "Admin Username" \
-  --value "admin" --header "Enter ADMIN username:")
+  --value "kjm" --header "Enter ADMIN username:")
 ADMIN_PASS=$(gum input --password \
   --placeholder "Admin Password" --header "Enter ADMIN password:")
 
