@@ -7,7 +7,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 gum style --foreground 212 --border double --margin "1" --padding "1" \
-  "Arch Linux Btrfs + Snapper + systemd-boot Snapshots Installer"
+  "Arch Linux Btrfs + Chaotic-AUR + Snapper + Limine Installer"
 
 # --- User Prompts via Gum ---
 HOSTNAME=$(gum input --placeholder "Hostname" \
@@ -21,27 +21,24 @@ ADMIN_PASS=$(gum input --password \
 
 # Drive selection
 DRIVES=$(lsblk -dno NAME,SIZE,MODEL | grep -v "loop" | grep -v "sr")
-SELECTED_DRIVE_LINE=$(echo "$DRIVES" \
-                                     | gum choose --header "Select target drive to ERASE and install to:")
+SELECTED_DRIVE_LINE=$(echo "$DRIVES" | gum choose --header "Select target drive to ERASE and install to:")
 TARGET_DRIVE="/dev/$(echo "$SELECTED_DRIVE_LINE" | awk '{print $1}')"
 
-gum confirm "WARNING: ALL DATA ON $TARGET_DRIVE WILL BE ERASED! Proceed?"
+gum confirm "WARNING: ALL DATA ON $TARGET_DRIVE WILL BE ERASED! Proceed?" || exit 1
 
- # --- Ensure Drive & Mount Targets are Unmounted ---
+# --- Ensure Drive & Mount Targets are Unmounted ---
 echo "Ensuring target drive and mount points are clean..."
 if mountpoint -q /mnt; then
   umount -R /mnt || true
 fi
 
-# Unmount any existing partitions on target drive
 for part in $(lsblk -lno NAME "$TARGET_DRIVE" | tail -n +2); do
   if mountpoint -q "/dev/$part"; then
     umount -l "/dev/$part" 2> /dev/null || true
   fi
 done
 
-# Wipe active swap on target drive if present
-swapoff -a 2> /dev/null || true                                                                        || exit 1
+swapoff -a 2> /dev/null || true
 
 # --- Timezone Detection ---
 echo "Detecting timezone..."
@@ -66,6 +63,9 @@ else
   BOOT_PART="${TARGET_DRIVE}1"
   ROOT_PART="${TARGET_DRIVE}2"
 fi
+
+partprobe "$TARGET_DRIVE" || true
+sleep 1
 
 mkfs.vfat -F 32 "$BOOT_PART"
 mkfs.btrfs -f "$ROOT_PART"
@@ -94,14 +94,13 @@ echo "Installing base packages..."
 pacstrap /mnt base base-devel pacman-contrib linux linux-firmware \
   btrfs-progs plymouth man-db man-pages git wget curl chezmoi \
   networkmanager iwd nfs-utils sudo \
-  snapper snap-pac
+  limine snapper snap-pac
 
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
-# sed -i 's/\/boot\s\+vfat\s\+\(\S\+\)/\/boot vfat \1,fmask=0077,dmask=0077/' /mnt/etc/fstab
-echo "\n# NAS\n192.168.0.10:/mnt/md1 /mnt/NAS nfs defaults,nofail 0 0\n" >> /mnt/etc/fstab
+echo -e "\n# NAS\n192.168.0.10:/mnt/md1 /mnt/NAS nfs defaults,nofail 0 0\n" >> /mnt/etc/fstab
 
-# Ensure EFI variable access for bootctl inside chroot
+# Ensure EFI variable access
 mount -t efivarfs efivarfs /mnt/sys/firmware/efi/efivars 2> /dev/null || true
 
 # --- Chroot Configuration ---
@@ -141,22 +140,41 @@ NMMCONFIG
 sed -i 's/^HOOKS=.*/HOOKS=(base systemd autodetect modconf kms block btrfs filesystems keyboard fsck plymouth)/' /etc/mkinitcpio.conf
 plymouth-set-default-theme -R bgrt
 
-# systemd-boot & UKI Setup
-bootctl install --esp-path=/boot
-
-mkdir -p /etc/cmdline.d
-echo "root=UUID=\$(blkid -s UUID -o value $ROOT_PART) rootflags=subvol=@ rw quiet splash" > /etc/cmdline.d/root.conf
-
-cat <<UKICONF > /etc/mkinitcpio.d/linux.preset
-ALL_config="/etc/mkinitcpio.conf"
-ALL_kver="/boot/vmlinuz-linux"
-
-PRESETS=('default')
-
-default_uki="/boot/EFI/Linux/arch-linux.efi"
-UKICONF
-
 mkinitcpio -P
+
+# --- Configure Limine Bootloader ---
+echo "Setting up Limine bootloader..."
+mkdir -p /boot/EFI/BOOT
+cp /usr/share/limine/BOOTX64.EFI /boot/EFI/BOOT/BOOTX64.EFI
+
+ROOT_UUID=\$(blkid -s UUID -o value $ROOT_PART)
+
+cat <<LIMINECONF > /boot/limine.conf
+timeout: 5
+
+/Arch Linux
+    protocol: linux
+    kernel_path: boot:///vmlinuz-linux
+    cmdline: root=UUID=\${ROOT_UUID} rootflags=subvol=@ rw quiet splash
+    initrd_path: boot:///initramfs-linux.img
+LIMINECONF
+
+# --- Configure Chaotic-AUR Repo & Install yay + limine-snapper-sync ---
+echo "Setting up Chaotic-AUR repository..."
+pacman-key --recv-key 3056513887B78AEB --keyserver hkps://keyserver.ubuntu.com
+pacman-key --lsign-key 3056513887B78AEB
+
+pacman -U --noconfirm \
+  'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' \
+  'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+
+cat <<CHAOTIC >> /etc/pacman.conf
+
+[chaotic-aur]
+Include = /etc/pacman.d/chaotic-mirrorlist
+CHAOTIC
+
+pacman -Sy --noconfirm yay limine-snapper-sync
 
 # --- Snapper Configuration ---
 umount /.snapshots
@@ -182,16 +200,8 @@ sed -i 's/^TIMELINE_LIMIT_YEARLY=.*/TIMELINE_LIMIT_YEARLY="0"/' /etc/snapper/con
 systemctl enable snapper-timeline.timer
 systemctl enable snapper-cleanup.timer
 
-# --- Build snapper-in-boot from AUR for systemd-boot Integration ---
-sudo -u "$ADMIN_USER" bash -c "
-  cd /tmp
-  git clone https://aur.archlinux.org/snapper-in-boot.git
-  cd snapper-in-boot
-  makepkg -si --noconfirm
-"
-
-# Enable automatic boot loader entry generation on snapshot creation
-systemctl enable snapper-in-boot.path
+# --- Enable Limine Snapper Sync ---
+systemctl enable limine-snapper-sync.service
 EOF
 
 # --- Copy NetworkManager Connections ---
@@ -203,4 +213,4 @@ fi
 
 # Cleanup and Finish
 umount -R /mnt
-gum style --foreground 82 "Installation Complete! Boot entries for Snapper snapshots are ready in systemd-boot."
+gum style --foreground 82 "Installation Complete! Limine bootloader configured with automatic Snapper snapshot syncing."
