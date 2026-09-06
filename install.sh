@@ -61,6 +61,7 @@ btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@home
 btrfs subvolume create /mnt/@var
 btrfs subvolume create /mnt/@snapshots
+btrfs subvolume create /mnt/@games
 umount /mnt
 
 # Mount Subvolumes
@@ -70,6 +71,7 @@ mkdir -p /mnt/{boot,home,var,.snapshots,mnt/NAS}
 mount -o "$MOUNT_OPTS,subvol=@home" "$ROOT_PART" /mnt/home
 mount -o "$MOUNT_OPTS,subvol=@var" "$ROOT_PART" /mnt/var
 mount -o "$MOUNT_OPTS,subvol=@snapshots" "$ROOT_PART" /mnt/.snapshots
+mount -o "$MOUNT_OPTS,subvol=@games" "$ROOT_PART" /mnt/games
 mount "$BOOT_PART" /mnt/boot
 
 # --- Pacstrap ---
@@ -81,7 +83,7 @@ pacstrap /mnt base base-devel pacman-contrib linux linux-firmware \
 
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
-echo "192.168.0.10:/mnt/md1 /mnt/NAS nfs defaults,nofail 0 0" >> /mnt/etc/fstab
+echo "\n# NAS\n192.168.0.10:/mnt/md1 /mnt/NAS nfs defaults,nofail 0 0\n" >> /mnt/etc/fstab
 
 # --- Chroot Configuration ---
 arch-chroot /mnt /bin/bash -e << EOF
