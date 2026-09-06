@@ -25,8 +25,23 @@ SELECTED_DRIVE_LINE=$(echo "$DRIVES" \
                                      | gum choose --header "Select target drive to ERASE and install to:")
 TARGET_DRIVE="/dev/$(echo "$SELECTED_DRIVE_LINE" | awk '{print $1}')"
 
-gum confirm "WARNING: ALL DATA ON $TARGET_DRIVE WILL BE ERASED! Proceed?" \
-                                                                          || exit 1
+gum confirm "WARNING: ALL DATA ON $TARGET_DRIVE WILL BE ERASED! Proceed?"
+
+ # --- Ensure Drive & Mount Targets are Unmounted ---
+echo "Ensuring target drive and mount points are clean..."
+if mountpoint -q /mnt; then
+  umount -R /mnt || true
+fi
+
+# Unmount any existing partitions on target drive
+for part in $(lsblk -lno NAME "$TARGET_DRIVE" | tail -n +2); do
+  if mountpoint -q "/dev/$part"; then
+    umount -l "/dev/$part" 2> /dev/null || true
+  fi
+done
+
+# Wipe active swap on target drive if present
+swapoff -a 2> /dev/null || true                                                                        || exit 1
 
 # --- Timezone Detection ---
 echo "Detecting timezone..."
@@ -67,7 +82,7 @@ umount /mnt
 # Mount Subvolumes
 MOUNT_OPTS="noatime,compress=zstd,space_cache=v2"
 mount -o "$MOUNT_OPTS,subvol=@" "$ROOT_PART" /mnt
-mkdir -p /mnt/{boot,home,var,.snapshots,mnt/NAS}
+mkdir -p /mnt/{boot,home,var,.snapshots,games,mnt/NAS}
 mount -o "$MOUNT_OPTS,subvol=@home" "$ROOT_PART" /mnt/home
 mount -o "$MOUNT_OPTS,subvol=@var" "$ROOT_PART" /mnt/var
 mount -o "$MOUNT_OPTS,subvol=@snapshots" "$ROOT_PART" /mnt/.snapshots
