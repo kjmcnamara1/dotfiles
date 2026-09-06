@@ -11,7 +11,7 @@ gum style --foreground 212 --border double --margin "1" --padding "1" \
 
 # --- User Prompts via Gum ---
 HOSTNAME=$(gum input --placeholder "Hostname" \
-  --value "archlinux" --header "Enter HostNAME:")
+  --value "archlinux" --header "Enter Hostname:")
 ROOT_PASS=$(gum input --password \
   --placeholder "Root Password" --header "Enter ROOT password:")
 ADMIN_USER=$(gum input --placeholder "Admin Username" \
