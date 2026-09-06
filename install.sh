@@ -87,18 +87,22 @@ mount -o "$MOUNT_OPTS,subvol=@home" "$ROOT_PART" /mnt/home
 mount -o "$MOUNT_OPTS,subvol=@var" "$ROOT_PART" /mnt/var
 mount -o "$MOUNT_OPTS,subvol=@snapshots" "$ROOT_PART" /mnt/.snapshots
 mount -o "$MOUNT_OPTS,subvol=@games" "$ROOT_PART" /mnt/games
-mount "$BOOT_PART" /mnt/boot
+mount -o fmask=0077,dmask=0077 "$BOOT_PART" /mnt/boot
 
 # --- Pacstrap ---
 echo "Installing base packages..."
 pacstrap /mnt base base-devel pacman-contrib linux linux-firmware \
   btrfs-progs plymouth man-db man-pages git wget curl chezmoi \
-  networkmanager iwd nfs-utils sudo systemd-ukify \
+  networkmanager iwd nfs-utils sudo \
   snapper snap-pac
 
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
+# sed -i 's/\/boot\s\+vfat\s\+\(\S\+\)/\/boot vfat \1,fmask=0077,dmask=0077/' /mnt/etc/fstab
 echo "\n# NAS\n192.168.0.10:/mnt/md1 /mnt/NAS nfs defaults,nofail 0 0\n" >> /mnt/etc/fstab
+
+# Ensure EFI variable access for bootctl inside chroot
+mount -t efivarfs efivarfs /mnt/sys/firmware/efi/efivars 2> /dev/null || true
 
 # --- Chroot Configuration ---
 arch-chroot /mnt /bin/bash -e << EOF
@@ -122,7 +126,8 @@ useradd -m -G wheel,input,video,scanner -s /bin/bash "$ADMIN_USER"
 echo "$ADMIN_USER:$ADMIN_PASS" | chpasswd
 
 # Sudo privileges
-echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/wheel
+echo "$ADMIN_USER ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/00_$ADMIN_USER
+chmod 0440 /etc/sudoers.d/00_$ADMIN_USER
 
 # Network Configuration
 systemctl enable NetworkManager
@@ -137,17 +142,17 @@ sed -i 's/^HOOKS=.*/HOOKS=(base systemd autodetect modconf kms block btrfs files
 plymouth-set-default-theme -R bgrt
 
 # systemd-boot & UKI Setup
-bootctl install
+bootctl install --esp-path=/boot
 
 mkdir -p /etc/cmdline.d
 echo "root=UUID=\$(blkid -s UUID -o value $ROOT_PART) rootflags=subvol=@ rw quiet splash" > /etc/cmdline.d/root.conf
 
 cat <<UKICONF > /etc/mkinitcpio.d/linux.preset
 ALL_config="/etc/mkinitcpio.conf"
-ALL_kver="/vmlinuz-linux"
+ALL_kver="/boot/vmlinuz-linux"
 
 PRESETS=('default')
-default_image="/boot/initramfs-linux.img"
+
 default_uki="/boot/EFI/Linux/arch-linux.efi"
 UKICONF
 
