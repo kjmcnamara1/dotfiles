@@ -94,7 +94,7 @@ echo "Installing base packages..."
 pacstrap /mnt base base-devel pacman-contrib linux linux-firmware \
   btrfs-progs plymouth man-db man-pages git wget curl chezmoi \
   networkmanager iwd nfs-utils sudo \
-  limine snapper snap-pac
+  limine snapper snap-pac zram-generator
 
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -142,6 +142,16 @@ plymouth-set-default-theme -R bgrt
 
 mkinitcpio -P
 
+# --- Configure zram with zstd ---
+echo "Configuring swap on zram with zstd..."
+cat <<ZRAMCONF > /etc/systemd/zram-generator.conf
+[zram0]
+zram-size = ram / 2
+compression-algorithm = zstd
+swap-priority = 100
+fs-type = swap
+ZRAMCONF
+
 # --- Configure Limine Bootloader ---
 echo "Setting up Limine bootloader..."
 mkdir -p /boot/EFI/BOOT
@@ -154,9 +164,10 @@ timeout: 5
 
 /Arch Linux
     protocol: linux
-    kernel_path: boot://1/vmlinuz-linux
-    cmdline: root=UUID=${ROOT_UUID} rootflags=subvol=@ rw quiet splash
-    initrd_path: boot://1/initramfs-linux.img
+    path: boot():/vmlinuz-linux
+    cmdline: root=UUID=${ROOT_UUID} zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs quiet splash
+    module_path: boot():/amd-ucode.img
+    initrd_path: boot():/initramfs-linux.img
 LIMINECONF
 
 # --- Configure Chaotic-AUR Repo & Install yay + limine-snapper-sync ---
