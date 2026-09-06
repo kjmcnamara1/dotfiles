@@ -193,16 +193,28 @@ echo "Setting up Chaotic-AUR repository..."
 pacman-key --recv-key 3056513887B78AEB --keyserver hkps://keyserver.ubuntu.com
 pacman-key --lsign-key 3056513887B78AEB
 
-pacman -U --noconfirm \
-  'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' \
-  'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+# 1. Install keyring directly from primary CDN
+pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' || \
+pacman -U --noconfirm 'https://geo.mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
 
+# 2. Fetch mirrorlist with fallback mirrors if main CDN fails
+if ! pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'; then
+  echo "CDN failed (503), downloading mirrorlist via fallback mirror..."
+  curl -fsSL "https://geo.mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst" -o /tmp/chaotic-mirrorlist.pkg.tar.zst
+  pacman -U --noconfirm /tmp/chaotic-mirrorlist.pkg.tar.zst
+  rm -f /tmp/chaotic-mirrorlist.pkg.tar.zst
+fi
+
+# 3. Append to pacman.conf if not already present
+if ! grep -q "\[chaotic-aur\]" /etc/pacman.conf; then
 cat <<CHAOTIC >> /etc/pacman.conf
 
 [chaotic-aur]
 Include = /etc/pacman.d/chaotic-mirrorlist
 CHAOTIC
+fi
 
+# 4. Refresh package databases and install yay
 pacman -Sy --noconfirm yay
 
 # --- Snapper Configuration ---
