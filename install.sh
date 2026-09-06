@@ -59,9 +59,11 @@ sgdisk -n 2:0:0   -t 2:8300 -c 2:"ARCH" "$TARGET_DRIVE"
 if [[ "$TARGET_DRIVE" =~ "nvme" ]] || [[ "$TARGET_DRIVE" =~ "mmcblk" ]]; then
   BOOT_PART="${TARGET_DRIVE}p1"
   ROOT_PART="${TARGET_DRIVE}p2"
+  TARGET_PART_NUM=1
 else
   BOOT_PART="${TARGET_DRIVE}1"
   ROOT_PART="${TARGET_DRIVE}2"
+  TARGET_PART_NUM=1
 fi
 
 partprobe "$TARGET_DRIVE" || true
@@ -89,11 +91,14 @@ mount -o "$MOUNT_OPTS,subvol=@snapshots" "$ROOT_PART" /mnt/.snapshots
 mount -o "$MOUNT_OPTS,subvol=@games" "$ROOT_PART" /mnt/games
 mount -o fmask=0077,dmask=0077 "$BOOT_PART" /mnt/boot
 
+# Fetch ROOT_UUID before chrooting
+ROOT_UUID=$(blkid -s UUID -o value "$ROOT_PART")
+
 # --- Pacstrap ---
 echo "Installing base packages..."
 pacstrap /mnt base base-devel pacman-contrib linux linux-firmware \
   btrfs-progs plymouth man-db man-pages git wget curl chezmoi \
-  networkmanager iwd nfs-utils sudo \
+  networkmanager iwd nfs-utils sudo efibootmgr \
   amd-ucode limine snapper snap-pac zram-generator
 
 # Generate fstab
@@ -104,9 +109,21 @@ echo -e "\n# NAS\n192.168.0.10:/mnt/md1 /mnt/NAS nfs defaults,nofail 0 0\n" >> /
 mount -t efivarfs efivarfs /mnt/sys/firmware/efi/efivars 2> /dev/null || true
 
 # --- Chroot Configuration ---
-arch-chroot /mnt /bin/bash -e << EOF
+arch-chroot /mnt /bin/bash -e << EOF_CHROOT
+# Export variables into chroot environment
+export TIMEZONE="$TIMEZONE"
+export HOSTNAME="$HOSTNAME"
+export ROOT_PASS="$ROOT_PASS"
+export ADMIN_USER="$ADMIN_USER"
+export ADMIN_PASS="$ADMIN_PASS"
+export ROOT_UUID="$ROOT_UUID"
+export TARGET_DRIVE="$TARGET_DRIVE"
+export TARGET_PART_NUM="$TARGET_PART_NUM"
+export ROOT_PART="$ROOT_PART"
+export MOUNT_OPTS="$MOUNT_OPTS"
+
 # Timezone & Hardware Clock
-ln -sf /usr/share/zoneinfo/$TIMEZONE /etc/localtime
+ln -sf "/usr/share/zoneinfo/\${TIMEZONE}" /etc/localtime
 hwclock --systohc
 systemctl enable systemd-timesyncd
 
@@ -117,16 +134,16 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 echo "KEYMAP=us" > /etc/vconsole.conf
 
 # Hostname
-echo "$HOSTNAME" > /etc/hostname
+echo "\${HOSTNAME}" > /etc/hostname
 
 # Users & Passwords
-echo "root:$ROOT_PASS" | chpasswd
-useradd -m -G wheel,input,video,scanner -s /bin/bash "$ADMIN_USER"
-echo "$ADMIN_USER:$ADMIN_PASS" | chpasswd
+echo "root:\${ROOT_PASS}" | chpasswd
+useradd -m -G wheel,input,video,scanner -s /bin/bash "\${ADMIN_USER}"
+echo "\${ADMIN_USER}:\${ADMIN_PASS}" | chpasswd
 
 # Sudo privileges
-echo "$ADMIN_USER ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/00_$ADMIN_USER
-chmod 0440 /etc/sudoers.d/00_$ADMIN_USER
+echo "\${ADMIN_USER} ALL=(ALL:ALL) NOPASSWD: ALL" > "/etc/sudoers.d/00_\${ADMIN_USER}"
+chmod 0440 "/etc/sudoers.d/00_\${ADMIN_USER}"
 
 # Network Configuration
 systemctl enable NetworkManager
@@ -157,20 +174,18 @@ echo "Setting up Limine bootloader..."
 mkdir -p /boot/EFI/BOOT
 cp /usr/share/limine/BOOTX64.EFI /boot/EFI/BOOT/BOOTX64.EFI
 
-ROOT_UUID=$(blkid -s UUID -o value "$ROOT_PART")
-
 cat <<LIMINECONF > /boot/limine.conf
 timeout: 5
 
 /Arch Linux
     protocol: linux
     path: boot():/vmlinuz-linux
-    cmdline: root=UUID=${ROOT_UUID} zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs quiet splash
+    cmdline: root=UUID=\${ROOT_UUID} zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs quiet splash
     module_path: boot():/amd-ucode.img
     initrd_path: boot():/initramfs-linux.img
 LIMINECONF
 
-efibootmgr --create --disk $TARGET_DRIVE --part 1 --label "Limine Boot Manager" --loader '\EFI\BOOT\BOOTX64.EFI' --unicode
+efibootmgr --create --disk "\${TARGET_DRIVE}" --part "\${TARGET_PART_NUM}" --label "Limine Boot Manager" --loader '\EFI\BOOT\BOOTX64.EFI' --unicode
 
 # --- Configure Chaotic-AUR Repo & Install yay + limine-snapper-sync ---
 echo "Setting up Chaotic-AUR repository..."
@@ -190,13 +205,13 @@ CHAOTIC
 pacman -Sy --noconfirm yay limine-snapper-sync
 
 # --- Snapper Configuration ---
-umount /.snapshots
-rm -r /.snapshots
+umount /.snapshots 2>/dev/null || true
+rm -rf /.snapshots
 
 snapper --no-dbus -c root create-config /
 rm -rf /.snapshots
 mkdir /.snapshots
-mount -o "$MOUNT_OPTS,subvol=@snapshots" "$ROOT_PART" /.snapshots
+mount -o "\${MOUNT_OPTS},subvol=@snapshots" "\${ROOT_PART}" /.snapshots
 
 chown -R root:wheel /.snapshots
 chmod 750 /.snapshots
@@ -215,7 +230,7 @@ systemctl enable snapper-cleanup.timer
 
 # --- Enable Limine Snapper Sync ---
 systemctl enable limine-snapper-sync.service
-EOF
+EOF_CHROOT
 
 # --- Copy NetworkManager Connections ---
 echo "Copying active NetworkManager connections..."
