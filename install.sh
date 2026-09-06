@@ -181,7 +181,7 @@ timeout: 5
     protocol: linux
     path: boot():/vmlinuz-linux
     cmdline: root=UUID=\${ROOT_UUID} zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs quiet splash
-    module_path: boot():/amd-ucode.img
+    initrd_path: boot():/amd-ucode.img
     initrd_path: boot():/initramfs-linux.img
 LIMINECONF
 
