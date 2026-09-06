@@ -45,7 +45,7 @@ swapoff -a 2> /dev/null || true                                                 
 
 # --- Timezone Detection ---
 echo "Detecting timezone..."
-TIMEZONE=$(curl -s --max-time 5 https://ipapi.co/timezone || true)
+TIMEZONE=$(curl -fsS --max-time 5 https://ipapi.co/timezone || true)
 if [[ -z "$TIMEZONE" ]]; then
   TIMEZONE="America/New_York"
   echo "Fallback timezone used: $TIMEZONE"
