@@ -7,7 +7,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 gum style --foreground 212 --border double --margin "1" --padding "1" \
-  "Arch Linux Btrfs + Chaotic-AUR + Snapper + Limine Installer"
+  "Arch Linux Btrfs + Chaotic-AUR + Snapper + systemd-boot Installer"
 
 # --- User Prompts via Gum ---
 HOSTNAME=$(gum input --placeholder "Hostname" \
@@ -99,7 +99,7 @@ echo "Installing base packages..."
 pacstrap /mnt base base-devel pacman-contrib linux linux-firmware \
   btrfs-progs plymouth man-db man-pages git wget curl chezmoi \
   networkmanager iwd nfs-utils sudo efibootmgr \
-  amd-ucode limine snapper snap-pac zram-generator
+  amd-ucode snapper snap-pac zram-generator
 
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -169,32 +169,33 @@ swap-priority = 100
 fs-type = swap
 ZRAMCONF
 
-# --- Configure Limine Bootloader ---
-echo "Setting up Limine bootloader..."
-mkdir -p /boot/EFI/BOOT
-cp /usr/share/limine/BOOTX64.EFI /boot/EFI/BOOT/BOOTX64.EFI
+# --- Configure systemd-boot ---
+echo "Setting up systemd-boot..."
+bootctl install
 
-cat <<LIMINECONF > /boot/limine.conf
-timeout: 5
+cat <<LOADERCONF > /boot/loader/loader.conf
+default  @saved
+timeout  0
+console-mode max
+editor   no
+LOADERCONF
 
-/Arch Linux
-    protocol: linux
-    path: boot():/vmlinuz-linux
-    cmdline: root=UUID=\${ROOT_UUID} zswap.enabled=0 rootflags=subvol=@ rw rootfstype=btrfs quiet splash
-    initrd_path: boot():/amd-ucode.img
-    initrd_path: boot():/initramfs-linux.img
-LIMINECONF
+cat <<ENTRYCONF > /boot/loader/entries/arch.conf
+title   Arch Linux
+linux   /vmlinuz-linux
+initrd  /amd-ucode.img
+initrd  /initramfs-linux.img
+options root=UUID=\${ROOT_UUID} rootflags=subvol=@ rw quiet splash
+ENTRYCONF
 
-efibootmgr --create --disk "\${TARGET_DRIVE}" --part "\${TARGET_PART_NUM}" --label "Limine Boot Manager" --loader '\EFI\BOOT\BOOTX64.EFI' --unicode
-
-# --- Configure Chaotic-AUR Repo & Install yay + limine-snapper-sync ---
+# --- Configure Chaotic-AUR Repo & Install yay ---
 echo "Setting up Chaotic-AUR repository..."
 pacman-key --recv-key 3056513887B78AEB --keyserver hkps://keyserver.ubuntu.com
 pacman-key --lsign-key 3056513887B78AEB
 
 pacman -U --noconfirm \
-  'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' \
-  'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+  'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' \
+  'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
 
 cat <<CHAOTIC >> /etc/pacman.conf
 
@@ -202,7 +203,7 @@ cat <<CHAOTIC >> /etc/pacman.conf
 Include = /etc/pacman.d/chaotic-mirrorlist
 CHAOTIC
 
-pacman -Sy --noconfirm yay limine-snapper-sync
+pacman -Sy --noconfirm yay
 
 # --- Snapper Configuration ---
 umount /.snapshots 2>/dev/null || true
@@ -227,9 +228,6 @@ sed -i 's/^TIMELINE_LIMIT_YEARLY=.*/TIMELINE_LIMIT_YEARLY="0"/' /etc/snapper/con
 
 systemctl enable snapper-timeline.timer
 systemctl enable snapper-cleanup.timer
-
-# --- Enable Limine Snapper Sync ---
-systemctl enable limine-snapper-sync.service
 EOF_CHROOT
 
 # --- Copy NetworkManager Connections ---
@@ -241,4 +239,4 @@ fi
 
 # Cleanup and Finish
 umount -R /mnt
-gum style --foreground 82 "Installation Complete! Limine bootloader configured with automatic Snapper snapshot syncing."
+gum style --foreground 82 "Installation Complete! systemd-boot and Snapper setup finished successfully."
