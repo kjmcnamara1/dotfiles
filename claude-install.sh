@@ -6,7 +6,7 @@
 # Features:
 #   - gum-driven prompts for hostname / admin user / password
 #   - drive selection from a live list of block devices
-#   - btrfs with 4 pre-configured subvolumes (@, @home, @snapshots, @var_log) + zstd compression
+#   - btrfs with 5 pre-configured subvolumes (@, @home, @snapshots, @var_log, @games) + zstd compression
 #   - unified kernel image (UKI) built by mkinitcpio, booted via Limine
 #   - plymouth "bgrt" theme baked into the UKI, cmdline: "quiet splash"
 #   - amd-ucode / intel-ucode auto-detected
@@ -121,25 +121,28 @@ sleep 2
 mkfs.fat -F32 -n ESP "$ESP_PART"
 mkfs.btrfs -f -L ArchRoot "$ROOT_PART"
 
-# Create 4 subvolumes (mirrors the layout used by Omarchy's quattro setup):
+# Create 5 subvolumes (mirrors the layout used by Omarchy's quattro setup):
 #   @          -> /
 #   @home      -> /home
 #   @snapshots -> /.snapshots
 #   @var_log   -> /var/log
+#   @games     -> /games
 mount "$ROOT_PART" /mnt
 btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@home
 btrfs subvolume create /mnt/@snapshots
 btrfs subvolume create /mnt/@var_log
+btrfs subvolume create /mnt/@games
 umount /mnt
 
 MOUNT_OPTS="noatime,compress=zstd,space_cache=v2,discard=async"
 
 mount -o "${MOUNT_OPTS},subvol=@" "$ROOT_PART" /mnt
-mkdir -p /mnt/{home,.snapshots,var/log,boot}
+mkdir -p /mnt/{home,.snapshots,var/log,games,boot}
 mount -o "${MOUNT_OPTS},subvol=@home"      "$ROOT_PART" /mnt/home
 mount -o "${MOUNT_OPTS},subvol=@snapshots" "$ROOT_PART" /mnt/.snapshots
 mount -o "${MOUNT_OPTS},subvol=@var_log"   "$ROOT_PART" /mnt/var/log
+mount -o "${MOUNT_OPTS},subvol=@games"     "$ROOT_PART" /mnt/games
 mount "$ESP_PART" /mnt/boot
 
 ROOT_UUID=$(blkid -s UUID -o value "$ROOT_PART")
@@ -409,7 +412,7 @@ Arch Linux has been installed to ${DISK}.
 
 Notes:
   - Bootloader: Limine, chainloading UKIs from /boot/EFI/Linux (ESP mounted at /boot)
-  - btrfs subvolumes: @, @home, @snapshots, @var_log (compress=zstd)
+  - btrfs subvolumes: @, @home, @snapshots, @var_log, @games (compress=zstd)
   - Snapper is configured on the 'root' config; limine-snapper-sync is enabled
     to add snapshot boot entries -- check 'man limine-snapper-sync' / its repo
     for any tuning you want (submenu naming, snapshot count, etc.).

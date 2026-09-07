@@ -298,31 +298,31 @@ binds {
 
     // MEDIA
     // spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-    XF86AudioMute allow-when-locked=true {
-      spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume mute-toggle"
-    }
+    // XF86AudioMute allow-when-locked=true {
+    //   spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume mute-toggle"
+    // }
     // spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-    XF86AudioMicMute allow-when-locked=true {
-      spawn-sh "~/.config/swayosd/scripts/osdclient --input-volume mute-toggle"
-    }
+    // XF86AudioMicMute allow-when-locked=true {
+    //   spawn-sh "~/.config/swayosd/scripts/osdclient --input-volume mute-toggle"
+    // }
     // spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-    XF86AudioRaiseVolume allow-when-locked=true {
-        spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume raise"
-    }
+    // XF86AudioRaiseVolume allow-when-locked=true {
+    //     spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume raise"
+    // }
     // spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-    XF86AudioLowerVolume allow-when-locked=true {
-        spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume lower"
-    }
+    // XF86AudioLowerVolume allow-when-locked=true {
+    //     spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume lower"
+    // }
     // spawn "brightnessctl" "--class=backlight" "set" "+10%"
-    XF86MonBrightnessUp allow-when-locked=true { // {{ if eq .chezmoi.hostname "angel" }}
-        spawn-sh "~/.config/swayosd/scripts/osdclient --brightness raise; hyprctl hyprsunset gamma +10" // {{ else }}
-        spawn-sh "~/.config/swayosd/scripts/osdclient --brightness raise" // {{ end }}
-    }
+    // XF86MonBrightnessUp allow-when-locked=true { // {{ if eq .chezmoi.hostname "angel" }}
+    //     spawn-sh "~/.config/swayosd/scripts/osdclient --brightness raise; hyprctl hyprsunset gamma +10" // {{ else }}
+    //     spawn-sh "~/.config/swayosd/scripts/osdclient --brightness raise" // {{ end }}
+    // }
     // spawn "brightnessctl" "--class=backlight" "set" "10%-"
-    XF86MonBrightnessDown allow-when-locked=true { // {{ if eq .chezmoi.hostname "angel" }}
-        spawn-sh "~/.config/swayosd/scripts/osdclient --brightness lower; hyprctl hyprsunset gamma -10" // {{ else }}
-        spawn-sh "~/.config/swayosd/scripts/osdclient --brightness lower" // {{ end }}
-    }
+    // XF86MonBrightnessDown allow-when-locked=true { // {{ if eq .chezmoi.hostname "angel" }}
+    //     spawn-sh "~/.config/swayosd/scripts/osdclient --brightness lower; hyprctl hyprsunset gamma -10" // {{ else }}
+    //     spawn-sh "~/.config/swayosd/scripts/osdclient --brightness lower" // {{ end }}
+    // }
 
     // Precise 1% multimedia adjustments with Alt modifier
     ALT+XF86AudioRaiseVolume  { spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume +1"; }
@@ -485,5 +485,65 @@ binds {
 
 
     SUPER+SHIFT+P { power-off-monitors; }
+
+
+  // Dank Material Shell
+    Mod+Space hotkey-overlay-title="Application Launcher" { 
+        spawn "dms" "ipc" "call" "spotlight" "toggle"; 
+    }
+
+    Mod+V hotkey-overlay-title="Clipboard Manager" { 
+        spawn "dms" "ipc" "call" "clipboard" "toggle"; 
+    }
+
+    Mod+M hotkey-overlay-title="Task Manager" { 
+        spawn "dms" "ipc" "call" "processlist" "toggle"; 
+    }
+
+    Mod+Comma hotkey-overlay-title="Settings" { 
+        spawn "dms" "ipc" "call" "settings" "toggle"; 
+    }
+
+    Mod+N hotkey-overlay-title="Notification Center" {
+        spawn "dms" "ipc" "call" "notifications" "toggle"; 
+    }
+
+    Mod+Y hotkey-overlay-title="Browse Wallpapers" {
+        spawn "dms" "ipc" "call" "dankdash" "wallpaper";
+    }
+
+    Mod+Shift+N hotkey-overlay-title="Notepad" {
+      spawn "dms" "ipc" "call" "notepad" "toggle";  
+    }
+    
+    Mod+Alt+L hotkey-overlay-title="Lock Screen" { 
+        spawn "dms" "ipc" "call" "lock" "lock"; 
+    }
+
+    Ctrl+Alt+Delete hotkey-overlay-title="Task Manager" { 
+        spawn "dms" "ipc" "call" "processlist" "toggle"; 
+    }    
+
+    // Audio
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn "dms" "ipc" "call" "audio" "increment" "3";
+    }
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn "dms" "ipc" "call" "audio" "decrement" "3";
+    }
+    XF86AudioMute allow-when-locked=true {
+        spawn "dms" "ipc" "call" "audio" "mute";
+    }
+    XF86AudioMicMute allow-when-locked=true {
+        spawn "dms" "ipc" "call" "audio" "micmute";
+    }
+    
+    // BL
+    XF86MonBrightnessUp allow-when-locked=true {
+       spawn "dms" "ipc" "call" "brightness" "increment" "5" "";
+    }
+    XF86MonBrightnessDown allow-when-locked=true {
+       spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
+    }  
 }
 
