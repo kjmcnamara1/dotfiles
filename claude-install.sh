@@ -377,7 +377,6 @@ default_entry: 2
 
 /+Arch Linux
     //linux
-      comment: kernel-id=linux
       protocol: efi_chainload
       image_path: boot():/EFI/Linux/arch-linux.efi
 
