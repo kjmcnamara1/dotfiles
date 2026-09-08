@@ -372,11 +372,14 @@ efibootmgr --create --disk "$DISK" --part 1 --label "Limine" --loader '\EFI\Limi
     || warn "efibootmgr could not add an NVRAM entry -- the removable-media path EFI/BOOT/BOOTX64.EFI still boots"
 
 cat > /boot/limine.conf <<LIMCONF
-timeout: 5
+timeout: 3
+default_entry: 2
 
-/Arch Linux
-    protocol: efi_chainload
-    image_path: boot():/EFI/Linux/arch-linux.efi
+/+Arch Linux
+    //linux
+      comment: kernel-id=linux
+      protocol: efi_chainload
+      image_path: boot():/EFI/Linux/arch-linux.efi
 
     //Snapshots
 
