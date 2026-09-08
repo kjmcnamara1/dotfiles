@@ -364,6 +364,10 @@ step "Limine bootloader"
 mkdir -p /boot/EFI/BOOT /boot/EFI/Limine
 cp /usr/share/limine/BOOTX64.EFI /boot/EFI/BOOT/BOOTX64.EFI
 cp /usr/share/limine/BOOTX64.EFI /boot/EFI/Limine/BOOTX64.EFI
+#  Remove all EFI boot entries before creating new one for limine
+for entry in $(efibootmgr | grep '^Boot[0-9]' | awk -F'[* ]' '{print substr($1,5)}'); do
+  sudo efibootmgr -b "$entry" -B
+done
 efibootmgr --create --disk "$DISK" --part 1 --label "Limine" --loader '\EFI\Limine\BOOTX64.EFI' --unicode \
     || warn "efibootmgr could not add an NVRAM entry -- the removable-media path EFI/BOOT/BOOTX64.EFI still boots"
 
