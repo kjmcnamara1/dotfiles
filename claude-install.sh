@@ -23,13 +23,16 @@
 set -euo pipefail
 
 PS4='+ ${BASH_SOURCE##*/}:${LINENO}: '
-if [[ -n "${INSTALL_DEBUG:-}" ]]; then set -x; fi
-
-# Capture the whole session to a log (copied into the target near the end).
+# Session log; tee + xtrace are enabled after the interactive prompts (gum needs a
+# real TTY on stdout/stderr, and passwords must not land in the log).
 LOG=/var/log/arch-install.log
-exec > >(tee -a "$LOG") 2>&1
 
 trap 'rc=$?; echo -e "\n[!] Failed on line ${LINENO} (rc=${rc}): ${BASH_COMMAND}\n    Nothing after that point was applied. Log: ${LOG}" >&2' ERR
+
+start_logging() {
+    exec > >(tee -a "$LOG") 2>&1
+    if [[ -n "${INSTALL_DEBUG:-}" ]]; then set -x; fi
+}
 
 # --------------------------------------------------------------------------
 # 0. Sanity checks + gum bootstrap
@@ -113,6 +116,9 @@ part() {
 }
 ESP_PART=$(part "$DISK" 1)
 ROOT_PART=$(part "$DISK" 2)
+
+# Interactive prompts are done -- from here on, capture everything to the log.
+start_logging
 
 # --------------------------------------------------------------------------
 # 2. Partition, format, subvolumes, mount
@@ -231,6 +237,7 @@ chmod 600 /mnt/etc/NetworkManager/system-connections/* 2>/dev/null || true
 # 7. Write variables + chroot configuration script
 # --------------------------------------------------------------------------
 
+{ set +x; } 2>/dev/null   # keep the password out of the xtrace log
 cat > /mnt/root/chroot-vars.sh <<EOF
 HOSTNAME=$(printf '%q' "$HOSTNAME")
 USERNAME=$(printf '%q' "$USERNAME")
@@ -242,6 +249,7 @@ DISK=$(printf '%q' "$DISK")
 INSTALL_DEBUG=$(printf '%q' "${INSTALL_DEBUG:-}")
 EOF
 chmod 600 /mnt/root/chroot-vars.sh
+if [[ -n "${INSTALL_DEBUG:-}" ]]; then set -x; fi
 
 cat > /mnt/root/chroot-setup.sh <<'CHSETUP'
 #!/bin/bash
@@ -286,11 +294,12 @@ cat > /etc/hosts <<HOSTS
 HOSTS
 
 step "Root + admin user"
-echo "root:$USERPASS" | chpasswd
-
 getent group scanner >/dev/null || groupadd scanner
 useradd -m -G wheel,input,video,scanner -s /bin/bash "$USERNAME"
+{ set +x; } 2>/dev/null   # keep passwords out of the xtrace log
+echo "root:$USERPASS" | chpasswd
 echo "$USERNAME:$USERPASS" | chpasswd
+if [[ -n "${INSTALL_DEBUG:-}" ]]; then set -x; fi
 
 mkdir -p /etc/sudoers.d
 echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/wheel
