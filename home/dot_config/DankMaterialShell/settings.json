@@ -10,13 +10,48 @@
   "barElevationEnabled": false,
   "blurEnabled": true,
   "blurWallpaperOnOverview": true,
-  "showWorkspaceApps": true,
+  "controlCenterWidgets": [
+    {
+      "id": "volumeSlider",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "brightnessSlider",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "wifi",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "audioOutput",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "bluetooth",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "audioInput",
+      "enabled": true,
+      "width": 50
+    }
+  ],
   "launcherUseOverlayLayer": true,
   "useAutoLocation": true,
   "launcherLogoMode": "os",
   "acProfileName": "2",
   "batteryProfileName": "1",
   "batteryAutoPowerSaver": true,
+  "showDock": true,
+  "dockSmartAutoHide": true,
+  "dockUseOverlayLayer": true,
+  "osdAlwaysShowValue": true,
   "updaterCheckOnStart": true,
   "updaterIntervalSeconds": 86400,
   "barConfigs": [
@@ -33,6 +68,14 @@
         "launcherButton",
         "workspaceSwitcher",
         {
+          "id": "runningApps",
+          "enabled": true,
+          "runningAppsCompactMode": true,
+          "runningAppsGroupByApp": false,
+          "runningAppsCurrentWorkspace": true,
+          "runningAppsCurrentMonitor": false
+        },
+        {
           "id": "focusedWindow",
           "enabled": true,
           "focusedWindowCompactMode": false
@@ -41,18 +84,37 @@
       "centerWidgets": [
         "music",
         {
+          "id": "idleInhibitor",
+          "enabled": true
+        },
+        {
           "id": "clock",
           "enabled": true,
           "clockCompactMode": false
         },
-        "weather"
+        "weather",
+        {
+          "id": "systemUpdate",
+          "enabled": true,
+          "hideWhenIdle": true
+        }
       ],
       "rightWidgets": [
         "systemTray",
-        "clipboard",
         "cpuUsage",
         "memUsage",
-        "notificationButton",
+        {
+          "id": "separator",
+          "enabled": true
+        },
+        {
+          "id": "privacyIndicator",
+          "enabled": true
+        },
+        {
+          "id": "notificationButton",
+          "enabled": true
+        },
         "battery",
         {
           "id": "controlCenterButton",
@@ -121,48 +183,18 @@
     "hslLightness": 1,
     "valid": true
   },
-  "desktopWidgetInstances": [
-    {
-      "id": "dw_1788312886167_fb3gnw6d5",
-      "widgetType": "systemMonitor",
-      "name": "System Monitor",
-      "enabled": true,
-      "config": {
-        "showHeader": true,
-        "transparency": 0.8,
-        "colorMode": "primary",
-        "customColor": "#ffffff",
-        "showCpu": true,
-        "showCpuGraph": true,
-        "showCpuTemp": true,
-        "showGpuTemp": true,
-        "gpuPciId": "",
-        "showMemory": true,
-        "showMemoryGraph": true,
-        "showNetwork": true,
-        "showNetworkGraph": true,
-        "showDisk": true,
-        "showTopProcesses": true,
-        "topProcessCount": 3,
-        "topProcessSortBy": "cpu",
-        "layoutMode": "auto",
-        "graphInterval": 60,
-        "displayPreferences": [
-          "all"
-        ],
-        "showOnOverlay": false,
-        "showOnOverview": false,
-        "showOnOverviewOnly": false,
-        "syncPositionAcrossScreens": true
-      }
-    }
-  ],
   "builtInPluginSettings": {
     "dms_settings_search": {
       "trigger": "?"
     },
     "dms_clipboard_search": {
       "trigger": "cb"
+    },
+    "dms_power": {
+      "trigger": "pw"
+    },
+    "dms_qr_generator": {
+      "trigger": "qrg"
     }
   },
   "configVersion": 17
