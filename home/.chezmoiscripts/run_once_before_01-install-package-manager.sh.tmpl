@@ -1,7 +1,7 @@
 {{- if eq .chezmoi.os "linux" -}}
 #! /usr/bin/env bash
 
-source "${CHEZMOI_SOURCE_DIR}/scripts/configure-package-manager.sh"
+source "${CHEZMOI_SOURCE_DIR}/../scripts/configure-package-manager.sh"
 
 {{- else if eq .opt.packageManager "scoop" -}}
 echo ""
