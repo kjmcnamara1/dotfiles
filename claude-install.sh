@@ -295,7 +295,11 @@ HOSTS
 
 step "Root + admin user"
 getent group scanner >/dev/null || groupadd scanner
-useradd -m -G wheel,input,video,scanner -s /bin/bash "$USERNAME"
+if id "$USERNAME" >/dev/null 2>&1; then
+    usermod -aG wheel,input,video,scanner -s /bin/bash "$USERNAME"
+else
+    useradd -m -G wheel,input,video,scanner -s /bin/bash "$USERNAME"
+fi
 { set +x; } 2>/dev/null   # keep passwords out of the xtrace log
 echo "root:$USERPASS" | chpasswd
 echo "$USERNAME:$USERPASS" | chpasswd
@@ -329,7 +333,7 @@ step "Printing"
 extra "enable cups.socket" systemctl enable cups.socket
 
 step "mkinitcpio -> Unified Kernel Image"
-sed -i 's/^HOOKS=.*/HOOKS=(base systemd autodetect microcode modconf kms keyboard sd-vconsole block sd-plymouth filesystems fsck)/' /etc/mkinitcpio.conf
+sed -i 's/^HOOKS=.*/HOOKS=(base systemd plymouth autodetect microcode modconf kms keyboard sd-vconsole block filesystems fsck)/' /etc/mkinitcpio.conf
 
 mkdir -p /etc/kernel
 echo "root=UUID=$ROOT_UUID rootflags=subvol=@ rw quiet splash" > /etc/kernel/cmdline
