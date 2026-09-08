@@ -5,27 +5,5 @@ key.txt.age
 AppData
 {{- end }}
 
-# {{- if ne .opt.shell "bash" }}
-# .bashrc
-# {{- end }}
-
-# {{- if ne .opt.shell "zsh" }}
-# .zshrc
-# {{- end }}
-
-# {{- if ne .opt.shell "fish" }}
-# .config/fish
-# {{- end }}
-
-# {{- if ne .opt.shell "xonsh" }}
-# .config/xonsh
-# {{- end }}
-
-{{- if ne .opt.session "cosmic" }}
-.config/cosmic
-{{- end }}
-
-.chezmoiscripts/02-boot
-.chezmoiscripts/sddm
-.chezmoiscripts/zoxide
+# .chezmoiscripts/02-boot
 
