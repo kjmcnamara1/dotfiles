@@ -2,7 +2,7 @@
 
 if ! command -v gum &> /dev/null; then
     echo "[*] Installing gum..."
-    pacman -Sy --noconfirm --needed gum
+    sudo pacman -Sy --noconfirm --needed gum
 fi
 
 info()    { gum style --foreground 212 "$*"; }
