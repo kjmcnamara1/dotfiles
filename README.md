@@ -10,3 +10,8 @@ chezmoi init --depth 1 --branch dots kjmcnamara1
 chezmoi cd
 ./install.sh
 ```
+
+```sh
+chezmoi init --branch dots kjmcnamara1
+chezmoi apply --include=scripts
+```

@@ -1,5 +1,0 @@
-#! /usr/bin/env bash
-
-chsh -l | grep -i {{ .opt.shell }} || sudo tee -a /etc/shells <<< {{ .opt.shell }}
-
-chsh -s $(which {{ .opt.shell }})

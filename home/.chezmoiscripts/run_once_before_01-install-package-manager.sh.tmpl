@@ -1,26 +1,7 @@
-{{- if or (eq .opt.packageManager "yay") (eq .opt.packageManager "paru") -}}
+{{- if eq .chezmoi.os "linux" -}}
 #! /usr/bin/env bash
 
-echo
-echo "--------------------------------------------------------------------------------"
-echo "*** Chaotic-AUR & Yay"
-echo "--------------------------------------------------------------------------------"
-
-sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
-sudo pacman-key --lsign-key 3056513887B78AEB
-
-sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
-sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-
-if ! grep -q "\[chaotic-aur\]" /etc/pacman.conf; then
-  cat << CHAOTIC | sudo tee -a /etc/pacman.conf
-
-[chaotic-aur]
-Include = /etc/pacman.d/chaotic-mirrorlist
-CHAOTIC
-fi
-
-sudo pacman -Syu --noconfirm yay
+source ../../scripts/configure-package-manager.sh
 
 {{- else if eq .opt.packageManager "scoop" -}}
 echo ""

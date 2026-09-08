@@ -1,10 +1,9 @@
 {{- if eq .chezmoi.os "linux" -}}
 #! /usr/bin/env bash
 
-echo
-echo "--------------------------------------------------------------------------------"
-echo "*** Decrypt Age Key"
-echo "--------------------------------------------------------------------------------"
+source ../../scripts/gum-helper.sh
+
+section "Decrypt Age Key"
 
 if [ ! -f "${HOME}/.config/chezmoi/key.txt" ]; then
   mkdir -p "${HOME}/.config/chezmoi"
