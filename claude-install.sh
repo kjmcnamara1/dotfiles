@@ -21,7 +21,15 @@
 # Run this as root from the archiso live ISO with a working network connection.
 
 set -euo pipefail
-trap 'echo -e "\n[!] Failed on line $LINENO. Nothing after that point was applied." >&2' ERR
+
+PS4='+ ${BASH_SOURCE##*/}:${LINENO}: '
+if [[ -n "${INSTALL_DEBUG:-}" ]]; then set -x; fi
+
+# Capture the whole session to a log (copied into the target near the end).
+LOG=/var/log/arch-install.log
+exec > >(tee -a "$LOG") 2>&1
+
+trap 'rc=$?; echo -e "\n[!] Failed on line ${LINENO} (rc=${rc}): ${BASH_COMMAND}\n    Nothing after that point was applied. Log: ${LOG}" >&2' ERR
 
 # --------------------------------------------------------------------------
 # 0. Sanity checks + gum bootstrap
@@ -50,6 +58,7 @@ fi
 info()    { gum style --foreground 212 "$*"; }
 warn()    { gum style --foreground 214 "$*"; }
 section() { gum style --border normal --margin "1 0" --padding "0 1" --border-foreground 212 "$*"; }
+require() { "$@" || { echo "[!] REQUIRED step failed: $*" >&2; exit 1; }; }
 
 # --------------------------------------------------------------------------
 # 1. Gather input
@@ -133,6 +142,9 @@ btrfs subvolume create /mnt/@home
 btrfs subvolume create /mnt/@snapshots
 btrfs subvolume create /mnt/@var_log
 btrfs subvolume create /mnt/@games
+for sv in @ @home @snapshots @var_log @games; do
+    btrfs subvolume show "/mnt/$sv" >/dev/null 2>&1 || { echo "[!] btrfs subvolume $sv was not created" >&2; exit 1; }
+done
 umount /mnt
 
 MOUNT_OPTS="noatime,compress=zstd,space_cache=v2,discard=async"
@@ -144,6 +156,10 @@ mount -o "${MOUNT_OPTS},subvol=@snapshots" "$ROOT_PART" /mnt/.snapshots
 mount -o "${MOUNT_OPTS},subvol=@var_log"   "$ROOT_PART" /mnt/var/log
 mount -o "${MOUNT_OPTS},subvol=@games"     "$ROOT_PART" /mnt/games
 mount "$ESP_PART" /mnt/boot
+
+require findmnt --noheadings /mnt
+require findmnt --noheadings /mnt/home
+require findmnt --noheadings /mnt/boot
 
 ROOT_UUID=$(blkid -s UUID -o value "$ROOT_PART")
 
@@ -190,6 +206,7 @@ PACKAGES=(
 )
 
 pacstrap -K /mnt "${PACKAGES[@]}"
+require test -x /mnt/usr/bin/pacman
 
 # --------------------------------------------------------------------------
 # 5. fstab
@@ -197,7 +214,7 @@ pacstrap -K /mnt "${PACKAGES[@]}"
 
 genfstab -U /mnt >> /mnt/etc/fstab
 mkdir -p /mnt/mnt/NAS
-echo "192.168.0.10:/mnt/md1 /mnt/NAS nfs defaults,nofail 0 0" >> /mnt/etc/fstab
+echo "192.168.0.10:/mnt/md1 /mnt/NAS nfs _netdev,nofail,x-systemd.automount,x-systemd.mount-timeout=10 0 0" >> /mnt/etc/fstab
 
 # --------------------------------------------------------------------------
 # 6. Copy live network configuration for first boot
@@ -222,26 +239,45 @@ UCODE_PKG=$(printf '%q' "$UCODE_PKG")
 TZ_REGION=$(printf '%q' "$DETECTED_TZ")
 ROOT_UUID=$(printf '%q' "$ROOT_UUID")
 DISK=$(printf '%q' "$DISK")
+INSTALL_DEBUG=$(printf '%q' "${INSTALL_DEBUG:-}")
 EOF
 chmod 600 /mnt/root/chroot-vars.sh
 
 cat > /mnt/root/chroot-setup.sh <<'CHSETUP'
 #!/bin/bash
 set -euo pipefail
+PS4='+ chroot:${LINENO}: '
+trap 'rc=$?; printf "\n[!] chroot-setup FAILED  line %s  rc %s  cmd: %s\n" "$LINENO" "$rc" "$BASH_COMMAND" >&2; exit $rc' ERR
+
 source /root/chroot-vars.sh
+if [[ -n "${INSTALL_DEBUG:-}" ]]; then set -x; fi
 
-echo "[*] Timezone + clock"
+step()    { printf '\n==> %s\n' "$*" >&2; }
+warn()    { printf '[!] %s\n' "$*" >&2; }
+require() { "$@" || { printf '[!] REQUIRED step failed: %s\n' "$*" >&2; exit 1; }; }
+
+# Run a non-essential step: log its failure, but never abort the install for it.
+extra() {
+    local desc="$1" rc=0; shift
+    "$@" || rc=$?
+    if [[ $rc -ne 0 ]]; then
+        warn "[extra] ${desc} failed (rc=${rc}) -- continuing; fix it after first boot"
+    fi
+    return 0
+}
+
+step "Timezone + clock"
 ln -sf "/usr/share/zoneinfo/$TZ_REGION" /etc/localtime
-hwclock --systohc
-timedatectl set-ntp true
+hwclock --systohc || warn "hwclock --systohc failed (no RTC?) -- continuing"
+extra "enable systemd-timesyncd" systemctl enable systemd-timesyncd.service
 
-echo "[*] Locale"
+step "Locale"
 sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 echo "KEYMAP=us" > /etc/vconsole.conf
 
-echo "[*] Hostname"
+step "Hostname"
 echo "$HOSTNAME" > /etc/hostname
 cat > /etc/hosts <<HOSTS
 127.0.0.1   localhost
@@ -249,7 +285,7 @@ cat > /etc/hosts <<HOSTS
 127.0.1.1   $HOSTNAME.localdomain $HOSTNAME
 HOSTS
 
-echo "[*] Root + admin user"
+step "Root + admin user"
 echo "root:$USERPASS" | chpasswd
 
 getent group scanner >/dev/null || groupadd scanner
@@ -261,14 +297,14 @@ echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/wheel
 chmod 440 /etc/sudoers.d/wheel
 visudo -c
 
-echo "[*] zram"
+step "zram"
 cat > /etc/systemd/zram-generator.conf <<ZRAM
 [zram0]
 zram-size = min(ram / 2, 8192)
 compression-algorithm = zstd
 ZRAM
 
-echo "[*] NetworkManager / iwd"
+step "NetworkManager / iwd"
 mkdir -p /etc/NetworkManager/conf.d
 cat > /etc/NetworkManager/conf.d/wifi_backend.conf <<NMCONF
 [device]
@@ -276,14 +312,14 @@ wifi.backend=iwd
 NMCONF
 systemctl enable NetworkManager.service
 
-echo "[*] mDNS"
+step "mDNS"
 sed -i 's/^hosts:.*/hosts: mymachines mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] files myhostname dns/' /etc/nsswitch.conf
-systemctl enable avahi-daemon.service
+extra "enable avahi-daemon" systemctl enable avahi-daemon.service
 
-echo "[*] Printing"
-systemctl enable cups.socket
+step "Printing"
+extra "enable cups.socket" systemctl enable cups.socket
 
-echo "[*] mkinitcpio -> Unified Kernel Image"
+step "mkinitcpio -> Unified Kernel Image"
 sed -i 's/^HOOKS=.*/HOOKS=(base systemd autodetect microcode modconf kms keyboard sd-vconsole block sd-plymouth filesystems fsck)/' /etc/mkinitcpio.conf
 
 mkdir -p /etc/kernel
@@ -307,13 +343,16 @@ plymouth-set-default-theme bgrt
 
 mkinitcpio -P
 # UKI is self-contained; drop the loose vmlinuz/initramfs images so /boot only has the UKIs
-rm -f /boot/vmlinuz-linux /boot/initramfs-linux*.img
+rm -f /boot/vmlinuz-linux /boot/initramfs-linux.img /boot/initramfs-linux-fallback.img
+require test -s /boot/EFI/Linux/arch-linux.efi
+require test -s /boot/EFI/Linux/arch-linux-fallback.efi
 
-echo "[*] Limine bootloader"
+step "Limine bootloader"
 mkdir -p /boot/EFI/BOOT /boot/EFI/Limine
 cp /usr/share/limine/BOOTX64.EFI /boot/EFI/BOOT/BOOTX64.EFI
 cp /usr/share/limine/BOOTX64.EFI /boot/EFI/Limine/BOOTX64.EFI
-efibootmgr --create --disk "$DISK" --part 1 --label "Limine" --loader '\EFI\Limine\BOOTX64.EFI' --unicode || true
+efibootmgr --create --disk "$DISK" --part 1 --label "Limine" --loader '\EFI\Limine\BOOTX64.EFI' --unicode \
+    || warn "efibootmgr could not add an NVRAM entry -- the removable-media path EFI/BOOT/BOOTX64.EFI still boots"
 
 cat > /boot/limine.conf <<LIMCONF
 timeout: 5
@@ -340,19 +379,29 @@ When = PostTransaction
 Exec = /bin/sh -c 'cp /usr/share/limine/BOOTX64.EFI /boot/EFI/BOOT/BOOTX64.EFI; cp /usr/share/limine/BOOTX64.EFI /boot/EFI/Limine/BOOTX64.EFI'
 HOOK
 
-echo "[*] Snapper (pre-created @snapshots subvolume, per Arch wiki procedure)"
-umount /.snapshots || true
-rm -rf /.snapshots
-snapper --no-dbus -c root create-config /
-btrfs subvolume delete /.snapshots
-mkdir /.snapshots
-mount -a
-chmod 750 /.snapshots
-sed -i 's/^TIMELINE_CREATE=.*/TIMELINE_CREATE="yes"/'   /etc/snapper/configs/root
-sed -i 's/^TIMELINE_CLEANUP=.*/TIMELINE_CLEANUP="yes"/' /etc/snapper/configs/root
-systemctl enable snapper-timeline.timer snapper-cleanup.timer
+require test -f /boot/EFI/BOOT/BOOTX64.EFI
+require test -f /boot/limine.conf
 
-echo "[*] Reflector"
+step "Snapper (root config on the pre-created @snapshots subvolume, per Arch wiki procedure)"
+setup_snapper() {
+    if findmnt -M /.snapshots >/dev/null 2>&1; then
+        umount /.snapshots 2>/dev/null || umount -l /.snapshots
+    fi
+    if [[ -e /.snapshots ]]; then
+        btrfs subvolume delete /.snapshots 2>/dev/null || rm -rf /.snapshots
+    fi
+    snapper --no-dbus -c root create-config / || return 1
+    [[ -e /.snapshots ]] && btrfs subvolume delete /.snapshots
+    mkdir -p /.snapshots
+    mount /.snapshots || return 1
+    chmod 750 /.snapshots
+    sed -i 's/^TIMELINE_CREATE=.*/TIMELINE_CREATE="yes"/'   /etc/snapper/configs/root
+    sed -i 's/^TIMELINE_CLEANUP=.*/TIMELINE_CLEANUP="yes"/' /etc/snapper/configs/root
+    systemctl enable snapper-timeline.timer snapper-cleanup.timer
+}
+extra "snapper root config" setup_snapper
+
+step "Reflector"
 mkdir -p /etc/xdg/reflector
 cat > /etc/xdg/reflector/reflector.conf <<REFCONF
 --save /etc/pacman.d/mirrorlist
@@ -360,32 +409,41 @@ cat > /etc/xdg/reflector/reflector.conf <<REFCONF
 --latest 20
 --sort rate
 REFCONF
-systemctl enable reflector.service
-reflector --protocol https --latest 20 --sort rate --save /etc/pacman.d/mirrorlist || true
+extra "enable reflector.service" systemctl enable reflector.service
+reflector --protocol https --latest 20 --sort rate --save /etc/pacman.d/mirrorlist \
+    || warn "reflector run failed -- keeping the mirrorlist from the ISO"
 
-echo "[*] pacman.conf tweaks (Color, ILoveCandy, ParallelDownloads, multilib)"
+step "pacman.conf tweaks (Color, ILoveCandy, ParallelDownloads, multilib)"
 sed -i 's/^#Color/Color/' /etc/pacman.conf
 grep -q '^ILoveCandy' /etc/pacman.conf || sed -i '/^Color/a ILoveCandy' /etc/pacman.conf
 sed -i 's/^#\?ParallelDownloads.*/ParallelDownloads = 5/' /etc/pacman.conf
 sed -i '/^#\[multilib\]/,/^#Include/ s/^#//' /etc/pacman.conf
 
-echo "[*] Chaotic-AUR"
-pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
-pacman-key --lsign-key 3056513887B78AEB
-pacman -U --noconfirm \
-    'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' \
-    'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-grep -q 'chaotic-aur' /etc/pacman.conf || cat >> /etc/pacman.conf <<CHAOTIC
+step "Chaotic-AUR + yay + limine-snapper-sync"
+setup_chaotic_aur() {
+    local key=3056513887B78AEB ks
+    local urls=(
+        'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+        'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+    )
+    for ks in keyserver.ubuntu.com keys.openpgp.org pgp.mit.edu; do
+        pacman-key --recv-key "$key" --keyserver "$ks" && break
+    done
+    pacman-key --list-keys "$key" >/dev/null 2>&1 || return 1
+    pacman-key --lsign-key "$key" || return 1
+    pacman -U --noconfirm "${urls[@]}" || pacman -U --noconfirm "${urls[@]}" || return 1
+    grep -q '^\[chaotic-aur\]' /etc/pacman.conf || cat >> /etc/pacman.conf <<CHAOTIC
 
 [chaotic-aur]
 Include = /etc/pacman.d/chaotic-mirrorlist
 CHAOTIC
+    pacman -Sy --noconfirm || return 1
+    pacman -S --noconfirm --needed yay limine-snapper-sync || return 1
+    systemctl enable limine-snapper-sync.service || true
+}
+extra "chaotic-aur / yay / limine-snapper-sync" setup_chaotic_aur
 
-pacman -Sy --noconfirm
-pacman -S --noconfirm --needed yay limine-snapper-sync
-systemctl enable limine-snapper-sync.service || true
-
-echo "[*] Chroot configuration complete."
+step "Chroot configuration complete."
 CHSETUP
 chmod 700 /mnt/root/chroot-setup.sh
 
@@ -394,7 +452,8 @@ chmod 700 /mnt/root/chroot-setup.sh
 # --------------------------------------------------------------------------
 
 section "Configuring installed system (chroot)"
-arch-chroot /mnt /bin/bash /root/chroot-setup.sh
+# tee so the chroot log survives into the target; pipefail still surfaces a failure.
+arch-chroot /mnt /bin/bash /root/chroot-setup.sh 2>&1 | tee /mnt/var/log/arch-chroot-setup.log
 
 rm -f /mnt/root/chroot-setup.sh /mnt/root/chroot-vars.sh
 
@@ -403,6 +462,7 @@ rm -f /mnt/root/chroot-setup.sh /mnt/root/chroot-vars.sh
 # --------------------------------------------------------------------------
 
 section "Install complete"
+cp -f "$LOG" /mnt/var/log/arch-install.log 2>/dev/null || true
 info "Unmounting..."
 umount -R /mnt
 
@@ -418,6 +478,11 @@ Notes:
     for any tuning you want (submenu naming, snapshot count, etc.).
   - Wi-Fi/network profiles from the live session were copied over for first boot.
   - Admin user '${USERNAME}' has passwordless sudo via /etc/sudoers.d/wheel.
+  - Non-essential steps (snapper, chaotic-aur/yay, avahi/cups, reflector) are
+    best-effort: any '[extra] ... failed' lines above mean the system still boots
+    but that piece needs finishing after first login.
+  - Install logs: /var/log/arch-install.log and /var/log/arch-chroot-setup.log
+    (in the installed system). Re-run with INSTALL_DEBUG=1 for a full trace.
 
 You can now 'reboot'.
 DONE
