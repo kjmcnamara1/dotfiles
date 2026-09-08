@@ -378,6 +378,8 @@ timeout: 5
     protocol: efi_chainload
     image_path: boot():/EFI/Linux/arch-linux.efi
 
+    //Snapshots
+
 /Arch Linux (fallback)
     protocol: efi_chainload
     image_path: boot():/EFI/Linux/arch-linux-fallback.efi
@@ -455,7 +457,7 @@ setup_chaotic_aur() {
 Include = /etc/pacman.d/chaotic-mirrorlist
 CHAOTIC
     pacman -Sy --noconfirm || return 1
-    pacman -S --noconfirm --needed yay limine-snapper-sync || return 1
+    pacman -S --noconfirm --needed yay limine-snapper-sync inotify-tools || return 1
     systemctl enable limine-snapper-sync.service || true
 }
 extra "chaotic-aur / yay / limine-snapper-sync" setup_chaotic_aur
