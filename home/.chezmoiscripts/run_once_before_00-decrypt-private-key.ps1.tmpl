@@ -1,7 +1,7 @@
 {{- if eq .chezmoi.os "linux" -}}
 #! /usr/bin/env bash
 
-source ../../scripts/gum-helper.sh
+source "${CHEZMOI_SOURCE_DIR}/scripts/gum-helper.sh"
 
 section "Decrypt Age Key"
 
