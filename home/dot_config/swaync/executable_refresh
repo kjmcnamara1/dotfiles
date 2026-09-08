@@ -1,4 +1,0 @@
-#! /usr/bin/env bash
-pkill swaync
-swaync -df
-notify-send "Restarted Sway NC"
