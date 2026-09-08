@@ -48,12 +48,12 @@ if [[ ! -d /sys/firmware/efi/efivars ]]; then
     exit 1
 fi
 
-if ! command -v pacstrap &>/dev/null; then
+if ! command -v pacstrap &> /dev/null; then
     echo "pacstrap not found -- this script must be run from the archiso live environment." >&2
     exit 1
 fi
 
-if ! command -v gum &>/dev/null; then
+if ! command -v gum &> /dev/null; then
     echo "[*] Installing gum..."
     pacman -Sy --noconfirm --needed gum
 fi
@@ -71,12 +71,12 @@ section "Arch Linux Install"
 
 HOSTNAME=""
 while [[ -z "$HOSTNAME" ]]; do
-    HOSTNAME=$(gum input --placeholder "e.g. archbox" --prompt "Hostname: ")
+    HOSTNAME=$(gum input --placeholder "archlinux" --prompt "Hostname: ")
 done
 
 USERNAME=""
 while [[ -z "$USERNAME" ]]; do
-    USERNAME=$(gum input --placeholder "e.g. jdoe" --prompt "Admin username: ")
+    USERNAME=$(gum input --placeholder "admin" --prompt "Admin username: " --value "kjm")
 done
 
 while true; do
@@ -84,7 +84,7 @@ while true; do
     PASSWORD_CONFIRM=$(gum input --password --placeholder "confirm password" --prompt "Confirm password: ")
     if [[ -n "$PASSWORD" && "$PASSWORD" == "$PASSWORD_CONFIRM" ]]; then
         break
-    fi
+  fi
     warn "Passwords did not match (or were empty) -- try again."
 done
 
@@ -98,7 +98,7 @@ if [[ ${#DRIVE_LIST[@]} -eq 0 ]]; then
 fi
 
 DRIVE_CHOICE=$(printf '%s\n' "${DRIVE_LIST[@]}" | gum choose --header "Select a drive to install Arch Linux to:")
-DISK=$(awk '{print $1}' <<<"$DRIVE_CHOICE")
+DISK=$(awk '{print $1}' <<< "$DRIVE_CHOICE")
 
 if ! gum confirm "This will ERASE ALL DATA on ${DISK}. Continue?"; then
     echo "Aborted."
@@ -110,9 +110,9 @@ part() {
     local d="$1" n="$2"
     if [[ "$d" =~ (nvme|mmcblk) ]]; then
         echo "${d}p${n}"
-    else
+  else
         echo "${d}${n}"
-    fi
+  fi
 }
 ESP_PART=$(part "$DISK" 1)
 ROOT_PART=$(part "$DISK" 2)
@@ -227,18 +227,18 @@ echo "192.168.0.10:/mnt/md1 /mnt/NAS nfs _netdev,nofail,x-systemd.automount,x-sy
 # --------------------------------------------------------------------------
 
 mkdir -p /mnt/var/lib/iwd
-cp -a /var/lib/iwd/. /mnt/var/lib/iwd/ 2>/dev/null || true
+cp -a /var/lib/iwd/. /mnt/var/lib/iwd/ 2> /dev/null || true
 
 mkdir -p /mnt/etc/NetworkManager/system-connections
-cp -a /etc/NetworkManager/system-connections/. /mnt/etc/NetworkManager/system-connections/ 2>/dev/null || true
-chmod 600 /mnt/etc/NetworkManager/system-connections/* 2>/dev/null || true
+cp -a /etc/NetworkManager/system-connections/. /mnt/etc/NetworkManager/system-connections/ 2> /dev/null || true
+chmod 600 /mnt/etc/NetworkManager/system-connections/* 2> /dev/null || true
 
 # --------------------------------------------------------------------------
 # 7. Write variables + chroot configuration script
 # --------------------------------------------------------------------------
 
-{ set +x; } 2>/dev/null   # keep the password out of the xtrace log
-cat > /mnt/root/chroot-vars.sh <<EOF
+{ set +x; } 2> /dev/null  # keep the password out of the xtrace log
+cat > /mnt/root/chroot-vars.sh << EOF
 HOSTNAME=$(printf '%q' "$HOSTNAME")
 USERNAME=$(printf '%q' "$USERNAME")
 USERPASS=$(printf '%q' "$PASSWORD")
@@ -251,7 +251,7 @@ EOF
 chmod 600 /mnt/root/chroot-vars.sh
 if [[ -n "${INSTALL_DEBUG:-}" ]]; then set -x; fi
 
-cat > /mnt/root/chroot-setup.sh <<'CHSETUP'
+cat > /mnt/root/chroot-setup.sh << 'CHSETUP'
 #!/bin/bash
 set -euo pipefail
 PS4='+ chroot:${LINENO}: '
@@ -475,11 +475,11 @@ rm -f /mnt/root/chroot-setup.sh /mnt/root/chroot-vars.sh
 # --------------------------------------------------------------------------
 
 section "Install complete"
-cp -f "$LOG" /mnt/var/log/arch-install.log 2>/dev/null || true
+cp -f "$LOG" /mnt/var/log/arch-install.log 2> /dev/null || true
 info "Unmounting..."
 umount -R /mnt
 
-cat <<DONE
+cat << DONE
 
 Arch Linux has been installed to ${DISK}.
 
