@@ -1,0 +1,7 @@
+description = "Dank Material Shell Greeter"
+
+[packages]
+  required = ["greetd-dms-greeter-bin"]
+
+[hooks]
+  post = ["dms-greeter install", "dms-greeter sync"]

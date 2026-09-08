@@ -1,0 +1,14 @@
+description = "Dank Material Shell"
+
+[modules]
+  required = ["niri", "quickshell", "matugen"]
+
+[packages]
+  required = [
+    "qt6-multimedia",
+    "cava",
+    "dsearch",
+    "power-profiles-daemon",
+    "cups-pk-helper",
+    "kimageformats",
+  ]
