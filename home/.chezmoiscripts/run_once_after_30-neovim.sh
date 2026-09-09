@@ -8,6 +8,7 @@ packages=(
   neovim
   helix
   tree-sitter-cli
+  luarocks
   nodejs
   npm
   shellcheck
