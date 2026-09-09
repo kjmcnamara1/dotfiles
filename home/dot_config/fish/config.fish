@@ -83,7 +83,7 @@ if status is-interactive # connected to keyboard
     alias py=python3 # Python
     alias ipy=ipython # Interactive Python Shell
     alias hx=helix # Helix text editor
-    alias ff=fastfetch # Fastfetch terminal sysinfo viewer
+    alias fetch=fastfetch # Fastfetch terminal sysinfo viewer
     alias lg=lazygit
     alias chz=chezmoi # Chezmoi dotfiles manager
     alias schezmoi='sudo chezmoi --destination / --source ~/.local/share/chezmoi/root --working-tree ~/.local/share/chezmoi/root --config ~/.config/chezmoi/chezmoi.toml'
