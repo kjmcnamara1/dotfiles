@@ -4,7 +4,7 @@ source "${CHEZMOI_SOURCE_DIR}/../scripts/gum-helper.sh"
 
 section "Dank Material Shell"
 
-sudo -v && curl -fsSL https://install.danklinux.com | sh -s -- --compositor niri --term ghostty --dms-greeter --danksearch --replace-configs-all --yes
+sudo -v && curl -fsSL https://install.danklinux.com | sh -s -- --compositor niri --term ghostty --dms-greeter --danksearch --yes
 
 packages=(
   # dms-shell
@@ -12,13 +12,13 @@ packages=(
   # dsearch
   # matugen
   # niri
-  # qt6-multimedia
-  # cava
   # greetd-dms-greeter-bin
   # dsearch-bin
-  # power-profiles-daemon
-  # cups-pk-helper
-  # kimageformats
+  qt6-multimedia
+  cava
+  power-profiles-daemon
+  cups-pk-helper
+  kimageformats
   wl-clipboard
   uwsm
 
