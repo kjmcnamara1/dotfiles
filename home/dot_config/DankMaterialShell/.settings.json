@@ -1,7 +1,7 @@
 {
   "currentThemeName": "custom",
   "currentThemeCategory": "registry",
-  "customThemeFile": "/home/kjm/.config/DankMaterialShell/themes/nord/theme.json",
+  "customThemeFile": "/home/kjm/.config/DankMaterialShell/themes/ansinord/theme.json",
   "niriLayoutGapsOverride": -2,
   "showWeekNumber": true,
   "clockFormat": "24h",
@@ -42,6 +42,10 @@
       "width": 50
     }
   ],
+  "workspaceColorMode": "secondary",
+  "workspaceFocusedBorderEnabled": true,
+  "workspaceFocusedBorderColor": "secondary",
+  "workspaceUnfocusedMonitorSeparateAppearance": true,
   "launcherUseOverlayLayer": true,
   "useAutoLocation": true,
   "launcherLogoMode": "os",
