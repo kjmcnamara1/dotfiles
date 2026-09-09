@@ -42,4 +42,4 @@ packages=(
 
 yay -S --needed --noconfirm "${packages[@]}"
 
-systemctl enable --now udiskie
+systemctl --user enable --now udiskie
