@@ -50,6 +50,11 @@
       "width": 50
     },
     {
+      "id": "builtin_tailscale",
+      "enabled": true,
+      "width": 50
+    },
+    {
       "id": "nightMode",
       "enabled": true,
       "width": 25
@@ -69,6 +74,7 @@
   },
   "launcherUseOverlayLayer": true,
   "useAutoLocation": true,
+  "networkPreference": "ethernet",
   "iconThemeDark": "Papirus",
   "cursorSettings": {
     "theme": "Nordzy-cursors",
