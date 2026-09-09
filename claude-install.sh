@@ -375,6 +375,13 @@ require test -f /boot/EFI/systemd/systemd-bootx64.efi
 require test -f /boot/EFI/BOOT/BOOTX64.EFI
 require test -f /boot/loader/loader.conf
 
+#  Remove all EFI boot entries before creating new one
+for entry in $(efibootmgr | grep '^Boot[0-9]' | awk -F'[* ]' '{print substr($1,5)}'); do
+  sudo efibootmgr -b "$entry" -B >/dev/null
+done
+efibootmgr --create --disk "$DISK" --part 1 --label "Linux Boot Manager" --loader '\EFI\systemd\systemd-bootx64.efi' --unicode \
+    || warn "efibootmgr could not add an NVRAM entry -- the removable-media path EFI/BOOT/BOOTX64.EFI still boots"
+
 step "Snapper (root config on the pre-created @snapshots subvolume, per Arch wiki procedure)"
 setup_snapper() {
     if findmnt -M /.snapshots >/dev/null 2>&1; then
