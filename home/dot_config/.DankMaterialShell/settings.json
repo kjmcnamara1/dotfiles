@@ -1,5 +1,9 @@
 {
+  "currentThemeName": "custom",
+  "currentThemeCategory": "custom",
+  "customThemeFile": "/home/kjm/.config/DankMaterialShell/themes/ansinord/theme.json",
   "barElevationEnabled": false,
+  "blurWallpaperOnOverview": true,
   "barConfigs": [
     {
       "id": "default",
