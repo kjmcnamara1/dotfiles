@@ -7,18 +7,18 @@ section "Dank Material Shell"
 sudo -v && curl -fsSL https://install.danklinux.com | sh -s -- --compositor niri --term ghostty --dms-greeter --danksearch --replace-configs-all --yes
 
 packages=(
-  dms-shell
-  quickshell
-  dsearch
-  matugen
-  niri
-  qt6-multimedia
-  cava
-  greetd-dms-greeter-bin
-  dsearch-bin
-  power-profiles-daemon
-  cups-pk-helper
-  kimageformats
+  # dms-shell
+  # quickshell
+  # dsearch
+  # matugen
+  # niri
+  # qt6-multimedia
+  # cava
+  # greetd-dms-greeter-bin
+  # dsearch-bin
+  # power-profiles-daemon
+  # cups-pk-helper
+  # kimageformats
   wl-clipboard
   uwsm
 
@@ -38,9 +38,9 @@ packages=(
 
 yay -S --needed --noconfirm "${packages[@]}"
 
-systemctl --user enable --now dms
-systemctl --user add-wants niri.service dms
+# systemctl --user enable --now dms
+# systemctl --user add-wants niri.service dms
 
-dms-greeter install
+# dms-greeter install
 
-dsearch index generate
+# dsearch index generate
