@@ -7,10 +7,10 @@
 #   - gum-driven prompts for hostname / admin user / password
 #   - drive selection from a live list of block devices
 #   - btrfs with 5 pre-configured subvolumes (@, @home, @snapshots, @var_log, @games) + zstd compression
-#   - unified kernel image (UKI) built by mkinitcpio, booted via Limine
+#   - unified kernel image (UKI) built by mkinitcpio, auto-discovered by systemd-boot
 #   - plymouth "bgrt" theme baked into the UKI, cmdline: "quiet splash"
 #   - amd-ucode / intel-ucode auto-detected
-#   - snapper, integrated with Limine boot entries via limine-snapper-sync (like Omarchy's setup)
+#   - snapper + snap-pac timeline snapshots (no bootloader snapshot entries)
 #   - zram via zram-generator (zstd)
 #   - NetworkManager + iwd backend, live network profiles copied to the new install
 #   - sudo NOPASSWD for wheel, admin user in wheel/input/video/scanner
@@ -44,7 +44,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 if [[ ! -d /sys/firmware/efi/efivars ]]; then
-    echo "This script only supports UEFI installs (Limine is configured here via efi_chainload)." >&2
+    echo "This script only supports UEFI installs (systemd-boot requires UEFI)." >&2
     exit 1
 fi
 
@@ -128,7 +128,7 @@ sleep 2
 mkfs.fat -F32 -n ESP "$ESP_PART"
 mkfs.btrfs -f -L ArchRoot "$ROOT_PART"
 
-# Create 5 subvolumes (mirrors the layout used by Omarchy's quattro setup):
+# Create 5 subvolumes:
 #   @          -> /
 #   @home      -> /home
 #   @snapshots -> /.snapshots
@@ -201,7 +201,7 @@ PACKAGES=(
     ntfs-3g
     reflector                 # mirrorlist optimization
     zram-generator              # zram
-    limine efibootmgr             # bootloader
+    efibootmgr                    # bootloader (systemd-boot ships with systemd)
     sudo
     snapper snap-pac                # snapshots
     dosfstools mtools                  # ESP/FAT tooling
@@ -356,48 +356,24 @@ rm -f /boot/vmlinuz-linux /boot/initramfs-linux.img /boot/initramfs-linux-fallba
 require test -s /boot/EFI/Linux/arch-linux.efi
 require test -s /boot/EFI/Linux/arch-linux-fallback.efi
 
-step "Limine bootloader"
-mkdir -p /boot/EFI/BOOT /boot/EFI/Limine
-cp /usr/share/limine/BOOTX64.EFI /boot/EFI/BOOT/BOOTX64.EFI
-cp /usr/share/limine/BOOTX64.EFI /boot/EFI/Limine/BOOTX64.EFI
-#  Remove all EFI boot entries before creating new one for limine
-for entry in $(efibootmgr | grep '^Boot[0-9]' | awk -F'[* ]' '{print substr($1,5)}'); do
-  sudo efibootmgr -b "$entry" -B >/dev/null
-done
-efibootmgr --create --disk "$DISK" --part 1 --label "Limine" --loader '\EFI\Limine\BOOTX64.EFI' --unicode \
-    || warn "efibootmgr could not add an NVRAM entry -- the removable-media path EFI/BOOT/BOOTX64.EFI still boots"
+step "systemd-boot bootloader"
+bootctl install --esp-path=/boot
 
-cat > /boot/limine.conf <<LIMCONF
-timeout: 1
-default_entry: 2
+mkdir -p /boot/loader
+cat > /boot/loader/loader.conf <<LOADERCONF
+default      arch-linux.efi
+timeout      1
+console-mode keep
+editor       no
+LOADERCONF
 
-/+Arch Linux
-    //linux
-      protocol: efi_chainload
-      image_path: boot():/EFI/Linux/arch-linux.efi
+# systemd-boot auto-discovers the UKIs in /boot/EFI/Linux -- no loader entries needed.
+# Keep the EFI binary current on future systemd upgrades.
+systemctl enable systemd-boot-update.service
 
-    //Snapshots
-
-/Arch Linux (fallback)
-    protocol: efi_chainload
-    image_path: boot():/EFI/Linux/arch-linux-fallback.efi
-LIMCONF
-
-mkdir -p /etc/pacman.d/hooks
-cat > /etc/pacman.d/hooks/limine-update.hook <<HOOK
-[Trigger]
-Operation = Upgrade
-Type = Package
-Target = limine
-
-[Action]
-Description = Updating limine EFI binaries
-When = PostTransaction
-Exec = /bin/sh -c 'cp /usr/share/limine/BOOTX64.EFI /boot/EFI/BOOT/BOOTX64.EFI; cp /usr/share/limine/BOOTX64.EFI /boot/EFI/Limine/BOOTX64.EFI'
-HOOK
-
+require test -f /boot/EFI/systemd/systemd-bootx64.efi
 require test -f /boot/EFI/BOOT/BOOTX64.EFI
-require test -f /boot/limine.conf
+require test -f /boot/loader/loader.conf
 
 step "Snapper (root config on the pre-created @snapshots subvolume, per Arch wiki procedure)"
 setup_snapper() {
@@ -436,7 +412,7 @@ grep -q '^ILoveCandy' /etc/pacman.conf || sed -i '/^Color/a ILoveCandy' /etc/pac
 sed -i 's/^#\?ParallelDownloads.*/ParallelDownloads = 5/' /etc/pacman.conf
 sed -i '/^#\[multilib\]/,/^#Include/ s/^#//' /etc/pacman.conf
 
-step "Chaotic-AUR + yay + limine-snapper-sync"
+step "Chaotic-AUR + yay"
 setup_chaotic_aur() {
     local key=3056513887B78AEB ks
     local urls=(
@@ -455,10 +431,9 @@ setup_chaotic_aur() {
 Include = /etc/pacman.d/chaotic-mirrorlist
 CHAOTIC
     pacman -Sy --noconfirm || return 1
-    pacman -S --noconfirm --needed yay limine-snapper-sync inotify-tools || return 1
-    systemctl enable limine-snapper-sync.service || true
+    pacman -S --noconfirm --needed yay || return 1
 }
-extra "chaotic-aur / yay / limine-snapper-sync" setup_chaotic_aur
+extra "chaotic-aur / yay" setup_chaotic_aur
 
 step "Chroot configuration complete."
 CHSETUP
@@ -475,7 +450,7 @@ arch-chroot /mnt /bin/bash /root/chroot-setup.sh 2>&1 | tee /mnt/var/log/arch-ch
 rm -f /mnt/root/chroot-setup.sh /mnt/root/chroot-vars.sh
 
 # RUN CHEZMOI
-arch-chroot /mnt /bin/bash -c "sudo -H -u $HOSTNAME chezmoi init --branch dms --apply kjmcnamara1"
+arch-chroot /mnt /bin/bash -c "sudo -H -u $USERNAME chezmoi init --branch dms --apply kjmcnamara1"
 
 # --------------------------------------------------------------------------
 # 9. Done
@@ -491,11 +466,11 @@ cat << DONE
 Arch Linux has been installed to ${DISK}.
 
 Notes:
-  - Bootloader: Limine, chainloading UKIs from /boot/EFI/Linux (ESP mounted at /boot)
+  - Bootloader: systemd-boot, auto-discovering UKIs from /boot/EFI/Linux (ESP mounted at /boot)
   - btrfs subvolumes: @, @home, @snapshots, @var_log, @games (compress=zstd)
-  - Snapper is configured on the 'root' config; limine-snapper-sync is enabled
-    to add snapshot boot entries -- check 'man limine-snapper-sync' / its repo
-    for any tuning you want (submenu naming, snapshot count, etc.).
+  - Snapper is configured on the 'root' config with timeline snapshots +
+    snap-pac pre/post pacman snapshots. There is no bootloader integration --
+    restore a snapshot with 'snapper rollback' from a booted system or live ISO.
   - Wi-Fi/network profiles from the live session were copied over for first boot.
   - Admin user '${USERNAME}' has passwordless sudo via /etc/sudoers.d/wheel.
   - Non-essential steps (snapper, chaotic-aur/yay, avahi/cups, reflector) are
