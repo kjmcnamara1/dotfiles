@@ -10,7 +10,6 @@ packages=(
   pipewire-pulse
   pipewire-alsa
 )
-  )
 
 yay -S --needed --noconfirm "${packages[@]}"
 
