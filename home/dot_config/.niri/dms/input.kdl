@@ -12,6 +12,11 @@ input {
         accel-speed 0.0
         natural-scroll
         dwt
+        scroll-method "two-finger"
+    }
+    keyboard {
+        track-layout "global"
+        numlock
     }
 }
 

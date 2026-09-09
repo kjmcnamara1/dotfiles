@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "configurations": [
+    {
+      "id": "profile_1788971800352_d2qjq5t",
+      "name": "angel",
+      "outputs": {
+        "DP-2": {
+          "mode": "3840x2160@59.997",
+          "position": {
+            "x": 2560,
+            "y": 1080
+          },
+          "scale": 1.5,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "niri": {
+            "focusAtStartup": true
+          }
+        },
+        "DP-3": {
+          "mode": "1920x1080@60.000",
+          "position": {
+            "x": 640,
+            "y": 0
+          },
+          "scale": 1,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "niri": {}
+        },
+        "HDMI-A-1": {
+          "mode": "1920x1080@60.000",
+          "position": {
+            "x": 2560,
+            "y": 0
+          },
+          "scale": 1,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "niri": {}
+        },
+        "DP-1": {
+          "mode": "3840x2160@59.997",
+          "position": {
+            "x": 0,
+            "y": 1080
+          },
+          "scale": 1.5,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "niri": {
+            "focusAtStartup": true
+          }
+        }
+      }
+    }
+  ]
+}
