@@ -1,3 +1,5 @@
+# vim: ft=dosini
+
 [Default Applications]
 text/html=brave-origin.desktop
 x-scheme-handler/http=brave-origin.desktop
@@ -11,15 +13,37 @@ x-scheme-handler/mailto=brave-browser.desktop
 application/x-cd-image=gnome-disk-image-mounter.desktop
 application/x-iso9660-image=gnome-disk-image-mounter.desktop
 application/x-udf-image=gnome-disk-image-mounter.desktop
-image/jpeg=imv.desktop;
-image/png=imv.desktop;
-image/gif=imv.desktop;
-image/bmp=imv.desktop;
-image/webp=imv.desktop;
+image/jpeg=imv.desktop
+image/png=imv.desktop
+image/gif=imv.desktop
+image/bmp=imv.desktop
+image/webp=imv.desktop
 x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+inode/directory=yazi.desktop
+x-scheme-handler/file=yazi.desktop
+x-scheme-handler/sftp=yazi.desktop
+application/json=nvim.desktop
+application/x-zerosize=nvim.desktop
+text/markdown=nvim.desktop
+text/plain=nvim.desktop
+text/x-c++src=nvim.desktop
+text/x-csrc=nvim.desktop
+text/x-python=nvim.desktop
+text/x-shellscript=nvim.desktop
 
 [Added Associations]
 video/mp4=mpv.desktop;
 video/x-matroska=mpv.desktop;
 application/pdf=org.pwmt.zathura.desktop;org.kde.gwenview.desktop;libreoffice-draw.desktop;org.gnome.Evince.desktop;
 application/vnd.ms-publisher=scribus.desktop;
+inode/directory=yazi.desktop;
+x-scheme-handler/file=yazi.desktop;
+x-scheme-handler/sftp=yazi.desktop;
+application/json=nvim.desktop;
+application/x-zerosize=nvim.desktop;
+text/markdown=nvim.desktop;
+text/plain=nvim.desktop;
+text/x-c++src=nvim.desktop;
+text/x-csrc=nvim.desktop;
+text/x-python=nvim.desktop;
+text/x-shellscript=nvim.desktop;
