@@ -24,11 +24,11 @@ packages=(
 
   nautilus
   sshfs
-  gvfs
-  gvfs-smb
-  gvfs-nfs
-  gvfs-google
-  gvfs-onedrive
+  # gvfs
+  # gvfs-smb
+  # gvfs-nfs
+  # gvfs-google
+  # gvfs-onedrive
 
   gnome-disk-utility
   adw-gtk-theme
