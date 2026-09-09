@@ -2,6 +2,7 @@
   "currentThemeName": "custom",
   "currentThemeCategory": "registry",
   "customThemeFile": "/home/kjm/.config/DankMaterialShell/themes/ansinord/theme.json",
+  "floatingWindowSyncGlobal": false,
   "niriLayoutGapsOverride": -2,
   "showWeekNumber": true,
   "clockFormat": "24h",
@@ -48,10 +49,32 @@
   "workspaceUnfocusedMonitorSeparateAppearance": true,
   "launcherUseOverlayLayer": true,
   "useAutoLocation": true,
+  "iconThemePerMode": true,
+  "cursorSettings": {
+    "theme": "System Default",
+    "size": 24,
+    "niri": {
+      "hideWhenTyping": true,
+      "hideAfterInactiveMs": 0
+    },
+    "hyprland": {
+      "hideOnKeyPress": false,
+      "hideOnTouch": false,
+      "inactiveTimeout": 0
+    },
+    "dwl": {
+      "cursorHideTimeout": 0
+    },
+    "mango": {
+      "cursorHideTimeout": 0
+    }
+  },
   "launcherLogoMode": "os",
+  "monoFontFamily": "JetBrainsMono Nerd Font",
   "acProfileName": "2",
   "batteryProfileName": "1",
   "batteryAutoPowerSaver": true,
+  "terminalsAlwaysDark": true,
   "showDock": true,
   "dockSmartAutoHide": true,
   "dockUseOverlayLayer": true,

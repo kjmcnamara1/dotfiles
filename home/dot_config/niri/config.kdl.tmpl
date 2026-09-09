@@ -3,42 +3,39 @@
 // This config is in the KDL format: https://kdl.dev
 // "/-" comments out the following node.
 // Check the wiki for a full description of the configuration:
-// https://yalter.github.io/niri/Configuration:-Introduction
-// Input device configuration.
-// Find the full list of options on the wiki:
-// https://yalter.github.io/niri/Configuration:-Input
-
-include "apps/walker.kdl"
-include "apps/mako.kdl"
-include "apps/waybar.kdl"
-include "apps/active-window-info.kdl"
-// include "apps/scratchpad.kdl"
-
-spawn-sh-at-startup "swaybg -i ~/.cache/wallpaper/.current.blur"
-spawn-sh-at-startup "wlsunset -l 34.8 -L -77.4"
-// spawn-sh-at-startup "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-spawn-sh-at-startup "dbus-update-activation-environment --systemd --all"
-spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-
-// ENVIRONMENT VARIABLES
-environment {
-    NERD_FONT "JetBrainsMono Nerd Font"
-    TERMINAL "kitty"
-    EDITOR "nvim"
-
-    // OZONE_PLATFORM "wayland"
-    // ELECTRON_OZONE_PLATFORM_HINT "wayland"
-    // ELECTRON_OZONE_PLATFORM_HINT "auto"
-    // GDK_BACKEND "wayland"
-    // GDK_SCALE "1.5"
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
+config-notification {
+    disable-failed
 }
 
-// INPUT
+gestures {
+    hot-corners {
+        off
+    }
+}
+
+// Input device configuration.
+// Find the full list of options on the wiki:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Input
 input {
     keyboard {
-        xkb {}
+        xkb {
+            // You can set rules, model, layout, variant and options.
+            // For more information, see xkeyboard-config(7).
+
+            // For example:
+            // layout "us,ru"
+            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+
+            // If this section is empty, niri will fetch xkb settings
+            // from org.freedesktop.locale1. You can control these using
+            // localectl set-x11-keymap.
+        }
+
+        // Enable numlock on startup, omitting this setting disables it.
         numlock
     }
+
     touchpad {
         // off
         tap
@@ -52,498 +49,222 @@ input {
         scroll-method "two-finger"
         disabled-on-external-mouse
     }
-    mouse {}
-    trackpoint {}
+
+    mouse {
+
+    }
+
+    trackpoint {
+        // off
+        // natural-scroll
+        // accel-speed 0.2
+        // accel-profile "flat"
+        // scroll-method "on-button-down"
+        // scroll-button 273
+        // scroll-button-lock
+        // middle-emulation
+    }
+
+    // Uncomment this to make the mouse warp to the center of newly focused windows.
     warp-mouse-to-focus
+
+    // Focus windows and outputs automatically when moving the mouse into them.
+    // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
     focus-follows-mouse max-scroll-amount="0%"
 }
 
-gestures {
-  hot-corners {
-    off
-  }
+// You can configure outputs by their name, which you can find
+// by running `niri msg outputs` while inside a niri instance.
+// The built-in laptop monitor is usually called "eDP-1".
+// Find more information on the wiki:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
+// Remember to uncomment the node by removing "/-"!
+/-output "eDP-2" {
+    mode "2560x1600@239.998993"
+    position x=2560 y=0
+    variable-refresh-rate
 }
-
-cursor {
-  xcursor-theme "Nordzy-cursors"
-  xcursor-size 24
-  hide-when-typing
-}
-
-// MONITORS
-include "outputs.kdl"
-
-// LAYOUT
-// https://yalter.github.io/niri/Configuration:-Layout
+// Settings that influence how windows are positioned and sized.
+// Find more information on the wiki:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
-    gaps 20
+    // Set gaps around windows in logical pixels.
     background-color "transparent"
+    // When to center a column when changing focus, options are:
+    // - "never", default behavior, focusing an off-screen column will keep at the left
+    //   or right edge of the screen.
+    // - "always", the focused column will always be centered.
+    // - "on-overflow", focusing a column will center it if it doesn't fit
+    //   together with the previously focused column.
     center-focused-column "never"
+    // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
+        // Proportion sets the width as a fraction of the output width, taking gaps into account.
+        // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
+        // The default preset widths are 1/3, 1/2 and 2/3 of the output.
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
+        // Fixed sets the width in logical pixels exactly.
+        // fixed 1920
     }
+    // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
     // preset-window-heights { }
-    default-column-width {
-        // proportion 0.33333
-        proportion 0.5
-        // proportion 0.66667
-    }
-    focus-ring {
-        width 2
-        // active-color "#7fc8ff"
-        // active-color "#5E81AC"
-        // active-color "#81A1C1"
-        active-color "#88C0D0"
-        inactive-color "#4C566A"
-    }
-    tab-indicator {
-        width 10
-        gaps-between-tabs 20
-        corner-radius 5
-        place-within-column
-        active-color "#B48EAD"
-    }
-    /-border {
-    off
-    width 4
-    active-color "#ffc87f"
-    inactive-color "#505050"
-    urgent-color "#9b0000"
+    // You can change the default width of the new windows.
+    default-column-width { proportion 0.5; }
+    // If you leave the brackets empty, the windows themselves will decide their initial width.
+    // default-column-width {}
+    // By default focus ring and border are rendered as a solid background rectangle
+    // behind windows. That is, they will show up through semitransparent windows.
+    // This is because windows using client-side decorations can have an arbitrary shape.
+    //
+    // If you don't like that, you should uncomment `prefer-no-csd` below.
+    // Niri will draw focus ring and border *around* windows that agree to omit their
+    // client-side decorations.
+    //
+    // Alternatively, you can override it with a window rule called
+    // `draw-border-with-background`.
+    border {
+        off
+        width 4
+        active-color   "#707070"      // Neutral gray
+        inactive-color "#d0d0d0"      // Light gray
+        urgent-color   "#cc4444"      // Softer red
     }
     shadow {
-        on
-        softness 10
+        softness 30
         spread 5
         offset x=0 y=5
-        color "#0008"
+        color "#0007"
     }
- /-struts {
-        left 64
-        right 64
-        top 64
-        bottom 64
+    struts {
     }
 }
-
-// OVERVIEW
-overview {
-  // workspace-shadow { off; }
-  backdrop-color "#2E3440"
-}
-
 layer-rule {
-    match namespace="dms:blurwallpaper" // dank material shell
-    match namespace="wallpaper" // swaybg
+    match namespace="^quickshell$"
     place-within-backdrop true
 }
-
+overview {
+    workspace-shadow {
+        off
+    }
+}
+// Add lines like this to spawn processes at startup.
+// Note that running niri as a session supports xdg-desktop-autostart,
+// which may be more convenient to use.
+// See the binds section below for more spawn examples.
+// This line starts waybar, a commonly used bar for Wayland compositors.
+environment {
+  XDG_CURRENT_DESKTOP "niri"
+}
 hotkey-overlay {
     skip-at-startup
 }
-
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-
-// https://yalter.github.io/niri/Configuration:-Animations
 animations {
- // off
-    // slowdown 3.0
-
+    workspace-switch {
+        spring damping-ratio=0.80 stiffness=523 epsilon=0.0001
+    }
+    window-open {
+        duration-ms 150
+        curve "ease-out-expo"
+    }
+    window-close {
+        duration-ms 150
+        curve "ease-out-quad"
+    }
+    horizontal-view-movement {
+        spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
+    }
+    window-movement {
+        spring damping-ratio=0.75 stiffness=323 epsilon=0.0001
+    }
+    window-resize {
+        spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
+    }
+    config-notification-open-close {
+        spring damping-ratio=0.65 stiffness=923 epsilon=0.001
+    }
+    screenshot-ui-open {
+        duration-ms 200
+        curve "ease-out-quad"
+    }
+    overview-open-close {
+        spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
+    }
 }
-
-// WINDOW RULES
+// Window rules let you adjust behavior for individual windows.
+// Find more information on the wiki:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+// Work around WezTerm's initial configure bug
+// by setting an empty default-column-width.
 window-rule {
-    match app-id="^org\\.wezfurlong\\.wezterm$"
+    // This regular expression is intentionally made as specific as possible,
+    // since this is the default config, and we want no false positives.
+    // You can get away with just app-id="wezterm" if you want.
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
 }
 window-rule {
-    match app-id="firefox$" title="^Picture-in-Picture$"
-    open-floating true
-}
-/-window-rule {
-match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-match app-id=r#"^org\.gnome\.World\.Secrets$"#
-block-out-from "screen-capture"
-}
-window-rule {
-    geometry-corner-radius 10
+    match app-id=r#"^org\.gnome\."#
+    draw-border-with-background false
+    geometry-corner-radius 12
     clip-to-geometry true
 }
-
 window-rule {
-  match app-id=r#"steam_app_default"#
-  open-fullscreen true
+    match app-id=r#"^gnome-control-center$"#
+    match app-id=r#"^pavucontrol$"#
+    match app-id=r#"^nm-connection-editor$"#
+    default-column-width { proportion 0.5; }
+    open-floating false
+}
+window-rule {
+    match app-id=r#"^org\.gnome\.Calculator$"#
+    match app-id=r#"^gnome-calculator$"#
+    match app-id=r#"^galculator$"#
+    match app-id=r#"^blueman-manager$"#
+    match app-id=r#"^org\.gnome\.Nautilus$"#
+    match app-id=r#"^xdg-desktop-portal$"#
+    open-floating true
+}
+window-rule {
+    match app-id=r#"^steam$"# title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+    open-focused false
+}
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    match app-id="Alacritty"
+    match app-id="zen"
+    match app-id="com.mitchellh.ghostty"
+    match app-id="kitty"
+    draw-border-with-background false
+}
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id="zoom"
+    open-floating true
+}
+debug {
+    honor-xdg-activation-with-invalid-serial
 }
 
-// LAYER RULES
-layer-rule {
-  match namespace="waybar"
-
-  background-effect {
-    blur true
-  }
-  popups {
-  geometry-corner-radius 10
-    background-effect {
-      blur true
+// Override to disable super+tab
+recent-windows {
+    binds {
+        Alt+Tab         { next-window scope="output"; }
+        Alt+Shift+Tab   { previous-window scope="output"; }
+        Alt+grave       { next-window filter="app-id"; }
+        Alt+Shift+grave { previous-window filter="app-id"; }
     }
-  }
 }
 
-layer-rule {
-  match namespace="swayosd"
-
-  geometry-corner-radius 40
-  background-effect {
-    blur true
-    xray false
-  }
-}
-
-layer-rule {
-  match namespace="rofi"
-
-  geometry-corner-radius 20
-  background-effect {
-    blur true
-    xray false
-  }
-}
-
-// BUG: mako and walker blur beyond window borders
-
-// layer-rule {
-//   match namespace="notifications"
-
-//   geometry-corner-radius 10
-//   clip-to-geometry true
-//   background-effect {
-//     blur true
-//     xray false
-//   }
-// }
-
-// layer-rule {
-//   match namespace="walker"
-
-//   clip-to-geometry true
-//   geometry-corner-radius 40
-//   background-effect {
-//     blur true
-//     xray false
-//   }
-// }
-
-// KEYBINDS
-binds {
-    SUPER+SHIFT+Slash { show-hotkey-overlay; }
-
-    // APPLICATIONS
-    SUPER+Return hotkey-overlay-title="Terminal" {
-        spawn "kitty"
-    }
-    SUPER+E hotkey-overlay-title="Files: Yazi" {
-        spawn-sh "kitty --class=yazi -e yazi"
-    }
-    SUPER+ALT+E hotkey-overlay-title="Files: Nautilus" {
-        spawn-sh "nautilus --new-window"
-    }
-    SUPER+B hotkey-overlay-title="Browser: Default" {
-        spawn "~/.local/bin/launch-browser"
-    }
-    SUPER+ALT+B {
-        spawn "~/.local/bin/launch-browser" "--private"
-    }
-    SUPER+A hotkey-overlay-title="AI: Gemini" {
-      spawn-sh "uwsm app -- Gemini.desktop"
-    }
-
-    SUPER+ALT+V hotkey-overlay-title="Open URL in mpv" {
-        spawn-sh "notify-send 'Opening URL in MPV:' $(wl-paste); mpv $(wl-paste)"
-    }
-    SUPER+CTRL+V hotkey-overlay-title="Download video from URL" {
-        spawn-sh "notify-send 'Downloading video from URL:' $(wl-paste); yt-dlp $(wl-paste)"
-    }
-
-    // SETTINGS
-    SUPER+CTRL+ALT+I hotkey-overlay-title="Settings: Idle Lock" {
-      // spawn-sh "~/.local/bin/idle-toggle"
-      spawn "stasis" "toggle-inhibit"
-    }
-
-    // SHELL
-    SUPER+CTRL+Space hotkey-overlay-title="Launcher: spotlight" {
-        spawn "dms" "ipc" "call" "spotlight" "toggle"
-    }
-    // SUPER+ALT+Space hotkey-overlay-title="Launcher: rofi" {
-    //     spawn-sh "pkill -x rofi || rofi -show drun"
-    // }
-    // SUPER+W hotkey-overlay-title="Window Switcher" {
-    //     spawn "dms" "ipc" "call" "spotlight" "toggleQuery" "!"
-    // }
-    // SUPER+Escape hotkey-overlay-title="Lock Screen" allow-when-locked=true {
-    //     spawn "dms" "ipc" "call" "lock" "lock"
-    // }
-    // SUPER+Delete hotkey-overlay-title="Power Menu" {
-    //     spawn "dms" "ipc" "call" "powermenu" "toggle"
-    // }
-    // SUPER+V hotkey-overlay-title="Clipboard" {
-    //     spawn "dms" "ipc" "call" "clipboard" "toggle"
-    // }
-    // SUPER+N hotkey-overlay-title="Notifications" {
-    //     spawn "dms" "ipc" "call" "notifications" "toggle"
-    // }
-
-    // MEDIA
-    // spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-    // XF86AudioMute allow-when-locked=true {
-    //   spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume mute-toggle"
-    // }
-    // spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-    // XF86AudioMicMute allow-when-locked=true {
-    //   spawn-sh "~/.config/swayosd/scripts/osdclient --input-volume mute-toggle"
-    // }
-    // spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-    // XF86AudioRaiseVolume allow-when-locked=true {
-    //     spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume raise"
-    // }
-    // spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-    // XF86AudioLowerVolume allow-when-locked=true {
-    //     spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume lower"
-    // }
-    // spawn "brightnessctl" "--class=backlight" "set" "+10%"
-    // XF86MonBrightnessUp allow-when-locked=true { // {{ if eq .chezmoi.hostname "angel" }}
-    //     spawn-sh "~/.config/swayosd/scripts/osdclient --brightness raise; hyprctl hyprsunset gamma +10" // {{ else }}
-    //     spawn-sh "~/.config/swayosd/scripts/osdclient --brightness raise" // {{ end }}
-    // }
-    // spawn "brightnessctl" "--class=backlight" "set" "10%-"
-    // XF86MonBrightnessDown allow-when-locked=true { // {{ if eq .chezmoi.hostname "angel" }}
-    //     spawn-sh "~/.config/swayosd/scripts/osdclient --brightness lower; hyprctl hyprsunset gamma -10" // {{ else }}
-    //     spawn-sh "~/.config/swayosd/scripts/osdclient --brightness lower" // {{ end }}
-    // }
-
-    // Precise 1% multimedia adjustments with Alt modifier
-    ALT+XF86AudioRaiseVolume  { spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume +1"; }
-    ALT+XF86AudioLowerVolume  { spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume -1"; }
-    ALT+XF86MonBrightnessUp   { spawn-sh "~/.config/swayosd/scripts/osdclient --brightness +1";    }
-    ALT+XF86MonBrightnessDown { spawn-sh "~/.config/swayosd/scripts/osdclient --brightness -1";    }
-
-    SUPER+Tab repeat=false { toggle-overview; }
-    SUPER+C   repeat=false { close-window; }
-    SUPER+ALT+C hotkey-overlay-title="Pick Color" { spawn-sh "niri msg pick-color | rg -o '#[0-9a-fA-F]{6}' | wl-copy"; }
-
-    // NAVIGATION
-    SUPER+H { focus-column-or-monitor-left; }
-    SUPER+J { focus-window-or-monitor-down; }
-    SUPER+K { focus-window-or-monitor-up; }
-    SUPER+L { focus-column-or-monitor-right; }
-
-    SUPER+CTRL+H { move-column-left; }
-    SUPER+CTRL+J { move-window-down; }
-    SUPER+CTRL+K { move-window-up; }
-    SUPER+CTRL+L { move-column-right; }
-
-    // Alternative commands that move across workspaces when reaching
-    // the first or last window in a column.
-    // SUPER+J     { focus-window-or-workspace-down; }
-    // SUPER+K     { focus-window-or-workspace-up; }
-    // SUPER+CTRL+J     { move-window-down-or-to-workspace-down; }
-    // SUPER+CTRL+K     { move-window-up-or-to-workspace-up; }
-
-    SUPER+Home { focus-column-first; }
-    SUPER+End { focus-column-last; }
-    SUPER+CTRL+Home { move-column-to-first; }
-    SUPER+CTRL+End { move-column-to-last; }
-    SUPER+SHIFT+H { focus-monitor-left; }
-    SUPER+SHIFT+J { focus-monitor-down; }
-    SUPER+SHIFT+K { focus-monitor-up; }
-    SUPER+SHIFT+L { focus-monitor-right; }
-    SUPER+CTRL+SHIFT+H { move-column-to-monitor-left; }
-    SUPER+CTRL+SHIFT+J { move-column-to-monitor-down; }
-    SUPER+CTRL+SHIFT+K { move-column-to-monitor-up; }
-    SUPER+CTRL+SHIFT+L { move-column-to-monitor-right; }
-
-    // Alternatively, there are commands to move just a single window:
-    // SUPER+SHIFT+CTRL+Left  { move-window-to-monitor-left; }
-    // ...
-
-    // And you can also move a whole workspace to another monitor:
-    SUPER+CTRL+ALT+SHIFT+H  { move-workspace-to-monitor-left; }
-    SUPER+CTRL+ALT+SHIFT+J  { move-workspace-to-monitor-down; }
-    SUPER+CTRL+ALT+SHIFT+K  { move-workspace-to-monitor-up; }
-    SUPER+CTRL+ALT+SHIFT+L  { move-workspace-to-monitor-right; }
-    // ...
-
-    // SUPER+Page_Down      { focus-workspace-down; }
-    // SUPER+Page_Up        { focus-workspace-up; }
-
-    SUPER+U { focus-workspace-down; }
-    SUPER+I { focus-workspace-up; }
-
-    // SUPER+CTRL+Page_Down { move-column-to-workspace-down; }
-    // SUPER+CTRL+Page_Up   { move-column-to-workspace-up; }
-
-    SUPER+CTRL+U { move-column-to-workspace-down; }
-    SUPER+CTRL+I { move-column-to-workspace-up; }
-
-    // Alternatively, there are commands to move just a single window:
-    // SUPER+CTRL+Page_Down { move-window-to-workspace-down; }
-    // ...
-
-    SUPER+SHIFT+Page_Down { move-workspace-down; }
-    SUPER+SHIFT+Page_Up { move-workspace-up; }
-
-    // SUPER+SHIFT+U         { move-workspace-down; }
-    // SUPER+SHIFT+I         { move-workspace-up; }
-
-    SUPER+WheelScrollDown cooldown-ms=150 {
-        focus-workspace-down
-    }
-    SUPER+WheelScrollUp cooldown-ms=150 {
-        focus-workspace-up
-    }
-    SUPER+CTRL+WheelScrollDown cooldown-ms=150 {
-        move-column-to-workspace-down
-    }
-    SUPER+CTRL+WheelScrollUp cooldown-ms=150 {
-        move-column-to-workspace-up
-    }
-    SUPER+WheelScrollRight { focus-column-right; }
-    SUPER+WheelScrollLeft { focus-column-left; }
-    SUPER+CTRL+WheelScrollRight { move-column-right; }
-    SUPER+CTRL+WheelScrollLeft { move-column-left; }
-
-    // Same use shift+wheel scroll if don't have side scroll ability
-    SUPER+SHIFT+WheelScrollDown { focus-column-right; }
-    SUPER+SHIFT+WheelScrollUp { focus-column-left; }
-    SUPER+CTRL+SHIFT+WheelScrollDown { move-column-right; }
-    SUPER+CTRL+SHIFT+WheelScrollUp { move-column-left; }
-
-    // Similarly, you can bind touchpad scroll "ticks".
-    // Touchpad scrolling is continuous, so for these binds it is split into
-    // discrete intervals.
-    // These binds are also affected by touchpad's natural-scroll, so these
-    // example binds are "inverted", since we have natural-scroll enabled for
-    // touchpads by default.
-    // SUPER+TouchpadScrollDown { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+"; }
-    // SUPER+TouchpadScrollUp   { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
-    // Switches focus between the current and the previous workspace.
-    /-SUPER+Tab {
-    focus-workspace-previous
-    }
-
-    SUPER+ALT+H { consume-or-expel-window-left; }
-    SUPER+ALT+L { consume-or-expel-window-right; }
-    // SUPER+Comma { consume-window-into-column; }
-    // SUPER+Period { expel-window-from-column; }
-
-    // RESIZE
-    SUPER+R { switch-preset-column-width; }
-    SUPER+ALT+R { switch-preset-window-height; }
-    SUPER+CTRL+R { reset-window-height; }
-
-    // FULLSCREEN
-    SUPER+F { maximize-column; }
-    // SUPER+F { maximize-window-to-edges; } // NOTE: wait until next release
-    SUPER+ALT+F { fullscreen-window; }
-    SUPER+CTRL+F { toggle-windowed-fullscreen; } // make window (i.e. browser) think it is fullscreen
-    SUPER+SHIFT+F { expand-column-to-available-width; }
-
-    SUPER+M { center-column; }
-    SUPER+CTRL+M { center-visible-columns; }
-
-    SUPER+Minus { set-column-width "-10%"; }
-    SUPER+Equal { set-column-width "+10%"; }
-    SUPER+SHIFT+Minus { set-window-height "-10%"; }
-    SUPER+SHIFT+Equal { set-window-height "+10%"; }
-
-    SUPER+T { toggle-window-floating; }
-    SUPER+ALT+Tab { switch-focus-between-floating-and-tiling; }
-    SUPER+G hotkey-overlay-title="Group: Toggle" {
-        toggle-column-tabbed-display
-    }
-
-    // SCREENSHOT
-    SUPER+SHIFT+S { screenshot; }
-    Print { screenshot; }
-    CTRL+Print { screenshot-screen; }
-    ALT+Print { screenshot-window; }
-    SUPER+ALT+S { screenshot-window; }
-
-    SUPER+ALT+Escape allow-inhibiting=false {
-        toggle-keyboard-shortcuts-inhibit
-    }
-
-  // Session
-    CTRL+ALT+Backspace { quit skip-confirmation=true; }
-    // CTRL+ALT+Delete { quit; }
-    SUPER+Escape hotkey-overlay-title="Lock Screen" allow-when-locked=true {
-        spawn-sh "systemctl --user start hyprlock";
-    }
-
-
-    SUPER+SHIFT+P { power-off-monitors; }
-
-
-  // Dank Material Shell
-    Mod+Space hotkey-overlay-title="Application Launcher" { 
-        spawn "dms" "ipc" "call" "spotlight" "toggle"; 
-    }
-
-    Mod+V hotkey-overlay-title="Clipboard Manager" { 
-        spawn "dms" "ipc" "call" "clipboard" "toggle"; 
-    }
-
-    Mod+M hotkey-overlay-title="Task Manager" { 
-        spawn "dms" "ipc" "call" "processlist" "toggle"; 
-    }
-
-    Mod+Comma hotkey-overlay-title="Settings" { 
-        spawn "dms" "ipc" "call" "settings" "toggle"; 
-    }
-
-    Mod+N hotkey-overlay-title="Notification Center" {
-        spawn "dms" "ipc" "call" "notifications" "toggle"; 
-    }
-
-    Mod+Y hotkey-overlay-title="Browse Wallpapers" {
-        spawn "dms" "ipc" "call" "dankdash" "wallpaper";
-    }
-
-    Mod+Shift+N hotkey-overlay-title="Notepad" {
-      spawn "dms" "ipc" "call" "notepad" "toggle";  
-    }
-    
-    Mod+Alt+L hotkey-overlay-title="Lock Screen" { 
-        spawn "dms" "ipc" "call" "lock" "lock"; 
-    }
-
-    Ctrl+Alt+Delete hotkey-overlay-title="Task Manager" { 
-        spawn "dms" "ipc" "call" "processlist" "toggle"; 
-    }    
-
-    // Audio
-    XF86AudioRaiseVolume allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "increment" "3";
-    }
-    XF86AudioLowerVolume allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "decrement" "3";
-    }
-    XF86AudioMute allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "mute";
-    }
-    XF86AudioMicMute allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "micmute";
-    }
-    
-    // BL
-    XF86MonBrightnessUp allow-when-locked=true {
-       spawn "dms" "ipc" "call" "brightness" "increment" "5" "";
-    }
-    XF86MonBrightnessDown allow-when-locked=true {
-       spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
-    }  
-}
-
+// Include dms files
+include optional=true "dms/colors.kdl"
+include optional=true "dms/layout.kdl"
+include optional=true "dms/alttab.kdl"
+include optional=true "dms/binds.kdl"
+include optional=true "dms/outputs.kdl"
+include optional=true "dms/cursor.kdl"
+include optional=true "dms/input.kdl"

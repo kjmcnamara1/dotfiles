@@ -4,6 +4,8 @@ source "${CHEZMOI_SOURCE_DIR}/../scripts/gum-helper.sh"
 
 section "Dank Material Shell"
 
+sudo -v && curl -fsSL https://install.danklinux.com | sh -s -- --compositor niri --term ghostty --dms-greeter --danksearch --replace-configs-all --yes
+
 packages=(
   dms-shell
   quickshell
