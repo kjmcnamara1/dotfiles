@@ -43,3 +43,5 @@ packages=(
 yay -S --needed --noconfirm "${packages[@]}"
 
 systemctl --user enable --now udiskie
+
+chsh -s $(which fish)
