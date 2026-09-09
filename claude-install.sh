@@ -141,7 +141,10 @@ btrfs subvolume create /mnt/@snapshots
 btrfs subvolume create /mnt/@var_log
 btrfs subvolume create /mnt/@games
 for sv in @ @home @snapshots @var_log @games; do
-    btrfs subvolume show "/mnt/$sv" >/dev/null 2>&1 || { echo "[!] btrfs subvolume $sv was not created" >&2; exit 1; }
+    btrfs subvolume show "/mnt/$sv" > /dev/null 2>&1 || {
+                                                         echo "[!] btrfs subvolume $sv was not created" >&2
+                                                                                                             exit 1
+  }
 done
 umount /mnt
 
@@ -195,6 +198,7 @@ PACKAGES=(
     avahi nss-mdns         # mdns
     cups                    # printing
     nfs-utils                # for the /mnt/NAS fstab entry
+    ntfs-3g
     reflector                 # mirrorlist optimization
     zram-generator              # zram
     limine efibootmgr             # bootloader
@@ -469,6 +473,9 @@ section "Configuring installed system (chroot)"
 arch-chroot /mnt /bin/bash /root/chroot-setup.sh 2>&1 | tee /mnt/var/log/arch-chroot-setup.log
 
 rm -f /mnt/root/chroot-setup.sh /mnt/root/chroot-vars.sh
+
+# RUN CHEZMOI
+arch-chroot /mnt /bin/bash -c "sudo -H -u $HOSTNAME chezmoi init --branch dms --apply kjmcnamara1"
 
 # --------------------------------------------------------------------------
 # 9. Done

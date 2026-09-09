@@ -5,13 +5,13 @@
 mount -o remount,size=2G /run/archiso/cowspace
 
 pacman -Sy --noconfirm chezmoi git gum
-chezmoi init --depth 1 --branch dots kjmcnamara1
+chezmoi init --depth 1 --branch dms kjmcnamara1
 
 chezmoi cd
 ./install.sh
 ```
 
 ```sh
-chezmoi init --branch dots kjmcnamara1
+chezmoi init --branch dms kjmcnamara1
 chezmoi apply --include=scripts
 ```
