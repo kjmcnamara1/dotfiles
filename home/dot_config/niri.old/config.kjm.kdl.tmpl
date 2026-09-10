@@ -238,27 +238,27 @@ layer-rule {
 
 // KEYBINDS
 binds {
-    SUPER+SHIFT+Slash { show-hotkey-overlay; }
+    // SUPER+SHIFT+Slash { show-hotkey-overlay; }
 
     // APPLICATIONS
-    SUPER+Return hotkey-overlay-title="Terminal" {
-        spawn "kitty"
-    }
-    SUPER+E hotkey-overlay-title="Files: Yazi" {
-        spawn-sh "kitty --class=yazi -e yazi"
-    }
-    SUPER+ALT+E hotkey-overlay-title="Files: Nautilus" {
-        spawn-sh "nautilus --new-window"
-    }
-    SUPER+B hotkey-overlay-title="Browser: Default" {
-        spawn "~/.local/bin/launch-browser"
-    }
-    SUPER+ALT+B {
-        spawn "~/.local/bin/launch-browser" "--private"
-    }
-    SUPER+A hotkey-overlay-title="AI: Gemini" {
-      spawn-sh "uwsm app -- Gemini.desktop"
-    }
+    // SUPER+Return hotkey-overlay-title="Terminal" {
+    //     spawn "kitty"
+    // }
+    // SUPER+E hotkey-overlay-title="Files: Yazi" {
+    //     spawn-sh "kitty --class=yazi -e yazi"
+    // }
+    // SUPER+ALT+E hotkey-overlay-title="Files: Nautilus" {
+    //     spawn-sh "nautilus --new-window"
+    // }
+    // SUPER+B hotkey-overlay-title="Browser: Default" {
+    //     spawn "~/.local/bin/launch-browser"
+    // }
+    // SUPER+ALT+B {
+    //     spawn "~/.local/bin/launch-browser" "--private"
+    // }
+    // SUPER+A hotkey-overlay-title="AI: Gemini" {
+    //   spawn-sh "uwsm app -- Gemini.desktop"
+    // }
 
     SUPER+ALT+V hotkey-overlay-title="Open URL in mpv" {
         spawn-sh "notify-send 'Opening URL in MPV:' $(wl-paste); mpv $(wl-paste)"
@@ -268,15 +268,15 @@ binds {
     }
 
     // SETTINGS
-    SUPER+CTRL+ALT+I hotkey-overlay-title="Settings: Idle Lock" {
-      // spawn-sh "~/.local/bin/idle-toggle"
-      spawn "stasis" "toggle-inhibit"
-    }
+    // SUPER+CTRL+ALT+I hotkey-overlay-title="Settings: Idle Lock" {
+    //   // spawn-sh "~/.local/bin/idle-toggle"
+    //   spawn "stasis" "toggle-inhibit"
+    // }
 
     // SHELL
-    SUPER+CTRL+Space hotkey-overlay-title="Launcher: spotlight" {
-        spawn "dms" "ipc" "call" "spotlight" "toggle"
-    }
+    // SUPER+CTRL+Space hotkey-overlay-title="Launcher: spotlight" {
+    //     spawn "dms" "ipc" "call" "spotlight" "toggle"
+    // }
     // SUPER+ALT+Space hotkey-overlay-title="Launcher: rofi" {
     //     spawn-sh "pkill -x rofi || rofi -show drun"
     // }
@@ -325,14 +325,14 @@ binds {
     // }
 
     // Precise 1% multimedia adjustments with Alt modifier
-    ALT+XF86AudioRaiseVolume  { spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume +1"; }
-    ALT+XF86AudioLowerVolume  { spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume -1"; }
-    ALT+XF86MonBrightnessUp   { spawn-sh "~/.config/swayosd/scripts/osdclient --brightness +1";    }
-    ALT+XF86MonBrightnessDown { spawn-sh "~/.config/swayosd/scripts/osdclient --brightness -1";    }
+    // ALT+XF86AudioRaiseVolume  { spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume +1"; }
+    // ALT+XF86AudioLowerVolume  { spawn-sh "~/.config/swayosd/scripts/osdclient --output-volume -1"; }
+    // ALT+XF86MonBrightnessUp   { spawn-sh "~/.config/swayosd/scripts/osdclient --brightness +1";    }
+    // ALT+XF86MonBrightnessDown { spawn-sh "~/.config/swayosd/scripts/osdclient --brightness -1";    }
 
-    SUPER+Tab repeat=false { toggle-overview; }
-    SUPER+C   repeat=false { close-window; }
-    SUPER+ALT+C hotkey-overlay-title="Pick Color" { spawn-sh "niri msg pick-color | rg -o '#[0-9a-fA-F]{6}' | wl-copy"; }
+    // SUPER+Tab repeat=false { toggle-overview; }
+    // SUPER+C   repeat=false { close-window; }
+    // SUPER+ALT+C hotkey-overlay-title="Pick Color" { spawn-sh "niri msg pick-color | rg -o '#[0-9a-fA-F]{6}' | wl-copy"; }
 
     // NAVIGATION
     SUPER+H { focus-column-or-monitor-left; }
@@ -340,10 +340,10 @@ binds {
     SUPER+K { focus-window-or-monitor-up; }
     SUPER+L { focus-column-or-monitor-right; }
 
-    SUPER+CTRL+H { move-column-left; }
-    SUPER+CTRL+J { move-window-down; }
-    SUPER+CTRL+K { move-window-up; }
-    SUPER+CTRL+L { move-column-right; }
+    // SUPER+CTRL+H { move-column-left; }
+    // SUPER+CTRL+J { move-window-down; }
+    // SUPER+CTRL+K { move-window-up; }
+    // SUPER+CTRL+L { move-column-right; }
 
     // Alternative commands that move across workspaces when reaching
     // the first or last window in a column.
@@ -352,18 +352,18 @@ binds {
     // SUPER+CTRL+J     { move-window-down-or-to-workspace-down; }
     // SUPER+CTRL+K     { move-window-up-or-to-workspace-up; }
 
-    SUPER+Home { focus-column-first; }
-    SUPER+End { focus-column-last; }
-    SUPER+CTRL+Home { move-column-to-first; }
-    SUPER+CTRL+End { move-column-to-last; }
-    SUPER+SHIFT+H { focus-monitor-left; }
-    SUPER+SHIFT+J { focus-monitor-down; }
-    SUPER+SHIFT+K { focus-monitor-up; }
-    SUPER+SHIFT+L { focus-monitor-right; }
-    SUPER+CTRL+SHIFT+H { move-column-to-monitor-left; }
-    SUPER+CTRL+SHIFT+J { move-column-to-monitor-down; }
-    SUPER+CTRL+SHIFT+K { move-column-to-monitor-up; }
-    SUPER+CTRL+SHIFT+L { move-column-to-monitor-right; }
+    // SUPER+Home { focus-column-first; }
+    // SUPER+End { focus-column-last; }
+    // SUPER+CTRL+Home { move-column-to-first; }
+    // SUPER+CTRL+End { move-column-to-last; }
+    // SUPER+SHIFT+H { focus-monitor-left; }
+    // SUPER+SHIFT+J { focus-monitor-down; }
+    // SUPER+SHIFT+K { focus-monitor-up; }
+    // SUPER+SHIFT+L { focus-monitor-right; }
+    // SUPER+CTRL+SHIFT+H { move-column-to-monitor-left; }
+    // SUPER+CTRL+SHIFT+J { move-column-to-monitor-down; }
+    // SUPER+CTRL+SHIFT+K { move-column-to-monitor-up; }
+    // SUPER+CTRL+SHIFT+L { move-column-to-monitor-right; }
 
     // Alternatively, there are commands to move just a single window:
     // SUPER+SHIFT+CTRL+Left  { move-window-to-monitor-left; }
@@ -379,14 +379,14 @@ binds {
     // SUPER+Page_Down      { focus-workspace-down; }
     // SUPER+Page_Up        { focus-workspace-up; }
 
-    SUPER+U { focus-workspace-down; }
-    SUPER+I { focus-workspace-up; }
+    // SUPER+U { focus-workspace-down; }
+    // SUPER+I { focus-workspace-up; }
 
     // SUPER+CTRL+Page_Down { move-column-to-workspace-down; }
     // SUPER+CTRL+Page_Up   { move-column-to-workspace-up; }
 
-    SUPER+CTRL+U { move-column-to-workspace-down; }
-    SUPER+CTRL+I { move-column-to-workspace-up; }
+    // SUPER+CTRL+U { move-column-to-workspace-down; }
+    // SUPER+CTRL+I { move-column-to-workspace-up; }
 
     // Alternatively, there are commands to move just a single window:
     // SUPER+CTRL+Page_Down { move-window-to-workspace-down; }
@@ -440,7 +440,7 @@ binds {
     // SUPER+Period { expel-window-from-column; }
 
     // RESIZE
-    SUPER+R { switch-preset-column-width; }
+    // SUPER+R { switch-preset-column-width; }
     SUPER+ALT+R { switch-preset-window-height; }
     SUPER+CTRL+R { reset-window-height; }
 
@@ -451,99 +451,40 @@ binds {
     SUPER+CTRL+F { toggle-windowed-fullscreen; } // make window (i.e. browser) think it is fullscreen
     SUPER+SHIFT+F { expand-column-to-available-width; }
 
-    SUPER+M { center-column; }
-    SUPER+CTRL+M { center-visible-columns; }
+    // SUPER+M { center-column; }
+    // SUPER+CTRL+M { center-visible-columns; }
 
     SUPER+Minus { set-column-width "-10%"; }
     SUPER+Equal { set-column-width "+10%"; }
     SUPER+SHIFT+Minus { set-window-height "-10%"; }
     SUPER+SHIFT+Equal { set-window-height "+10%"; }
 
-    SUPER+T { toggle-window-floating; }
-    SUPER+ALT+Tab { switch-focus-between-floating-and-tiling; }
-    SUPER+G hotkey-overlay-title="Group: Toggle" {
-        toggle-column-tabbed-display
-    }
+    // SUPER+T { toggle-window-floating; }
+    // SUPER+ALT+Tab { switch-focus-between-floating-and-tiling; }
+    // SUPER+G hotkey-overlay-title="Group: Toggle" {
+    //     toggle-column-tabbed-display
+    // }
 
     // SCREENSHOT
-    SUPER+SHIFT+S { screenshot; }
-    Print { screenshot; }
-    CTRL+Print { screenshot-screen; }
-    ALT+Print { screenshot-window; }
-    SUPER+ALT+S { screenshot-window; }
+    // SUPER+SHIFT+S { screenshot; }
+    // Print { screenshot; }
+    // CTRL+Print { screenshot-screen; }
+    // ALT+Print { screenshot-window; }
+    // SUPER+ALT+S { screenshot-window; }
 
-    SUPER+ALT+Escape allow-inhibiting=false {
-        toggle-keyboard-shortcuts-inhibit
-    }
+    // SUPER+ALT+Escape allow-inhibiting=false {
+    //     toggle-keyboard-shortcuts-inhibit
+    // }
 
   // Session
-    CTRL+ALT+Backspace { quit skip-confirmation=true; }
+    // CTRL+ALT+Backspace { quit skip-confirmation=true; }
     // CTRL+ALT+Delete { quit; }
-    SUPER+Escape hotkey-overlay-title="Lock Screen" allow-when-locked=true {
-        spawn-sh "systemctl --user start hyprlock";
-    }
+    // SUPER+Escape hotkey-overlay-title="Lock Screen" allow-when-locked=true {
+    //     spawn-sh "systemctl --user start hyprlock";
+    // }
 
 
-    SUPER+SHIFT+P { power-off-monitors; }
+    // SUPER+SHIFT+P { power-off-monitors; }
 
-
-  // Dank Material Shell
-    Mod+Space hotkey-overlay-title="Application Launcher" { 
-        spawn "dms" "ipc" "call" "spotlight" "toggle"; 
-    }
-
-    Mod+V hotkey-overlay-title="Clipboard Manager" { 
-        spawn "dms" "ipc" "call" "clipboard" "toggle"; 
-    }
-
-    Mod+M hotkey-overlay-title="Task Manager" { 
-        spawn "dms" "ipc" "call" "processlist" "toggle"; 
-    }
-
-    Mod+Comma hotkey-overlay-title="Settings" { 
-        spawn "dms" "ipc" "call" "settings" "toggle"; 
-    }
-
-    Mod+N hotkey-overlay-title="Notification Center" {
-        spawn "dms" "ipc" "call" "notifications" "toggle"; 
-    }
-
-    Mod+Y hotkey-overlay-title="Browse Wallpapers" {
-        spawn "dms" "ipc" "call" "dankdash" "wallpaper";
-    }
-
-    Mod+Shift+N hotkey-overlay-title="Notepad" {
-      spawn "dms" "ipc" "call" "notepad" "toggle";  
-    }
-    
-    Mod+Alt+L hotkey-overlay-title="Lock Screen" { 
-        spawn "dms" "ipc" "call" "lock" "lock"; 
-    }
-
-    Ctrl+Alt+Delete hotkey-overlay-title="Task Manager" { 
-        spawn "dms" "ipc" "call" "processlist" "toggle"; 
-    }    
-
-    // Audio
-    XF86AudioRaiseVolume allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "increment" "3";
-    }
-    XF86AudioLowerVolume allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "decrement" "3";
-    }
-    XF86AudioMute allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "mute";
-    }
-    XF86AudioMicMute allow-when-locked=true {
-        spawn "dms" "ipc" "call" "audio" "micmute";
-    }
-    
-    // BL
-    XF86MonBrightnessUp allow-when-locked=true {
-       spawn "dms" "ipc" "call" "brightness" "increment" "5" "";
-    }
-    XF86MonBrightnessDown allow-when-locked=true {
-       spawn "dms" "ipc" "call" "brightness" "decrement" "5" "";
-    }  
 }
 

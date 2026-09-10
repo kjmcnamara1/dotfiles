@@ -18,9 +18,23 @@ packages=(
   cava
   power-profiles-daemon
   cups-pk-helper
+  qt6-imageformats
   kimageformats
+  i2c-tools
+  fprintd
+
   wl-clipboard
   uwsm
+
+  grim
+  slurp
+  tensaku
+  pinta
+
+  # OCR tool
+  tesseract # core
+  tesseract-data-eng # English lang
+  tesseract-data-osd # Detects orientation of text
 
   nautilus
   sshfs
@@ -44,3 +58,5 @@ yay -S --needed --noconfirm "${packages[@]}"
 # dms-greeter install
 
 # dsearch index generate
+
+sudo usermod -aG i2c "$USER"

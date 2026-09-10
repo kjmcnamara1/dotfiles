@@ -6,3 +6,9 @@ window-rule {
     match app-id="^com.danklinux.dms$"
     open-floating true
 }
+
+// @id=wr_1789057625650632133 @name=dev.tensaku.Tensaku
+window-rule {
+    match app-id="^dev.tensaku.Tensaku$"
+    open-floating true
+}

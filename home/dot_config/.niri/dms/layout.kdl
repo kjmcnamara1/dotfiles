@@ -5,11 +5,11 @@
 
 layout {
     border {
-        width 3
+        width 2
     }
 
     focus-ring {
-        width 3
+        width 2
     }
 }
 
@@ -22,7 +22,6 @@ window-rule {
 
 layer-rule {
     exclude namespace="^dms:bar$"
-    exclude namespace="^dms:dankisland$"
     background-effect {
         xray false
     }

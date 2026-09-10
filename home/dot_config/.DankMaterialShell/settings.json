@@ -6,7 +6,6 @@
   "dockTransparency": 0.85,
   "cornerRadius": 12,
   "niriLayoutGapsOverride": -2,
-  "niriLayoutBorderSize": 3,
   "touchpadScrollMethod": "two-finger",
   "keyboardTrackLayout": "global",
   "keyboardNumlock": true,
@@ -17,7 +16,7 @@
   "customAnimationDuration": 200,
   "barElevationEnabled": false,
   "blurEnabled": true,
-  "blurWallpaperOnOverview": true,
+  "blurredWallpaperLayer": true,
   "controlCenterWidgets": [
     {
       "id": "volumeSlider",
@@ -63,6 +62,26 @@
       "id": "darkMode",
       "enabled": true,
       "width": 25
+    },
+    {
+      "id": "doNotDisturb",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "colorPicker",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "builtin_cups",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "builtin_display_profiles",
+      "enabled": true,
+      "width": 50
     }
   ],
   "workspaceColorMode": "secondary",
@@ -96,6 +115,9 @@
     }
   },
   "launcherLogoMode": "os",
+  "notepadShowLineNumbers": true,
+  "notepadAutoSave": true,
+  "notepadUseCompositorGap": true,
   "acMonitorTimeout": 10800,
   "acProfileName": "2",
   "batteryProfileName": "1",
@@ -138,6 +160,14 @@
         },
         "clock",
         "weather",
+        {
+          "id": "runningApps",
+          "enabled": true,
+          "runningAppsCompactMode": true,
+          "runningAppsGroupByApp": false,
+          "runningAppsCurrentWorkspace": true,
+          "runningAppsCurrentMonitor": false
+        },
         {
           "id": "systemUpdate",
           "enabled": true,

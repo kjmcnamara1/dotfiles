@@ -1,3 +1,15 @@
+// Include dms files
+include optional=true "dms/colors.kdl"
+include optional=true "dms/layout.kdl"
+include optional=true "dms/alttab.kdl"
+include optional=true "dms/binds.kdl"
+include optional=true "dms/outputs.kdl"
+include optional=true "dms/cursor.kdl"
+include optional=true "dms/input.kdl"
+include optional=true "dms/windowrules.kdl"
+include optional=true "dms/wpblur.kdl"
+
+
 // This config is in the KDL format: https://kdl.dev
 // "/-" comments out the following node.
 // Check the wiki for a full description of the configuration:
@@ -16,41 +28,12 @@ gestures {
 // Find the full list of options on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
 input {
-    keyboard {
-        xkb {
-            // You can set rules, model, layout, variant and options.
-            // For more information, see xkeyboard-config(7).
-
-            // For example:
-            // layout "us,ru"
-            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
-
-            // If this section is empty, niri will fetch xkb settings
-            // from org.freedesktop.locale1. You can control these using
-            // localectl set-x11-keymap.
-        }
-
-        // Enable numlock on startup, omitting this setting disables it.
-        numlock
-    }
-
-    trackpoint {
-        // off
-        // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "on-button-down"
-        // scroll-button 273
-        // scroll-button-lock
-        // middle-emulation
-    }
-
     // Uncomment this to make the mouse warp to the center of newly focused windows.
     // warp-mouse-to-focus
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    // focus-follows-mouse max-scroll-amount="0%"
+    focus-follows-mouse max-scroll-amount="0%"
 }
 
 // You can configure outputs by their name, which you can find
@@ -106,28 +89,30 @@ layout {
     // `draw-border-with-background`.
     border {
         off
-        width 4
-        active-color   "#707070"      // Neutral gray
-        inactive-color "#d0d0d0"      // Light gray
-        urgent-color   "#cc4444"      // Softer red
+    }
+    focus-ring {
+        width 3
+        active-color "#88C0D0"
+        inactive-color "#4C566A"
     }
     shadow {
-        softness 30
+        on
+        softness 10
         spread 5
         offset x=0 y=5
-        color "#0007"
     }
-    struts {
+    tab-indicator {
+        width 10
+        gaps-between-tabs 20
+        corner-radius 5
+        place-within-column
+        // active-color "#B48EAD"
+        inactive-color "#4C566A"
     }
 }
-layer-rule {
-    match namespace="^quickshell$"
-    place-within-backdrop true
-}
+
 overview {
-    workspace-shadow {
-        off
-    }
+    backdrop-color "#2E3440"
 }
 // Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
@@ -135,13 +120,13 @@ overview {
 // See the binds section below for more spawn examples.
 // This line starts waybar, a commonly used bar for Wayland compositors.
 environment {
-  XDG_CURRENT_DESKTOP "niri"
+    XDG_CURRENT_DESKTOP "niri"
 }
 hotkey-overlay {
     skip-at-startup
 }
 prefer-no-csd
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+// screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 animations {
     workspace-switch {
         spring damping-ratio=0.80 stiffness=523 epsilon=0.0001
@@ -226,6 +211,7 @@ window-rule {
     match app-id="zoom"
     open-floating true
 }
+
 debug {
     honor-xdg-activation-with-invalid-serial
 }
@@ -239,13 +225,22 @@ recent-windows {
         Alt+Shift+grave { previous-window filter="app-id"; }
     }
 }
-
-// Include dms files
-include optional=true "dms/colors.kdl"
-include optional=true "dms/layout.kdl"
-include optional=true "dms/alttab.kdl"
-include optional=true "dms/binds.kdl"
-include optional=true "dms/outputs.kdl"
-include optional=true "dms/cursor.kdl"
-include optional=true "dms/input.kdl"
-include "dms/windowrules.kdl"
+// need to add binds for:
+// herdr terminal
+// open url in mpv
+// download video from url
+// ocr get text from screenshot
+// do not disturb
+// dismiss notifications
+// toggle window transparency
+// toggle nightlight
+// toggle gaps
+// webcam overlay?
+// set reminder
+// capture menu from omarchy
+// cliamp tui music player
+// transcode picture or video
+// obsidian?
+// youtube app?
+// calculator?
+// eject media?
