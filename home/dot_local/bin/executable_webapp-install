@@ -45,13 +45,13 @@ fi
 if [[ -n $CUSTOM_EXEC ]]; then
   EXEC_COMMAND="$CUSTOM_EXEC"
 else
-  EXEC_COMMAND="launch-webapp $APP_URL"
+  EXEC_COMMAND="$HOME/.local/bin/launch-webapp $APP_URL"
 fi
 
 # Create application .desktop file
 DESKTOP_FILE="$HOME/.local/share/applications/$APP_NAME.desktop"
 
-cat >"$DESKTOP_FILE" <<EOF
+cat > "$DESKTOP_FILE" << EOF
 [Desktop Entry]
 Version=1.0
 Name=$APP_NAME
@@ -65,7 +65,7 @@ EOF
 
 # Add mime types if provided
 if [[ -n $MIME_TYPES ]]; then
-  echo "MimeType=$MIME_TYPES" >>"$DESKTOP_FILE"
+  echo "MimeType=$MIME_TYPES" >> "$DESKTOP_FILE"
 fi
 
 chmod +x "$DESKTOP_FILE"

@@ -2,7 +2,7 @@
 Version=1.0
 Name=Proton Drive
 Comment=Proton Drive
-Exec=launch-webapp https://drive.proton.me
+Exec=/home/kjm/.local/bin/launch-webapp https://drive.proton.me
 Terminal=false
 Type=Application
 Icon=/home/kjm/.local/share/applications/icons/Proton Drive.png
