@@ -24,6 +24,8 @@ packages=(
   fastfetch
   udiskie
 
+  herdr-bin
+
   gum
   silicon
   vhs
@@ -44,4 +46,4 @@ yay -S --needed --noconfirm "${packages[@]}"
 
 systemctl --user enable --now udiskie
 
-chsh -s $(which fish)
+chsh -s "$(which fish)"
