@@ -1,0 +1,14 @@
+onboarding = false
+
+[keys]
+  prefix = "ctrl+space"
+
+[theme]
+  name        = "nord"
+  auto_switch = false
+
+[ui]
+  status_indicators = "symbols"
+
+  [ui.toast]
+    delivery = "system"
