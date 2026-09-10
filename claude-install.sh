@@ -216,7 +216,7 @@ require test -x /mnt/usr/bin/pacman
 
 genfstab -U /mnt >> /mnt/etc/fstab
 mkdir -p /mnt/mnt/NAS
-echo "192.168.0.10:/mnt/md1 /mnt/NAS nfs _netdev,nofail,x-systemd.automount,x-systemd.mount-timeout=10 0 0" >> /mnt/etc/fstab
+printf '\n# NAS\n192.168.0.10:/mnt/md1 /mnt/NAS nfs defaults,nofail 0 0\n' >> /mnt/etc/fstab
 
 # --------------------------------------------------------------------------
 # 6. Copy live network configuration for first boot
