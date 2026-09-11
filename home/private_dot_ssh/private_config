@@ -1,5 +1,5 @@
 # vim: ft=sshconfig
-Host github
+Host github.com
   HostName github.com
   User git
   IdentityFile ~/.ssh/github
