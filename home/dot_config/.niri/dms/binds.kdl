@@ -53,8 +53,6 @@ binds {
     Mod+Ctrl+I { move-column-to-workspace-up; }
     Mod+Ctrl+U { move-column-to-workspace-down; }
     Mod+Ctrl+Up { move-column-to-workspace-up; }
-    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-    Mod+Ctrl+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
     Mod+I { focus-workspace-up; }
     Mod+Page_Down { focus-workspace-down; }
     Mod+Page_Up { focus-workspace-up; }
@@ -74,6 +72,12 @@ binds {
     Mod+U { focus-workspace-down; }
     Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
     Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+    Mod+Shift+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Shift+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+WheelScrollLeft { focus-column-left; }
+    Mod+WheelScrollRight { focus-column-right; }
+    Mod+Shift+WheelScrollLeft { move-column-left; }
+    Mod+Shift+WheelScrollRight { move-column-right; }
     Mod+Alt+E hotkey-overlay-title="Nautilus File Manager" { spawn "sh" "-c" "nautilus --new-window"; }
     Mod+Alt+T { switch-focus-between-floating-and-tiling; }
     Mod+BracketLeft { consume-or-expel-window-left; }
@@ -90,10 +94,6 @@ binds {
     Mod+Ctrl+M { center-visible-columns; }
     Mod+Ctrl+R { reset-window-height; }
     Mod+Ctrl+Right { focus-monitor-right; }
-    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
-    Mod+Ctrl+Shift+WheelScrollUp { move-column-left; }
-    Mod+Ctrl+WheelScrollLeft { move-column-left; }
-    Mod+Ctrl+WheelScrollRight { move-column-right; }
     Mod+Down { focus-window-down; }
     Mod+End { focus-column-last; }
     Mod+Equal { set-column-width "+10%"; }
@@ -128,12 +128,8 @@ binds {
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Shift+Right { move-column-right; }
     Mod+Shift+Up { move-window-up; }
-    Mod+Shift+WheelScrollDown { focus-column-right; }
-    Mod+Shift+WheelScrollUp { focus-column-left; }
     Mod+T { toggle-window-floating; }
     Mod+Up { focus-window-up; }
-    Mod+WheelScrollLeft { focus-column-left; }
-    Mod+WheelScrollRight { focus-column-right; }
     Mod+Shift+P { power-off-monitors; }
     Mod+A hotkey-overlay-title="AI Gemini Chat" { spawn "gtk-launch" "Gemini.desktop"; }
     Mod+Alt+B hotkey-overlay-title="Web Browser (Private)" { spawn "~/.local/bin/launch-browser" "--private"; }
