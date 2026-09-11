@@ -4,5 +4,6 @@
 compile = false
 
 [tools]
+agy = "latest"
 claude = "latest"
 ruby = "latest"
