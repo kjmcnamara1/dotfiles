@@ -335,10 +335,10 @@ binds {
     // SUPER+ALT+C hotkey-overlay-title="Pick Color" { spawn-sh "niri msg pick-color | rg -o '#[0-9a-fA-F]{6}' | wl-copy"; }
 
     // NAVIGATION
-    SUPER+H { focus-column-or-monitor-left; }
-    SUPER+J { focus-window-or-monitor-down; }
-    SUPER+K { focus-window-or-monitor-up; }
-    SUPER+L { focus-column-or-monitor-right; }
+    // SUPER+H { focus-column-or-monitor-left; }
+    // SUPER+J { focus-window-or-monitor-down; }
+    // SUPER+K { focus-window-or-monitor-up; }
+    // SUPER+L { focus-column-or-monitor-right; }
 
     // SUPER+CTRL+H { move-column-left; }
     // SUPER+CTRL+J { move-window-down; }
@@ -370,10 +370,10 @@ binds {
     // ...
 
     // And you can also move a whole workspace to another monitor:
-    SUPER+CTRL+ALT+SHIFT+H  { move-workspace-to-monitor-left; }
-    SUPER+CTRL+ALT+SHIFT+J  { move-workspace-to-monitor-down; }
-    SUPER+CTRL+ALT+SHIFT+K  { move-workspace-to-monitor-up; }
-    SUPER+CTRL+ALT+SHIFT+L  { move-workspace-to-monitor-right; }
+    // SUPER+CTRL+ALT+SHIFT+H  { move-workspace-to-monitor-left; }
+    // SUPER+CTRL+ALT+SHIFT+J  { move-workspace-to-monitor-down; }
+    // SUPER+CTRL+ALT+SHIFT+K  { move-workspace-to-monitor-up; }
+    // SUPER+CTRL+ALT+SHIFT+L  { move-workspace-to-monitor-right; }
     // ...
 
     // SUPER+Page_Down      { focus-workspace-down; }
@@ -392,34 +392,34 @@ binds {
     // SUPER+CTRL+Page_Down { move-window-to-workspace-down; }
     // ...
 
-    SUPER+SHIFT+Page_Down { move-workspace-down; }
-    SUPER+SHIFT+Page_Up { move-workspace-up; }
+    // SUPER+SHIFT+Page_Down { move-workspace-down; }
+    // SUPER+SHIFT+Page_Up { move-workspace-up; }
 
     // SUPER+SHIFT+U         { move-workspace-down; }
     // SUPER+SHIFT+I         { move-workspace-up; }
 
-    SUPER+WheelScrollDown cooldown-ms=150 {
-        focus-workspace-down
-    }
-    SUPER+WheelScrollUp cooldown-ms=150 {
-        focus-workspace-up
-    }
-    SUPER+CTRL+WheelScrollDown cooldown-ms=150 {
-        move-column-to-workspace-down
-    }
-    SUPER+CTRL+WheelScrollUp cooldown-ms=150 {
-        move-column-to-workspace-up
-    }
-    SUPER+WheelScrollRight { focus-column-right; }
-    SUPER+WheelScrollLeft { focus-column-left; }
-    SUPER+CTRL+WheelScrollRight { move-column-right; }
-    SUPER+CTRL+WheelScrollLeft { move-column-left; }
+    // SUPER+WheelScrollDown cooldown-ms=150 {
+    //     focus-workspace-down
+    // }
+    // SUPER+WheelScrollUp cooldown-ms=150 {
+    //     focus-workspace-up
+    // }
+    // SUPER+CTRL+WheelScrollDown cooldown-ms=150 {
+    //     move-column-to-workspace-down
+    // }
+    // SUPER+CTRL+WheelScrollUp cooldown-ms=150 {
+    //     move-column-to-workspace-up
+    // }
+    // SUPER+WheelScrollRight { focus-column-right; }
+    // SUPER+WheelScrollLeft { focus-column-left; }
+    // SUPER+CTRL+WheelScrollRight { move-column-right; }
+    // SUPER+CTRL+WheelScrollLeft { move-column-left; }
 
     // Same use shift+wheel scroll if don't have side scroll ability
-    SUPER+SHIFT+WheelScrollDown { focus-column-right; }
-    SUPER+SHIFT+WheelScrollUp { focus-column-left; }
-    SUPER+CTRL+SHIFT+WheelScrollDown { move-column-right; }
-    SUPER+CTRL+SHIFT+WheelScrollUp { move-column-left; }
+    // SUPER+SHIFT+WheelScrollDown { focus-column-right; }
+    // SUPER+SHIFT+WheelScrollUp { focus-column-left; }
+    // SUPER+CTRL+SHIFT+WheelScrollDown { move-column-right; }
+    // SUPER+CTRL+SHIFT+WheelScrollUp { move-column-left; }
 
     // Similarly, you can bind touchpad scroll "ticks".
     // Touchpad scrolling is continuous, so for these binds it is split into
@@ -434,30 +434,30 @@ binds {
     focus-workspace-previous
     }
 
-    SUPER+ALT+H { consume-or-expel-window-left; }
-    SUPER+ALT+L { consume-or-expel-window-right; }
+    // SUPER+ALT+H { consume-or-expel-window-left; }
+    // SUPER+ALT+L { consume-or-expel-window-right; }
     // SUPER+Comma { consume-window-into-column; }
     // SUPER+Period { expel-window-from-column; }
 
     // RESIZE
     // SUPER+R { switch-preset-column-width; }
-    SUPER+ALT+R { switch-preset-window-height; }
-    SUPER+CTRL+R { reset-window-height; }
+    // SUPER+ALT+R { switch-preset-window-height; }
+    // SUPER+CTRL+R { reset-window-height; }
 
     // FULLSCREEN
-    SUPER+F { maximize-column; }
+    // SUPER+F { maximize-column; }
     // SUPER+F { maximize-window-to-edges; } // NOTE: wait until next release
-    SUPER+ALT+F { fullscreen-window; }
-    SUPER+CTRL+F { toggle-windowed-fullscreen; } // make window (i.e. browser) think it is fullscreen
-    SUPER+SHIFT+F { expand-column-to-available-width; }
+    // SUPER+ALT+F { fullscreen-window; }
+    // SUPER+CTRL+F { toggle-windowed-fullscreen; } // make window (i.e. browser) think it is fullscreen
+    // SUPER+SHIFT+F { expand-column-to-available-width; }
 
     // SUPER+M { center-column; }
     // SUPER+CTRL+M { center-visible-columns; }
 
-    SUPER+Minus { set-column-width "-10%"; }
-    SUPER+Equal { set-column-width "+10%"; }
-    SUPER+SHIFT+Minus { set-window-height "-10%"; }
-    SUPER+SHIFT+Equal { set-window-height "+10%"; }
+    // SUPER+Minus { set-column-width "-10%"; }
+    // SUPER+Equal { set-column-width "+10%"; }
+    // SUPER+SHIFT+Minus { set-window-height "-10%"; }
+    // SUPER+SHIFT+Equal { set-window-height "+10%"; }
 
     // SUPER+T { toggle-window-floating; }
     // SUPER+ALT+Tab { switch-focus-between-floating-and-tiling; }
