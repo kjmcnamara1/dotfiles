@@ -1,8 +1,5 @@
 onboarding = false
 
-[keys]
-  prefix = "ctrl+space"
-
 [theme]
   name        = "nord"
   auto_switch = false
@@ -12,3 +9,30 @@ onboarding = false
 
   [ui.toast]
     delivery = "system"
+
+[keys]
+  prefix = "ctrl+space"
+
+  [[keys.command]]
+    key         = "ctrl+h"
+    type        = "plugin_action"
+    command     = "smart-splits.nvim.left"
+    description = "navigate left (vim/herdr)"
+
+  [[keys.command]]
+    key         = "ctrl+j"
+    type        = "plugin_action"
+    command     = "smart-splits.nvim.down"
+    description = "navigate down (vim/herdr)"
+
+  [[keys.command]]
+    key         = "ctrl+k"
+    type        = "plugin_action"
+    command     = "smart-splits.nvim.up"
+    description = "navigate up (vim/herdr)"
+
+  [[keys.command]]
+    key         = "ctrl+l"
+    type        = "plugin_action"
+    command     = "smart-splits.nvim.right"
+    description = "navigate right (vim/herdr)"
