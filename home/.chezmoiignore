@@ -6,5 +6,13 @@ AppData
 {{- end }}
 
 # .chezmoiscripts/02-boot
+.chezmoiscripts/10-dank-material-shell.sh
+.chezmoiscripts/21-terminal.sh
+.chezmoiscripts/50-guis.sh
+.chezmoiscripts/60-tailscale.sh
 
 .config/niri.old
+.config/DankMaterialShell
+.config/niri
+.config/hypr
+.config/xsettingsd
