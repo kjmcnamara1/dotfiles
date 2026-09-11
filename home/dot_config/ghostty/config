@@ -11,6 +11,7 @@ bold-color = bright
 # Window
 window-decoration = false
 window-save-state = always
+confirm-close-surface = false
 
 # Terminal
 mouse-hide-while-typing = true

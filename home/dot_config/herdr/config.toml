@@ -6,6 +6,7 @@ onboarding = false
 
 [ui]
   status_indicators = "symbols"
+  confirm_close     = false
 
   [ui.toast]
     delivery = "system"
