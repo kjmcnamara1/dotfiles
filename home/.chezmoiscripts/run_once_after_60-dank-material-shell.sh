@@ -10,7 +10,7 @@ packages=(
   dms-shell
   quickshell
   matugen
-  # niri
+  niri
   greetd-dms-greeter-bin
   dsearch-bin
   qt6-multimedia
@@ -33,7 +33,7 @@ packages=(
   ddcutil
 
   # OCR tool
-  tesseract # core
+  tesseract          # core
   tesseract-data-eng # English lang
   tesseract-data-osd # Detects orientation of text
 
