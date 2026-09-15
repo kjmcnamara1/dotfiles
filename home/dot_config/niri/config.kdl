@@ -123,6 +123,7 @@ overview {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 environment {
     XDG_CURRENT_DESKTOP "niri"
+    TERMINAL "ghostty"
 }
 hotkey-overlay {
     skip-at-startup
