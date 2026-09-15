@@ -22,7 +22,7 @@ url_to_dirname() {
 browser=$(xdg-settings get default-web-browser)
 
 case $browser in
-  google-chrome* | brave-browser* | microsoft-edge* | opera* | vivaldi* | helium* | *qutebrowser*) ;;
+  google-chrome* | brave* | microsoft-edge* | opera* | vivaldi* | helium* | *qutebrowser*) ;;
   *) browser="chromium.desktop" ;;
 esac
 

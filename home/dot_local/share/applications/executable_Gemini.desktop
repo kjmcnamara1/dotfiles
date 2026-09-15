@@ -2,7 +2,7 @@
 Version=1.0
 Name=Gemini
 Comment=Gemini
-Exec=launch-webapp https://gemini.google.com/app
+Exec=/home/kjm/.local/bin/launch-webapp https://gemini.google.com/app
 Terminal=false
 Type=Application
 Icon=/home/kjm/.local/share/applications/icons/Gemini.png

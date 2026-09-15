@@ -1,0 +1,105 @@
+onboarding = false
+
+[theme]
+  name        = "nord"
+  auto_switch = false
+
+[experimental]
+  pane_history = true
+
+[keys]
+  # General
+  prefix                   = "ctrl+space"
+  help                     = ["ctrl+alt+?", "prefix+?"]
+  settings                 = ["ctrl+alt+comma", "prefix+comma"]
+  detach                   = ["ctrl+alt+q", "prefix+q"]
+  resize_mode              = ["ctrl+alt+r", "prefix+r"]
+  reload_config            = ["ctrl+alt+shift+r", "prefix+shift+r"]
+  toggle_sidebar           = ["ctrl+alt+b", "prefix+b"]
+  open_notification_target = ["ctrl+alt+o", "prefix+o"]
+
+  # Workspaces
+  new_workspace           = ["ctrl+alt+n", "prefix+n"]
+  close_workspace         = ["ctrl+alt+d", "prefix+d"]
+  rename_workspace        = ["ctrl+alt+shift+n", "prefix+shift+n"]
+  next_workspace          = "ctrl+alt+j"
+  previous_workspace      = "ctrl+alt+k"
+  navigate_workspace_down = "shift+j"
+  navigate_workspace_up   = "shift+k"
+
+  # Agents
+  focus_agent = "ctrl+alt+1..9"
+
+  # Tabs
+  new_tab           = ["ctrl+alt+t", "prefix+t"]
+  close_tab         = ["ctrl+alt+w", "prefix+w"]
+  rename_tab        = ["ctrl+alt+shift+t", "prefix+shift+t"]
+  next_tab          = "ctrl+alt+l"
+  previous_tab      = "ctrl+alt+h"
+  move_tab_next     = "ctrl+alt+shift+l"
+  move_tab_previous = "ctrl+alt+shift+h"
+
+  # Panes
+  split_vertical   = ["ctrl+alt+v", "prefix+v"]
+  split_horizontal = ["ctrl+alt+s", "prefix+s"]
+  close_pane       = ["ctrl+alt+x", "prefix+x"]
+  rename_pane      = ["ctrl+alt+shift+p", "prefix+shift+p"]
+  zoom             = ["ctrl+alt+z", "prefix+z"]
+
+  [[keys.command]]
+    key         = "ctrl+h"
+    type        = "plugin_action"
+    command     = "smart-splits.nvim.left"
+    description = "navigate left (vim/herdr)"
+
+  [[keys.command]]
+    key         = "ctrl+j"
+    type        = "plugin_action"
+    command     = "smart-splits.nvim.down"
+    description = "navigate down (vim/herdr)"
+
+  [[keys.command]]
+    key         = "ctrl+k"
+    type        = "plugin_action"
+    command     = "smart-splits.nvim.up"
+    description = "navigate up (vim/herdr)"
+
+  [[keys.command]]
+    key         = "ctrl+l"
+    type        = "plugin_action"
+    command     = "smart-splits.nvim.right"
+    description = "navigate right (vim/herdr)"
+
+[ui]
+  status_indicators                 = "symbols"
+  confirm_close                     = false
+  sidebar_collapsed_mode            = "hidden"
+  right_click_passthrough_modifier  = "alt"
+  prompt_new_tab_name               = false
+  pane_gaps                         = false
+  show_agent_labels_on_pane_borders = true
+  hide_tab_bar_when_single_tab      = true
+
+  # window_title = "{hostname}: {workspace}"
+  # tab_bar_right = [
+  #   { type = "zoom" },
+  #   { type = "hostname" },
+  #   { type = "datetime" },
+  # ]
+
+  [ui.sidebar.agents]
+    rows = [
+      [
+        "state_icon",
+        "machine",
+        "workspace",
+        "tab",
+        "agent",
+      ],
+      [
+        "terminal_title_stripped",
+      ],
+    ]
+
+  [ui.toast]
+    delivery = "system"

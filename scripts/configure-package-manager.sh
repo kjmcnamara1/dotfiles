@@ -3,10 +3,10 @@
 source gum-helper.sh
 
 tweak_pacman_conf() {
-  sed -i 's/^#Color/Color/' /etc/pacman.conf
-  grep -q '^ILoveCandy' /etc/pacman.conf || sed -i '/^Color/a ILoveCandy' /etc/pacman.conf
-  sed -i 's/^#\?ParallelDownloads.*/ParallelDownloads = 5/' /etc/pacman.conf
-  sed -i '/^#\[multilib\]/,/^#Include/ s/^#//' /etc/pacman.conf
+  sudo sed -i 's/^#Color/Color/' /etc/pacman.conf
+  sudo grep -q '^ILoveCandy' /etc/pacman.conf || sudo sed -i '/^Color/a ILoveCandy' /etc/pacman.conf
+  sudo sed -i 's/^#\?ParallelDownloads.*/ParallelDownloads = 5/' /etc/pacman.conf
+  sudo sed -i '/^#\[multilib\]/,/^#Include/ s/^#//' /etc/pacman.conf
 }
 
 setup_chaotic_aur() {
@@ -27,7 +27,7 @@ setup_chaotic_aur() {
 Include = /etc/pacman.d/chaotic-mirrorlist
 CHAOTIC
 
-  pacman -Sy --noconfirm || return 1
+  sudo pacman -Sy --noconfirm || return 1
 }
 
 section "Configure Package Manager"
@@ -39,4 +39,4 @@ info "Setting up Chaotic-AUR..."
 setup_chaotic_aur
 
 info "Installing yay..."
-pacman -S --noconfirm --needed yay
+sudo pacman -S --noconfirm --needed yay

@@ -1,21 +1,25 @@
 if status is-interactive # connected to keyboard
     # Commands to run in interactive sessions can go here
 
-    # Plugins
-    # fisher plugin manager
-    # curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-    # fisher install oh-my-fish/plugin-sudope
-    # fisher install acomagu/fish-async-prompt
+    function fish_user_key_bindings
+        bind -M insert \eh backward-char
+        bind -M insert \el forward-char
+        bind -M insert \ej down-or-search
+        bind -M insert \ek up-or-search
 
-    # TODO: Custom fastfetch for fish greeting
-    # use std for opening new wezterm window
+        # Use <c-u> instead
+        # <c-c> clears the commandline when in insert mode
+        bind --mode insert \cc __fish_toggle_comment_commandline
+        bind \cc __fish_toggle_comment_commandline
 
-    # function fish_greeting
-    #     fastfetch
-    # end
+    end
+
+    # Theme
+    fish_config theme choose nord
 
     # VI Mode
-    fish_vi_key_bindings
+    set -g fish_key_bindings fish_vi_key_bindings
+
     set fish_cursor_default block
     set fish_cursor_insert line
     set fish_cursor_replace_one underscore
@@ -23,16 +27,6 @@ if status is-interactive # connected to keyboard
     set fish_cursor_external line
     set fish_cursor_visual block
     set fish_vi_force_cursor 1
-
-    bind -M insert \eh backward-char
-    bind -M insert \el forward-char
-    bind -M insert \ej down-or-search
-    bind -M insert \ek up-or-search
-
-    # Use <c-u> instead
-    # <c-c> clears the commandline when in insert mode
-    bind --mode insert \cc __fish_toggle_comment_commandline
-    bind \cc __fish_toggle_comment_commandline
 
     # Environment Variables
     fish_add_path -g ~/.config/hypr/scripts
@@ -83,7 +77,7 @@ if status is-interactive # connected to keyboard
     alias py=python3 # Python
     alias ipy=ipython # Interactive Python Shell
     alias hx=helix # Helix text editor
-    alias ff=fastfetch # Fastfetch terminal sysinfo viewer
+    alias fetch=fastfetch # Fastfetch terminal sysinfo viewer
     alias lg=lazygit
     alias chz=chezmoi # Chezmoi dotfiles manager
     alias schezmoi='sudo chezmoi --destination / --source ~/.local/share/chezmoi/root --working-tree ~/.local/share/chezmoi/root --config ~/.config/chezmoi/chezmoi.toml'
@@ -119,8 +113,5 @@ if status is-interactive # connected to keyboard
         end
         rm -f -- "$tmp"
     end
-
-    # TODO: write function for sudo chezmoi that manages root files
-    # https://github.com/twpayne/chezmoi/discussions/1510#discussioncomment-2627391
 
 end
