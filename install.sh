@@ -457,7 +457,7 @@ arch-chroot /mnt /bin/bash /root/chroot-setup.sh 2>&1 | tee /mnt/var/log/arch-ch
 rm -f /mnt/root/chroot-setup.sh /mnt/root/chroot-vars.sh
 
 # RUN CHEZMOI
-arch-chroot /mnt /bin/bash -c "sudo -H -u $USERNAME chezmoi init --branch hypr --apply kjmcnamara1"
+arch-chroot /mnt /bin/bash -c "sudo -H -u $USERNAME chezmoi init --branch dots --apply kjmcnamara1"
 
 # --------------------------------------------------------------------------
 # 9. Done
