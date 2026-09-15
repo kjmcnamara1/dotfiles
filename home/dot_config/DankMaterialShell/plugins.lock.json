@@ -1,0 +1,59 @@
+{
+  "lockfileVersion": 1,
+  "plugins": {
+    "aiOverviewControl": {
+      "repo": "https://github.com/bernardopg/AiOverviewControl",
+      "commit": "cc89a7461946248d32f75aeae64b655e4f3a30d4"
+    },
+    "calculator": {
+      "repo": "https://github.com/rochacbruno/DankCalculator",
+      "commit": "1db5865419a40a33171a475855a59e0b8bf7187f"
+    },
+    "claudeCodeUsage": {
+      "repo": "https://github.com/titeya/dms-claudecode",
+      "commit": "20a936f20c4785647a8317c9f60e7b168ca25b5b"
+    },
+    "dankActions": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankActions",
+      "commit": "6fc7f25bfb24f93b6488fb8a36ed67b5f242abdb"
+    },
+    "dankHooks": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankHooks",
+      "commit": "6fc7f25bfb24f93b6488fb8a36ed67b5f242abdb"
+    },
+    "dankHyprlandWindows": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankHyprlandWindows",
+      "commit": "6fc7f25bfb24f93b6488fb8a36ed67b5f242abdb"
+    },
+    "dankKDEConnect": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankKDEConnect",
+      "commit": "6fc7f25bfb24f93b6488fb8a36ed67b5f242abdb"
+    },
+    "dankLauncherKeys": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankLauncherKeys",
+      "commit": "6fc7f25bfb24f93b6488fb8a36ed67b5f242abdb"
+    },
+    "dankPomodoroTimer": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankPomodoroTimer",
+      "commit": "6fc7f25bfb24f93b6488fb8a36ed67b5f242abdb"
+    },
+    "emojiLauncher": {
+      "repo": "https://github.com/devnullvoid/dms-emoji-launcher",
+      "commit": "8ff394e3ddfcb2fd755ed2e7b4c6f01f3e26e596"
+    },
+    "quickCapture": {
+      "repo": "https://github.com/hthienloc/dms-quick-capture",
+      "commit": "7394909c44a75c12d6f331609cf06c46271ae842"
+    },
+    "wallpaperCarousel": {
+      "repo": "https://github.com/motor-dev/wallpaperCarousel",
+      "commit": "761ecd1b7f347beee9f17909f8334d987c935a1a"
+    }
+  }
+}

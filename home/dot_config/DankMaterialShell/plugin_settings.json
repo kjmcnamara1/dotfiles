@@ -1,0 +1,43 @@
+{
+  "aiOverviewControl": {
+    "enabled": true,
+    "providerSelection": "claude,antigravity,codex",
+    "pillProviders": "claude,antigravity",
+    "barWindowOverrides": "codex:highest,claude:highest,copilot:secondary,antigravity:highest"
+  },
+  "dankDesktopWeather": {
+    "enabled": false
+  },
+  "emojiLauncher": {
+    "enabled": true,
+    "trigger": ":",
+    "recentEmojis": "|"
+  },
+  "dankPomodoroTimer": {
+    "enabled": false
+  },
+  "dankLauncherKeys": {
+    "enabled": true
+  },
+  "dankActions": {
+    "enabled": true
+  },
+  "dankHyprlandWindows": {
+    "enabled": true
+  },
+  "dankHooks": {
+    "enabled": false
+  },
+  "wallpaperCarousel": {
+    "enabled": true,
+    "overlayOpacity": 80,
+    "cornerRadius": 0
+  },
+  "calculator": {
+    "enabled": true,
+    "calcEngine": "default",
+    "noTrigger": false,
+    "trigger": "",
+    "persistHistoryOnFile": true
+  }
+}
