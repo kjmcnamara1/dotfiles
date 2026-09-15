@@ -17,6 +17,8 @@ onboarding = false
   reload_config            = ["ctrl+alt+shift+r", "prefix+shift+r"]
   toggle_sidebar           = ["ctrl+alt+b", "prefix+b"]
   open_notification_target = ["ctrl+alt+o", "prefix+o"]
+  edit_scrollback          = ["ctrl+alt+e", "prefix+e"]
+  copy_mode                = ["ctrl+alt+space", "prefix+space"]
 
   # Workspaces
   new_workspace           = ["ctrl+alt+n", "prefix+n"]

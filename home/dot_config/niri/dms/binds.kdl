@@ -32,7 +32,8 @@ binds {
     Mod+W hotkey-overlay-title="Dashboard: Weather" { spawn "dms" "ipc" "call" "dash" "toggle" "weather"; }
     Mod+Y hotkey-overlay-title="Wallpaper Carousel" { spawn "dms" "ipc" "call" "wallpaperCarousel" "toggle"; }
     Mod+Ctrl+Y hotkey-overlay-title="Dashboard: Wallpapers" { spawn "dms" "ipc" "call" "dash" "toggle" "wallpaper"; }
-    Mod+space hotkey-overlay-title="Spotlight Bar" { spawn "dms" "ipc" "call" "spotlight-bar" "toggle"; }
+    Mod+space hotkey-overlay-title="Spotlight Bar" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+    Alt+space hotkey-overlay-title="Spotlight Bar" { spawn "dms" "ipc" "call" "spotlight-bar" "toggle"; }
     Print hotkey-overlay-title="Screenshot: Region" { spawn "dms" "screenshot"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "decrement" "5"; }
     XF86AudioMicMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "micmute"; }

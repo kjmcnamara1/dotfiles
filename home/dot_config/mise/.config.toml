@@ -1,9 +1,7 @@
 [settings]
 
-[settings.ruby]
-compile = false
+  [settings.ruby]
+    compile = false
 
 [tools]
-agy = "latest"
-claude = "latest"
-ruby = "latest"
+  claude = "latest"
