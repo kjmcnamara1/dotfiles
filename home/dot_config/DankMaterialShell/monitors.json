@@ -20,18 +20,6 @@
             "focusAtStartup": true
           }
         },
-        "HDMI-A-1": {
-          "mode": "1920x1080@60.000",
-          "position": {
-            "x": 2560,
-            "y": 0
-          },
-          "scale": 1,
-          "transform": "Normal",
-          "vrr": false,
-          "disabled": false,
-          "hyprland": {}
-        },
         "DP-2": {
           "mode": "3840x2160@59.997",
           "position": {
@@ -51,6 +39,18 @@
           "mode": "1920x1080@60.000",
           "position": {
             "x": 640,
+            "y": 0
+          },
+          "scale": 1,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "hyprland": {}
+        },
+        "HDMI-A-1": {
+          "mode": "1920x1080@60.000",
+          "position": {
+            "x": 2560,
             "y": 0
           },
           "scale": 1,
