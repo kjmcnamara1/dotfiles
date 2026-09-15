@@ -14,7 +14,7 @@ encryption = "age"
 
 [merge]
   command = "nvim"
-  args = ["-d", "{{ "{{" }} .Destination {{ "}}" }}", "{{ "{{" }} .Source {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}"]
+  args = ["-d", "{{ "{{" }} .Source {{ "}}" }}", "{{ "{{" }} .Target {{ "}}" }}", "{{ "{{" }} .Destination {{ "}}" }}"]
 
 [age]
   identity = "~/.config/chezmoi/key.txt"

@@ -54,10 +54,10 @@ packages=(
 yay -S --needed --noconfirm "${packages[@]}"
 
 systemctl --user enable --now dms
-# systemctl --user add-wants niri.service dms
+systemctl --user add-wants niri.service dms
 
 dms-greeter install
-dms-greeter sync
+# dms-greeter sync
 
 dsearch index generate
 
