@@ -29,6 +29,7 @@ hl.bind("SUPER + O", hl.dsp.exec_cmd("dms ipc call dash toggle overview"), { des
 hl.bind("SUPER + W", hl.dsp.exec_cmd("dms ipc call dash toggle weather"), { description = "Dashboard: Weather" })
 hl.bind("SUPER + M", hl.dsp.exec_cmd("dms ipc call dash toggle media"), { description = "Dashboard: Media" })
 hl.bind("SUPER + Minus", hl.dsp.exec_cmd("dms ipc call powermenu toggle"), { description = "Power Menu: Toggle" })
+hl.bind("SUPER + BackSpace", hl.dsp.exec_cmd("dms ipc call powermenu toggle"), { description = "Power Menu: Toggle" })
 hl.bind("SUPER + E", hl.dsp.exec_cmd("dms ipc call defaultApp fileManager"), { description = "File Manager" })
 
 -- === Cheat sheet
