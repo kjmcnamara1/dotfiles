@@ -46,4 +46,4 @@ yay -S --needed --noconfirm "${packages[@]}"
 
 systemctl --user enable --now udiskie
 
-chsh -s "$(which fish)"
+sudo chsh -s "$(which fish)" "$USER"
