@@ -1,8 +1,8 @@
 {
   "aiOverviewControl": {
     "enabled": true,
-    "providerSelection": "claude,antigravity,codex",
-    "pillProviders": "claude,antigravity",
+    "providerSelection": "claude,codex",
+    "pillProviders": "claude",
     "barWindowOverrides": "codex:highest,claude:highest,copilot:secondary,antigravity:highest"
   },
   "dankDesktopWeather": {
