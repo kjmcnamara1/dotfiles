@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Quicken Simplifi
+Comment=Quicken Simplifi
+Exec=/home/kjm/.local/bin/launch-webapp https://simplifi.quicken.com
+Terminal=false
+Type=Application
+Icon=/home/kjm/.local/share/applications/icons/Quicken Simplifi.png
+StartupNotify=true
