@@ -31,6 +31,7 @@ packages=(
   pinta
 
   ddcutil
+  kdeconnect
 
   # OCR tool
   tesseract          # core
