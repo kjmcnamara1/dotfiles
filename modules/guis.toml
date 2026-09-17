@@ -30,6 +30,7 @@ description = "Creative suite tool alternatives"
     "zed-preview-bin",        # code editor
     "parsec-bin",             # remote desktop
     "scribus",                # desktop publishing
+    "pinta",                  # paint.net alternative
   ]
 
   # File sharing/hosting
