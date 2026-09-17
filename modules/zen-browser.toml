@@ -1,0 +1,4 @@
+description = "Zen Browser"
+
+[packages]
+  required = ["zen-browser-bin", "firefoxpwa"]
