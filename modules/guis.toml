@@ -1,0 +1,42 @@
+description = "Creative suite tool alternatives"
+
+[packages]
+  required = [
+    "brave-origin-bin",       # web browser w/o telemetry
+    "libreoffice-fresh",      # office suite
+    "proton-pass-bin",        # password manager
+    "proton-vpn-gtk-app",     # vpn client
+    "syncthing",              # file sync
+    "freecad",                # 3d modeller
+    "obs-studio",             # video/screen recorder
+    "gimp",                   # raster graphics
+    "inkscape",               # vector graphics
+    "shotcut",                # simple video editor
+    "kdenlive",               # advanced video editor
+    "audacity",               # audio editor
+    "godot",                  # game engine (unity/unreal)
+    "blender",                # 3d animation
+    "obsidian",               # notes app
+    "imv",                    # image viewer
+    "mpv",                    # video player
+    "mpd",                    # music player daemon
+    "mpv-mpris",
+    "mpd-mpris",
+    "playerctl",              # mpris media player controller
+    "baobab",                 # gtk disk usage analyzer
+    "evince",                 # gtk pdf viewer
+    "localsend",              # file sharing
+    "visual-studio-code-bin", # code editor
+    "zed-preview-bin",        # code editor
+    "parsec-bin",             # remote desktop
+    "scribus",                # desktop publishing
+  ]
+
+  # File sharing/hosting
+  # proton drive
+  # nextcloud
+  # owncloud
+  # seafile
+  # filebrowser
+  # syncthing
+  # immich
