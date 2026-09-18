@@ -39,5 +39,9 @@
     "noTrigger": false,
     "trigger": "",
     "persistHistoryOnFile": true
+  },
+  "dankKDEConnect": {
+    "enabled": true,
+    "selectedDeviceId": "1a7dea33797e4bceaf17f6233ed95525"
   }
 }

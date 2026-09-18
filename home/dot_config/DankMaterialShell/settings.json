@@ -88,6 +88,11 @@
       "id": "builtin_vpn",
       "enabled": true,
       "width": 50
+    },
+    {
+      "id": "plugin_dankKDEConnect",
+      "enabled": true,
+      "width": 50
     }
   ],
   "workspaceColorMode": "secondary",
