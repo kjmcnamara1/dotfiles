@@ -25,6 +25,7 @@ packages=(
   udiskie
 
   herdr-bin
+  cliamp-bin
 
   gum
   silicon
