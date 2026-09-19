@@ -38,6 +38,10 @@ fi
 printf '%s:%s\n' "$admin_username" "$admin_password" \
                                                      | arch-chroot "$archmount" chpasswd
 
+# @games is mounted at /home/$admin_username/Games before this user exists
+# (see manipulate-disk.sh), so its root inode is still owned by root.
+arch-chroot "$archmount" chown "$admin_username:$admin_username" "/home/$admin_username/Games"
+
 install -d -m 0750 "$archmount/etc/sudoers.d"
 printf '%s ALL=(ALL:ALL) NOPASSWD: ALL\n' "$admin_username" \
   > "$archmount/etc/sudoers.d/00-$admin_username"

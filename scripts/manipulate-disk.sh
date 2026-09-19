@@ -126,6 +126,7 @@ mount "$btrfs_part" "$mount_dir"
 
 # These names match the Archinstall profiles: the OS, home, logs, package
 # cache, and games can each be mounted independently or handled by snapshots.
+# @games is mounted at $archmount/home/$admin_username/Games, nested inside @home.
 btrfs subvolume create "$mount_dir/@"
 btrfs subvolume create "$mount_dir/@home"
 btrfs subvolume create "$mount_dir/@log"
@@ -141,6 +142,7 @@ trap - EXIT
 # /mnt is the standard installation target in the Arch live environment. Do
 # not mount over another installation or over files that may be important.
 : "${archmount:?archmount must be set before sourcing manipulate-disk.sh}"
+: "${admin_username:?admin_username must be set before sourcing manipulate-disk.sh}"
 if mountpoint -q "$archmount"; then
   echo "Refusing to mount over the existing mount point: $archmount" >&2
   exit 1
@@ -156,7 +158,7 @@ mkdir -p "$archmount"
 cleanup_install_mounts() {
   local target
   for target in \
-    "$archmount/games" \
+    "$archmount/home/$admin_username/Games" \
     "$archmount/var/cache/pacman/pkg" \
     "$archmount/var/log" \
     "$archmount/home" \
@@ -176,12 +178,12 @@ mkdir -p \
   "$archmount/boot" \
   "$archmount/home" \
   "$archmount/var/log" \
-  "$archmount/var/cache/pacman/pkg" \
-  "$archmount/games"
+  "$archmount/var/cache/pacman/pkg"
 mount -o subvol=@home,compress=zstd "$btrfs_part" "$archmount/home"
 mount -o subvol=@log,compress=zstd "$btrfs_part" "$archmount/var/log"
 mount -o subvol=@pkg,compress=zstd "$btrfs_part" "$archmount/var/cache/pacman/pkg"
-mount -o subvol=@games,compress=zstd "$btrfs_part" "$archmount/games"
+mkdir -p "$archmount/home/$admin_username/Games"
+mount -o subvol=@games,compress=zstd "$btrfs_part" "$archmount/home/$admin_username/Games"
 
 # Mount the EFI System Partition where systemd-boot and the kernel will be
 # installed. It is mounted last because its mount point lives in the root tree.
@@ -190,5 +192,5 @@ trap - ERR
 
 # Report the resulting partitions, subvolume layout, and live mount target.
 echo "Done. Created $efi_part (EFI/FAT32) and $btrfs_part (Btrfs)."
-echo "Btrfs subvolumes: @, @home, @log, @pkg, @games"
+echo "Btrfs subvolumes: @, @home, @log, @pkg, @games (@games at /home/$admin_username/Games)"
 echo "Mounted installation layout at $archmount."

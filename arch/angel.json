@@ -82,7 +82,7 @@
                                 "name": "@pkg"
                             },
                             {
-                                "mountpoint": "/games",
+                                "mountpoint": "/home/kjm/Games",
                                 "name": "@games"
                             }
                         ],

@@ -133,7 +133,7 @@ mkfs.btrfs -f -L ArchRoot "$ROOT_PART"
 #   @home      -> /home
 #   @snapshots -> /.snapshots
 #   @var_log   -> /var/log
-#   @games     -> /games
+#   @games     -> /home/$USERNAME/Games
 mount "$ROOT_PART" /mnt
 btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@home
@@ -151,11 +151,12 @@ umount /mnt
 MOUNT_OPTS="noatime,compress=zstd,space_cache=v2,discard=async"
 
 mount -o "${MOUNT_OPTS},subvol=@" "$ROOT_PART" /mnt
-mkdir -p /mnt/{home,.snapshots,var/log,games,boot}
+mkdir -p /mnt/{home,.snapshots,var/log,boot}
 mount -o "${MOUNT_OPTS},subvol=@home"      "$ROOT_PART" /mnt/home
 mount -o "${MOUNT_OPTS},subvol=@snapshots" "$ROOT_PART" /mnt/.snapshots
 mount -o "${MOUNT_OPTS},subvol=@var_log"   "$ROOT_PART" /mnt/var/log
-mount -o "${MOUNT_OPTS},subvol=@games"     "$ROOT_PART" /mnt/games
+mkdir -p "/mnt/home/$USERNAME/Games"
+mount -o "${MOUNT_OPTS},subvol=@games"     "$ROOT_PART" "/mnt/home/$USERNAME/Games"
 mount "$ESP_PART" /mnt/boot
 
 require findmnt --noheadings /mnt
@@ -300,6 +301,10 @@ fi
 echo "root:$USERPASS" | chpasswd
 echo "$USERNAME:$USERPASS" | chpasswd
 if [[ -n "${INSTALL_DEBUG:-}" ]]; then set -x; fi
+
+# @games is mounted at /home/$USERNAME/Games before this user exists, so its
+# root inode is still owned by root -- fix that up now.
+chown "$USERNAME:$USERNAME" "/home/$USERNAME/Games"
 
 mkdir -p /etc/sudoers.d
 echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/wheel
@@ -475,6 +480,7 @@ Arch Linux has been installed to ${DISK}.
 Notes:
   - Bootloader: systemd-boot, auto-discovering UKIs from /boot/EFI/Linux (ESP mounted at /boot)
   - btrfs subvolumes: @, @home, @snapshots, @var_log, @games (compress=zstd)
+    @games is mounted at /home/${USERNAME}/Games
   - Snapper is configured on the 'root' config with timeline snapshots +
     snap-pac pre/post pacman snapshots. There is no bootloader integration --
     restore a snapshot with 'snapper rollback' from a booted system or live ISO.
