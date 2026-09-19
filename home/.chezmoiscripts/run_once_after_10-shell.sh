@@ -26,6 +26,7 @@ packages=(
 
   herdr-bin
   cliamp-bin
+  bonsai
 
   gum
   silicon
