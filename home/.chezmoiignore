@@ -5,6 +5,7 @@ key.txt.age
 AppData
 {{- end }}
 
-.chezmoiscripts/80-tailscale.sh
+# .chezmoiscripts/80-tailscale.sh
+# .chezmoiscripts/90-gaming.sh
 
 .config/xsettingsd
