@@ -120,7 +120,7 @@ binds {
     // Mod+Shift+L { move-column-right; }
     Mod+T { toggle-window-floating; }
     Mod+Shift+P { power-off-monitors; }
-    Mod+A hotkey-overlay-title="AI Gemini Chat" { spawn "gtk-launch" "Gemini.desktop"; }
+    Mod+A hotkey-overlay-title="AI Chat" { spawn "gtk-launch" "Grok.desktop"; }
     Mod+Alt+B hotkey-overlay-title="Web Browser (Private)" { spawn "~/.local/bin/launch-browser" "--private"; }
     Mod+Return hotkey-overlay-title="Open Terminal" { spawn-sh "$TERMINAL"; }
     Mod+Alt+Return hotkey-overlay-title="Open Herdr Terminal" { spawn-sh "$TERMINAL -e herdr"; }
