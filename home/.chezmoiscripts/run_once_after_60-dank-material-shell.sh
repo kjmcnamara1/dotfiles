@@ -40,6 +40,7 @@ packages=(
 
   nautilus
   nautilus-python
+  ghostty-nautilus
   sshfs
   # gvfs
   # gvfs-smb
