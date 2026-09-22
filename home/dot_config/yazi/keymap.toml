@@ -1,10 +1,10 @@
 [[mgr.prepend_keymap]]
-  on   = ["<"]
+  on   = ["t", "h"]
   run  = "tab_switch -1 --relative"
   desc = "Switch to previous tab"
 
 [[mgr.prepend_keymap]]
-  on   = [">"]
+  on   = ["t", "l"]
   run  = "tab_switch 1 --relative"
   desc = "Switch to next tab"
 
