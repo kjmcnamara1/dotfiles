@@ -39,6 +39,7 @@ packages=(
   tesseract-data-osd # Detects orientation of text
 
   nautilus
+  nautilus-python
   sshfs
   # gvfs
   # gvfs-smb
