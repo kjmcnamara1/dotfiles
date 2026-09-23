@@ -62,7 +62,6 @@ end)
 
 -- Theme
 config.color_scheme = "wallust" -- alt: kanagawa
--- config.color_scheme = "Catppuccin Frappe"
 config.default_cursor_style = "SteadyBlock"
 
 -- Window Settings
@@ -100,6 +99,7 @@ config.font = wezterm.font_with_fallback({
   "Symbols Nerd Font",
   "Font Awesome 6 Free",
   "Noto Color Emoji",
+  "Noto Sans Symbols 2",
 })
 
 config.font_rules = {

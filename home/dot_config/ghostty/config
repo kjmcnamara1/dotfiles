@@ -4,6 +4,11 @@
 theme = Onenord
 
 # Font
+font-family = JetBrainsMono Nerd Font
+font-family = Symbols Nerd Font
+font-family = Font Awesome 6 Free
+font-family = Noto Color Emoji
+font-family = Noto Sans Symbols 2
 font-size = 14
 adjust-cell-height = 20%
 bold-color = bright

@@ -125,11 +125,15 @@ environment {
     XDG_CURRENT_DESKTOP "niri"
     TERMINAL "ghostty"
 }
+
 hotkey-overlay {
     skip-at-startup
 }
+
 prefer-no-csd
+
 // screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
 animations {
     workspace-switch {
         spring damping-ratio=0.80 stiffness=523 epsilon=0.0001
@@ -239,7 +243,6 @@ recent-windows {
 // webcam overlay?
 // set reminder
 // capture menu from omarchy
-// cliamp tui music player
 // transcode picture or video
 // obsidian?
 // youtube app?

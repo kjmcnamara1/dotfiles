@@ -7,6 +7,8 @@ section "Shell"
 packages=(
   fish
   ttf-jetbrains-mono-nerd
+  ttf-nerd-fonts-symbols
+  noto-fonts
   noto-fonts-emoji
   figlet
   figlet-fonts-extra
