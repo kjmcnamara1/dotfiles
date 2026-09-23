@@ -1,0 +1,37 @@
+description = "Yazi Terminal File Explorer"
+
+[packages]
+  required = [
+    "yazi",
+    "ffmpeg",
+    "mediainfo",
+    "poppler",
+    "resvg",
+    "imagemagick",
+    "rich-cli",
+    # "glow",
+    "ouch",
+    "7zip",
+    "wl-clipboard",
+    # "unzip",
+    # "zstd",
+    # "gzip",
+    "jq",
+    "fd",
+    "ripgrep",
+    "fzf",
+    "zoxide",
+  ]
+
+[files]
+  "yazi/" = "~/.config/yazi"
+
+# Fix for windows (https://yazi-rs.github.io/docs/installation#windows)
+[[hooks.post]]
+  cond = "windows"
+  cmd = '''
+[Environment]::SetEnvironmentVariable("YAZI_FILE_ONE", "{{ .chezmoi.homeDir }}/scoop/apps/git/current/usr/bin/file.exe", "User")
+'''
+
+[[hooks.post]]
+  file = "run_upgrade-yazi-packages.sh"
