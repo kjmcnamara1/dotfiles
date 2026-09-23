@@ -3,9 +3,11 @@
 # add_newline = false
 command_timeout = 750
 
-format = """ $all${env_var.yazilevel}"""
+format       = """ ${custom.ssh}$all$shlvl$character"""
+right_format = "${env_var.yazi_level}"
 
-# right_format = "$battery$shell$os"
+[profiles]
+  claude-code = "${custom.ssh}$username$hostname$directory$git_branch$git_commit$claude_model$claude_context$claude_cost"
 
 [fill]
   # disabled = true
@@ -14,29 +16,22 @@ format = """ $all${env_var.yazilevel}"""
 [line_break]
   disabled = false
 
-[shell]
-  disabled             = false
-  format               = "$indicator"
-  bash_indicator       = "[ ](bright-yellow)"
-  fish_indicator       = "[ 󰈺](blue)"
-  zsh_indicator        = "[ 󰵁](bright-purple)"
-  powershell_indicator = "[ ](cyan)"
-  pwsh_indicator       = "[ 󰨊](blue)"
-  cmd_indicator        = "[ ](yellow)"
-  nu_indicator         = "[ >](#39884d)"
-  xonsh_indicator      = "[ 🐚](purple)"
-  unknown_indicator    = "[ ](red)"
+[custom.ssh]
+  description = "Show a globe when any SSH-related env var is set"
+  when        = '[ -n "$SSH_TTY" ] || [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_CLIENT" ] || [ -n "$SSH_AUTH_SOCK" ]'
+  style       = "blue"
+  symbol      = " "
+  # symbol      = "🌐 "
 
 [username]
-  # show_always = true
-  format     = '[$user]($style)'
-  style_user = 'yellow'
+  detect_env_vars = ['SSH_AUTH_SOCK']
+  format          = '[$user]($style)'
+  style_user      = 'yellow'
 
 [hostname]
-  # ssh_only   = false
-  format     = "[@($ssh_symbol )$hostname]($style) "
-  ssh_symbol = '🌏'
-  # detect_env_vars = ['SSH_TTY', 'SSH_CONNECTION', 'SSH_CLIENT']
+  ssh_only        = false
+  format          = "[@$hostname]($style) "
+  detect_env_vars = ['SSH_TTY', 'SSH_CONNECTION', 'SSH_CLIENT', 'SSH_AUTH_SOCK']
 
   # [localip]
   # disabled = false
@@ -139,14 +134,35 @@ format = """ $all${env_var.yazilevel}"""
   format = "[($duration )]($style) "
   # show_notifications = true
 
+[shell]
+  disabled             = false
+  format               = " $indicator "
+  bash_indicator       = "[](bright-yellow)"
+  fish_indicator       = "[󰈺](blue)"
+  zsh_indicator        = "[󰵁](bright-purple)"
+  powershell_indicator = "[](cyan)"
+  pwsh_indicator       = "[󰨊](blue)"
+  cmd_indicator        = "[](yellow)"
+  nu_indicator         = "[>](#39884d)"
+  xonsh_indicator      = "[🐚](purple)"
+  unknown_indicator    = "[](red)"
+
+[shlvl]
+  disabled      = false
+  format        = '[$symbol]($style)'
+  style         = "bright-black"
+  repeat        = true
+  symbol        = '❯'
+  repeat_offset = 2
+
 [character]
   # disabled = true
-  success_symbol            = '[ ❯](green)'
-  error_symbol              = '[ ❯](red)'
-  vimcmd_symbol             = '[ ❮](cyan)'
-  vimcmd_replace_one_symbol = '[ ✘](purple)'
-  vimcmd_replace_symbol     = '[ ✘](bold yellow)'
-  vimcmd_visual_symbol      = '[ ](yellow)'
+  success_symbol            = '[❯](green)'
+  error_symbol              = '[❯](red)'
+  vimcmd_symbol             = '[❮](cyan)'
+  vimcmd_replace_one_symbol = '[✘](purple)'
+  vimcmd_replace_symbol     = '[✘](bold yellow)'
+  vimcmd_visual_symbol      = '[](yellow)'
 
 [env_var.yazi_level]
   description = "Indicate the shell was launched by `yazi`"
