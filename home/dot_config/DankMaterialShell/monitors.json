@@ -62,20 +62,56 @@
       }
     },
     {
-      "id": "profile_1789335041912_3wi65dr",
-      "name": "muse",
+      "id": "profile_1789866625873_zit2hae",
+      "name": "angel-gaming",
       "outputs": {
-        "eDP-1": {
-          "mode": "1920x1200@60.001",
+        "DP-3": {
+          "mode": "1920x1080@60.000",
           "position": {
-            "x": 0,
+            "x": 640,
             "y": 0
           },
           "scale": 1,
           "transform": "Normal",
           "vrr": false,
+          "disabled": true,
+          "niri": {}
+        },
+        "DP-1": {
+          "mode": "3840x2160@59.997",
+          "position": {
+            "x": 0,
+            "y": 1080
+          },
+          "scale": 1.5,
+          "transform": "Normal",
+          "vrr": false,
           "disabled": false,
-          "hyprland": {}
+          "niri": {}
+        },
+        "DP-2": {
+          "mode": "3840x2160@59.997",
+          "position": {
+            "x": 2560,
+            "y": 1080
+          },
+          "scale": 1.5,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": false,
+          "niri": {}
+        },
+        "HDMI-A-1": {
+          "mode": "1920x1080@60.000",
+          "position": {
+            "x": 2560,
+            "y": 0
+          },
+          "scale": 1,
+          "transform": "Normal",
+          "vrr": false,
+          "disabled": true,
+          "niri": {}
         }
       }
     }
