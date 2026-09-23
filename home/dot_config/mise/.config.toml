@@ -4,4 +4,8 @@
     compile = false
 
 [tools]
-  claude = "latest"
+  ruby = "latest"
+
+  [tools.claude]
+    version = "latest"
+    minimum_release_age = "0s"
