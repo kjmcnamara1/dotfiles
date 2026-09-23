@@ -9,8 +9,7 @@ local function is_windows()
   return wezterm.target_triple:find("windows") ~= nil
 end
 
--- Enable wayland only when running wezterm-git in wayland. `false` for repo
-config.enable_wayland = false
+config.enable_wayland = true
 
 -- Session
 if is_windows() then
@@ -60,20 +59,44 @@ wezterm.on("user-var-changed", function(window, pane, name, value)
   end
 end)
 
+-- Open scrollback in Neovim
+wezterm.on("trigger-nvim-with-scrollback", function(window, pane)
+  local text = pane:get_lines_as_escapes(pane:get_dimensions().scrollback_rows)
+  text = text:gsub("\27%(B\27%[0m%s*$", "") --  remove trailing empty lines
+  local name = os.tmpname()
+  local f = io.open(name, "w+")
+  f:write(text)
+  f:flush()
+  f:close()
+  local overlay = pane:split({
+    direction = "Right",
+    top_level = true,
+    args = {
+      "nvim",
+      "--cmd",
+      "lua vim.g.minimal=true",
+      "+lua Snacks.terminal.colorize()",
+      "+lua vim.api.nvim_create_autocmd('TextChanged', { buffer = 0, callback = function() vim.cmd('normal! $') end })",
+      name,
+    },
+  })
+  window:perform_action(act.SetPaneZoomState(true), overlay)
+end)
+
 -- Theme
 config.color_scheme = "wallust" -- alt: kanagawa
 config.default_cursor_style = "SteadyBlock"
 
 -- Window Settings
-config.window_decorations = is_windows() and "TITLE|RESIZE" or "NONE" -- HACK: use NONE to hide titlebar for hyprland
+-- config.window_decorations = is_windows() and "TITLE|RESIZE" or "NONE" -- HACK: use NONE to hide titlebar for hyprland
 config.window_close_confirmation = "NeverPrompt"
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
 config.inactive_pane_hsb = { saturation = 0.9, brightness = 0.8 }
 
-config.initial_rows = 25
-config.initial_cols = 120
+-- config.initial_rows = 25
+-- config.initial_cols = 120
 config.scrollback_lines = 10000
-config.enable_scroll_bar = false
+config.enable_scroll_bar = true
 
 -- config.window_background_opacity = 0.75
 -- config.win32_system_backdrop = "Acrylic"
@@ -128,6 +151,7 @@ config.keys = {
   { key = "v",   mods = "SHIFT|CTRL", action = act.PasteFrom "Clipboard" },
   { key = "F11", mods = "SHIFT|CTRL", action = act.ToggleFullScreen },
   { key = "F5",  mods = "SHIFT|CTRL", action = act.ReloadConfiguration },
+  { key = "E",   mods = "SHIFT|CTRL", action = act.EmitEvent("trigger-nvim-with-scrollback") },
   { key = "v",   mods = "LEADER",     action = act.SplitHorizontal },
   { key = "s",   mods = "LEADER",     action = act.SplitVertical },
   { key = "j",   mods = "LEADER",     action = act.ScrollToPrompt(1) },
