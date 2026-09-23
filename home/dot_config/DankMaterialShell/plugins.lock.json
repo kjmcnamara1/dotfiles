@@ -1,9 +1,9 @@
 {
   "lockfileVersion": 1,
   "plugins": {
-    "aiOverviewControl": {
-      "repo": "https://github.com/bernardopg/AiOverviewControl",
-      "commit": "1732b60420ed5ff9cea1ac779c3a7d1aeb354b58"
+    "aiQuotas": {
+      "repo": "https://github.com/agneswd/dms-ai-quotas",
+      "commit": "222184eee51cd631370b3b4de968f4fde1493b64"
     },
     "calculator": {
       "repo": "https://github.com/rochacbruno/DankCalculator",
@@ -12,27 +12,27 @@
     "dankActions": {
       "repo": "https://github.com/AvengeMedia/dms-plugins",
       "path": "DankActions",
-      "commit": "bb90a1db7d540e64ae049c5906afba9b24baa865"
+      "commit": "e774a9756f2a50499c37a5513f28bee4ebe81d73"
     },
     "dankHooks": {
       "repo": "https://github.com/AvengeMedia/dms-plugins",
       "path": "DankHooks",
-      "commit": "bb90a1db7d540e64ae049c5906afba9b24baa865"
+      "commit": "e774a9756f2a50499c37a5513f28bee4ebe81d73"
     },
     "dankHyprlandWindows": {
       "repo": "https://github.com/AvengeMedia/dms-plugins",
       "path": "DankHyprlandWindows",
-      "commit": "bb90a1db7d540e64ae049c5906afba9b24baa865"
+      "commit": "e774a9756f2a50499c37a5513f28bee4ebe81d73"
     },
     "dankKDEConnect": {
       "repo": "https://github.com/AvengeMedia/dms-plugins",
       "path": "DankKDEConnect",
-      "commit": "bb90a1db7d540e64ae049c5906afba9b24baa865"
+      "commit": "e774a9756f2a50499c37a5513f28bee4ebe81d73"
     },
     "dankLauncherKeys": {
       "repo": "https://github.com/AvengeMedia/dms-plugins",
       "path": "DankLauncherKeys",
-      "commit": "bb90a1db7d540e64ae049c5906afba9b24baa865"
+      "commit": "e774a9756f2a50499c37a5513f28bee4ebe81d73"
     },
     "emojiLauncher": {
       "repo": "https://github.com/devnullvoid/dms-emoji-launcher",

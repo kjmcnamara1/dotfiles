@@ -1,10 +1,4 @@
 {
-  "aiOverviewControl": {
-    "enabled": true,
-    "providerSelection": "claude,codex",
-    "pillProviders": "claude",
-    "barWindowOverrides": "codex:highest,claude:highest,copilot:secondary,antigravity:highest"
-  },
   "dankDesktopWeather": {
     "enabled": false
   },
@@ -43,5 +37,9 @@
   "dankKDEConnect": {
     "enabled": true,
     "selectedDeviceId": "1a7dea33797e4bceaf17f6233ed95525"
+  },
+  "aiQuotas": {
+    "enabled": true,
+    "displayMode": "used"
   }
 }

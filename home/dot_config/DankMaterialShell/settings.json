@@ -191,6 +191,10 @@
       "rightWidgets": [
         "systemTray",
         {
+          "id": "aiQuotas",
+          "enabled": true
+        },
+        {
           "id": "aiOverviewControl",
           "enabled": true
         },
