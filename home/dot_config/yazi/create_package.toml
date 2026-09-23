@@ -1,42 +1,37 @@
 [[plugin.deps]]
-  use  = "Rolv-Apneseth/starship"
-  rev  = "eca1861"
-  hash = "e519d894e94ded741e06aae4d4775981"
+use = "boydaihungst/mediainfo"
+rev = "f1cec0b"
+hash = "fd9312e974c63438b1f8737711462d52"
 
 [[plugin.deps]]
-  use  = "boydaihungst/mediainfo"
-  rev  = "20ecff6"
-  hash = "ad48b4d2fd8f429ce87b0fddf7f34c9"
+use = "ndtoan96/ouch"
+rev = "596b666"
+hash = "c2f4f4aca257dcceafa9e3b828dbf1c9"
 
 [[plugin.deps]]
-  use  = "ndtoan96/ouch"
-  rev  = "406ce6c"
-  hash = "f5afc904d5106ee368c8aa2ded43bd74"
+use = "yazi-rs/plugins:chmod"
+rev = "f703392"
+hash = "87472b05a8c420100f6a2b9cde1e7746"
 
 [[plugin.deps]]
-  use  = "yazi-rs/plugins:chmod"
-  rev  = "1962818"
-  hash = "f0c8c378184d5f8abd1b095a443d336d"
+use = "yazi-rs/plugins:full-border"
+rev = "f703392"
+hash = "f281261ff04ad7ec867c3f802a50835f"
 
 [[plugin.deps]]
-  use  = "yazi-rs/plugins:full-border"
-  rev  = "1962818"
-  hash = "6fa6a05a81c98dd000fbca3cca6e9682"
+use = "yazi-rs/plugins:git"
+rev = "f703392"
+hash = "347cc6b190eb0c2fd60513cc7ae37412"
 
 [[plugin.deps]]
-  use  = "yazi-rs/plugins:git"
-  rev  = "1962818"
-  hash = "26db011a778f261d730d4f5f8bf24b3f"
+use = "yazi-rs/plugins:toggle-pane"
+rev = "f703392"
+hash = "5b2fbef7d1513ce38ff72623a071a5e"
 
 [[plugin.deps]]
-  use  = "yazi-rs/plugins:toggle-pane"
-  rev  = "1962818"
-  hash = "4c0260feb50ea2437380690ffc241da7"
-
-[[plugin.deps]]
-  use  = "alberti42/faster-piper"
-  rev  = "8b794bf"
-  hash = "fac71f8ce9447ad509b5aad9e0d8c694"
+use = "alberti42/faster-piper"
+rev = "bb90261"
+hash = "12b5e342d54db42b5b023faa1a11f28e"
 
 [flavor]
-  deps = []
+deps = []
