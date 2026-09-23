@@ -9,3 +9,8 @@ AppData
 # .chezmoiscripts/90-gaming.sh
 
 .config/xsettingsd
+
+{{- if eq .chezmoi.hostname "snow" }}
+.chezmoiscripts/*
+.chezmoiscripts/00-decrypt-private-key.ps1
+{{- end }}
