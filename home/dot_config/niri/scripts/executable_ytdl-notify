@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+# Download a video with yt-dlp and show progress as a single notification
+# with a progress bar (the freedesktop `value` hint), updated in place via
+# notify-send's replace-id. Defaults to the URL on the clipboard.
+#
+# yt-dlp often downloads video and audio as separate streams before merging;
+# progress is summed across streams so the bar runs 0->100% only once. The
+# notification never expires while downloading, then gets the normal timeout
+# once it says "Download complete".
+
+url="${1:-$(wl-paste --no-newline)}"
+app="yt-dlp"
+
+if [[ -z "$url" ]]; then
+  notify-send -a "$app" -u critical "Download failed" "Clipboard is empty"
+  exit 1
+fi
+
+# Text progress bar: 20 cells, with eighth-block partials so it moves on
+# every percent. DMS ignores the `value` hint, so this is what's visible.
+# The title goes in the summary so the bar is the body's first line: DMS
+# compact mode shows only one body line until the popup is expanded.
+bar() {
+  local width=20 eighths=$(($1 * 20 * 8 / 100)) full part out="" i
+  local partials=("" "▏" "▎" "▍" "▌" "▋" "▊" "▉")
+  full=$((eighths / 8)) part=$((eighths % 8))
+  for ((i = 0; i < full; i++)); do out+="█"; done
+  if ((full < width)); then
+    out+="${partials[part]:-░}"
+    for ((i = full + 1; i < width; i++)); do out+="░"; done
+  fi
+  printf '%s' "$out"
+}
+
+id=$(notify-send -a "$app" -p -t 0 -h int:value:0 "Downloading video" "$(bar 0)  0%")
+last=-1
+file=""
+errors=""
+title=""
+nstreams=1 # number of streams yt-dlp will download
+grand=0    # expected total bytes across all streams (0 = unknown)
+done_bytes=0 done_streams=0
+cur_fmt="" cur_total=0
+
+while IFS= read -r line; do
+  case "$line" in
+    STREAMS\|*)
+      IFS='|' read -r _ sizes total title <<< "$line"
+      [[ "$sizes" == \[*\] ]] && nstreams=$(($(tr -cd ',' <<< "$sizes" | wc -c) + 1))
+      [[ "$total" =~ ^[0-9]+$ ]] && grand="$total"
+      ;;
+    PROGRESS\|*)
+      IFS='|' read -r _ fmt dl tot <<< "$line"
+      [[ "$dl" =~ ^[0-9]+$ ]] || continue
+      tot="${tot%%.*}"
+      [[ "$tot" =~ ^[0-9]+$ ]] || tot=0
+      if [[ "$fmt" != "$cur_fmt" ]]; then
+        # moved on to the next stream: bank the one that just finished
+        if [[ -n "$cur_fmt" ]]; then
+          done_bytes=$((done_bytes + cur_total))
+          done_streams=$((done_streams + 1))
+        fi
+        cur_fmt="$fmt"
+      fi
+      cur_total="$tot"
+      if ((grand > 0)); then
+        pct=$((100 * (done_bytes + dl) / grand))
+      elif ((tot > 0)); then
+        # sizes unknown up front: weight each stream equally
+        pct=$((100 * (done_streams * tot + dl) / (nstreams * tot)))
+      else
+        continue
+      fi
+      ((pct > 99)) && pct=99 # 100% is reserved for "Download complete"
+      ((pct == last)) && continue
+      last="$pct"
+      notify-send -a "$app" -r "$id" -t 0 -h "int:value:$pct" \
+        "Downloading: ${title:-video}" "$(bar "$pct")  $pct%"
+      ;;
+    DONE\|*)
+      file="${line#DONE|}"
+      ;;
+    ERROR:*)
+      errors+="${line#ERROR: }"$'\n'
+      ;;
+  esac
+done < <(yt-dlp --newline --progress --color never \
+  --print "before_dl:STREAMS|%(requested_formats.:.filesize,filesize_approx)j|%(filesize,filesize_approx)s|%(title)s" \
+  --progress-template "download:PROGRESS|%(info.format_id)s|%(progress.downloaded_bytes)s|%(progress.total_bytes,progress.total_bytes_estimate)s" \
+  --print "after_move:DONE|%(filepath)s" \
+  "$url" 2>&1)
+
+# Close the persistent progress notification and send a fresh one rather than
+# replacing it: DMS decides persistence only when a notification first
+# arrives, so a replacement would inherit "never expire". No -t here, so the
+# final notification gets the server's normal timeout.
+busctl --user call org.freedesktop.Notifications /org/freedesktop/Notifications \
+  org.freedesktop.Notifications CloseNotification u "$id" > /dev/null 2>&1
+if [[ -n "$file" ]]; then
+  notify-send -a "$app" -h int:value:100 \
+    "Download complete" "$(basename "$file")"
+else
+  notify-send -a "$app" -u critical \
+    "Download failed" "${errors:-$url}"
+  exit 1
+fi
