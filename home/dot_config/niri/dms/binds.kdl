@@ -29,8 +29,8 @@ binds {
     Mod+Print hotkey-overlay-title="Screenshot: Focused Output" { spawn "dms" "screenshot" "full"; }
     Mod+Shift+Slash hotkey-overlay-title="Keybinds Cheatsheet: Toggle" { spawn "dms" "ipc" "call" "keybinds" "toggle" "niri"; }
     Mod+V hotkey-overlay-title="Clipboard Manager" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
-    Mod+Alt+V hotkey-overlay-title="Open URL in mpv" { spawn-sh "notify-send 'Opening URL in MPV:' $(wl-paste); mpv $(wl-paste)" }
-    Mod+Ctrl+V hotkey-overlay-title="Download video from URL" { spawn-sh "~/.config/niri/scripts/ytdl-notify" }
+    Mod+Alt+V hotkey-overlay-title="Open URL in mpv" { spawn-sh "notify-send 'Opening URL in MPV:' \"$(wl-paste)\"; mpv \"$(wl-paste)\""; }
+    Mod+Ctrl+V hotkey-overlay-title="Download video from URL" { spawn-sh "~/.config/niri/scripts/ytdl-notify"; }
     Mod+W hotkey-overlay-title="Dashboard: Weather" { spawn "dms" "ipc" "call" "dash" "toggle" "weather"; }
     Mod+Y hotkey-overlay-title="Wallpaper Carousel" { spawn "dms" "ipc" "call" "wallpaperCarousel" "toggle"; }
     Mod+Ctrl+Y hotkey-overlay-title="Dashboard: Wallpapers" { spawn "dms" "ipc" "call" "dash" "toggle" "wallpaper"; }
