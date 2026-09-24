@@ -414,7 +414,8 @@ cat > /etc/xdg/reflector/reflector.conf <<REFCONF
 --latest 20
 --sort rate
 REFCONF
-extra "enable reflector.service" systemctl enable reflector.service
+# timer (weekly), not the service: the service blocks multi-user.target on every boot
+extra "enable reflector.timer" systemctl enable reflector.timer
 reflector --protocol https --latest 20 --sort rate --save /etc/pacman.d/mirrorlist \
     || warn "reflector run failed -- keeping the mirrorlist from the ISO"
 
