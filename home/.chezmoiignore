@@ -12,5 +12,5 @@ AppData
 
 {{- if eq .chezmoi.hostname "snow" }}
 .chezmoiscripts/*
-.chezmoiscripts/00-decrypt-private-key.ps1
+!.chezmoiscripts/00-decrypt-private-key.ps1
 {{- end }}
