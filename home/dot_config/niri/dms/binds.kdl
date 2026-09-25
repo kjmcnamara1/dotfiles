@@ -38,6 +38,7 @@ binds {
     Alt+space hotkey-overlay-title="Spotlight Bar" { spawn "dms" "ipc" "call" "spotlight-bar" "toggle"; }
     Print hotkey-overlay-title="Screenshot: Region" { spawn "dms" "screenshot"; }
     Shift+Print hotkey-overlay-title="Screenshot: OCR to Clipboard" { spawn-sh "~/.config/niri/scripts/ocr-screenshot"; }
+    Ctrl+Shift+Print hotkey-overlay-title="Screenshot: QR Code to Clipboard" { spawn-sh "~/.config/niri/scripts/qr-screenshot"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "decrement" "5"; }
     XF86AudioMicMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "micmute"; }
     XF86AudioMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "mute"; }

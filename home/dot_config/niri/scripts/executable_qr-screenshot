@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Select a screen region, decode any QR code in it with zbarimg, and copy the
+# result to the clipboard. Uses the DMS region selector (same as the Print
+# binds) and pipes the image straight through without saving a file.
+
+app="QR"
+
+text=$(dms screenshot region --stdout --no-file --no-clipboard --no-notify \
+  | zbarimg --quiet --raw -Sdisable -Sqrcode.enable - 2> /dev/null)
+text="${text%"${text##*[![:space:]]}"}" # trim trailing whitespace/newlines
+
+if [[ -z "$text" ]]; then
+  notify-send -a "$app" -u low "QR" "No QR code found (or selection cancelled)"
+  exit 1
+fi
+
+wl-copy -- "$text"
+notify-send -a "$app" "QR code copied" "$(head -c 200 <<< "$text")"

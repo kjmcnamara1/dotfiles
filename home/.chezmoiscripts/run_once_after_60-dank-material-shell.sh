@@ -37,6 +37,7 @@ packages=(
   tesseract          # core
   tesseract-data-eng # English lang
   tesseract-data-osd # Detects orientation of text
+  zbar               # QR code reader
 
   nautilus
   nautilus-python
