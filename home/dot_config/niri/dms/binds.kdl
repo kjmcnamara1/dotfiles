@@ -106,6 +106,7 @@ binds {
     Mod+K { focus-window-up; }
     Mod+L { focus-column-right; }
     Mod+Period { expel-window-from-column; }
+    Mod+Ctrl+Period hotkey-overlay-title="Transcode Picture or Video" { spawn-sh "ghostty --class=niri.transcode -e ~/.config/niri/scripts/transcode"; }
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }

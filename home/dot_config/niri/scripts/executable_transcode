@@ -1,0 +1,148 @@
+#!/usr/bin/env bash
+# Transcode a picture or video for sharing, then copy the result to the
+# clipboard as a file. Ported from omarchy-transcode, with fzf menus in place
+# of omarchy's walker menus; the niri bind runs it in a floating ghostty.
+#
+# Usage: transcode [--path dirs] [input] [format] [resolution]
+#   Pictures: jpg, png   @ high, medium, low
+#   Videos:   mp4, gif   @ 4k, 1080p, 720p
+# Anything left out is picked interactively. --path is a colon-separated
+# list of dirs to pick from (default ~/Pictures:~/Videos).
+
+set -euo pipefail
+
+app="Transcode"
+exts=(jpg jpeg png webp gif heic avif mp4 mov m4v mkv webm avi)
+
+# Keep the terminal open on failure so the error can be read.
+trap 'echo; read -rsn1 -p "Transcode failed. Press any key to close."' ERR
+
+pick() {
+  local prompt="$1"
+  shift
+  printf '%s\n' "$@" | fzf --prompt "$prompt> " --height 40% --reverse --no-sort
+}
+
+# Newest files first, skipping hidden dirs, like omarchy-menu-file.
+pick_file() {
+  local paths find_args=() e
+  IFS=: read -r -a paths <<< "$1"
+  for e in "${exts[@]}"; do find_args+=(-o -iname "*.$e"); done
+  find "${paths[@]}" \( -type d -name '.*' -prune \) -o -type f ! -name '.*' \
+    \( "${find_args[@]:1}" \) -printf '%T@\t%p\n' 2> /dev/null \
+    | sort -rn | cut -f2- \
+    | fzf --prompt "Transcode> " --reverse --no-sort \
+      --preview 'file -b {}' --preview-window down,1
+}
+
+media_type() {
+  local mime
+  mime=$(file -b --mime-type "$1")
+  case "$mime" in
+    image/*) echo picture ;;
+    video/*) echo video ;;
+    *)
+      echo "Unsupported file type: $mime" >&2
+      return 1
+      ;;
+  esac
+}
+
+transcode_picture() {
+  local input="$1" format="$2" resolution="$3" output="$4" resize
+  case "$resolution" in
+    high) resize='3160x>' ;;
+    medium) resize='2160x>' ;;
+    low) resize='1080x>' ;;
+    *) echo "Invalid picture resolution: $resolution" >&2 && return 1 ;;
+  esac
+  case "$format" in
+    jpg) magick "$input" -resize "$resize" -quality 85 -strip "$output" ;;
+    png)
+      magick "$input" -resize "$resize" -strip \
+        -define png:compression-filter=5 \
+        -define png:compression-level=9 \
+        -define png:compression-strategy=1 \
+        -define png:exclude-chunk=all \
+        "$output"
+      ;;
+    *) echo "Invalid picture format: $format" >&2 && return 1 ;;
+  esac
+}
+
+transcode_video() {
+  local input="$1" format="$2" resolution="$3" output="$4" scale
+  case "$resolution" in
+    4k) scale='scale=-2:2160' ;;
+    1080p) scale='scale=-2:1080' ;;
+    720p) scale='scale=-2:720' ;;
+    *) echo "Invalid video resolution: $resolution" >&2 && return 1 ;;
+  esac
+  case "$format" in
+    mp4)
+      if [[ $resolution == 4k ]]; then
+        ffmpeg -hide_banner -i "$input" -vf "$scale" -c:v libx265 -preset slow -crf 24 \
+          -c:a aac -b:a 192k -movflags +faststart "$output"
+      else
+        ffmpeg -hide_banner -i "$input" -vf "$scale" -c:v libx264 -preset fast -crf 23 \
+          -c:a aac -b:a 192k -movflags +faststart "$output"
+      fi
+      ;;
+    gif)
+      ffmpeg -hide_banner -i "$input" \
+        -vf "fps=10,$scale:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
+        "$output"
+      ;;
+    *) echo "Invalid video format: $format" >&2 && return 1 ;;
+  esac
+}
+
+main() {
+  local search_path="$HOME/Pictures:$HOME/Videos" positional=()
+  local input format resolution type dir base output
+
+  while (($# > 0)); do
+    case "$1" in
+      --path)
+        search_path="${2:?Missing value for --path}"
+        shift
+        ;;
+      -h | --help)
+        sed -n '2,/^$/s/^# \{0,1\}//p' "$0"
+        return 0
+        ;;
+      *) positional+=("$1") ;;
+    esac
+    shift
+  done
+
+  input="${positional[0]:-}"
+  format="${positional[1]:-}"
+  resolution="${positional[2]:-}"
+
+  # An empty pick (Esc) just exits quietly.
+  [[ -n $input ]] || input=$(pick_file "$search_path") || return 0
+  [[ -f $input ]] || { echo "File not found: $input" >&2 && return 1; }
+  type=$(media_type "$input")
+
+  if [[ $type == picture ]]; then
+    [[ -n $format ]] || format=$(pick Format jpg png) || return 0
+    [[ -n $resolution ]] || resolution=$(pick Resolution high medium low) || return 0
+  else
+    [[ -n $format ]] || format=$(pick Format mp4 gif) || return 0
+    [[ -n $resolution ]] || resolution=$(pick Resolution 4k 1080p 720p) || return 0
+  fi
+
+  dir=$(dirname -- "$input")
+  base=$(basename -- "$input")
+  output="$dir/${base%.*}-$resolution.$format"
+
+  notify-send -a "$app" "Transcoding $type…" "$base to $format ($resolution)"
+  "transcode_$type" "$input" "$format" "$resolution" "$output"
+
+  printf 'file://%s\n' "$(realpath -- "$output")" | wl-copy --type text/uri-list
+  notify-send -a "$app" "Transcoded to $resolution $format" \
+    "Saved $(basename -- "$output") and copied to clipboard."
+}
+
+main "$@"
