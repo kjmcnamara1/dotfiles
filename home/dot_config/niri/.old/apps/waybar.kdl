@@ -1,5 +1,0 @@
-binds {
-  SUPER+CTRL+B hotkey-overlay-title="Waybar: Reload" {
-    spawn-sh "systemctl --user restart waybar"
-  }
-}

@@ -239,9 +239,6 @@ recent-windows {
     }
 }
 // need to add binds for:
-// open url in mpv
-// download video from url
-// ocr get text from screenshot
 // do not disturb
 // toggle window transparency
 // toggle nightlight
