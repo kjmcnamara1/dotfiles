@@ -324,6 +324,15 @@ cat > /etc/NetworkManager/conf.d/wifi_backend.conf <<NMCONF
 [device]
 wifi.backend=iwd
 NMCONF
+# Rank 6GHz > 5GHz > 2.4GHz so iwd always prefers the fastest band available
+# for a given SSID, on every network it knows, not just one.
+mkdir -p /etc/iwd
+cat > /etc/iwd/main.conf <<IWDCONF
+[Rank]
+BandModifier6GHz=2.0
+BandModifier5GHz=1.5
+BandModifier2_4GHz=0.5
+IWDCONF
 systemctl enable NetworkManager.service
 
 step "mDNS"

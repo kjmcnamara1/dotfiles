@@ -41,6 +41,17 @@ dns=systemd-resolved
 [device]
 wifi.backend=iwd
 EOF
+
+# Rank 6GHz > 5GHz > 2.4GHz so iwd always prefers the fastest band available
+# for a given SSID, on every network it knows, not just one.
+install -d "$archmount/etc/iwd"
+cat > "$archmount/etc/iwd/main.conf" <<'EOF'
+[Rank]
+BandModifier6GHz=2.0
+BandModifier5GHz=1.5
+BandModifier2_4GHz=0.5
+EOF
+
 arch-chroot "$archmount" systemctl disable systemd-networkd.service iwd.service
 arch-chroot "$archmount" systemctl enable \
   NetworkManager.service systemd-resolved.service
