@@ -34,8 +34,9 @@ binds {
     Mod+W hotkey-overlay-title="Dashboard: Weather" { spawn "dms" "ipc" "call" "dash" "toggle" "weather"; }
     Mod+Y hotkey-overlay-title="Wallpaper Carousel" { spawn "dms" "ipc" "call" "wallpaperCarousel" "toggle"; }
     Mod+Ctrl+Y hotkey-overlay-title="Dashboard: Wallpapers" { spawn "dms" "ipc" "call" "dash" "toggle" "wallpaper"; }
-    Mod+space hotkey-overlay-title="Spotlight Bar" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+    Mod+space hotkey-overlay-title="Spotlight" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
     Alt+space hotkey-overlay-title="Spotlight Bar" { spawn "dms" "ipc" "call" "spotlight-bar" "toggle"; }
+    Mod+Alt+space hotkey-overlay-title="Spotlight Windows" { spawn "dms" "ipc" "call" "spotlight" "toggleQuery" "!"; }
     Print hotkey-overlay-title="Screenshot: Region" { spawn "dms" "screenshot"; }
     Shift+Print hotkey-overlay-title="Screenshot: OCR to Clipboard" { spawn-sh "~/.config/niri/scripts/ocr-screenshot"; }
     Ctrl+Shift+Print hotkey-overlay-title="Screenshot: QR Code to Clipboard" { spawn-sh "~/.config/niri/scripts/qr-screenshot"; }
