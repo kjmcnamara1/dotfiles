@@ -1,7 +1,36 @@
 {
-  "theme": "dark",
   "statusLine": {
     "type": "command",
     "command": "starship statusline claude-code"
+  },
+  "theme": "dark",
+  "autoMode": {
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: private (kjmcnamara1/homelab, confirmed via gh)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: main (default); no branch protection rules listed, rulesets not queryable here",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine with open internet",
+      "**Source control**: The trusted repo (kjmcnamara1/homelab on github.com) and its remote only — no additional orgs configured",
+      "**Trusted internal domains**: snow.sawfish-clownfish.ts.net (Tailscale hostname for the home server 'snow', contacted repeatedly in this project's transcripts)",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: snow.local / 192.168.0.10 (home server 'snow', managed via Cockpit at https://snow.local:9090; Docker Compose services for media, Nextcloud, Immich, Home Assistant/Frigate)",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: homelab operations — diagnostics, runbooks, and change-log maintenance for the home server 'snow' (github.com:kjmcnamara1/homelab)",
+      "**Trusted repo**: kjmcnamara1/homelab (private) and its origin remote (github.com:kjmcnamara1/homelab.git) — this repo's own work is safe to commit/push here; ported or externally-sourced content is not",
+      "**Org-specific CLIs**: None configured",
+      "Routine under scripts/snow prefix: SSH diagnostics/ops helper for the 'snow' host is expected routine usage in this repo"
+    ]
   }
 }
