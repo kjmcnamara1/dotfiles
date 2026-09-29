@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Write a sums.b3 next to the given files, smallest file first.
+#
+# usage: b3sums FILE...
+#   Files are grouped by directory and each directory gets its own sums.b3
+#   (overwritten) listing bare filenames, so `b3sum -c sums.b3` works from
+#   inside that directory wherever it's moved to.
+
+set -euo pipefail
+
+(($#)) || {
+  echo "usage: b3sums FILE..." >&2
+  exit 1
+}
+
+# absolute paths, sorted by size ascending (ties keep argument order)
+sorted=()
+while IFS= read -r -d '' line; do
+  sorted+=("${line#*$'\t'}")
+done < <(
+  for f in "$@"; do
+    [[ -f $f ]] || {
+      echo "skipping, not a file: $f" >&2
+      continue
+    }
+    [[ ${f##*/} == sums.b3 ]] && continue
+    printf '%s\t%s\0' "$(stat -c %s -- "$f")" "$(realpath -s -- "$f")"
+  done | sort -z -s -t $'\t' -k1,1n
+)
+
+declare -A done_dirs
+for path in "${sorted[@]}"; do
+  dir=${path%/*}
+  [[ -n ${done_dirs[$dir]:-} ]] && continue
+  done_dirs[$dir]=1
+
+  names=()
+  for p in "${sorted[@]}"; do
+    [[ ${p%/*} == "$dir" ]] && names+=("${p##*/}")
+  done
+
+  (cd "$dir" && b3sum -- "${names[@]}") > "$dir/sums.b3.tmp"
+  mv "$dir/sums.b3.tmp" "$dir/sums.b3"
+  echo "wrote $dir/sums.b3 (${#names[@]} files)"
+done

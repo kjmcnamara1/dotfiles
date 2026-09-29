@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Time md5, sha256, blake2b and blake3 over one file.
+#
+# usage: hashbench [-c] FILE
+#   -c  cold cache: drop the page cache (sudo) before each run, so every
+#       algorithm reads from disk. Without it, whichever runs first pays the
+#       disk cost and later ones may read from RAM (if the file fits).
+
+set -euo pipefail
+
+cold=0
+if [[ ${1:-} == -c ]]; then
+  cold=1
+  shift
+fi
+
+file=${1:?usage: hashbench [-c] FILE}
+[[ -f $file ]] || {
+                    echo "not a file: $file" >&2
+                                                  exit 1
+}
+
+size=$(stat -c %s "$file")
+algos=(cksum md5sum sha256sum b2sum b3sum)
+
+((cold))   && sudo -v
+
+printf 'file: %s (%s)\n\n' "$file" "$(numfmt --to=iec-i --suffix=B "$size")"
+printf '%-10s %10s %12s\n' algo seconds MiB/s
+
+for algo in "${algos[@]}"; do
+  if ! command -v "$algo" > /dev/null; then
+    printf '%-10s %10s %12s\n' "$algo" - "not installed"
+    continue
+  fi
+
+  if ((cold)); then
+    sync
+    echo 3 | sudo tee /proc/sys/vm/drop_caches > /dev/null
+  fi
+
+  start=$(date +%s%N)
+  "$algo" "$file" > /dev/null
+  end=$(date +%s%N)
+
+  ns=$((end - start))
+  awk -v a="$algo" -v ns="$ns" -v sz="$size" \
+    'BEGIN { s = ns / 1e9; printf "%-10s %10.2f %12.0f\n", a, s, sz / 1048576 / s }'
+done
