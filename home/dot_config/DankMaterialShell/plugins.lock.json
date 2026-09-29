@@ -38,6 +38,10 @@
       "repo": "https://github.com/devnullvoid/dms-emoji-launcher",
       "commit": "8ff394e3ddfcb2fd755ed2e7b4c6f01f3e26e596"
     },
+    "niriWindows": {
+      "repo": "https://github.com/rochacbruno/DankNiriWindows",
+      "commit": "411d5ee9f7707029f4c12c824ec3b24ca6756a0d"
+    },
     "quickCapture": {
       "repo": "https://github.com/hthienloc/dms-quick-capture",
       "commit": "d84703fb9b1ae20c3870130fca4dae9a6b57b5c0"

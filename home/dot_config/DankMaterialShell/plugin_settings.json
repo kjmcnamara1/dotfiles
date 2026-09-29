@@ -41,5 +41,8 @@
   "aiQuotas": {
     "enabled": true,
     "displayMode": "used"
+  },
+  "niriWindows": {
+    "enabled": true
   }
 }
