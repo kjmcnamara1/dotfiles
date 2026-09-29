@@ -5,6 +5,11 @@
 #   Files are grouped by directory and each directory gets its own sums.b3
 #   (overwritten) listing bare filenames, so `b3sum -c sums.b3` works from
 #   inside that directory wherever it's moved to.
+#
+#   On a terminal each file gets a progress bar, drawn from the bytes the
+#   kernel has read from disk for b3sum (/proc/PID/io) so b3sum still runs
+#   multithreaded. Parts of a file already in the page cache aren't read from
+#   disk, so for a cached file the bar may stay low until it finishes.
 
 set -euo pipefail
 
@@ -28,6 +33,64 @@ done < <(
   done | sort -z -s -t $'\t' -k1,1n
 )
 
+total=${#sorted[@]}
+count=0
+
+# run b3sum in the background, redrawing a bar on stderr until it exits
+hash_with_bar() {
+  local name=$1 size=$2 out pid got pct bar
+  out=$(mktemp)
+  b3sum --no-names -- "$name" > "$out" &
+  pid=$!
+
+  while kill -0 "$pid" 2> /dev/null; do
+    got=$(awk '/^read_bytes/ { print $2 }' "/proc/$pid/io" 2> /dev/null) || got=0
+    pct=$((size ? ${got:-0} * 100 / size : 100))
+    ((pct > 100)) && pct=100
+    printf -v bar '%*s' $((pct * 30 / 100)) ''
+    printf '\r      [%-30s] %3d%%  %s' "${bar// /=}" "$pct" \
+      "$(numfmt --to=iec-i --suffix=B "${got:-0}")" >&2
+    sleep 0.2
+  done
+  printf '\r\033[K' >&2
+
+  wait "$pid" || {
+    rm -f "$out"
+    return 1
+  }
+  cat "$out"
+  rm -f "$out"
+}
+
+# hash one file in the current directory, printing a sums line in b3sum's
+# format (names containing \ or newline are escaped and the line gets a
+# leading \)
+hash_file() {
+  local name=$1 hash size start
+
+  size=$(stat -c %s -- "$name")
+  count=$((count + 1))
+  printf '[%d/%d] %s (%s)\n' "$count" "$total" "$name" \
+    "$(numfmt --to=iec-i --suffix=B "$size")" >&2
+
+  start=$(date +%s%N)
+  if [[ -t 2 ]] && ((size >= 256 << 20)); then
+    hash=$(hash_with_bar "$name" "$size")
+  else
+    hash=$(b3sum --no-names -- "$name")
+  fi
+  awk -v ns="$(($(date +%s%N) - start))" -v sz="$size" \
+    'BEGIN { s = ns / 1e9; printf "      done in %.2fs (%.0f MiB/s)\n", s, sz / 1048576 / s }' >&2
+
+  if [[ $name == *[\\$'\n']* ]]; then
+    name=${name//\\/\\\\}
+    name=${name//$'\n'/\\n}
+    printf '\\%s  %s\n' "$hash" "$name"
+  else
+    printf '%s  %s\n' "$hash" "$name"
+  fi
+}
+
 declare -A done_dirs
 for path in "${sorted[@]}"; do
   dir=${path%/*}
@@ -39,7 +102,10 @@ for path in "${sorted[@]}"; do
     [[ ${p%/*} == "$dir" ]] && names+=("${p##*/}")
   done
 
-  (cd "$dir" && b3sum -- "${names[@]}") > "$dir/sums.b3.tmp"
-  mv "$dir/sums.b3.tmp" "$dir/sums.b3"
-  echo "wrote $dir/sums.b3 (${#names[@]} files)"
+  cd "$dir"
+  for name in "${names[@]}"; do
+    hash_file "$name"
+  done > sums.b3.tmp
+  mv sums.b3.tmp sums.b3
+  echo "wrote $dir/sums.b3 (${#names[@]} files)" >&2
 done
