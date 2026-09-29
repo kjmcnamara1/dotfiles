@@ -35,5 +35,5 @@ fi
 
 # 5. Now launch the terminal
 # Another instance of this script can now be started even while this terminal is open.
-$TERMINAL --class="active-window-info" -e \
+$TERMINAL --class="niri.active-window-info" -e \
   bash -c "nvim --cmd 'lua vim.g.minimal=true' '$datafile'; rm -f '$datafile'"

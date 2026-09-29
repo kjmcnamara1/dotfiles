@@ -18,7 +18,7 @@ binds {
     Mod+Comma hotkey-overlay-title="Settings" { spawn "dms" "ipc" "call" "settings" "focusOrToggle"; }
     Mod+Ctrl+W hotkey-overlay-title="Create window rule" { spawn "dms" "ipc" "call" "window-rules" "toggle"; }
     Mod+Ctrl+G hotkey-overlay-title="Toggle Game Mode" { spawn "sh" "-c" "~/.config/niri/scripts/niri-gamemode && dms ipc call bar toggle id default"; }
-    Mod+E hotkey-overlay-title="File Manager: Yazi" { spawn-sh "$TERMINAL --class=yazi -e yazi"; }
+    Mod+E hotkey-overlay-title="File Manager: Yazi" { spawn "sh" "-c" "$TERMINAL --class=yazi -e yazi"; }
     Mod+M hotkey-overlay-title="Dashboard: Media" { spawn "dms" "ipc" "call" "dash" "toggle" "media"; }
     Mod+Minus hotkey-overlay-title="Power Menu: Toggle" { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
     Mod+Backspace hotkey-overlay-title="Power Menu: Toggle" { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
@@ -29,17 +29,18 @@ binds {
     Mod+Print hotkey-overlay-title="Screenshot: Focused Output" { spawn "dms" "screenshot" "full"; }
     Mod+Shift+Slash hotkey-overlay-title="Keybinds Cheatsheet: Toggle" { spawn "dms" "ipc" "call" "keybinds" "toggle" "niri"; }
     Mod+V hotkey-overlay-title="Clipboard Manager" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
-    Mod+Alt+V hotkey-overlay-title="Open URL in mpv" { spawn-sh "notify-send 'Opening URL in MPV:' \"$(wl-paste)\"; mpv \"$(wl-paste)\""; }
-    Mod+Ctrl+V hotkey-overlay-title="Download video from URL" { spawn-sh "~/.config/niri/scripts/ytdl-notify"; }
+    Mod+Alt+V hotkey-overlay-title="Open URL in mpv" { spawn "sh" "-c" "notify-send 'Opening URL in MPV:' \"$(wl-paste)\"; mpv \"$(wl-paste)\""; }
+    Mod+Ctrl+V hotkey-overlay-title="Download video from URL" { spawn "sh" "-c" "~/.config/niri/scripts/ytdl-notify"; }
     Mod+W hotkey-overlay-title="Dashboard: Weather" { spawn "dms" "ipc" "call" "dash" "toggle" "weather"; }
     Mod+Y hotkey-overlay-title="Wallpaper Carousel" { spawn "dms" "ipc" "call" "wallpaperCarousel" "toggle"; }
     Mod+Ctrl+Y hotkey-overlay-title="Dashboard: Wallpapers" { spawn "dms" "ipc" "call" "dash" "toggle" "wallpaper"; }
+    Mod+Shift+Y hotkey-overlay-title="Active Window Info" { spawn "~/.config/niri/scripts/active-window-info"; }
     Mod+space hotkey-overlay-title="Spotlight" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
     Alt+space hotkey-overlay-title="Spotlight Bar" { spawn "dms" "ipc" "call" "spotlight-bar" "toggle"; }
     Mod+Alt+space hotkey-overlay-title="Spotlight Windows" { spawn "dms" "ipc" "call" "spotlight" "toggleQuery" "!"; }
     Print hotkey-overlay-title="Screenshot: Region" { spawn "dms" "screenshot"; }
-    Shift+Print hotkey-overlay-title="Screenshot: OCR to Clipboard" { spawn-sh "~/.config/niri/scripts/ocr-screenshot"; }
-    Ctrl+Shift+Print hotkey-overlay-title="Screenshot: QR Code to Clipboard" { spawn-sh "~/.config/niri/scripts/qr-screenshot"; }
+    Shift+Print hotkey-overlay-title="Screenshot: OCR to Clipboard" { spawn "sh" "-c" "~/.config/niri/scripts/ocr-screenshot"; }
+    Ctrl+Shift+Print hotkey-overlay-title="Screenshot: QR Code to Clipboard" { spawn "sh" "-c" "~/.config/niri/scripts/qr-screenshot"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "decrement" "5"; }
     XF86AudioMicMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "micmute"; }
     XF86AudioMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "mute"; }
@@ -86,12 +87,12 @@ binds {
     Mod+WheelScrollRight { focus-column-right; }
     Mod+Shift+WheelScrollLeft { move-column-left; }
     Mod+Shift+WheelScrollRight { move-column-right; }
-    Mod+Alt+E hotkey-overlay-title="File Manager: Nautilus" { spawn-sh "nautilus --new-window"; }
+    Mod+Alt+E hotkey-overlay-title="File Manager: Nautilus" { spawn "sh" "-c" "nautilus --new-window"; }
     Mod+Alt+T { switch-focus-between-floating-and-tiling; }
     Mod+BracketLeft { consume-or-expel-window-left; }
     Mod+BracketRight { consume-or-expel-window-right; }
-    Mod+C repeat=false { close-window; }
-    // Mod+Ctrl+C repeat=false { spawn-sh "pid=$(niri msg -j focused-window | jq -r '.pid'); [ -n \"$pid\" ] @@ kill -9 \"$pid\""; }
+    Mod+C hotkey-overlay-title="Window: Close" repeat=false { close-window; }
+    Mod+Ctrl+C hotkey-overlay-title="Window: Kill" repeat=false { spawn "sh" "-c" "pid=$(niri msg -j focused-window | jq -r '.pid // empty'); [ -n \"$pid\" ] && kill \"$pid\""; }
     Mod+Ctrl+End { move-column-to-last; }
     Mod+Ctrl+H { focus-monitor-left; }
     Mod+Ctrl+Home { move-column-to-first; }
@@ -107,7 +108,7 @@ binds {
     Mod+K { focus-window-up; }
     Mod+L { focus-column-right; }
     Mod+Period { expel-window-from-column; }
-    Mod+Ctrl+Period hotkey-overlay-title="Transcode Picture or Video" { spawn-sh "ghostty --class=niri.transcode -e ~/.config/niri/scripts/transcode"; }
+    Mod+Ctrl+Period hotkey-overlay-title="Transcode Picture or Video" { spawn "sh" "-c" "ghostty --class=niri.transcode -e ~/.config/niri/scripts/transcode"; }
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
@@ -119,18 +120,18 @@ binds {
     Mod+Alt+F { maximize-window-to-edges; }
     Mod+Shift+F { fullscreen-window; }
     Mod+Ctrl+F { toggle-windowed-fullscreen; }
-    // Mod+Shift+H { move-column-left; }
-    Mod+Shift+H { consume-or-expel-window-left; }
+    Mod+Shift+H { move-column-left; }
+    // Mod+Shift+H { consume-or-expel-window-left; }
     Mod+Shift+J { move-window-down; }
     Mod+Shift+K { move-window-up; }
-    Mod+Shift+L { consume-or-expel-window-right; }
-    // Mod+Shift+L { move-column-right; }
+    // Mod+Shift+L { consume-or-expel-window-right; }
+    Mod+Shift+L { move-column-right; }
     Mod+T { toggle-window-floating; }
     Mod+Shift+P { power-off-monitors; }
     Mod+A hotkey-overlay-title="AI Chat" { spawn "gtk-launch" "Grok.desktop"; }
     Mod+Alt+B hotkey-overlay-title="Web Browser (Private)" { spawn "~/.local/bin/launch-browser" "--private"; }
-    Mod+Return hotkey-overlay-title="Open Terminal" { spawn-sh "$TERMINAL"; }
-    Mod+Alt+Return hotkey-overlay-title="Open Herdr Terminal" { spawn-sh "$TERMINAL -e herdr"; }
+    Mod+Return hotkey-overlay-title="Open Terminal" { spawn "sh" "-c" "$TERMINAL"; }
+    Mod+Alt+Return hotkey-overlay-title="Open Herdr Terminal" { spawn "sh" "-c" "$TERMINAL -e herdr"; }
     Ctrl+Alt+Backspace { quit skip-confirmation=true; }
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+Tab repeat=false { toggle-overview; }
