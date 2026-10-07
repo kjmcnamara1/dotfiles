@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Name=TuxGuitar
+GenericName=Guitar Tablature Editor
+Comment=Edit and playback guitar tablatures
+Keywords=Guitar Pro;Tablature;MIDI;
+Exec=tuxguitar %F
+Terminal=false
+Type=Application
+Icon=tuxguitar
+Categories=AudioVideo;Audio;
+MimeType=application/x-tuxguitar;application/x-gtp;application/x-ptb;application/x-tef;
+StartupNotify=false
+StartupWMClass=TuxGuitar
