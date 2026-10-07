@@ -10,6 +10,7 @@ binds {
     Ctrl+XF86AudioRaiseVolume allow-when-locked=true { spawn "dms" "ipc" "call" "mpris" "increment" "5"; }
     Mod+Alt+C hotkey-overlay-title="Pick Color" { spawn "sh" "-c" "dms color pick -a"; }
     Mod+Ctrl+I hotkey-overlay-title="Idle Inhibit: Toggle" { spawn "dms" "ipc" "call" "inhibit" "toggle"; }
+    Mod+Ctrl+U hotkey-overlay-title="System Updater: Toggle" { spawn "dms" "ipc" "call" "systemupdater" "toggle"; }
     Mod+Alt+L hotkey-overlay-title="Lock Screen" { spawn "dms" "ipc" "call" "lock" "lock"; }
     Mod+Alt+N hotkey-overlay-title="Notepad" { spawn "dms" "ipc" "call" "notepad" "toggle"; }
     Mod+Alt+Print hotkey-overlay-title="Screenshot: All Outputs" { spawn "dms" "screenshot" "all"; }
