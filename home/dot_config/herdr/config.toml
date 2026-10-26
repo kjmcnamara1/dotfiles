@@ -94,14 +94,12 @@ onboarding = false
     rows = [
       [
         "state_icon",
-        "machine",
+        # "machine",
         "workspace",
-        "tab",
+        # "tab",
         "agent",
       ],
-      [
-        "terminal_title_stripped",
-      ],
+      ["terminal_title_stripped"],
     ]
 
   [ui.toast]
