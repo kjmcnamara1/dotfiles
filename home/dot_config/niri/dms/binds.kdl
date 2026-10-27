@@ -18,6 +18,7 @@ binds {
     Mod+B hotkey-overlay-title="Default Web Browser: Open" { spawn "dms" "ipc" "call" "defaultApp" "browser"; }
     Mod+Comma hotkey-overlay-title="Settings" { spawn "dms" "ipc" "call" "settings" "focusOrToggle"; }
     Mod+Ctrl+W hotkey-overlay-title="Create window rule" { spawn "dms" "ipc" "call" "window-rules" "toggle"; }
+    Mod+Alt+W hotkey-overlay-title="Windows VM: Launch" { spawn "~/.local/bin/windows-vm" "launch"; }
     Mod+Ctrl+G hotkey-overlay-title="Toggle Game Mode" { spawn "sh" "-c" "~/.config/niri/scripts/niri-gamemode && dms ipc call bar toggle id default"; }
     Mod+E hotkey-overlay-title="File Manager: Yazi" { spawn "sh" "-c" "$TERMINAL --class=yazi -e yazi"; }
     Mod+M hotkey-overlay-title="Dashboard: Media" { spawn "dms" "ipc" "call" "dash" "toggle" "media"; }

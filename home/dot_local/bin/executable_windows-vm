@@ -1,0 +1,142 @@
+#!/usr/bin/env bash
+# Windows 11 VM in docker (dockur/windows) over RDP, modeled on omarchy-windows-vm.
+#   windows-vm install       prompt for resources/credentials, then first boot
+#   windows-vm launch [-k]   start VM and connect over RDP (-k keeps it running after)
+#   windows-vm stop|status|remove
+
+set -euo pipefail
+
+dir="$HOME/.config/windows"
+compose="$dir/docker-compose.yml"
+envfile="$dir/windows.env"
+storage="$HOME/.local/share/windows"
+shared="$HOME/Windows"
+
+dc() { docker compose -f "$compose" "$@"; }
+
+require_installed() {
+  if [[ ! -f $compose ]]; then
+    notify-send "Windows VM" "Not installed yet, run: windows-vm install"
+    exit 1
+  fi
+}
+
+install() {
+  if [[ ! -e /dev/kvm ]]; then
+    echo "/dev/kvm missing: enable SVM/VT-x in the BIOS (see: journalctl -k | grep -i svm)" >&2
+    exit 1
+  fi
+
+  local mem_gb cores free_gb ram cpu disk user pass
+  mem_gb=$(awk '/MemTotal/ {print int($2 / 1024 / 1024)}' /proc/meminfo)
+  cores=$(nproc)
+  mkdir -p "$storage" "$shared"
+  free_gb=$(df -BG --output=avail "$storage" | tail -1 | tr -dc 0-9)
+
+  ram=$(for s in 2 4 8 16 32 64; do if ((s < mem_gb)); then echo "${s}G"; fi; done |
+    gum choose --header "RAM (host has ${mem_gb}G)" --selected 8G)
+  cpu=$(gum input --header "CPU cores (host has $cores)" --value 4)
+  ((cpu >= 1 && cpu <= cores)) || { echo "invalid core count: $cpu" >&2; exit 1; }
+  disk=$(for s in 32 64 128 256 512; do if ((s < free_gb)); then echo "${s}G"; fi; done |
+    gum choose --header "Disk (${free_gb}G free)" --selected 64G)
+  user=$(gum input --header "Windows username" --value "$USER")
+  pass=$(gum input --header "Windows password" --password)
+  [[ -n $pass ]] || { echo "password required" >&2; exit 1; }
+
+  gum confirm "Install Windows 11 with $ram RAM, $cpu cores, $disk disk as $user?" || exit 1
+
+  mkdir -p "$dir"
+  (umask 077 && cat > "$envfile" <<ENV
+VERSION=11
+RAM_SIZE=$ram
+CPU_CORES=$cpu
+DISK_SIZE=$disk
+USERNAME=$user
+PASSWORD=$pass
+ENV
+  )
+
+  cat > "$compose" <<YAML
+services:
+  windows:
+    image: dockurr/windows
+    container_name: windows
+    env_file: windows.env
+    devices:
+      - /dev/kvm
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 127.0.0.1:8006:8006
+      - 127.0.0.1:3389:3389/tcp
+      - 127.0.0.1:3389:3389/udp
+    volumes:
+      - $storage:/storage
+      - $shared:/shared
+    restart: "no"
+    stop_grace_period: 2m
+YAML
+
+  dc up -d
+  echo "Windows is installing unattended (10-20 min). Watch it at http://127.0.0.1:8006"
+  xdg-open http://127.0.0.1:8006 >/dev/null 2>&1 || true
+}
+
+wait_ready() {
+  local since=$1 timeout=300
+  until docker logs --since "$since" windows 2>&1 | grep -q "Windows started successfully"; do
+    (((timeout -= 2) > 0)) || { notify-send "Windows VM" "Timed out waiting for boot"; exit 1; }
+    sleep 2
+  done
+  until nc -z 127.0.0.1 3389; do sleep 1; done
+}
+
+launch() {
+  require_installed
+  local keep=false scale since
+  [[ ${1:-} == -k || ${1:-} == --keep-alive ]] && keep=true
+
+  if [[ $(docker inspect -f '{{.State.Running}}' windows 2>/dev/null) != true ]]; then
+    notify-send "Windows VM" "Starting..."
+    since=$(date +%s)
+    dc up -d
+    wait_ready "$since"
+  fi
+
+  # shellcheck source=/dev/null
+  source "$envfile"
+  # shellcheck disable=SC2054 # commas belong to the /floatbar option
+  local args=(/v:127.0.0.1:3389 "/u:$USERNAME" "/p:$PASSWORD" /cert:ignore
+    +clipboard /sound /microphone /dynamic-resolution /gfx:AVC444
+    /floatbar:sticky:off,default:visible,show:fullscreen
+    "/drive:shared,$shared" /title:Windows /wm-class:windows)
+  scale=$(niri msg -j focused-output 2>/dev/null | jq -r '.logical.scale // 1')
+  if awk "BEGIN {exit !($scale >= 1.75)}"; then
+    args+=(/scale:180)
+  elif awk "BEGIN {exit !($scale >= 1.25)}"; then
+    args+=(/scale:140)
+  fi
+
+  # pass args over stdin so the password stays out of the process list
+  printf '%s\n' "${args[@]}" | xfreerdp3 /args-from:stdin || true
+
+  $keep || dc stop
+}
+
+remove() {
+  require_installed
+  gum confirm --default=false "Delete the Windows VM and its disk ($storage)?" || exit 1
+  dc down
+  rm -rf "$storage" "$dir"
+  echo "Removed. Shared folder $shared was kept."
+}
+
+case ${1:-} in
+  install) install ;;
+  launch) shift; launch "$@" ;;
+  stop) require_installed; dc stop ;;
+  status) require_installed; dc ps ;;
+  remove) remove ;;
+  *) sed -n '3,6p' "$0" | sed 's/^# \?//'; exit 1 ;;
+esac

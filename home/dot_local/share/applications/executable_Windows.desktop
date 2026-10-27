@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Windows
+Comment=Windows 11 VM over RDP
+Exec=/home/kjm/.local/bin/windows-vm launch
+Terminal=false
+Type=Application
+Icon=windows95
+Categories=System;Emulator;
+StartupNotify=false
+StartupWMClass=windows
