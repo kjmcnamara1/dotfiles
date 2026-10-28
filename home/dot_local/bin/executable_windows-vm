@@ -74,8 +74,10 @@ services:
     volumes:
       - $storage:/storage
       - $shared:/shared
+    environment:
+      QEMU_TIMEOUT: "300" # updates can take minutes; dockur kills QEMU after this
     restart: "no"
-    stop_grace_period: 2m
+    stop_grace_period: 6m
 YAML
 
   dc up -d
@@ -89,12 +91,16 @@ wait_ready() {
     (((timeout -= 2) > 0)) || { notify-send "Windows VM" "Timed out waiting for boot"; exit 1; }
     sleep 2
   done
-  until nc -z 127.0.0.1 3389; do sleep 1; done
+  # probe the guest from inside the container: docker-proxy accepts on the host port regardless
+  until docker exec windows nc -z -w 1 172.30.0.2 3389 2>/dev/null; do
+    (((timeout -= 2) > 0)) || { notify-send "Windows VM" "Timed out waiting for RDP"; exit 1; }
+    sleep 2
+  done
 }
 
 launch() {
   require_installed
-  local keep=false scale since
+  local keep=false scale since start rc=0
   [[ ${1:-} == -k || ${1:-} == --keep-alive ]] && keep=true
 
   if [[ $(docker inspect -f '{{.State.Running}}' windows 2>/dev/null) != true ]]; then
@@ -119,8 +125,14 @@ launch() {
   fi
 
   # pass args over stdin so the password stays out of the process list
-  printf '%s\n' "${args[@]}" | xfreerdp3 /args-from:stdin || true
+  start=$SECONDS
+  printf '%s\n' "${args[@]}" | xfreerdp3 /args-from:stdin || rc=$?
 
+  # a session that dies right away is a failed connect, not the user closing it
+  if ((SECONDS - start < 15)); then
+    notify-send "Windows VM" "RDP failed (exit $rc), leaving the VM running"
+    exit 1
+  fi
   $keep || dc stop
 }
 
