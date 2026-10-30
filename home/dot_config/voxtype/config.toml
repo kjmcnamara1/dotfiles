@@ -1,0 +1,21 @@
+state_file = "auto"
+
+# niri has no key-release binds, so use voxtype's built-in evdev hotkey
+# (needs `input` group). Hold Super+Ctrl+X to talk, release to type.
+[hotkey]
+enabled   = true
+key       = "EVTEST_45" # KEY_X (voxtype has no plain letter names)
+modifiers = ["LEFTMETA", "LEFTCTRL"]
+mode      = "push_to_talk"
+
+[audio]
+device = "default"
+max_duration_secs = 60
+
+[whisper]
+model    = "base.en"
+language = "en"
+eager_processing = true  # transcribe chunks while still speaking
+
+[output]
+mode = "type"

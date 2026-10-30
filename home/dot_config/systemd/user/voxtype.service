@@ -1,0 +1,12 @@
+[Unit]
+Description=Voxtype push-to-talk voice-to-text
+After=graphical-session.target pipewire.service
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/voxtype daemon
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=graphical-session.target
