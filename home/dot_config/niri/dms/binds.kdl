@@ -19,6 +19,7 @@ binds {
     Mod+Comma hotkey-overlay-title="Settings" { spawn "dms" "ipc" "call" "settings" "focusOrToggle"; }
     Mod+Ctrl+W hotkey-overlay-title="Create window rule" { spawn "dms" "ipc" "call" "window-rules" "toggle"; }
     Mod+Alt+W hotkey-overlay-title="Windows VM: Launch" { spawn "~/.local/bin/windows-vm" "launch"; }
+    Mod+Alt+M hotkey-overlay-title="macOS VM: Launch" { spawn "~/.local/bin/macos-vm" "launch"; }
     Mod+Ctrl+G hotkey-overlay-title="Toggle Game Mode" { spawn "sh" "-c" "~/.config/niri/scripts/niri-gamemode && dms ipc call bar toggle id default"; }
     Mod+E hotkey-overlay-title="File Manager: Yazi" { spawn "sh" "-c" "$TERMINAL --class=yazi -e yazi"; }
     Mod+M hotkey-overlay-title="Dashboard: Media" { spawn "dms" "ipc" "call" "dash" "toggle" "media"; }
@@ -130,7 +131,7 @@ binds {
     Mod+Shift+L { move-column-right; }
     Mod+T { toggle-window-floating; }
     Mod+Shift+P { power-off-monitors; }
-    Mod+A hotkey-overlay-title="AI Chat" { spawn "gtk-launch" "Grok.desktop"; }
+    Mod+A hotkey-overlay-title="AI Chat" { spawn "gtk-launch" "Gemini.desktop"; }
     Mod+Alt+B hotkey-overlay-title="Web Browser (Private)" { spawn "~/.local/bin/launch-browser" "--private"; }
     Mod+Return hotkey-overlay-title="Open Terminal" { spawn "sh" "-c" "$TERMINAL"; }
     Mod+Alt+Return hotkey-overlay-title="Open Herdr Terminal" { spawn "sh" "-c" "$TERMINAL -e herdr"; }

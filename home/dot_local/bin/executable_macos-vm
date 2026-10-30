@@ -1,0 +1,134 @@
+#!/usr/bin/env bash
+# macOS VM in docker (dockur/macos), viewed in the browser over noVNC.
+#   macos-vm install       prompt for version/resources, then boot the installer
+#   macos-vm launch        start VM and open the viewer (it keeps running until stop)
+#   macos-vm stop|status|remove
+
+set -euo pipefail
+
+dir="$HOME/.config/macos"
+compose="$dir/docker-compose.yml"
+envfile="$dir/macos.env"
+storage="$HOME/.local/share/macos"
+shared="$HOME/macOS"
+# 8006 belongs to windows-vm, so both can run at once
+viewer="http://127.0.0.1:8007/"
+
+dc() { docker compose -f "$compose" "$@"; }
+
+require_installed() {
+  if [[ ! -f $compose ]]; then
+    notify-send "macOS VM" "Not installed yet, run: macos-vm install"
+    exit 1
+  fi
+}
+
+install() {
+  if [[ ! -e /dev/kvm ]]; then
+    echo "/dev/kvm missing: enable SVM/VT-x in the BIOS (see: journalctl -k | grep -i svm)" >&2
+    exit 1
+  fi
+
+  local mem_gb cap_gb=64 cores free_gb version ram cpu disk
+  mem_gb=$(awk '/MemTotal/ {print int($2 / 1024 / 1024)}' /proc/meminfo)
+  # dockur: more than 8G during install breaks the installer on AMD (raise RAM_SIZE afterwards)
+  if grep -q AuthenticAMD /proc/cpuinfo; then cap_gb=8; fi
+  cores=$(nproc)
+  mkdir -p "$storage" "$shared"
+  chattr +C "$storage" 2>/dev/null || true # no CoW for the disk image on btrfs
+  free_gb=$(df -BG --output=avail "$storage" | tail -1 | tr -dc 0-9)
+
+  version=$(printf '%s\n' "15 Sequoia" "14 Sonoma" "13 Ventura" "12 Monterey" "11 Big Sur" |
+    gum choose --header "macOS version" --selected "15 Sequoia" | cut -d' ' -f1)
+  ram=$(for s in 2 4 8 16 32; do if ((s < mem_gb && s <= cap_gb)); then echo "${s}G"; fi; done |
+    gum choose --header "RAM (host has ${mem_gb}G)" --selected 8G)
+  cpu=$(gum input --header "CPU cores (host has $cores)" --value 4)
+  ((cpu >= 1 && cpu <= cores)) || { echo "invalid core count: $cpu" >&2; exit 1; }
+  disk=$(for s in 64 128 256 512; do if ((s < free_gb)); then echo "${s}G"; fi; done |
+    gum choose --header "Disk (${free_gb}G free)" --selected 64G)
+
+  gum confirm "Install macOS $version with $ram RAM, $cpu cores, $disk disk?" || exit 1
+
+  mkdir -p "$dir"
+  cat > "$envfile" <<ENV
+VERSION=$version
+RAM_SIZE=$ram
+CPU_CORES=$cpu
+DISK_SIZE=$disk
+ENV
+
+  cat > "$compose" <<YAML
+services:
+  macos:
+    image: dockurr/macos
+    container_name: macos
+    env_file: macos.env
+    devices:
+      - /dev/kvm
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 127.0.0.1:8007:8006
+      - 127.0.0.1:5900:5900/tcp
+      - 127.0.0.1:5900:5900/udp
+    volumes:
+      - $storage:/storage
+      - $shared:/shared
+    environment:
+      TIMEOUT: "300" # updates can take minutes; dockur kills QEMU after this
+    restart: "no"
+    stop_grace_period: 6m
+YAML
+
+  dc up -d
+  gum format <<'MD'
+# Finish the install in the viewer
+
+1. Wait for the recovery image to download, then open **Disk Utility**
+2. Erase the largest *Apple Inc. VirtIO Block Media* disk as **APFS**
+3. Close Disk Utility, choose **Reinstall macOS**, and pick that disk
+4. At Migration Assistant choose **Not now**; at Apple ID choose **Set Up Later**
+5. Create your account
+
+Shared folder (`~/macOS`): in Terminal run `sudo -S mount_9p shared`, then Finder → Go → Computer
+MD
+  wait_ready
+  "$HOME/.local/bin/launch-webapp" "$viewer" >/dev/null 2>&1
+}
+
+wait_ready() {
+  local timeout=120
+  # probe inside the container: docker-proxy accepts on the host port regardless
+  until docker exec macos nc -z -w 1 127.0.0.1 8006 2>/dev/null; do
+    (((timeout -= 2) > 0)) || { notify-send "macOS VM" "Timed out waiting for the viewer"; exit 1; }
+    sleep 2
+  done
+}
+
+launch() {
+  require_installed
+  if [[ $(docker inspect -f '{{.State.Running}}' macos 2>/dev/null) != true ]]; then
+    notify-send "macOS VM" "Starting..."
+    dc up -d
+  fi
+  wait_ready
+  "$HOME/.local/bin/launch-webapp" "$viewer" >/dev/null 2>&1
+}
+
+remove() {
+  require_installed
+  gum confirm --default=false "Delete the macOS VM and its disk ($storage)?" || exit 1
+  dc down
+  rm -rf "$storage" "$dir"
+  echo "Removed. Shared folder $shared was kept."
+}
+
+case ${1:-} in
+  install) install ;;
+  launch) launch ;;
+  stop) require_installed; dc stop ;;
+  status) require_installed; dc ps ;;
+  remove) remove ;;
+  *) sed -n '3,6p' "$0" | sed 's/^# \?//'; exit 1 ;;
+esac

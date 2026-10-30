@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=macOS
+Comment=macOS VM in the browser
+Exec=/home/kjm/.local/bin/macos-vm launch
+Terminal=false
+Type=Application
+Icon=distributor-logo-mac
+Categories=System;Emulator;
+StartupNotify=false

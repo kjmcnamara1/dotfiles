@@ -1,4 +1,4 @@
-# CLAUDE.md
+# AGENTS.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
@@ -101,7 +101,7 @@ live ISO. They are not unified — know which one you're touching:
   `configure-boot.sh`, `configure-network.sh`, …). Each is `source`d with an
   `archmount` variable pointing at the mounted target and operates via
   `arch-chroot "$archmount"`. Subvolume names differ again (`@ @home @log @pkg
-  @games`). `configure-package-manager.sh` (chaotic-aur + yay + pacman.conf
+@games`). `configure-package-manager.sh` (chaotic-aur + yay + pacman.conf
   tweaks) is the one piece also invoked from chezmoi, by
   `run_once_after_01-install-package-manager`.
 - **`modules/*.toml` + `hosts/*.toml`** — a declarative installer spec (a host
