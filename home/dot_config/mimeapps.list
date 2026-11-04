@@ -30,6 +30,7 @@ text/x-c++src=nvim.desktop
 text/x-csrc=nvim.desktop
 text/x-python=nvim.desktop
 text/x-shellscript=nvim.desktop
+x-scheme-handler/opencode=ai.opencode.desktop.desktop
 
 [Added Associations]
 video/mp4=mpv.desktop;
@@ -47,3 +48,4 @@ text/x-c++src=nvim.desktop;
 text/x-csrc=nvim.desktop;
 text/x-python=nvim.desktop;
 text/x-shellscript=nvim.desktop;
+x-scheme-handler/opencode=ai.opencode.desktop.desktop;
