@@ -1,0 +1,7 @@
+{
+  "doubleEscapeAction": "tree",
+  "packages": [
+    "npm:pi-vim",
+    "npm:pi-claude-bridge"
+  ]
+}
