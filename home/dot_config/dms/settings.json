@@ -199,9 +199,7 @@
       "name": "Main Bar",
       "enabled": true,
       "position": 0,
-      "screenPreferences": [
-        "all"
-      ],
+      "screenPreferences": ["all"],
       "showOnLastDisplay": true,
       "leftWidgets": [
         {
@@ -329,12 +327,11 @@
       "id": "dock",
       "name": "Dock",
       "enabled": true,
-      "screenPreferences": [
-        "all"
-      ],
+      "screenPreferences": ["all"],
       "showOnLastDisplay": true,
       "position": 1,
       "mode": "compact",
+      "middleClickAction": "close",
       "taskbarAlign": "center",
       "widgetExpansion": "popout",
       "iconSize": 48,
@@ -397,7 +394,7 @@
     }
   ],
   "blurBorderSeeded": true,
-  "dmsWindowsFloatingSeeded": [
-    "niri"
-  ]
+  "dmsWindowsFloatingSeeded": ["niri"],
+  "density": "compact",
+  "interfaceStyle": "expressive"
 }
