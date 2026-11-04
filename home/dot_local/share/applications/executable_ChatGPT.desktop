@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=ChatGPT
+Comment=ChatGPT
+Exec=/home/kjm/.local/bin/launch-webapp https://chatgpt.com
+Terminal=false
+Type=Application
+Icon=/home/kjm/.local/share/applications/icons/ChatGPT.png
+StartupNotify=true
