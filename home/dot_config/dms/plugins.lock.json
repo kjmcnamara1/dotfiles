@@ -9,6 +9,10 @@
       "repo": "https://github.com/rochacbruno/DankCalculator",
       "commit": "1db5865419a40a33171a475855a59e0b8bf7187f"
     },
+    "commandRunner": {
+      "repo": "https://github.com/devnullvoid/dms-command-runner",
+      "commit": "ea59490eede60d7dc87697b670f1eccc6ad54593"
+    },
     "dankActions": {
       "repo": "https://github.com/AvengeMedia/dms-plugins",
       "path": "DankActions",

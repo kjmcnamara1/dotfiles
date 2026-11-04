@@ -5,7 +5,7 @@
   "emojiLauncher": {
     "enabled": true,
     "trigger": ":",
-    "recentEmojis": "|"
+    "recentEmojis": "🎸,|"
   },
   "dankPomodoroTimer": {
     "enabled": false
@@ -44,5 +44,14 @@
   },
   "niriWindows": {
     "enabled": true
+  },
+  "commandRunner": {
+    "enabled": true,
+    "terminal": "ghostty",
+    "history": [
+      "=44/6",
+      "tuxguitar",
+      "btm"
+    ]
   }
 }
