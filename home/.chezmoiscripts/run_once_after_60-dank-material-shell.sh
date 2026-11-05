@@ -11,7 +11,7 @@ packages=(
   quickshell
   matugen
   niri
-  greetd-dms-greeter-bin
+  dux-greeter-bin
   dsearch-bin
   qt6-multimedia
   cava
