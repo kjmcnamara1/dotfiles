@@ -99,6 +99,7 @@ aliases['ipy'] = 'ipython'  # Interactive Python Shell
 aliases['hx'] = 'helix'  # Helix text editor
 aliases['fetch'] = 'fastfetch'  # Fastfetch terminal sysinfo viewer
 aliases['lg'] = 'lazygit'  # Lazygit
+aliases['oc'] = 'opencode'  # OpenCode
 aliases['chz'] = 'chezmoi'  # Chezmoi dotfiles manager
 aliases['schezmoi'] = 'sudo chezmoi --destination / --source ~/.local/share/chezmoi/root --working-tree ~/.local/share/chezmoi/root --config ~/.config/chezmoi/chezmoi.toml'
 aliases['schz'] = 'schezmoi'
