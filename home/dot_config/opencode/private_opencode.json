@@ -1,0 +1,14 @@
+{
+  "plugins": [],
+  "mcp": {
+    "servers": {
+      "vectorcraft": {
+        "type": "local",
+        "command": [
+          "vectorcraft-cli",
+          "mcp"
+        ]
+      }
+    }
+  }
+}

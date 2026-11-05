@@ -6,7 +6,9 @@
   "session": {
     "thinking": "hide",
     "permissions": "autoaccept",
-    "scrollbar": true
+    "scrollbar": true,
+    "verbosity": "low",
+    "image_preview": false
   },
   "tabs": {
     "mode": "auto",
