@@ -34,6 +34,14 @@ input {
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
     focus-follows-mouse max-scroll-amount="0%"
+
+    // Uses context menu key (zmk K_APP) as the compose key
+    keyboard {
+        xkb {
+            options "compose:menu"
+        }
+    }
+
 }
 
 // You can configure outputs by their name, which you can find
@@ -124,6 +132,8 @@ overview {
 environment {
     XDG_CURRENT_DESKTOP "niri"
     TERMINAL "ghostty"
+    // GTK's built-in IM handles the compose key (compose:menu); the default module doesn't in ghostty
+    GTK_IM_MODULE "simple"
 }
 
 hotkey-overlay {
