@@ -125,7 +125,6 @@ packages:
     - hyprmon-bin
     - caligula
 
-    - voxtype-bin
     - wtype
   session:
     hyprland:
