@@ -3,6 +3,7 @@
 #   macos-vm install       prompt for version/resources, then boot the installer
 #   macos-vm launch        start VM and open the viewer (it keeps running until stop)
 #   macos-vm stop|status|remove
+#   shared folder (~/macOS): in the guest Terminal run: sudo -S mount_9p shared
 
 set -euo pipefail
 
@@ -130,5 +131,5 @@ case ${1:-} in
   stop) require_installed; dc stop ;;
   status) require_installed; dc ps ;;
   remove) remove ;;
-  *) sed -n '3,6p' "$0" | sed 's/^# \?//'; exit 1 ;;
+  *) sed -n '3,7p' "$0" | sed 's/^# \?//'; exit 1 ;;
 esac
