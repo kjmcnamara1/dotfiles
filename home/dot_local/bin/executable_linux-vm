@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+# Ubuntu / Fedora desktop VMs in docker (qemus/qemu), viewed in the browser over noVNC.
+# One script, invoked through the ubuntu-vm and fedora-vm symlinks:
+#   <distro>-vm install       prompt for resources, then boot the distro's live installer
+#   <distro>-vm launch        start VM and open the viewer (it keeps running until stop)
+#   <distro>-vm stop|status|remove
+
+set -euo pipefail
+
+distro=$(basename "$0")
+distro=${distro%-vm}
+# 8006/8007 belong to windows-vm/macos-vm, so all of them can run at once
+case $distro in
+  ubuntu) title=Ubuntu port=8008 ;;
+  fedora) title=Fedora port=8009 ;;
+  *) echo "run as ubuntu-vm or fedora-vm" >&2; exit 1 ;;
+esac
+
+dir="$HOME/.config/$distro"
+compose="$dir/docker-compose.yml"
+envfile="$dir/$distro.env"
+storage="$HOME/.local/share/$distro"
+viewer="http://127.0.0.1:$port/"
+
+dc() { docker compose -f "$compose" "$@"; }
+
+require_installed() {
+  if [[ ! -f $compose ]]; then
+    notify-send "$title VM" "Not installed yet, run: $distro-vm install"
+    exit 1
+  fi
+}
+
+wait_ready() {
+  local timeout=120
+  # probe inside the container: docker-proxy accepts on the host port regardless
+  until docker exec "$distro" nc -z -w 1 127.0.0.1 8006 2>/dev/null; do
+    (((timeout -= 2) > 0)) || { notify-send "$title VM" "Timed out waiting for the viewer"; exit 1; }
+    sleep 2
+  done
+}
+
+open_viewer() { "$HOME/.local/bin/launch-webapp" "$viewer" >/dev/null 2>&1; }
+
+install() {
+  if [[ ! -e /dev/kvm ]]; then
+    echo "/dev/kvm missing: enable SVM/VT-x in the BIOS (see: journalctl -k | grep -i svm)" >&2
+    exit 1
+  fi
+
+  local mem_gb cores free_gb ram cpu disk
+  mem_gb=$(awk '/MemTotal/ {print int($2 / 1024 / 1024)}' /proc/meminfo)
+  cores=$(nproc)
+  mkdir -p "$storage"
+  chattr +C "$storage" 2>/dev/null || true # no CoW for the disk image on btrfs
+  free_gb=$(df -BG --output=avail "$storage" | tail -1 | tr -dc 0-9)
+
+  ram=$(for s in 2 4 8 16 32; do if ((s < mem_gb)); then echo "${s}G"; fi; done |
+    gum choose --header "RAM (host has ${mem_gb}G)" --selected 4G)
+  cpu=$(gum input --header "CPU cores (host has $cores)" --value 4)
+  ((cpu >= 1 && cpu <= cores)) || { echo "invalid core count: $cpu" >&2; exit 1; }
+  disk=$(for s in 32 64 128 256; do if ((s < free_gb)); then echo "${s}G"; fi; done |
+    gum choose --header "Disk (${free_gb}G free)" --selected 64G)
+
+  gum confirm "Install $title with $ram RAM, $cpu cores, $disk disk?" || exit 1
+
+  mkdir -p "$dir"
+  cat > "$envfile" <<ENV
+BOOT=$distro
+RAM_SIZE=$ram
+CPU_CORES=$cpu
+DISK_SIZE=$disk
+ENV
+
+  cat > "$compose" <<YAML
+services:
+  $distro:
+    image: qemux/qemu
+    container_name: $distro
+    env_file: $distro.env
+    devices:
+      - /dev/kvm
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - 127.0.0.1:$port:8006
+    volumes:
+      - $storage:/storage
+    restart: "no"
+    stop_grace_period: 2m
+YAML
+
+  dc up -d
+  gum format <<MD
+# Finish the install in the viewer
+
+The ISO downloads on first boot, then starts the live session.
+Run the **$title** installer from the desktop and install to the virtual disk.
+When it asks to restart, do so; the VM boots from the installed disk from then on.
+MD
+  wait_ready
+  open_viewer
+}
+
+launch() {
+  require_installed
+  if [[ $(docker inspect -f '{{.State.Running}}' "$distro" 2>/dev/null) != true ]]; then
+    notify-send "$title VM" "Starting..."
+    dc up -d
+  fi
+  wait_ready
+  open_viewer
+}
+
+remove() {
+  require_installed
+  gum confirm --default=false "Delete the $title VM and its disk ($storage)?" || exit 1
+  dc down
+  rm -rf "$storage" "$dir"
+}
+
+case ${1:-} in
+  install) install ;;
+  launch) launch ;;
+  stop) require_installed; dc stop ;;
+  status) require_installed; dc ps ;;
+  remove) remove ;;
+  *) sed -n '4,7p' "$0" | sed 's/^# \?//'; exit 1 ;;
+esac
