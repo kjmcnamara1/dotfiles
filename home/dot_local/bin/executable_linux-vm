@@ -2,19 +2,19 @@
 # Ubuntu / Fedora / Mint / NixOS VMs in docker (qemus/qemu), viewed in the browser over noVNC.
 # One script, invoked through the ubuntu-vm, fedora-vm, mint-vm and nixos-vm symlinks:
 #   <distro>-vm install       prompt for resources, then boot the distro's live installer
-#   <distro>-vm launch        start VM and open the viewer (it keeps running until stop)
+#   <distro>-vm launch [-k]   start VM and open a VNC viewer (-k keeps it running after)
 #   <distro>-vm stop|status|remove
 
 set -euo pipefail
 
 distro=$(basename "$0")
 distro=${distro%-vm}
-# 8006/8007 belong to windows-vm/macos-vm, so all of them can run at once
+# 8006/8007 and 5900 belong to windows-vm/macos-vm, so all of them can run at once
 case $distro in
-  ubuntu) title=Ubuntu port=8008 ;;
-  fedora) title=Fedora port=8009 ;;
-  mint) title=Mint port=8010 ;;
-  nixos) title=NixOS port=8011 ;;
+  ubuntu) title=Ubuntu port=8008 vnc=5901 ;;
+  fedora) title=Fedora port=8009 vnc=5902 ;;
+  mint) title=Mint port=8010 vnc=5903 ;;
+  nixos) title=NixOS port=8011 vnc=5904 ;;
   *) echo "run as ubuntu-vm, fedora-vm, mint-vm or nixos-vm" >&2; exit 1 ;;
 esac
 
@@ -22,7 +22,7 @@ dir="$HOME/.config/$distro"
 compose="$dir/docker-compose.yml"
 envfile="$dir/$distro.env"
 storage="$HOME/.local/share/$distro"
-viewer="http://127.0.0.1:$port/"
+viewer="http://127.0.0.1:$port/" # noVNC, used while installing
 
 dc() { docker compose -f "$compose" "$@"; }
 
@@ -36,7 +36,7 @@ require_installed() {
 wait_ready() {
   local timeout=120
   # probe inside the container: docker-proxy accepts on the host port regardless
-  until docker exec "$distro" nc -z -w 1 127.0.0.1 8006 2>/dev/null; do
+  until docker exec "$distro" nc -z -w 1 127.0.0.1 "$1" 2>/dev/null; do
     (((timeout -= 2) > 0)) || { notify-send "$title VM" "Timed out waiting for the viewer"; exit 1; }
     sleep 2
   done
@@ -74,10 +74,22 @@ CPU_CORES=$cpu
 DISK_SIZE=$disk
 ENV
 
+  # the stock image's QEMU has no PulseAudio backend; add it (from sid, to match the
+  # installed QEMU) and play through the host's pipewire-pulse socket.
+  # The vdagent channel syncs the clipboard with noVNC; the guest needs spice-vdagent.
+  cat > "$dir/Dockerfile" <<'DOCKER'
+FROM qemux/qemu
+RUN echo "deb http://deb.debian.org/debian sid main" > /etc/apt/sources.list.d/sid.list \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends qemu-system-gui \
+ && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/sid.list
+DOCKER
+
   cat > "$compose" <<YAML
 services:
   $distro:
-    image: qemux/qemu
+    build: .
+    image: qemu-audio
     container_name: $distro
     env_file: $distro.env
     devices:
@@ -87,8 +99,12 @@ services:
       - NET_ADMIN
     ports:
       - 127.0.0.1:$port:8006
+      - 127.0.0.1:$vnc:5900
     volumes:
       - $storage:/storage
+      - ${XDG_RUNTIME_DIR:-/run/user/$UID}/pulse/native:/run/pulse/native
+    environment:
+      ARGUMENTS: "-audiodev pa,id=snd0,server=unix:/run/pulse/native -device intel-hda -device hda-duplex,audiodev=snd0 -device virtio-serial-pci -chardev qemu-vdagent,id=vdagent,name=vdagent,clipboard=on -device virtserialport,chardev=vdagent,name=com.redhat.spice.0"
     restart: "no"
     stop_grace_period: 2m
 YAML
@@ -101,18 +117,30 @@ The ISO downloads on first boot, then starts the live session.
 Run the **$title** installer from the desktop and install to the virtual disk.
 When it asks to restart, do so; the VM boots from the installed disk from then on.
 MD
-  wait_ready
+  wait_ready 8006
   open_viewer
 }
 
 launch() {
   require_installed
+  local keep=false start rc=0
+  [[ ${1:-} == -k || ${1:-} == --keep-alive ]] && keep=true
+
   if [[ $(docker inspect -f '{{.State.Running}}' "$distro" 2>/dev/null) != true ]]; then
     notify-send "$title VM" "Starting..."
     dc up -d
   fi
-  wait_ready
-  open_viewer
+  wait_ready 5900
+
+  start=$SECONDS
+  vncviewer -SecurityTypes None "127.0.0.1::$vnc" || rc=$?
+
+  # a viewer that dies right away is a failed connect, not the user closing it
+  if ((SECONDS - start < 15)); then
+    notify-send "$title VM" "Viewer failed (exit $rc), leaving the VM running"
+    exit 1
+  fi
+  $keep || dc stop
 }
 
 remove() {
@@ -124,9 +152,9 @@ remove() {
 
 case ${1:-} in
   install) install ;;
-  launch) launch ;;
+  launch) shift; launch "$@" ;;
   stop) require_installed; dc stop ;;
   status) require_installed; dc ps ;;
   remove) remove ;;
-  *) sed -n '4,7p' "$0" | sed 's/^# \?//'; exit 1 ;;
+  *) sed -n '4,6p' "$0" | sed 's/^# \?//'; exit 1 ;;
 esac

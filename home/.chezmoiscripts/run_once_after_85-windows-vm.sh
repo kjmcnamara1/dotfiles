@@ -2,13 +2,14 @@
 
 source "${CHEZMOI_SOURCE_DIR}/../scripts/gum-helper.sh"
 
-section "Windows VM"
+section "Virtual machines"
 
 packages=(
   docker
   docker-compose
   freerdp
   openbsd-netcat
+  tigervnc # vncviewer for the macOS and Linux VMs
   xwayland-satellite # xfreerdp3 is an X11 client
 )
 

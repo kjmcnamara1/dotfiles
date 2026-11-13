@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # macOS VM in docker (dockur/macos), viewed in the browser over noVNC.
 #   macos-vm install       prompt for version/resources, then boot the installer
-#   macos-vm launch        start VM and open the viewer (it keeps running until stop)
+#   macos-vm launch [-k]   start VM and open a VNC viewer (-k keeps it running after)
 #   macos-vm stop|status|remove
 #   shared folder (~/macOS): in the guest Terminal run: sudo -S mount_9p shared
 
@@ -13,7 +13,7 @@ envfile="$dir/macos.env"
 storage="$HOME/.local/share/macos"
 shared="$HOME/macOS"
 # 8006 belongs to windows-vm, so both can run at once
-viewer="http://127.0.0.1:8007/"
+viewer="http://127.0.0.1:8007/" # noVNC, used while installing
 
 dc() { docker compose -f "$compose" "$@"; }
 
@@ -94,14 +94,14 @@ YAML
 
 Shared folder (`~/macOS`): in Terminal run `sudo -S mount_9p shared`, then Finder → Go → Computer
 MD
-  wait_ready
+  wait_ready 8006
   "$HOME/.local/bin/launch-webapp" "$viewer" >/dev/null 2>&1
 }
 
 wait_ready() {
   local timeout=120
   # probe inside the container: docker-proxy accepts on the host port regardless
-  until docker exec macos nc -z -w 1 127.0.0.1 8006 2>/dev/null; do
+  until docker exec macos nc -z -w 1 127.0.0.1 "$1" 2>/dev/null; do
     (((timeout -= 2) > 0)) || { notify-send "macOS VM" "Timed out waiting for the viewer"; exit 1; }
     sleep 2
   done
@@ -109,12 +109,24 @@ wait_ready() {
 
 launch() {
   require_installed
+  local keep=false start rc=0
+  [[ ${1:-} == -k || ${1:-} == --keep-alive ]] && keep=true
+
   if [[ $(docker inspect -f '{{.State.Running}}' macos 2>/dev/null) != true ]]; then
     notify-send "macOS VM" "Starting..."
     dc up -d
   fi
-  wait_ready
-  "$HOME/.local/bin/launch-webapp" "$viewer" >/dev/null 2>&1
+  wait_ready 5900
+
+  start=$SECONDS
+  vncviewer -SecurityTypes None 127.0.0.1::5900 || rc=$?
+
+  # a viewer that dies right away is a failed connect, not the user closing it
+  if ((SECONDS - start < 15)); then
+    notify-send "macOS VM" "Viewer failed (exit $rc), leaving the VM running"
+    exit 1
+  fi
+  $keep || dc stop
 }
 
 remove() {
@@ -127,9 +139,9 @@ remove() {
 
 case ${1:-} in
   install) install ;;
-  launch) launch ;;
+  launch) shift; launch "$@" ;;
   stop) require_installed; dc stop ;;
   status) require_installed; dc ps ;;
   remove) remove ;;
-  *) sed -n '3,7p' "$0" | sed 's/^# \?//'; exit 1 ;;
+  *) sed -n '3,6p' "$0" | sed 's/^# \?//'; exit 1 ;;
 esac
