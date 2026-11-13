@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Ubuntu / Fedora desktop VMs in docker (qemus/qemu), viewed in the browser over noVNC.
-# One script, invoked through the ubuntu-vm and fedora-vm symlinks:
+# Ubuntu / Fedora / Mint / NixOS VMs in docker (qemus/qemu), viewed in the browser over noVNC.
+# One script, invoked through the ubuntu-vm, fedora-vm, mint-vm and nixos-vm symlinks:
 #   <distro>-vm install       prompt for resources, then boot the distro's live installer
 #   <distro>-vm launch        start VM and open the viewer (it keeps running until stop)
 #   <distro>-vm stop|status|remove
@@ -13,7 +13,9 @@ distro=${distro%-vm}
 case $distro in
   ubuntu) title=Ubuntu port=8008 ;;
   fedora) title=Fedora port=8009 ;;
-  *) echo "run as ubuntu-vm or fedora-vm" >&2; exit 1 ;;
+  mint) title=Mint port=8010 ;;
+  nixos) title=NixOS port=8011 ;;
+  *) echo "run as ubuntu-vm, fedora-vm, mint-vm or nixos-vm" >&2; exit 1 ;;
 esac
 
 dir="$HOME/.config/$distro"

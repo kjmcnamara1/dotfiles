@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=NixOS
+Comment=NixOS VM in the browser
+Exec=/home/kjm/.local/bin/nixos-vm launch
+Terminal=false
+Type=Application
+Icon=distributor-logo-nixos
+Categories=System;Emulator;
+StartupNotify=false
