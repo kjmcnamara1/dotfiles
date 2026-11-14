@@ -56,6 +56,7 @@ VERSION=$version
 RAM_SIZE=$ram
 CPU_CORES=$cpu
 DISK_SIZE=$disk
+AUDIO=Y
 ENV
 
   cat > "$compose" <<YAML
