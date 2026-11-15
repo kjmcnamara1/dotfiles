@@ -1,27 +1,35 @@
 #!/usr/bin/env bash
-# Ubuntu / Fedora / Mint / NixOS VMs in docker (qemus/qemu), viewed in the browser over noVNC.
-# One script, invoked through the ubuntu-vm, fedora-vm, mint-vm and nixos-vm symlinks:
+# Ubuntu / Fedora / Mint / NixOS / Arch VMs in docker (qemus/qemu), viewed in the browser over noVNC.
+# One script, invoked through the ubuntu-vm, fedora-vm, mint-vm, nixos-vm and arch-vm symlinks:
 #   <distro>-vm install       prompt for resources, then boot the distro's live installer
 #   <distro>-vm launch [-k]   start VM and open a VNC viewer (-k keeps it running after)
 #   <distro>-vm stop|status|remove
+#   <distro>-vm snapshot|restore <name>, snapshots   save/roll back the stopped VM's disk
 
 set -euo pipefail
 
 distro=$(basename "$0")
 distro=${distro%-vm}
 # 8006/8007 and 5900 belong to windows-vm/macos-vm, so all of them can run at once
+boot=$distro
 case $distro in
   ubuntu) title=Ubuntu port=8008 vnc=5901 ;;
   fedora) title=Fedora port=8009 vnc=5902 ;;
   mint) title=Mint port=8010 vnc=5903 ;;
   nixos) title=NixOS port=8011 vnc=5904 ;;
-  *) echo "run as ubuntu-vm, fedora-vm, mint-vm or nixos-vm" >&2; exit 1 ;;
+  # BOOT=arch is a preinstalled cloud image; use the live ISO instead
+  arch) title=Arch port=8012 vnc=5905
+    boot=https://geo.mirror.pkgbuild.com/iso/latest/archlinux-x86_64.iso
+    howto="The live ISO logs in as root. Run your installer (or \`archinstall\`); find the virtual disk with \`lsblk\`." ;;
+  *) echo "run as ubuntu-vm, fedora-vm, mint-vm, nixos-vm or arch-vm" >&2; exit 1 ;;
 esac
+: "${howto:=Run the **$title** installer from the desktop and install to the virtual disk.}"
 
 dir="$HOME/.config/$distro"
 compose="$dir/docker-compose.yml"
 envfile="$dir/$distro.env"
 storage="$HOME/.local/share/$distro"
+snapshots="$HOME/.local/share/$distro-snapshots"
 viewer="http://127.0.0.1:$port/" # noVNC, used while installing
 
 dc() { docker compose -f "$compose" "$@"; }
@@ -68,7 +76,7 @@ install() {
 
   mkdir -p "$dir"
   cat > "$envfile" <<ENV
-BOOT=$distro
+BOOT=$boot
 RAM_SIZE=$ram
 CPU_CORES=$cpu
 DISK_SIZE=$disk
@@ -114,7 +122,7 @@ YAML
 # Finish the install in the viewer
 
 The ISO downloads on first boot, then starts the live session.
-Run the **$title** installer from the desktop and install to the virtual disk.
+$howto
 When it asks to restart, do so; the VM boots from the installed disk from then on.
 MD
   wait_ready 8006
@@ -145,9 +153,44 @@ launch() {
 
 remove() {
   require_installed
-  gum confirm --default=false "Delete the $title VM and its disk ($storage)?" || exit 1
+  gum confirm --default=false "Delete the $title VM, its disk ($storage) and snapshots?" || exit 1
   dc down
-  rm -rf "$storage" "$dir"
+  rm -rf "$storage" "$snapshots" "$dir"
+}
+
+require_stopped() {
+  require_installed
+  if [[ $(docker inspect -f '{{.State.Running}}' "$distro" 2>/dev/null) == true ]]; then
+    echo "$title VM is running, stop it first: $distro-vm stop" >&2
+    exit 1
+  fi
+}
+
+# copy a whole storage dir (disk, uefi vars, iso). On btrfs the reflink copy is
+# instant and shares blocks; the destination dir must be nocow like the source,
+# since btrfs refuses to reflink between nocow and cow files.
+copy_storage() {
+  mkdir -p "$2"
+  chattr +C "$2" 2>/dev/null || true
+  cp -a --reflink=auto "$1/." "$2/"
+}
+
+snapshot() {
+  local name=${1:?usage: $distro-vm snapshot <name>}
+  require_stopped
+  [[ ! -e $snapshots/$name ]] || { echo "snapshot exists: $name" >&2; exit 1; }
+  mkdir -p "$snapshots"
+  copy_storage "$storage" "$snapshots/$name"
+  echo "saved $title snapshot: $name"
+}
+
+restore() {
+  local name=${1:?usage: $distro-vm restore <name>}
+  require_stopped
+  [[ -d $snapshots/$name ]] || { echo "no snapshot: $name (see: $distro-vm snapshots)" >&2; exit 1; }
+  rm -rf "$storage"
+  copy_storage "$snapshots/$name" "$storage"
+  echo "restored $title to snapshot: $name"
 }
 
 case ${1:-} in
@@ -156,5 +199,8 @@ case ${1:-} in
   stop) require_installed; dc stop ;;
   status) require_installed; dc ps ;;
   remove) remove ;;
-  *) sed -n '4,6p' "$0" | sed 's/^# \?//'; exit 1 ;;
+  snapshot) snapshot "${2:-}" ;;
+  restore) restore "${2:-}" ;;
+  snapshots) ls -1 "$snapshots" 2>/dev/null ;;
+  *) sed -n '4,7p' "$0" | sed 's/^# \?//'; exit 1 ;;
 esac

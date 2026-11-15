@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Arch
+Comment=Arch VM in the browser
+Exec=/home/kjm/.local/bin/arch-vm launch
+Terminal=false
+Type=Application
+Icon=distributor-logo-archlinux
+Categories=System;Emulator;
+StartupNotify=false
