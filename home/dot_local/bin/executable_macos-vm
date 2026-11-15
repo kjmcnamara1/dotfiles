@@ -56,13 +56,24 @@ VERSION=$version
 RAM_SIZE=$ram
 CPU_CORES=$cpu
 DISK_SIZE=$disk
-AUDIO=Y
 ENV
+
+  # the stock image's QEMU has no PulseAudio backend; add it (from sid, to match the
+  # installed QEMU) and play through the host's pipewire-pulse socket, as linux-vm does.
+  # macOS has no driver for intel-hda, so the guest gets a USB sound card.
+  cat > "$dir/Dockerfile" << 'DOCKER'
+FROM dockurr/macos
+RUN echo "deb http://deb.debian.org/debian sid main" > /etc/apt/sources.list.d/sid.list \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends qemu-system-gui \
+ && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/sid.list
+DOCKER
 
   cat > "$compose" <<YAML
 services:
   macos:
-    image: dockurr/macos
+    build: .
+    image: macos-audio
     container_name: macos
     env_file: macos.env
     devices:
@@ -77,8 +88,10 @@ services:
     volumes:
       - $storage:/storage
       - $shared:/shared
+      - ${XDG_RUNTIME_DIR:-/run/user/$UID}/pulse/native:/run/pulse/native
     environment:
       TIMEOUT: "300" # updates can take minutes; dockur kills QEMU after this
+      ARGUMENTS: "-audiodev pa,id=snd0,server=unix:/run/pulse/native -device usb-audio,audiodev=snd0,bus=xhci.0"
     restart: "no"
     stop_grace_period: 6m
 YAML
