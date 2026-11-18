@@ -7,8 +7,69 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "agent_servers": {
+    "claude-acp": {
+      "favorite_config_option_values": {
+        "model": [
+          "default",
+          "opus",
+          "sonnet",
+          "fable",
+          "haiku",
+          "caveman-auto[1m]"
+        ]
+      },
+      "default_config_options": {
+        "model": "caveman-auto[1m]",
+        "fast": true
+      },
+      "type": "registry"
+    }
+  },
+  "agent": {
+    "favorite_models": [],
+    "play_sound_when_agent_done": "when_hidden",
+    // Keep the thread compact: collapse diffs, terminal output and thinking
+    // by default (click a card to expand it).
+    "expand_edit_card": false,
+    "expand_terminal_card": false,
+    "thinking_display": "always_collapsed",
+    "model_parameters": []
+  },
+  "proxy": "",
+  "terminal": {
+    "toolbar": {
+      "breadcrumbs": false
+    }
+  },
+  "document_symbols": "on",
+  "document_folding_ranges": "on",
+  "semantic_tokens": "combined",
+  "markdown_preview": {
+    "open_markdown_files_in_preview": true
+  },
+  "code_lens": "on",
+  "format_on_save": "modifications",
+  "cursor_animation": {
+    "enabled": false
+  },
+  "icon_theme": "Zed (Default)",
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Nord Pro Dark"
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+    "anthropic_retention": false
+  },
   "helix_mode": true,
   "git": {
+    "auto_fetch": {
+      "enabled": true
+    },
+    "date_format": "locale",
     "hunk_style": "staged_hollow",
     "inline_blame": {
       "show_commit_summary": true,
@@ -46,11 +107,11 @@
     "button": true,
   },
   "title_bar": {
+    "show_branch_status_icon": true,
     "show_menus": false,
     "show_user_menu": true,
     "show_onboarding_banner": true,
     "show_project_items": true,
-    "show_branch_icon": true,
   },
   "search": {
     "center_on_match": true,
@@ -58,7 +119,7 @@
   "use_smartcase_search": true,
   "diagnostics": {
     "inline": {
-      "enabled": false,
+      "enabled": true,
     },
   },
   "prettier": {
