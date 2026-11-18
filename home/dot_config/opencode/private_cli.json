@@ -8,7 +8,8 @@
     "permissions": "autoaccept",
     "scrollbar": true,
     "verbosity": "low",
-    "image_preview": false
+    "image_preview": false,
+    "sidebar": "auto"
   },
   "tabs": {
     "mode": "auto",
@@ -16,5 +17,8 @@
   },
   "plugins": [
     "@leohenon/opencode-vim-plugin@beta"
-  ]
+  ],
+  "prompt": {
+    "paste": "full"
+  }
 }

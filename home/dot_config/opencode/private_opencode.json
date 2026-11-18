@@ -1,5 +1,8 @@
 {
-  "plugins": [],
+  "model": "claude-agent/caveman-auto[1m]",
+  "plugins": [
+    "superpowers@git+https://github.com/obra/superpowers.git"
+  ],
   "mcp": {
     "servers": {
       "vectorcraft": {
@@ -8,6 +11,113 @@
           "vectorcraft-cli",
           "mcp"
         ]
+      },
+      "rea": {
+        "type": "local",
+        "command": [
+          "/usr/bin/node",
+          "/home/kjm/.npm/_npx/af752b90495482d7/node_modules/.bin/rea",
+          "mcp"
+        ],
+        "disabled": false,
+        "environment": {
+          "HOPPER_LAUNCHER_PATH": "/opt/hopper/bin/Hopper"
+        }
+      }
+    },
+    "caveman": {
+      "type": "local",
+      "command": [
+        "/home/kjm/.caveman/bin/caveman-mcp"
+      ],
+      "enabled": true
+    }
+  },
+  "provider": {
+    "openai": {
+      "options": {
+        "baseURL": "http://127.0.0.1:8787/w/opencode/openai/v1"
+      },
+      "models": {
+        "caveman-auto": {
+          "name": "Auto",
+          "reasoning": true,
+          "tool_call": true,
+          "attachment": true,
+          "limit": {
+            "context": 872000,
+            "output": 32000
+          }
+        }
+      }
+    },
+    "anthropic": {
+      "options": {
+        "baseURL": "http://127.0.0.1:8787/w/opencode/anthropic/v1"
+      },
+      "models": {
+        "caveman-auto": {
+          "name": "Auto",
+          "reasoning": true,
+          "tool_call": true,
+          "attachment": true,
+          "limit": {
+            "context": 1000000,
+            "output": 32000
+          }
+        }
+      }
+    },
+    "opencode-go": {
+      "options": {
+        "baseURL": "http://127.0.0.1:8787/w/opencode/compat/opencode-go/v1"
+      }
+    }
+  },
+  "providers": {
+    "claude-agent": {
+      "settings": {
+        "baseURL": "http://127.0.0.1:8787/w/opencode/anthropic"
+      },
+      "models": {
+        "caveman-auto[1m]": {
+          "name": "Auto",
+          "limit": {
+            "context": 1000000
+          },
+          "variants": [
+            {
+              "id": "low",
+              "settings": {
+                "effort": "low"
+              }
+            },
+            {
+              "id": "medium",
+              "settings": {
+                "effort": "medium"
+              }
+            },
+            {
+              "id": "high",
+              "settings": {
+                "effort": "high"
+              }
+            },
+            {
+              "id": "xhigh",
+              "settings": {
+                "effort": "xhigh"
+              }
+            },
+            {
+              "id": "max",
+              "settings": {
+                "effort": "max"
+              }
+            }
+          ]
+        }
       }
     }
   }
