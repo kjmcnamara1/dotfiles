@@ -3,7 +3,7 @@
 #   macos-vm install       prompt for version/resources, then boot the installer
 #   macos-vm launch [-k]   start VM and open a VNC viewer (-k keeps it running after)
 #   macos-vm stop|status|remove
-#   shared folder (~/macOS): in the guest Terminal run: sudo -S mount_9p shared
+#   shared folder (~/Public): in the guest Terminal run: sudo -S mount_9p shared
 
 set -euo pipefail
 
@@ -11,7 +11,7 @@ dir="$HOME/.config/macos"
 compose="$dir/docker-compose.yml"
 envfile="$dir/macos.env"
 storage="$HOME/.local/share/macos"
-shared="$HOME/macOS"
+shared="$HOME/Public" # shared with every VM
 # 8006 belongs to windows-vm, so both can run at once
 viewer="http://127.0.0.1:8007/" # noVNC, used while installing
 
@@ -106,7 +106,7 @@ YAML
 4. At Migration Assistant choose **Not now**; at Apple ID choose **Set Up Later**
 5. Create your account
 
-Shared folder (`~/macOS`): in Terminal run `sudo -S mount_9p shared`, then Finder → Go → Computer
+Shared folder (`~/Public`): in Terminal run `sudo -S mount_9p shared`, then Finder → Go → Computer
 MD
   wait_ready 8006
   "$HOME/.local/bin/launch-webapp" "$viewer" >/dev/null 2>&1
@@ -157,5 +157,5 @@ case ${1:-} in
   stop) require_installed; dc stop ;;
   status) require_installed; dc ps ;;
   remove) remove ;;
-  *) sed -n '3,6p' "$0" | sed 's/^# \?//'; exit 1 ;;
+  *) sed -n '3,7p' "$0" | sed 's/^# \?//'; exit 1 ;;
 esac

@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-# Ubuntu / Fedora / Mint / NixOS / Arch VMs in docker (qemus/qemu), viewed in the browser over noVNC.
-# One script, invoked through the ubuntu-vm, fedora-vm, mint-vm, nixos-vm and arch-vm symlinks:
+# Ubuntu / Fedora / Mint / NixOS / Arch / CachyOS / Omarchy VMs in docker (qemus/qemu), viewed in the browser over noVNC.
+# One script, invoked through the <distro>-vm symlinks (ubuntu, fedora, mint, nixos, arch, cachyos, omarchy):
 #   <distro>-vm install       prompt for resources, then boot the distro's live installer
 #   <distro>-vm launch [-k]   start VM and open a VNC viewer (-k keeps it running after)
 #   <distro>-vm stop|status|remove
 #   <distro>-vm snapshot|restore <name>, snapshots   save/roll back the stopped VM's disk
+#   shared folder (~/Public): in the guest run: sudo mount -t 9p -o trans=virtio shared /mnt
 
 set -euo pipefail
 
@@ -18,10 +19,27 @@ case $distro in
   mint) title=Mint port=8010 vnc=5903 ;;
   nixos) title=NixOS port=8011 vnc=5904 ;;
   # BOOT=arch is a preinstalled cloud image; use the live ISO instead
-  arch) title=Arch port=8012 vnc=5905
+  arch)
+    title=Arch port=8012 vnc=5905
     boot=https://geo.mirror.pkgbuild.com/iso/latest/archlinux-x86_64.iso
-    howto="The live ISO logs in as root. Run your installer (or \`archinstall\`); find the virtual disk with \`lsblk\`." ;;
-  *) echo "run as ubuntu-vm, fedora-vm, mint-vm, nixos-vm or arch-vm" >&2; exit 1 ;;
+    howto="The live ISO logs in as root. Run your installer (or \`archinstall\`); find the virtual disk with \`lsblk\`."
+    ;;
+  # no stable "latest" URL for these: install scrapes the newest ISO off the download page
+  cachyos)
+    title=CachyOS port=8013 vnc=5906
+    latest_page=https://cachyos.org/download/
+    latest_re='https://iso\.cachyos\.org/desktop/[0-9]+/cachyos-desktop-linux-[0-9]+\.iso'
+    ;;
+  omarchy)
+    title=Omarchy port=8014 vnc=5907
+    latest_page=https://omarchy.org/
+    latest_re='https://iso\.omarchy\.org/omarchy-[0-9.]+-x86\.iso'
+    howto="The ISO boots straight into the Omarchy installer; answer its prompts and let it take the virtual disk."
+    ;;
+  *)
+    echo "run as ubuntu-vm, fedora-vm, mint-vm, nixos-vm, arch-vm, cachyos-vm or omarchy-vm" >&2
+    exit 1
+    ;;
 esac
 : "${howto:=Run the **$title** installer from the desktop and install to the virtual disk.}"
 
@@ -30,6 +48,7 @@ compose="$dir/docker-compose.yml"
 envfile="$dir/$distro.env"
 storage="$HOME/.local/share/$distro"
 snapshots="$HOME/.local/share/$distro-snapshots"
+shared="$HOME/Public"            # shared with every VM
 viewer="http://127.0.0.1:$port/" # noVNC, used while installing
 
 dc() { docker compose -f "$compose" "$@"; }
@@ -44,13 +63,16 @@ require_installed() {
 wait_ready() {
   local timeout=120
   # probe inside the container: docker-proxy accepts on the host port regardless
-  until docker exec "$distro" nc -z -w 1 127.0.0.1 "$1" 2>/dev/null; do
-    (((timeout -= 2) > 0)) || { notify-send "$title VM" "Timed out waiting for the viewer"; exit 1; }
+  until docker exec "$distro" nc -z -w 1 127.0.0.1 "$1" 2> /dev/null; do
+    (((timeout -= 2) > 0)) || {
+      notify-send "$title VM" "Timed out waiting for the viewer"
+      exit 1
+    }
     sleep 2
   done
 }
 
-open_viewer() { "$HOME/.local/bin/launch-webapp" "$viewer" >/dev/null 2>&1; }
+open_viewer() { "$HOME/.local/bin/launch-webapp" "$viewer" > /dev/null 2>&1; }
 
 install() {
   if [[ ! -e /dev/kvm ]]; then
@@ -61,21 +83,32 @@ install() {
   local mem_gb cores free_gb ram cpu disk
   mem_gb=$(awk '/MemTotal/ {print int($2 / 1024 / 1024)}' /proc/meminfo)
   cores=$(nproc)
-  mkdir -p "$storage"
-  chattr +C "$storage" 2>/dev/null || true # no CoW for the disk image on btrfs
+  mkdir -p "$storage" "$shared"
+  chattr +C "$storage" 2> /dev/null || true # no CoW for the disk image on btrfs
   free_gb=$(df -BG --output=avail "$storage" | tail -1 | tr -dc 0-9)
 
-  ram=$(for s in 2 4 8 16 32; do if ((s < mem_gb)); then echo "${s}G"; fi; done |
-    gum choose --header "RAM (host has ${mem_gb}G)" --selected 4G)
+  ram=$(for s in 2 4 8 16 32; do if ((s < mem_gb)); then echo "${s}G"; fi; done \
+    | gum choose --header "RAM (host has ${mem_gb}G)" --selected 4G)
   cpu=$(gum input --header "CPU cores (host has $cores)" --value 4)
-  ((cpu >= 1 && cpu <= cores)) || { echo "invalid core count: $cpu" >&2; exit 1; }
-  disk=$(for s in 32 64 128 256; do if ((s < free_gb)); then echo "${s}G"; fi; done |
-    gum choose --header "Disk (${free_gb}G free)" --selected 64G)
+  ((cpu >= 1 && cpu <= cores)) || {
+    echo "invalid core count: $cpu" >&2
+    exit 1
+  }
+  disk=$(for s in 32 64 128 256; do if ((s < free_gb)); then echo "${s}G"; fi; done \
+    | gum choose --header "Disk (${free_gb}G free)" --selected 64G)
 
-  gum confirm "Install $title with $ram RAM, $cpu cores, $disk disk?" || exit 1
+  if [[ -n ${latest_page:-} ]]; then
+    boot=$(curl -fsSL "$latest_page" | grep -oE "$latest_re" | sort -uV | tail -1) || true
+    [[ -n $boot ]] || {
+      echo "no ISO link matching $latest_re on $latest_page" >&2
+      exit 1
+    }
+  fi
+
+  gum confirm "Install $title ($boot) with $ram RAM, $cpu cores, $disk disk?" || exit 1
 
   mkdir -p "$dir"
-  cat > "$envfile" <<ENV
+  cat > "$envfile" << ENV
 BOOT=$boot
 RAM_SIZE=$ram
 CPU_CORES=$cpu
@@ -85,7 +118,7 @@ ENV
   # the stock image's QEMU has no PulseAudio backend; add it (from sid, to match the
   # installed QEMU) and play through the host's pipewire-pulse socket.
   # The vdagent channel syncs the clipboard with noVNC; the guest needs spice-vdagent.
-  cat > "$dir/Dockerfile" <<'DOCKER'
+  cat > "$dir/Dockerfile" << 'DOCKER'
 FROM qemux/qemu
 RUN echo "deb http://deb.debian.org/debian sid main" > /etc/apt/sources.list.d/sid.list \
  && apt-get update \
@@ -93,7 +126,7 @@ RUN echo "deb http://deb.debian.org/debian sid main" > /etc/apt/sources.list.d/s
  && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/sid.list
 DOCKER
 
-  cat > "$compose" <<YAML
+  cat > "$compose" << YAML
 services:
   $distro:
     build: .
@@ -110,6 +143,7 @@ services:
       - 127.0.0.1:$vnc:5900
     volumes:
       - $storage:/storage
+      - $shared:/shared
       - ${XDG_RUNTIME_DIR:-/run/user/$UID}/pulse/native:/run/pulse/native
     environment:
       ARGUMENTS: "-audiodev pa,id=snd0,server=unix:/run/pulse/native -device intel-hda -device hda-duplex,audiodev=snd0 -device virtio-serial-pci -chardev qemu-vdagent,id=vdagent,name=vdagent,clipboard=on -device virtserialport,chardev=vdagent,name=com.redhat.spice.0"
@@ -118,12 +152,14 @@ services:
 YAML
 
   dc up -d
-  gum format <<MD
+  gum format << MD
 # Finish the install in the viewer
 
 The ISO downloads on first boot, then starts the live session.
 $howto
 When it asks to restart, do so; the VM boots from the installed disk from then on.
+
+Shared folder (\`~/Public\`): in the guest run \`sudo mount -t 9p -o trans=virtio shared /mnt\`
 MD
   wait_ready 8006
   open_viewer
@@ -134,7 +170,7 @@ launch() {
   local keep=false start rc=0
   [[ ${1:-} == -k || ${1:-} == --keep-alive ]] && keep=true
 
-  if [[ $(docker inspect -f '{{.State.Running}}' "$distro" 2>/dev/null) != true ]]; then
+  if [[ $(docker inspect -f '{{.State.Running}}' "$distro" 2> /dev/null) != true ]]; then
     notify-send "$title VM" "Starting..."
     dc up -d
   fi
@@ -142,6 +178,8 @@ launch() {
 
   start=$SECONDS
   vncviewer -SecurityTypes None "127.0.0.1::$vnc" || rc=$?
+  # remote-viewer --title "$title" "vnc://127.0.0.1:$vnc" || rc=$?
+  # remmina -c "vnc://127.0.0.1:$vnc" || rc=$?
 
   # a viewer that dies right away is a failed connect, not the user closing it
   if ((SECONDS - start < 15)); then
@@ -160,7 +198,7 @@ remove() {
 
 require_stopped() {
   require_installed
-  if [[ $(docker inspect -f '{{.State.Running}}' "$distro" 2>/dev/null) == true ]]; then
+  if [[ $(docker inspect -f '{{.State.Running}}' "$distro" 2> /dev/null) == true ]]; then
     echo "$title VM is running, stop it first: $distro-vm stop" >&2
     exit 1
   fi
@@ -171,14 +209,17 @@ require_stopped() {
 # since btrfs refuses to reflink between nocow and cow files.
 copy_storage() {
   mkdir -p "$2"
-  chattr +C "$2" 2>/dev/null || true
+  chattr +C "$2" 2> /dev/null || true
   cp -a --reflink=auto "$1/." "$2/"
 }
 
 snapshot() {
   local name=${1:?usage: $distro-vm snapshot <name>}
   require_stopped
-  [[ ! -e $snapshots/$name ]] || { echo "snapshot exists: $name" >&2; exit 1; }
+  [[ ! -e $snapshots/$name ]] || {
+    echo "snapshot exists: $name" >&2
+    exit 1
+  }
   mkdir -p "$snapshots"
   copy_storage "$storage" "$snapshots/$name"
   echo "saved $title snapshot: $name"
@@ -187,7 +228,10 @@ snapshot() {
 restore() {
   local name=${1:?usage: $distro-vm restore <name>}
   require_stopped
-  [[ -d $snapshots/$name ]] || { echo "no snapshot: $name (see: $distro-vm snapshots)" >&2; exit 1; }
+  [[ -d $snapshots/$name ]] || {
+    echo "no snapshot: $name (see: $distro-vm snapshots)" >&2
+    exit 1
+  }
   rm -rf "$storage"
   copy_storage "$snapshots/$name" "$storage"
   echo "restored $title to snapshot: $name"
@@ -195,12 +239,24 @@ restore() {
 
 case ${1:-} in
   install) install ;;
-  launch) shift; launch "$@" ;;
-  stop) require_installed; dc stop ;;
-  status) require_installed; dc ps ;;
+  launch)
+    shift
+    launch "$@"
+    ;;
+  stop)
+    require_installed
+    dc stop
+    ;;
+  status)
+    require_installed
+    dc ps
+    ;;
   remove) remove ;;
   snapshot) snapshot "${2:-}" ;;
   restore) restore "${2:-}" ;;
-  snapshots) ls -1 "$snapshots" 2>/dev/null ;;
-  *) sed -n '4,7p' "$0" | sed 's/^# \?//'; exit 1 ;;
+  snapshots) ls -1 "$snapshots" 2> /dev/null ;;
+  *)
+    sed -n '4,8p' "$0" | sed 's/^# \?//'
+    exit 1
+    ;;
 esac

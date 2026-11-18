@@ -10,7 +10,7 @@ dir="$HOME/.config/windows"
 compose="$dir/docker-compose.yml"
 envfile="$dir/windows.env"
 storage="$HOME/.local/share/windows"
-shared="$HOME/Windows"
+shared="$HOME/Public" # shared with every VM
 
 dc() { docker compose -f "$compose" "$@"; }
 

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Omarchy
+Comment=Omarchy VM in the browser
+Exec=/home/kjm/.local/bin/omarchy-vm launch
+Terminal=false
+Type=Application
+Icon=distributor-logo-archlinux
+Categories=System;Emulator;
+StartupNotify=false

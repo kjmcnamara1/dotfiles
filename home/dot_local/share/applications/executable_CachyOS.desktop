@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=CachyOS
+Comment=CachyOS VM in the browser
+Exec=/home/kjm/.local/bin/cachyos-vm launch
+Terminal=false
+Type=Application
+Icon=distributor-logo-archlinux
+Categories=System;Emulator;
+StartupNotify=false
