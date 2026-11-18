@@ -16,15 +16,16 @@
           "sonnet",
           "fable",
           "haiku",
-          "caveman-auto[1m]"
-        ]
+          "caveman-auto[1m]",
+        ],
       },
       "default_config_options": {
+        "effort": "default",
         "model": "caveman-auto[1m]",
-        "fast": true
+        "fast": true,
       },
-      "type": "registry"
-    }
+      "type": "registry",
+    },
   },
   "agent": {
     "favorite_models": [],
@@ -34,40 +35,52 @@
     "expand_edit_card": false,
     "expand_terminal_card": false,
     "thinking_display": "always_collapsed",
-    "model_parameters": []
+    "model_parameters": [],
   },
   "proxy": "",
   "terminal": {
     "toolbar": {
-      "breadcrumbs": false
-    }
+      "breadcrumbs": false,
+    },
   },
   "document_symbols": "on",
   "document_folding_ranges": "on",
   "semantic_tokens": "combined",
   "markdown_preview": {
-    "open_markdown_files_in_preview": true
+    "open_markdown_files_in_preview": true,
   },
   "code_lens": "on",
-  "format_on_save": "modifications",
+  "formatter": "auto",
+  "format_on_save": "on",
+  "languages": {
+    "Shell Script": {
+      "formatter": {
+        "external": {
+          "command": "shfmt",
+          "arguments": ["--filename", "{buffer_path}", "-i", "2", "-bn", "-ci", "-sr"],
+        },
+      },
+    },
+  },
   "cursor_animation": {
-    "enabled": false
+    "enabled": false,
   },
   "icon_theme": "Zed (Default)",
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Nord Pro Dark"
+    "dark": "One Nord Pro Dark",
   },
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
-    "anthropic_retention": false
+    "anthropic_retention": false,
   },
   "helix_mode": true,
   "git": {
+    "diff_base": "head",
     "auto_fetch": {
-      "enabled": true
+      "enabled": true,
     },
     "date_format": "locale",
     "hunk_style": "staged_hollow",
@@ -145,8 +158,10 @@
     "toggle_relative_line_numbers": true,
   },
   "indent_guides": {
+    "enabled": true,
+    "background_coloring": "disabled",
     "coloring": "indent_aware",
-    "active_line_width": 5,
+    "active_line_width": 3,
   },
   "gutter": {
     "min_line_number_digits": 1,
