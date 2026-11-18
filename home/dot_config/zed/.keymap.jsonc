@@ -452,5 +452,23 @@
     "unbind": {
       "s": "vim::HelixSelectRegex"
     }
+  },
+  {
+    "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
+    "unbind": {
+      "z c": "editor::ScrollCursorCenter"
+    }
+  },
+  {
+    "context": "OutlinePanel && not_editing",
+    "unbind": {
+      "z c": "outline_panel::ScrollCursorCenter"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "unbind": {
+      "z c": "project_panel::ScrollCursorCenter"
+    }
   }
 ]
