@@ -213,7 +213,7 @@
   },
 
   {
-    "context": "!(mode == single_line || vim_mode == insert || vim_mode == replace || BufferSearchBar)",
+    "context": "!(mode == single_line || vim_mode == insert || vim_mode == replace || BufferSearchBar || Terminal)",
     // "context": "EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || ThemePreview",
     "bindings": {
       ":": "command_palette::Toggle",
