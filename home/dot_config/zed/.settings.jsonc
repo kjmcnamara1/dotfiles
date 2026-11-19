@@ -71,6 +71,27 @@
       },
     },
   },
+  "lsp": {
+    "lua-language-server": {
+      "settings": {
+        "Lua": {
+          "hint": {
+            "arrayIndex": "Disable",
+          },
+          "format": {
+            // EmmyLuaCodeStyle options; values must be strings.
+            "defaultConfig": {
+              "quote_style": "double",
+              "indent_style": "space",
+              "indent_size": "2",
+              "max_line_length": "120",
+              "trailing_table_separator": "smart",
+            },
+          },
+        },
+      },
+    },
+  },
   "cursor_animation": {
     "enabled": false,
   },
