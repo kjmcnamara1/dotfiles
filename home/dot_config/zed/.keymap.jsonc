@@ -217,6 +217,7 @@
     // "context": "EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || ThemePreview",
     "bindings": {
       ":": "command_palette::Toggle",
+      "space e": "project_panel::Toggle",
       "space u i": "dev::OpenSyntaxTreeView",
       "space u I": "dev::OpenKeyContextView",
       "space u C": "theme_selector::Toggle",
