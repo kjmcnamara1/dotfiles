@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "cli_default_open_behavior": "existing_window",
   "agent_servers": {
     "claude-acp": {
       "favorite_config_option_values": {
@@ -57,7 +58,15 @@
       "formatter": {
         "external": {
           "command": "shfmt",
-          "arguments": ["--filename", "{buffer_path}", "-i", "2", "-bn", "-ci", "-sr"],
+          "arguments": [
+            "--filename",
+            "{buffer_path}",
+            "-i",
+            "2",
+            "-bn",
+            "-ci",
+            "-sr",
+          ],
         },
       },
     },
@@ -154,7 +163,7 @@
       "visual": "hollow",
     },
     "use_smartcase_find": true,
-    "use_system_clipboard": "on_yank",
+    "use_system_clipboard": "always",
     "toggle_relative_line_numbers": true,
   },
   "indent_guides": {

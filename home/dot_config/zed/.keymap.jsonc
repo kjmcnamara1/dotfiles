@@ -5,6 +5,11 @@
 // copies of the default keymap in here: stale copies shadow vim/helix bindings
 // (e.g. Editor "escape" -> editor::Cancel kept helix insert mode from exiting).
 //
+// Precedence: a binding on a deeper context node wins (Editor beats Workspace);
+// at equal depth the LATER block wins. `null` / "unbind" only disable bindings
+// that appear earlier. In contexts `>` binds looser than `||` / `&&`, so
+// parenthesize when mixing them.
+//
 // See defaults with `zed: open default keymap`; docs: https://zed.dev/docs/key-bindings
 [
   {
@@ -18,23 +23,30 @@
       "f11": "zed::ToggleFullScreen",
       "ctrl-alt-i": "zed::DebugElements",
       "ctrl-\"": "editor::ToggleInlayHints",
-      "shift-escape": null
-    }
+      "shift-escape": null, // zoom lives on alt-m
+    },
   },
 
   {
     "context": "Workspace",
+    "unbind": {
+      "ctrl-n": "workspace::NewFile",
+    },
     "bindings": {
+      "ctrl-alt-/": "agent::Toggle",
       "ctrl-shift-r": "workspace::Reload",
-      "alt-ctrl-shift-o": ["projects::OpenRecent", { "create_new_window": true}],
+      "alt-ctrl-shift-o": [
+        "projects::OpenRecent",
+        { "create_new_window": true },
+      ],
       "ctrl-alt-s": "workspace::SaveWithoutFormat",
       "ctrl-`": "terminal_panel::ToggleFocus",
       "ctrl-alt-y": "workspace::CloseAllDocks",
       "ctrl-;": "zed::OpenKeymap",
-      "ctrl-?": "agent::ToggleFocus",
       "ctrl-alt-shift-s": "workspace::SaveAll",
-      "alt-backspace": "pane::CloseActiveItem"
-    }
+      "alt-backspace": "pane::CloseActiveItem",
+      "ctrl-alt-n": "workspace::NewFile",
+    },
   },
 
   {
@@ -44,14 +56,14 @@
       "alt-h": "pane::ActivatePreviousItem",
       "alt-l": "pane::ActivateNextItem",
       "alt-ctrl-h": "pane::SwapItemLeft",
-      "alt-ctrl-l": "pane::SwapItemRight"
-    }
+      "alt-ctrl-l": "pane::SwapItemRight",
+    },
   },
 
+  // Pane swapping / vim-style ctrl-w window chords outside of typing.
   {
     "context": "ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || Dock || ThemePreview",
     "bindings": {
-      "ctrl-w": null,
       "ctrl-shift-h": "workspace::SwapPaneLeft",
       "ctrl-shift-l": "workspace::SwapPaneRight",
       "ctrl-shift-k": "workspace::SwapPaneUp",
@@ -71,36 +83,28 @@
       "ctrl-w o": "workspace::CloseInactiveTabsAndPanes",
       "ctrl-w ctrl-o": "workspace::CloseInactiveTabsAndPanes",
       "ctrl-w n": "workspace::NewFileSplitHorizontal",
-      "ctrl-w ctrl-n": "workspace::NewFileSplitHorizontal"
-    }
+      "ctrl-w ctrl-n": "workspace::NewFileSplitHorizontal",
+    },
   },
 
   {
     "context": "Editor",
+    "unbind": {
+      "ctrl-;": "editor::ToggleLineNumbers",
+    },
     "bindings": {
       "alt-q": "editor::Rewrap",
       "ctrl-delete": "editor::DeleteToNextWordEnd",
       "home": "editor::MoveToBeginningOfLine",
       "end": "editor::MoveToEndOfLine",
-      "shift-home": ["editor::SelectToBeginningOfLine", { "stop_at_soft_wraps": true}],
-      "ctrl-:": "editor::ToggleLineNumbers",
-      "alt-g b": "git::Blame",
+      "shift-home": [
+        "editor::SelectToBeginningOfLine",
+        { "stop_at_soft_wraps": true },
+      ],
       "alt-j": "editor::MoveLineDown",
       "alt-k": "editor::MoveLineUp",
-      "alt-*": [
-        "editor::SelectNext",
-        {
-          "replace_newest": false
-        }
-      ],
-      "alt-#": [
-        "editor::SelectPrevious",
-        {
-          "replace_newest": false
-        }
-      ],
-      "alt-u": "editor::UndoSelection",
-      "alt-shift-u": "editor::RedoSelection",
+      "alt-*": ["editor::SelectNext", { "replace_newest": false }],
+      "alt-#": ["editor::SelectPrevious", { "replace_newest": false }],
       "ctrl-/": "vim::ToggleComments",
       "f8": "editor::GoToDiagnostic",
       "shift-f8": "editor::GoToPreviousDiagnostic",
@@ -109,8 +113,8 @@
       "ctrl-shift-]": "editor::UnfoldLines",
       "alt-ctrl-r": "editor::RevealInFileManager",
       "ctrl-k v": "markdown::OpenPreviewToTheSide",
-      "ctrl-shift-v": "markdown::OpenPreview"
-    }
+      "ctrl-shift-v": "markdown::OpenPreview",
+    },
   },
 
   {
@@ -121,63 +125,69 @@
       "alt-enter": "editor::OpenExcerpts",
       "shift-enter": "editor::ExpandExcerpts",
       "ctrl-k enter": "editor::OpenExcerptsSplit",
-      "ctrl-enter": "assistant::InlineAssist"
-    }
+      "ctrl-enter": "assistant::InlineAssist",
+    },
   },
 
   {
     "context": "Editor && mode == full && edit_prediction",
     "bindings": {
-      "ctrl-right": "editor::AcceptNextWordEditPrediction"
-    }
+      "ctrl-right": "editor::AcceptNextWordEditPrediction",
+    },
   },
 
   {
     "context": "Editor && edit_prediction && !showing_completions",
     "bindings": {
-      "tab": "editor::AcceptEditPrediction"
-    }
+      "tab": "editor::AcceptEditPrediction",
+    },
   },
 
   {
     "context": "ProposedChangesEditor",
     "bindings": {
       "ctrl-shift-y": "editor::ApplyDiffHunk",
-      "ctrl-alt-a": "editor::ApplyAllDiffHunks"
-    }
+      "ctrl-alt-a": "editor::ApplyAllDiffHunks",
+    },
   },
 
   {
     "context": "Editor && jupyter && !ContextEditor",
     "bindings": {
       "ctrl-shift-enter": "repl::Run",
-      "ctrl-alt-enter": "repl::RunInPlace"
-    }
+      "ctrl-alt-enter": "repl::RunInPlace",
+    },
   },
 
   {
     "context": "OutlinePanel && not_editing",
+    "unbind": {
+      "z c": "outline_panel::ScrollCursorCenter",
+    },
     "bindings": {
       "j": "menu::SelectNext",
       "k": "menu::SelectPrevious",
       "alt-ctrl-shift-c": "workspace::CopyRelativePath",
-      "ctrl-k enter": "editor::OpenExcerptsSplit"
-    }
+      "ctrl-k enter": "editor::OpenExcerptsSplit",
+    },
   },
 
   {
     "context": "ProjectPanel",
     "bindings": {
-      "backspace": ["project_panel::Trash", { "skip_prompt": true}],
-      "delete": ["project_panel::Trash", { "skip_prompt": true}],
+      "backspace": ["project_panel::Trash", { "skip_prompt": true }],
+      "delete": ["project_panel::Trash", { "skip_prompt": true }],
       "alt-ctrl-shift-c": "workspace::CopyRelativePath",
       "ctrl-shift-enter": "workspace::OpenWithSystem",
-      "alt-shift-f": "project_panel::NewSearchInDirectory"
-    }
+      "alt-shift-f": "project_panel::NewSearchInDirectory",
+    },
   },
 
   {
     "context": "ProjectPanel && not_editing",
+    "unbind": {
+      "z c": "project_panel::ScrollCursorCenter",
+    },
     "bindings": {
       "j": "menu::SelectNext",
       "k": "menu::SelectPrevious",
@@ -190,20 +200,21 @@
       "p": "project_panel::Paste",
       "g x": "project_panel::RevealInFileManager",
       "g f": "workspace::OpenWithSystem",
-      "_": "project_panel::CollapseAllEntries"
-    }
+      "_": "project_panel::CollapseAllEntries",
+    },
   },
 
   {
     "context": "TabSwitcher",
     "bindings": {
       "j": "menu::SelectNext",
-      "k": "menu::SelectPrevious"
-    }
+      "k": "menu::SelectPrevious",
+    },
   },
 
   {
-    "context": "EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || ThemePreview",
+    "context": "!(mode == single_line || vim_mode == insert || vim_mode == replace || BufferSearchBar)",
+    // "context": "EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || ThemePreview",
     "bindings": {
       ":": "command_palette::Toggle",
       "space u i": "dev::OpenSyntaxTreeView",
@@ -213,15 +224,19 @@
       "space .": "file_finder::Toggle",
       "space b p": "pane::TogglePinTab",
       "space ,": "tab_switcher::Toggle",
-      "g /": "pane::DeploySearch"
-    }
+      "g /": "pane::DeploySearch",
+    },
   },
 
+  // Vim/helix normal+visual in any editor. Plain space is disabled (was
+  // vim::WrappingRight) so it is only the leader and never times out.
   {
     "context": "VimControl && !menu",
+    "unbind": {
+      "space": "vim::WrappingRight",
+    },
     "bindings": {
       "ctrl-shift-enter": "repl::Run",
-      "space j": "vim::JoinLines",
       "space u i": "dev::OpenSyntaxTreeView",
       "space u shift-i": "dev::OpenKeyContextView",
       "space l": "language_selector::Toggle",
@@ -229,60 +244,75 @@
       "space '": "pane::AlternateFile",
       "space .": "file_finder::Toggle",
       "space ,": "tab_switcher::Toggle",
-      "space ?": "zed::OpenKeymap"
-    }
+    },
   },
 
-  // Agent message box: ctrl-enter always sends (also beats the generic
-  // "Editor && mode == full" ctrl-enter -> InlineAssist above). In insert mode
-  // enter is a plain newline; in vim/helix normal mode enter sends and
-  // ctrl-d / ctrl-u scroll the thread a page down / up.
+  // Agent message box: ctrl-enter always sends (beats the "Editor && mode ==
+  // full" InlineAssist above). Insert-mode enter is a newline; normal-mode
+  // enter sends and ctrl-d / ctrl-u scroll the thread a page.
   {
     "context": "AcpThread > Editor",
     "bindings": {
-      "ctrl-enter": "agent::Chat"
-    }
+      "ctrl-enter": "agent::Chat",
+    },
   },
   {
     "context": "AcpThread > Editor && vim_mode == insert",
     "bindings": {
-      "enter": "editor::Newline"
-    }
+      "enter": "editor::Newline",
+    },
   },
   {
     "context": "AcpThread > Editor && (vim_mode == normal || vim_mode == helix_normal)",
     "bindings": {
       "enter": "agent::Chat",
       "ctrl-d": "agent::ScrollOutputPageDown",
-      "ctrl-u": "agent::ScrollOutputPageUp"
-    }
+      "ctrl-u": "agent::ScrollOutputPageUp",
+    },
   },
 
-  // Git commit message: escape in normal mode refocuses the changes list,
-  // keeping its selection. (Insert-mode escape still just drops to normal mode.)
+  // Git commit message: normal-mode escape refocuses the changes list
+  // (keeping its selection); alt-l no longer generates a message.
   {
     "context": "CommitEditor > Editor && (vim_mode == normal || vim_mode == helix_normal)",
     "bindings": {
-      "escape": "git_panel::FocusChanges"
-    }
+      "escape": "git_panel::FocusChanges",
+    },
   },
-
-  // Plain space does nothing in vim normal mode (was vim::WrappingRight), so it
-  // is only the leader for "space ..." chords and never times out.
   {
-    "context": "VimControl && !menu",
-    "bindings": {
-      "space": null
-    }
+    "context": "CommitEditor > Editor",
+    "unbind": {
+      "alt-l": "git::GenerateCommitMessage",
+    },
+  },
+  {
+    "context": "GitCommit > Editor && mode == auto_height",
+    "unbind": {
+      "alt-l": "git::GenerateCommitMessage",
+    },
   },
 
-  // Helix: { / } act exactly like [p / ]p (previous / next paragraph).
-  // alt-) / alt-( rotate selection contents; & aligns selections.
-  // shift-j / shift-k duplicate below / above (moved off shift-c / alt-shift-c);
-  // join lines moves to alt-shift-j. s is vim-sneak (replaces select-regex).
-  // ctrl-alt-s saves position to the jumplist (ctrl-s is now plain save).
+  // Helix normal/select:
+  // - { / } = [p / ]p; alt-) / alt-( rotate contents; & aligns selections
+  // - shift-j / shift-k duplicate below / above (off shift-c / alt-shift-c);
+  //   alt-shift-j joins lines
+  // - shift-s selects by regex; s, z c, shift-h, shift-l are unbound
+  // - ctrl-alt-s saves position to the jumplist (ctrl-s is plain save)
+  // - space g ... git commands
   {
     "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
+    "unbind": {
+      "g O": "git::ToggleStaged",
+      "g R": "git::Restore",
+      "g o": "editor::ToggleSelectedDiffHunks",
+      "shift-c": "vim::HelixDuplicateBelow",
+      "alt-shift-c": "vim::HelixDuplicateAbove",
+      "s": "vim::HelixSelectRegex",
+      "z c": "editor::ScrollCursorCenter",
+      "shift-l": "pane::ActivateNextItem",
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-j": "vim::JoinLines",
+    },
     "bindings": {
       "{": ["workspace::SendKeystrokes", "[ p"],
       "}": ["workspace::SendKeystrokes", "] p"],
@@ -292,72 +322,59 @@
       "shift-j": "vim::HelixDuplicateBelow",
       "shift-k": "vim::HelixDuplicateAbove",
       "alt-shift-j": "vim::JoinLines",
-      "shift-c": null,
-      "alt-shift-c": null,
-      "s": ["vim::PushSneak", {}],
-      "ctrl-alt-s": "editor::SaveLocation"
-    }
+      "shift-s": "vim::HelixSelectRegex",
+      "ctrl-alt-s": "editor::SaveLocation",
+      "space g f": "git::Fetch",
+      "space g p": "git::Pull",
+      "space g P": "git::Push",
+      "space g d": "git::Diff",
+      "space g c": "git::Commit",
+      "space g A": "git::Amend",
+      "space g t": "git::CreateTagAtHead",
+      "space g g": "git_graph::Open",
+      "space g w": "git::Worktree",
+      "space g i": "editor::ToggleSelectedDiffHunks",
+      "space g s": "git::ToggleStaged",
+      "space g r": "git::Restore",
+      "space g B": "git::Branch",
+      "space g S": "git::ViewStash",
+      "space g H": "git::FileHistory",
+    },
   },
 
-  // Git file list: space toggles staged immediately. Drop vim.json's
-  // "!Editor && !Terminal" space chords, which make space wait for a 2nd key.
-  {
-    "context": "GitPanel && ChangesList && !GitBranchSelector && !GitRepositorySelector",
-    "bindings": {
-      "space": "git::ToggleStaged",
-      "space f": null,
-      "space /": null,
-      "space shift-s": null,
-      "space w h": null,
-      "space w j": null,
-      "space w k": null,
-      "space w l": null,
-      "space w q": null
-    }
-  },
-
-  // Keymap editor table: delete removes the selected binding. (The search box
-  // is a deeper Editor context, so delete still deletes text there.)
-  {
-    "context": "KeymapEditor",
-    "bindings": {
-      "delete": "keymap_editor::DeleteBinding"
-    }
-  },
-  // ...and i or / jump back to the filter box. `!Editor` is false anywhere
-  // under an Editor, so typing i or / in the filter box still types.
+  // Keymap editor table (not its filter box -- `!Editor` is false anywhere
+  // under an Editor): delete removes the binding, i or / refocus the filter,
+  // j / k move down / up.
   {
     "context": "KeymapEditor && !Editor",
+    "unbind": {
+      "ctrl-c": "keymap_editor::CopyAction",
+      "ctrl-shift-c": "keymap_editor::CopyContext",
+    },
     "bindings": {
-      "i": "search::FocusSearch",
-      "/": "search::FocusSearch"
-    }
+      "j": "menu::SelectNext",
+      "k": "menu::SelectPrevious",
+      "/": "search::FocusSearch",
+      "d": "keymap_editor::DeleteBinding",
+      "y": "keymap_editor::CopyAction",
+      "Y": "keymap_editor::CopyContext",
+    },
   },
 
-  // Normal mode in a buffer: escape only clears search highlights (like :noh);
-  // it no longer collapses selections / multicursors (that was editor::Cancel).
+  // Normal mode in a buffer: escape only clears search highlights (:noh); it
+  // does not collapse selections / multicursors.
   {
     "context": "Editor && mode == full && (vim_mode == normal || vim_mode == helix_normal) && !menu",
     "bindings": {
-      "escape": "buffer_search::Dismiss"
-    }
+      "escape": "buffer_search::Dismiss",
+    },
   },
 
-  // Git panel: alt-h / alt-l switch between the Changes and History tabs.
-  {
-    "context": "GitPanel",
-    "bindings": {
-      "alt-h": "git_panel::ActivateChangesTab",
-      "alt-l": "git_panel::ActivateHistoryTab"
-    }
-  },
+  // ---- Order-sensitive tail: these four blocks must stay last, in order. ----
 
-  // ctrl-h/j/k/l move pane focus, alt-m toggles zoom, ctrl-s saves and
-  // ctrl-shift-s saves without formatting -- everywhere, in
-  // every vim/helix mode. Keep this
-  // block LAST: deeper contexts (Editor, Terminal, panels) beat Workspace, so
-  // each is listed explicitly, and later blocks win ties at the same depth.
-  // Shadows terminal ctrl-l (clear) / ctrl-k (kill line) and vim insert ctrl-h/j/k.
+  // Everywhere, in every vim/helix mode. Deeper contexts (Editor, Terminal,
+  // panels) beat Workspace, so each is listed. Shadows terminal ctrl-l / ctrl-k
+  // and vim insert ctrl-h/j/k.
   {
     "context": "Workspace || Editor || Terminal || Dock || ProjectPanel || OutlinePanel || GitPanel || CollabPanel || AgentPanel || AcpThread || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || ThemePreview || DebugPanel",
     "bindings": {
@@ -371,104 +388,96 @@
       "alt-shift-h": "pane::SwapItemLeft",
       "alt-shift-l": "pane::SwapItemRight",
       "ctrl-'": "terminal_panel::Toggle",
-      "ctrl-backspace": "pane::CloseAllItems"
-    }
+      "ctrl-backspace": "pane::CloseAllItems",
+    },
   },
 
-  // ctrl-backspace inside a dock (project/git/outline/agent/terminal panels)
-  // NB: in contexts `>` binds looser than `||`/`&&`, so parenthesize when mixing.
-  // closes the dock instead. Must come after the block above to win its ties.
+  // ctrl-backspace inside a dock closes the dock instead.
   {
     "context": "Dock || Dock > (Editor || Terminal || ProjectPanel || OutlinePanel || GitPanel || CollabPanel || AgentPanel || AcpThread || DebugPanel)",
     "bindings": {
-      "ctrl-backspace": "workspace::CloseActiveDock"
-    }
+      "ctrl-backspace": "workspace::CloseActiveDock",
+    },
   },
 
-  // ...except when typing: ctrl-backspace deletes the previous word in insert
-  // mode, any single-line input (search/filter boxes), and every terminal. Must stay after both ctrl-backspace blocks above.
+  // ...except when typing: insert/replace mode, single-line inputs, keymap
+  // editor inputs.
   {
-    "context": "(Editor && vim_mode == insert) || (Editor && mode == single_line) || (KeymapEditor > Editor) || (KeybindEditorModal > Editor)",
+    "context": "Editor && (vim_mode == insert || vim_mode == replace || mode == single_line)",
     "bindings": {
-      "ctrl-backspace": "editor::DeleteToPreviousWordStart"
-    }
+      "ctrl-backspace": "editor::DeleteToPreviousWordStart",
+      "ctrl-v": "editor::Paste",
+    },
   },
   {
     "context": "Terminal",
     "bindings": {
-      "ctrl-backspace": ["terminal::SendKeystroke", "ctrl-w"]
-    }
+      "ctrl-backspace": ["terminal::SendKeystroke", "ctrl-w"],
+    },
   },
+
+  // ---- end order-sensitive tail ----
+
   {
-    "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
-    "unbind": {
-      "*": "buffer_search::UseSelectionForFind"
-    }
-  },
-  {
-    "context": "Workspace",
+    "context": "Editor && (vim_mode == insert || vim_mode == replace)",
     "bindings": {
-      "ctrl-alt-n": "workspace::NewFile"
-    }
+      "alt-h": ["workspace::SendKeystrokes", "left"],
+      "alt-j": ["workspace::SendKeystrokes", "down"],
+      "alt-k": ["workspace::SendKeystrokes", "up"],
+      "alt-l": ["workspace::SendKeystrokes", "right"],
+    },
   },
-  {
-    "context": "Workspace",
-    "unbind": {
-      "ctrl-n": "workspace::NewFile"
-    }
-  },
-  {
-    "context": "Welcome",
-    "bindings": {
-      "ctrl-alt-n": "workspace::NewFile"
-    }
-  },
+
   {
     "context": "Welcome",
     "unbind": {
-      "ctrl-n": "workspace::NewFile"
-    }
-  },
-  {
-    "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
-    "unbind": {
-      "shift-h": "pane::ActivatePreviousItem"
-    }
-  },
-  {
-    "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
-    "unbind": {
-      "shift-l": "pane::ActivateNextItem"
-    }
-  },
-  {
-    "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
+      "ctrl-n": "workspace::NewFile",
+    },
     "bindings": {
-      "shift-s": "vim::HelixSelectRegex"
-    }
+      "ctrl-alt-n": "workspace::NewFile",
+    },
+  },
+
+  // Git panel: alt-h / alt-l switch between the Changes and History tabs.
+  {
+    "context": "GitPanel",
+    "bindings": {
+      "alt-h": "git_panel::ActivateChangesTab",
+      "alt-l": "git_panel::ActivateHistoryTab",
+    },
+  },
+
+  // Git file list.
+  {
+    "context": "GitPanel && ChangesList && !GitBranchSelector && !GitRepositorySelector",
+    "unbind": {
+      "i": "git_panel::FocusEditor",
+      "ctrl-delete": "git::RestoreFile",
+      "space": "git::ToggleStaged",
+      "shift-x": "git::StageAll",
+      "shift-u": "git::UnstageAll",
+    },
+    "bindings": {
+      "f": "git::Fetch",
+      "p": "git::Pull",
+      "P": "git::Push",
+      "c": "git_panel::FocusEditor",
+      "d": ["git::RestoreFile", { "skip_prompt": false }],
+      "a": "git::StageAll",
+      "shift-a": "git::UnstageAll",
+    },
   },
   {
-    "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
+    "context": "AcpThread",
     "unbind": {
-      "s": "vim::HelixSelectRegex"
-    }
+      "alt-l": "agent::CycleFavoriteModels",
+      "ctrl-alt-/": "agent::ToggleModelSelector",
+    },
   },
   {
-    "context": "(vim_mode == helix_normal || vim_mode == helix_select) && !menu",
+    "context": "AcpThread > Editor",
     "unbind": {
-      "z c": "editor::ScrollCursorCenter"
-    }
+      "alt-l": "agent::CycleFavoriteModels",
+    },
   },
-  {
-    "context": "OutlinePanel && not_editing",
-    "unbind": {
-      "z c": "outline_panel::ScrollCursorCenter"
-    }
-  },
-  {
-    "context": "ProjectPanel && not_editing",
-    "unbind": {
-      "z c": "project_panel::ScrollCursorCenter"
-    }
-  }
 ]
