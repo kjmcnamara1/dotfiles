@@ -180,6 +180,9 @@ launch() {
   vncviewer -SecurityTypes None "127.0.0.1::$vnc" || rc=$?
   # remote-viewer --title "$title" "vnc://127.0.0.1:$vnc" || rc=$?
   # remmina -c "vnc://127.0.0.1:$vnc" || rc=$?
+  # rustconn 0.25.0: GUI `--connect` is rejected by GTK ("Unknown option"), and
+  # `rustconn-cli connect` just spawns vncviewer, so there's no way to open the embedded viewer
+  # rustconn --connect "$distro-vm" || rc=$? # needs a saved "<distro>-vm" connection
 
   # a viewer that dies right away is a failed connect, not the user closing it
   if ((SECONDS - start < 15)); then
