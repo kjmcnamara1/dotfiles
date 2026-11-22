@@ -16,7 +16,7 @@ onboarding = false
   resize_mode              = ["ctrl+alt+r", "prefix+r"]
   reload_config            = ["ctrl+alt+shift+r", "prefix+shift+r"]
   toggle_sidebar           = ["ctrl+alt+b", "prefix+b"]
-  open_notification_target = ["ctrl+alt+o", "prefix+o"]
+  open_notification_target = "prefix+o"
   edit_scrollback          = ["ctrl+alt+e", "prefix+e"]
   copy_mode                = ["ctrl+alt+space", "prefix+space"]
   goto                     = ["ctrl+alt+g", "prefix+g"]
@@ -29,6 +29,10 @@ onboarding = false
   previous_workspace      = "ctrl+alt+k"
   navigate_workspace_down = "shift+j"
   navigate_workspace_up   = "shift+k"
+
+  # Worktrees
+  open_worktree   = "ctrl+alt+o"
+  remove_worktree = "ctrl+alt+shift+d"
 
   # Agents
   focus_agent = "ctrl+alt+1..9"
