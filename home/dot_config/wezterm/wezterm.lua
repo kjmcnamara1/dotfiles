@@ -3,7 +3,7 @@ local wezterm = require("wezterm")
 -- local mux = wezterm.mux
 local act = wezterm.action
 local config = wezterm.config_builder()
-local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
+local smart_splits = wezterm.plugin.require("https://github.com/smart-splits-nvim/backend-wezterm")
 
 local function is_windows()
   return wezterm.target_triple:find("windows") ~= nil
@@ -183,6 +183,7 @@ smart_splits.apply_to_config(config, {
     move = "CTRL",        -- modifier to use for pane movement, e.g. CTRL+h to move left
     resize = "META|CTRL", -- modifier to use for pane resize, e.g. META+h to resize to the left
   },
+  at_edge = "stop",
 })
 
 -- and finally, return the configuration to wezterm
